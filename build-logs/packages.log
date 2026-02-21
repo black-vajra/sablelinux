@@ -83,3 +83,17 @@ Sat Feb 21 12:37:51 AM EST 2026: Built autoconf-2.72
 Sat Feb 21 12:42:17 AM EST 2026: Built automake-1.18.1
 Sat Feb 21 12:51:42 AM EST 2026: Built openssl-3.5.2
 Sat Feb 21 11:16:00 AM EST 2026: Built libelf (elfutils-0.193)
+$(date): Built libpipeline-1.5.8
+$(date): Built make-4.4.1
+$(date): Built patch-2.8
+$(date): Built tar-1.35
+$(date): Built texinfo-7.2
+$(date): Built vim-9.1.1629
+$(date): Built markupsafe-3.0.2
+$(date): Built jinja2-3.1.6
+$(date): Built systemd-257.8
+$(date): Built dbus-1.16.2
+$(date): Built man-db-2.13.1
+$(date): Built procps-ng-4.0.5
+$(date): Built util-linux-2.41.1
+$(date): Built e2fsprogs-1.47.3
