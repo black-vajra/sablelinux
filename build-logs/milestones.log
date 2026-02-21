@@ -10,3 +10,38 @@ Fri Feb 20 07:32:21 PM EST 2026: 7.5-7.6 Directory structure and essential files
 Sat Feb 21 01:01:48 PM EST 2026: Completed Chapter 8 - Installing Basic System Software
 Sat Feb 21 01:01:48 PM EST 2026: Recovered from libbfd strip corruption - rebuilt from host toolchain
 Sat Feb 21 01:22:15 PM EST 2026: Completed Chapter 8 - Basic System Software - 3.5GB
+
+=== LFS 12.4 STRIPPING BUG - IMPORTANT NOTE FOR 12.4 USERS ===
+Date: $(date)
+
+PROBLEM:
+The stripping script in LFS 12.4 (§8.83) strips libbfd-2.45.so and
+libsframe.so in-place using --strip-unneeded. Since strip itself depends
+on libbfd at runtime, stripping libbfd while it is loaded corrupts it to
+zero bytes. This cascades - strip then fails on every subsequent file,
+and ld-linux-x86-64.so.2 (the ELF loader) was also zeroed, rendering
+the system unbootable.
+
+ROOT CAUSE:
+LFS 12.4 strip script processes online_usrlib files in-place.
+LFS 13.0 fixes this by copying to /tmp first, stripping there,
+then reinstalling with the install command - same safe approach
+used for save_usrlib.
+
+RECOVERY STEPS TAKEN:
+1. Rebuilt libbfd-2.45.so using host gcc on /mnt/lfs from outside chroot
+2. Restored ld-linux-x86-64.so.2 from backup image lfs-ch8-complete.img
+3. Re-ran stripping using corrected 13.0-style script (copy-to-tmp method)
+
+FIX FOR 12.4 USERS:
+Replace the online_usrlib loop in §8.83 with:
+    for LIB in $online_usrlib; do
+        cp /usr/lib/$LIB /tmp/$LIB
+        strip --strip-debug /tmp/$LIB
+        install -vm755 /tmp/$LIB /usr/lib
+        rm /tmp/$LIB
+    done
+Use --strip-debug instead of --strip-unneeded throughout.
+
+LESSON: Always make a backup image before running the strip step.
+=== END NOTE ===
