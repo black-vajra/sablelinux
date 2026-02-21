@@ -2,3 +2,5 @@ Fri Feb 20 12:22:43 PM EST 2026: Loop device created, formatted ext4, mounted at
 Fri Feb 20 01:06:11 PM EST 2026: Completed Chapter 3 — 90 packages downloaded and md5 verified, 5 sysv files removed
 Fri Feb 20 01:22:19 PM EST 2026: Completed Chapter 4 - lfs user created, environment configured
 Fri Feb 20 05:44:53 PM EST 2026: Completed Chapter 6 - Cross Compiling Temporary Tools
+Fri Feb 20 07:12:33 PM EST 2026: 7.2 Changing Ownership - chown lfs->root complete
+Fri Feb 20 07:14:16 PM EST 2026: 7.2 Changing Ownership complete - lfs->root chown verified
