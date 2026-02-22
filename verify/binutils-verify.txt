@@ -1,0 +1,22 @@
+x86_64-lfs-linux-gnu-addr2line
+x86_64-lfs-linux-gnu-ar
+x86_64-lfs-linux-gnu-as
+x86_64-lfs-linux-gnu-c++filt
+x86_64-lfs-linux-gnu-elfedit
+x86_64-lfs-linux-gnu-gprof
+x86_64-lfs-linux-gnu-ld
+x86_64-lfs-linux-gnu-ld.bfd
+x86_64-lfs-linux-gnu-nm
+x86_64-lfs-linux-gnu-objcopy
+x86_64-lfs-linux-gnu-objdump
+x86_64-lfs-linux-gnu-ranlib
+x86_64-lfs-linux-gnu-readelf
+x86_64-lfs-linux-gnu-size
+x86_64-lfs-linux-gnu-strings
+x86_64-lfs-linux-gnu-strip
+---
+GNU ld (GNU Binutils) 2.45
+Copyright (C) 2025 Free Software Foundation, Inc.
+This program is free software; you may redistribute it under the terms of
+the GNU General Public License version 3 or (at your option) a later version.
+This program has absolutely no warranty.

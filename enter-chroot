@@ -1,0 +1,17 @@
+export LFS=/mnt/lfs
+losetup /dev/loop2 /root/lfs.img
+mount /dev/loop2 $LFS
+
+mount -v --bind /dev $LFS/dev
+mount -v --bind /dev/pts $LFS/dev/pts
+mount -vt proc proc $LFS/proc
+mount -vt sysfs sysfs $LFS/sys
+mount -vt tmpfs tmpfs $LFS/run
+
+chroot "$LFS" /usr/bin/env -i \
+    HOME=/root TERM="$TERM" \
+    PS1='(lfs chroot) \u:\w\$ ' \
+    PATH=/usr/bin:/usr/sbin \
+    MAKEFLAGS="-j14" \
+    TESTSUITEFLAGS="-j14" \
+    /bin/bash --login

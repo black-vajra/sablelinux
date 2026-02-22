@@ -1,0 +1,32 @@
+sudo lfs-mount
+source ~/.bashrc
+export MAKEFLAGS="-j14"
+echo $LFS    # confirm: /mnt/lfs
+
+## Chapter 5 forward:
+sudo lfs-mount
+echo $LFS
+source ~/.bashrc
+export MAKEFLAGS="-j14"
+sudo su - lfs
+echo $LFS   
+## must output /mnt/lfs
+echo $LFS_TGT 
+## must output x86_64-lfs-linux-gnu
+echo $PATH
+## must output /mnt/lfs/tools/bin:/usr/bin — nothing else
+echo $MAKEFLAGS
+## must output -j14
+echo $LC_ALL
+##  Must output: POSIX
+
+## as lfs:
+echo $LFS
+echo $LFS_TGT
+echo $PATH
+echo $MAKEFLAGS
+echo $LC_ALL
+
+ls $LFS/sources/*.tar.* | wc -l
+ls $LFS/sources/ | wc -l
+ls $LFS/sources/ | grep -v "\.tar\." | grep -v "\.md5$" | grep -v "^$"

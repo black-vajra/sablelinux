@@ -1,0 +1,37 @@
+=== /mnt/lfs/usr/include directory listing ===
+asm
+asm-generic
+cxl
+drm
+fwctl
+linux
+misc
+mtd
+rdma
+regulator
+scsi
+sound
+video
+xen
+---
+=== linux/ header count ===
+600
+---
+=== asm/ header count ===
+66
+---
+=== top-level subdirectories ===
+/mnt/lfs/usr/include/asm-generic/
+/mnt/lfs/usr/include/asm/
+/mnt/lfs/usr/include/cxl/
+/mnt/lfs/usr/include/drm/
+/mnt/lfs/usr/include/fwctl/
+/mnt/lfs/usr/include/linux/
+/mnt/lfs/usr/include/misc/
+/mnt/lfs/usr/include/mtd/
+/mnt/lfs/usr/include/rdma/
+/mnt/lfs/usr/include/regulator/
+/mnt/lfs/usr/include/scsi/
+/mnt/lfs/usr/include/sound/
+/mnt/lfs/usr/include/video/
+/mnt/lfs/usr/include/xen/

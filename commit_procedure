@@ -4,5 +4,5 @@ touch build-logs/milestones.log
 touch build-logs/packages.log
 git add .
 git commit -m "Initial commit: repo structure"
-git remote add origin https://black-vajra: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@github.com/black-vajra/sablelinux.git
+git remote add origin https://black-vajra:THE_TOKEN@github.com/black-vajra/sablelinux.git
 git push -u origin development
