@@ -54,3 +54,4 @@ Sat Feb 21 04:55:48 PM EST 2026: Completed §9.10 - /etc/shells - Chapter 9 Syst
 Sat Feb 21 05:16:28 PM EST 2026: Completed §10.2 - /etc/fstab created for SableLinux on /dev/sda (UUID-based)
 Sat Feb 21 06:21:18 PM EST 2026: Completed §10.3 - Linux kernel 6.16.1 built and installed - vmlinuz-6.16.1-sablelinux
 Sat Feb 21 06:25:25 PM EST 2026: Completed §10.4 - GRUB bootloader installed and configured for UEFI USB boot
+Sun Feb 22 11:08:37 AM EST 2026: Round 2 Chapter 9 complete — network, hostname, hosts, resolv.conf, vconsole, locale, inputrc, shells configured on new 500GB USB SSD (/dev/sda)
