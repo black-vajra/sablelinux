@@ -4,3 +4,5 @@
 *.tmp
 .DS_Store
 Videos/
+Books/BLFS/*.tar.xz
+chroot2live
