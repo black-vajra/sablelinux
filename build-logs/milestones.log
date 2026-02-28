@@ -68,3 +68,5 @@ Sun Feb 22 11:08:37 AM EST 2026: Round 2 Chapter 9 complete — network, hostnam
 2026-02-27: LFS phase complete - repository public at github.com/black-vajra/sablelinux
 2026-02-27: Blog post published - "Sable Linux: Building a Custom Distribution from Scratch"
             URL: bordercybergroup.com/sable-linux-building-a-custom-distribution-from-scratch/
+[RETROACTIVE] Fri Feb 20: Completed Chapter 5 - Cross-toolchain built (binutils pass1, gcc pass1, glibc, libstdc++)
+[RETROACTIVE] Sun Feb 22: SSD migration - system transferred from loop device / USB 2.0 HDD to 500GB USB 3.0 SSD (/dev/sda), partitioned EFI/boot/root
