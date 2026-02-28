@@ -134,10 +134,9 @@ and AMD SEV.
 
 ## Maintainer
 
-**Jonathan Brown**
-Chief Researcher, Border Cyber Group
-[bordercybergroup.com](https://bordercybergroup.com)
-
+**Jonathan Brown**  
+Chief Researcher  
+[borderelliptic.com](https://borderelliptic.com)
 ---
 
 ## License
