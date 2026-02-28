@@ -1,0 +1,61 @@
+SableLinux License
+==================
+
+Copyright (c) 2026 Jonathan Brown / Border Cyber Group
+All rights reserved.
+
+SableLinux is licensed under Creative Commons Attribution-NonCommercial-ShareAlike
+4.0 International (CC BY-NC-SA 4.0).
+
+You are free to:
+
+  Share  — copy and redistribute the material in any medium or format
+  Adapt  — remix, transform, and build upon the material
+
+Under the following terms:
+
+  Attribution      — You must give appropriate credit to Jonathan Brown /
+                     Border Cyber Group, provide a link to the license, and
+                     indicate if changes were made.
+
+  NonCommercial    — You may not use this material for commercial purposes
+                     without explicit written permission from the copyright holder.
+
+  ShareAlike       — If you remix, transform, or build upon this material,
+                     you must distribute your contributions under the same
+                     license as the original.
+
+Additional Terms:
+
+  Name & Branding  — The names "SableLinux", "Sable Linux", and
+                     "Border Cyber Group" are reserved. You may not use
+                     these names, logos, or branding in any derivative work,
+                     distribution, or public presentation without explicit
+                     written permission from Jonathan Brown.
+
+  No Endorsement   — You may not claim endorsement or affiliation with
+                     SableLinux, Border Cyber Group, or Jonathan Brown
+                     without explicit written permission.
+
+Commercial Licensing:
+
+  Commercial use, OEM distribution, or use of the SableLinux name in any
+  commercial context requires a separate written license agreement.
+
+  Inquiries: astakaliya@outlook.com
+
+Full Legal Text:
+
+  The complete CC BY-NC-SA 4.0 legal code is available at:
+  https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+
+  In the event of any conflict between this summary and the full legal text,
+  the additional terms stated above shall apply alongside the CC BY-NC-SA 4.0
+  terms to the maximum extent permitted by applicable law.
+
+Prior Art & Attribution:
+
+  SableLinux is built on Linux From Scratch (LFS) 12.4-systemd.
+  LFS is Copyright (c) 1999-2025 Gerard Beekmans, released under the MIT License.
+  SableLinux is an independent project and is not affiliated with or endorsed
+  by the Linux From Scratch project.
