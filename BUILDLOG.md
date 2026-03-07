@@ -33,3 +33,20 @@
 - LLVM 19.1.7 with AMDGPU+BPF targets, shared library build
 - GCC 15.2 compatibility issues worked around (compiler-rt excluded)
 - llvm-config confirmed working, all AMDGPU components present
+
+## Mesa 25.0.1 + Wayland Stack
+- libxml2 2.13.5
+- glslang 16.2.0 (ENABLE_OPT=OFF, no SPIRV-Tools)
+- wayland 1.23.1
+- wayland-protocols 1.44
+- mesa 25.0.1
+  - Gallium: radeonsi, llvmpipe
+  - Vulkan: amd (RADV), device-select + overlay layers
+  - Platforms: x11, wayland
+  - LLVM backend: 19.1.7
+  - Video codecs: h264dec/enc, h265dec/enc, vc1dec
+  - glvnd: disabled, OpenCL/rusticl: disabled
+  - Intel iris/ANV excluded pending libclc build
+  - Installed: /usr/lib/dri/{radeonsi,swrast,kms_swrast,libdril}_dri.so
+  - Vulkan ICD: /usr/share/vulkan/icd.d/radeon_icd.x86_64.json
+- Python deps added: mako, PyYAML, ply
