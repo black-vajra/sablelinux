@@ -27,3 +27,9 @@
 - harfbuzz 10.2.0
 - fontconfig 2.17.1
 - 32 Xorg libraries batch (xtrans through libXpresent)
+
+## 2026-03-06 — LLVM 19.1.7
+- cmake 3.31.6
+- LLVM 19.1.7 with AMDGPU+BPF targets, shared library build
+- GCC 15.2 compatibility issues worked around (compiler-rt excluded)
+- llvm-config confirmed working, all AMDGPU components present
