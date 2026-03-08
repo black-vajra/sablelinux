@@ -114,3 +114,11 @@
 - Initramfs rebuilt with intel-ucode support
 - SecLists 2.5G cloned to /sources/SecLists
 - sqlmap, hashcat, gobuster, masscan cloned to /sources
+
+## Microcode + cpio (2026-03-08)
+- Intel microcode blobs installed (151 files) to /lib/firmware/intel-ucode/
+- initramfs rebuilt to include intel-ucode (25M)
+- /opt/initramfs-tools created as permanent initramfs build dependency store
+- make-initramfs.sh updated to use /opt/initramfs-tools instead of /tmp/initrd-inspect
+- cpio 2.15 installed (GCC 15 xstat function pointer fix applied)
+- nano 8.3 installed
