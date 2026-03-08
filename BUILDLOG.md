@@ -80,3 +80,24 @@
 - pam_env.so readenv=1 added to system-session
 - loginctl now shows Type: wayland
 - Firefox locale warning resolved
+
+## Session: SSH Hardening (2026-03-08)
+
+- Installed maya (kaya) public key to ~/.ssh/authorized_keys
+
+- Disabled password authentication
+
+- Disabled root login
+
+- Changed port to ######
+
+- AllowUsers ######
+
+- UsePAM yes
+
+- X11Forwarding no
+
+- MaxAuthTries 3
+
+- LoginGraceTime 30
+
