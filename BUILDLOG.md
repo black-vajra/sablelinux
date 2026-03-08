@@ -122,3 +122,29 @@
 - make-initramfs.sh updated to use /opt/initramfs-tools instead of /tmp/initrd-inspect
 - cpio 2.15 installed (GCC 15 xstat function pointer fix applied)
 - nano 8.3 installed
+
+## Security Stack Phase 2 — 2026-03-08
+
+### Dependencies
+- libgpg-error 1.51 — GPG error handling library (wireshark dep)
+- libgcrypt 1.11.0 — cryptographic library (wireshark dep)
+- speexdsp 1.2.1 — DSP library (wireshark dep)
+- c-ares 1.34.6 — async DNS resolver (wireshark dep)
+
+### Network Analysis
+- wireshark 4.6.3 — tshark CLI only (BUILD_wireshark=OFF, ENABLE_QT6=OFF)
+
+### Utilities
+- which 2.21 — command location utility
+- Go 1.24.1 — toolchain installed to /usr/local/go
+
+### Security Tools
+- sqlmap 1.10.2 — SQL injection tool (cloned, symlinked to /usr/bin)
+- ffuf 2.1.0 — web fuzzer (binary tarball, installed to /usr/bin)
+- gobuster 3.8.2 — directory/DNS brute forcer (built from source with Go)
+- nikto 2.6.0 — web server vulnerability scanner (cloned, Perl)
+- ncat — included with nmap 7.95
+
+### Notes
+- python symlink added: /usr/bin/python -> /usr/bin/python3 (sqlmap shebang fix)
+- nikto requires Perl modules JSON and XML::Writer (installed via cpan)
