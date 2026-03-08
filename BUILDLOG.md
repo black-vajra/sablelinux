@@ -148,3 +148,26 @@
 ### Notes
 - python symlink added: /usr/bin/python -> /usr/bin/python3 (sqlmap shebang fix)
 - nikto requires Perl modules JSON and XML::Writer (installed via cpan)
+
+## Security Stack Phase 3 — 2026-03-08
+
+### Reverse Engineering
+- gdb 16.3 — with debuginfod support (elfutils dep)
+- elfutils 0.192 — debuginfod + DWARF libraries
+- pwndbg — gdb plugin (installed via uv venv at /sources/pwndbg/.venv)
+- pwntools 4.15.0 — CTF exploit framework (pip3)
+- ROPgadget 7.7 — ROP chain builder (pip3)
+- radare2 6.1.1 — reverse engineering framework (built from source)
+- binwalk 3.1.1 — firmware analysis (Rust rewrite, built with cargo)
+
+### Java / RE GUI
+- OpenJDK 21.0.2 — installed to /opt/jdk
+- Ghidra 11.3.1 — installed to /opt/ghidra (pending XWayland for GUI)
+
+### Utilities
+- sqlmap 1.10.2 — /usr/bin/python symlink added for shebang fix
+- rustup + cargo — installed to /root/.cargo for binwalk build
+
+### Notes
+- /usr/local/bin and /usr/local/lib added to PATH and ld.so.conf
+- XWayland deferred — needed for Ghidra GUI and Burp Suite
