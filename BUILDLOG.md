@@ -50,3 +50,25 @@
   - Installed: /usr/lib/dri/{radeonsi,swrast,kms_swrast,libdril}_dri.so
   - Vulkan ICD: /usr/share/vulkan/icd.d/radeon_icd.x86_64.json
 - Python deps added: mako, PyYAML, ply
+
+## Session: PAM + Audio Fix (2026-03-08)
+
+### Linux-PAM 1.7.2
+- Built with meson, --libdir=lib, -Ddocs=disabled, -Dsecuredir=/usr/lib/security
+- Created /etc/pam.d/{other,system-auth,system-account,system-password,system-session,login,passwd,su,sshd}
+- pam_env.so added to system-session for /etc/environment support
+- pam_systemd.so added to system-session for logind session registration
+
+### shadow 4.18.0 (rebuilt with PAM)
+- Rebuilt with --with-libpam to link against libpam
+- Replaced default login PAM config (removed pam_securetty/pam_selinux/pam_console references)
+
+### pulseaudio 17.0 (client libraries only)
+- Built with -Ddaemon=false — PipeWire remains audio server
+- Provides libpulse.so required by Firefox binary tarball
+- Firefox audio confirmed working via pipewire-pulse socket
+
+### Notes
+- /etc/environment: XDG_SESSION_TYPE=wayland
+- PULSE_SERVER=unix:/run/user/1000/pulse/native added to launch script
+- wpctl confirms: HDA Intel PCH + Navi 48 HDMI enumerated
