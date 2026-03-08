@@ -101,3 +101,16 @@
 
 - LoginGraceTime 30
 
+
+## Session: Security Stack + Microcode (2026-03-08)
+- libpcap 1.10.5 installed
+- tcpdump 4.99.5 installed  
+- nmap 7.95 installed
+- libnl 3.12.0 installed
+- aircrack-ng 1.7 installed
+- socat 1.8.0.3 installed
+- masscan 1.3.9 installed
+- Intel microcode blobs installed to /lib/firmware/intel-ucode/ (151 files)
+- Initramfs rebuilt with intel-ucode support
+- SecLists 2.5G cloned to /sources/SecLists
+- sqlmap, hashcat, gobuster, masscan cloned to /sources
