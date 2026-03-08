@@ -72,3 +72,11 @@
 - /etc/environment: XDG_SESSION_TYPE=wayland
 - PULSE_SERVER=unix:/run/user/1000/pulse/native added to launch script
 - wpctl confirms: HDA Intel PCH + Navi 48 HDMI enumerated
+
+## Session: Locale + Environment Fix (2026-03-08)
+- Added LANG=en_US.UTF-8 to ~/.bash_profile
+- Regenerated locale with localedef -i en_US -f UTF-8 en_US.UTF-8
+- Added XDG_SESSION_TYPE=wayland to /etc/environment
+- pam_env.so readenv=1 added to system-session
+- loginctl now shows Type: wayland
+- Firefox locale warning resolved
