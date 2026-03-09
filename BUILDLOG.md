@@ -178,3 +178,12 @@
 - Build: make BASERUBY="env LD_LIBRARY_PATH=/tmp/usr/lib/x86_64-linux-gnu:/tmp:/usr/lib RUBYLIB=/tmp/usr/lib/ruby/3.3.0:/tmp/usr/lib/x86_64-linux-gnu/ruby/3.3.0 /tmp/usr/bin/ruby3.3" -j14
 - sudo make install confirmed: ruby 3.3.8
 - psych (YAML) extension skipped — libyaml headers not found at configure time
+
+## PostgreSQL 16.6
+- Client libs only (needed for pg gem / Metasploit)
+- CFLAGS="-std=gnu17 -O2" required for GCC 15 C23 bool typedef conflict
+
+## Metasploit Framework 6.4.122
+- Cloned from github.com/rapid7/metasploit-framework (shallow --depth=1)
+- bundle config set --local path vendor/bundle (pepper-owned, no system gem pollution)
+- 245 gems installed, msfconsole confirmed working
