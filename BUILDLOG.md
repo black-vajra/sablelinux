@@ -171,3 +171,10 @@
 ### Notes
 - /usr/local/bin and /usr/local/lib added to PATH and ld.so.conf
 - XWayland deferred — needed for Ghidra GUI and Burp Suite
+
+## Ruby 3.3.8
+- Bootstrap: extracted ruby3.3 + libruby3.3 debs from Ubuntu archive into /tmp
+- LD_LIBRARY_PATH + RUBYLIB needed to point Ubuntu binary at its own stdlib
+- Build: make BASERUBY="env LD_LIBRARY_PATH=/tmp/usr/lib/x86_64-linux-gnu:/tmp:/usr/lib RUBYLIB=/tmp/usr/lib/ruby/3.3.0:/tmp/usr/lib/x86_64-linux-gnu/ruby/3.3.0 /tmp/usr/bin/ruby3.3" -j14
+- sudo make install confirmed: ruby 3.3.8
+- psych (YAML) extension skipped — libyaml headers not found at configure time
