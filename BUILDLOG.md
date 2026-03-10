@@ -271,3 +271,18 @@
 - make -j14 && make install PREFIX=/usr
 - Verified: iwconfig Wireless-Tools version 29, WE v11-v22
 - Note: /proc/net/wireless warning expected — no interfaces in monitor mode
+
+## pwndbg 2026.02.18
+- Source: git clone https://github.com/pwndbg/pwndbg.git
+- pip install --break-system-packages -e ".[dev]"
+- Wired into gdb via /root/.gdbinit
+- Verified: 194 commands loaded, gdb functions registered
+- Note: setup.sh skipped — LFS not a supported distro; manual pip install used
+
+## pwntools 4.14.1
+- Installed as pwndbg dependency
+- Verified: pwnlib.__version__ → 4.14.1
+
+## ROPgadget 7.6
+- Installed as pwndbg dependency
+- Verified: ROPgadget v7.6
