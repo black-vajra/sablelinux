@@ -299,3 +299,29 @@
 - chown -R root:root required (sys/install.sh downgraded to pepper)
 - ./configure --with-rpath --prefix=/usr/local && make -j14 && make install
 - Verified: radare2 6.1.1 +35252
+
+## AI Dev Stack — $(date +%Y-%m-%d)
+
+### Dependencies
+- patchelf 0.18.0 — built from source
+- texinfo 7.2 — built from source (doc install skipped, locale bug)
+- GCC 15.2.0 — rebuilt with --enable-languages=c,c++,fortran added
+
+### Python AI Development Stack
+Installed via pip to /home/pepper/.local/:
+- anthropic 0.84.0
+- openai 2.26.0
+- langchain 1.2.10
+- langgraph 1.0.10
+- fastapi 0.135.1
+- uvicorn 0.41.0
+- pydantic 2.12.5
+- httpx 0.28.1
+- python-dotenv 1.2.2
+
+PATH updated: ~/.local/bin added to ~/.bash_profile
+
+### ROCm / TheRock — DEFERRED
+TheRock full source build requires >32GB RAM for amd-llvm compilation.
+OOM killer terminates cc1plus during Flang PCH build regardless of -j count.
+Revisit when hardware is upgraded. Target: ROCm 7.x via TheRock, gfx1201.
