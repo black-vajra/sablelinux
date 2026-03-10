@@ -205,3 +205,25 @@
 - ./configure --prefix=/usr --with-libpcap=/usr --without-ndiff --without-zenmap
 - make -j14 && make install
 - Verified: nmap --version → 7.95, libpcap-1.10.5 linked
+
+## libgpg-error 1.51
+- Source: https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.51.tar.bz2
+- ./configure --prefix=/usr --enable-static=no
+- make -j14 && make install
+
+## libgcrypt 1.11.0
+- Source: https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.11.0.tar.bz2
+- ./configure --prefix=/usr --enable-static=no
+- make -j14 && make install
+
+## c-ares 1.34.4
+- Source: https://github.com/c-ares/c-ares/releases/download/v1.34.4/c-ares-1.34.4.tar.gz
+- cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_BUILD_TYPE=Release
+- cmake --build build -j14 && cmake --install build
+- Verified: pkg-config --modversion libcares → 1.34.4
+
+## tshark 4.6.4 (Wireshark CLI)
+- Source: https://www.wireshark.org/download/src/wireshark-4.6.4.tar.xz
+- cmake -DBUILD_wireshark=OFF -DBUILD_logray=OFF -DENABLE_QT6=OFF -DENABLE_QT5=OFF
+- cmake --build build -j14 && cmake --install build
+- Verified: tshark 4.6.4, libpcap 1.10.5 (TPACKET_V3), libgcrypt 1.11.0, c-ares 1.34.4, Lua 5.4.7
