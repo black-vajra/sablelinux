@@ -249,3 +249,25 @@
 - Symlinked to /usr/local/bin/msfconsole
 - /usr/local/bin added to PATH via /etc/profile.d/local-bin.sh
 - Verified: msfconsole --version → Framework Version 6.4.122
+
+## hashcat 7.1.2
+- Source: https://github.com/hashcat/hashcat/archive/refs/tags/v7.1.2.tar.gz
+- make -j14 && make install PREFIX=/usr
+- Verified: hashcat --version → v7.1.2
+- Note: CPU mode only until ROCm built; HIP backend available in 7.x
+
+## hcxdumptool 7.1.2
+- Source: git clone https://github.com/ZerBea/hcxdumptool.git
+- make -j14 && make install
+- Verified: hcxdumptool --version → 7.1.2
+
+## hcxtools 7.1.2
+- Source: git clone https://github.com/ZerBea/hcxtools.git
+- make -j14 && make install
+- Verified: hcxpcapngtool --version → 7.1.2
+
+## wireless-tools 29
+- Source: https://hewlettpackard.github.io/wireless-tools/wireless_tools.29.tar.gz
+- make -j14 && make install PREFIX=/usr
+- Verified: iwconfig Wireless-Tools version 29, WE v11-v22
+- Note: /proc/net/wireless warning expected — no interfaces in monitor mode
