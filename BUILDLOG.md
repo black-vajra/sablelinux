@@ -325,3 +325,103 @@ PATH updated: ~/.local/bin added to ~/.bash_profile
 TheRock full source build requires >32GB RAM for amd-llvm compilation.
 OOM killer terminates cc1plus during Flang PCH build regardless of -j count.
 Revisit when hardware is upgraded. Target: ROCm 7.x via TheRock, gfx1201.
+
+---
+
+## Desktop Environment Phase — Wayland Desktop Stack
+**Date:** 2026-03-10
+
+### Python 3.13.7
+- Confirmed installed and functional: `/bin/python`
+- No EXTERNALLY-MANAGED lockout file present — pip usable system-wide without venv
+- pip, setuptools, wheel ready for pentest/AI tooling
+
+### wl-clipboard 2.2.1
+- Wayland clipboard utilities: wl-copy, wl-paste
+- Installed to /bin/wl-copy, /bin/wl-paste
+- Note: only functional inside active Wayland session as pepper (XDG_RUNTIME_DIR + WAYLAND_DISPLAY required)
+
+### grim 1.4.1 + slurp 1.5.0
+- Screenshot toolchain: slurp for region selection, grim for capture
+- Installed to /bin/grim, /bin/slurp
+- No new dependencies beyond existing wayland/cairo/libpng stack
+
+### swayidle 1.8.0 + swaylock 1.7.2
+- Idle management and screen lock
+- swaylock built with -Dpam=enabled (Linux-PAM 1.7.2)
+- swaylock setuid: chmod u+s /bin/swaylock (required for PAM auth)
+
+### mako 1.9.0
+- Wayland notification daemon
+- No new dependencies
+
+### scdoc 1.11.3
+- Man page generator; required by fuzzel
+- Built with make/make install; installed to /bin/scdoc, /usr/local/bin/scdoc (symlink)
+
+### tllist 1.1.0
+- Header-only linked list library; required by fuzzel/fcft
+
+### fuzzel 1.11.1
+- Wayland application launcher (replaces rofi/wofi for Wayland-native workflow)
+- Built with fcft as subproject (font rendering)
+- libutf8proc absent — non-fatal, unicode fallback used
+
+### atk 2.38.0
+- Accessibility toolkit (standalone build required before atkmm)
+- Built with -Dintrospection=false (gobject-introspection not installed)
+
+### libsigc++ 2.12.1
+- C++ signal/slot library (2.x series — required by gtkmm3/glibmm 2.x chain)
+
+### glibmm 2.66.7
+- C++ GLib bindings (2.66.x — last sigc++-2.0 compatible series)
+
+### cairomm 1.14.5
+- C++ Cairo bindings (1.14.x — sigc++-2.0 compatible)
+
+### pangomm 2.46.4
+- C++ Pango bindings (2.46.x — sigc++-2.0 compatible)
+
+### atkmm 2.28.4
+- C++ ATK bindings
+
+### gdk-pixbuf 2.42.12
+- Image loading library (standalone build; required by gtkmm subproject resolution)
+- Built with -Dintrospection=disabled -Dman=false -Dgtk_doc=false
+
+### GTK3 lib64 fix
+- GTK3 (3.24.43) was previously installed to /usr/lib64 (cmake default)
+- Repaired: .so files copied to /usr/lib with correct symlinks, .pc files copied and path-corrected
+- Same fix applied to gdk-pixbuf, gdk libs
+- ldconfig run after repair
+
+### gtkmm 3.24.9
+- C++ GTK3 bindings; final dep before waybar
+
+### jsoncpp 1.9.6
+- JSON parsing library (cmake build, shared libs)
+
+### fmt 11.1.4
+- C++ formatting library (cmake build, tests disabled)
+
+### spdlog 1.15.1
+- C++ logging library (cmake build, external fmt backend)
+
+### libnl 3.11.0
+- Netlink library (required for waybar network module)
+- autotools build
+
+### waybar 0.11.0
+- Full-featured Wayland status bar
+- Built with -Dman-pages=disabled -Dtests=disabled
+- All modules available: network (libnl), audio (pipewire/pulseaudio), system stats
+
+### Key Learnings
+- Stale /sources/build directory causes recurring meson "parent of source" error — always `rm -rf build` inside the package dir before building
+- gtkmm/atkmm/glibmm chain must stay on 2.x/2.66/2.46/2.28 series — sigc++ 2.0 compatibility
+- gobject-introspection not installed — pass -Dintrospection=disabled/false wherever required
+- atk must be built standalone before atkmm (not bundled in GTK3 build)
+- gdk-pixbuf must be built standalone before gtkmm (subproject resolution pulls glycin-2 Rust dep otherwise)
+- scdoc installs to /bin but fuzzel hardcodes /usr/local/bin — symlink required
+
