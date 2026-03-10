@@ -243,3 +243,9 @@
 - make -j14 && make install PREFIX=/usr
 - Note: "not a git repository" warning at link time is harmless — no git hash embedded
 - Verified: masscan 1.3.2
+
+## Metasploit Framework 6.4.122 — PATH fix
+- msfconsole located at /opt/metasploit-framework/msfconsole
+- Symlinked to /usr/local/bin/msfconsole
+- /usr/local/bin added to PATH via /etc/profile.d/local-bin.sh
+- Verified: msfconsole --version → Framework Version 6.4.122
