@@ -227,3 +227,19 @@
 - cmake -DBUILD_wireshark=OFF -DBUILD_logray=OFF -DENABLE_QT6=OFF -DENABLE_QT5=OFF
 - cmake --build build -j14 && cmake --install build
 - Verified: tshark 4.6.4, libpcap 1.10.5 (TPACKET_V3), libgcrypt 1.11.0, c-ares 1.34.4, Lua 5.4.7
+
+## ncat 7.95
+- Bundled with nmap — no separate build required
+- Verified: ncat --version → Ncat 7.95
+
+## socat 1.8.0.3
+- Source: http://www.dest-unreach.org/socat/download/socat-1.8.0.3.tar.bz2
+- ./configure --prefix=/usr
+- make -j14 && make install
+- Verified: full feature build — WITH_PTY, WITH_OPENSSL, WITH_TUN, WITH_SOCKS4/4A/5
+
+## masscan 1.3.2
+- Source: https://github.com/robertdavidgraham/masscan/archive/refs/tags/1.3.2.tar.gz
+- make -j14 && make install PREFIX=/usr
+- Note: "not a git repository" warning at link time is harmless — no git hash embedded
+- Verified: masscan 1.3.2
