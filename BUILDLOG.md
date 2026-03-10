@@ -187,3 +187,21 @@
 - Cloned from github.com/rapid7/metasploit-framework (shallow --depth=1)
 - bundle config set --local path vendor/bundle (pepper-owned, no system gem pollution)
 - 245 gems installed, msfconsole confirmed working
+
+## libpcap 1.10.5
+- Source: https://www.tcpdump.org/release/libpcap-1.10.5.tar.gz
+- ./configure --prefix=/usr --disable-static --with-pcap=linux
+- make -j14 && make install
+- Verified: pkg-config --modversion libpcap → 1.10.5
+
+## tcpdump 4.99.5
+- Source: https://www.tcpdump.org/release/tcpdump-4.99.5.tar.gz
+- ./configure --prefix=/usr
+- make -j14 && make install
+- Verified: tcpdump --version → 4.99.5 / libpcap 1.10.5
+
+## nmap 7.95
+- Source: https://nmap.org/dist/nmap-7.95.tar.bz2
+- ./configure --prefix=/usr --with-libpcap=/usr --without-ndiff --without-zenmap
+- make -j14 && make install
+- Verified: nmap --version → 7.95, libpcap-1.10.5 linked
