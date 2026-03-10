@@ -286,3 +286,16 @@
 ## ROPgadget 7.6
 - Installed as pwndbg dependency
 - Verified: ROPgadget v7.6
+
+## binwalk 3.1.1
+- Source: git clone https://github.com/ReFirmLabs/binwalk.git
+- Built with cargo (Rust rewrite); cargo build --release
+- Installed to /usr/local/bin/binwalk
+- Note: /usr/local/bin missing from root PATH — added to /root/.bashrc
+- Verified: binwalk 3.1.1
+
+## radare2 6.1.1
+- Source: git clone https://github.com/radareorg/radare2.git
+- chown -R root:root required (sys/install.sh downgraded to pepper)
+- ./configure --with-rpath --prefix=/usr/local && make -j14 && make install
+- Verified: radare2 6.1.1 +35252
