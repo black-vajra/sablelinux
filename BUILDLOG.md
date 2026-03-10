@@ -425,3 +425,36 @@ Revisit when hardware is upgraded. Target: ROCm 7.x via TheRock, gfx1201.
 - gdk-pixbuf must be built standalone before gtkmm (subproject resolution pulls glycin-2 Rust dep otherwise)
 - scdoc installs to /bin but fuzzel hardcodes /usr/local/bin — symlink required
 
+
+---
+
+## Media & Security Stack Additions
+**Date:** 2026-03-10
+
+### Vulkan Headers 1.3.290
+- Installed headers directly (cmake build skipped due to C++20 module issues)
+- cp to /usr/include/vulkan/ and /usr/include/vk_video/
+- Required by libplacebo and future ROCm/HIP work
+
+### libplacebo 6.338.2
+- GPU-accelerated video rendering library (required by mpv 0.39+)
+- Built with Vulkan enabled, glslang/shaderc disabled (glslang built with ENABLE_OPT=OFF incompatible)
+- Python 3.13 fix: ET.parse().getroot() patch in src/vulkan/utils_gen.py
+- Vulkan registry: /sources/Vulkan-Headers-1.3.290/registry/vk.xml
+
+### libass 0.17.3
+- Subtitle rendering library (required by mpv)
+- autotools build
+
+### mpv 0.39.0
+- Wayland-native video player
+- Lua disabled (mpv requires 5.1/5.2, system has 5.4.7)
+- Hardware accelerated decode via Vulkan/libplacebo
+- Plays mkv/avi/mp4 beautifully on RDNA4
+
+### Key Learnings
+- libplacebo Python 3.13 incompatibility: ET.parse() returns ElementTree not Element — fix with .getroot()
+- libplacebo glslang backend incompatible with our ENABLE_OPT=OFF glslang build — disable it
+- mpv requires Lua 5.1 or 5.2 specifically — disable Lua for basic playback
+- Vulkan headers must be installed standalone for non-Mesa packages to find them
+
