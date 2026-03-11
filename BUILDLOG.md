@@ -458,3 +458,69 @@ Revisit when hardware is upgraded. Target: ROCm 7.x via TheRock, gfx1201.
 - mpv requires Lua 5.1 or 5.2 specifically — disable Lua for basic playback
 - Vulkan headers must be installed standalone for non-Mesa packages to find them
 
+
+---
+
+## Kernel Rebuild #1 — dm-crypt Support
+**Date:** 2026-03-10
+
+### Kernel 6.16.1 rebuild #1
+- Added: CONFIG_DM_CRYPT=m, CONFIG_DM_VERITY=m, CONFIG_DM_INTEGRITY=m
+- Required for LUKS encrypted drive support
+- make -j14, make modules_install, bzImage copied to /boot
+
+### Kernel 6.16.1 rebuild #2
+- Added: CONFIG_CRYPTO_XTS=y (XTS cipher mode — required by aes-xts-plain64 LUKS volumes)
+- Without this, cryptsetup failed with "Error allocating crypto tfm (-ENOENT)"
+- make -j14, make modules_install, bzImage copied to /boot
+
+### libaio 0.3.113
+- Async I/O library required by lvm2
+- make/make install
+
+### lvm2 2.03.28
+- Device mapper userspace tools; provides libdevmapper
+- Required by cryptsetup
+- autotools build
+
+### popt 1.19
+- Command line option parsing library
+- Required by cryptsetup
+- autotools build
+
+### cryptsetup 2.7.5 → 2.8.0
+- Built 2.7.5 initially, upgraded to 2.8.0 to match Kubuntu version
+- Flags: UDEV BLKID KEYRING KERNEL_CAPI HW_OPAL
+- LUKS encrypted 4TB external drive now mountable
+
+### Key Learnings — cryptsetup
+- dm-crypt, dm-verity, dm-integrity all disabled in original kernel config
+- CONFIG_CRYPTO_XTS was the critical missing piece — LUKS volumes use aes-xts-plain64
+- 512e drive (512 logical / 4096 physical sectors) with 4096-sector LUKS header works fine once XTS is enabled
+
+---
+
+## Media Stack Additions
+**Date:** 2026-03-10
+
+### x264
+- H.264 encoder library
+- Built from master (videolan git)
+- Required for wf-recorder screen recording
+
+### ffmpeg 7.1 rebuild
+- Rebuilt with --enable-gpl --enable-libx264 --disable-doc
+- Adds H.264 encoding support
+- Doc generation disabled (Texinfo::Convert::HTML perl issue)
+
+### wf-recorder (master)
+- Wayland screen recorder
+- v0.4.0 and v0.5.0 both incompatible with ffmpeg 7.x (channel_layout → ch_layout API change)
+- Master branch required for ffmpeg 7.x compatibility
+- Usage: wf-recorder --audio -c libx264 -g "$(slurp)" -f output.mp4
+
+### Key Learnings — wf-recorder
+- wf-recorder needs git init in extracted tarball (uses git rev-parse for version)
+- ffmpeg 7.x broke channel_layout API — only master branch of wf-recorder supports it
+- libx264 must be built before ffmpeg and ffmpeg rebuilt with --enable-gpl --enable-libx264
+
