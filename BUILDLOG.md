@@ -524,3 +524,28 @@ Revisit when hardware is upgraded. Target: ROCm 7.x via TheRock, gfx1201.
 - ffmpeg 7.x broke channel_layout API — only master branch of wf-recorder supports it
 - libx264 must be built before ffmpeg and ffmpeg rebuilt with --enable-gpl --enable-libx264
 
+
+## Kernel Rebuild #3 — WireGuard + Netfilter (2026-03-31)
+
+### Kernel 6.16.1 rebuild #3
+- Added: CONFIG_WIREGUARD=y, CONFIG_TUN=y
+- Added: CONFIG_NETFILTER_ADVANCED=y, CONFIG_NF_TABLES=y, CONFIG_NF_NAT=y
+- Added: CONFIG_IP_NF_IPTABLES=y, CONFIG_IP_NF_NAT=y, CONFIG_IP_NF_RAW=y
+- Added: CONFIG_NETFILTER_XT_MATCH_COMMENT=y
+- make -j14, make modules_install, bzImage copied to /boot
+- Initramfs rebuilt
+
+## WireGuard VPN (2026-03-31)
+
+### wireguard-tools 1.0.20210914
+- Built from source tarball
+- Installed to /usr/bin/wg, /usr/bin/wg-quick
+
+### VPN Configuration
+- Server: Linode (172.233.26.17:51820)
+- Tunnel IP: 10.6.0.4/24
+- Config: /etc/wireguard/wg0.conf
+- Table = off (iptables CONNMARK kernel module absent)
+- PostUp/PreDown: manual default route + server IP exception via enp130s0
+- Enabled: systemctl enable wg-quick@wg0
+- Verified: curl -4 ifconfig.me returns 172.233.26.17
