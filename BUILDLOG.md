@@ -549,3 +549,38 @@ Revisit when hardware is upgraded. Target: ROCm 7.x via TheRock, gfx1201.
 - PostUp/PreDown: manual default route + server IP exception via enp130s0
 - Enabled: systemctl enable wg-quick@wg0
 - Verified: curl -4 ifconfig.me returns 172.233.26.17
+
+## Kernel Rebuild #4 — KVM + Bridge + VLAN (2026-03-31)
+
+### Kernel 6.16.1 rebuild #4
+- Added: CONFIG_KVM_INTEL=y, CONFIG_KVM_AMD=y
+- Added: CONFIG_VHOST_NET=y
+- Added: CONFIG_BRIDGE=y, CONFIG_VLAN_8021Q=y
+- make -j14, make modules_install, bzImage copied to /boot
+- Initramfs rebuilt
+- Verified: /dev/kvm present
+
+## QEMU 9.2.2 (2026-03-31)
+- Source: https://download.qemu.org/qemu-9.2.2.tar.xz
+- ./configure --prefix=/usr --target-list=x86_64-softmmu --enable-kvm --enable-virtfs --disable-docs --disable-gtk --disable-sdl
+- make -j14 && make install
+- Verified: qemu-system-x86_64 --version → 9.2.2
+- pepper added to kvm group
+
+## XWayland 24.1.6 (2026-03-31)
+- Source: https://www.x.org/releases/individual/xserver/xwayland-24.1.6.tar.xz
+- meson setup build --prefix=/usr --libdir=lib -Dxdmcp=false -Dxcsecurity=false
+- ninja -C build && ninja -C build install
+- Verified: Xwayland -version → 24.1.6
+- Ghidra 11.3.1 GUI confirmed working via XWayland
+- xwayland enable already present in sway config
+
+## WireGuard VPN (2026-03-31)
+- wireguard-tools 1.0.20210914 built from source
+- Client config: /etc/wireguard/wg0.conf
+- Server: Linode vajra (172.233.26.17:51820)
+- Tunnel IP: 10.6.0.4/24
+- Table = off (iptables CONNMARK kernel module absent)
+- PostUp/PreDown: manual default route + server IP exception via enp130s0
+- systemctl enable wg-quick@wg0
+- Verified: curl -4 ifconfig.me returns 172.233.26.17
