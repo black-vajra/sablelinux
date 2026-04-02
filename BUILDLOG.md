@@ -584,3 +584,97 @@ Revisit when hardware is upgraded. Target: ROCm 7.x via TheRock, gfx1201.
 - PostUp/PreDown: manual default route + server IP exception via enp130s0
 - systemctl enable wg-quick@wg0
 - Verified: curl -4 ifconfig.me returns 172.233.26.17
+
+## KDE Plasma 6.3.4 Desktop Stack — 2026-04-01
+
+### Qt6 Modules
+- qtbase 6.8.2 (rebuilt with xcb support after adding xcb-util-cursor, xcb-util-image, xcb-util-renderutil, xcb-util-wm, xcb-util-keysyms)
+- qtshadertools 6.8.2 (GCC 15 fix: -include cstdint)
+- qtdeclarative 6.8.2
+- qtwayland 6.8.2
+- qtsvg 6.8.2
+- qttools 6.8.2
+- qt5compat 6.8.2
+- qtimageformats 6.8.2
+- qtmultimedia 6.8.2
+- qtspeech 6.8.2 (TTS support — accessibility requirement)
+- qtsensors 6.8.2
+- qtpositioning 6.8.2
+- qtwebsockets 6.8.2
+
+### XCB Dependencies (added for Qt6 xcb platform plugin)
+- xcb-util 0.4.1
+- xcb-util-image 0.4.1
+- xcb-util-renderutil 0.3.10
+- xcb-util-wm 0.4.2
+- xcb-util-keysyms 0.4.1
+- xcb-util-cursor 0.1.4
+
+### Extra CMake Modules
+- extra-cmake-modules 6.11.0
+
+### KDE Frameworks 6.11.0
+- kcoreaddons, kconfig, karchive, kdbusaddons, kwindowsystem, kcrash
+- kguiaddons, ki18n, kitemviews, kcompletion, kcodecs, kwidgetsaddons
+- kconfigwidgets, kcolorscheme, kservice, kiconthemes, breeze-icons
+- knotifications, kglobalaccel, kpackage, kdeclarative, kio, kbookmarks
+- kjobwidgets, kauth, knewstuff, attica, kparts, kxmlgui, kitemmodels
+- krunner, ktextwidgets, sonnet, kstatusnotifieritem, baloo, kidletime
+- kfilemetadata, kdeclarative, ksvg, kirigami, kcmutils, ktexteditor
+- syntax-highlighting, kunitconversion, kwallet (daemon disabled)
+- knotifyconfig, kded, kbookmarks, kholidays, kuserfeedback
+- kholidays, kcmutils, kwidgetsaddons, kcolorscheme, ksvg
+- kdoctools (with DocBook XML 4.5 + DocBook XSL 1.79.2 + libxslt 1.1.42)
+- prison (with qrencode 4.1.1)
+
+### Dependencies
+- plasma-wayland-protocols 1.16.0
+- libcanberra 0.30 (with libogg 1.3.5 + libvorbis 1.3.7)
+- hunspell 1.7.2
+- lmdb 0.9.32
+- boost 1.87.0 (headers only)
+- lcms2 2.16
+- libei 1.3.0
+- libgudev 238
+- libwacom 2.12.2
+- lm-sensors 3.6.0
+- libogg 1.3.5, libvorbis 1.3.7
+- ICU 76.1
+- libqalculate 5.5.0
+- phonon 4.12.0 (Qt6, with libpulse-mainloop-glib manually installed)
+- qcoro 0.12.0
+- polkit 126 (with duktape 2.7.0)
+- polkit-qt-1 (Qt6, built from git)
+- qrencode 4.1.1
+
+### Plasma Packages (6.3.4)
+- plasma-wayland-protocols 1.16.0
+- kdecoration 6.3.4
+- libkscreen 6.3.4
+- libksysguard 6.3.4
+- kglobalacceld 6.3.4
+- kwayland 6.3.4
+- kscreenlocker 6.3.4
+- layer-shell-qt 6.3.4
+- libplasma 6.3.4
+- plasma-activities 6.3.4
+- plasma-activities-stats 6.3.4
+- plasma5support 6.3.4
+- kwin 6.3.4
+- plasma-workspace 6.3.4
+- plasma-desktop 6.3.4
+
+### Display Manager
+- sddm (git master, Qt6 build)
+- sddm.service enabled
+- /usr/share/wayland-sessions/plasma.desktop created
+- /usr/share/wayland-sessions/sway.desktop present
+
+### Key Learnings
+- qtbase must be rebuilt with xcb after installing xcb-util-* packages
+- qtshadertools needs -include cstdint for GCC 15
+- libpulse-mainloop-glib built separately and manually installed
+- polkit-qt-1 Qt6 build requires git master (0.200.0 is Qt5 only)
+- sddm 0.20.0 has D-Bus XML bug with Qt6 — use git master
+- prison requires qrencode built with -fPIC and shared libs
+- SDDM Qt6 flag is BUILD_WITH_QT6=ON (not QT_MAJOR_VERSION)
