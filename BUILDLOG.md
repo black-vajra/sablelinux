@@ -678,3 +678,54 @@ Revisit when hardware is upgraded. Target: ROCm 7.x via TheRock, gfx1201.
 - sddm 0.20.0 has D-Bus XML bug with Qt6 — use git master
 - prison requires qrencode built with -fPIC and shared libs
 - SDDM Qt6 flag is BUILD_WITH_QT6=ON (not QT_MAJOR_VERSION)
+
+---
+
+## KDE Plasma 6 Build Attempt + Recovery — 2026-03-11
+
+### What Was Built
+Full KDE Plasma 6 stack built from source over two sessions:
+- Qt6 (qtbase, qtdeclarative, qtshadertools, qt5compat, qtwayland, qtsvg, qttools, qtmultimedia)
+- Extra CMake Modules (ECM) 6.11.0
+- KDE Frameworks 6.11.0 (full dependency chain)
+- KWin 6.3.4
+- plasma-workspace 6.3.4
+- plasma-desktop 6.3.4
+- SDDM (git master, BUILD_WITH_QT6=ON)
+- Supporting libs: xcb-util-*, libxcursor, libXrender, libdrm (already present), polkit-qt-1 (git)
+
+Build scripts committed to build-scripts/: kde-plasma-build.sh, sway-stack-build.sh
+
+### Root Cause of Boot Failure
+SDDM failed to start. Debugging led down a false path (suspected USB enumeration delay).
+Multiple grub.cfg modifications were made in an attempt to add boot delays.
+Actual root cause: `/etc/vconsole.conf` contained `FONT=Lat2-Terminus16`, which does not
+exist on this system. systemd-vconsole-setup.service failed, stalling the boot sequence
+before SDDM could launch.
+
+Fix is a one-liner: `sed -i '/^FONT=/d' /etc/vconsole.conf`
+
+The GRUB edits made during debugging left the system unbootable before this was diagnosed.
+
+### Backup Restoration Failure
+Attempted to restore from sable-root-pre-kernel-rebuild.img.gz (Mar 10 partclone image).
+Restore failed at 63%: partition geometry mismatch. The USB SSD was repartitioned during
+a vacation Ubuntu installation, so the drive geometry no longer matches what partclone
+recorded. partclone.restore -C (ignore geometry) was not sufficient to complete the restore.
+
+### Recovery Plan
+1. Repartition USB SSD to original layout (512M EFI / 2G boot / remainder root)
+2. Restore from Mar 10 backups (sable-*-pre-kernel-rebuild.img.gz)
+3. Chroot and apply vconsole fix before first boot
+4. Verify Sway desktop boots cleanly
+5. Resume KDE Plasma build using kde-plasma-build.sh
+
+### Lessons Learned
+- Never edit grub.cfg while chasing a suspected boot timing issue without confirming
+  the actual failure point first (journalctl -xb, systemctl --failed)
+- vconsole.conf FONT entries must reference fonts that actually exist in /usr/share/kbd/consolefonts/
+- Partition backups must be retaken after any repartitioning event
+- partclone geometry mismatch: -C flag is not a reliable workaround — recreate geometry first
+
+### Status
+Recovery in progress. Resuming from Mar 10 backup state.
