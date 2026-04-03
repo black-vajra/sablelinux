@@ -817,3 +817,30 @@ Recovery in progress. Resuming from Mar 10 backup state.
 - SDDM debugging ongoing
 - Sway desktop fully operational as fallback
 - Next: reboot and check journalctl -u sddm for updated diagnostics
+
+---
+
+## kde-plasma-build-v3.sh — 2026-04-03
+
+### Script Corrections vs v2
+- plasma-wayland-protocols moved to Phase 6 (after ECM) — was failing in Phase 2 because ECM not yet installed
+- ECM explicitly Phase 5 — hard wall before Phonon, QCoro, polkit-qt-1, and all KF6
+- Phonon and QCoro moved to Phase 7 (after ECM)
+- polkit-qt-1 moved to Phase 7 (needs ECM + polkit + Qt6)
+- KF6 framework dependency tiers documented and ordered correctly
+- kirigami explicitly before ksvg
+- kcompletion added before kio
+- kdoctools placed before kio in correct tier
+- syntax-highlighting before ktexteditor
+- kholidays/kuserfeedback/kunitconversion/attica/solid moved to Tier 1 (no KF6 deps)
+- Duplicate kholidays/kuserfeedback/kunitconversion entries removed
+- Skip guards use consistent has_cmake/has_lib/has_cmd helpers
+- All phase ordering documented in header comments
+- Qt6Location confirmed in Qt module list
+- KWin GCC 15 patch automated
+- SDDM PAM explicit pam_systemd.so for XDG_RUNTIME_DIR
+- tmpfiles.d entry for /run/sddm
+- sddm user added to video+input groups
+
+### Status
+- v3 committed, clean run in progress from March 10 restore
