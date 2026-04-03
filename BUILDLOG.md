@@ -776,3 +776,44 @@ Recovery in progress. Resuming from Mar 10 backup state.
 - First boot verification
 - KWin/SDDM Wayland session confirmation
 - Clean single-run script validation (restore Mar 10 → run corrected script)
+
+---
+
+## SDDM Debugging Session — 2026-04-03
+
+### Hardware Change
+- SableLinux 500GB SSD moved from USB 3.0 to internal SATA connection
+- Confirmed: lsblk shows TRAN=sata, device /dev/sda
+- Boot reliability improved — no more USB enumeration variability
+
+### SDDM First Boot Attempt
+- SDDM started successfully, kwin_wayland launched
+- Fatal errors:
+  - XDG_RUNTIME_DIR not set / invalid
+  - kwin_core: Could not determine the active graphical session
+  - FATAL ERROR: could not add wayland socket
+- Root cause: not yet fully diagnosed — logind session registration
+  for SDDM/KWin compositor not working correctly on LFS
+
+### Fixes Applied (chroot from pots)
+- sddm user added to video and input groups
+- tmpfiles.d entry created: /usr/lib/tmpfiles.d/sddm.conf
+  (ensures /run/sddm exists at boot with correct ownership)
+- SDDM symlink confirmed intact: display-manager.service → sddm.service
+
+### Script Update
+- kde-plasma-build-v2.sh committed to build-scripts/
+- Complete rewrite with all session fixes applied:
+  - All build fixes from session 2 baked in
+  - Skip guards on every package for fast restarts
+  - Correct KF6 6.24.0 dependency order
+  - SDDM PAM: explicit pam_systemd.so in session configs
+  - tmpfiles.d entry for /run/sddm
+  - sddm user video+input group membership
+  - KWin GCC 15 patch automated
+  - Qt6Location added to Qt modules
+
+### Status
+- SDDM debugging ongoing
+- Sway desktop fully operational as fallback
+- Next: reboot and check journalctl -u sddm for updated diagnostics
