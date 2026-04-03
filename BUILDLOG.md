@@ -729,3 +729,50 @@ recorded. partclone.restore -C (ignore geometry) was not sufficient to complete 
 
 ### Status
 Recovery in progress. Resuming from Mar 10 backup state.
+
+---
+
+## KDE Plasma 6 Build — Session 2 (Recovery + Successful Install) — 2026-04-02
+
+### Recovery
+- Restored from sable-root-pre-kernel-rebuild.img.gz (Mar 10 backup)
+- Root cause of restore failure confirmed: Ubuntu had resized sda3 from ~463G to 231.6G
+- Fix: deleted sda4-6, recreated sda3 from sector 5244928 to 976773134 (full remainder)
+- All three partitions restored cleanly (EFI, boot, root)
+- vconsole.conf FONT=Lat2-Terminus16 entry removed pre-boot
+
+### Version Updates (from original script targets)
+- KF6: 6.11.0 → 6.24.0 (6.11.0 no longer on KDE servers)
+- Plasma: 6.3.4 → 6.4.0 (6.3.4 gone; 6.6.3 requires Qt 6.10.0; 6.4.0 compatible with Qt 6.8.x)
+- wayland-protocols: 1.44 → 1.48 (kwindowsystem 6.24.0 needs ext-background-effect-v1.xml)
+- plasma-wayland-protocols: 1.16.0 → 1.20.0 (libkscreen 6.4.0 needs EDR/DDC-CI protocols)
+- Qt6Location added (plasma-workspace 6.4.0 requirement, missing from original Qt module list)
+
+### Build Fixes Applied (KF6 6.24.0 vs 6.11.0 delta)
+- CMAKE_COMMON: added -DBUILD_PYTHON_BINDINGS=OFF (Shiboken6 not installed)
+- kguiaddons: -DUSE_DBUS=OFF (Qt private headers not available)
+- kwindowsystem: must be built after plasma-wayland-protocols
+- kwallet: -DBUILD_KWALLETD=OFF -DBUILD_KSECRETD=OFF -DBUILD_KWALLET_QUERY=OFF (all daemons disabled by design)
+- prison: -DWITH_DMTX=OFF -DWITH_ZXING=OFF (barcode libs not installed, not needed)
+- kcompletion: missing from original script, required by kio — added before kio
+- kdoctools: must be built before kio, not after
+- ECM: must be built before Phonon, not after
+- plasma-wayland-protocols: must be built before kwindowsystem (Phase 5, not Phase 6)
+- KWin 6.4.0: patch src/wayland/xdgsession_v1.h — add #include <QVariant> (GCC 15 strictness)
+- kirigami: failed silently in script run — rebuilt manually
+
+### Script Evolution
+- kde-plasma-build.sh → kde-plasma-resume.sh → kde-plasma-resume2.sh
+- resume2.sh adds skip guards (cmake config file checks) for fast restarts
+- Full build completed successfully on resume2.sh
+
+### Result
+- KDE Plasma 6.4.0 + SDDM installed
+- SDDM service enabled (display-manager.service → sddm.service)
+- vconsole.conf clean (KEYMAP=us only)
+- Backup taken: sable-root-kde-plasma-6.4.0.img.gz
+
+### Pending
+- First boot verification
+- KWin/SDDM Wayland session confirmation
+- Clean single-run script validation (restore Mar 10 → run corrected script)
