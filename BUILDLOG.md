@@ -870,3 +870,84 @@ Recovery in progress. Resuming from Mar 10 backup state.
 
 ### .bash_profile
 - Auto-sway-launch block restored (lost in KDE restore)
+
+## Kernel Rebuild #4 + QEMU/KVM + Ubuntu VM + WireGuard Full Tunnel + wf-recorder — 2026-04-04
+
+### Kernel Rebuild #4
+- Added: CONFIG_IP_NF_RAW=m, CONFIG_DM_CRYPT=m, CONFIG_CRYPTO_XTS=y
+- Note: Rebuilds #3 and #4 together restored all flags lost in KDE restore:
+  CONFIG_WIREGUARD=y, CONFIG_TUN=y, CONFIG_KVM=y, CONFIG_KVM_INTEL=y,
+  full VIRTIO family, VHOST_NET=y, BRIDGE=y, IP_NF_RAW=m, DM_CRYPT=m, CRYPTO_XTS=y
+
+### GnuPG 2.4.7
+- Deps: libassuan 3.0.2, libksba 1.6.7, npth 1.8, pinentry 1.3.1
+- gnupg 2.4.7 installed
+- gpg -d with --pinentry-mode loopback confirmed working
+- gpg-build.sh added to build-scripts/
+
+### SDL2 2.32.2
+- Built with -DSDL_WAYLAND=ON -DSDL_X11=OFF
+- Native Wayland window support for QEMU VM display
+
+### QEMU/KVM 9.2.3
+- Deps: libcap-ng 0.8.5, libslirp 4.8.0, nettle 3.10, SDL2 2.32.2
+- Built with --enable-kvm --enable-slirp --enable-cap-ng --enable-sdl
+- /dev/kvm confirmed present, kvm_intel built-in (=y)
+- pepper added to kvm group
+- /var/lib/qemu/{disks,iso,scripts} created
+- qcow2 disk images: windows 80G, kali 40G, blackarch 40G, ubuntu 30G, alpine 10G
+- Install + boot scripts for all VMs at /var/lib/qemu/scripts/
+- qemu-build.sh added to build-scripts/
+
+### Ubuntu 24.04.2 VM
+- ISO: ubuntu-24.04.2-desktop-amd64.iso (6.0G)
+- Installed and booted with full KVM acceleration
+- Full GNOME desktop functional in SDL2 Wayland window
+- Audio: -audiodev pipewire,id=audio0 -device intel-hda -device hda-duplex,audiodev=audio0
+- Network: virtio-net user mode NATs through SableLinux/WireGuard tunnel
+
+### iptables 1.8.11
+- Deps: libmnl 1.0.5, libnfnetlink 1.0.2, libnftnl 1.2.8
+- Required for WireGuard full tunnel routing
+
+### WireGuard Full Tunnel
+- wireguard-tools 1.0.20210914 built and installed
+- Table=off in wg0.conf (CONFIG_NETFILTER_XT_MATCH_COMMENT absent in 6.16.x)
+- PostUp: pins Linode endpoint via home router, dels default, adds default via wg0
+- PreDown: restores home router default route
+- Routing loop fix: explicit host route for 172.233.26.17 via 192.168.0.1
+- curl ifconfig.me → 172.233.26.17 (Linode Sao Paulo) confirmed
+- speedtest-cli through tunnel: 168 Mbps down / 19 Mbps up
+- wg-quick@wg0 enabled, auto-starts on boot confirmed after reboot
+
+### Vajra server (Linode Debian 12)
+- apt install iptables
+- net.ipv4.ip_forward=1 persisted to /etc/sysctl.conf
+- iptables MASQUERADE on eth0, FORWARD rules for wg0
+
+### x264 + ffmpeg 7.1 rebuild
+- x264 rebuilt from VideoLAN git (--enable-shared)
+- ffmpeg 7.1 rebuilt with --enable-shared --enable-gpl --enable-libx264 --disable-static
+- Critical fix: previous ffmpeg build did not install shared libs (Mar 7 timestamp)
+- New build: libavcodec.so.61.19.100 dated Apr 4, 15.5MB (was 15.3MB without x264)
+- Verified: avcodec_find_encoder_by_name('libx264') → Found
+
+### wf-recorder (master) rebuild
+- Rebuilt against new ffmpeg shared libs
+- Screen capture confirmed working: wf-recorder -c ffv1
+- x264 encoding confirmed: wf-recorder --audio -c libx264 --pixel-format yuv420p
+- Audio capture via PipeWire: --audio flag
+- YouTube screen capture tested and confirmed working
+- Usage: timeout <seconds> wf-recorder --audio -c libx264 --pixel-format yuv420p -f ~/recordings/output.mp4
+- Recordings stored at ~/recordings/
+
+### rsync 3.3.0
+- Dep: xxhash 0.8.2
+- CFLAGS="-std=gnu17 -O2" required (GCC 15 lseek64 empty parameter list bug)
+
+### speedtest-cli
+- pip install speedtest-cli --break-system-packages
+
+### .bash_profile
+- Auto-sway-launch block restored (lost in KDE restore)
+- XDG_SESSION_DESKTOP=sway, WLR_DRM_DEVICES=/dev/dri/card1 re-added
