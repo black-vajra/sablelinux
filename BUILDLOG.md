@@ -844,3 +844,29 @@ Recovery in progress. Resuming from Mar 10 backup state.
 
 ### Status
 - v3 committed, clean run in progress from March 10 restore
+
+## WireGuard + QEMU/KVM — 2026-04-03
+
+### Kernel Rebuild #3
+- Added: CONFIG_WIREGUARD=y, CONFIG_TUN=y, CONFIG_KVM=y, CONFIG_KVM_INTEL=y
+- Added: full VIRTIO family (PCI, NET, BLK, BALLOON, INPUT, CONSOLE, RNG)
+- Added: VHOST_NET=y (was built-in already), BRIDGE=y (already present)
+
+### GnuPG 2.4.7
+- Deps: libassuan 3.0.2, libksba 1.6.7, npth 1.8, pinentry 1.3.1
+- gnupg 2.4.7 installed; gpg-build.sh in build-scripts/
+
+### WireGuard VPN
+- wireguard-tools 1.0.20210914 built and installed
+- Tunnel to vajra (172.233.26.17:51820), SableLinux assigned 10.6.0.4/24
+- Confirmed: ping 10.6.0.1 0% packet loss, 121ms RTT
+- systemctl enable wg-quick@wg0
+
+### QEMU 9.2.3
+- Deps: libcap-ng 0.8.5, libslirp 4.8.0, nettle 3.10
+- --target-list=x86_64-softmmu, --enable-kvm --enable-slirp --enable-cap-ng
+- KVM accelerator confirmed
+- pepper added to kvm group; /var/lib/qemu created
+
+### .bash_profile
+- Auto-sway-launch block restored (lost in KDE restore)
