@@ -1299,3 +1299,39 @@ Recovery in progress. Resuming from Mar 10 backup state.
 - All Go tools installed to ~/go/bin
 - PATH must include /usr/local/go/bin:~/go/bin for Go tools to be accessible
 - Previously installed (complete): curl, ffuf, nikto, sqlmap, gobuster
+
+## NVMe Migration — 2026-04-10
+
+### Problem
+SableLinux running on SATA SSD (sda). Migrated to WD SN560 1TB NVMe (nvme1n1).
+Multiple boot failures across two sessions. Root causes identified and fixed.
+
+### Root Causes (in order of discovery)
+1. **initramfs hardcoded /dev/sda3** — init script used raw device path, not UUID. NVMe root is nvme1n1p3, not sda3. Fixed by rewriting init to use `findfs UUID=`.
+2. **CONFIG_BLK_DEV_NVME not set** — original 6.16.1 kernel had NVMe explicitly disabled. Rebuilt with CONFIG_NVME_CORE=y + CONFIG_BLK_DEV_NVME=y.
+3. **fstab EFI UUID wrong** — restored from SATA backup, /boot/efi entry had old SATA EFI UUID (5F1D-6806). NVMe EFI UUID is 3745-AF41. Fixed with sed.
+4. **CONFIG_NLS_CP437 + CONFIG_NLS_ISO8859_1 missing** — vfat /boot/efi mount failed with "IO charset iso8859-1 not found". Added both NLS options, rebuilt kernel.
+5. **boot-efi.mount blocking systemd** — without nofail, EFI mount failure dropped system to emergency mode. Added nofail to fstab entry.
+
+### Kernel 6.16.1 rebuild #3
+- Added: CONFIG_NVME_CORE=y, CONFIG_BLK_DEV_NVME=y
+- Added: CONFIG_NLS_CP437=y, CONFIG_NLS_ISO8859_1=y
+- Added: CONFIG_FB=y, CONFIG_FB_EFI=y, CONFIG_FRAMEBUFFER_CONSOLE=y (console visibility)
+- make -j14, modules_install, bzImage copied to /boot
+
+### initramfs init script
+- Rewrote /opt/initramfs-tools/sable-init to use findfs UUID= instead of hardcoded /dev/sda3
+- Drops to shell with error message if UUID resolution fails
+- Initramfs rebuilt and verified
+
+### fstab fixes
+- /boot/efi UUID: 5F1D-6806 → 3745-AF41
+- Added nofail option to /boot/efi mount entry
+
+### GRUB
+- grub-install run from chroot (efibootmgr missing — non-fatal, grubx64.efi already in place)
+- grub-mkconfig regenerated clean config with 6.16.1 kernel only
+- Ubuntu kernel files (vmlinuz-6.17.0-20-generic, initrd) removed from Sable /boot
+
+### Result
+SableLinux boots cleanly on NVMe. systemd fully initializes. Sway + amdgpu working on card1.
