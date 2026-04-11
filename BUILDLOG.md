@@ -1352,3 +1352,48 @@ SableLinux boots cleanly on NVMe. systemd fully initializes. Sway + amdgpu worki
 - CVE-2025-14302 (Z890 IOMMU pre-boot DMA): patched — running BIOS F19 (2026-02-02)
 - IOMMU active: all 32 PCIe devices assigned to IOMMU groups per dmesg
 - Secure Boot deferred to RC phase as planned
+
+---
+
+## ISO Distribution Pipeline — Phase 1 & 2
+**Date:** 2026-04-11
+
+### Phase 1 — Kernel Rebuild #3 (Generic Hardware Support)
+- Added: CONFIG_SQUASHFS=y (live ISO root — was missing, hard blocker)
+- Added: CONFIG_OVERLAY_FS=y (live writable layer — was missing, hard blocker)
+- Added: CONFIG_DRM_NOUVEAU=m (NVIDIA hardware)
+- Added: CONFIG_DRM_VMWGFX=m (VMware/QEMU)
+- Added: CONFIG_DRM_BOCHS=m (QEMU bochs display)
+- Added: CONFIG_IGB=m (Intel GbE)
+- Added: CONFIG_IXGBE=m (Intel 10GbE)
+- Added: CONFIG_INPUT_MOUSEDEV=y (mouse input)
+- Added: CONFIG_IWLWIFI=m (Intel WiFi)
+- Kernel rebuild #9 successful, initramfs rebuilt, system boots clean
+
+### Phase 2 — Live Environment Construction
+- squashfs-tools 4.6.1 built with zstd/xz/lz4/gzip support
+- xorriso 1.5.6 built
+- mtools 4.0.44 built (mformat required by grub-mkrescue)
+- Live filesystem staged at /mnt/liveroot (25G uncompressed)
+- Exclusions: /sources, /swapfile, /home/pepper, /var/lib/qemu/disks+iso,
+  coredumps, logs, machine-id, SSH host keys, tester user removed
+- Live user: sable (uid 1000, wheel group, NOPASSWD sudo, autologin tty1)
+- sway config adapted for sable user, WLR_DRM_DEVICES removed for portability
+- machine-id cleared, fstab replaced, SSH host keys removed
+- squashfs.img: 6.3G compressed (26% of 25G uncompressed), zstd level 19
+- Live initramfs: busybox-based, squashfs+overlayfs pivot_root init script
+- ISO assembled with xorriso -iso-level 3 (required for >4GB files)
+- Hybrid UEFI+BIOS bootable ISO: sablelinux-live-2026-04-11.iso (6.3G)
+- Backup saved to /mnt/one/backups/
+
+### Tools Added
+- squashfs-tools 4.6.1 (/usr/local/bin/mksquashfs, unsquashfs)
+- xorriso 1.5.6 (/bin/xorriso)
+- mtools 4.0.44 (/bin/mformat)
+
+### Key Learnings
+- xorriso requires -iso-level 3 for files >4GB (squashfs exceeded ISO 9660 limit)
+- grub-mkrescue cannot be used directly for large files — call xorriso directly
+- busybox at /opt/initramfs-tools/bin/busybox is statically linked — suitable for initramfs
+- WLR_DRM_DEVICES must not be hardcoded in live ISO sway config
+- opt/jdk symlink pointed to jdk-21.0.2 (incomplete) — fixed to jdk-21 (full Temurin build)
