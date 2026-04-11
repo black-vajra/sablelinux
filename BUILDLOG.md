@@ -1335,3 +1335,20 @@ Multiple boot failures across two sessions. Root causes identified and fixed.
 
 ### Result
 SableLinux boots cleanly on NVMe. systemd fully initializes. Sway + amdgpu working on card1.
+
+## Post-NVMe Migration Cleanup — 2026-04-11
+
+### Firmware additions
+- rtl_nic/rtl8125d-1.fw — Realtek RTL8125D NIC firmware (wget from linux-firmware.git)
+- regulatory.db + regulatory.db.p7s — WiFi regulatory database (wget from wireless-regdb.git)
+- Both installed to /lib/firmware/, take effect on next reboot
+
+### usbutils 0.17
+- Required libusb 1.0.27 (built first)
+- Provides lsusb for USB device enumeration
+- Confirmed: Foxconn/Hon Hai MediaTek WiFi adapter on Bus 003, WD Elements 4.5TB on Bus 004
+
+### Security assessment
+- CVE-2025-14302 (Z890 IOMMU pre-boot DMA): patched — running BIOS F19 (2026-02-02)
+- IOMMU active: all 32 PCIe devices assigned to IOMMU groups per dmesg
+- Secure Boot deferred to RC phase as planned
