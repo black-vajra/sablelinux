@@ -1397,3 +1397,21 @@ SableLinux boots cleanly on NVMe. systemd fully initializes. Sway + amdgpu worki
 - busybox at /opt/initramfs-tools/bin/busybox is statically linked — suitable for initramfs
 - WLR_DRM_DEVICES must not be hardcoded in live ISO sway config
 - opt/jdk symlink pointed to jdk-21.0.2 (incomplete) — fixed to jdk-21 (full Temurin build)
+
+## ISO Live Boot Testing — 2026-04-11
+
+### Issues Found and Fixed
+- pepper user UID conflict with sable (both 1000) — removed pepper from squashfs passwd/group
+- /run/user/1000 not created — added mkdir to sable .bash_profile
+- sable missing video/render/input/seat groups — fixed in squashfs
+- init script set -e causing silent failures — removed, added explicit error handling
+
+### Remaining Blocker
+- iris Gallium driver missing from Mesa build — Intel iGPU (Skylake/2015 hardware) cannot initialize
+- Blocked on: libclc → SPIRV-LLVM-Translator → Mesa rebuild with -Dgallium-drivers=radeonsi,llvmpipe,iris
+- AMD hardware boots fine, Intel integrated GPU does not
+
+### Next Session
+- Build libclc + SPIRV-LLVM-Translator
+- Rebuild Mesa with iris driver added
+- Rebuild squashfs/ISO and retest
