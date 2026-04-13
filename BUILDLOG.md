@@ -1424,3 +1424,25 @@ SableLinux boots cleanly on NVMe. systemd fully initializes. Sway + amdgpu worki
 - iris_dri.so installed to /usr/lib64/dri/
 - maya now has hardware-accelerated display path via i915/iris
 - pots radeonsi unaffected
+
+## 2026-04-13 — Phase 1: Kernel compat build (6.16.1-sable-compat)
+
+- Based on existing SableLinux .config with LOCALVERSION="-sable-compat"
+- Added: IWLMVM=m, IWLDVM=m, BT=m, BT_HCIBTUSB=m, BT_INTEL=m
+- Added: MMC=m, MISC_RTSX_USB=m, MMC_REALTEK_USB=m
+- Added: ASUS_WMI=m, ASUS_NB_WMI=m, INTEL_RAPL_CORE=m
+- DRM_I915, SQUASHFS, OVERLAY_FS already present and correct
+- Installed to /boot/vmlinuz-6.16.1-sable-compat
+- Modules in /lib/modules/6.16.1-sable-compat/
+- Running kernel (6.16.1-lfs-12.4-systemd) untouched
+
+## 2026-04-13 — Phase 1: Kernel compat build (6.16.1-sable-compat)
+
+- Based on existing SableLinux .config with LOCALVERSION="-sable-compat"
+- Added: IWLMVM=m, IWLDVM=m, BT=m, BT_HCIBTUSB=m, BT_INTEL=m
+- Added: MMC=m, MISC_RTSX_USB=m, MMC_REALTEK_USB=m
+- Added: ASUS_WMI=m, ASUS_NB_WMI=m, INTEL_RAPL_CORE=m
+- DRM_I915, SQUASHFS, OVERLAY_FS already present and correct
+- Installed to /boot/vmlinuz-6.16.1-sable-compat
+- Modules in /lib/modules/6.16.1-sable-compat/
+- Running kernel (6.16.1-lfs-12.4-systemd) untouched
