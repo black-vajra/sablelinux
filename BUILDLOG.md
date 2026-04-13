@@ -1415,3 +1415,12 @@ SableLinux boots cleanly on NVMe. systemd fully initializes. Sway + amdgpu worki
 - Build libclc + SPIRV-LLVM-Translator
 - Rebuild Mesa with iris driver added
 - Rebuild squashfs/ISO and retest
+
+## 2026-04-13 — Phase 0: Mesa 25.0.1 iris rebuild
+
+- Added iris to gallium-drivers, retained radeonsi + llvmpipe
+- vulkan-drivers: amd only (intel blocked by SPIRV-Tools/mesa-clc at configure time)
+- Required SPIRV-Tools upgrade: 2024.4 built against SPIRV-Headers vulkan-sdk-1.4.304.0
+- iris_dri.so installed to /usr/lib64/dri/
+- maya now has hardware-accelerated display path via i915/iris
+- pots radeonsi unaffected
