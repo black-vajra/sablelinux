@@ -1446,3 +1446,12 @@ SableLinux boots cleanly on NVMe. systemd fully initializes. Sway + amdgpu worki
 - Installed to /boot/vmlinuz-6.16.1-sable-compat
 - Modules in /lib/modules/6.16.1-sable-compat/
 - Running kernel (6.16.1-lfs-12.4-systemd) untouched
+
+## 2026-04-13 — Phase 2: Firmware bundle
+
+- Cloned linux-firmware to /sources/linux-firmware
+- Installed iwlwifi (7265D, 7265, 7260, 8265, 9260, QuZ) to /lib/firmware/intel/iwlwifi/
+- Installed i915 Skylake firmware (skl_*) to /lib/firmware/i915/
+- Installed Intel BT firmware (ibt-hw-37.8*) to /lib/firmware/intel/
+- regulatory.db already present
+- All mandatory maya firmware confirmed present
