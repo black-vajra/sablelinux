@@ -1,0 +1,4328 @@
+=== SABLE ISO HW/SW SURVEY ===
+Mon Apr 13 10:19:59 EDT 2026
+Linux maya 6.17.0-20-generic #20-Ubuntu SMP PREEMPT_DYNAMIC Fri Mar 13 20:07:29 UTC 2026 x86_64 GNU/Linux
+
+=== CPU ===
+Architecture:                            x86_64
+CPU op-mode(s):                          32-bit, 64-bit
+Address sizes:                           39 bits physical, 48 bits virtual
+Byte Order:                              Little Endian
+CPU(s):                                  4
+On-line CPU(s) list:                     0-3
+Vendor ID:                               GenuineIntel
+Model name:                              Intel(R) Core(TM) i5-6200U CPU @ 2.30GHz
+CPU family:                              6
+Model:                                   78
+Thread(s) per core:                      2
+Core(s) per socket:                      2
+Socket(s):                               1
+Stepping:                                3
+CPU(s) scaling MHz:                      86%
+CPU max MHz:                             2800.0000
+CPU min MHz:                             400.0000
+BogoMIPS:                                4800.00
+Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt intel_pt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp vnmi md_clear flush_l1d arch_capabilities
+Virtualization:                          VT-x
+L1d cache:                               64 KiB (2 instances)
+L1i cache:                               64 KiB (2 instances)
+L2 cache:                                512 KiB (2 instances)
+L3 cache:                                3 MiB (1 instance)
+NUMA node(s):                            1
+NUMA node0 CPU(s):                       0-3
+Vulnerability Gather data sampling:      Vulnerable: No microcode
+Vulnerability Ghostwrite:                Not affected
+Vulnerability Indirect target selection: Not affected
+Vulnerability Itlb multihit:             KVM: Mitigation: Split huge pages
+Vulnerability L1tf:                      Mitigation; PTE Inversion; VMX conditional cache flushes, SMT vulnerable
+Vulnerability Mds:                       Mitigation; Clear CPU buffers; SMT vulnerable
+Vulnerability Meltdown:                  Mitigation; PTI
+Vulnerability Mmio stale data:           Mitigation; Clear CPU buffers; SMT vulnerable
+Vulnerability Old microcode:             Not affected
+Vulnerability Reg file data sampling:    Not affected
+Vulnerability Retbleed:                  Mitigation; IBRS
+Vulnerability Spec rstack overflow:      Not affected
+Vulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:                Mitigation; IBRS; IBPB conditional; STIBP conditional; RSB filling; PBRSB-eIBRS Not affected; BHI Not affected
+Vulnerability Srbds:                     Mitigation; Microcode
+Vulnerability Tsa:                       Not affected
+Vulnerability Tsx async abort:           Not affected
+Vulnerability Vmscape:                   Mitigation; IBPB before exit to userspace
+
+=== PCI DEVICES ===
+00:00.0 Host bridge [0600]: Intel Corporation Xeon E3-1200 v5/E3-1500 v5/6th Gen Core Processor Host Bridge/DRAM Registers [8086:1904] (rev 08)
+	Subsystem: ASUSTeK Computer Inc. Device [1043:1d0d]
+	Flags: bus master, fast devsel, latency 0, IOMMU group 0
+	Capabilities: [e0] Vendor Specific Information: Intel Capabilities v1
+		CapA: Peg60Dis- Peg12Dis+ Peg11Dis+ Peg10Dis+ PeLWUDis+ DmiWidth=x4
+		      EccDis+ ForceEccEn- VTdDis- DmiG2Dis+ PegG2Dis+ DDRMaxSize=Unlimited
+		      1NDis- CDDis- DDPCDis+ X2APICEn+ PDCDis- IGDis- CDID=2 CRID=8
+		      DDROCCAP- OCEn+ DDRWrtVrefEn- DDR3LEn+
+		CapB: ImguDis- OCbySSKUCap- OCbySSKUEn- SMTCap+ CacheSzCap 0x2
+		      SoftBinCap- DDR3MaxFreqWithRef100=Disabled PegG3Dis+
+		      PkgTyp- AddGfxEn+ AddGfxCap- PegX16Dis+ DmiG3Dis+ GmmDis-
+		      DDR3MaxFreq=2666MHz LPDDR3En+
+		CapC: PegG4Dis- DDR4MaxFreq=Unlimited LPDDREn- LPDDR4MaxFreq=0MHz LPDDR4En-
+		      QClkGvDis+ SgxDis- BClkOC=Disabled IddDis- Pipe3Dis- Gear1MaxFreq=Unlimited
+	Kernel driver in use: skl_uncore
+
+00:02.0 VGA compatible controller [0300]: Intel Corporation Skylake GT2 [HD Graphics 520] [8086:1916] (rev 07) (prog-if 00 [VGA controller])
+	Subsystem: ASUSTeK Computer Inc. Device [1043:1d0d]
+	Flags: bus master, fast devsel, latency 0, IRQ 141
+	Memory at de000000 (64-bit, non-prefetchable) [size=16M]
+	Memory at c0000000 (64-bit, prefetchable) [size=256M]
+	I/O ports at f000 [size=64]
+	Expansion ROM at 000c0000 [virtual] [disabled] [size=128K]
+	Capabilities: [40] Vendor Specific Information: Intel Capabilities v1
+		CapA: Peg60Dis- Peg12Dis+ Peg11Dis+ Peg10Dis+ PeLWUDis+ DmiWidth=x4
+		      EccDis+ ForceEccEn- VTdDis- DmiG2Dis+ PegG2Dis+ DDRMaxSize=Unlimited
+		      1NDis- CDDis- DDPCDis+ X2APICEn+ PDCDis- IGDis- CDID=2 CRID=8
+		      DDROCCAP- OCEn+ DDRWrtVrefEn- DDR3LEn+
+		CapB: ImguDis- OCbySSKUCap- OCbySSKUEn- SMTCap+ CacheSzCap 0x2
+		      SoftBinCap- DDR3MaxFreqWithRef100=Disabled PegG3Dis+
+		      PkgTyp- AddGfxEn+ AddGfxCap- PegX16Dis+ DmiG3Dis+ GmmDis-
+		      DDR3MaxFreq=2666MHz LPDDR3En+
+	Capabilities: [70] Express Root Complex Integrated Endpoint, IntMsgNum 0
+	Capabilities: [ac] MSI: Enable+ Count=1/1 Maskable- 64bit-
+	Capabilities: [d0] Power Management version 2
+	Capabilities: [100] Process Address Space ID (PASID)
+	Capabilities: [200] Address Translation Service (ATS)
+	Capabilities: [300] Page Request Interface (PRI)
+	Kernel driver in use: i915
+	Kernel modules: i915
+
+00:04.0 Signal processing controller [1180]: Intel Corporation Xeon E3-1200 v5/E3-1500 v5/6th Gen Core Processor Thermal Subsystem [8086:1903] (rev 08)
+	Subsystem: ASUSTeK Computer Inc. Device [1043:1d0d]
+	Flags: bus master, fast devsel, latency 0, IRQ 16, IOMMU group 1
+	Memory at dfc20000 (64-bit, non-prefetchable) [size=32K]
+	Capabilities: [90] MSI: Enable- Count=1/1 Maskable- 64bit-
+	Capabilities: [d0] Power Management version 3
+	Capabilities: [e0] Vendor Specific Information: Intel Capabilities v1
+		CapA: Peg60Dis- Peg12Dis+ Peg11Dis+ Peg10Dis+ PeLWUDis+ DmiWidth=x4
+		      EccDis+ ForceEccEn- VTdDis- DmiG2Dis+ PegG2Dis+ DDRMaxSize=Unlimited
+		      1NDis- CDDis- DDPCDis+ X2APICEn+ PDCDis- IGDis- CDID=2 CRID=8
+		      DDROCCAP- OCEn+ DDRWrtVrefEn- DDR3LEn+
+		CapB: ImguDis- OCbySSKUCap- OCbySSKUEn- SMTCap+ CacheSzCap 0x2
+		      SoftBinCap- DDR3MaxFreqWithRef100=Disabled PegG3Dis+
+		      PkgTyp- AddGfxEn+ AddGfxCap- PegX16Dis+ DmiG3Dis+ GmmDis-
+		      DDR3MaxFreq=2666MHz LPDDR3En+
+	Kernel driver in use: proc_thermal
+	Kernel modules: processor_thermal_device_pci_legacy
+
+00:13.0 Non-VGA unclassified device [0000]: Intel Corporation Sunrise Point-LP Integrated Sensor Hub [8086:9d35] (rev 21)
+	Subsystem: Intel Corporation Sunrise Point-LP Integrated Sensor Hub [8086:9d35]
+	Flags: bus master, fast devsel, latency 0, IRQ 20, IOMMU group 2
+	Memory at dfc39000 (64-bit, non-prefetchable) [size=4K]
+	Capabilities: [80] Power Management version 3
+	Kernel driver in use: intel_ish_ipc
+	Kernel modules: intel_ish_ipc
+
+00:14.0 USB controller [0c03]: Intel Corporation Sunrise Point-LP USB 3.0 xHCI Controller [8086:9d2f] (rev 21) (prog-if 30 [XHCI])
+	Subsystem: ASUSTeK Computer Inc. Device [1043:201f]
+	Flags: bus master, medium devsel, latency 0, IRQ 124, IOMMU group 3
+	Memory at dfc10000 (64-bit, non-prefetchable) [size=64K]
+	Capabilities: [70] Power Management version 2
+	Capabilities: [80] MSI: Enable+ Count=8/8 Maskable- 64bit+
+	Kernel driver in use: xhci_hcd
+
+00:14.2 Signal processing controller [1180]: Intel Corporation Sunrise Point-LP Thermal subsystem [8086:9d31] (rev 21)
+	Subsystem: ASUSTeK Computer Inc. Device [1043:1d0d]
+	Flags: bus master, fast devsel, latency 0, IRQ 18, IOMMU group 3
+	Memory at dfc38000 (64-bit, non-prefetchable) [size=4K]
+	Capabilities: [50] Power Management version 3
+	Capabilities: [80] MSI: Enable- Count=1/1 Maskable- 64bit-
+	Kernel driver in use: intel_pch_thermal
+	Kernel modules: intel_pch_thermal
+
+00:15.0 Signal processing controller [1180]: Intel Corporation Sunrise Point-LP Serial IO I2C Controller #0 [8086:9d60] (rev 21)
+	Subsystem: ASUSTeK Computer Inc. Device [1043:1d0d]
+	Flags: bus master, fast devsel, latency 0, IRQ 16, IOMMU group 4
+	Memory at dfc37000 (64-bit, non-prefetchable) [size=4K]
+	Capabilities: [80] Power Management version 3
+	Capabilities: [90] Vendor Specific Information: Intel <unknown>
+	Kernel driver in use: intel-lpss
+	Kernel modules: intel_lpss_pci
+
+00:15.1 Signal processing controller [1180]: Intel Corporation Sunrise Point-LP Serial IO I2C Controller #1 [8086:9d61] (rev 21)
+	Subsystem: ASUSTeK Computer Inc. Device [1043:1d0d]
+	Flags: bus master, fast devsel, latency 0, IRQ 17, IOMMU group 4
+	Memory at dfc36000 (64-bit, non-prefetchable) [size=4K]
+	Capabilities: [80] Power Management version 3
+	Capabilities: [90] Vendor Specific Information: Intel <unknown>
+	Kernel driver in use: intel-lpss
+	Kernel modules: intel_lpss_pci
+
+00:16.0 Communication controller [0780]: Intel Corporation Sunrise Point-LP CSME HECI #1 [8086:9d3a] (rev 21)
+	Subsystem: ASUSTeK Computer Inc. Device [1043:1d0d]
+	Flags: bus master, fast devsel, latency 0, IRQ 131, IOMMU group 5
+	Memory at dfc35000 (64-bit, non-prefetchable) [size=4K]
+	Capabilities: [50] Power Management version 3
+	Capabilities: [8c] MSI: Enable+ Count=1/1 Maskable- 64bit+
+	Kernel driver in use: mei_me
+	Kernel modules: mei_me
+
+00:17.0 SATA controller [0106]: Intel Corporation Sunrise Point-LP SATA Controller [AHCI mode] [8086:9d03] (rev 21) (prog-if 01 [AHCI 1.0])
+	Subsystem: ASUSTeK Computer Inc. Device [1043:1d0d]
+	Flags: bus master, 66MHz, medium devsel, latency 0, IRQ 129, IOMMU group 6
+	Memory at dfc30000 (32-bit, non-prefetchable) [size=8K]
+	Memory at dfc34000 (32-bit, non-prefetchable) [size=256]
+	I/O ports at f090 [size=8]
+	I/O ports at f080 [size=4]
+	I/O ports at f060 [size=32]
+	Memory at dfc33000 (32-bit, non-prefetchable) [size=2K]
+	Capabilities: [80] MSI: Enable+ Count=1/1 Maskable- 64bit-
+	Capabilities: [70] Power Management version 3
+	Capabilities: [a8] SATA HBA v1.0
+	Kernel driver in use: ahci
+	Kernel modules: ahci
+
+00:1c.0 PCI bridge [0604]: Intel Corporation Sunrise Point-LP PCI Express Root Port #3 [8086:9d12] (rev f1) (prog-if 00 [Normal decode])
+	Subsystem: ASUSTeK Computer Inc. Device [1043:1d0d]
+	Flags: bus master, fast devsel, latency 0, IRQ 121, IOMMU group 7
+	Bus: primary=00, secondary=01, subordinate=01, sec-latency=0
+	I/O behind bridge: e000-efff [size=4K] [16-bit]
+	Memory behind bridge: df000000-df9fffff [size=10M] [32-bit]
+	Prefetchable memory behind bridge: d0000000-d09fffff [size=10M] [32-bit]
+	Capabilities: [40] Express Root Port (Slot+), IntMsgNum 0
+	Capabilities: [80] MSI: Enable+ Count=1/1 Maskable- 64bit-
+	Capabilities: [90] Subsystem: ASUSTeK Computer Inc. Device [1043:1d0d]
+	Capabilities: [a0] Power Management version 3
+	Capabilities: [100] Advanced Error Reporting
+	Capabilities: [140] Access Control Services
+	Capabilities: [220] Secondary PCI Express
+	Kernel driver in use: pcieport
+
+00:1c.4 PCI bridge [0604]: Intel Corporation Sunrise Point-LP PCI Express Root Port #5 [8086:9d14] (rev f1) (prog-if 00 [Normal decode])
+	Subsystem: ASUSTeK Computer Inc. Device [1043:1d0d]
+	Flags: bus master, fast devsel, latency 0, IRQ 122, IOMMU group 8
+	Bus: primary=00, secondary=02, subordinate=02, sec-latency=0
+	I/O behind bridge: d000-dfff [size=4K] [16-bit]
+	Memory behind bridge: dfb00000-dfbfffff [size=1M] [32-bit]
+	Prefetchable memory behind bridge: [disabled] [64-bit]
+	Capabilities: [40] Express Root Port (Slot+), IntMsgNum 0
+	Capabilities: [80] MSI: Enable+ Count=1/1 Maskable- 64bit-
+	Capabilities: [90] Subsystem: ASUSTeK Computer Inc. Device [1043:1d0d]
+	Capabilities: [a0] Power Management version 3
+	Capabilities: [100] Advanced Error Reporting
+	Capabilities: [140] Access Control Services
+	Capabilities: [200] L1 PM Substates
+	Capabilities: [220] Secondary PCI Express
+	Kernel driver in use: pcieport
+
+00:1c.5 PCI bridge [0604]: Intel Corporation Sunrise Point-LP PCI Express Root Port #6 [8086:9d15] (rev f1) (prog-if 00 [Normal decode])
+	Subsystem: ASUSTeK Computer Inc. Device [1043:1d0d]
+	Flags: bus master, fast devsel, latency 0, IRQ 123, IOMMU group 9
+	Bus: primary=00, secondary=03, subordinate=03, sec-latency=0
+	I/O behind bridge: [disabled] [16-bit]
+	Memory behind bridge: dfa00000-dfafffff [size=1M] [32-bit]
+	Prefetchable memory behind bridge: [disabled] [64-bit]
+	Capabilities: [40] Express Root Port (Slot+), IntMsgNum 0
+	Capabilities: [80] MSI: Enable+ Count=1/1 Maskable- 64bit-
+	Capabilities: [90] Subsystem: ASUSTeK Computer Inc. Device [1043:1d0d]
+	Capabilities: [a0] Power Management version 3
+	Capabilities: [100] Advanced Error Reporting
+	Capabilities: [140] Access Control Services
+	Capabilities: [200] L1 PM Substates
+	Capabilities: [220] Secondary PCI Express
+	Kernel driver in use: pcieport
+
+00:1f.0 ISA bridge [0601]: Intel Corporation Sunrise Point-LP LPC Controller [8086:9d48] (rev 21)
+	Subsystem: ASUSTeK Computer Inc. Device [1043:1d0d]
+	Flags: bus master, medium devsel, latency 0, IOMMU group 10
+
+00:1f.2 Memory controller [0580]: Intel Corporation Sunrise Point-LP PMC [8086:9d21] (rev 21)
+	Subsystem: ASUSTeK Computer Inc. Device [1043:1d0d]
+	Flags: fast devsel, IOMMU group 10
+	Memory at dfc2c000 (32-bit, non-prefetchable) [virtual] [size=16K]
+
+00:1f.3 Audio device [0403]: Intel Corporation Sunrise Point-LP HD Audio [8086:9d70] (rev 21)
+	Subsystem: ASUSTeK Computer Inc. Device [1043:1d0d]
+	Flags: bus master, fast devsel, latency 32, IRQ 142, IOMMU group 10
+	Memory at dfc28000 (64-bit, non-prefetchable) [size=16K]
+	Memory at dfc00000 (64-bit, non-prefetchable) [size=64K]
+	Capabilities: [50] Power Management version 3
+	Capabilities: [60] MSI: Enable+ Count=1/1 Maskable- 64bit+
+	Kernel driver in use: snd_hda_intel
+	Kernel modules: snd_soc_avs, snd_sof_pci_intel_skl, snd_hda_intel
+
+00:1f.4 SMBus [0c05]: Intel Corporation Sunrise Point-LP SMBus [8086:9d23] (rev 21)
+	Subsystem: ASUSTeK Computer Inc. Device [1043:1d0d]
+	Flags: medium devsel, IRQ 16, IOMMU group 10
+	Memory at dfc32000 (64-bit, non-prefetchable) [size=256]
+	I/O ports at f040 [size=32]
+	Kernel driver in use: i801_smbus
+	Kernel modules: i2c_i801
+
+02:00.0 Ethernet controller [0200]: Realtek Semiconductor Co., Ltd. RTL8111/8168/8211/8411 PCI Express Gigabit Ethernet Controller [10ec:8168] (rev 10)
+	Subsystem: ASUSTeK Computer Inc. Device [1043:200f]
+	Flags: bus master, fast devsel, latency 0, IRQ 16, IOMMU group 11
+	I/O ports at d000 [size=256]
+	Memory at dfb04000 (64-bit, non-prefetchable) [size=4K]
+	Memory at dfb00000 (64-bit, non-prefetchable) [size=16K]
+	Capabilities: [40] Power Management version 3
+	Capabilities: [50] MSI: Enable- Count=1/1 Maskable- 64bit+
+	Capabilities: [70] Express Endpoint, IntMsgNum 1
+	Capabilities: [b0] MSI-X: Enable+ Count=4 Masked-
+	Capabilities: [d0] Vital Product Data
+	Capabilities: [100] Advanced Error Reporting
+	Capabilities: [140] Virtual Channel
+	Capabilities: [160] Device Serial Number 01-00-00-00-68-4c-e0-00
+	Capabilities: [170] Latency Tolerance Reporting
+	Capabilities: [178] L1 PM Substates
+	Kernel driver in use: r8169
+	Kernel modules: r8169
+
+03:00.0 Network controller [0280]: Intel Corporation Wireless 7265 [8086:095a] (rev 59)
+	Subsystem: Intel Corporation Dual Band Wireless-AC 7265 [Stone Peak 2 AC] [8086:5110]
+	Flags: bus master, fast devsel, latency 0, IRQ 140, IOMMU group 12
+	Memory at dfa00000 (64-bit, non-prefetchable) [size=8K]
+	Capabilities: [c8] Power Management version 3
+	Capabilities: [d0] MSI: Enable+ Count=1/1 Maskable- 64bit+
+	Capabilities: [40] Express Endpoint, IntMsgNum 0
+	Capabilities: [100] Advanced Error Reporting
+	Capabilities: [140] Device Serial Number 10-02-b5-ff-ff-ab-fc-16
+	Capabilities: [14c] Latency Tolerance Reporting
+	Capabilities: [154] L1 PM Substates
+	Kernel driver in use: iwlwifi
+	Kernel modules: iwlwifi
+
+
+=== USB DEVICES ===
+
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Negotiated speed: High Speed (480Mbps)
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass            9 Hub
+  bDeviceSubClass         0 [unknown]
+  bDeviceProtocol         1 Single TT
+  bMaxPacketSize0        64
+  idVendor           0x1d6b Linux Foundation
+  idProduct          0x0002 2.0 root hub
+  bcdDevice            6.17
+  iManufacturer           3 Linux 6.17.0-20-generic xhci-hcd
+  iProduct                2 xHCI Host Controller
+  iSerial                 1 0000:00:14.0
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x0019
+    bNumInterfaces          1
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0xe0
+      Self Powered
+      Remote Wakeup
+    MaxPower                0mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass         9 Hub
+      bInterfaceSubClass      0 [unknown]
+      bInterfaceProtocol      0 Full speed (or root) hub
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0004  1x 4 bytes
+        bInterval              12
+Hub Descriptor:
+  bLength              11
+  bDescriptorType      41
+  nNbrPorts            12
+  wHubCharacteristic 0x000a
+    No power switching (usb 1.0)
+    Per-port overcurrent protection
+    TT think time 8 FS bits
+  bPwrOn2PwrGood       10 * 2 milli seconds
+  bHubContrCurrent      0 milli Ampere
+  DeviceRemovable    0xb0 0x01
+  PortPwrCtrlMask    0xff 0xff
+ Hub Port Status:
+   Port 1: 0000.0503 highspeed power enable connect
+   Port 2: 0000.0100 power
+   Port 3: 0000.0100 power
+   Port 4: 0000.0507 highspeed power suspend enable connect
+   Port 5: 0000.0507 highspeed power suspend enable connect
+   Port 6: 0000.0100 power
+   Port 7: 0000.0103 power enable connect
+   Port 8: 0000.0107 power suspend enable connect
+   Port 9: 0000.0100 power
+   Port 10: 0000.0100 power
+   Port 11: 0000.0100 power
+   Port 12: 0000.0100 power
+Device Status:     0x0001
+  Self Powered
+
+Bus 001 Device 002: ID 05e3:0608 Genesys Logic, Inc. Hub
+Negotiated speed: High Speed (480Mbps)
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass            9 Hub
+  bDeviceSubClass         0 [unknown]
+  bDeviceProtocol         1 Single TT
+  bMaxPacketSize0        64
+  idVendor           0x05e3 Genesys Logic, Inc.
+  idProduct          0x0608 Hub
+  bcdDevice           32.98
+  iManufacturer           0 
+  iProduct                1 USB2.0 Hub
+  iSerial                 0 
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x0019
+    bNumInterfaces          1
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0xe0
+      Self Powered
+      Remote Wakeup
+    MaxPower              100mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass         9 Hub
+      bInterfaceSubClass      0 [unknown]
+      bInterfaceProtocol      0 Full speed (or root) hub
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0001  1x 1 bytes
+        bInterval              12
+Hub Descriptor:
+  bLength               9
+  bDescriptorType      41
+  nNbrPorts             4
+  wHubCharacteristic 0x00e0
+    Ganged power switching
+    Ganged overcurrent protection
+    TT think time 32 FS bits
+    Port indicators
+  bPwrOn2PwrGood       50 * 2 milli seconds
+  bHubContrCurrent    100 milli Ampere
+  DeviceRemovable    0x00
+  PortPwrCtrlMask    0xff
+ Hub Port Status:
+   Port 1: 0000.0103 power enable connect
+   Port 2: 0000.0103 power enable connect
+   Port 3: 0000.0100 power
+   Port 4: 0000.0100 power
+Device Qualifier (for other device speed):
+  bLength                10
+  bDescriptorType         6
+  bcdUSB               2.00
+  bDeviceClass            9 Hub
+  bDeviceSubClass         0 [unknown]
+  bDeviceProtocol         0 Full speed (or root) hub
+  bMaxPacketSize0        64
+  bNumConfigurations      1
+Device Status:     0x0001
+  Self Powered
+
+Bus 001 Device 003: ID 0bda:0129 Realtek Semiconductor Corp. RTS5129 Card Reader Controller
+Negotiated speed: High Speed (480Mbps)
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass          255 Vendor Specific Class
+  bDeviceSubClass       255 Vendor Specific Subclass
+  bDeviceProtocol       255 Vendor Specific Protocol
+  bMaxPacketSize0        64
+  idVendor           0x0bda Realtek Semiconductor Corp.
+  idProduct          0x0129 RTS5129 Card Reader Controller
+  bcdDevice           39.60
+  iManufacturer           1 Generic
+  iProduct                2 USB2.0-CRW
+  iSerial                 3 20100201396000000
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x0027
+    bNumInterfaces          1
+    bConfigurationValue     1
+    iConfiguration          4 CARD READER
+    bmAttributes         0xa0
+      (Bus Powered)
+      Remote Wakeup
+    MaxPower              500mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           3
+      bInterfaceClass       255 Vendor Specific Class
+      bInterfaceSubClass      6 [unknown]
+      bInterfaceProtocol     80 
+      iInterface              5 Bulk-In, Bulk-Out, Interface
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x01  EP 1 OUT
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0200  1x 512 bytes
+        bInterval               0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x82  EP 2 IN
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0200  1x 512 bytes
+        bInterval               0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x83  EP 3 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0003  1x 3 bytes
+        bInterval              10
+Device Qualifier (for other device speed):
+  bLength                10
+  bDescriptorType         6
+  bcdUSB               2.00
+  bDeviceClass            0 [unknown]
+  bDeviceSubClass         0 [unknown]
+  bDeviceProtocol         0 
+  bMaxPacketSize0        64
+  bNumConfigurations      1
+Device Status:     0x0000
+  (Bus Powered)
+
+Bus 001 Device 004: ID 3938:1311  2.4G Wireless Keyboard
+Negotiated speed: Full Speed (12Mbps)
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass            0 [unknown]
+  bDeviceSubClass         0 [unknown]
+  bDeviceProtocol         0 
+  bMaxPacketSize0         8
+  idVendor           0x3938 
+  idProduct          0x1311 2.4G Wireless Keyboard
+  bcdDevice            2.00
+  iManufacturer           0 
+  iProduct                1 2.4G Wireless Keyboard
+  iSerial                 0 
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x003b
+    bNumInterfaces          2
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0xa0
+      (Bus Powered)
+      Remote Wakeup
+    MaxPower              100mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass         3 Human Interface Device
+      bInterfaceSubClass      1 Boot Interface Subclass
+      bInterfaceProtocol      1 Keyboard
+      iInterface              0 
+        HID Device Descriptor:
+          bLength                 9
+          bDescriptorType        33
+          bcdHID               1.10
+          bCountryCode            0 Not supported
+          bNumDescriptors         1
+          bDescriptorType        34 (null)
+          wDescriptorLength      73
+          Report Descriptors: 
+            ** UNAVAILABLE **
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0008  1x 8 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass         3 Human Interface Device
+      bInterfaceSubClass      1 Boot Interface Subclass
+      bInterfaceProtocol      2 Mouse
+      iInterface              0 
+        HID Device Descriptor:
+          bLength                 9
+          bDescriptorType        33
+          bcdHID               1.10
+          bCountryCode            0 Not supported
+          bNumDescriptors         1
+          bDescriptorType        34 (null)
+          wDescriptorLength     185
+          Report Descriptors: 
+            ** UNAVAILABLE **
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x82  EP 2 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0008  1x 8 bytes
+        bInterval               1
+Device Status:     0x0000
+  (Bus Powered)
+
+Bus 001 Device 005: ID 13d3:5666 IMC Networks USB2.0 HD UVC WebCam
+Negotiated speed: High Speed (480Mbps)
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass          239 Miscellaneous Device
+  bDeviceSubClass         2 [unknown]
+  bDeviceProtocol         1 Interface Association
+  bMaxPacketSize0        64
+  idVendor           0x13d3 IMC Networks
+  idProduct          0x5666 USB2.0 HD UVC WebCam
+  bcdDevice            5.21
+  iManufacturer           3 Azurewave
+  iProduct                1 USB2.0 HD UVC WebCam
+  iSerial                 2 NULL
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x02de
+    bNumInterfaces          2
+    bConfigurationValue     1
+    iConfiguration          4 USB Camera
+    bmAttributes         0x80
+      (Bus Powered)
+    MaxPower              500mA
+    Interface Association:
+      bLength                 8
+      bDescriptorType        11
+      bFirstInterface         0
+      bInterfaceCount         2
+      bFunctionClass         14 Video
+      bFunctionSubClass       3 Video Interface Collection
+      bFunctionProtocol       0 
+      iFunction               5 USB2.0 HD UVC WebCam
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass        14 Video
+      bInterfaceSubClass      1 Video Control
+      bInterfaceProtocol      0 
+      iInterface              5 USB2.0 HD UVC WebCam
+      VideoControl Interface Descriptor:
+        bLength                13
+        bDescriptorType        36
+        bDescriptorSubtype      1 (HEADER)
+        bcdUVC               1.00
+        wTotalLength       0x006a
+        dwClockFrequency       15.000000MHz
+        bInCollection           1
+        baInterfaceNr( 0)       1
+      VideoControl Interface Descriptor:
+        bLength                18
+        bDescriptorType        36
+        bDescriptorSubtype      2 (INPUT_TERMINAL)
+        bTerminalID             1
+        wTerminalType      0x0201 Camera Sensor
+        bAssocTerminal          0
+        iTerminal               0 
+        wObjectiveFocalLengthMin      0
+        wObjectiveFocalLengthMax      0
+        wOcularFocalLength            0
+        bControlSize                  3
+        bmControls           0x0002000e
+          Auto-Exposure Mode
+          Auto-Exposure Priority
+          Exposure Time (Absolute)
+          Focus, Auto
+      VideoControl Interface Descriptor:
+        bLength                11
+        bDescriptorType        36
+        bDescriptorSubtype      5 (PROCESSING_UNIT)
+      Warning: Descriptor too short
+        bUnitID                 2
+        bSourceID               1
+        wMaxMultiplier          0
+        bControlSize            2
+        bmControls     0x0000157f
+          Brightness
+          Contrast
+          Hue
+          Saturation
+          Sharpness
+          Gamma
+          White Balance Temperature
+          Backlight Compensation
+          Power Line Frequency
+          White Balance Temperature, Auto
+        iProcessing             0 
+        bmVideoStandards     0x09
+          None
+          SECAM - 625/50
+      VideoControl Interface Descriptor:
+        bLength                 9
+        bDescriptorType        36
+        bDescriptorSubtype      3 (OUTPUT_TERMINAL)
+        bTerminalID             3
+        wTerminalType      0x0101 USB Streaming
+        bAssocTerminal          0
+        bSourceID               6
+        iTerminal               0 
+      VideoControl Interface Descriptor:
+        bLength                27
+        bDescriptorType        36
+        bDescriptorSubtype      6 (EXTENSION_UNIT)
+        bUnitID                 4
+        guidExtensionCode         {1229a78c-47b4-4094-b0ce-db07386fb938}
+        bNumControls            2
+        bNrInPins               1
+        baSourceID( 0)          2
+        bControlSize            2
+        bmControls( 0)       0x00
+        bmControls( 1)       0x06
+        iExtension              0 
+      VideoControl Interface Descriptor:
+        bLength                28
+        bDescriptorType        36
+        bDescriptorSubtype      6 (EXTENSION_UNIT)
+        bUnitID                 6
+        guidExtensionCode         {26b8105a-0713-4870-979d-da79444bb68e}
+        bNumControls            1
+        bNrInPins               1
+        baSourceID( 0)          4
+        bControlSize            3
+        bmControls( 0)       0x02
+        bmControls( 1)       0x00
+        bmControls( 2)       0x00
+        iExtension              7 Realtek Extended Controls Unit
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x83  EP 3 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0010  1x 16 bytes
+        bInterval               6
+        VideoControl Endpoint Descriptor:
+          bLength                 5
+          bDescriptorType        37
+          bDescriptorSubtype      3 (EP_INTERRUPT)
+          wMaxTransferSize       16
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       0
+      bNumEndpoints           0
+      bInterfaceClass        14 Video
+      bInterfaceSubClass      2 Video Streaming
+      bInterfaceProtocol      0 
+      iInterface              0 
+      VideoStreaming Interface Descriptor:
+        bLength                            15
+        bDescriptorType                    36
+        bDescriptorSubtype                  1 (INPUT_HEADER)
+        bNumFormats                         2
+        wTotalLength                   0x01d5
+        bEndpointAddress                 0x81  EP 1 IN
+        bmInfo                              0
+        bTerminalLink                       3
+        bStillCaptureMethod                 2
+        bTriggerSupport                     1
+        bTriggerUsage                       0
+        bControlSize                        1
+        bmaControls( 0)                     0
+        bmaControls( 1)                     0
+      VideoStreaming Interface Descriptor:
+        bLength                            11
+        bDescriptorType                    36
+        bDescriptorSubtype                  6 (FORMAT_MJPEG)
+        bFormatIndex                        1
+        bNumFrameDescriptors                6
+        bFlags                              1
+          Fixed-size samples: Yes
+        bDefaultFrameIndex                  1
+        bAspectRatioX                       0
+        bAspectRatioY                       0
+        bmInterlaceFlags                 0x00
+          Interlaced stream or variable: No
+          Fields per frame: 1 fields
+          Field 1 first: No
+          Field pattern: Field 1 only
+        bCopyProtect                        0
+      VideoStreaming Interface Descriptor:
+        bLength                            30
+        bDescriptorType                    36
+        bDescriptorSubtype                  7 (FRAME_MJPEG)
+        bFrameIndex                         1
+        bmCapabilities                   0x00
+          Still image unsupported
+        wWidth                           1280
+        wHeight                           720
+        dwMinBitRate                442368000
+        dwMaxBitRate                442368000
+        dwMaxVideoFrameBufferSize     1843200
+        dwDefaultFrameInterval         333333
+        bFrameIntervalType                  1
+        dwFrameInterval( 0)            333333
+      VideoStreaming Interface Descriptor:
+        bLength                            30
+        bDescriptorType                    36
+        bDescriptorSubtype                  7 (FRAME_MJPEG)
+        bFrameIndex                         2
+        bmCapabilities                   0x00
+          Still image unsupported
+        wWidth                            160
+        wHeight                           120
+        dwMinBitRate                  9216000
+        dwMaxBitRate                  9216000
+        dwMaxVideoFrameBufferSize       38400
+        dwDefaultFrameInterval         333333
+        bFrameIntervalType                  1
+        dwFrameInterval( 0)            333333
+      VideoStreaming Interface Descriptor:
+        bLength                            30
+        bDescriptorType                    36
+        bDescriptorSubtype                  7 (FRAME_MJPEG)
+        bFrameIndex                         3
+        bmCapabilities                   0x00
+          Still image unsupported
+        wWidth                            176
+        wHeight                           144
+        dwMinBitRate                 12165120
+        dwMaxBitRate                 12165120
+        dwMaxVideoFrameBufferSize       50688
+        dwDefaultFrameInterval         333333
+        bFrameIntervalType                  1
+        dwFrameInterval( 0)            333333
+      VideoStreaming Interface Descriptor:
+        bLength                            30
+        bDescriptorType                    36
+        bDescriptorSubtype                  7 (FRAME_MJPEG)
+        bFrameIndex                         4
+        bmCapabilities                   0x00
+          Still image unsupported
+        wWidth                            320
+        wHeight                           240
+        dwMinBitRate                 36864000
+        dwMaxBitRate                 36864000
+        dwMaxVideoFrameBufferSize      153600
+        dwDefaultFrameInterval         333333
+        bFrameIntervalType                  1
+        dwFrameInterval( 0)            333333
+      VideoStreaming Interface Descriptor:
+        bLength                            30
+        bDescriptorType                    36
+        bDescriptorSubtype                  7 (FRAME_MJPEG)
+        bFrameIndex                         5
+        bmCapabilities                   0x00
+          Still image unsupported
+        wWidth                            352
+        wHeight                           288
+        dwMinBitRate                 48660480
+        dwMaxBitRate                 48660480
+        dwMaxVideoFrameBufferSize      202752
+        dwDefaultFrameInterval         333333
+        bFrameIntervalType                  1
+        dwFrameInterval( 0)            333333
+      VideoStreaming Interface Descriptor:
+        bLength                            30
+        bDescriptorType                    36
+        bDescriptorSubtype                  7 (FRAME_MJPEG)
+        bFrameIndex                         6
+        bmCapabilities                   0x00
+          Still image unsupported
+        wWidth                            640
+        wHeight                           480
+        dwMinBitRate                147456000
+        dwMaxBitRate                147456000
+        dwMaxVideoFrameBufferSize      614400
+        dwDefaultFrameInterval         333333
+        bFrameIntervalType                  1
+        dwFrameInterval( 0)            333333
+      VideoStreaming Interface Descriptor:
+        bLength                            22
+        bDescriptorType                    36
+        bDescriptorSubtype                  3 (STILL_IMAGE_FRAME)
+        bEndpointAddress                 0x00  EP 0 OUT
+        bNumImageSizePatterns               4
+        wWidth( 0)                       1280
+        wHeight( 0)                       720
+        wWidth( 1)                        160
+        wHeight( 1)                       120
+        wWidth( 2)                        320
+        wHeight( 2)                       240
+        wWidth( 3)                        640
+        wHeight( 3)                       480
+        bNumCompressionPatterns             0
+      VideoStreaming Interface Descriptor:
+        bLength                             6
+        bDescriptorType                    36
+        bDescriptorSubtype                 13 (COLORFORMAT)
+        bColorPrimaries                     1 (BT.709,sRGB)
+        bTransferCharacteristics            1 (BT.709)
+        bMatrixCoefficients                 4 (SMPTE 170M (BT.601))
+      VideoStreaming Interface Descriptor:
+        bLength                            27
+        bDescriptorType                    36
+        bDescriptorSubtype                  4 (FORMAT_UNCOMPRESSED)
+        bFormatIndex                        2
+        bNumFrameDescriptors                6
+        guidFormat                            {32595559-0000-0010-8000-00aa00389b71}
+        bBitsPerPixel                      16
+        bDefaultFrameIndex                  1
+        bAspectRatioX                       0
+        bAspectRatioY                       0
+        bmInterlaceFlags                 0x00
+          Interlaced stream or variable: No
+          Fields per frame: 2 fields
+          Field 1 first: No
+          Field pattern: Field 1 only
+        bCopyProtect                        0
+      VideoStreaming Interface Descriptor:
+        bLength                            30
+        bDescriptorType                    36
+        bDescriptorSubtype                  5 (FRAME_UNCOMPRESSED)
+        bFrameIndex                         1
+        bmCapabilities                   0x00
+          Still image unsupported
+        wWidth                           1280
+        wHeight                           720
+        dwMinBitRate                147456000
+        dwMaxBitRate                147456000
+        dwMaxVideoFrameBufferSize     1843200
+        dwDefaultFrameInterval        1000000
+        bFrameIntervalType                  1
+        dwFrameInterval( 0)           1000000
+      VideoStreaming Interface Descriptor:
+        bLength                            30
+        bDescriptorType                    36
+        bDescriptorSubtype                  5 (FRAME_UNCOMPRESSED)
+        bFrameIndex                         2
+        bmCapabilities                   0x00
+          Still image unsupported
+        wWidth                            160
+        wHeight                           120
+        dwMinBitRate                  9216000
+        dwMaxBitRate                  9216000
+        dwMaxVideoFrameBufferSize       38400
+        dwDefaultFrameInterval         333333
+        bFrameIntervalType                  1
+        dwFrameInterval( 0)            333333
+      VideoStreaming Interface Descriptor:
+        bLength                            30
+        bDescriptorType                    36
+        bDescriptorSubtype                  5 (FRAME_UNCOMPRESSED)
+        bFrameIndex                         3
+        bmCapabilities                   0x00
+          Still image unsupported
+        wWidth                            176
+        wHeight                           144
+        dwMinBitRate                 12165120
+        dwMaxBitRate                 12165120
+        dwMaxVideoFrameBufferSize       50688
+        dwDefaultFrameInterval         333333
+        bFrameIntervalType                  1
+        dwFrameInterval( 0)            333333
+      VideoStreaming Interface Descriptor:
+        bLength                            30
+        bDescriptorType                    36
+        bDescriptorSubtype                  5 (FRAME_UNCOMPRESSED)
+        bFrameIndex                         4
+        bmCapabilities                   0x00
+          Still image unsupported
+        wWidth                            320
+        wHeight                           240
+        dwMinBitRate                 36864000
+        dwMaxBitRate                 36864000
+        dwMaxVideoFrameBufferSize      153600
+        dwDefaultFrameInterval         333333
+        bFrameIntervalType                  1
+        dwFrameInterval( 0)            333333
+      VideoStreaming Interface Descriptor:
+        bLength                            30
+        bDescriptorType                    36
+        bDescriptorSubtype                  5 (FRAME_UNCOMPRESSED)
+        bFrameIndex                         5
+        bmCapabilities                   0x00
+          Still image unsupported
+        wWidth                            352
+        wHeight                           288
+        dwMinBitRate                 48660480
+        dwMaxBitRate                 48660480
+        dwMaxVideoFrameBufferSize      202752
+        dwDefaultFrameInterval         333333
+        bFrameIntervalType                  1
+        dwFrameInterval( 0)            333333
+      VideoStreaming Interface Descriptor:
+        bLength                            30
+        bDescriptorType                    36
+        bDescriptorSubtype                  5 (FRAME_UNCOMPRESSED)
+        bFrameIndex                         6
+        bmCapabilities                   0x00
+          Still image unsupported
+        wWidth                            640
+        wHeight                           480
+        dwMinBitRate                147456000
+        dwMaxBitRate                147456000
+        dwMaxVideoFrameBufferSize      614400
+        dwDefaultFrameInterval         333333
+        bFrameIntervalType                  1
+        dwFrameInterval( 0)            333333
+      VideoStreaming Interface Descriptor:
+        bLength                            22
+        bDescriptorType                    36
+        bDescriptorSubtype                  3 (STILL_IMAGE_FRAME)
+        bEndpointAddress                 0x00  EP 0 OUT
+        bNumImageSizePatterns               4
+        wWidth( 0)                       1280
+        wHeight( 0)                       720
+        wWidth( 1)                        160
+        wHeight( 1)                       120
+        wWidth( 2)                        320
+        wHeight( 2)                       240
+        wWidth( 3)                        640
+        wHeight( 3)                       480
+        bNumCompressionPatterns             0
+      VideoStreaming Interface Descriptor:
+        bLength                             6
+        bDescriptorType                    36
+        bDescriptorSubtype                 13 (COLORFORMAT)
+        bColorPrimaries                     1 (BT.709,sRGB)
+        bTransferCharacteristics            1 (BT.709)
+        bMatrixCoefficients                 4 (SMPTE 170M (BT.601))
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       1
+      bNumEndpoints           1
+      bInterfaceClass        14 Video
+      bInterfaceSubClass      2 Video Streaming
+      bInterfaceProtocol      0 
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            5
+          Transfer Type            Isochronous
+          Synch Type               Asynchronous
+          Usage Type               Data
+        wMaxPacketSize     0x0080  1x 128 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       2
+      bNumEndpoints           1
+      bInterfaceClass        14 Video
+      bInterfaceSubClass      2 Video Streaming
+      bInterfaceProtocol      0 
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            5
+          Transfer Type            Isochronous
+          Synch Type               Asynchronous
+          Usage Type               Data
+        wMaxPacketSize     0x0200  1x 512 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       3
+      bNumEndpoints           1
+      bInterfaceClass        14 Video
+      bInterfaceSubClass      2 Video Streaming
+      bInterfaceProtocol      0 
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            5
+          Transfer Type            Isochronous
+          Synch Type               Asynchronous
+          Usage Type               Data
+        wMaxPacketSize     0x0400  1x 1024 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       4
+      bNumEndpoints           1
+      bInterfaceClass        14 Video
+      bInterfaceSubClass      2 Video Streaming
+      bInterfaceProtocol      0 
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            5
+          Transfer Type            Isochronous
+          Synch Type               Asynchronous
+          Usage Type               Data
+        wMaxPacketSize     0x0b00  2x 768 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       5
+      bNumEndpoints           1
+      bInterfaceClass        14 Video
+      bInterfaceSubClass      2 Video Streaming
+      bInterfaceProtocol      0 
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            5
+          Transfer Type            Isochronous
+          Synch Type               Asynchronous
+          Usage Type               Data
+        wMaxPacketSize     0x0c00  2x 1024 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       6
+      bNumEndpoints           1
+      bInterfaceClass        14 Video
+      bInterfaceSubClass      2 Video Streaming
+      bInterfaceProtocol      0 
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            5
+          Transfer Type            Isochronous
+          Synch Type               Asynchronous
+          Usage Type               Data
+        wMaxPacketSize     0x1380  3x 896 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       7
+      bNumEndpoints           1
+      bInterfaceClass        14 Video
+      bInterfaceSubClass      2 Video Streaming
+      bInterfaceProtocol      0 
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            5
+          Transfer Type            Isochronous
+          Synch Type               Asynchronous
+          Usage Type               Data
+        wMaxPacketSize     0x1400  3x 1024 bytes
+        bInterval               1
+Device Qualifier (for other device speed):
+  bLength                10
+  bDescriptorType         6
+  bcdUSB               2.00
+  bDeviceClass          239 Miscellaneous Device
+  bDeviceSubClass         2 [unknown]
+  bDeviceProtocol         1 Interface Association
+  bMaxPacketSize0        64
+  bNumConfigurations      1
+Device Status:     0x0000
+  (Bus Powered)
+
+Bus 001 Device 006: ID 3938:1191  2.4G Wireless Mouse
+Negotiated speed: Full Speed (12Mbps)
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               1.10
+  bDeviceClass            0 [unknown]
+  bDeviceSubClass         0 [unknown]
+  bDeviceProtocol         0 
+  bMaxPacketSize0         8
+  idVendor           0x3938 
+  idProduct          0x1191 2.4G Wireless Mouse
+  bcdDevice            3.11
+  iManufacturer           0 
+  iProduct                1 2.4G Wireless Mouse
+  iSerial                 0 
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x0022
+    bNumInterfaces          1
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0xa0
+      (Bus Powered)
+      Remote Wakeup
+    MaxPower              100mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass         3 Human Interface Device
+      bInterfaceSubClass      1 Boot Interface Subclass
+      bInterfaceProtocol      2 Mouse
+      iInterface              0 
+        HID Device Descriptor:
+          bLength                 9
+          bDescriptorType        33
+          bcdHID               1.10
+          bCountryCode            0 Not supported
+          bNumDescriptors         1
+          bDescriptorType        34 (null)
+          wDescriptorLength     105
+          Report Descriptors: 
+            ** UNAVAILABLE **
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0008  1x 8 bytes
+        bInterval               1
+Device Status:     0x0000
+  (Bus Powered)
+
+Bus 001 Device 007: ID 03eb:8a78 Atmel Corp. 
+Negotiated speed: Full Speed (12Mbps)
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass            0 [unknown]
+  bDeviceSubClass         0 [unknown]
+  bDeviceProtocol         0 
+  bMaxPacketSize0        64
+  idVendor           0x03eb Atmel Corp.
+  idProduct          0x8a78 
+  bcdDevice           11.34
+  iManufacturer           1 Atmel
+  iProduct                0 
+  iSerial                 0 
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x0042
+    bNumInterfaces          2
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0xa0
+      (Bus Powered)
+      Remote Wakeup
+    MaxPower              100mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           2
+      bInterfaceClass         3 Human Interface Device
+      bInterfaceSubClass      0 [unknown]
+      bInterfaceProtocol      0 
+      iInterface              5 Atmel maXTouch Control
+        HID Device Descriptor:
+          bLength                 9
+          bDescriptorType        33
+          bcdHID               1.11
+          bCountryCode            0 Not supported
+          bNumDescriptors         1
+          bDescriptorType        34 (null)
+          wDescriptorLength      39
+          Report Descriptors: 
+            ** UNAVAILABLE **
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0040  1x 64 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x02  EP 2 OUT
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0040  1x 64 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass         3 Human Interface Device
+      bInterfaceSubClass      0 [unknown]
+      bInterfaceProtocol      0 
+      iInterface              6 Atmel maXTouch Digitizer
+        HID Device Descriptor:
+          bLength                 9
+          bDescriptorType        33
+          bcdHID               1.11
+          bCountryCode            0 Not supported
+          bNumDescriptors         1
+          bDescriptorType        34 (null)
+          wDescriptorLength     548
+          Report Descriptors: 
+            ** UNAVAILABLE **
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x83  EP 3 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0040  1x 64 bytes
+        bInterval               1
+Device Status:     0x0000
+  (Bus Powered)
+
+Bus 001 Device 008: ID 8087:0a2a Intel Corp. Bluetooth wireless interface
+Negotiated speed: Full Speed (12Mbps)
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.01
+  bDeviceClass          224 Wireless
+  bDeviceSubClass         1 Radio Frequency
+  bDeviceProtocol         1 Bluetooth
+  bMaxPacketSize0        64
+  idVendor           0x8087 Intel Corp.
+  idProduct          0x0a2a Bluetooth wireless interface
+  bcdDevice            0.01
+  iManufacturer           0 
+  iProduct                0 
+  iSerial                 0 
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x00b1
+    bNumInterfaces          2
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0xe0
+      Self Powered
+      Remote Wakeup
+    MaxPower              100mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           3
+      bInterfaceClass       224 Wireless
+      bInterfaceSubClass      1 Radio Frequency
+      bInterfaceProtocol      1 Bluetooth
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0040  1x 64 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x02  EP 2 OUT
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0040  1x 64 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x82  EP 2 IN
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0040  1x 64 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       0
+      bNumEndpoints           2
+      bInterfaceClass       224 Wireless
+      bInterfaceSubClass      1 Radio Frequency
+      bInterfaceProtocol      1 Bluetooth
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x03  EP 3 OUT
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0000  1x 0 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x83  EP 3 IN
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0000  1x 0 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       1
+      bNumEndpoints           2
+      bInterfaceClass       224 Wireless
+      bInterfaceSubClass      1 Radio Frequency
+      bInterfaceProtocol      1 Bluetooth
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x03  EP 3 OUT
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0009  1x 9 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x83  EP 3 IN
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0009  1x 9 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       2
+      bNumEndpoints           2
+      bInterfaceClass       224 Wireless
+      bInterfaceSubClass      1 Radio Frequency
+      bInterfaceProtocol      1 Bluetooth
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x03  EP 3 OUT
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0011  1x 17 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x83  EP 3 IN
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0011  1x 17 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       3
+      bNumEndpoints           2
+      bInterfaceClass       224 Wireless
+      bInterfaceSubClass      1 Radio Frequency
+      bInterfaceProtocol      1 Bluetooth
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x03  EP 3 OUT
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0019  1x 25 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x83  EP 3 IN
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0019  1x 25 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       4
+      bNumEndpoints           2
+      bInterfaceClass       224 Wireless
+      bInterfaceSubClass      1 Radio Frequency
+      bInterfaceProtocol      1 Bluetooth
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x03  EP 3 OUT
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0021  1x 33 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x83  EP 3 IN
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0021  1x 33 bytes
+        bInterval               1
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        1
+      bAlternateSetting       5
+      bNumEndpoints           2
+      bInterfaceClass       224 Wireless
+      bInterfaceSubClass      1 Radio Frequency
+      bInterfaceProtocol      1 Bluetooth
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x03  EP 3 OUT
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0031  1x 49 bytes
+        bInterval               1
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x83  EP 3 IN
+        bmAttributes            1
+          Transfer Type            Isochronous
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0031  1x 49 bytes
+        bInterval               1
+Binary Object Store Descriptor:
+  bLength                 5
+  bDescriptorType        15
+  wTotalLength       0x000c
+  bNumDeviceCaps          1
+  USB 2.0 Extension Device Capability:
+    bLength                 7
+    bDescriptorType        16
+    bDevCapabilityType      2
+    bmAttributes   0x00000002
+      HIRD Link Power Management (LPM) Supported
+Device Status:     0x0001
+  Self Powered
+
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Negotiated speed: SuperSpeed (5Gbps)
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               3.00
+  bDeviceClass            9 Hub
+  bDeviceSubClass         0 [unknown]
+  bDeviceProtocol         3 
+  bMaxPacketSize0         9
+  idVendor           0x1d6b Linux Foundation
+  idProduct          0x0003 3.0 root hub
+  bcdDevice            6.17
+  iManufacturer           3 Linux 6.17.0-20-generic xhci-hcd
+  iProduct                2 xHCI Host Controller
+  iSerial                 1 0000:00:14.0
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x001f
+    bNumInterfaces          1
+    bConfigurationValue     1
+    iConfiguration          0 
+    bmAttributes         0xe0
+      Self Powered
+      Remote Wakeup
+    MaxPower                0mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           1
+      bInterfaceClass         9 Hub
+      bInterfaceSubClass      0 [unknown]
+      bInterfaceProtocol      0 Full speed (or root) hub
+      iInterface              0 
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            3
+          Transfer Type            Interrupt
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0004  1x 4 bytes
+        bInterval              12
+        bMaxBurst               0
+Binary Object Store Descriptor:
+  bLength                 5
+  bDescriptorType        15
+  wTotalLength       0x000f
+  bNumDeviceCaps          1
+  SuperSpeed USB Device Capability:
+    bLength                10
+    bDescriptorType        16
+    bDevCapabilityType      3
+    bmAttributes         0x02
+      Latency Tolerance Messages (LTM) Supported
+    wSpeedsSupported   0x0008
+      Device can operate at SuperSpeed (5Gbps)
+    bFunctionalitySupport   1
+      Lowest fully-functional device speed is Full Speed (12Mbps)
+    bU1DevExitLat          10 micro seconds
+    bU2DevExitLat         512 micro seconds
+Hub Descriptor:
+  bLength              12
+  bDescriptorType      42
+  nNbrPorts             6
+  wHubCharacteristic 0x000a
+    No power switching (usb 1.0)
+    Per-port overcurrent protection
+  bPwrOn2PwrGood       50 * 2 milli seconds
+  bHubContrCurrent      0 milli Ampere
+  bHubDecLat          0.0 micro seconds
+  wHubDelay             0 nano seconds
+  DeviceRemovable    0x00
+ Hub Port Status:
+   Port 1: 0000.02a0 5Gbps power Rx.Detect
+   Port 2: 0000.02a0 5Gbps power Rx.Detect
+   Port 3: 0000.02a0 5Gbps power Rx.Detect
+   Port 4: 0000.02a0 5Gbps power Rx.Detect
+   Port 5: 0000.02a0 5Gbps power Rx.Detect
+   Port 6: 0000.02a0 5Gbps power Rx.Detect
+Device Status:     0x0001
+  Self Powered
+
+=== BLOCK DEVICES ===
+NAME                                            SIZE TYPE  FSTYPE      MOUNTPOINT                   MODEL                   TRAN
+loop0                                         254.6M loop  squashfs    /snap/firefox/7901                                   
+loop1                                          66.8M loop  squashfs    /snap/core24/1499                                    
+loop2                                         254.9M loop  squashfs    /snap/firefox/7967                                   
+loop3                                         182.3M loop  squashfs    /snap/element-desktop/192                            
+loop4                                          66.8M loop  squashfs    /snap/core24/1587                                    
+loop5                                            74M loop  squashfs    /snap/core22/2339                                    
+loop6                                            74M loop  squashfs    /snap/core22/2411                                    
+loop7                                          62.2M loop  squashfs    /snap/ffmpeg-2204/126                                
+loop8                                         531.4M loop  squashfs    /snap/gnome-42-2204/247                              
+loop9                                         606.1M loop  squashfs    /snap/gnome-46-2404/153                              
+loop10                                        183.7M loop  squashfs    /snap/element-desktop/197                            
+loop11                                            4K loop  squashfs    /snap/bare/5                                         
+loop12                                         91.7M loop  squashfs    /snap/gtk-common-themes/1535                         
+loop13                                          264K loop  squashfs    /snap/gtk-theme-breeze/5                             
+loop14                                        516.2M loop  squashfs    /snap/gnome-42-2204/226                              
+loop15                                        371.5M loop  squashfs    /snap/krita/109                                      
+loop16                                        227.5M loop  squashfs    /snap/thunderbird/1043                               
+loop17                                         48.1M loop  squashfs    /snap/snapd/25935                                    
+loop18                                        227.6M loop  squashfs    /snap/thunderbird/1057                               
+loop19                                         48.4M loop  squashfs    /snap/snapd/26382                                    
+loop20                                          1.5G loop  squashfs    /snap/kf5-core22/3                                   
+loop21                                         13.2M loop  squashfs    /snap/icon-theme-breeze/5                            
+loop22                                          395M loop  squashfs    /snap/mesa-2404/1165                                 
+sda                                           298.1G disk                                           Hitachi HTS543232A7A384 sata
+├─sda1                                          300M part  vfat        /boot/efi                                            
+├─sda2                                            4G part  ext4        /boot                                                
+└─sda3                                        293.8G part  crypto_LUKS                                                      
+  └─luks-36920179-a6bc-4dce-a9eb-05047b5c6518 293.8G crypt ext4        /                                                    
+
+=== STORAGE CONTROLLERS ===
+00:17.0 SATA controller [0106]: Intel Corporation Sunrise Point-LP SATA Controller [AHCI mode] [8086:9d03] (rev 21) (prog-if 01 [AHCI 1.0])
+	Subsystem: ASUSTeK Computer Inc. Device [1043:1d0d]
+	Flags: bus master, 66MHz, medium devsel, latency 0, IRQ 129, IOMMU group 6
+	Memory at dfc30000 (32-bit, non-prefetchable) [size=8K]
+	Memory at dfc34000 (32-bit, non-prefetchable) [size=256]
+	I/O ports at f090 [size=8]
+--
+	Capabilities: [a8] SATA HBA v1.0
+	Kernel driver in use: ahci
+	Kernel modules: ahci
+
+00:1c.0 PCI bridge [0604]: Intel Corporation Sunrise Point-LP PCI Express Root Port #3 [8086:9d12] (rev f1) (prog-if 00 [Normal decode])
+	Subsystem: ASUSTeK Computer Inc. Device [1043:1d0d]
+	Flags: bus master, fast devsel, latency 0, IRQ 121, IOMMU group 7
+	Bus: primary=00, secondary=01, subordinate=01, sec-latency=0
+
+=== NETWORK ===
+02:00.0 Ethernet controller [0200]: Realtek Semiconductor Co., Ltd. RTL8111/8168/8211/8411 PCI Express Gigabit Ethernet Controller [10ec:8168] (rev 10)
+	Subsystem: ASUSTeK Computer Inc. Device [1043:200f]
+	Flags: bus master, fast devsel, latency 0, IRQ 16, IOMMU group 11
+	I/O ports at d000 [size=256]
+	Memory at dfb04000 (64-bit, non-prefetchable) [size=4K]
+	Memory at dfb00000 (64-bit, non-prefetchable) [size=16K]
+--
+03:00.0 Network controller [0280]: Intel Corporation Wireless 7265 [8086:095a] (rev 59)
+	Subsystem: Intel Corporation Dual Band Wireless-AC 7265 [Stone Peak 2 AC] [8086:5110]
+	Flags: bus master, fast devsel, latency 0, IRQ 140, IOMMU group 12
+	Memory at dfa00000 (64-bit, non-prefetchable) [size=8K]
+	Capabilities: [c8] Power Management version 3
+	Capabilities: [d0] MSI: Enable+ Count=1/1 Maskable- 64bit+
+	Capabilities: [40] Express Endpoint, IntMsgNum 0
+--
+	Kernel driver in use: iwlwifi
+	Kernel modules: iwlwifi
+
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: enp2s0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc fq_codel state DOWN mode DEFAULT group default qlen 1000
+    link/ether 9c:5c:8e:36:2e:f6 brd ff:ff:ff:ff:ff:ff
+    altname enx9c5c8e362ef6
+3: wlp3s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DORMANT group default qlen 1000
+    link/ether 10:02:b5:ab:fc:16 brd ff:ff:ff:ff:ff:ff
+    altname wlx1002b5abfc16
+4: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default qlen 1000
+    link/ether 52:54:00:32:b1:47 brd ff:ff:ff:ff:ff:ff
+
+=== AUDIO ===
+00:1f.3 Audio device [0403]: Intel Corporation Sunrise Point-LP HD Audio [8086:9d70] (rev 21)
+	Subsystem: ASUSTeK Computer Inc. Device [1043:1d0d]
+	Flags: bus master, fast devsel, latency 32, IRQ 142, IOMMU group 10
+	Memory at dfc28000 (64-bit, non-prefetchable) [size=16K]
+	Memory at dfc00000 (64-bit, non-prefetchable) [size=64K]
+	Capabilities: [50] Power Management version 3
+**** List of PLAYBACK Hardware Devices ****
+card 0: PCH [HDA Intel PCH], device 0: ALC255 Analog [ALC255 Analog]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 0: PCH [HDA Intel PCH], device 3: HDMI 0 [LCDTV]
+  Subdevices: 0/1
+  Subdevice #0: subdevice #0
+card 0: PCH [HDA Intel PCH], device 7: HDMI 1 [HDMI 1]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+card 0: PCH [HDA Intel PCH], device 8: HDMI 2 [HDMI 2]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+
+=== INPUT ===
+by-id
+by-path
+event0
+event1
+event10
+event11
+event12
+event13
+event14
+event15
+event16
+event17
+event18
+event2
+event3
+event4
+event5
+event6
+event7
+event8
+event9
+mice
+mouse0
+mouse1
+mouse2
+I: Bus=0019 Vendor=0000 Product=0005 Version=0000
+N: Name="Lid Switch"
+P: Phys=PNP0C0D/button/input0
+S: Sysfs=/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0D:00/input/input0
+U: Uniq=
+H: Handlers=event0 
+B: PROP=0
+B: EV=21
+B: SW=1
+
+I: Bus=0019 Vendor=0000 Product=0003 Version=0000
+N: Name="Sleep Button"
+P: Phys=PNP0C0E/button/input0
+S: Sysfs=/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0E:00/input/input1
+U: Uniq=
+H: Handlers=kbd event1 
+B: PROP=0
+B: EV=3
+B: KEY=4000 0 0
+
+I: Bus=0019 Vendor=0000 Product=0001 Version=0000
+N: Name="Power Button"
+P: Phys=LNXPWRBN/button/input0
+S: Sysfs=/devices/LNXSYSTM:00/LNXPWRBN:00/input/input2
+U: Uniq=
+H: Handlers=kbd event2 
+B: PROP=0
+B: EV=3
+B: KEY=8000 10000000000000 0
+
+I: Bus=0011 Vendor=0001 Product=0001 Version=ab83
+N: Name="AT Translated Set 2 keyboard"
+P: Phys=isa0060/serio0/input0
+S: Sysfs=/devices/platform/i8042/serio0/input/input3
+U: Uniq=
+H: Handlers=sysrq kbd event3 leds 
+B: PROP=0
+B: EV=120013
+B: KEY=402000007 ff803078f800d001 feffffdfffcfffff fffffffffffffffe
+B: MSC=10
+B: LED=7
+
+I: Bus=0003 Vendor=3938 Product=1311 Version=0110
+N: Name="2.4G Wireless Keyboard"
+P: Phys=usb-0000:00:14.0-1.1/input0
+S: Sysfs=/devices/pci0000:00/0000:00:14.0/usb1/1-1/1-1.1/1-1.1:1.0/0003:3938:1311.0003/input/input12
+U: Uniq=
+H: Handlers=sysrq kbd event4 leds 
+B: PROP=0
+B: EV=120013
+B: KEY=1000000000007 ff9f207ac14057ff febeffdfffefffff fffffffffffffffe
+B: MSC=10
+B: LED=1f
+
+I: Bus=0003 Vendor=3938 Product=1311 Version=0110
+N: Name="2.4G Wireless Keyboard"
+P: Phys=usb-0000:00:14.0-1.1/input1
+S: Sysfs=/devices/pci0000:00/0000:00:14.0/usb1/1-1/1-1.1/1-1.1:1.1/0003:3938:1311.0004/input/input13
+U: Uniq=
+H: Handlers=event5 
+B: PROP=0
+B: EV=9
+B: ABS=10000000000
+
+I: Bus=0003 Vendor=3938 Product=1311 Version=0110
+N: Name="2.4G Wireless Keyboard Mouse"
+P: Phys=usb-0000:00:14.0-1.1/input1
+S: Sysfs=/devices/pci0000:00/0000:00:14.0/usb1/1-1/1-1.1/1-1.1:1.1/0003:3938:1311.0004/input/input14
+U: Uniq=
+H: Handlers=mouse0 event6 
+B: PROP=0
+B: EV=17
+B: KEY=ff0000 0 0 0 0
+B: REL=1943
+B: MSC=10
+
+I: Bus=0003 Vendor=3938 Product=1311 Version=0110
+N: Name="2.4G Wireless Keyboard Consumer Control"
+P: Phys=usb-0000:00:14.0-1.1/input1
+S: Sysfs=/devices/pci0000:00/0000:00:14.0/usb1/1-1/1-1.1/1-1.1:1.1/0003:3938:1311.0004/input/input15
+U: Uniq=
+H: Handlers=kbd event7 
+B: PROP=0
+B: EV=1f
+B: KEY=3f00033fff 0 0 483ffff17aff32d bfd4444600000000 1 130ff38b17d000 677bfad9415fed 19ed68000004400 10000002
+B: REL=1040
+B: ABS=100000000
+B: MSC=10
+
+I: Bus=0003 Vendor=3938 Product=1311 Version=0110
+N: Name="2.4G Wireless Keyboard System Control"
+P: Phys=usb-0000:00:14.0-1.1/input1
+S: Sysfs=/devices/pci0000:00/0000:00:14.0/usb1/1-1/1-1.1/1-1.1:1.1/0003:3938:1311.0004/input/input16
+U: Uniq=
+H: Handlers=kbd event8 
+B: PROP=0
+B: EV=13
+B: KEY=c000 10000000000000 0
+B: MSC=10
+
+I: Bus=0003 Vendor=3938 Product=1191 Version=0110
+N: Name="2.4G Wireless Mouse"
+P: Phys=usb-0000:00:14.0-1.2/input0
+S: Sysfs=/devices/pci0000:00/0000:00:14.0/usb1/1-1/1-1.2/1-1.2:1.0/0003:3938:1191.0005/input/input18
+U: Uniq=
+H: Handlers=event9 
+B: PROP=0
+B: EV=9
+B: ABS=10000000000
+
+I: Bus=0003 Vendor=3938 Product=1191 Version=0110
+N: Name="2.4G Wireless Mouse"
+P: Phys=usb-0000:00:14.0-1.2/input0
+S: Sysfs=/devices/pci0000:00/0000:00:14.0/usb1/1-1/1-1.2/1-1.2:1.0/0003:3938:1191.0005/input/input19
+U: Uniq=
+H: Handlers=mouse1 event10 
+B: PROP=0
+B: EV=17
+B: KEY=ff0000 0 0 0 0
+B: REL=1943
+B: MSC=10
+
+I: Bus=0003 Vendor=03eb Product=8a78 Version=0111
+N: Name="Atmel"
+P: Phys=usb-0000:00:14.0-7/input1
+S: Sysfs=/devices/pci0000:00/0000:00:14.0/usb1/1-7/1-7:1.1/0003:03EB:8A78.0007/input/input21
+U: Uniq=
+H: Handlers=mouse2 event11 
+B: PROP=2
+B: EV=1b
+B: KEY=400 0 0 0 0 0
+B: ABS=260800000000003
+B: MSC=20
+
+I: Bus=0019 Vendor=1043 Product=0000 Version=0000
+N: Name="Asus Wireless Radio Control"
+P: Phys=asus-wireless/input0
+S: Sysfs=/devices/LNXSYSTM:00/LNXSYBUS:00/ATK4002:00/input/input22
+U: Uniq=
+H: Handlers=rfkill kbd event12 
+B: PROP=0
+B: EV=3
+B: KEY=80000000000000 0 0 0
+
+I: Bus=0019 Vendor=0000 Product=0000 Version=0000
+N: Name="Asus WMI hotkeys"
+P: Phys=asus-nb-wmi/input0
+S: Sysfs=/devices/platform/asus-nb-wmi/input/input23
+U: Uniq=
+H: Handlers=rfkill kbd event13 
+B: PROP=0
+B: EV=100013
+B: KEY=400000000000000 10000000c0000 400400000 0 0 0 181606f00900c00 380027801701000 e000000000000 0
+B: MSC=10
+
+I: Bus=0019 Vendor=0000 Product=0006 Version=0000
+N: Name="Video Bus"
+P: Phys=LNXVIDEO/video/input0
+S: Sysfs=/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/LNXVIDEO:00/input/input24
+U: Uniq=
+H: Handlers=kbd event14 
+B: PROP=0
+B: EV=3
+B: KEY=3e000b00000000 0 0 0
+
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name="HDA Intel PCH Headphone"
+P: Phys=ALSA
+S: Sysfs=/devices/pci0000:00/0000:00:1f.3/sound/card0/input25
+U: Uniq=
+H: Handlers=event15 
+B: PROP=0
+B: EV=21
+B: SW=4
+
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name="HDA Intel PCH HDMI/DP,pcm=3"
+P: Phys=ALSA
+S: Sysfs=/devices/pci0000:00/0000:00:1f.3/sound/card0/input26
+U: Uniq=
+H: Handlers=event16 
+B: PROP=0
+B: EV=21
+B: SW=140
+
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name="HDA Intel PCH HDMI/DP,pcm=7"
+P: Phys=ALSA
+S: Sysfs=/devices/pci0000:00/0000:00:1f.3/sound/card0/input27
+U: Uniq=
+H: Handlers=event17 
+B: PROP=0
+B: EV=21
+B: SW=140
+
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name="HDA Intel PCH HDMI/DP,pcm=8"
+P: Phys=ALSA
+S: Sysfs=/devices/pci0000:00/0000:00:1f.3/sound/card0/input28
+U: Uniq=
+H: Handlers=event18 
+B: PROP=0
+B: EV=21
+B: SW=140
+
+
+=== DISPLAY / GPU ===
+		      SoftBinCap- DDR3MaxFreqWithRef100=Disabled PegG3Dis+
+		      PkgTyp- AddGfxEn+ AddGfxCap- PegX16Dis+ DmiG3Dis+ GmmDis-
+		      DDR3MaxFreq=2666MHz LPDDR3En+
+		CapC: PegG4Dis- DDR4MaxFreq=Unlimited LPDDREn- LPDDR4MaxFreq=0MHz LPDDR4En-
+		      QClkGvDis+ SgxDis- BClkOC=Disabled IddDis- Pipe3Dis- Gear1MaxFreq=Unlimited
+	Kernel driver in use: skl_uncore
+
+00:02.0 VGA compatible controller [0300]: Intel Corporation Skylake GT2 [HD Graphics 520] [8086:1916] (rev 07) (prog-if 00 [VGA controller])
+	Subsystem: ASUSTeK Computer Inc. Device [1043:1d0d]
+	Flags: bus master, fast devsel, latency 0, IRQ 141
+	Memory at de000000 (64-bit, non-prefetchable) [size=16M]
+	Memory at c0000000 (64-bit, prefetchable) [size=256M]
+	I/O ports at f000 [size=64]
+	Expansion ROM at 000c0000 [virtual] [disabled] [size=128K]
+	Capabilities: [40] Vendor Specific Information: Intel Capabilities v1
+		CapA: Peg60Dis- Peg12Dis+ Peg11Dis+ Peg10Dis+ PeLWUDis+ DmiWidth=x4
+		      EccDis+ ForceEccEn- VTdDis- DmiG2Dis+ PegG2Dis+ DDRMaxSize=Unlimited
+		      1NDis- CDDis- DDPCDis+ X2APICEn+ PDCDis- IGDis- CDID=2 CRID=8
+--
+		      SoftBinCap- DDR3MaxFreqWithRef100=Disabled PegG3Dis+
+		      PkgTyp- AddGfxEn+ AddGfxCap- PegX16Dis+ DmiG3Dis+ GmmDis-
+		      DDR3MaxFreq=2666MHz LPDDR3En+
+	Capabilities: [70] Express Root Complex Integrated Endpoint, IntMsgNum 0
+	Capabilities: [ac] MSI: Enable+ Count=1/1 Maskable- 64bit-
+	Capabilities: [d0] Power Management version 2
+	Capabilities: [100] Process Address Space ID (PASID)
+	Capabilities: [200] Address Translation Service (ATS)
+	Capabilities: [300] Page Request Interface (PRI)
+	Kernel driver in use: i915
+	Kernel modules: i915
+
+--
+		      SoftBinCap- DDR3MaxFreqWithRef100=Disabled PegG3Dis+
+		      PkgTyp- AddGfxEn+ AddGfxCap- PegX16Dis+ DmiG3Dis+ GmmDis-
+		      DDR3MaxFreq=2666MHz LPDDR3En+
+	Kernel driver in use: proc_thermal
+	Kernel modules: processor_thermal_device_pci_legacy
+
+00:13.0 Non-VGA unclassified device [0000]: Intel Corporation Sunrise Point-LP Integrated Sensor Hub [8086:9d35] (rev 21)
+	Subsystem: Intel Corporation Sunrise Point-LP Integrated Sensor Hub [8086:9d35]
+	Flags: bus master, fast devsel, latency 0, IRQ 20, IOMMU group 2
+	Memory at dfc39000 (64-bit, non-prefetchable) [size=4K]
+	Capabilities: [80] Power Management version 3
+	Kernel driver in use: intel_ish_ipc
+	Kernel modules: intel_ish_ipc
+
+00:14.0 USB controller [0c03]: Intel Corporation Sunrise Point-LP USB 3.0 xHCI Controller [8086:9d2f] (rev 21) (prog-if 30 [XHCI])
+	Subsystem: ASUSTeK Computer Inc. Device [1043:201f]
+	Flags: bus master, medium devsel, latency 0, IRQ 124, IOMMU group 3
+
+=== FIRMWARE / UEFI ===
+UEFI: YES
+# dmidecode 3.6
+Getting SMBIOS data from sysfs.
+SMBIOS 3.0.0 present.
+
+Handle 0x0000, DMI type 0, 24 bytes
+BIOS Information
+	Vendor: American Megatrends Inc.
+	Version: Q503UA.205
+	Release Date: 11/13/2015
+	Address: 0xF0000
+	Runtime Size: 64 kB
+	ROM Size: 6016 kB
+	Characteristics:
+		PCI is supported
+		BIOS is upgradeable
+		BIOS shadowing is allowed
+		Boot from CD is supported
+		Selectable boot is supported
+		BIOS ROM is socketed
+		EDD is supported
+		5.25"/1.2 MB floppy services are supported (int 13h)
+		3.5"/720 kB floppy services are supported (int 13h)
+		3.5"/2.88 MB floppy services are supported (int 13h)
+		Print screen service is supported (int 5h)
+		8042 keyboard services are supported (int 9h)
+		Serial services are supported (int 14h)
+		Printer services are supported (int 17h)
+		ACPI is supported
+		USB legacy is supported
+		Smart battery is supported
+		BIOS boot specification is supported
+		Targeted content distribution is supported
+		UEFI is supported
+	BIOS Revision: 5.11
+
+Handle 0x0024, DMI type 13, 22 bytes
+BIOS Language Information
+	Language Description Format: Long
+	Installable Languages: 1
+		en|US|iso8859-1
+	Currently Installed Language: en|US|iso8859-1
+
+# dmidecode 3.6
+Getting SMBIOS data from sysfs.
+SMBIOS 3.0.0 present.
+
+Handle 0x0001, DMI type 1, 27 bytes
+System Information
+	Manufacturer: ASUSTeK COMPUTER INC.
+	Product Name: Q503UA
+	Version: 1.0       
+	Serial Number: G2N0CY00C64705D     
+	UUID: 43ae5f07-4810-b549-80e7-c8f286b705eb
+	Wake-up Type: Power Switch
+	SKU Number: ASUS-NotebookSKU
+	Family: Q
+
+Handle 0x000C, DMI type 32, 20 bytes
+System Boot Information
+	Status: No errors detected
+
+
+=== KERNEL MODULES LOADED ===
+Module                  Size  Used by
+ac97_bus               12288  1 snd_soc_core
+acpi_pad              184320  0
+acpi_thermal_rel       24576  1 int3400_thermal
+aesni_intel            94208  8
+af_alg                 32768  6 algif_hash,algif_skcipher
+ahci                   49152  3
+algif_hash             16384  1
+algif_skcipher         12288  1
+asus_nb_wmi            32768  0
+asus_wireless          16384  0
+asus_wmi              106496  2 asus_nb_wmi,mfd_aaeon
+autofs4                57344  2
+binfmt_misc            24576  1
+blake2b_generic        20480  0
+bluetooth            1044480  34 btrtl,btmtk,btintel,btbcm,bnep,btusb,rfcomm
+bnep                   32768  2
+bridge                430080  0
+btbcm                  24576  1 btusb
+btintel                69632  1 btusb
+btmtk                  36864  1 btusb
+btrfs                2179072  0
+btrtl                  36864  1 btusb
+btusb                  77824  0
+ccm                    20480  6
+cec                   106496  2 drm_display_helper,i915
+cfg80211             1478656  3 iwlmvm,iwlwifi,mac80211
+cmac                   12288  3
+coretemp               24576  0
+crc8                   12288  1 soundwire_cadence
+dm_crypt               73728  1
+dmi_sysfs              24576  0
+drm_buddy              28672  1 i915
+drm_display_helper    294912  1 i915
+efi_pstore             12288  0
+ghash_clmulni_intel    12288  0
+hid                   270336  6 usbhid,hid_multitouch,hid_sensor_hub,snd_soc_sdca,intel_ishtp_hid,hid_generic
+hid_generic            12288  0
+hid_multitouch         36864  0
+hid_sensor_accel_3d    16384  0
+hid_sensor_custom      28672  0
+hid_sensor_custom_intel_hinge    12288  0
+hid_sensor_gyro_3d     16384  0
+hid_sensor_hub         28672  7 hid_sensor_gyro_3d,hid_sensor_trigger,hid_sensor_iio_common,hid_sensor_custom_intel_hinge,hid_sensor_accel_3d,hid_sensor_magn_3d,hid_sensor_custom
+hid_sensor_iio_common    24576  5 hid_sensor_gyro_3d,hid_sensor_trigger,hid_sensor_custom_intel_hinge,hid_sensor_accel_3d,hid_sensor_magn_3d
+hid_sensor_magn_3d     20480  0
+hid_sensor_trigger     20480  8 hid_sensor_gyro_3d,hid_sensor_custom_intel_hinge,hid_sensor_accel_3d,hid_sensor_magn_3d
+i2c_algo_bit           16384  1 i915
+i2c_i801               36864  0
+i2c_mux                16384  1 i2c_i801
+i2c_smbus              20480  1 i2c_i801
+i915                 4931584  76
+idma64                 20480  0
+industrialio          143360  7 industrialio_triggered_buffer,hid_sensor_gyro_3d,hid_sensor_trigger,hid_sensor_custom_intel_hinge,kfifo_buf,hid_sensor_accel_3d,hid_sensor_magn_3d
+industrialio_triggered_buffer    12288  1 hid_sensor_trigger
+input_leds             12288  0
+int3400_thermal        24576  0
+int3403_thermal        16384  0
+int340x_thermal_zone    16384  2 int3403_thermal,processor_thermal_device
+intel_cstate           20480  0
+intel_ish_ipc          36864  0
+intel_ishtp            73728  2 intel_ishtp_hid,intel_ish_ipc
+intel_ishtp_hid        36864  0
+intel_lpss             12288  1 intel_lpss_pci
+intel_lpss_pci         28672  0
+intel_pch_thermal      20480  0
+intel_pmc_core        135168  0
+intel_pmc_ssram_telemetry    16384  1 intel_pmc_core
+intel_powerclamp       24576  0
+intel_rapl_common      57344  2 intel_rapl_msr,processor_thermal_rapl
+intel_rapl_msr         20480  0
+intel_soc_dts_iosf     16384  1 processor_thermal_device_pci_legacy
+intel_tcc_cooling      12288  0
+intel_vsec             24576  2 intel_pmc_ssram_telemetry,pmt_telemetry
+intel_xhci_usb_role_switch    12288  0
+ip_tables              36864  0
+ipt_REJECT             12288  2
+irqbypass              16384  1 kvm
+iwlmvm                925696  0
+iwlwifi               651264  1 iwlmvm
+joydev                 32768  0
+kfifo_buf              12288  1 industrialio_triggered_buffer
+kvm                  1474560  1 kvm_intel
+kvm_intel             585728  0
+libahci                57344  1 ahci
+libarc4                12288  1 mac80211
+llc                    16384  2 bridge,stp
+lp                     32768  0
+mac80211             1884160  1 iwlmvm
+mac_hid                12288  0
+mc                     86016  4 videodev,videobuf2_v4l2,uvcvideo,videobuf2_common
+mei                   176128  5 mei_hdcp,mei_pxp,mei_me
+mei_hdcp               28672  0
+mei_me                 53248  2
+mei_pxp                16384  0
+memstick               28672  1 rtsx_usb_ms
+mfd_aaeon              12288  0
+msr                    12288  0
+nf_conntrack          196608  3 xt_conntrack,nf_nat,xt_MASQUERADE
+nf_defrag_ipv4         12288  1 nf_conntrack
+nf_defrag_ipv6         24576  1 nf_conntrack
+nf_nat                 61440  2 nft_chain_nat,xt_MASQUERADE
+nf_reject_ipv4         12288  1 ipt_REJECT
+nf_tables             393216  156 nft_compat,nft_chain_nat
+nfnetlink              20480  3 nft_compat,nf_tables
+nft_chain_nat          12288  2
+nft_compat             20480  7
+nls_iso8859_1          12288  1
+parport                73728  3 parport_pc,lp,ppdev
+parport_pc             53248  0
+platform_profile       20480  2 asus_wmi,processor_thermal_soc_slider
+platform_temperature_control    20480  1 processor_thermal_device
+pmt_class              20480  2 pmt_telemetry,pmt_discovery
+pmt_discovery          20480  1 pmt_telemetry
+pmt_telemetry          16384  1 intel_pmc_core
+polyval_clmulni        12288  0
+ppdev                  24576  0
+processor_thermal_device    24576  1 processor_thermal_device_pci_legacy
+processor_thermal_device_pci_legacy    12288  0
+processor_thermal_mbox    12288  4 processor_thermal_power_floor,processor_thermal_wt_req,processor_thermal_rfim,processor_thermal_wt_hint
+processor_thermal_power_floor    12288  1 processor_thermal_device
+processor_thermal_rapl    16384  1 processor_thermal_device
+processor_thermal_rfim    40960  1 processor_thermal_device
+processor_thermal_soc_slider    16384  1 processor_thermal_device
+processor_thermal_wt_hint    16384  1 processor_thermal_device
+processor_thermal_wt_req    12288  1 processor_thermal_device
+psmouse               225280  0
+qrtr                   53248  2
+r8169                 143360  0
+raid6_pq              126976  1 btrfs
+rapl                   20480  0
+rc_core                73728  1 cec
+realtek                49152  1
+rfcomm                102400  8
+rtsx_usb               32768  2 rtsx_usb_sdmmc,rtsx_usb_ms
+rtsx_usb_ms            24576  0
+rtsx_usb_sdmmc         36864  0
+sch_fq_codel           24576  2
+serio_raw              20480  0
+snd                   147456  23 snd_hda_codec_generic,snd_seq,snd_seq_device,snd_hda_codec_hdmi,snd_hwdep,snd_hda_intel,snd_hda_codec,snd_sof,snd_soc_sdca,snd_timer,snd_hda_codec_realtek_lib,snd_compress,snd_hda_codec_alc269,snd_soc_core,snd_pcm,snd_rawmidi
+snd_compress           36864  2 snd_soc_avs,snd_soc_core
+snd_hda_codec         204800  10 snd_hda_codec_generic,snd_soc_avs,snd_hda_codec_hdmi,snd_soc_hda_codec,snd_hda_intel,snd_hda_codec_realtek_lib,snd_soc_hdac_hda,snd_hda_codec_alc269,snd_sof_intel_hda,snd_hda_codec_intelhdmi
+snd_hda_codec_alc269   139264  1
+snd_hda_codec_generic   126976  2 snd_hda_codec_realtek_lib,snd_hda_codec_alc269
+snd_hda_codec_hdmi     65536  1 snd_hda_codec_intelhdmi
+snd_hda_codec_intelhdmi    24576  1
+snd_hda_codec_realtek_lib    65536  1 snd_hda_codec_alc269
+snd_hda_core          151552  13 snd_hda_codec_generic,snd_soc_avs,snd_hda_codec_hdmi,snd_soc_hda_codec,snd_hda_intel,snd_hda_ext_core,snd_hda_codec,snd_sof_intel_hda_common,snd_hda_codec_realtek_lib,snd_soc_hdac_hda,snd_hda_codec_alc269,snd_sof_intel_hda,snd_hda_codec_intelhdmi
+snd_hda_ext_core       32768  7 snd_sof_intel_hda_sdw_bpt,snd_soc_avs,snd_soc_hda_codec,snd_sof_intel_hda_common,snd_soc_hdac_hda,snd_sof_intel_hda_mlink,snd_sof_intel_hda
+snd_hda_intel          61440  3
+snd_hda_scodec_component    20480  1 snd_hda_codec_alc269
+snd_hrtimer            12288  1
+snd_hwdep              24576  1 snd_hda_codec
+snd_intel_dspcfg       45056  5 snd_soc_avs,snd_hda_intel,snd_sof,snd_sof_intel_hda_common,snd_sof_intel_hda_generic
+snd_intel_sdw_acpi     16384  2 snd_intel_dspcfg,snd_sof_intel_hda_generic
+snd_pcm               208896  16 snd_soc_avs,snd_hda_codec_hdmi,snd_hda_intel,snd_hda_codec,soundwire_intel,snd_sof,snd_soc_sdca,snd_sof_intel_hda_common,snd_compress,snd_sof_intel_hda_generic,snd_soc_core,snd_sof_utils,snd_hda_core,snd_sof_pci_intel_skl,snd_pcm_dmaengine
+snd_pcm_dmaengine      20480  1 snd_soc_core
+snd_rawmidi            57344  1 snd_seq_midi
+snd_seq               122880  9 snd_seq_midi,snd_seq_midi_event,snd_seq_dummy
+snd_seq_device         16384  3 snd_seq,snd_seq_midi,snd_rawmidi
+snd_seq_dummy          12288  0
+snd_seq_midi           24576  0
+snd_seq_midi_event     16384  1 snd_seq_midi
+snd_soc_acpi           16384  2 snd_soc_acpi_intel_match,snd_sof_intel_hda_generic
+snd_soc_acpi_intel_match   139264  2 snd_sof_intel_hda_generic,snd_sof_pci_intel_skl
+snd_soc_acpi_intel_sdca_quirks    12288  1 snd_soc_acpi_intel_match
+snd_soc_avs           221184  0
+snd_soc_core          430080  7 snd_soc_avs,snd_soc_hda_codec,soundwire_intel,snd_sof,snd_soc_sdca,snd_sof_intel_hda_common,snd_soc_hdac_hda
+snd_soc_hda_codec      24576  1 snd_soc_avs
+snd_soc_hdac_hda       20480  1 snd_sof_intel_hda_common
+snd_soc_sdca           86016  2 snd_soc_acpi_intel_sdca_quirks,soundwire_bus
+snd_sof               417792  6 snd_sof_intel_hda_sdw_bpt,snd_sof_pci,snd_sof_intel_hda_common,snd_sof_intel_hda_generic,snd_sof_intel_hda,snd_sof_pci_intel_skl
+snd_sof_intel_hda      24576  2 snd_sof_intel_hda_common,snd_sof_intel_hda_generic
+snd_sof_intel_hda_common   192512  3 snd_sof_intel_hda_sdw_bpt,snd_sof_intel_hda_generic,snd_sof_pci_intel_skl
+snd_sof_intel_hda_generic    36864  1 snd_sof_pci_intel_skl
+snd_sof_intel_hda_mlink    45056  4 snd_sof_intel_hda_sdw_bpt,soundwire_intel,snd_sof_intel_hda_common,snd_sof_intel_hda_generic
+snd_sof_intel_hda_sdw_bpt    20480  1 soundwire_intel
+snd_sof_pci            24576  2 snd_sof_intel_hda_generic,snd_sof_pci_intel_skl
+snd_sof_pci_intel_skl    24576  0
+snd_sof_utils          16384  1 snd_sof
+snd_sof_xtensa_dsp     12288  1 snd_sof_intel_hda_generic
+snd_timer              53248  3 snd_seq,snd_hrtimer,snd_pcm
+soc_button_array       20480  0
+soundcore              16384  1 snd
+soundwire_bus        1179648  3 soundwire_intel,soundwire_generic_allocation,soundwire_cadence
+soundwire_cadence      53248  1 soundwire_intel
+soundwire_generic_allocation    24576  1 soundwire_intel
+soundwire_intel        86016  1 snd_sof_intel_hda_generic
+sparse_keymap          12288  1 asus_wmi
+stp                    12288  1 bridge
+ttm                   131072  1 i915
+usbhid                 77824  0
+uvc                    12288  1 uvcvideo
+uvcvideo              147456  0
+video                  77824  3 asus_wmi,asus_nb_wmi,i915
+videobuf2_common       90112  4 videobuf2_vmalloc,videobuf2_v4l2,uvcvideo,videobuf2_memops
+videobuf2_memops       16384  1 videobuf2_vmalloc
+videobuf2_v4l2         36864  1 uvcvideo
+videobuf2_vmalloc      20480  1 uvcvideo
+videodev              372736  2 videobuf2_v4l2,uvcvideo
+wmi                    28672  3 video,asus_wmi,mfd_aaeon
+x86_pkg_temp_thermal    20480  0
+x_tables               65536  7 xt_conntrack,nft_compat,xt_tcpudp,xt_CHECKSUM,ipt_REJECT,ip_tables,xt_MASQUERADE
+xor                    24576  1 btrfs
+xt_CHECKSUM            12288  1
+xt_MASQUERADE          16384  3
+xt_conntrack           12288  1
+xt_tcpudp              16384  0
+
+=== FIRMWARE BLOBS NEEDED ===
+
+=== DMESG (ERRORS/WARNINGS) ===
+[84189.390843] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[84189.390857] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[84229.839420] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[84229.839431] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[84406.884987] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[84406.885022] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[84807.373949] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[84807.373984] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[85257.776444] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[85257.776464] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[85266.333534] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[85266.333547] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[85425.972456] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[85425.972485] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[85788.554497] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[85788.554509] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[85821.772078] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[85821.772106] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[85917.769862] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[85917.769879] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[86025.765761] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[86025.765783] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[86241.766334] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[86241.766378] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[86287.643529] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[86287.643545] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[86337.767257] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[86337.767290] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[86365.994741] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[86365.994805] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[86471.933930] pcieport 0000:00:1c.5: AER: Multiple Correctable error message received from 0000:00:1c.5
+[86471.933958] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=000030c0/00002000
+[86471.934151] iwlwifi 0000:03:00.0:   device [8086:095a] error status/mask=00003040/00002000
+[86547.764642] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[86547.764668] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[86553.760601] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[86553.760635] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[86595.760715] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[86595.760747] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[86637.762396] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[86637.762425] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[86638.285273] pcieport 0000:00:1c.5: AER: Multiple Correctable error message received from 0000:00:1c.5
+[86638.285314] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00001001/00002000
+[86638.285522] iwlwifi 0000:03:00.0:   device [8086:095a] error status/mask=00002040/00002000
+[86638.285919] pcieport 0000:00:1c.5: AER: Multiple Correctable error message received from 0000:03:00.0
+[86697.760622] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[86697.760651] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[86728.296786] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[86728.296819] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[87003.239814] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[87003.239861] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[87003.758937] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[87003.758986] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[87048.193428] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[87048.193462] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[87068.796255] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[87068.796276] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[87128.802334] pcieport 0000:00:1c.5: AER: Multiple Correctable error message received from 0000:00:1c.5
+[87128.802360] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000041/00002000
+[87153.756121] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[87153.756167] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[87315.753022] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[87315.753044] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[87448.589249] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[87448.589266] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[87651.751202] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[87651.751230] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[87667.299344] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[87667.299366] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[88462.032052] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[88462.032073] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[88539.738084] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[88539.738112] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[89034.445604] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[89034.445622] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[89239.550345] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[89239.550394] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[89268.865449] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[89268.865466] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[89349.728618] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[89349.728641] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[89412.284604] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[89412.284621] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+[89505.844855] pcieport 0000:00:1c.5: AER: Correctable error message received from 0000:00:1c.5
+[89505.844891] pcieport 0000:00:1c.5:   device [8086:9d15] error status/mask=00000001/00002000
+
+=== MEMORY ===
+               total        used        free      shared  buff/cache   available
+Mem:            11Gi       3.1Gi       2.9Gi       637Mi       5.2Gi       8.0Gi
+Swap:          511Mi          0B       511Mi
+# dmidecode 3.6
+Getting SMBIOS data from sysfs.
+SMBIOS 3.0.0 present.
+
+Handle 0x0012, DMI type 16, 23 bytes
+Physical Memory Array
+	Location: System Board Or Motherboard
+	Use: System Memory
+	Error Correction Type: None
+	Maximum Capacity: 16 GB
+	Error Information Handle: Not Provided
+	Number Of Devices: 2
+
+Handle 0x0013, DMI type 17, 40 bytes
+Memory Device
+	Array Handle: 0x0012
+	Error Information Handle: Not Provided
+	Total Width: 64 bits
+	Data Width: 64 bits
+	Size: 4 GB
+	Form Factor: SODIMM
+	Set: None
+	Locator: ChannelA-DIMM0
+	Bank Locator: BANK 0
+	Type: DDR3
+	Type Detail: Synchronous
+	Speed: 1600 MT/s
+	Manufacturer: Micron
+	Serial Number: 00000000
+	Asset Tag: 9876543210
+	Part Number: 8KTF51264HZ-1G6E1 
+	Rank: 1
+	Configured Memory Speed: 1600 MT/s
+	Minimum Voltage: Unknown
+	Maximum Voltage: Unknown
+	Configured Voltage: 1.35 V
+
+Handle 0x0014, DMI type 17, 40 bytes
+Memory Device
+	Array Handle: 0x0012
+	Error Information Handle: Not Provided
+	Total Width: 64 bits
+	Data Width: 64 bits
+	Size: 8 GB
+	Form Factor: SODIMM
+	Set: None
+	Locator: ChannelB-DIMM0
+	Bank Locator: BANK 2
+	Type: DDR3
+	Type Detail: Synchronous
+	Speed: 1600 MT/s
+	Manufacturer: SK Hynix
+	Serial Number: 09334903
+	Asset Tag: 9876543210
+	Part Number: HMT41GS6BFR8A-PB  
+	Rank: 2
+	Configured Memory Speed: 1600 MT/s
+	Minimum Voltage: Unknown
+	Maximum Voltage: Unknown
+	Configured Voltage: 1.35 V
+
+
+=== ACPI / POWER ===
+AC0
+BAT0
+
+=== CURRENT KERNEL CONFIG (if available) ===
+CONFIG_NET_NS=y
+CONFIG_ACPI_MADT_WAKEUP=y
+CONFIG_ACPI=y
+CONFIG_ACPI_LEGACY_TABLES_LOOKUP=y
+CONFIG_ACPI_SYSTEM_POWER_STATES_SUPPORT=y
+CONFIG_ACPI_TABLE_LIB=y
+CONFIG_ACPI_THERMAL_LIB=y
+CONFIG_ACPI_DEBUGGER=y
+CONFIG_ACPI_DEBUGGER_USER=y
+CONFIG_ACPI_SPCR_TABLE=y
+CONFIG_ACPI_FPDT=y
+CONFIG_ACPI_LPIT=y
+CONFIG_ACPI_SLEEP=y
+CONFIG_ACPI_REV_OVERRIDE_POSSIBLE=y
+CONFIG_ACPI_EC=y
+CONFIG_ACPI_EC_DEBUGFS=m
+CONFIG_ACPI_AC=y
+CONFIG_ACPI_BATTERY=y
+CONFIG_ACPI_BUTTON=y
+CONFIG_ACPI_VIDEO=m
+CONFIG_ACPI_FAN=y
+CONFIG_ACPI_TAD=m
+CONFIG_ACPI_DOCK=y
+CONFIG_ACPI_CPU_FREQ_PSS=y
+CONFIG_ACPI_PROCESSOR_CSTATE=y
+CONFIG_ACPI_PROCESSOR_IDLE=y
+CONFIG_ACPI_CPPC_LIB=y
+CONFIG_ACPI_PROCESSOR=y
+CONFIG_ACPI_IPMI=m
+CONFIG_ACPI_HOTPLUG_CPU=y
+CONFIG_ACPI_PROCESSOR_AGGREGATOR=m
+CONFIG_ACPI_THERMAL=y
+CONFIG_ACPI_PLATFORM_PROFILE=m
+CONFIG_ACPI_CUSTOM_DSDT_FILE=""
+CONFIG_ACPI_TABLE_UPGRADE=y
+CONFIG_ACPI_DEBUG=y
+CONFIG_ACPI_PCI_SLOT=y
+CONFIG_ACPI_CONTAINER=y
+CONFIG_ACPI_HOTPLUG_MEMORY=y
+CONFIG_ACPI_HOTPLUG_IOAPIC=y
+CONFIG_ACPI_SBS=m
+CONFIG_ACPI_HED=y
+CONFIG_ACPI_BGRT=y
+CONFIG_ACPI_NHLT=y
+CONFIG_ACPI_NFIT=m
+CONFIG_ACPI_NUMA=y
+CONFIG_ACPI_HMAT=y
+CONFIG_ACPI_APEI=y
+CONFIG_ACPI_APEI_GHES=y
+CONFIG_ACPI_APEI_PCIEAER=y
+CONFIG_ACPI_APEI_MEMORY_FAILURE=y
+CONFIG_ACPI_APEI_EINJ=m
+CONFIG_ACPI_APEI_EINJ_CXL=y
+CONFIG_ACPI_DPTF=y
+CONFIG_ACPI_WATCHDOG=y
+CONFIG_ACPI_EXTLOG=m
+CONFIG_ACPI_ADXL=y
+CONFIG_ACPI_CONFIGFS=m
+CONFIG_ACPI_PFRUT=m
+CONFIG_ACPI_PCC=y
+CONFIG_ACPI_FFH=y
+CONFIG_ACPI_MRRM=y
+CONFIG_ACPI_VIOT=y
+CONFIG_ACPI_PRMT=y
+CONFIG_NET=y
+CONFIG_NET_INGRESS=y
+CONFIG_NET_EGRESS=y
+CONFIG_NET_XGRESS=y
+CONFIG_NET_REDIRECT=y
+CONFIG_NET_DEVMEM=y
+CONFIG_NET_SHAPER=y
+CONFIG_NET_CRC32C=y
+CONFIG_NET_KEY=m
+CONFIG_NET_HANDSHAKE=y
+CONFIG_NET_IPIP=m
+CONFIG_NET_IPGRE_DEMUX=m
+CONFIG_NET_IP_TUNNEL=m
+CONFIG_NET_IPGRE=m
+CONFIG_NET_IPGRE_BROADCAST=y
+CONFIG_NET_IPVTI=m
+CONFIG_NET_UDP_TUNNEL=m
+CONFIG_NET_FOU=m
+CONFIG_NET_FOU_IP_TUNNELS=y
+CONFIG_NETLABEL=y
+CONFIG_NETWORK_SECMARK=y
+CONFIG_NET_PTP_CLASSIFY=y
+CONFIG_NETWORK_PHY_TIMESTAMPING=y
+CONFIG_NETFILTER=y
+CONFIG_NETFILTER_ADVANCED=y
+CONFIG_NETFILTER_INGRESS=y
+CONFIG_NETFILTER_EGRESS=y
+CONFIG_NETFILTER_SKIP_EGRESS=y
+CONFIG_NETFILTER_NETLINK=m
+CONFIG_NETFILTER_FAMILY_BRIDGE=y
+CONFIG_NETFILTER_FAMILY_ARP=y
+CONFIG_NETFILTER_BPF_LINK=y
+CONFIG_NETFILTER_NETLINK_HOOK=m
+CONFIG_NETFILTER_NETLINK_ACCT=m
+CONFIG_NETFILTER_NETLINK_QUEUE=m
+CONFIG_NETFILTER_NETLINK_LOG=m
+CONFIG_NETFILTER_NETLINK_OSF=m
+CONFIG_NETFILTER_CONNCOUNT=m
+CONFIG_NETFILTER_NETLINK_GLUE_CT=y
+CONFIG_NETFILTER_SYNPROXY=m
+CONFIG_NETFILTER_XTABLES=m
+CONFIG_NETFILTER_XTABLES_COMPAT=y
+CONFIG_NETFILTER_XTABLES_LEGACY=y
+CONFIG_NETFILTER_XT_MARK=m
+CONFIG_NETFILTER_XT_CONNMARK=m
+CONFIG_NETFILTER_XT_SET=m
+CONFIG_NETFILTER_XT_TARGET_AUDIT=m
+CONFIG_NETFILTER_XT_TARGET_CHECKSUM=m
+CONFIG_NETFILTER_XT_TARGET_CLASSIFY=m
+CONFIG_NETFILTER_XT_TARGET_CONNMARK=m
+CONFIG_NETFILTER_XT_TARGET_CONNSECMARK=m
+CONFIG_NETFILTER_XT_TARGET_CT=m
+CONFIG_NETFILTER_XT_TARGET_DSCP=m
+CONFIG_NETFILTER_XT_TARGET_HL=m
+CONFIG_NETFILTER_XT_TARGET_HMARK=m
+CONFIG_NETFILTER_XT_TARGET_IDLETIMER=m
+CONFIG_NETFILTER_XT_TARGET_LED=m
+CONFIG_NETFILTER_XT_TARGET_LOG=m
+CONFIG_NETFILTER_XT_TARGET_MARK=m
+CONFIG_NETFILTER_XT_NAT=m
+CONFIG_NETFILTER_XT_TARGET_NETMAP=m
+CONFIG_NETFILTER_XT_TARGET_NFLOG=m
+CONFIG_NETFILTER_XT_TARGET_NFQUEUE=m
+CONFIG_NETFILTER_XT_TARGET_NOTRACK=m
+CONFIG_NETFILTER_XT_TARGET_RATEEST=m
+CONFIG_NETFILTER_XT_TARGET_REDIRECT=m
+CONFIG_NETFILTER_XT_TARGET_MASQUERADE=m
+CONFIG_NETFILTER_XT_TARGET_TEE=m
+CONFIG_NETFILTER_XT_TARGET_TPROXY=m
+CONFIG_NETFILTER_XT_TARGET_TRACE=m
+CONFIG_NETFILTER_XT_TARGET_SECMARK=m
+CONFIG_NETFILTER_XT_TARGET_TCPMSS=m
+CONFIG_NETFILTER_XT_TARGET_TCPOPTSTRIP=m
+CONFIG_NETFILTER_XT_MATCH_ADDRTYPE=m
+CONFIG_NETFILTER_XT_MATCH_BPF=m
+CONFIG_NETFILTER_XT_MATCH_CGROUP=m
+CONFIG_NETFILTER_XT_MATCH_CLUSTER=m
+CONFIG_NETFILTER_XT_MATCH_COMMENT=m
+CONFIG_NETFILTER_XT_MATCH_CONNBYTES=m
+CONFIG_NETFILTER_XT_MATCH_CONNLABEL=m
+CONFIG_NETFILTER_XT_MATCH_CONNLIMIT=m
+CONFIG_NETFILTER_XT_MATCH_CONNMARK=m
+CONFIG_NETFILTER_XT_MATCH_CONNTRACK=m
+CONFIG_NETFILTER_XT_MATCH_CPU=m
+CONFIG_NETFILTER_XT_MATCH_DCCP=m
+CONFIG_NETFILTER_XT_MATCH_DEVGROUP=m
+CONFIG_NETFILTER_XT_MATCH_DSCP=m
+CONFIG_NETFILTER_XT_MATCH_ECN=m
+CONFIG_NETFILTER_XT_MATCH_ESP=m
+CONFIG_NETFILTER_XT_MATCH_HASHLIMIT=m
+CONFIG_NETFILTER_XT_MATCH_HELPER=m
+CONFIG_NETFILTER_XT_MATCH_HL=m
+CONFIG_NETFILTER_XT_MATCH_IPCOMP=m
+CONFIG_NETFILTER_XT_MATCH_IPRANGE=m
+CONFIG_NETFILTER_XT_MATCH_IPVS=m
+CONFIG_NETFILTER_XT_MATCH_L2TP=m
+CONFIG_NETFILTER_XT_MATCH_LENGTH=m
+CONFIG_NETFILTER_XT_MATCH_LIMIT=m
+CONFIG_NETFILTER_XT_MATCH_MAC=m
+CONFIG_NETFILTER_XT_MATCH_MARK=m
+CONFIG_NETFILTER_XT_MATCH_MULTIPORT=m
+CONFIG_NETFILTER_XT_MATCH_NFACCT=m
+CONFIG_NETFILTER_XT_MATCH_OSF=m
+CONFIG_NETFILTER_XT_MATCH_OWNER=m
+CONFIG_NETFILTER_XT_MATCH_POLICY=m
+CONFIG_NETFILTER_XT_MATCH_PHYSDEV=m
+CONFIG_NETFILTER_XT_MATCH_PKTTYPE=m
+CONFIG_NETFILTER_XT_MATCH_QUOTA=m
+CONFIG_NETFILTER_XT_MATCH_RATEEST=m
+CONFIG_NETFILTER_XT_MATCH_REALM=m
+CONFIG_NETFILTER_XT_MATCH_RECENT=m
+CONFIG_NETFILTER_XT_MATCH_SCTP=m
+CONFIG_NETFILTER_XT_MATCH_SOCKET=m
+CONFIG_NETFILTER_XT_MATCH_STATE=m
+CONFIG_NETFILTER_XT_MATCH_STATISTIC=m
+CONFIG_NETFILTER_XT_MATCH_STRING=m
+CONFIG_NETFILTER_XT_MATCH_TCPMSS=m
+CONFIG_NETFILTER_XT_MATCH_TIME=m
+CONFIG_NETFILTER_XT_MATCH_U32=m
+CONFIG_NET_DSA=m
+CONFIG_NET_DSA_TAG_NONE=m
+CONFIG_NET_DSA_TAG_AR9331=m
+CONFIG_NET_DSA_TAG_BRCM_COMMON=m
+CONFIG_NET_DSA_TAG_BRCM=m
+CONFIG_NET_DSA_TAG_BRCM_LEGACY=m
+CONFIG_NET_DSA_TAG_BRCM_LEGACY_FCS=m
+CONFIG_NET_DSA_TAG_BRCM_PREPEND=m
+CONFIG_NET_DSA_TAG_HELLCREEK=m
+CONFIG_NET_DSA_TAG_GSWIP=m
+CONFIG_NET_DSA_TAG_DSA_COMMON=m
+CONFIG_NET_DSA_TAG_DSA=m
+CONFIG_NET_DSA_TAG_EDSA=m
+CONFIG_NET_DSA_TAG_MTK=m
+CONFIG_NET_DSA_TAG_KSZ=m
+CONFIG_NET_DSA_TAG_OCELOT=m
+CONFIG_NET_DSA_TAG_OCELOT_8021Q=m
+CONFIG_NET_DSA_TAG_QCA=m
+CONFIG_NET_DSA_TAG_RTL4_A=m
+CONFIG_NET_DSA_TAG_RTL8_4=m
+CONFIG_NET_DSA_TAG_RZN1_A5PSW=m
+CONFIG_NET_DSA_TAG_LAN9303=m
+CONFIG_NET_DSA_TAG_SJA1105=m
+CONFIG_NET_DSA_TAG_TRAILER=m
+CONFIG_NET_DSA_TAG_VSC73XX_8021Q=m
+CONFIG_NET_DSA_TAG_XRS700X=m
+CONFIG_NET_SCHED=y
+CONFIG_NET_SCH_HTB=m
+CONFIG_NET_SCH_HFSC=m
+CONFIG_NET_SCH_PRIO=m
+CONFIG_NET_SCH_MULTIQ=m
+CONFIG_NET_SCH_RED=m
+CONFIG_NET_SCH_SFB=m
+CONFIG_NET_SCH_SFQ=m
+CONFIG_NET_SCH_TEQL=m
+CONFIG_NET_SCH_TBF=m
+CONFIG_NET_SCH_CBS=m
+CONFIG_NET_SCH_ETF=m
+CONFIG_NET_SCH_MQPRIO_LIB=m
+CONFIG_NET_SCH_TAPRIO=m
+CONFIG_NET_SCH_GRED=m
+CONFIG_NET_SCH_NETEM=m
+CONFIG_NET_SCH_DRR=m
+CONFIG_NET_SCH_MQPRIO=m
+CONFIG_NET_SCH_SKBPRIO=m
+CONFIG_NET_SCH_CHOKE=m
+CONFIG_NET_SCH_QFQ=m
+CONFIG_NET_SCH_CODEL=m
+CONFIG_NET_SCH_FQ_CODEL=m
+CONFIG_NET_SCH_CAKE=m
+CONFIG_NET_SCH_FQ=m
+CONFIG_NET_SCH_HHF=m
+CONFIG_NET_SCH_PIE=m
+CONFIG_NET_SCH_FQ_PIE=m
+CONFIG_NET_SCH_INGRESS=m
+CONFIG_NET_SCH_PLUG=m
+CONFIG_NET_SCH_ETS=m
+CONFIG_NET_SCH_BPF=y
+CONFIG_NET_SCH_DUALPI2=m
+CONFIG_NET_CLS=y
+CONFIG_NET_CLS_BASIC=m
+CONFIG_NET_CLS_ROUTE4=m
+CONFIG_NET_CLS_FW=m
+CONFIG_NET_CLS_U32=m
+CONFIG_NET_CLS_FLOW=m
+CONFIG_NET_CLS_CGROUP=m
+CONFIG_NET_CLS_BPF=m
+CONFIG_NET_CLS_FLOWER=m
+CONFIG_NET_CLS_MATCHALL=m
+CONFIG_NET_EMATCH=y
+CONFIG_NET_EMATCH_STACK=32
+CONFIG_NET_EMATCH_CMP=m
+CONFIG_NET_EMATCH_NBYTE=m
+CONFIG_NET_EMATCH_U32=m
+CONFIG_NET_EMATCH_META=m
+CONFIG_NET_EMATCH_TEXT=m
+CONFIG_NET_EMATCH_CANID=m
+CONFIG_NET_EMATCH_IPSET=m
+CONFIG_NET_EMATCH_IPT=m
+CONFIG_NET_CLS_ACT=y
+CONFIG_NET_ACT_POLICE=m
+CONFIG_NET_ACT_GACT=m
+CONFIG_NET_ACT_MIRRED=m
+CONFIG_NET_ACT_SAMPLE=m
+CONFIG_NET_ACT_NAT=m
+CONFIG_NET_ACT_PEDIT=m
+CONFIG_NET_ACT_SIMP=m
+CONFIG_NET_ACT_SKBEDIT=m
+CONFIG_NET_ACT_CSUM=m
+CONFIG_NET_ACT_MPLS=m
+CONFIG_NET_ACT_VLAN=m
+CONFIG_NET_ACT_BPF=m
+CONFIG_NET_ACT_CONNMARK=m
+CONFIG_NET_ACT_CTINFO=m
+CONFIG_NET_ACT_SKBMOD=m
+CONFIG_NET_ACT_TUNNEL_KEY=m
+CONFIG_NET_ACT_CT=m
+CONFIG_NET_ACT_GATE=m
+CONFIG_NET_TC_SKB_EXT=y
+CONFIG_NET_SCH_FIFO=y
+CONFIG_NETLINK_DIAG=m
+CONFIG_NET_MPLS_GSO=m
+CONFIG_NET_NSH=m
+CONFIG_NET_SWITCHDEV=y
+CONFIG_NET_L3_MASTER_DEV=y
+CONFIG_NET_NCSI=y
+CONFIG_NET_RX_BUSY_POLL=y
+CONFIG_NET_FLOW_LIMIT=y
+CONFIG_NET_PKTGEN=m
+CONFIG_NET_DROP_MONITOR=y
+CONFIG_NETROM=m
+CONFIG_BT=m
+CONFIG_BT_BREDR=y
+CONFIG_BT_RFCOMM=m
+CONFIG_BT_RFCOMM_TTY=y
+CONFIG_BT_BNEP=m
+CONFIG_BT_BNEP_MC_FILTER=y
+CONFIG_BT_BNEP_PROTO_FILTER=y
+CONFIG_BT_HIDP=m
+CONFIG_BT_LE=y
+CONFIG_BT_LE_L2CAP_ECRED=y
+CONFIG_BT_6LOWPAN=m
+CONFIG_BT_LEDS=y
+CONFIG_BT_MSFTEXT=y
+CONFIG_BT_AOSPEXT=y
+CONFIG_BT_DEBUGFS=y
+CONFIG_BT_INTEL=m
+CONFIG_BT_BCM=m
+CONFIG_BT_RTL=m
+CONFIG_BT_QCA=m
+CONFIG_BT_MTK=m
+CONFIG_BT_HCIBTUSB=m
+CONFIG_BT_HCIBTUSB_AUTOSUSPEND=y
+CONFIG_BT_HCIBTUSB_POLL_SYNC=y
+CONFIG_BT_HCIBTUSB_BCM=y
+CONFIG_BT_HCIBTUSB_MTK=y
+CONFIG_BT_HCIBTUSB_RTL=y
+CONFIG_BT_HCIBTSDIO=m
+CONFIG_BT_HCIUART=m
+CONFIG_BT_HCIUART_SERDEV=y
+CONFIG_BT_HCIUART_H4=y
+CONFIG_BT_HCIUART_NOKIA=m
+CONFIG_BT_HCIUART_BCSP=y
+CONFIG_BT_HCIUART_ATH3K=y
+CONFIG_BT_HCIUART_LL=y
+CONFIG_BT_HCIUART_3WIRE=y
+CONFIG_BT_HCIUART_INTEL=y
+CONFIG_BT_HCIUART_BCM=y
+CONFIG_BT_HCIUART_RTL=y
+CONFIG_BT_HCIUART_QCA=y
+CONFIG_BT_HCIUART_AG6XX=y
+CONFIG_BT_HCIUART_MRVL=y
+CONFIG_BT_HCIUART_AML=y
+CONFIG_BT_HCIBCM203X=m
+CONFIG_BT_HCIBCM4377=m
+CONFIG_BT_HCIBPA10X=m
+CONFIG_BT_HCIBFUSB=m
+CONFIG_BT_HCIDTL1=m
+CONFIG_BT_HCIBT3C=m
+CONFIG_BT_HCIBLUECARD=m
+CONFIG_BT_HCIVHCI=m
+CONFIG_BT_MRVL=m
+CONFIG_BT_MRVL_SDIO=m
+CONFIG_BT_ATH3K=m
+CONFIG_BT_MTKSDIO=m
+CONFIG_BT_MTKUART=m
+CONFIG_BT_HCIRSI=m
+CONFIG_BT_VIRTIO=m
+CONFIG_BT_NXPUART=m
+CONFIG_BT_INTEL_PCIE=m
+CONFIG_WIRELESS=y
+CONFIG_WIRELESS_EXT=y
+CONFIG_NET_9P=m
+CONFIG_NET_9P_FD=m
+CONFIG_NET_9P_VIRTIO=m
+CONFIG_NET_9P_XEN=m
+CONFIG_NET_9P_USBG=m
+CONFIG_NET_9P_RDMA=m
+CONFIG_NET_IFE=m
+CONFIG_NET_IEEE8021Q_HELPERS=y
+CONFIG_NET_SELFTESTS=y
+CONFIG_NET_SOCK_MSG=y
+CONFIG_NET_DEVLINK=y
+CONFIG_NVME_KEYRING=m
+CONFIG_NVME_AUTH=m
+CONFIG_NVME_CORE=m
+CONFIG_NVME_MULTIPATH=y
+CONFIG_NVME_HWMON=y
+CONFIG_NVME_FABRICS=m
+CONFIG_NVME_RDMA=m
+CONFIG_NVME_FC=m
+CONFIG_NVME_TCP=m
+CONFIG_NVME_TCP_TLS=y
+CONFIG_NVME_HOST_AUTH=y
+CONFIG_NVME_TARGET=m
+CONFIG_NVME_TARGET_PASSTHRU=y
+CONFIG_NVME_TARGET_LOOP=m
+CONFIG_NVME_TARGET_RDMA=m
+CONFIG_NVME_TARGET_FC=m
+CONFIG_NVME_TARGET_TCP=m
+CONFIG_NVME_TARGET_TCP_TLS=y
+CONFIG_NVME_TARGET_AUTH=y
+CONFIG_NVME_TARGET_PCI_EPF=m
+CONFIG_SATA_HOST=y
+CONFIG_SATA_ZPODD=y
+CONFIG_SATA_PMP=y
+CONFIG_SATA_AHCI=m
+CONFIG_SATA_MOBILE_LPM_POLICY=3
+CONFIG_SATA_AHCI_PLATFORM=m
+CONFIG_SATA_INIC162X=m
+CONFIG_SATA_ACARD_AHCI=m
+CONFIG_SATA_SIL24=m
+CONFIG_SATA_QSTOR=m
+CONFIG_SATA_SX4=m
+CONFIG_SATA_DWC=m
+CONFIG_SATA_DWC_OLD_DMA=y
+CONFIG_SATA_MV=m
+CONFIG_SATA_NV=m
+CONFIG_SATA_PROMISE=m
+CONFIG_SATA_SIL=m
+CONFIG_SATA_SIS=m
+CONFIG_SATA_SVW=m
+CONFIG_SATA_ULI=m
+CONFIG_SATA_VIA=m
+CONFIG_SATA_VITESSE=m
+CONFIG_NETDEVICES=y
+CONFIG_NET_CORE=y
+CONFIG_NET_FC=y
+CONFIG_NET_TEAM=m
+CONFIG_NET_TEAM_MODE_BROADCAST=m
+CONFIG_NET_TEAM_MODE_ROUNDROBIN=m
+CONFIG_NET_TEAM_MODE_RANDOM=m
+CONFIG_NET_TEAM_MODE_ACTIVEBACKUP=m
+CONFIG_NET_TEAM_MODE_LOADBALANCE=m
+CONFIG_NETCONSOLE=m
+CONFIG_NETCONSOLE_DYNAMIC=y
+CONFIG_NETPOLL=y
+CONFIG_NET_POLL_CONTROLLER=y
+CONFIG_NETKIT=y
+CONFIG_NET_VRF=m
+CONFIG_NET_DSA_BCM_SF2=m
+CONFIG_NET_DSA_HIRSCHMANN_HELLCREEK=m
+CONFIG_NET_DSA_LANTIQ_GSWIP=m
+CONFIG_NET_DSA_MT7530=m
+CONFIG_NET_DSA_MT7530_MDIO=m
+CONFIG_NET_DSA_MT7530_MMIO=m
+CONFIG_NET_DSA_MV88E6060=m
+CONFIG_NET_DSA_MICROCHIP_KSZ_COMMON=m
+CONFIG_NET_DSA_MICROCHIP_KSZ9477_I2C=m
+CONFIG_NET_DSA_MICROCHIP_KSZ_SPI=m
+CONFIG_NET_DSA_MICROCHIP_KSZ_PTP=y
+CONFIG_NET_DSA_MICROCHIP_KSZ8863_SMI=m
+CONFIG_NET_DSA_MV88E6XXX=m
+CONFIG_NET_DSA_MV88E6XXX_PTP=y
+CONFIG_NET_DSA_MV88E6XXX_LEDS=y
+CONFIG_NET_DSA_MSCC_FELIX_DSA_LIB=m
+CONFIG_NET_DSA_MSCC_OCELOT_EXT=m
+CONFIG_NET_DSA_MSCC_SEVILLE=m
+CONFIG_NET_DSA_AR9331=m
+CONFIG_NET_DSA_QCA8K=m
+CONFIG_NET_DSA_QCA8K_LEDS_SUPPORT=y
+CONFIG_NET_DSA_SJA1105=m
+CONFIG_NET_DSA_SJA1105_PTP=y
+CONFIG_NET_DSA_SJA1105_TAS=y
+CONFIG_NET_DSA_SJA1105_VL=y
+CONFIG_NET_DSA_XRS700X=m
+CONFIG_NET_DSA_XRS700X_I2C=m
+CONFIG_NET_DSA_XRS700X_MDIO=m
+CONFIG_NET_DSA_REALTEK=m
+CONFIG_NET_DSA_SMSC_LAN9303=m
+CONFIG_NET_DSA_SMSC_LAN9303_I2C=m
+CONFIG_NET_DSA_SMSC_LAN9303_MDIO=m
+CONFIG_NET_DSA_VITESSE_VSC73XX=m
+CONFIG_NET_DSA_VITESSE_VSC73XX_SPI=m
+CONFIG_NET_DSA_VITESSE_VSC73XX_PLATFORM=m
+CONFIG_NET_VENDOR_3COM=y
+CONFIG_NET_VENDOR_ADAPTEC=y
+CONFIG_NET_VENDOR_AGERE=y
+CONFIG_NET_VENDOR_ALACRITECH=y
+CONFIG_NET_VENDOR_ALTEON=y
+CONFIG_NET_VENDOR_AMAZON=y
+CONFIG_NET_VENDOR_AMD=y
+CONFIG_NET_VENDOR_AQUANTIA=y
+CONFIG_NET_VENDOR_ARC=y
+CONFIG_NET_VENDOR_ASIX=y
+CONFIG_NET_VENDOR_ATHEROS=y
+CONFIG_NET_VENDOR_BROADCOM=y
+CONFIG_NET_VENDOR_CADENCE=y
+CONFIG_NET_VENDOR_CAVIUM=y
+CONFIG_NET_VENDOR_CHELSIO=y
+CONFIG_NET_VENDOR_CISCO=y
+CONFIG_NET_VENDOR_CORTINA=y
+CONFIG_NET_VENDOR_DAVICOM=y
+CONFIG_NET_VENDOR_DEC=y
+CONFIG_NET_TULIP=y
+CONFIG_NET_VENDOR_DLINK=y
+CONFIG_NET_VENDOR_EMULEX=y
+CONFIG_NET_VENDOR_ENGLEDER=y
+CONFIG_NET_VENDOR_EZCHIP=y
+CONFIG_NET_VENDOR_FUJITSU=y
+CONFIG_NET_VENDOR_FUNGIBLE=y
+CONFIG_NET_VENDOR_GOOGLE=y
+CONFIG_NET_VENDOR_HUAWEI=y
+CONFIG_NET_VENDOR_I825XX=y
+CONFIG_NET_VENDOR_INTEL=y
+CONFIG_NET_VENDOR_ADI=y
+CONFIG_NET_VENDOR_LITEX=y
+CONFIG_NET_VENDOR_MARVELL=y
+CONFIG_NET_VENDOR_MELLANOX=y
+CONFIG_NET_VENDOR_META=y
+CONFIG_NET_VENDOR_MICREL=y
+CONFIG_NET_VENDOR_MICROCHIP=y
+CONFIG_NET_VENDOR_MICROSEMI=y
+CONFIG_NET_VENDOR_MICROSOFT=y
+CONFIG_NET_VENDOR_MYRI=y
+CONFIG_NET_VENDOR_NI=y
+CONFIG_NET_VENDOR_NATSEMI=y
+CONFIG_NET_VENDOR_NETERION=y
+CONFIG_NET_VENDOR_NETRONOME=y
+CONFIG_NET_VENDOR_8390=y
+CONFIG_NET_VENDOR_NVIDIA=y
+CONFIG_NET_VENDOR_OKI=y
+CONFIG_NET_VENDOR_PACKET_ENGINES=y
+CONFIG_NET_VENDOR_PENSANDO=y
+CONFIG_NET_VENDOR_QLOGIC=y
+CONFIG_NETXEN_NIC=m
+CONFIG_NET_VENDOR_BROCADE=y
+CONFIG_NET_VENDOR_QUALCOMM=y
+CONFIG_NET_VENDOR_RDC=y
+CONFIG_NET_VENDOR_REALTEK=y
+CONFIG_NET_VENDOR_RENESAS=y
+CONFIG_NET_VENDOR_ROCKER=y
+CONFIG_NET_VENDOR_SAMSUNG=y
+CONFIG_NET_VENDOR_SEEQ=y
+CONFIG_NET_VENDOR_SILAN=y
+CONFIG_NET_VENDOR_SIS=y
+CONFIG_NET_VENDOR_SOLARFLARE=y
+CONFIG_NET_VENDOR_SMSC=y
+CONFIG_NET_VENDOR_SOCIONEXT=y
+CONFIG_NET_VENDOR_STMICRO=y
+CONFIG_NET_VENDOR_SUN=y
+CONFIG_NET_VENDOR_SYNOPSYS=y
+CONFIG_NET_VENDOR_TEHUTI=y
+CONFIG_NET_VENDOR_TI=y
+CONFIG_NET_VENDOR_VERTEXCOM=y
+CONFIG_NET_VENDOR_VIA=y
+CONFIG_NET_VENDOR_WANGXUN=y
+CONFIG_NET_VENDOR_WIZNET=y
+CONFIG_NET_VENDOR_XILINX=y
+CONFIG_NET_VENDOR_XIRCOM=y
+CONFIG_ACPI_MDIO=y
+CONFIG_USB_NET_DRIVERS=m
+CONFIG_USB_CATC=m
+CONFIG_USB_KAWETH=m
+CONFIG_USB_PEGASUS=m
+CONFIG_USB_RTL8150=m
+CONFIG_USB_RTL8152=m
+CONFIG_USB_LAN78XX=m
+CONFIG_USB_USBNET=m
+CONFIG_USB_NET_AX8817X=m
+CONFIG_USB_NET_AX88179_178A=m
+CONFIG_USB_NET_CDCETHER=m
+CONFIG_USB_NET_CDC_EEM=m
+CONFIG_USB_NET_CDC_NCM=m
+CONFIG_USB_NET_HUAWEI_CDC_NCM=m
+CONFIG_USB_NET_CDC_MBIM=m
+CONFIG_USB_NET_DM9601=m
+CONFIG_USB_NET_SR9700=m
+CONFIG_USB_NET_SR9800=m
+CONFIG_USB_NET_SMSC75XX=m
+CONFIG_USB_NET_SMSC95XX=m
+CONFIG_USB_NET_GL620A=m
+CONFIG_USB_NET_NET1080=m
+CONFIG_USB_NET_PLUSB=m
+CONFIG_USB_NET_MCS7830=m
+CONFIG_USB_NET_RNDIS_HOST=m
+CONFIG_USB_NET_CDC_SUBSET_ENABLE=m
+CONFIG_USB_NET_CDC_SUBSET=m
+CONFIG_USB_ALI_M5632=y
+CONFIG_USB_AN2720=y
+CONFIG_USB_BELKIN=y
+CONFIG_USB_ARMLINUX=y
+CONFIG_USB_EPSON2888=y
+CONFIG_USB_KC2190=y
+CONFIG_USB_NET_ZAURUS=m
+CONFIG_USB_NET_CX82310_ETH=m
+CONFIG_USB_NET_KALMIA=m
+CONFIG_USB_NET_QMI_WWAN=m
+CONFIG_USB_HSO=m
+CONFIG_USB_NET_INT51X1=m
+CONFIG_USB_CDC_PHONET=m
+CONFIG_USB_IPHETH=m
+CONFIG_USB_SIERRA_NET=m
+CONFIG_USB_VL600=m
+CONFIG_USB_NET_CH9200=m
+CONFIG_USB_NET_AQC111=m
+CONFIG_USB_RTL8153_ECM=m
+CONFIG_USB4_NET=m
+CONFIG_NETDEVSIM=m
+CONFIG_NET_FAILOVER=y
+CONFIG_INPUT=y
+CONFIG_INPUT_LEDS=m
+CONFIG_INPUT_FF_MEMLESS=m
+CONFIG_INPUT_SPARSEKMAP=m
+CONFIG_INPUT_MATRIXKMAP=m
+CONFIG_INPUT_VIVALDIFMAP=y
+CONFIG_INPUT_MOUSEDEV=y
+CONFIG_INPUT_MOUSEDEV_PSAUX=y
+CONFIG_INPUT_MOUSEDEV_SCREEN_X=1024
+CONFIG_INPUT_MOUSEDEV_SCREEN_Y=768
+CONFIG_INPUT_JOYDEV=m
+CONFIG_INPUT_EVDEV=y
+CONFIG_INPUT_KEYBOARD=y
+CONFIG_INPUT_MOUSE=y
+CONFIG_INPUT_JOYSTICK=y
+CONFIG_INPUT_TABLET=y
+CONFIG_INPUT_TOUCHSCREEN=y
+CONFIG_INPUT_MISC=y
+CONFIG_INPUT_88PM860X_ONKEY=m
+CONFIG_INPUT_88PM80X_ONKEY=m
+CONFIG_INPUT_AD714X=m
+CONFIG_INPUT_AD714X_I2C=m
+CONFIG_INPUT_AD714X_SPI=m
+CONFIG_INPUT_ARIZONA_HAPTICS=m
+CONFIG_INPUT_ATC260X_ONKEY=m
+CONFIG_INPUT_BMA150=m
+CONFIG_INPUT_CS40L50_VIBRA=m
+CONFIG_INPUT_E3X0_BUTTON=m
+CONFIG_INPUT_PCSPKR=m
+CONFIG_INPUT_MAX77693_HAPTIC=m
+CONFIG_INPUT_MAX8925_ONKEY=m
+CONFIG_INPUT_MAX8997_HAPTIC=m
+CONFIG_INPUT_MC13783_PWRBUTTON=m
+CONFIG_INPUT_MMA8450=m
+CONFIG_INPUT_APANEL=m
+CONFIG_INPUT_GPIO_BEEPER=m
+CONFIG_INPUT_GPIO_DECODER=m
+CONFIG_INPUT_GPIO_VIBRA=m
+CONFIG_INPUT_ATLAS_BTNS=m
+CONFIG_INPUT_ATI_REMOTE2=m
+CONFIG_INPUT_KEYSPAN_REMOTE=m
+CONFIG_INPUT_KXTJ9=m
+CONFIG_INPUT_POWERMATE=m
+CONFIG_INPUT_YEALINK=m
+CONFIG_INPUT_CM109=m
+CONFIG_INPUT_REGULATOR_HAPTIC=m
+CONFIG_INPUT_RETU_PWRBUTTON=m
+CONFIG_INPUT_AXP20X_PEK=m
+CONFIG_INPUT_TWL4030_PWRBUTTON=m
+CONFIG_INPUT_TWL4030_VIBRA=m
+CONFIG_INPUT_TWL6040_VIBRA=m
+CONFIG_INPUT_UINPUT=y
+CONFIG_INPUT_PALMAS_PWRBUTTON=m
+CONFIG_INPUT_PCF8574=m
+CONFIG_INPUT_PWM_BEEPER=m
+CONFIG_INPUT_PWM_VIBRA=m
+CONFIG_INPUT_GPIO_ROTARY_ENCODER=m
+CONFIG_INPUT_DA7280_HAPTICS=m
+CONFIG_INPUT_DA9052_ONKEY=m
+CONFIG_INPUT_DA9055_ONKEY=m
+CONFIG_INPUT_DA9063_ONKEY=m
+CONFIG_INPUT_WM831X_ON=m
+CONFIG_INPUT_PCAP=m
+CONFIG_INPUT_ADXL34X=m
+CONFIG_INPUT_ADXL34X_I2C=m
+CONFIG_INPUT_ADXL34X_SPI=m
+CONFIG_INPUT_IBM_PANEL=m
+CONFIG_INPUT_IMS_PCU=m
+CONFIG_INPUT_IQS269A=m
+CONFIG_INPUT_IQS626A=m
+CONFIG_INPUT_IQS7222=m
+CONFIG_INPUT_CMA3000=m
+CONFIG_INPUT_CMA3000_I2C=m
+CONFIG_INPUT_XEN_KBDDEV_FRONTEND=m
+CONFIG_INPUT_IDEAPAD_SLIDEBAR=m
+CONFIG_INPUT_SOC_BUTTON_ARRAY=m
+CONFIG_INPUT_DRV260X_HAPTICS=m
+CONFIG_INPUT_DRV2665_HAPTICS=m
+CONFIG_INPUT_DRV2667_HAPTICS=m
+CONFIG_INPUT_QNAP_MCU=m
+CONFIG_INPUT_RAVE_SP_PWRBUTTON=m
+CONFIG_INPUT_RT5120_PWRKEY=m
+CONFIG_ACPI_I2C_OPREGION=y
+CONFIG_ACPI_THERMAL_REL=m
+CONFIG_USBPCWATCHDOG=m
+CONFIG_USB_EXTRON_DA_HD_4K_PLUS_CEC=m
+CONFIG_USB_PULSE8_CEC=m
+CONFIG_USB_RAINSHADOW_CEC=m
+CONFIG_VIDEO_DEV=m
+CONFIG_VIDEO_V4L2_I2C=y
+CONFIG_VIDEO_V4L2_SUBDEV_API=y
+CONFIG_VIDEO_TUNER=m
+CONFIG_USB_GSPCA=m
+CONFIG_USB_GSPCA_BENQ=m
+CONFIG_USB_GSPCA_CONEX=m
+CONFIG_USB_GSPCA_CPIA1=m
+CONFIG_USB_GSPCA_DTCS033=m
+CONFIG_USB_GSPCA_ETOMS=m
+CONFIG_USB_GSPCA_FINEPIX=m
+CONFIG_USB_GSPCA_JEILINJ=m
+CONFIG_USB_GSPCA_JL2005BCD=m
+CONFIG_USB_GSPCA_KINECT=m
+CONFIG_USB_GSPCA_KONICA=m
+CONFIG_USB_GSPCA_MARS=m
+CONFIG_USB_GSPCA_MR97310A=m
+CONFIG_USB_GSPCA_NW80X=m
+CONFIG_USB_GSPCA_OV519=m
+CONFIG_USB_GSPCA_OV534=m
+CONFIG_USB_GSPCA_OV534_9=m
+CONFIG_USB_GSPCA_PAC207=m
+CONFIG_USB_GSPCA_PAC7302=m
+CONFIG_USB_GSPCA_PAC7311=m
+CONFIG_USB_GSPCA_SE401=m
+CONFIG_USB_GSPCA_SN9C2028=m
+CONFIG_USB_GSPCA_SN9C20X=m
+CONFIG_USB_GSPCA_SONIXB=m
+CONFIG_USB_GSPCA_SONIXJ=m
+CONFIG_USB_GSPCA_SPCA1528=m
+CONFIG_USB_GSPCA_SPCA500=m
+CONFIG_USB_GSPCA_SPCA501=m
+CONFIG_USB_GSPCA_SPCA505=m
+CONFIG_USB_GSPCA_SPCA506=m
+CONFIG_USB_GSPCA_SPCA508=m
+CONFIG_USB_GSPCA_SPCA561=m
+CONFIG_USB_GSPCA_SQ905=m
+CONFIG_USB_GSPCA_SQ905C=m
+CONFIG_USB_GSPCA_SQ930X=m
+CONFIG_USB_GSPCA_STK014=m
+CONFIG_USB_GSPCA_STK1135=m
+CONFIG_USB_GSPCA_STV0680=m
+CONFIG_USB_GSPCA_SUNPLUS=m
+CONFIG_USB_GSPCA_T613=m
+CONFIG_USB_GSPCA_TOPRO=m
+CONFIG_USB_GSPCA_TOUPTEK=m
+CONFIG_USB_GSPCA_TV8532=m
+CONFIG_USB_GSPCA_VC032X=m
+CONFIG_USB_GSPCA_VICAM=m
+CONFIG_USB_GSPCA_XIRLINK_CIT=m
+CONFIG_USB_GSPCA_ZC3XX=m
+CONFIG_USB_GL860=m
+CONFIG_USB_M5602=m
+CONFIG_USB_STV06XX=m
+CONFIG_USB_PWC=m
+CONFIG_USB_PWC_INPUT_EVDEV=y
+CONFIG_USB_S2255=m
+CONFIG_VIDEO_USBTV=m
+CONFIG_USB_VIDEO_CLASS=m
+CONFIG_USB_VIDEO_CLASS_INPUT_EVDEV=y
+CONFIG_VIDEO_GO7007=m
+CONFIG_VIDEO_GO7007_USB=m
+CONFIG_VIDEO_GO7007_LOADER=m
+CONFIG_VIDEO_GO7007_USB_S2250_BOARD=m
+CONFIG_VIDEO_HDPVR=m
+CONFIG_VIDEO_PVRUSB2=m
+CONFIG_VIDEO_PVRUSB2_SYSFS=y
+CONFIG_VIDEO_PVRUSB2_DVB=y
+CONFIG_VIDEO_STK1160=m
+CONFIG_VIDEO_AU0828=m
+CONFIG_VIDEO_AU0828_V4L2=y
+CONFIG_VIDEO_AU0828_RC=y
+CONFIG_VIDEO_CX231XX=m
+CONFIG_VIDEO_CX231XX_RC=y
+CONFIG_VIDEO_CX231XX_ALSA=m
+CONFIG_VIDEO_CX231XX_DVB=m
+CONFIG_VIDEO_EM28XX=m
+CONFIG_VIDEO_EM28XX_V4L2=m
+CONFIG_VIDEO_EM28XX_ALSA=m
+CONFIG_VIDEO_EM28XX_DVB=m
+CONFIG_VIDEO_EM28XX_RC=m
+CONFIG_USB_AIRSPY=m
+CONFIG_USB_HACKRF=m
+CONFIG_USB_MSI2500=m
+CONFIG_VIDEO_MGB4=m
+CONFIG_VIDEO_SOLO6X10=m
+CONFIG_VIDEO_TW5864=m
+CONFIG_VIDEO_TW68=m
+CONFIG_VIDEO_TW686X=m
+CONFIG_VIDEO_DT3155=m
+CONFIG_VIDEO_IVTV=m
+CONFIG_VIDEO_IVTV_ALSA=m
+CONFIG_VIDEO_FB_IVTV=m
+CONFIG_VIDEO_FB_IVTV_FORCE_PAT=y
+CONFIG_VIDEO_HEXIUM_GEMINI=m
+CONFIG_VIDEO_HEXIUM_ORION=m
+CONFIG_VIDEO_MXB=m
+CONFIG_VIDEO_BT848=m
+CONFIG_VIDEO_COBALT=m
+CONFIG_VIDEO_CX18=m
+CONFIG_VIDEO_CX18_ALSA=m
+CONFIG_VIDEO_CX23885=m
+CONFIG_VIDEO_CX25821=m
+CONFIG_VIDEO_CX25821_ALSA=m
+CONFIG_VIDEO_CX88=m
+CONFIG_VIDEO_CX88_ALSA=m
+CONFIG_VIDEO_CX88_BLACKBIRD=m
+CONFIG_VIDEO_CX88_DVB=m
+CONFIG_VIDEO_CX88_ENABLE_VP3054=y
+CONFIG_VIDEO_CX88_VP3054=m
+CONFIG_VIDEO_CX88_MPEG=m
+CONFIG_VIDEO_SAA7134=m
+CONFIG_VIDEO_SAA7134_ALSA=m
+CONFIG_VIDEO_SAA7134_RC=y
+CONFIG_VIDEO_SAA7134_DVB=m
+CONFIG_VIDEO_SAA7134_GO7007=m
+CONFIG_VIDEO_SAA7164=m
+CONFIG_VIDEO_IPU3_CIO2=m
+CONFIG_VIDEO_INTEL_IPU6=m
+CONFIG_USB_DSBR=m
+CONFIG_USB_KEENE=m
+CONFIG_USB_MA901=m
+CONFIG_USB_MR800=m
+CONFIG_USB_RAREMONO=m
+CONFIG_USB_SI470X=m
+CONFIG_USB_SI4713=m
+CONFIG_VIDEO_MEM2MEM_DEINTERLACE=m
+CONFIG_VIDEO_CADENCE_CSI2RX=m
+CONFIG_VIDEO_CADENCE_CSI2TX=m
+CONFIG_VIDEO_CAFE_CCIC=m
+CONFIG_VIDEO_VIA_CAMERA=m
+CONFIG_VIDEO_VIM2M=m
+CONFIG_VIDEO_VICODEC=m
+CONFIG_VIDEO_VIMC=m
+CONFIG_VIDEO_VIVID=m
+CONFIG_VIDEO_VIVID_CEC=y
+CONFIG_VIDEO_VIVID_OSD=y
+CONFIG_VIDEO_VIVID_MAX_DEVS=64
+CONFIG_VIDEO_VISL=m
+CONFIG_VIDEO_CX2341X=m
+CONFIG_VIDEO_TVEEPROM=m
+CONFIG_VIDEO_SAA7146=m
+CONFIG_VIDEO_SAA7146_VV=m
+CONFIG_VIDEO_V4L2_TPG=m
+CONFIG_VIDEOBUF2_CORE=m
+CONFIG_VIDEOBUF2_V4L2=m
+CONFIG_VIDEOBUF2_MEMOPS=m
+CONFIG_VIDEOBUF2_DMA_CONTIG=m
+CONFIG_VIDEOBUF2_VMALLOC=m
+CONFIG_VIDEOBUF2_DMA_SG=m
+CONFIG_VIDEOBUF2_DVB=m
+CONFIG_VIDEO_IR_I2C=m
+CONFIG_VIDEO_CAMERA_SENSOR=y
+CONFIG_VIDEO_APTINA_PLL=m
+CONFIG_VIDEO_CCS_PLL=m
+CONFIG_VIDEO_ALVIUM_CSI2=m
+CONFIG_VIDEO_AR0521=m
+CONFIG_VIDEO_GC0308=m
+CONFIG_VIDEO_GC05A2=m
+CONFIG_VIDEO_GC08A3=m
+CONFIG_VIDEO_GC2145=m
+CONFIG_VIDEO_HI556=m
+CONFIG_VIDEO_HI846=m
+CONFIG_VIDEO_HI847=m
+CONFIG_VIDEO_IMX208=m
+CONFIG_VIDEO_IMX214=m
+CONFIG_VIDEO_IMX219=m
+CONFIG_VIDEO_IMX258=m
+CONFIG_VIDEO_IMX274=m
+CONFIG_VIDEO_IMX283=m
+CONFIG_VIDEO_IMX290=m
+CONFIG_VIDEO_IMX296=m
+CONFIG_VIDEO_IMX319=m
+CONFIG_VIDEO_IMX355=m
+CONFIG_VIDEO_MAX9271_LIB=m
+CONFIG_VIDEO_MT9M001=m
+CONFIG_VIDEO_MT9M111=m
+CONFIG_VIDEO_MT9M114=m
+CONFIG_VIDEO_MT9P031=m
+CONFIG_VIDEO_MT9T112=m
+CONFIG_VIDEO_MT9V011=m
+CONFIG_VIDEO_MT9V032=m
+CONFIG_VIDEO_MT9V111=m
+CONFIG_VIDEO_OG01A1B=m
+CONFIG_VIDEO_OV01A10=m
+CONFIG_VIDEO_OV02A10=m
+CONFIG_VIDEO_OV02E10=m
+CONFIG_VIDEO_OV02C10=m
+CONFIG_VIDEO_OV08D10=m
+CONFIG_VIDEO_OV08X40=m
+CONFIG_VIDEO_OV13858=m
+CONFIG_VIDEO_OV13B10=m
+CONFIG_VIDEO_OV2640=m
+CONFIG_VIDEO_OV2659=m
+CONFIG_VIDEO_OV2680=m
+CONFIG_VIDEO_OV2685=m
+CONFIG_VIDEO_OV2740=m
+CONFIG_VIDEO_OV4689=m
+CONFIG_VIDEO_OV5647=m
+CONFIG_VIDEO_OV5648=m
+CONFIG_VIDEO_OV5670=m
+CONFIG_VIDEO_OV5675=m
+CONFIG_VIDEO_OV5693=m
+CONFIG_VIDEO_OV5695=m
+CONFIG_VIDEO_OV64A40=m
+CONFIG_VIDEO_OV6650=m
+CONFIG_VIDEO_OV7251=m
+CONFIG_VIDEO_OV7640=m
+CONFIG_VIDEO_OV7670=m
+CONFIG_VIDEO_OV772X=m
+CONFIG_VIDEO_OV7740=m
+CONFIG_VIDEO_OV8856=m
+CONFIG_VIDEO_OV8858=m
+CONFIG_VIDEO_OV8865=m
+CONFIG_VIDEO_OV9640=m
+CONFIG_VIDEO_OV9650=m
+CONFIG_VIDEO_OV9734=m
+CONFIG_VIDEO_RDACM20=m
+CONFIG_VIDEO_RDACM21=m
+CONFIG_VIDEO_RJ54N1=m
+CONFIG_VIDEO_S5C73M3=m
+CONFIG_VIDEO_S5K5BAF=m
+CONFIG_VIDEO_S5K6A3=m
+CONFIG_VIDEO_VD55G1=m
+CONFIG_VIDEO_VD56G3=m
+CONFIG_VIDEO_CCS=m
+CONFIG_VIDEO_ET8EK8=m
+CONFIG_VIDEO_THP7312=m
+CONFIG_VIDEO_CAMERA_LENS=y
+CONFIG_VIDEO_AD5820=m
+CONFIG_VIDEO_AK7375=m
+CONFIG_VIDEO_DW9714=m
+CONFIG_VIDEO_DW9719=m
+CONFIG_VIDEO_DW9768=m
+CONFIG_VIDEO_DW9807_VCM=m
+CONFIG_VIDEO_ADP1653=m
+CONFIG_VIDEO_LM3560=m
+CONFIG_VIDEO_LM3646=m
+CONFIG_VIDEO_CS3308=m
+CONFIG_VIDEO_CS5345=m
+CONFIG_VIDEO_CS53L32A=m
+CONFIG_VIDEO_MSP3400=m
+CONFIG_VIDEO_SONY_BTF_MPX=m
+CONFIG_VIDEO_TDA1997X=m
+CONFIG_VIDEO_TDA7432=m
+CONFIG_VIDEO_TDA9840=m
+CONFIG_VIDEO_TEA6415C=m
+CONFIG_VIDEO_TEA6420=m
+CONFIG_VIDEO_TLV320AIC23B=m
+CONFIG_VIDEO_TVAUDIO=m
+CONFIG_VIDEO_UDA1342=m
+CONFIG_VIDEO_VP27SMPX=m
+CONFIG_VIDEO_WM8739=m
+CONFIG_VIDEO_WM8775=m
+CONFIG_VIDEO_SAA6588=m
+CONFIG_VIDEO_ADV7180=m
+CONFIG_VIDEO_ADV7183=m
+CONFIG_VIDEO_ADV7604=m
+CONFIG_VIDEO_ADV7604_CEC=y
+CONFIG_VIDEO_ADV7842=m
+CONFIG_VIDEO_ADV7842_CEC=y
+CONFIG_VIDEO_BT819=m
+CONFIG_VIDEO_BT856=m
+CONFIG_VIDEO_BT866=m
+CONFIG_VIDEO_LT6911UXE=m
+CONFIG_VIDEO_KS0127=m
+CONFIG_VIDEO_ML86V7667=m
+CONFIG_VIDEO_SAA7110=m
+CONFIG_VIDEO_SAA711X=m
+CONFIG_VIDEO_TC358743=m
+CONFIG_VIDEO_TC358743_CEC=y
+CONFIG_VIDEO_TC358746=m
+CONFIG_VIDEO_TVP514X=m
+CONFIG_VIDEO_TVP5150=m
+CONFIG_VIDEO_TVP7002=m
+CONFIG_VIDEO_TW2804=m
+CONFIG_VIDEO_TW9900=m
+CONFIG_VIDEO_TW9903=m
+CONFIG_VIDEO_TW9906=m
+CONFIG_VIDEO_TW9910=m
+CONFIG_VIDEO_VPX3220=m
+CONFIG_VIDEO_SAA717X=m
+CONFIG_VIDEO_CX25840=m
+CONFIG_VIDEO_ADV7170=m
+CONFIG_VIDEO_ADV7175=m
+CONFIG_VIDEO_ADV7343=m
+CONFIG_VIDEO_ADV7393=m
+CONFIG_VIDEO_ADV7511=m
+CONFIG_VIDEO_AK881X=m
+CONFIG_VIDEO_SAA7127=m
+CONFIG_VIDEO_SAA7185=m
+CONFIG_VIDEO_THS8200=m
+CONFIG_VIDEO_UPD64031A=m
+CONFIG_VIDEO_UPD64083=m
+CONFIG_VIDEO_SAA6752HS=m
+CONFIG_VIDEO_I2C=m
+CONFIG_VIDEO_M52790=m
+CONFIG_VIDEO_ST_MIPID02=m
+CONFIG_VIDEO_THS7303=m
+CONFIG_VIDEO_MAX96717=m
+CONFIG_VIDEO_GS1662=m
+CONFIG_VIDEO=y
+CONFIG_DRM=y
+CONFIG_DRM_MIPI_DBI=m
+CONFIG_DRM_MIPI_DSI=y
+CONFIG_DRM_KMS_HELPER=y
+CONFIG_DRM_DRAW=y
+CONFIG_DRM_PANIC=y
+CONFIG_DRM_PANIC_FOREGROUND_COLOR=0xffffff
+CONFIG_DRM_PANIC_BACKGROUND_COLOR=0x5e2750
+CONFIG_DRM_PANIC_SCREEN="user"
+CONFIG_DRM_CLIENT=y
+CONFIG_DRM_CLIENT_LIB=y
+CONFIG_DRM_CLIENT_SELECTION=y
+CONFIG_DRM_CLIENT_SETUP=y
+CONFIG_DRM_FBDEV_EMULATION=y
+CONFIG_DRM_FBDEV_OVERALLOC=100
+CONFIG_DRM_CLIENT_LOG=y
+CONFIG_DRM_CLIENT_DEFAULT_FBDEV=y
+CONFIG_DRM_CLIENT_DEFAULT="fbdev"
+CONFIG_DRM_LOAD_EDID_FIRMWARE=y
+CONFIG_DRM_DISPLAY_HELPER=m
+CONFIG_DRM_DISPLAY_DP_AUX_CEC=y
+CONFIG_DRM_DISPLAY_DP_AUX_CHARDEV=y
+CONFIG_DRM_DISPLAY_DP_HELPER=y
+CONFIG_DRM_DISPLAY_DP_TUNNEL=y
+CONFIG_DRM_DISPLAY_DSC_HELPER=y
+CONFIG_DRM_DISPLAY_HDCP_HELPER=y
+CONFIG_DRM_DISPLAY_HDMI_CEC_NOTIFIER_HELPER=y
+CONFIG_DRM_DISPLAY_HDMI_HELPER=y
+CONFIG_DRM_TTM=m
+CONFIG_DRM_EXEC=m
+CONFIG_DRM_GPUVM=m
+CONFIG_DRM_GPUSVM=m
+CONFIG_DRM_BUDDY=m
+CONFIG_DRM_VRAM_HELPER=m
+CONFIG_DRM_TTM_HELPER=m
+CONFIG_DRM_GEM_DMA_HELPER=m
+CONFIG_DRM_GEM_SHMEM_HELPER=y
+CONFIG_DRM_SUBALLOC_HELPER=m
+CONFIG_DRM_SCHED=m
+CONFIG_DRM_SYSFB_HELPER=y
+CONFIG_DRM_SIMPLEDRM=y
+CONFIG_DRM_RADEON=m
+CONFIG_DRM_AMDGPU=m
+CONFIG_DRM_AMDGPU_SI=y
+CONFIG_DRM_AMDGPU_CIK=y
+CONFIG_DRM_AMDGPU_USERPTR=y
+CONFIG_DRM_AMD_ISP=y
+CONFIG_DRM_AMD_ACP=y
+CONFIG_DRM_AMD_DC=y
+CONFIG_DRM_AMD_DC_FP=y
+CONFIG_DRM_AMD_DC_SI=y
+CONFIG_DRM_AMD_SECURE_DISPLAY=y
+CONFIG_DRM_NOUVEAU=m
+CONFIG_DRM_NOUVEAU_BACKLIGHT=y
+CONFIG_DRM_NOUVEAU_CH7006=m
+CONFIG_DRM_NOUVEAU_SIL164=m
+CONFIG_DRM_I915=m
+CONFIG_DRM_I915_FORCE_PROBE=""
+CONFIG_DRM_I915_CAPTURE_ERROR=y
+CONFIG_DRM_I915_COMPRESS_ERROR=y
+CONFIG_DRM_I915_USERPTR=y
+CONFIG_DRM_I915_GVT_KVMGT=m
+CONFIG_DRM_I915_PXP=y
+CONFIG_DRM_I915_DP_TUNNEL=y
+CONFIG_DRM_I915_REQUEST_TIMEOUT=20000
+CONFIG_DRM_I915_FENCE_TIMEOUT=10000
+CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND=250
+CONFIG_DRM_I915_HEARTBEAT_INTERVAL=2500
+CONFIG_DRM_I915_PREEMPT_TIMEOUT=640
+CONFIG_DRM_I915_PREEMPT_TIMEOUT_COMPUTE=7500
+CONFIG_DRM_I915_MAX_REQUEST_BUSYWAIT=8000
+CONFIG_DRM_I915_STOP_TIMEOUT=100
+CONFIG_DRM_I915_TIMESLICE_DURATION=1
+CONFIG_DRM_I915_GVT=y
+CONFIG_DRM_XE=m
+CONFIG_DRM_XE_DISPLAY=y
+CONFIG_DRM_XE_DP_TUNNEL=y
+CONFIG_DRM_XE_GPUSVM=y
+CONFIG_DRM_XE_PAGEMAP=y
+CONFIG_DRM_XE_FORCE_PROBE=""
+CONFIG_DRM_XE_JOB_TIMEOUT_MAX=10000
+CONFIG_DRM_XE_JOB_TIMEOUT_MIN=1
+CONFIG_DRM_XE_TIMESLICE_MAX=10000000
+CONFIG_DRM_XE_TIMESLICE_MIN=1
+CONFIG_DRM_XE_PREEMPT_TIMEOUT=640000
+CONFIG_DRM_XE_PREEMPT_TIMEOUT_MAX=10000000
+CONFIG_DRM_XE_PREEMPT_TIMEOUT_MIN=1
+CONFIG_DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT=y
+CONFIG_DRM_VGEM=m
+CONFIG_DRM_VKMS=m
+CONFIG_DRM_VMWGFX=m
+CONFIG_DRM_GMA500=m
+CONFIG_DRM_UDL=m
+CONFIG_DRM_AST=m
+CONFIG_DRM_MGAG200=m
+CONFIG_DRM_QXL=m
+CONFIG_DRM_VIRTIO_GPU=m
+CONFIG_DRM_VIRTIO_GPU_KMS=y
+CONFIG_DRM_PANEL=y
+CONFIG_DRM_PANEL_AUO_A030JTN01=m
+CONFIG_DRM_PANEL_ILITEK_ILI9341=m
+CONFIG_DRM_PANEL_ORISETECH_OTA5601A=m
+CONFIG_DRM_PANEL_RASPBERRYPI_TOUCHSCREEN=m
+CONFIG_DRM_PANEL_WIDECHIPS_WS2401=m
+CONFIG_DRM_BRIDGE=y
+CONFIG_DRM_PANEL_BRIDGE=y
+CONFIG_DRM_I2C_NXP_TDA998X=m
+CONFIG_DRM_ANALOGIX_ANX78XX=m
+CONFIG_DRM_ANALOGIX_DP=m
+CONFIG_DRM_APPLETBDRM=m
+CONFIG_DRM_BOCHS=m
+CONFIG_DRM_CIRRUS_QEMU=m
+CONFIG_DRM_GM12U320=m
+CONFIG_DRM_PANEL_MIPI_DBI=m
+CONFIG_DRM_XEN=y
+CONFIG_DRM_XEN_FRONTEND=m
+CONFIG_DRM_VBOXVIDEO=m
+CONFIG_DRM_GUD=m
+CONFIG_DRM_ST7571_I2C=m
+CONFIG_DRM_ST7586=m
+CONFIG_DRM_ST7735R=m
+CONFIG_DRM_SSD130X=m
+CONFIG_DRM_SSD130X_I2C=m
+CONFIG_DRM_SSD130X_SPI=m
+CONFIG_DRM_HYPERV=m
+CONFIG_DRM_PANEL_BACKLIGHT_QUIRKS=m
+CONFIG_DRM_PRIVACY_SCREEN=y
+CONFIG_DRM_PANEL_ORIENTATION_QUIRKS=y
+CONFIG_BACKLIGHT_CLASS_DEVICE=y
+CONFIG_BACKLIGHT_KTD253=m
+CONFIG_BACKLIGHT_KTD2801=m
+CONFIG_BACKLIGHT_KTZ8866=m
+CONFIG_BACKLIGHT_LM3533=m
+CONFIG_BACKLIGHT_PWM=m
+CONFIG_BACKLIGHT_DA903X=m
+CONFIG_BACKLIGHT_DA9052=m
+CONFIG_BACKLIGHT_MAX8925=m
+CONFIG_BACKLIGHT_MT6370=m
+CONFIG_BACKLIGHT_APPLE=m
+CONFIG_BACKLIGHT_QCOM_WLED=m
+CONFIG_BACKLIGHT_RT4831=m
+CONFIG_BACKLIGHT_SAHARA=m
+CONFIG_BACKLIGHT_WM831X=m
+CONFIG_BACKLIGHT_ADP5520=m
+CONFIG_BACKLIGHT_ADP8860=m
+CONFIG_BACKLIGHT_ADP8870=m
+CONFIG_BACKLIGHT_88PM860X=m
+CONFIG_BACKLIGHT_AAT2870=m
+CONFIG_BACKLIGHT_LM3509=m
+CONFIG_BACKLIGHT_LM3630A=m
+CONFIG_BACKLIGHT_LM3639=m
+CONFIG_BACKLIGHT_LP855X=m
+CONFIG_BACKLIGHT_LP8788=m
+CONFIG_BACKLIGHT_MP3309C=m
+CONFIG_BACKLIGHT_PANDORA=m
+CONFIG_BACKLIGHT_SKY81452=m
+CONFIG_BACKLIGHT_AS3711=m
+CONFIG_BACKLIGHT_GPIO=m
+CONFIG_BACKLIGHT_LV5207LP=m
+CONFIG_BACKLIGHT_BD6107=m
+CONFIG_BACKLIGHT_ARCXCNN=m
+CONFIG_BACKLIGHT_RAVE_SP=m
+CONFIG_VIDEOMODE_HELPERS=y
+CONFIG_DRM_ACCEL=y
+CONFIG_DRM_ACCEL_AMDXDNA=m
+CONFIG_DRM_ACCEL_HABANALABS=m
+CONFIG_DRM_ACCEL_IVPU=m
+CONFIG_DRM_ACCEL_QAIC=m
+CONFIG_SOUND=m
+CONFIG_SOUND_OSS_CORE=y
+CONFIG_HID_SUPPORT=y
+CONFIG_HID=m
+CONFIG_HID_BATTERY_STRENGTH=y
+CONFIG_HIDRAW=y
+CONFIG_HID_GENERIC=m
+CONFIG_HID_A4TECH=m
+CONFIG_HID_ACCUTOUCH=m
+CONFIG_HID_ACRUX=m
+CONFIG_HID_ACRUX_FF=y
+CONFIG_HID_APPLE=m
+CONFIG_HID_APPLEIR=m
+CONFIG_HID_APPLETB_BL=m
+CONFIG_HID_APPLETB_KBD=m
+CONFIG_HID_ASUS=m
+CONFIG_HID_AUREAL=m
+CONFIG_HID_BELKIN=m
+CONFIG_HID_BETOP_FF=m
+CONFIG_HID_BIGBEN_FF=m
+CONFIG_HID_CHERRY=m
+CONFIG_HID_CHICONY=m
+CONFIG_HID_CORSAIR=m
+CONFIG_HID_COUGAR=m
+CONFIG_HID_MACALLY=m
+CONFIG_HID_PRODIKEYS=m
+CONFIG_HID_CMEDIA=m
+CONFIG_HID_CP2112=m
+CONFIG_HID_CREATIVE_SB0540=m
+CONFIG_HID_CYPRESS=m
+CONFIG_HID_DRAGONRISE=m
+CONFIG_HID_EMS_FF=m
+CONFIG_HID_ELAN=m
+CONFIG_HID_ELECOM=m
+CONFIG_HID_ELO=m
+CONFIG_HID_EVISION=m
+CONFIG_HID_EZKEY=m
+CONFIG_HID_FT260=m
+CONFIG_HID_GEMBIRD=m
+CONFIG_HID_GFRM=m
+CONFIG_HID_GLORIOUS=m
+CONFIG_HID_HOLTEK=m
+CONFIG_HID_VIVALDI_COMMON=m
+CONFIG_HID_GOODIX_SPI=m
+CONFIG_HID_GOOGLE_HAMMER=m
+CONFIG_HID_GOOGLE_STADIA_FF=m
+CONFIG_HID_VIVALDI=m
+CONFIG_HID_GT683R=m
+CONFIG_HID_KEYTOUCH=m
+CONFIG_HID_KYE=m
+CONFIG_HID_KYSONA=m
+CONFIG_HID_UCLOGIC=m
+CONFIG_HID_WALTOP=m
+CONFIG_HID_VIEWSONIC=m
+CONFIG_HID_VRC2=m
+CONFIG_HID_XIAOMI=m
+CONFIG_HID_GYRATION=m
+CONFIG_HID_ICADE=m
+CONFIG_HID_ITE=m
+CONFIG_HID_JABRA=m
+CONFIG_HID_TWINHAN=m
+CONFIG_HID_KENSINGTON=m
+CONFIG_HID_LCPOWER=m
+CONFIG_HID_LED=m
+CONFIG_HID_LENOVO=m
+CONFIG_HID_LETSKETCH=m
+CONFIG_HID_LOGITECH=m
+CONFIG_HID_LOGITECH_DJ=m
+CONFIG_HID_LOGITECH_HIDPP=m
+CONFIG_HID_MAGICMOUSE=m
+CONFIG_HID_MALTRON=m
+CONFIG_HID_MAYFLASH=m
+CONFIG_HID_MEGAWORLD_FF=m
+CONFIG_HID_REDRAGON=m
+CONFIG_HID_MICROSOFT=m
+CONFIG_HID_MONTEREY=m
+CONFIG_HID_MULTITOUCH=m
+CONFIG_HID_NINTENDO=m
+CONFIG_HID_NTI=m
+CONFIG_HID_NTRIG=m
+CONFIG_HID_NVIDIA_SHIELD=m
+CONFIG_HID_ORTEK=m
+CONFIG_HID_PANTHERLORD=m
+CONFIG_HID_PENMOUNT=m
+CONFIG_HID_PETALYNX=m
+CONFIG_HID_PICOLCD=m
+CONFIG_HID_PICOLCD_FB=y
+CONFIG_HID_PICOLCD_BACKLIGHT=y
+CONFIG_HID_PICOLCD_LCD=y
+CONFIG_HID_PICOLCD_LEDS=y
+CONFIG_HID_PICOLCD_CIR=y
+CONFIG_HID_PLANTRONICS=m
+CONFIG_HID_PLAYSTATION=m
+CONFIG_HID_PXRC=m
+CONFIG_HID_RAZER=m
+CONFIG_HID_PRIMAX=m
+CONFIG_HID_RETRODE=m
+CONFIG_HID_ROCCAT=m
+CONFIG_HID_SAITEK=m
+CONFIG_HID_SAMSUNG=m
+CONFIG_HID_SEMITEK=m
+CONFIG_HID_SIGMAMICRO=m
+CONFIG_HID_SONY=m
+CONFIG_HID_SPEEDLINK=m
+CONFIG_HID_STEAM=m
+CONFIG_HID_STEELSERIES=m
+CONFIG_HID_SUNPLUS=m
+CONFIG_HID_RMI=m
+CONFIG_HID_GREENASIA=m
+CONFIG_HID_HYPERV_MOUSE=m
+CONFIG_HID_SMARTJOYPLUS=m
+CONFIG_HID_TIVO=m
+CONFIG_HID_TOPSEED=m
+CONFIG_HID_TOPRE=m
+CONFIG_HID_THINGM=m
+CONFIG_HID_THRUSTMASTER=m
+CONFIG_HID_UDRAW_PS3=m
+CONFIG_HID_U2FZERO=m
+CONFIG_HID_UNIVERSAL_PIDFF=m
+CONFIG_HID_WACOM=m
+CONFIG_HID_WIIMOTE=m
+CONFIG_HID_WINWING=m
+CONFIG_HID_XINMO=m
+CONFIG_HID_ZEROPLUS=m
+CONFIG_HID_ZYDACRON=m
+CONFIG_HID_SENSOR_HUB=m
+CONFIG_HID_SENSOR_CUSTOM_SENSOR=m
+CONFIG_HID_ALPS=m
+CONFIG_HID_MCP2200=m
+CONFIG_HID_MCP2221=m
+CONFIG_HID_BPF=y
+CONFIG_USB_HID=m
+CONFIG_HID_PID=y
+CONFIG_USB_HIDDEV=y
+CONFIG_USB_KBD=m
+CONFIG_USB_MOUSE=m
+CONFIG_USB_OHCI_LITTLE_ENDIAN=y
+CONFIG_USB_SUPPORT=y
+CONFIG_USB_COMMON=y
+CONFIG_USB_LED_TRIG=y
+CONFIG_USB_ULPI_BUS=m
+CONFIG_USB_CONN_GPIO=m
+CONFIG_USB_ARCH_HAS_HCD=y
+CONFIG_USB=y
+CONFIG_USB_PCI=y
+CONFIG_USB_PCI_AMD=y
+CONFIG_USB_ANNOUNCE_NEW_DEVICES=y
+CONFIG_USB_DEFAULT_PERSIST=y
+CONFIG_USB_DYNAMIC_MINORS=y
+CONFIG_USB_LEDS_TRIGGER_USBPORT=m
+CONFIG_USB_AUTOSUSPEND_DELAY=2
+CONFIG_USB_DEFAULT_AUTHORIZATION_MODE=1
+CONFIG_USB_MON=m
+CONFIG_USB_C67X00_HCD=m
+CONFIG_USB_XHCI_HCD=y
+CONFIG_USB_XHCI_DBGCAP=y
+CONFIG_USB_XHCI_PCI=y
+CONFIG_USB_XHCI_PCI_RENESAS=m
+CONFIG_USB_XHCI_PLATFORM=m
+CONFIG_USB_XHCI_SIDEBAND=y
+CONFIG_USB_EHCI_HCD=y
+CONFIG_USB_EHCI_ROOT_HUB_TT=y
+CONFIG_USB_EHCI_TT_NEWSCHED=y
+CONFIG_USB_EHCI_PCI=y
+CONFIG_USB_EHCI_FSL=m
+CONFIG_USB_EHCI_HCD_PLATFORM=y
+CONFIG_USB_OXU210HP_HCD=m
+CONFIG_USB_ISP116X_HCD=m
+CONFIG_USB_MAX3421_HCD=m
+CONFIG_USB_OHCI_HCD=y
+CONFIG_USB_OHCI_HCD_PCI=y
+CONFIG_USB_OHCI_HCD_PLATFORM=y
+CONFIG_USB_UHCI_HCD=y
+CONFIG_USB_SL811_HCD=m
+CONFIG_USB_SL811_HCD_ISO=y
+CONFIG_USB_SL811_CS=m
+CONFIG_USB_R8A66597_HCD=m
+CONFIG_USB_HCD_BCMA=m
+CONFIG_USB_HCD_SSB=m
+CONFIG_USB_XEN_HCD=m
+CONFIG_USB_ACM=m
+CONFIG_USB_PRINTER=m
+CONFIG_USB_WDM=m
+CONFIG_USB_TMC=m
+CONFIG_USB_STORAGE=m
+CONFIG_USB_STORAGE_REALTEK=m
+CONFIG_USB_STORAGE_DATAFAB=m
+CONFIG_USB_STORAGE_FREECOM=m
+CONFIG_USB_STORAGE_ISD200=m
+CONFIG_USB_STORAGE_USBAT=m
+CONFIG_USB_STORAGE_SDDR09=m
+CONFIG_USB_STORAGE_SDDR55=m
+CONFIG_USB_STORAGE_JUMPSHOT=m
+CONFIG_USB_STORAGE_ALAUDA=m
+CONFIG_USB_STORAGE_ONETOUCH=m
+CONFIG_USB_STORAGE_KARMA=m
+CONFIG_USB_STORAGE_CYPRESS_ATACB=m
+CONFIG_USB_STORAGE_ENE_UB6250=m
+CONFIG_USB_UAS=m
+CONFIG_USB_MDC800=m
+CONFIG_USB_MICROTEK=m
+CONFIG_USBIP_CORE=m
+CONFIG_USBIP_VHCI_HCD=m
+CONFIG_USBIP_VHCI_HC_PORTS=8
+CONFIG_USBIP_VHCI_NR_HCS=1
+CONFIG_USBIP_HOST=m
+CONFIG_USBIP_VUDC=m
+CONFIG_USB_CDNS_SUPPORT=m
+CONFIG_USB_CDNS_HOST=y
+CONFIG_USB_CDNS3=m
+CONFIG_USB_CDNS3_GADGET=y
+CONFIG_USB_CDNS3_HOST=y
+CONFIG_USB_CDNS3_PCI_WRAP=m
+CONFIG_USB_CDNSP_PCI=m
+CONFIG_USB_CDNSP_GADGET=y
+CONFIG_USB_CDNSP_HOST=y
+CONFIG_USB_MUSB_HDRC=m
+CONFIG_USB_MUSB_DUAL_ROLE=y
+CONFIG_USB_DWC3=m
+CONFIG_USB_DWC3_ULPI=y
+CONFIG_USB_DWC3_DUAL_ROLE=y
+CONFIG_USB_DWC3_PCI=m
+CONFIG_USB_DWC3_HAPS=m
+CONFIG_USB_DWC2=y
+CONFIG_USB_DWC2_HOST=y
+CONFIG_USB_DWC2_PCI=m
+CONFIG_USB_CHIPIDEA=m
+CONFIG_USB_CHIPIDEA_UDC=y
+CONFIG_USB_CHIPIDEA_HOST=y
+CONFIG_USB_CHIPIDEA_PCI=m
+CONFIG_USB_CHIPIDEA_MSM=m
+CONFIG_USB_CHIPIDEA_NPCM=m
+CONFIG_USB_CHIPIDEA_GENERIC=m
+CONFIG_USB_ISP1760=m
+CONFIG_USB_ISP1760_HCD=y
+CONFIG_USB_ISP1761_UDC=y
+CONFIG_USB_ISP1760_DUAL_ROLE=y
+CONFIG_USB_SERIAL=m
+CONFIG_USB_SERIAL_GENERIC=y
+CONFIG_USB_SERIAL_SIMPLE=m
+CONFIG_USB_SERIAL_AIRCABLE=m
+CONFIG_USB_SERIAL_ARK3116=m
+CONFIG_USB_SERIAL_BELKIN=m
+CONFIG_USB_SERIAL_CH341=m
+CONFIG_USB_SERIAL_WHITEHEAT=m
+CONFIG_USB_SERIAL_DIGI_ACCELEPORT=m
+CONFIG_USB_SERIAL_CP210X=m
+CONFIG_USB_SERIAL_CYPRESS_M8=m
+CONFIG_USB_SERIAL_EMPEG=m
+CONFIG_USB_SERIAL_FTDI_SIO=m
+CONFIG_USB_SERIAL_VISOR=m
+CONFIG_USB_SERIAL_IPAQ=m
+CONFIG_USB_SERIAL_IR=m
+CONFIG_USB_SERIAL_EDGEPORT=m
+CONFIG_USB_SERIAL_EDGEPORT_TI=m
+CONFIG_USB_SERIAL_F81232=m
+CONFIG_USB_SERIAL_F8153X=m
+CONFIG_USB_SERIAL_GARMIN=m
+CONFIG_USB_SERIAL_IPW=m
+CONFIG_USB_SERIAL_IUU=m
+CONFIG_USB_SERIAL_KEYSPAN_PDA=m
+CONFIG_USB_SERIAL_KEYSPAN=m
+CONFIG_USB_SERIAL_KLSI=m
+CONFIG_USB_SERIAL_KOBIL_SCT=m
+CONFIG_USB_SERIAL_MCT_U232=m
+CONFIG_USB_SERIAL_METRO=m
+CONFIG_USB_SERIAL_MOS7720=m
+CONFIG_USB_SERIAL_MOS7715_PARPORT=y
+CONFIG_USB_SERIAL_MOS7840=m
+CONFIG_USB_SERIAL_MXUPORT=m
+CONFIG_USB_SERIAL_NAVMAN=m
+CONFIG_USB_SERIAL_PL2303=m
+CONFIG_USB_SERIAL_OTI6858=m
+CONFIG_USB_SERIAL_QCAUX=m
+CONFIG_USB_SERIAL_QUALCOMM=m
+CONFIG_USB_SERIAL_SPCP8X5=m
+CONFIG_USB_SERIAL_SAFE=m
+CONFIG_USB_SERIAL_SIERRAWIRELESS=m
+CONFIG_USB_SERIAL_SYMBOL=m
+CONFIG_USB_SERIAL_TI=m
+CONFIG_USB_SERIAL_CYBERJACK=m
+CONFIG_USB_SERIAL_WWAN=m
+CONFIG_USB_SERIAL_OPTION=m
+CONFIG_USB_SERIAL_OMNINET=m
+CONFIG_USB_SERIAL_OPTICON=m
+CONFIG_USB_SERIAL_XSENS_MT=m
+CONFIG_USB_SERIAL_WISHBONE=m
+CONFIG_USB_SERIAL_SSU100=m
+CONFIG_USB_SERIAL_QT2=m
+CONFIG_USB_SERIAL_UPD78F0730=m
+CONFIG_USB_SERIAL_XR=m
+CONFIG_USB_SERIAL_DEBUG=m
+CONFIG_USB_USS720=m
+CONFIG_USB_EMI62=m
+CONFIG_USB_EMI26=m
+CONFIG_USB_ADUTUX=m
+CONFIG_USB_SEVSEG=m
+CONFIG_USB_LEGOTOWER=m
+CONFIG_USB_LCD=m
+CONFIG_USB_CYPRESS_CY7C63=m
+CONFIG_USB_CYTHERM=m
+CONFIG_USB_IDMOUSE=m
+CONFIG_USB_APPLEDISPLAY=m
+CONFIG_USB_LJCA=m
+CONFIG_USB_SISUSBVGA=m
+CONFIG_USB_LD=m
+CONFIG_USB_TRANCEVIBRATOR=m
+CONFIG_USB_IOWARRIOR=m
+CONFIG_USB_TEST=m
+CONFIG_USB_EHSET_TEST_FIXTURE=m
+CONFIG_USB_ISIGHTFW=m
+CONFIG_USB_YUREX=m
+CONFIG_USB_EZUSB_FX2=m
+CONFIG_USB_HUB_USB251XB=m
+CONFIG_USB_HSIC_USB3503=m
+CONFIG_USB_HSIC_USB4604=m
+CONFIG_USB_LINK_LAYER_TEST=m
+CONFIG_USB_CHAOSKEY=m
+CONFIG_USB_ATM=m
+CONFIG_USB_SPEEDTOUCH=m
+CONFIG_USB_CXACRU=m
+CONFIG_USB_UEAGLEATM=m
+CONFIG_USB_XUSBATM=m
+CONFIG_USB_PHY=y
+CONFIG_USB_GPIO_VBUS=m
+CONFIG_USB_ISP1301=m
+CONFIG_USB_GADGET=m
+CONFIG_USB_GADGET_VBUS_DRAW=2
+CONFIG_USB_GADGET_STORAGE_NUM_BUFFERS=2
+CONFIG_USB_GR_UDC=m
+CONFIG_USB_R8A66597=m
+CONFIG_USB_PXA27X=m
+CONFIG_USB_SNP_CORE=m
+CONFIG_USB_BDC_UDC=m
+CONFIG_USB_AMD5536UDC=m
+CONFIG_USB_NET2280=m
+CONFIG_USB_GOKU=m
+CONFIG_USB_EG20T=m
+CONFIG_USB_MAX3420_UDC=m
+CONFIG_USB_CDNS2_UDC=m
+CONFIG_USB_LIBCOMPOSITE=m
+CONFIG_USB_F_ACM=m
+CONFIG_USB_F_SS_LB=m
+CONFIG_USB_U_SERIAL=m
+CONFIG_USB_U_ETHER=m
+CONFIG_USB_U_AUDIO=m
+CONFIG_USB_F_SERIAL=m
+CONFIG_USB_F_OBEX=m
+CONFIG_USB_F_NCM=m
+CONFIG_USB_F_ECM=m
+CONFIG_USB_F_PHONET=m
+CONFIG_USB_F_EEM=m
+CONFIG_USB_F_SUBSET=m
+CONFIG_USB_F_RNDIS=m
+CONFIG_USB_F_MASS_STORAGE=m
+CONFIG_USB_F_FS=m
+CONFIG_USB_F_UAC1=m
+CONFIG_USB_F_UAC1_LEGACY=m
+CONFIG_USB_F_UAC2=m
+CONFIG_USB_F_UVC=m
+CONFIG_USB_F_MIDI=m
+CONFIG_USB_F_MIDI2=m
+CONFIG_USB_F_HID=m
+CONFIG_USB_F_PRINTER=m
+CONFIG_USB_F_TCM=m
+CONFIG_USB_CONFIGFS=m
+CONFIG_USB_CONFIGFS_SERIAL=y
+CONFIG_USB_CONFIGFS_ACM=y
+CONFIG_USB_CONFIGFS_OBEX=y
+CONFIG_USB_CONFIGFS_NCM=y
+CONFIG_USB_CONFIGFS_ECM=y
+CONFIG_USB_CONFIGFS_ECM_SUBSET=y
+CONFIG_USB_CONFIGFS_RNDIS=y
+CONFIG_USB_CONFIGFS_EEM=y
+CONFIG_USB_CONFIGFS_PHONET=y
+CONFIG_USB_CONFIGFS_MASS_STORAGE=y
+CONFIG_USB_CONFIGFS_F_LB_SS=y
+CONFIG_USB_CONFIGFS_F_FS=y
+CONFIG_USB_CONFIGFS_F_UAC1=y
+CONFIG_USB_CONFIGFS_F_UAC1_LEGACY=y
+CONFIG_USB_CONFIGFS_F_UAC2=y
+CONFIG_USB_CONFIGFS_F_MIDI=y
+CONFIG_USB_CONFIGFS_F_MIDI2=y
+CONFIG_USB_CONFIGFS_F_HID=y
+CONFIG_USB_CONFIGFS_F_UVC=y
+CONFIG_USB_CONFIGFS_F_PRINTER=y
+CONFIG_USB_CONFIGFS_F_TCM=y
+CONFIG_USB_ZERO=m
+CONFIG_USB_AUDIO=m
+CONFIG_USB_ETH=m
+CONFIG_USB_ETH_RNDIS=y
+CONFIG_USB_ETH_EEM=y
+CONFIG_USB_G_NCM=m
+CONFIG_USB_GADGETFS=m
+CONFIG_USB_FUNCTIONFS=m
+CONFIG_USB_FUNCTIONFS_ETH=y
+CONFIG_USB_FUNCTIONFS_RNDIS=y
+CONFIG_USB_FUNCTIONFS_GENERIC=y
+CONFIG_USB_MASS_STORAGE=m
+CONFIG_USB_GADGET_TARGET=m
+CONFIG_USB_G_SERIAL=m
+CONFIG_USB_MIDI_GADGET=m
+CONFIG_USB_G_PRINTER=m
+CONFIG_USB_CDC_COMPOSITE=m
+CONFIG_USB_G_NOKIA=m
+CONFIG_USB_G_ACM_MS=m
+CONFIG_USB_G_HID=m
+CONFIG_USB_G_DBGP=m
+CONFIG_USB_G_DBGP_SERIAL=y
+CONFIG_USB_G_WEBCAM=m
+CONFIG_USB_RAW_GADGET=m
+CONFIG_USB_ROLE_SWITCH=y
+CONFIG_USB_ROLES_INTEL_XHCI=m
+CONFIG_VIDEO_IPU3_IMGU=m
+CONFIG_VIDEO_INTEL_IPU7=m
+CONFIG_ACPI_WMI=m
+CONFIG_ACPI_WMI_LEGACY_DEVICE_NAMES=y
+CONFIG_WIRELESS_HOTKEY=m
+CONFIG_ACPI_QUICKSTART=m
+CONFIG_ACPI_TOSHIBA=m
+CONFIG_ACPI_CMPC=m
+CONFIG_SOUNDWIRE=m
+CONFIG_SOUNDWIRE_AMD=m
+CONFIG_SOUNDWIRE_CADENCE=m
+CONFIG_SOUNDWIRE_INTEL=m
+CONFIG_SOUNDWIRE_QCOM=m
+CONFIG_SOUNDWIRE_GENERIC_ALLOCATION=m
+CONFIG_HID_SENSOR_ACCEL_3D=m
+CONFIG_HID_SENSOR_IIO_COMMON=m
+CONFIG_HID_SENSOR_IIO_TRIGGER=m
+CONFIG_HID_SENSOR_GYRO_3D=m
+CONFIG_HID_SENSOR_HUMIDITY=m
+CONFIG_ACPI_ALS=m
+CONFIG_HID_SENSOR_ALS=m
+CONFIG_HID_SENSOR_PROX=m
+CONFIG_HID_SENSOR_MAGNETOMETER_3D=m
+CONFIG_HID_SENSOR_INCLINOMETER_3D=m
+CONFIG_HID_SENSOR_DEVICE_ROTATION=m
+CONFIG_HID_SENSOR_CUSTOM_INTEL_HINGE=m
+CONFIG_HID_SENSOR_PRESS=m
+CONFIG_HID_SENSOR_TEMP=m
+CONFIG_USB_LGM_PHY=m
+CONFIG_USB4=m
+CONFIG_BTT=y
+CONFIG_NVMEM=y
+CONFIG_NVMEM_SYSFS=y
+CONFIG_NVMEM_RAVE_SP_EEPROM=m
+CONFIG_NVMEM_RMEM=m
+CONFIG_NVMEM_SPMI_SDAM=m
+CONFIG_BTRFS_FS=m
+CONFIG_BTRFS_FS_POSIX_ACL=y
+CONFIG_NETFS_SUPPORT=m
+CONFIG_NETFS_STATS=y
+CONFIG_NETFS_DEBUG=y
+CONFIG_NETWORK_FILESYSTEMS=y
+CONFIG_CRYPTO=y
+CONFIG_CRYPTO_ALGAPI=y
+CONFIG_CRYPTO_ALGAPI2=y
+CONFIG_CRYPTO_AEAD=y
+CONFIG_CRYPTO_AEAD2=y
+CONFIG_CRYPTO_SIG=y
+CONFIG_CRYPTO_SIG2=y
+CONFIG_CRYPTO_SKCIPHER=y
+CONFIG_CRYPTO_SKCIPHER2=y
+CONFIG_CRYPTO_HASH=y
+CONFIG_CRYPTO_HASH2=y
+CONFIG_CRYPTO_RNG=y
+CONFIG_CRYPTO_RNG2=y
+CONFIG_CRYPTO_RNG_DEFAULT=y
+CONFIG_CRYPTO_AKCIPHER2=y
+CONFIG_CRYPTO_AKCIPHER=y
+CONFIG_CRYPTO_KPP2=y
+CONFIG_CRYPTO_KPP=y
+CONFIG_CRYPTO_ACOMP2=y
+CONFIG_CRYPTO_HKDF=y
+CONFIG_CRYPTO_MANAGER=y
+CONFIG_CRYPTO_MANAGER2=y
+CONFIG_CRYPTO_USER=m
+CONFIG_CRYPTO_NULL=y
+CONFIG_CRYPTO_PCRYPT=m
+CONFIG_CRYPTO_CRYPTD=m
+CONFIG_CRYPTO_AUTHENC=m
+CONFIG_CRYPTO_KRB5ENC=m
+CONFIG_CRYPTO_ENGINE=m
+CONFIG_CRYPTO_RSA=y
+CONFIG_CRYPTO_DH=y
+CONFIG_CRYPTO_DH_RFC7919_GROUPS=y
+CONFIG_CRYPTO_ECC=y
+CONFIG_CRYPTO_ECDH=y
+CONFIG_CRYPTO_ECDSA=m
+CONFIG_CRYPTO_ECRDSA=m
+CONFIG_CRYPTO_CURVE25519=m
+CONFIG_CRYPTO_AES=y
+CONFIG_CRYPTO_AES_TI=m
+CONFIG_CRYPTO_ARIA=m
+CONFIG_CRYPTO_BLOWFISH=m
+CONFIG_CRYPTO_BLOWFISH_COMMON=m
+CONFIG_CRYPTO_CAMELLIA=m
+CONFIG_CRYPTO_CAST_COMMON=m
+CONFIG_CRYPTO_CAST5=m
+CONFIG_CRYPTO_CAST6=m
+CONFIG_CRYPTO_DES=m
+CONFIG_CRYPTO_FCRYPT=m
+CONFIG_CRYPTO_SERPENT=m
+CONFIG_CRYPTO_SM4=m
+CONFIG_CRYPTO_SM4_GENERIC=m
+CONFIG_CRYPTO_TWOFISH=m
+CONFIG_CRYPTO_TWOFISH_COMMON=m
+CONFIG_CRYPTO_ADIANTUM=m
+CONFIG_CRYPTO_CHACHA20=m
+CONFIG_CRYPTO_CBC=y
+CONFIG_CRYPTO_CTR=y
+CONFIG_CRYPTO_CTS=y
+CONFIG_CRYPTO_ECB=y
+CONFIG_CRYPTO_HCTR2=m
+CONFIG_CRYPTO_LRW=m
+CONFIG_CRYPTO_PCBC=m
+CONFIG_CRYPTO_XCTR=m
+CONFIG_CRYPTO_XTS=y
+CONFIG_CRYPTO_NHPOLY1305=m
+CONFIG_CRYPTO_AEGIS128=m
+CONFIG_CRYPTO_CHACHA20POLY1305=m
+CONFIG_CRYPTO_CCM=m
+CONFIG_CRYPTO_GCM=y
+CONFIG_CRYPTO_GENIV=y
+CONFIG_CRYPTO_SEQIV=y
+CONFIG_CRYPTO_ECHAINIV=m
+CONFIG_CRYPTO_ESSIV=m
+CONFIG_CRYPTO_BLAKE2B=m
+CONFIG_CRYPTO_CMAC=m
+CONFIG_CRYPTO_GHASH=y
+CONFIG_CRYPTO_HMAC=y
+CONFIG_CRYPTO_MD4=m
+CONFIG_CRYPTO_MD5=y
+CONFIG_CRYPTO_MICHAEL_MIC=m
+CONFIG_CRYPTO_POLYVAL=m
+CONFIG_CRYPTO_RMD160=m
+CONFIG_CRYPTO_SHA1=y
+CONFIG_CRYPTO_SHA256=y
+CONFIG_CRYPTO_SHA512=y
+CONFIG_CRYPTO_SHA3=y
+CONFIG_CRYPTO_SM3_GENERIC=m
+CONFIG_CRYPTO_STREEBOG=m
+CONFIG_CRYPTO_WP512=m
+CONFIG_CRYPTO_XCBC=m
+CONFIG_CRYPTO_XXHASH=m
+CONFIG_CRYPTO_CRC32C=y
+CONFIG_CRYPTO_CRC32=m
+CONFIG_CRYPTO_DEFLATE=y
+CONFIG_CRYPTO_LZO=y
+CONFIG_CRYPTO_842=m
+CONFIG_CRYPTO_LZ4=m
+CONFIG_CRYPTO_LZ4HC=m
+CONFIG_CRYPTO_ZSTD=m
+CONFIG_CRYPTO_ANSI_CPRNG=m
+CONFIG_CRYPTO_DRBG_MENU=y
+CONFIG_CRYPTO_DRBG_HMAC=y
+CONFIG_CRYPTO_DRBG_HASH=y
+CONFIG_CRYPTO_DRBG_CTR=y
+CONFIG_CRYPTO_DRBG=y
+CONFIG_CRYPTO_JITTERENTROPY=y
+CONFIG_CRYPTO_JITTERENTROPY_MEMORY_BLOCKS=64
+CONFIG_CRYPTO_JITTERENTROPY_MEMORY_BLOCKSIZE=32
+CONFIG_CRYPTO_JITTERENTROPY_OSR=1
+CONFIG_CRYPTO_KDF800108_CTR=y
+CONFIG_CRYPTO_USER_API=m
+CONFIG_CRYPTO_USER_API_HASH=m
+CONFIG_CRYPTO_USER_API_SKCIPHER=m
+CONFIG_CRYPTO_USER_API_RNG=m
+CONFIG_CRYPTO_USER_API_AEAD=m
+CONFIG_CRYPTO_CURVE25519_X86=m
+CONFIG_CRYPTO_AES_NI_INTEL=m
+CONFIG_CRYPTO_BLOWFISH_X86_64=m
+CONFIG_CRYPTO_CAMELLIA_X86_64=m
+CONFIG_CRYPTO_CAMELLIA_AESNI_AVX_X86_64=m
+CONFIG_CRYPTO_CAMELLIA_AESNI_AVX2_X86_64=m
+CONFIG_CRYPTO_CAST5_AVX_X86_64=m
+CONFIG_CRYPTO_CAST6_AVX_X86_64=m
+CONFIG_CRYPTO_DES3_EDE_X86_64=m
+CONFIG_CRYPTO_SERPENT_SSE2_X86_64=m
+CONFIG_CRYPTO_SERPENT_AVX_X86_64=m
+CONFIG_CRYPTO_SERPENT_AVX2_X86_64=m
+CONFIG_CRYPTO_SM4_AESNI_AVX_X86_64=m
+CONFIG_CRYPTO_SM4_AESNI_AVX2_X86_64=m
+CONFIG_CRYPTO_TWOFISH_X86_64=m
+CONFIG_CRYPTO_TWOFISH_X86_64_3WAY=m
+CONFIG_CRYPTO_TWOFISH_AVX_X86_64=m
+CONFIG_CRYPTO_ARIA_AESNI_AVX_X86_64=m
+CONFIG_CRYPTO_ARIA_AESNI_AVX2_X86_64=m
+CONFIG_CRYPTO_ARIA_GFNI_AVX512_X86_64=m
+CONFIG_CRYPTO_AEGIS128_AESNI_SSE2=m
+CONFIG_CRYPTO_NHPOLY1305_SSE2=m
+CONFIG_CRYPTO_NHPOLY1305_AVX2=m
+CONFIG_CRYPTO_POLYVAL_CLMUL_NI=m
+CONFIG_CRYPTO_SM3_AVX_X86_64=m
+CONFIG_CRYPTO_GHASH_CLMUL_NI_INTEL=m
+CONFIG_CRYPTO_HW=y
+CONFIG_CRYPTO_DEV_PADLOCK=y
+CONFIG_CRYPTO_DEV_PADLOCK_AES=m
+CONFIG_CRYPTO_DEV_PADLOCK_SHA=m
+CONFIG_CRYPTO_DEV_ATMEL_I2C=m
+CONFIG_CRYPTO_DEV_ATMEL_ECC=m
+CONFIG_CRYPTO_DEV_ATMEL_SHA204A=m
+CONFIG_CRYPTO_DEV_CCP=y
+CONFIG_CRYPTO_DEV_CCP_DD=m
+CONFIG_CRYPTO_DEV_SP_CCP=y
+CONFIG_CRYPTO_DEV_CCP_CRYPTO=m
+CONFIG_CRYPTO_DEV_SP_PSP=y
+CONFIG_CRYPTO_DEV_NITROX=m
+CONFIG_CRYPTO_DEV_NITROX_CNN55XX=m
+CONFIG_CRYPTO_DEV_QAT=m
+CONFIG_CRYPTO_DEV_QAT_DH895xCC=m
+CONFIG_CRYPTO_DEV_QAT_C3XXX=m
+CONFIG_CRYPTO_DEV_QAT_C62X=m
+CONFIG_CRYPTO_DEV_QAT_4XXX=m
+CONFIG_CRYPTO_DEV_QAT_420XX=m
+CONFIG_CRYPTO_DEV_QAT_6XXX=m
+CONFIG_CRYPTO_DEV_QAT_DH895xCCVF=m
+CONFIG_CRYPTO_DEV_QAT_C3XXXVF=m
+CONFIG_CRYPTO_DEV_QAT_C62XVF=m
+CONFIG_CRYPTO_DEV_IAA_CRYPTO=m
+CONFIG_CRYPTO_DEV_CHELSIO=m
+CONFIG_CRYPTO_DEV_VIRTIO=m
+CONFIG_CRYPTO_DEV_SAFEXCEL=m
+CONFIG_CRYPTO_DEV_AMLOGIC_GXL=m
+CONFIG_CRYPTO_KRB5=m
+CONFIG_CRYPTO_KRB5_SELFTESTS=y
+CONFIG_CRYPTO_HASH_INFO=y
+CONFIG_CRYPTO_LIB_UTILS=y
+CONFIG_CRYPTO_LIB_AES=y
+CONFIG_CRYPTO_LIB_AESGCM=y
+CONFIG_CRYPTO_LIB_ARC4=m
+CONFIG_CRYPTO_LIB_GF128MUL=y
+CONFIG_CRYPTO_ARCH_HAVE_LIB_BLAKE2S=y
+CONFIG_CRYPTO_LIB_BLAKE2S_GENERIC=y
+CONFIG_CRYPTO_ARCH_HAVE_LIB_CHACHA=y
+CONFIG_CRYPTO_LIB_CHACHA_GENERIC=y
+CONFIG_CRYPTO_LIB_CHACHA=y
+CONFIG_CRYPTO_ARCH_HAVE_LIB_CURVE25519=y
+CONFIG_CRYPTO_LIB_CURVE25519_GENERIC=m
+CONFIG_CRYPTO_LIB_CURVE25519_INTERNAL=m
+CONFIG_CRYPTO_LIB_CURVE25519=m
+CONFIG_CRYPTO_LIB_DES=m
+CONFIG_CRYPTO_LIB_POLY1305_RSIZE=11
+CONFIG_CRYPTO_ARCH_HAVE_LIB_POLY1305=y
+CONFIG_CRYPTO_LIB_POLY1305_GENERIC=m
+CONFIG_CRYPTO_LIB_POLY1305=y
+CONFIG_CRYPTO_LIB_CHACHA20POLY1305=y
+CONFIG_CRYPTO_LIB_SHA1=y
+CONFIG_CRYPTO_LIB_SHA1_ARCH=y
+CONFIG_CRYPTO_LIB_SHA256=y
+CONFIG_CRYPTO_LIB_SHA256_ARCH=y
+CONFIG_CRYPTO_LIB_SHA512=y
+CONFIG_CRYPTO_LIB_SHA512_ARCH=y
+CONFIG_CRYPTO_LIB_SM3=m
+CONFIG_CRYPTO_BLAKE2S_X86=y
+CONFIG_CRYPTO_CHACHA20_X86_64=y
+CONFIG_CRYPTO_POLY1305_X86_64=y
+CONFIG_BTREE=y
+
+=== DONE ===
