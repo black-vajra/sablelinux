@@ -1455,3 +1455,13 @@ SableLinux boots cleanly on NVMe. systemd fully initializes. Sway + amdgpu worki
 - Installed Intel BT firmware (ibt-hw-37.8*) to /lib/firmware/intel/
 - regulatory.db already present
 - All mandatory maya firmware confirmed present
+
+## partclone 0.3.47 — 2026-04-23
+
+- Source: https://github.com/Thomas-Tsai/partclone/archive/refs/tags/0.3.47.tar.gz
+- autoreconf -fiv required (no configure script in tarball)
+- ./configure --prefix=/usr --enable-ext4
+- make -j14 && sudo make -C src install
+- docs install fails (xsltproc missing) — binaries install cleanly via src target
+- partclone.ext4 symlink: sudo ln -s /usr/sbin/partclone.imager /usr/sbin/partclone.ext4
+- Verified: partclone.ext4 --version → v0.3.47
