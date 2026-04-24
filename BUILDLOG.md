@@ -1465,3 +1465,44 @@ SableLinux boots cleanly on NVMe. systemd fully initializes. Sway + amdgpu worki
 - docs install fails (xsltproc missing) — binaries install cleanly via src target
 - partclone.ext4 symlink: sudo ln -s /usr/sbin/partclone.imager /usr/sbin/partclone.ext4
 - Verified: partclone.ext4 --version → v0.3.47
+
+## ROCm 7.2.2 — GPU Inference Stack (2026-04-24)
+
+### Method: AMD Ubuntu .deb extraction (Option B)
+- No source compilation — extracted binaries from AMD official Ubuntu 24.04 packages
+- patchelf not required — all RPATHs are $ORIGIN-relative, install path matches deb expectation
+
+### Packages extracted to /opt/rocm-7.2.2
+- hsa-rocr 1.18.0 + hsa-rocr-dev
+- hip-runtime-amd 7.2.53211 + hip-dev
+- hipcc 1.1.1
+- rocm-device-libs 1.0.0
+- comgr 3.0.0
+- rocblas 5.2.0 + rocblas-dev
+- hipblas 3.2.0 + hipblas-dev + hipblas-common-dev
+- hipblaslt 1.2.2 + hipblaslt-dev
+- rocsolver 3.32.0
+- roctracer 4.1.70202
+- rocprofiler-register 0.6.0
+- rocminfo 1.0.0
+- rocm-core 7.2.2
+- rocm-llvm 22.0.0 (AMD clang 22 — required for gfx1201 bitcode)
+
+### Additional dependencies built from source
+- numactl 2.0.18 (libnuma required by ROCm runtime)
+
+### Configuration fixes
+- /opt/rocm-7.2.2/lib/llvm/bin/clang + clang++ — wrapper scripts calling amdclang/amdclang++
+- amdclang/amdclang++ symlinked to clang-22 (amdllvm shell dispatch was broken)
+- /opt/rocm-7.2.2/share/hip/version — key=value format required by hipvars.pm
+- /etc/ld.so.conf.d/rocm.conf — /opt/rocm-7.2.2/lib
+
+### llama.cpp HIP build
+- Built from source (ggml-org/llama.cpp master) with DGGML_HIP=ON, DAMDGPU_TARGETS=gfx1201
+- AMD clang 22 used for HIP kernel compilation
+
+### Validation
+- HSA_OVERRIDE_GFX_VERSION=12.0.1 required (rocm_agent_enumerator reports gfx1200)
+- Device detected: AMD Radeon Graphics, gfx1201, 16304 MiB VRAM
+- Model: Llama-3.2-1B-Instruct-Q4_K_M.gguf
+- Generation speed: 147 t/s — GPU fully utilized
