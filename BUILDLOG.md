@@ -1506,3 +1506,25 @@ SableLinux boots cleanly on NVMe. systemd fully initializes. Sway + amdgpu worki
 - Device detected: AMD Radeon Graphics, gfx1201, 16304 MiB VRAM
 - Model: Llama-3.2-1B-Instruct-Q4_K_M.gguf
 - Generation speed: 147 t/s — GPU fully utilized
+
+## ROCm 7.2.2 + llama.cpp HIP — AI Inference Stack Complete (2026-04-24)
+
+### llama-server systemd service
+- /etc/systemd/system/llama-server.service
+- User: pepper, auto-starts at boot
+- Model: DeepSeek-R1-Distill-Qwen-14B-Q4_K_M.gguf
+- Flags: -ngl 999 --reasoning-format deepseek --host 0.0.0.0 --port 8080
+
+### Client tooling
+- /usr/local/bin/sable-ai — interactive llama-cli wrapper, HSA_OVERRIDE_GFX_VERSION set
+- /usr/local/bin/ds — Python API client for llama-server
+  - Clean output by default (no markdown, no LaTeX)
+  - --think flag toggles reasoning display
+  - Interactive mode when called with no prompt argument
+
+### Models at /opt/models/
+- Llama-3.2-1B-Instruct-Q4_K_M.gguf (~800MB) — default sable-ai model
+- DeepSeek-R1-Distill-Qwen-14B-Q4_K_M.gguf (8.99GB) — server default
+
+### numactl 2.0.18
+- Built from source, libnuma required by ROCm HSA runtime
