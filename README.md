@@ -14,4 +14,4 @@ security research, penetration testing, OSINT, AI/LLM workflows, and virtualizat
 | [boinc-devel](https://github.com/black-vajra/boinc-devel) | Administration of BOINC on Linux for LHC@home |
 
 ## Blog
-Major milestones documented at [bordercybergroup.com](https://bordercybergroup.com)
+Major milestones documented at [bordercybergroup.com](https://bordercybergroup.com) along with Cybersecurity news and commentary.
