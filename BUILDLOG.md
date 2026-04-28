@@ -1528,3 +1528,135 @@ SableLinux boots cleanly on NVMe. systemd fully initializes. Sway + amdgpu worki
 
 ### numactl 2.0.18
 - Built from source, libnuma required by ROCm HSA runtime
+
+## Local Inference Security Audit & Hardening — 2026-04-28
+
+### Context
+Conducted a full persistence audit of the local DeepSeek inference workflow (ds CLI → llama-server → llama.cpp) to enumerate and eliminate all surfaces where query/response content could be recorded without explicit action.
+
+### Audit Findings — Persistence Surfaces
+
+**Clean (no content exposure):**
+- `ds` wrapper script — pure HTTP POST to localhost:8080, stdout only, no logging, no tee, no side channels
+- llama-server journal output — default verbosity logs only metadata (token counts, timing, slot IDs, POST confirmations); request bodies NOT logged
+- No log files found on disk (~/.local/share/llama*, ~/.cache/llama*, /var/log/llama* — all absent)
+
+**Required remediation:**
+- ~/.bash_history — ds invocations recorded verbatim with full query strings; HISTCONTROL was unset
+- Current in-memory shell history — not written until session ends
+- systemd journal for llama-server.service — timestamp/metadata records (no content, but worth vacuuming)
+- llama-server bound to 0.0.0.0 — inference endpoint exposed to full LAN, not just localhost
+
+**In-RAM surface (volatile, non-persistent):**
+- llama-server prompt KV cache — ~1.1GB in-memory cache of recent prompt token sequences across 4 slots; cleared on service restart
+
+### Remediation Implemented
+
+Scripts committed to sablelinux/docs/:
+- wipe-cp.sh — Wayland clipboard wipe; two-pass overwrite (random base64 noise then --clear) on both clipboard and primary selection surfaces; no XWayland present so no X11 clipboard triple needed
+- wipe-ds.sh — Full ds trace wipe: bash history file truncation, in-session history -c, journal vacuum for llama-server.service unit
+
+Shell hardening added to ~/.bashrc:
+- HISTCONTROL=ignoreboth:erasedups
+- HISTIGNORE="ds *:ds"
+Prevents ds queries from accumulating in history going forward; deduplicates all history entries.
+
+llama-server.service unit hardened:
+- Changed --host 0.0.0.0 to --host 127.0.0.1
+- Inference endpoint now localhost-only; LAN exposure eliminated
+- sudo systemctl daemon-reload && sudo systemctl restart llama-server.service applied
+
+### Key Learnings
+- llama-server stdout/stderr pipe to journald when launched as a systemd unit (fd/1 and fd/2 to socket:[N] to /run/systemd/journal/stdout); --log-file absent does NOT mean journal-free
+- llama-server default verbosity does not log prompt/response content — token counts and timing only
+- HISTCONTROL unset on a fresh LFS bash install — must be explicitly set; not inherited from any default profile
+- 0.0.0.0 binding in service unit is a silent footgun; always scope inference endpoints to 127.0.0.1 unless LAN access is explicitly required
+- In-memory prompt cache is the last volatile surface; cleared by service restart or via POST /slots/{id}?action=erase
+
+## Local Inference Security Audit & Hardening — 2026-04-28
+
+### Context
+Conducted a full persistence audit of the local DeepSeek inference workflow (ds CLI → llama-server → llama.cpp) to enumerate and eliminate all surfaces where query/response content could be recorded without explicit action.
+
+### Audit Findings — Persistence Surfaces
+
+**Clean (no content exposure):**
+- `ds` wrapper script — pure HTTP POST to localhost:8080, stdout only, no logging, no tee, no side channels
+- llama-server journal output — default verbosity logs only metadata (token counts, timing, slot IDs, POST confirmations); request bodies NOT logged
+- No log files found on disk (~/.local/share/llama*, ~/.cache/llama*, /var/log/llama* — all absent)
+
+**Required remediation:**
+- ~/.bash_history — ds invocations recorded verbatim with full query strings; HISTCONTROL was unset
+- Current in-memory shell history — not written until session ends
+- systemd journal for llama-server.service — timestamp/metadata records (no content, but worth vacuuming)
+- llama-server bound to 0.0.0.0 — inference endpoint exposed to full LAN, not just localhost
+
+**In-RAM surface (volatile, non-persistent):**
+- llama-server prompt KV cache — ~1.1GB in-memory cache of recent prompt token sequences across 4 slots; cleared on service restart
+
+### Remediation Implemented
+
+Scripts committed to sablelinux/docs/:
+- wipe-cp.sh — Wayland clipboard wipe; two-pass overwrite (random base64 noise then --clear) on both clipboard and primary selection surfaces; no XWayland present so no X11 clipboard triple needed
+- wipe-ds.sh — Full ds trace wipe: bash history file truncation, in-session history -c, journal vacuum for llama-server.service unit
+
+Shell hardening added to ~/.bashrc:
+- HISTCONTROL=ignoreboth:erasedups
+- HISTIGNORE="ds *:ds"
+Prevents ds queries from accumulating in history going forward; deduplicates all history entries.
+
+llama-server.service unit hardened:
+- Changed --host 0.0.0.0 to --host 127.0.0.1
+- Inference endpoint now localhost-only; LAN exposure eliminated
+- sudo systemctl daemon-reload && sudo systemctl restart llama-server.service applied
+
+### Key Learnings
+- llama-server stdout/stderr pipe to journald when launched as a systemd unit (fd/1 and fd/2 to socket:[N] to /run/systemd/journal/stdout); --log-file absent does NOT mean journal-free
+- llama-server default verbosity does not log prompt/response content — token counts and timing only
+- HISTCONTROL unset on a fresh LFS bash install — must be explicitly set; not inherited from any default profile
+- 0.0.0.0 binding in service unit is a silent footgun; always scope inference endpoints to 127.0.0.1 unless LAN access is explicitly required
+- In-memory prompt cache is the last volatile surface; cleared by service restart or via POST /slots/{id}?action=erase
+
+## Local Inference Security Audit & Hardening — 2026-04-28
+
+### Context
+Conducted a full persistence audit of the local DeepSeek inference workflow (ds CLI → llama-server → llama.cpp) to enumerate and eliminate all surfaces where query/response content could be recorded without explicit action.
+
+### Audit Findings — Persistence Surfaces
+
+**Clean (no content exposure):**
+- `ds` wrapper script — pure HTTP POST to localhost:8080, stdout only, no logging, no tee, no side channels
+- llama-server journal output — default verbosity logs only metadata (token counts, timing, slot IDs, POST confirmations); request bodies NOT logged
+- No log files found on disk (~/.local/share/llama*, ~/.cache/llama*, /var/log/llama* — all absent)
+
+**Required remediation:**
+- ~/.bash_history — ds invocations recorded verbatim with full query strings; HISTCONTROL was unset
+- Current in-memory shell history — not written until session ends
+- systemd journal for llama-server.service — timestamp/metadata records (no content, but worth vacuuming)
+- llama-server bound to 0.0.0.0 — inference endpoint exposed to full LAN, not just localhost
+
+**In-RAM surface (volatile, non-persistent):**
+- llama-server prompt KV cache — ~1.1GB in-memory cache of recent prompt token sequences across 4 slots; cleared on service restart
+
+### Remediation Implemented
+
+Scripts committed to sablelinux/docs/:
+- wipe-cp.sh — Wayland clipboard wipe; two-pass overwrite (random base64 noise then --clear) on both clipboard and primary selection surfaces; no XWayland present so no X11 clipboard triple needed
+- wipe-ds.sh — Full ds trace wipe: bash history file truncation, in-session history -c, journal vacuum for llama-server.service unit
+
+Shell hardening added to /home/pepper/.bashrc:
+- HISTCONTROL=ignoreboth:erasedups
+- HISTIGNORE="ds *:ds"
+Prevents ds queries from accumulating in history going forward; deduplicates all history entries.
+
+llama-server.service unit hardened:
+- Changed --host 0.0.0.0 to --host 127.0.0.1
+- Inference endpoint now localhost-only; LAN exposure eliminated
+- systemctl daemon-reload && systemctl restart llama-server.service applied
+
+### Key Learnings
+- llama-server stdout/stderr pipe to journald when launched as a systemd unit (fd/1 and fd/2 to socket:[N] to /run/systemd/journal/stdout); --log-file absent does NOT mean journal-free
+- llama-server default verbosity does not log prompt/response content — token counts and timing only
+- HISTCONTROL unset on a fresh LFS bash install — must be explicitly set; not inherited from any default profile
+- 0.0.0.0 binding in service unit is a silent footgun; always scope inference endpoints to 127.0.0.1 unless LAN access is explicitly required
+- In-memory prompt cache is the last volatile surface; cleared by service restart or via POST /slots/{id}?action=erase
