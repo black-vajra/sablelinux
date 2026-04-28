@@ -1660,3 +1660,29 @@ llama-server.service unit hardened:
 - HISTCONTROL unset on a fresh LFS bash install — must be explicitly set; not inherited from any default profile
 - 0.0.0.0 binding in service unit is a silent footgun; always scope inference endpoints to 127.0.0.1 unless LAN access is explicitly required
 - In-memory prompt cache is the last volatile surface; cleared by service restart or via POST /slots/{id}?action=erase
+
+## Boot Noise Fix — llama-server userptr pinning (2026-04-28)
+
+### Symptom
+3631x `amdgpu: init_user_pages: Failed to get user pages: -1` in dmesg every boot,
+appearing at ~t=9.45s. Non-fatal — inference remained functional.
+
+### Root Cause
+llama-server starts early in boot (multi-user.target) with -ngl 999. llama.cpp mmaps
+the model file (lazy load), then ROCm KFD attempts to pin those un-faulted mmap'd pages
+via get_user_pages for GPU DMA. Pages not yet resident → EPERM (-1) × 3631 (one per
+retry across the model's memory region). KFD falls back to bounce-buffer path and
+proceeds — hence functional inference despite the error storm.
+
+### Fix
+Added --no-mmap to llama-server ExecStart. Forces read() instead of mmap() for model
+loading, bypassing the userptr pinning path entirely. Zero impact on inference performance.
+
+Also fixed pre-existing bug: --log-disable was missing its continuation backslash and
+was being silently ignored. Fixed by adding \ to end of --port 8080 line.
+
+Also added LimitMEMLOCK=infinity and LimitAS=infinity to service unit (precautionary,
+applied during diagnosis — no harm leaving in place).
+
+### Result
+dmesg: 0 "Failed to get user pages" errors post-reboot.
