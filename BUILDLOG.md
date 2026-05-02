@@ -1686,3 +1686,8 @@ applied during diagnosis — no harm leaving in place).
 
 ### Result
 dmesg: 0 "Failed to get user pages" errors post-reboot.
+
+## Desktop Screenshots — $(date +%Y-%m-%d)
+- Added assets/screenshots/ directory to repo
+- ranger-fm installed (pip3 install ranger-fm) — TUI file manager
+- Sway desktop screenshots captured and committed
