@@ -1705,3 +1705,19 @@ dmesg: 0 "Failed to get user pages" errors post-reboot.
 - Backends: libpng, libturbojpeg (PNG + JPEG support)
 - Window systems: wayland, x11
 - Verified: PNG and JPEG images display correctly
+
+## Mesa 25.0.1 Rebuild — iris + Intel ANV Added
+**Date:** 2026-05-02
+
+### Motivation
+ISO validation target (HP Pavilion, i3-8100, UHD 630) requires iris Gallium driver.
+Previous Mesa build had radeonsi+llvmpipe only.
+
+### Changes from previous build
+- Added: iris Gallium driver
+- Added: intel Vulkan driver (ANV)
+- All other options identical
+
+### Verified
+- /usr/lib/dri/iris_dri.so ✓
+- /usr/share/vulkan/icd.d/intel_icd.x86_64.json ✓
