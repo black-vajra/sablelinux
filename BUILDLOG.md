@@ -1691,3 +1691,17 @@ dmesg: 0 "Failed to get user pages" errors post-reboot.
 - Added assets/screenshots/ directory to repo
 - ranger-fm installed (pip3 install ranger-fm) — TUI file manager
 - Sway desktop screenshots captured and committed
+
+## Desktop Utilities — $(date +%Y-%m-%d)
+
+### Thunar 4.20.3 — GTK3 file manager
+- Dependencies: libxfce4util 4.20.0, xfconf 4.20.0, libxfce4ui 4.20.0, exo 4.20.0
+- autotools build, --prefix=/usr --disable-static --disable-gtk-doc
+- Verified: thunar launches, full file management functional
+
+### imv 4.5.0 — Wayland-native image viewer
+- Dependencies: ICU 76.1, GLU 9.0.3, libjpeg-turbo 3.1.1
+- meson build; ICU pc files patched (Requires.private → Requires) for correct link flags
+- Backends: libpng, libturbojpeg (PNG + JPEG support)
+- Window systems: wayland, x11
+- Verified: PNG and JPEG images display correctly
