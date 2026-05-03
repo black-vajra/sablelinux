@@ -1721,3 +1721,27 @@ Previous Mesa build had radeonsi+llvmpipe only.
 ### Verified
 - /usr/lib/dri/iris_dri.so ✓
 - /usr/share/vulkan/icd.d/intel_icd.x86_64.json ✓
+
+## SableLinux Live ISO — First Successful Boot
+**Date:** 2026-05-02
+
+### Target Hardware
+- HP Pavilion (~2015), Intel Core i3-8100 (Coffee Lake), Intel UHD 630, 16GB RAM, 1TB SATA SSD
+- Boot: UEFI, wired ethernet (RTL8111, r8169)
+
+### Architecture
+- GPT USB: sdb1=100M vfat EFI, sdb2=14.5G ext4 SABLELINUX
+- squashfs (xz, no-xattrs) → overlayfs (tmpfs upper) → switch_root → systemd
+- GRUB mkstandalone EFI with ext2/ext4/part_gpt/linux/search modules
+- Live user: sable, no password, auto-login on tty1, auto-launch sway
+
+### Key Fixes Required
+- wipefs required to clear old iso9660 signature before GPT would be recognized
+- GRUB standalone needs --modules="part_gpt fat ext2 linux search" for ext4 read
+- squashfs must be built with -no-xattrs
+- /etc/fstab must be stripped to tmpfs only — UUID entries cause emergency mode loop
+- WLR_DRM_DEVICES=card0 for Intel UHD 630 (not card1)
+- iris Gallium driver required in Mesa build for Intel UHD 630
+
+### Result
+Sway desktop running on HP Pavilion from live USB. First successful SableLinux live boot.
