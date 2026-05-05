@@ -1745,3 +1745,31 @@ Previous Mesa build had radeonsi+llvmpipe only.
 
 ### Result
 Sway desktop running on HP Pavilion from live USB. First successful SableLinux live boot.
+
+## WiFi + Bluetooth Firmware Session — 2026-05-05
+
+### Kernel Rebuild #3 — WiFi Module Support
+- Identified MT7925 (MediaTek) WiFi on Z890 main board — built-in, firmware missing
+- Identified RTL8821CE (Realtek) on HP Pavilion — not compiled
+- Identified Intel 7265 on ASUS Q503UA — IWLMVM missing
+- Added: CONFIG_IWLMVM=m, CONFIG_RTW88=m, CONFIG_RTW88_CORE=m, CONFIG_RTW88_8821C=m, CONFIG_RTW88_8821CE=m
+- Changed: CONFIG_MT7925_COMMON=m, CONFIG_MT7925E=m (was =y, caused firmware timing failure)
+- Fixed syncconfig failure: CONFIG_RUST disabled (rustc not installed), mrproper required to clear stale build state
+- make -j14, modules_install, bzImage → /boot/vmlinuz-6.16.1-lfs-12.4-systemd
+
+### MT7925 Firmware
+- Cloned linux-firmware from kernel.org
+- Installed: /lib/firmware/mediatek/mt7925/{WIFI_RAM_CODE_MT7925_1_1.bin,WIFI_MT7925_PATCH_MCU_1_1_hdr.bin,BT_RAM_CODE_MT7925_1_1_hdr.bin}
+- wlp131s0 interface confirmed after reboot
+
+### WiFi Connection
+- wpa_supplicant 2.11 built from source, installed to /usr/local/sbin
+- /etc/wpa_supplicant/wpa_supplicant.conf configured for idoru (WPA2-PSK, 5GHz WiFi 6E)
+- /etc/systemd/network/25-wifi.network: DHCP=ipv4, RouteMetric=2048
+- wpa_supplicant@wlp131s0.service created and enabled — auto-connects at boot
+- WiFi IP: 192.168.0.235, wired priority maintained at metric 1024
+
+### WireGuard Fix
+- wg0.conf PostUp/PreDown hardcoded enp132s0 — broke when wired absent
+- Replaced with dynamic gateway/interface detection via ip route get
+- WireGuard now works over both wired and WiFi
