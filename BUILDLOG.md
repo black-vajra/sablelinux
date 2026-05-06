@@ -1773,3 +1773,28 @@ Sway desktop running on HP Pavilion from live USB. First successful SableLinux l
 - wg0.conf PostUp/PreDown hardcoded enp132s0 — broke when wired absent
 - Replaced with dynamic gateway/interface detection via ip route get
 - WireGuard now works over both wired and WiFi
+
+## WiFi/BT Firmware + Live ISO WiFi Session — 2026-05-05
+
+### Kernel Rebuild #4 — Bluetooth Stack
+- Added: CONFIG_BT=m, CONFIG_BT_RFCOMM=m, CONFIG_BT_BNEP=m, CONFIG_BT_HIDP=m
+- Added: CONFIG_BT_HCIBTUSB=m, CONFIG_BT_MTK=m, CONFIG_BT_INTEL=m, CONFIG_BT_BCM=m, CONFIG_BT_RTL=m
+- Bluetooth hci0 confirmed working on main box (MT7925 BT)
+
+### Firmware Installed (main box + liveroot)
+- mediatek/mt7925: WIFI_RAM_CODE_MT7925_1_1.bin, WIFI_MT7925_PATCH_MCU_1_1_hdr.bin, BT_RAM_CODE_MT7925_1_1_hdr.bin
+- intel/iwlwifi: iwlwifi-7265D-29.ucode (+ symlinks D-22 through D-28)
+- rtw88/rtw8821c_fw.bin
+- Firmware added to initramfs (/opt/initramfs-tools/lib/firmware) — required for early boot loading
+
+### Live ISO Fixes
+- /etc/systemd/network/25-wifi.network added to liveroot (DHCP=ipv4, RouteMetric=2048)
+- /etc/modules-load.d/wifi.conf: iwlmvm, rtw88_8821ce — autoload at boot
+- /usr/local/bin/wifi-connect script — interactive WiFi connection helper
+- wpa_supplicant 2.11 binaries in liveroot
+- initramfs rebuilt with correct live init (findfs LABEL=SABLELINUX) + firmware
+
+### Validated
+- Main box (Z890/MT7925): WiFi wlp131s0 online, WireGuard dynamic routing fixed
+- HP Pavilion (i3-8100/RTL8821CE): WiFi working via wifi-connect
+- ASUS Q503UA (Skylake/Intel 7265): WiFi working via wifi-connect + modprobe iwlmvm
