@@ -1798,3 +1798,87 @@ Sway desktop running on HP Pavilion from live USB. First successful SableLinux l
 - Main box (Z890/MT7925): WiFi wlp131s0 online, WireGuard dynamic routing fixed
 - HP Pavilion (i3-8100/RTL8821CE): WiFi working via wifi-connect
 - ASUS Q503UA (Skylake/Intel 7265): WiFi working via wifi-connect + modprobe iwlmvm
+
+---
+
+## 2026-05-09 — Live Installer v1.0 Milestone
+
+### Multi-Hardware Install Validation
+- Clean disk install confirmed on HP desktop (i3-8100 / UHD 630 / RTL8821CE)
+- Clean disk install confirmed on ASUS Q503UA maya (i5-6200U / Skylake / Intel 7265D)
+- Network connectivity confirmed on both machines post-install
+- WiFi operational on both: rtw88_8821ce (HP), iwlmvm/7265D (ASUS)
+- Sleep/wake with swaylock password recovery working on both machines
+- Waybar pending on both installed targets
+
+### Exclusions (by design)
+- AI inference stack (ROCm/llama.cpp) excluded — Z890/RDNA4-specific, not applicable to i3/i5 targets
+- Other Z890-specific components excluded from squashfs pre-build
+
+### Backup
+- Full nvme1n1 partition backup: /mnt/one/backups/sable-system/sable-nvme-05-09/
+  - sable-efi-05-09.img.gz (nvme1n1p1 — 512M EFI)
+  - sable-boot-05-09.img.gz (nvme1n1p2 — 2G /boot)
+  - sable-root-05-09.img.gz (nvme1n1p3 — 951G root, partclone)
+- Live installer image: /mnt/one/backups/sable-system/iso/sablelinux-live-install.iso.gz
+
+### Notes
+- sablelinux-live-install.iso.gz is full USB device image (dd + gzip)
+- Flash with: gzip -dc sablelinux-live-install.iso.gz | sudo dd of=/dev/sdX bs=4M status=progress
+- v1.0 public release preparation in progress
+
+---
+
+## 2026-05-09 — Live Installer v1.0 Milestone
+
+### Multi-Hardware Install Validation
+- Clean disk install confirmed on HP desktop (i3-8100 / UHD 630 / RTL8821CE)
+- Clean disk install confirmed on ASUS Q503UA maya (i5-6200U / Skylake / Intel 7265D)
+- Network connectivity confirmed on both machines post-install
+- WiFi operational on both: rtw88_8821ce (HP), iwlmvm/7265D (ASUS)
+- Sleep/wake with swaylock password recovery working on both machines
+- Waybar pending on both installed targets
+
+### Exclusions (by design)
+- AI inference stack (ROCm/llama.cpp) excluded — Z890/RDNA4-specific, not applicable to i3/i5 targets
+- Other Z890-specific components excluded from squashfs pre-build
+
+### Backup
+- Full nvme1n1 partition backup: /mnt/one/backups/sable-system/sable-nvme-05-09/
+  - sable-efi-05-09.img.gz (nvme1n1p1 — 512M EFI)
+  - sable-boot-05-09.img.gz (nvme1n1p2 — 2G /boot)
+  - sable-root-05-09.img.gz (nvme1n1p3 — 951G root, partclone)
+- Live installer image: /mnt/one/backups/sable-system/iso/sablelinux-live-install.iso.gz
+
+### Notes
+- sablelinux-live-install.iso.gz is full USB device image (dd + gzip)
+- Flash with: gzip -dc sablelinux-live-install.iso.gz | sudo dd of=/dev/sdX bs=4M status=progress
+- v1.0 public release preparation in progress
+
+---
+
+## 2026-05-09 — Live Installer v1.0 Milestone
+
+### Multi-Hardware Install Validation
+- Clean disk install confirmed on HP desktop (i3-8100 / UHD 630 / RTL8821CE)
+- Clean disk install confirmed on ASUS Q503UA maya (i5-6200U / Skylake / Intel 7265D)
+- Network connectivity confirmed on both machines post-install
+- WiFi operational on both: rtw88_8821ce (HP), iwlmvm/7265D (ASUS)
+- Sleep/wake with swaylock password recovery working on both machines
+- Waybar pending on both installed targets
+
+### Exclusions (by design)
+- AI inference stack (ROCm/llama.cpp) excluded — Z890/RDNA4-specific, not applicable to i3/i5 targets
+- Other Z890-specific components excluded from squashfs pre-build
+
+### Backup
+- Full nvme1n1 partition backup: /mnt/one/backups/sable-system/sable-nvme-05-09/
+  - sable-efi-05-09.img.gz (nvme1n1p1 — 512M EFI)
+  - sable-boot-05-09.img.gz (nvme1n1p2 — 2G /boot)
+  - sable-root-05-09.img.gz (nvme1n1p3 — 951G root, partclone)
+- Live installer image: /mnt/one/backups/sable-system/iso/sablelinux-live-install.iso.gz
+
+### Notes
+- sablelinux-live-install.iso.gz is full USB device image (dd + gzip)
+- Flash with: gzip -dc sablelinux-live-install.iso.gz | sudo dd of=/dev/sdX bs=4M status=progress
+- v1.0 public release preparation in progress
