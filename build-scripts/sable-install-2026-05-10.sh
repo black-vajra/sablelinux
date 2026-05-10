@@ -177,6 +177,20 @@ header "Extracting System (10-20 minutes)"
 unsquashfs -f -d "$TARGET" "$SQUASHFS"
 ok "Squashfs extracted"
 
+header "Copying Firmware to Installed Root"
+mkdir -p "$TARGET/lib/firmware/intel/iwlwifi" \
+         "$TARGET/lib/firmware/intel-ucode" \
+         "$TARGET/lib/firmware/rtw88" \
+         "$TARGET/lib/firmware/mediatek/mt7925"
+cp /lib/firmware/iwlwifi-7265D-*.ucode        "$TARGET/lib/firmware/"               2>/dev/null || true
+cp /lib/firmware/intel/iwlwifi/*.ucode        "$TARGET/lib/firmware/intel/iwlwifi/"  2>/dev/null || true
+cp /lib/firmware/intel-ucode/*                "$TARGET/lib/firmware/intel-ucode/"    2>/dev/null || true
+cp /lib/firmware/rtw88/rtw8821c_fw.bin        "$TARGET/lib/firmware/rtw88/"          2>/dev/null || true
+cp /lib/firmware/mediatek/mt7925/*            "$TARGET/lib/firmware/mediatek/mt7925/" 2>/dev/null || true
+cp /lib/firmware/regulatory.db                "$TARGET/lib/firmware/"               2>/dev/null || true
+cp /lib/firmware/regulatory.db.p7s            "$TARGET/lib/firmware/"               2>/dev/null || true
+ok "Firmware copied to installed root"
+
 header "Configuring System"
 echo "$SYS_HOSTNAME" > "$TARGET/etc/hostname"
 cat > "$TARGET/etc/hosts" << HOSTS
