@@ -1853,3 +1853,48 @@ Sway desktop running on HP Pavilion from live USB. First successful SableLinux l
 - /mnt/liveroot/boot/vmlinuz and initramfs updated
 - /mnt/liveroot/lib/firmware/intel-ucode/06-c6-02 installed
 - /mnt/liveroot/lib/modules/6.16.1/ rsynced
+
+## sable-install Fixes + Live ISO Rebuild — 2026-05-10
+
+### Problems Fixed
+
+#### 1. iwlwifi firmware path bug
+- `cp /lib/firmware/iwlwifi-7265D-*.ucode` glob expanded to nothing — files are at
+  `/lib/firmware/intel/iwlwifi/iwlwifi-7265D-*.ucode`
+- Fixed in both `$IWORK` (initramfs) and `$TARGET` (installed root) sections
+- Firmware now copies flat to `$IWORK/lib/firmware/` and `$TARGET/lib/firmware/`
+  (kernel firmware loader does not recurse subdirectories)
+
+#### 2. KVER detection wrong host
+- `KVER=$(uname -r)` on z890 returns `6.16.1-lfs-12.4-systemd`
+- Installed system needs `6.16.1-sable-compat` — the live USB kernel
+- Fixed: `KVER=$(uname -r)` runs on the ASUS during install, returns correct value
+- Was previously set after the initramfs cpio build — moved before `TOOLS=` line
+
+#### 3. Dracut initramfs on live USB
+- Previous initramfs-live.img was a dracut archive, not our busybox init
+- Rebuilt with canonical busybox/switch_root/findfs LABEL=SABLELINUX procedure
+
+#### 4. iwlwifi.ko missing from liveroot
+- `/mnt/liveroot/lib/modules/6.16.1-sable-compat/` was missing:
+  - `kernel/drivers/net/wireless/intel/iwlwifi/iwlwifi.ko` (transport layer)
+  - `kernel/drivers/net/wireless/intel/iwlwifi/dvm/iwldvm.ko`
+  - `kernel/crypto/ecc.ko` (iwlwifi crypto dependency)
+  - `kernel/crypto/ecdh_generic.ko` (iwlwifi crypto dependency)
+- Copied from z890's `/lib/modules/6.16.1-sable-compat/`
+- `depmod -b /mnt/liveroot 6.16.1-sable-compat` run to rebuild modules.dep
+
+### Key Learnings
+- Always run `sync` before `umount` on USB writes
+- `modprobe -v` with no output means module is already loaded or modprobe found nothing to do
+- iwlwifi.ko must be present for iwlmvm.ko to load — iwlmvm exports no symbols without it
+- Missing modules.dep entries cause silent load failures even when .ko files are present
+- liveroot module tree must be kept in sync with z890's built modules after every kernel rebuild
+- `uname -r` in installer must run on target machine, not build host
+
+### Result
+- SableLinux installed successfully to ASUS Q503UA (maya, Skylake i5-6200U)
+- Kernel: 6.16.1-sable-compat
+- iwlwifi firmware present flat in /lib/firmware/
+- iwlwifi.ko + dependencies present in modules tree
+- WiFi confirmed working on installed system

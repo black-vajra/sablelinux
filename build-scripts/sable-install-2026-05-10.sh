@@ -182,8 +182,8 @@ mkdir -p "$TARGET/lib/firmware/intel/iwlwifi" \
          "$TARGET/lib/firmware/intel-ucode" \
          "$TARGET/lib/firmware/rtw88" \
          "$TARGET/lib/firmware/mediatek/mt7925"
-cp /lib/firmware/iwlwifi-7265D-*.ucode        "$TARGET/lib/firmware/"               2>/dev/null || true
-cp /lib/firmware/intel/iwlwifi/*.ucode        "$TARGET/lib/firmware/intel/iwlwifi/"  2>/dev/null || true
+# REMOVED: wrong path (files are in intel/iwlwifi/, not flat)
+cp /lib/firmware/intel/iwlwifi/iwlwifi-7265D-*.ucode  "$TARGET/lib/firmware/"             2>/dev/null || true
 cp /lib/firmware/intel-ucode/*                "$TARGET/lib/firmware/intel-ucode/"    2>/dev/null || true
 cp /lib/firmware/rtw88/rtw8821c_fw.bin        "$TARGET/lib/firmware/rtw88/"          2>/dev/null || true
 cp /lib/firmware/mediatek/mt7925/*            "$TARGET/lib/firmware/mediatek/mt7925/" 2>/dev/null || true
@@ -284,6 +284,7 @@ done
 ok "Hardware-specific services disabled"
 
 header "Building Initramfs"
+KVER=$(uname -r)
 TOOLS="/opt/initramfs-tools"
 IWORK="/tmp/installer-initramfs"
 rm -rf "$IWORK"
@@ -306,8 +307,8 @@ mkdir -p "$IWORK/lib/firmware/intel/iwlwifi" \
          "$IWORK/lib/firmware/rtw88" \
          "$IWORK/lib/firmware/mediatek"
 
-cp /lib/firmware/iwlwifi-7265D-*.ucode      "$IWORK/lib/firmware/"              2>/dev/null || true
-cp /lib/firmware/intel/iwlwifi/*.ucode      "$IWORK/lib/firmware/intel/iwlwifi/" 2>/dev/null || true
+# REMOVED: wrong path (files are in intel/iwlwifi/, not flat)
+cp /lib/firmware/intel/iwlwifi/iwlwifi-7265D-*.ucode  "$IWORK/lib/firmware/"              2>/dev/null || true
 cp /lib/firmware/intel-ucode/*              "$IWORK/lib/firmware/intel-ucode/"   2>/dev/null || true
 cp /lib/firmware/rtw88/rtw8821c_fw.bin      "$IWORK/lib/firmware/rtw88/"         2>/dev/null || true
 cp /lib/firmware/mediatek/mt7925/*          "$IWORK/lib/firmware/mediatek/"      2>/dev/null || true
@@ -346,13 +347,12 @@ INITEOF
 
 chmod 755 "$IWORK/init"
 cd "$IWORK"
-find . | cpio -o -H newc | gzip -9 > "$TARGET/boot/initramfs-$(uname -r).img"
+find . | cpio -o -H newc | gzip -9 > "$TARGET/boot/initramfs-${KVER}.img"
 cd /
 rm -rf "$IWORK"
 ok "Initramfs built with firmware for UUID=$ROOT_UUID"
 
 header "Copying Kernel"
-KVER=$(uname -r)
 if [[ -f "/mnt/sable-usb/boot/vmlinuz" ]]; then
     cp "/mnt/sable-usb/boot/vmlinuz" "$TARGET/boot/vmlinuz-$KVER"
 elif [[ -f "/boot/vmlinuz-$KVER" ]]; then
