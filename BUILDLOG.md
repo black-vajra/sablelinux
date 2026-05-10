@@ -1828,3 +1828,28 @@ Sway desktop running on HP Pavilion from live USB. First successful SableLinux l
 - USB-C port on HP Pavilion is boot-capable in pure UEFI mode (Legacy Support must be off)
 - PipeWire must be enabled via systemd user services on installed system — audio-init.sh approach used in live ISO is not sufficient post-install
 - /etc/skel is the correct place to bake in user-level systemd service symlinks for new installs
+
+## CVE-2026-31431 + Microcode Update — 2026-05-10
+
+### CVE-2026-31431 ("Copy Fail") — CVSS 7.8 — LPE via algif_aead
+- Upstream patch: mainline commit a664bf3d603d (Herbert Xu, 2026-03-26)
+- Affected: crypto/algif_aead.c — in-place cipher operation memory mismanagement
+- Fix: reverts in-place operation in algif_aead, operates out-of-place
+- Files patched: crypto/af_alg.c, crypto/algif_aead.c, crypto/algif_skcipher.c, include/crypto/if_alg.h
+- Applied cleanly to 6.16.1 tree (minor offsets only)
+- Kernel rebuilt: bzImage #2, make -j14
+- make modules_install completed
+- bzImage copied to /boot/vmlinuz-6.16.1-lfs-12.4-systemd
+- initramfs rebuilt via build/make-initramfs.sh → /boot/initrd.img-6.16.1-lfs-12.4-systemd (25M)
+
+### Intel Microcode — Arrow Lake-S (Core Ultra 245K)
+- Issue: x86/CPU: Model not found in latest microcode list at boot
+- CPU: family 0x6, model 0xc6, stepping 0x2 — not in previous intel-ucode bundle
+- Fix: fetched 06-c6-02 from intel/Intel-Linux-Processor-Microcode-Data-Files (git)
+- Installed to /lib/firmware/intel-ucode/ and /opt/initramfs-tools/lib/firmware/intel-ucode/
+- initramfs rebuilt to include updated microcode for early load
+
+### liveroot sync
+- /mnt/liveroot/boot/vmlinuz and initramfs updated
+- /mnt/liveroot/lib/firmware/intel-ucode/06-c6-02 installed
+- /mnt/liveroot/lib/modules/6.16.1/ rsynced
