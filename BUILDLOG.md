@@ -1799,86 +1799,32 @@ Sway desktop running on HP Pavilion from live USB. First successful SableLinux l
 - HP Pavilion (i3-8100/RTL8821CE): WiFi working via wifi-connect
 - ASUS Q503UA (Skylake/Intel 7265): WiFi working via wifi-connect + modprobe iwlmvm
 
----
+## 2026-05-09 — Live ISO USB-C Drive + PipeWire Fix
 
-## 2026-05-09 — Live Installer v1.0 Milestone
+### USB-C Live Drive (SanDisk 3.2Gen1, 114.6GB)
+- New drive partitioned with sgdisk: GPT, 3 partitions
+  - sdd1: 100M vfat EFI (dd cloned from working Cruzer Glide)
+  - sdd2: 40G ext4 LABEL=SABLELINUX (files copied from sdc2)
+  - sdd3: 74.5G ext4 LABEL=storage
+- Confirmed bootable from USB-C port on HP Pavilion (i3-8100)
+- BIOS: Legacy Support disabled, Secure Boot disabled, pure UEFI mode
 
-### Multi-Hardware Install Validation
-- Clean disk install confirmed on HP desktop (i3-8100 / UHD 630 / RTL8821CE)
-- Clean disk install confirmed on ASUS Q503UA maya (i5-6200U / Skylake / Intel 7265D)
-- Network connectivity confirmed on both machines post-install
-- WiFi operational on both: rtw88_8821ce (HP), iwlmvm/7265D (ASUS)
-- Sleep/wake with swaylock password recovery working on both machines
-- Waybar pending on both installed targets
+### PipeWire Autostart Fix (installed system)
+- Root cause: installed system had no PipeWire systemd user service symlinks
+- ulimit -n was 1024 (default) — raised to 65536 via /etc/security/limits.d/99-filedesc.conf
+- pam_limits.so added to /etc/pam.d/system-session
+- Fix: baked systemd user service symlinks into /etc/skel in liveroot so all installed users inherit them:
+  - default.target.wants/pipewire.service
+  - default.target.wants/pipewire-pulse.service
+  - default.target.wants/wireplumber.service
+  - sockets.target.wants/pipewire.socket
+  - sockets.target.wants/pipewire-pulse.socket
+  - pipewire.service.wants/wireplumber.service
+- Squashfs rebuilt and deployed to both USB drives (sdc + sdd)
+- Validated: SableLinux installed to ASUS Q503UA (maya) — Sway + waybar + audio all working
 
-### Exclusions (by design)
-- AI inference stack (ROCm/llama.cpp) excluded — Z890/RDNA4-specific, not applicable to i3/i5 targets
-- Other Z890-specific components excluded from squashfs pre-build
-
-### Backup
-- Full nvme1n1 partition backup: /mnt/one/backups/sable-system/sable-nvme-05-09/
-  - sable-efi-05-09.img.gz (nvme1n1p1 — 512M EFI)
-  - sable-boot-05-09.img.gz (nvme1n1p2 — 2G /boot)
-  - sable-root-05-09.img.gz (nvme1n1p3 — 951G root, partclone)
-- Live installer image: /mnt/one/backups/sable-system/iso/sablelinux-live-install.iso.gz
-
-### Notes
-- sablelinux-live-install.iso.gz is full USB device image (dd + gzip)
-- Flash with: gzip -dc sablelinux-live-install.iso.gz | sudo dd of=/dev/sdX bs=4M status=progress
-- v1.0 public release preparation in progress
-
----
-
-## 2026-05-09 — Live Installer v1.0 Milestone
-
-### Multi-Hardware Install Validation
-- Clean disk install confirmed on HP desktop (i3-8100 / UHD 630 / RTL8821CE)
-- Clean disk install confirmed on ASUS Q503UA maya (i5-6200U / Skylake / Intel 7265D)
-- Network connectivity confirmed on both machines post-install
-- WiFi operational on both: rtw88_8821ce (HP), iwlmvm/7265D (ASUS)
-- Sleep/wake with swaylock password recovery working on both machines
-- Waybar pending on both installed targets
-
-### Exclusions (by design)
-- AI inference stack (ROCm/llama.cpp) excluded — Z890/RDNA4-specific, not applicable to i3/i5 targets
-- Other Z890-specific components excluded from squashfs pre-build
-
-### Backup
-- Full nvme1n1 partition backup: /mnt/one/backups/sable-system/sable-nvme-05-09/
-  - sable-efi-05-09.img.gz (nvme1n1p1 — 512M EFI)
-  - sable-boot-05-09.img.gz (nvme1n1p2 — 2G /boot)
-  - sable-root-05-09.img.gz (nvme1n1p3 — 951G root, partclone)
-- Live installer image: /mnt/one/backups/sable-system/iso/sablelinux-live-install.iso.gz
-
-### Notes
-- sablelinux-live-install.iso.gz is full USB device image (dd + gzip)
-- Flash with: gzip -dc sablelinux-live-install.iso.gz | sudo dd of=/dev/sdX bs=4M status=progress
-- v1.0 public release preparation in progress
-
----
-
-## 2026-05-09 — Live Installer v1.0 Milestone
-
-### Multi-Hardware Install Validation
-- Clean disk install confirmed on HP desktop (i3-8100 / UHD 630 / RTL8821CE)
-- Clean disk install confirmed on ASUS Q503UA maya (i5-6200U / Skylake / Intel 7265D)
-- Network connectivity confirmed on both machines post-install
-- WiFi operational on both: rtw88_8821ce (HP), iwlmvm/7265D (ASUS)
-- Sleep/wake with swaylock password recovery working on both machines
-- Waybar pending on both installed targets
-
-### Exclusions (by design)
-- AI inference stack (ROCm/llama.cpp) excluded — Z890/RDNA4-specific, not applicable to i3/i5 targets
-- Other Z890-specific components excluded from squashfs pre-build
-
-### Backup
-- Full nvme1n1 partition backup: /mnt/one/backups/sable-system/sable-nvme-05-09/
-  - sable-efi-05-09.img.gz (nvme1n1p1 — 512M EFI)
-  - sable-boot-05-09.img.gz (nvme1n1p2 — 2G /boot)
-  - sable-root-05-09.img.gz (nvme1n1p3 — 951G root, partclone)
-- Live installer image: /mnt/one/backups/sable-system/iso/sablelinux-live-install.iso.gz
-
-### Notes
-- sablelinux-live-install.iso.gz is full USB device image (dd + gzip)
-- Flash with: gzip -dc sablelinux-live-install.iso.gz | sudo dd of=/dev/sdX bs=4M status=progress
-- v1.0 public release preparation in progress
+### Key Learnings
+- Backup compression: use pigz -1 -p 14 instead of gzip -9 (14x faster, restore with pigz -dc)
+- USB-C port on HP Pavilion is boot-capable in pure UEFI mode (Legacy Support must be off)
+- PipeWire must be enabled via systemd user services on installed system — audio-init.sh approach used in live ISO is not sufficient post-install
+- /etc/skel is the correct place to bake in user-level systemd service symlinks for new installs
