@@ -1898,3 +1898,8 @@ Sway desktop running on HP Pavilion from live USB. First successful SableLinux l
 - iwlwifi firmware present flat in /lib/firmware/
 - iwlwifi.ko + dependencies present in modules tree
 - WiFi confirmed working on installed system
+
+## pigz 2.8 — 2026-05-10
+- Source: https://zlib.net/pigz/pigz-2.8.tar.gz
+- make -j14 && cp pigz /usr/local/bin/
+- Verified: pigz --version → pigz 2.8
