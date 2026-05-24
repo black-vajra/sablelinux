@@ -1903,3 +1903,61 @@ Sway desktop running on HP Pavilion from live USB. First successful SableLinux l
 - Source: https://zlib.net/pigz/pigz-2.8.tar.gz
 - make -j14 && cp pigz /usr/local/bin/
 - Verified: pigz --version → pigz 2.8
+
+## Micro-Tools Installation — 2026-05-24
+
+### Session 1 (sable-microtools.sh)
+Installed (28): dmidecode, pciutils, smartmontools, acpi, htop, ncdu, tree,
+ripgrep, fd, bat, eza, delta, zoxide, fzf, yq, jq, zsh, fdupes, ethtool,
+iperf3, age, ssdeep, theHarvester, scapy, aria2, yt-dlp, tig, lazygit
+
+Skipped/already present (4): psmisc, pigz, lz4, sherlock
+
+### Session 2 — Fixes (sable-microtools-fixes.sh)
+Installed (11): nvme-cli (+ libnvme dep), lm-sensors, memtester, lsof,
+ngrep, macchanger, inotify-tools, rhash, exiftool, w3m (+ libgc dep), iotop
+
+### Key GCC 15 fixes applied
+- memtester: conf-cc patched to use gcc -std=gnu17 -O2
+- lsof: function pointer declarations patched in lib/misc.c
+- ngrep: bundled regex-0.12 patched with missing includes, old declarations removed
+- zip/unzip: abandoned — replaced with 7-zip 24.09 (already present)
+- w3m: --disable-image (glib-object.h absent), -std=gnu17 -O2
+
+### Key source fixes
+- lm-sensors: extracts to lm-sensors-3-6-0/ (dashes not dots)
+- ngrep: extracts to ngrep-1_47/ (underscores)
+- macchanger: 1.8.0 release tag 404 — built from master (1.7)
+- exiftool: version 13.58 (not 13.00)
+- libnvme: required dep for nvme-cli, built from git
+- libgc 8.2.8: required dep for w3m, built from source
+- iotop: not on PyPI — built from source v1.25
+
+## Micro-Tools Installation — 2026-05-24
+
+### Session 1 (sable-microtools.sh)
+Installed (28): dmidecode, pciutils, smartmontools, acpi, htop, ncdu, tree,
+ripgrep, fd, bat, eza, delta, zoxide, fzf, yq, jq, zsh, fdupes, ethtool,
+iperf3, age, ssdeep, theHarvester, scapy, aria2, yt-dlp, tig, lazygit
+
+Skipped/already present (4): psmisc, pigz, lz4, sherlock
+
+### Session 2 — Fixes (sable-microtools-fixes.sh)
+Installed (11): nvme-cli (+ libnvme dep), lm-sensors, memtester, lsof,
+ngrep, macchanger, inotify-tools, rhash, exiftool, w3m (+ libgc dep), iotop
+
+### Key GCC 15 fixes applied
+- memtester: conf-cc patched to use gcc -std=gnu17 -O2
+- lsof: function pointer declarations patched in lib/misc.c
+- ngrep: bundled regex-0.12 patched with missing includes, old declarations removed
+- zip/unzip: abandoned — replaced with 7-zip 24.09 (already present)
+- w3m: --disable-image (glib-object.h absent), -std=gnu17 -O2
+
+### Key source fixes
+- lm-sensors: extracts to lm-sensors-3-6-0/ (dashes not dots)
+- ngrep: extracts to ngrep-1_47/ (underscores)
+- macchanger: 1.8.0 release tag 404 — built from master (1.7)
+- exiftool: version 13.58 (not 13.00)
+- libnvme: required dep for nvme-cli, built from git
+- libgc 8.2.8: required dep for w3m, built from source
+- iotop: not on PyPI — built from source v1.25
