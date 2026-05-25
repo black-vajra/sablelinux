@@ -1961,3 +1961,27 @@ ngrep, macchanger, inotify-tools, rhash, exiftool, w3m (+ libgc dep), iotop
 - libnvme: required dep for nvme-cli, built from git
 - libgc 8.2.8: required dep for w3m, built from source
 - iotop: not on PyPI — built from source v1.25
+
+## WiFi — sable-hp (WCN6855 hw2.1) — 2026-05-24
+
+### Hardware
+- HP laptop (sable-hp): Qualcomm WCN6855 hw2.1 PCIe WiFi (17CB:1103)
+- USB 0489:e0d6 is Bluetooth only — not WiFi
+
+### Kernel additions (6.16.1-sable-compat)
+- CONFIG_ATH11K=m, CONFIG_ATH11K_PCI=m
+- CONFIG_DEV_COREDUMP=y (required — ath11k_core won't link without it)
+
+### Firmware
+- WCN6855/hw2.1 not in linux-firmware repo (only hw2.0 present)
+- Sourced amss.bin, m3.bin, board-2.bin separately
+- Installed to /lib/firmware/ath11k/WCN6855/hw2.1/
+- Mirrored to /mnt/liveroot/lib/firmware/ath11k/WCN6855/hw2.1/
+
+### wifi-connect fix
+- Replaced systemd-networkd DHCP dependency with udhcpc (busybox)
+- udhcpc symlinked: /bin/udhcpc -> /bin/busybox
+- wifi-connect now: wpa_supplicant -B + udhcpc -i $IFACE -t 10 -q
+
+### modules-load.d
+- ath11k_pci added to /etc/modules-load.d/wifi.conf
