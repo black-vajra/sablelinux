@@ -1985,3 +1985,36 @@ ngrep, macchanger, inotify-tools, rhash, exiftool, w3m (+ libgc dep), iotop
 
 ### modules-load.d
 - ath11k_pci added to /etc/modules-load.d/wifi.conf
+
+## SableLinux on HP Laptop (sable-hp) — 2026-05-24
+
+### Hardware
+- HP Elitebook, AMD Ryzen 7 PRO 5875U (Zen 3), with Radeon Graphics and
+  Qualcomm WCN6855 WiFi
+- Full install via sable-install to nvme0n1
+
+### What worked out of the box
+- iris Gallium driver — Intel UHD 630 display
+- Sway 1.10 — full Wayland session
+- Audio — PipeWire + WirePlumber
+- Ethernet — r8169
+- Firefox — MOZ_ENABLE_WAYLAND=1
+- sable-install — end-to-end install pipeline validated on non-reference hardware
+
+### WiFi — WCN6855 hw2.1
+- Qualcomm WCN6855 PCIe (17CB:1103) — needs ath11k_pci
+- CONFIG_ATH11K=m, CONFIG_ATH11K_PCI=m, CONFIG_DEV_COREDUMP=y added to compat kernel
+- hw2.1 firmware not in linux-firmware repo — sourced separately
+- Installed to /lib/firmware/ath11k/WCN6855/hw2.1/
+- ath11k_pci added to /etc/modules-load.d/wifi.conf
+- wifi-connect updated to use udhcpc instead of systemd-networkd
+- udhcpc symlinked: /bin/udhcpc -> /bin/busybox
+
+### sable-install fixes
+- WCN6855 firmware copy added to both installed root and initramfs sections
+- Installer validated: partitioning, LUKS prompt, user creation, GRUB, first boot all clean
+
+### Significance
+- Hardware-agnostic install pipeline proven on second machine
+- Live ISO boots and installs on unknown hardware without manual intervention
+- WiFi out of the box on modern Qualcomm hardware confirmed
