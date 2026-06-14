@@ -2018,3 +2018,58 @@ ngrep, macchanger, inotify-tools, rhash, exiftool, w3m (+ libgc dep), iotop
 - Hardware-agnostic install pipeline proven on second machine
 - Live ISO boots and installs on unknown hardware without manual intervention
 - WiFi out of the box on modern Qualcomm hardware confirmed
+
+## Live USB Recovery from Backup ISO — 2026-06-12
+
+### Context
+Live install USB became corrupted. Recovery performed by restoring from known-good backup ISO rather than from partition image.
+
+### Recovery Procedure
+- Located working backup: `/mnt/one/backups/sable-system/iso/sablelinux-live-wifi.iso.gz` (15G compressed, May 7)
+- Confirmed disk image format via: `pigz -dc sablelinux-live-wifi.iso.gz | file -` → DOS/MBR boot sector (GPT hybrid disk image)
+- Wrote directly to USB: `pigz -dc sablelinux-live-wifi.iso.gz | sudo dd of=/dev/sdb bs=4M status=progress`
+- Cloned working USB to backup drive: `sudo dd if=/dev/sdb of=/dev/sdd bs=4M status=progress`
+- Extracted clean liveroot from working USB via unsquashfs → `/mnt/liveroot-clean`
+
+### Validated
+- HP Pavilion (i3-8100, RTL8821CE): live boot + WiFi confirmed
+- ASUS Q503UA (Skylake, Intel 7265): live boot + WiFi confirmed
+- HP Elitebook (WCN6855 hw2.1): live boot + WiFi confirmed
+- CF-2111WM (Celeron N4120, RTL8821CE): shell + network functional; Sway failed (below target demographic — deferred)
+
+### Key Learnings
+- sablelinux-live-install.iso.gz (61G) was a full nvme1n1 disk image, not a live ISO — do not use for USB recovery
+- sablelinux-live-wifi.iso.gz is the correct live USB backup format
+- Always confirm image type with `file -` before writing to USB
+
+---
+
+## Hardware-Agnostic Build Initiative — 2026-06-13
+
+### New Staging Directory
+- Created `/mnt/liveroot-agno1` as clean staging base (rsync from /mnt/liveroot-clean, 21G)
+
+### Full Firmware Bundle
+- Replaced cherry-picked firmware with complete `/sources/linux-firmware` copy
+- `rsync -aHX /sources/linux-firmware/ /mnt/liveroot-agno1/lib/firmware/`
+- Coverage: 367 entries (full upstream linux-firmware + previously installed additions)
+- Rationale: security researchers operate on unknown target hardware; missing firmware mid-engagement is unacceptable
+
+### GPU Auto-Detection
+- Removed hardcoded `exec_always export WLR_DRM_DEVICES=/dev/dri/card0` from sway config
+- Replaced with detection function in `/home/sable/.bash_profile`
+- Priority: NVIDIA (rank 1) → AMD/amdgpu (rank 2) → Intel i915/xe (rank 3) → skip virtio/bochs/vboxvideo/vmwgfx
+- Uses `readlink /sys/class/drm/cardN/device/driver` to read kernel driver association from sysfs
+- Falls back to `/dev/dri/card0` if no card detected
+
+### AVX Binary Audit
+- Scanned all ELF binaries in `/usr/bin` and `/usr/local/bin` for ymm/zmm/avx instructions
+- Flagged binaries reviewed: gcc/g++/gfortran toolchain, LLVM tools, QEMU, coreutils (gzip/wc/cksum/rsync), gpg, spa-resample, ffuf, gobuster, binwalk
+- Verdict: all clean for target demographic (security researchers on modern hardware)
+  - Toolchain AVX: expected, researchers have capable CPUs
+  - QEMU AVX: feature, not a bug
+  - Coreutils AVX: glibc ifunc dispatch — runtime CPU detection, graceful fallback on older hardware
+  - Go/Rust binaries (ffuf, gobuster, binwalk): confirmed no ymm/zmm register usage despite initial grep hit
+
+### Squashfs Rebuild
+- Built directly to USB (/dev/sdb2): `mksquashfs /mnt/liveroot-agno1 ... -comp xz -no-xattrs -noappend`
