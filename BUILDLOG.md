@@ -2073,3 +2073,47 @@ Live install USB became corrupted. Recovery performed by restoring from known-go
 
 ### Squashfs Rebuild
 - Built directly to USB (/dev/sdb2): `mksquashfs /mnt/liveroot-agno1 ... -comp xz -no-xattrs -noappend`
+
+## Virtual Testbed — QEMU/KVM Live ISO Validation — 2026-06-15
+
+### Motivation
+Physical hardware lab is impractical for broad compatibility testing. QEMU/KVM on z890 provides a repeatable, scriptable validation environment without needing a hardware zoo.
+
+### OVMF (UEFI Firmware)
+- Extracted from Ubuntu package: ovmf_2024.02-2_all.deb (archive.ubuntu.com)
+- ar + tar --zstd extraction (busybox dpkg-deb insufficient)
+- Installed: /home/pepper/OVMF_CODE_4M.fd, /home/pepper/OVMF_VARS_4M.fd
+
+### Test Image
+- Created: /var/lib/qemu/disks/sablelinux-live-test.img (115G raw)
+- Source: dd from /dev/sdb (live USB)
+
+### Launch Command
+```bash
+qemu-system-x86_64 \
+  -enable-kvm \
+  -m 4G \
+  -cpu host \
+  -drive if=pflash,format=raw,readonly=on,file=/home/pepper/OVMF_CODE_4M.fd \
+  -drive if=pflash,format=raw,file=/home/pepper/OVMF_VARS_4M.fd \
+  -drive file=/var/lib/qemu/disks/sablelinux-live-test.img,format=raw \
+  -vga virtio \
+  -display sdl
+```
+
+### Validated
+- UEFI boot via OVMF confirmed
+- Sway desktop launches cleanly in VM
+- Firefox opens
+- Network functional: ping 1.1.1.1 0% packet loss
+
+### Waybar Fix
+- swaybar_command waybar was commented out in liveroot-clean sway config during CF-2111WM debugging
+- Uncommented in liveroot-agno1, squashfs rebuilt to USB
+- VM image needs re-dd from USB to pick up fix
+
+### Key Learnings
+- QEMU requires UEFI (OVMF) to boot SableLinux — legacy BIOS boot fails
+- busybox dpkg-deb cannot extract modern .deb packages — use ar + tar --zstd
+- -display sdl requires XDG_RUNTIME_DIR — must run as pepper, not root
+- /dev/kvm permissions: pepper already in kvm group, no sudoing needed
