@@ -2117,3 +2117,45 @@ qemu-system-x86_64 \
 - busybox dpkg-deb cannot extract modern .deb packages — use ar + tar --zstd
 - -display sdl requires XDG_RUNTIME_DIR — must run as pepper, not root
 - /dev/kvm permissions: pepper already in kvm group, no sudoing needed
+
+## sable-install Hardening — VM Validation Round 2 — 2026-06-17
+
+### Context
+First full end-to-end sable-install run in QEMU testbed surfaced multiple real bugs that would have affected every install on physical hardware too.
+
+### Bugs Found & Fixed
+
+**Missing binaries (PATH/dependency gaps):**
+- sgdisk missing from liveroot — copied from host, deps confirmed clean (libuuid, libpopt, libstdc++)
+- mkfs.vfat missing from PATH — copied from host (/sbin), deps clean (libc only)
+- Root cause: /etc/profile.d/path.sh did not include /sbin or /usr/local/sbin — fixed: `export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin`
+
+**Sway config not deployed to new users:**
+- sable-install line 252 referenced `$TARGET/home/sable/.config/sway` — this path never exists, since sable-install only creates $NEW_USER in the target, never a "sable" user
+- Fixed: source path changed to live environment's `/home/sable/.config/sway` (the actual customized config with waybar/theme)
+- Extended copy loop to include waybar, foot, and wireplumber configs — previously only sway was copied, leaving new users with no waybar theme, no foot config, no wireplumber config
+
+**Installed .bash_profile missing GPU auto-detection:**
+- Template heredoc in sable-install had old static profile, missing the NVIDIA→AMD→Intel detect_gpu() function added to liveroot days prior
+- Fixed: heredoc updated to match live ISO's .bash_profile, including full detect_gpu() logic
+- Cleanup: removed duplicate trailing `exec sway / fi / PROFILE` block left over from heredoc edit
+
+**Stray test artifacts:**
+- /home/tester directory found in liveroot-agno1 (inherited from Feb 21, predates current work) — not referenced anywhere in sable-install, pure cruft — removed
+
+**LUKS encryption — initramfs gap (deferred, not fully fixed):**
+- sable-install supports LUKS (luksFormat, luksOpen, crypttab entry) but generated initramfs has zero cryptsetup support
+- Installer explicitly warns "rebuild initramfs after first boot" — but first boot is impossible without cryptsetup in initramfs, so the warning is unreachable in practice
+- Confirmed via VM test: LUKS-enabled install left system unable to boot, dropped to busybox shell, no /dev/mapper/* entries, no LUKS passphrase prompt at boot
+- Temporary fix: LUKS prompt hardcoded to "n" (disabled) pending proper initramfs fix
+- TODO: bake cryptsetup + deps (libdevmapper, libpopt, etc.) into installer-generated initramfs; add luksOpen step to init script with passphrase prompt before findfs/mount
+
+### Validation
+- Full sable-install run (non-LUKS) completed end-to-end in QEMU
+- Installed target booted standalone via OVMF: GRUB → kernel → systemd → Sway confirmed
+- User creation, groups (wheel/audio/video/input/render/kvm), sudo access confirmed working
+
+### Key Learnings
+- `$TARGET` paths inside sable-install refer to the chroot of the install target — NOT the live environment. Any logic needing live-environment files (configs, firmware, etc.) must use absolute paths against the live root, not $TARGET-prefixed paths
+- Heredoc edits via sed are fragile — always run `bash -n` syntax check after multi-line sed surgery
+- LUKS support requires the encrypted volume to be openable from initramfs BEFORE the rootfs is mounted — cannot be deferred to first-boot scripts when root itself is encrypted
