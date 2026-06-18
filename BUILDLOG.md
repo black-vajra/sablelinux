@@ -2159,3 +2159,31 @@ First full end-to-end sable-install run in QEMU testbed surfaced multiple real b
 - `$TARGET` paths inside sable-install refer to the chroot of the install target — NOT the live environment. Any logic needing live-environment files (configs, firmware, etc.) must use absolute paths against the live root, not $TARGET-prefixed paths
 - Heredoc edits via sed are fragile — always run `bash -n` syntax check after multi-line sed surgery
 - LUKS support requires the encrypted volume to be openable from initramfs BEFORE the rootfs is mounted — cannot be deferred to first-boot scripts when root itself is encrypted
+## Audio Jack/HDMI Fix — HP Pavilion (sable-hp) — 2026-06-18
+
+### Symptom
+No audio on HDMI or analog jack (Onn speaker) on HP Pavilion i3-8100. Jack normally
+worked without issue; both stopped simultaneously.
+
+### Root Cause
+ALSA 'Headphone' playback switch was off at the codec level (ALC671), independent of
+PipeWire/WirePlumber volume state (which showed 100% and unmuted). wpctl/PipeWire
+volume does not reflect underlying ALSA mixer switch state.
+
+### Fix
+amixer -c0 sset Headphone unmute
+amixer -c0 sset Headphone+LO 87
+sudo alsactl store
+
+alsa-restore.service (static, already wired to sound.target) replays this state at
+every boot via `alsactl restore` — confirmed running successfully pre-existing,
+no enable needed. State file: /var/lib/alsa/asound.state, section state.PCH.
+
+### Result
+Analog jack (Onn speaker) and HDMI (Vizio TV) both confirmed working, including
+automatic jack-sense switching between the two when cable is plugged/unplugged.
+
+### Key Learning
+PipeWire/wpctl volume display is independent of ALSA-level pswitch controls.
+When PipeWire shows correct volume but no sound, check `amixer -cN scontents`
+for switches reported [off] that PipeWire's view doesn't surface.
