@@ -2159,6 +2159,7 @@ First full end-to-end sable-install run in QEMU testbed surfaced multiple real b
 - `$TARGET` paths inside sable-install refer to the chroot of the install target — NOT the live environment. Any logic needing live-environment files (configs, firmware, etc.) must use absolute paths against the live root, not $TARGET-prefixed paths
 - Heredoc edits via sed are fragile — always run `bash -n` syntax check after multi-line sed surgery
 - LUKS support requires the encrypted volume to be openable from initramfs BEFORE the rootfs is mounted — cannot be deferred to first-boot scripts when root itself is encrypted
+<<<<<<< Updated upstream
 ## Audio Jack/HDMI Fix — HP Pavilion (sable-hp) — 2026-06-18
 
 ### Symptom
@@ -2187,3 +2188,32 @@ automatic jack-sense switching between the two when cable is plugged/unplugged.
 PipeWire/wpctl volume display is independent of ALSA-level pswitch controls.
 When PipeWire shows correct volume but no sound, check `amixer -cN scontents`
 for switches reported [off] that PipeWire's view doesn't surface.
+=======
+
+## Waybar Still Missing on Installed System — Unresolved — 2026-06-17 (late)
+
+### Status
+Despite fixing sable-install's config-copy loop to include waybar/foot/wireplumber
+(see earlier entry tonight), a fresh install in the VM testbed still boots without
+waybar visible. Prompt fix (.bashrc copy + username substitution) confirmed working.
+
+### Confirmed working
+- .bashrc now copies correctly, prompt shows correct username
+- Sway launches, fuzzel works, Firefox works
+
+### Confirmed NOT working
+- Waybar does not appear on installed system despite config files being present
+  in /mnt/liveroot-agno1/home/sable/.config/waybar/ (config + style.css, non-empty)
+  and despite the copy loop including "waybar" in the cfgdir list
+
+### Next session — diagnostic plan
+- Do NOT trust script logic alone — directly inspect the installed target filesystem
+  (mount qcow2 via nbd, or boot installed system and manually check
+  /home/$NEW_USER/.config/waybar/ for actual file presence)
+- Check `pgrep -a waybar` on installed boot — is it running but invisible, or not
+  running at all?
+- Check journalctl/dmesg for waybar crash output if process is absent
+- Consider: nbd kernel module not present in 6.16.1-sable-compat — may need
+  alternate method to inspect qcow2 contents directly (e.g. boot a rescue/live
+  environment with nbd support, or guestfish/libguestfs if available)
+>>>>>>> Stashed changes
