@@ -1,0 +1,387 @@
+#!/usr/bin/env python3
+"""
+sable-detect — SableLinux Hardware Detector
+Enumerates hardware, cross-references against hardware-db.json,
+reports what firmware is missing and what modules are loaded.
+
+Usage:
+  sudo python3 sable-detect            # full report
+  sudo python3 sable-detect --json     # machine-readable output only
+"""
+
+import argparse
+import json
+import os
+import re
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+# ---------------------------------------------------------------------------
+# Paths
+# ---------------------------------------------------------------------------
+
+SCRIPT_DIR   = Path(__file__).resolve().parent
+DB_PATH      = SCRIPT_DIR / "installer" / "hardware-db.json"
+FW_ROOT      = Path("/lib/firmware")
+REPORT_OUT   = Path("/tmp/sable-detect.json")
+
+# ---------------------------------------------------------------------------
+# Colour helpers
+# ---------------------------------------------------------------------------
+
+BOLD   = "\033[1m"
+RED    = "\033[0;31m"
+GREEN  = "\033[0;32m"
+YELLOW = "\033[1;33m"
+CYAN   = "\033[0;36m"
+DIM    = "\033[2m"
+NC     = "\033[0m"
+
+def hdr(s):  print(f"\n{BOLD}=== {s} ==={NC}")
+def ok(s):   print(f"  {GREEN}✓{NC}  {s}")
+def warn(s): print(f"  {YELLOW}!{NC}  {s}")
+def err(s):  print(f"  {RED}✗{NC}  {s}")
+def info(s): print(f"  {CYAN}·{NC}  {s}")
+def dim(s):  print(f"  {DIM}{s}{NC}")
+
+# ---------------------------------------------------------------------------
+# Shell helpers
+# ---------------------------------------------------------------------------
+
+def run(cmd, **kwargs) -> str:
+    try:
+        r = subprocess.run(cmd, capture_output=True, text=True,
+                           timeout=10, **kwargs)
+        return r.stdout
+    except (subprocess.TimeoutExpired, FileNotFoundError):
+        return ""
+
+def have(cmd: str) -> bool:
+    return shutil.which(cmd) is not None
+
+# ---------------------------------------------------------------------------
+# Hardware enumeration
+# ---------------------------------------------------------------------------
+
+def collect_pci_ids() -> list[str]:
+    """Return list of 'vendor:device' strings in lowercase, e.g. ['8086:095a']"""
+    if not have("lspci"):
+        warn("lspci not found — skipping PCI enumeration")
+        return []
+    out = run(["lspci", "-nn"])
+    # lines like: 00:14.3 Network controller [0280]: Intel ... [8086:06f0]
+    return re.findall(r"\[([0-9a-f]{4}:[0-9a-f]{4})\]", out.lower())
+
+
+def collect_usb_ids() -> list[str]:
+    """Return list of 'vendor:product' strings in lowercase."""
+    if not have("lsusb"):
+        warn("lsusb not found — skipping USB enumeration")
+        return []
+    out = run(["lsusb"])
+    # lines like: Bus 001 Device 003: ID 8087:0026 Intel Corp. ...
+    return re.findall(r"\bID\s+([0-9a-f]{4}:[0-9a-f]{4})\b", out.lower())
+
+
+def collect_modalias() -> list[str]:
+    """Read all modalias strings from sysfs."""
+    aliases = []
+    for path in Path("/sys/bus").glob("*/devices/*/modalias"):
+        try:
+            aliases.append(path.read_text().strip())
+        except OSError:
+            pass
+    return aliases
+
+
+def collect_dmi() -> dict:
+    dmi_base = Path("/sys/class/dmi/id")
+    fields = ["sys_vendor", "product_name", "board_name", "product_version"]
+    result = {}
+    for f in fields:
+        p = dmi_base / f
+        try:
+            result[f] = p.read_text().strip()
+        except OSError:
+            result[f] = ""
+    return result
+
+
+def collect_firmware_failures() -> list[str]:
+    """
+    Parse dmesg for firmware load failures.
+    Returns list of firmware filenames the kernel requested but didn't find.
+    """
+    out = run(["dmesg"])
+    failures = []
+    # Pattern: "Direct firmware load for <name> failed"
+    for m in re.finditer(
+        r"Direct firmware load for (\S+) failed", out, re.IGNORECASE
+    ):
+        failures.append(m.group(1))
+    return list(dict.fromkeys(failures))  # deduplicate, preserve order
+
+
+def collect_loaded_modules() -> set[str]:
+    """Return set of currently loaded module names."""
+    out = run(["lsmod"])
+    modules = set()
+    for line in out.splitlines()[1:]:  # skip header
+        parts = line.split()
+        if parts:
+            modules.add(parts[0])
+    return modules
+
+# ---------------------------------------------------------------------------
+# DB matching
+# ---------------------------------------------------------------------------
+
+def match_entry(entry: dict, pci_ids: list, usb_ids: list,
+                modalias_list: list) -> bool:
+    match = entry.get("match", {})
+
+    # PCI match
+    for pid in match.get("pci_ids", []):
+        if pid in pci_ids:
+            return True
+
+    # USB match
+    for uid in match.get("usb_ids", []):
+        if uid in usb_ids:
+            return True
+
+    # Modalias prefix match
+    prefix = match.get("modalias_prefix", "").lower()
+    if prefix:
+        for alias in modalias_list:
+            if alias.lower().startswith(prefix.lower()):
+                return True
+
+    return False
+
+
+def firmware_present(files: list[str]) -> tuple[list, list]:
+    """Returns (present, missing) lists."""
+    present, missing = [], []
+    for f in files:
+        if f.endswith("/"):
+            # directory — check it exists and is non-empty
+            d = FW_ROOT / f.rstrip("/")
+            if d.is_dir() and any(d.iterdir()):
+                present.append(f)
+            else:
+                missing.append(f)
+        else:
+            if (FW_ROOT / f).exists():
+                present.append(f)
+            else:
+                missing.append(f)
+    return present, missing
+
+# ---------------------------------------------------------------------------
+# Main detection logic
+# ---------------------------------------------------------------------------
+
+def detect(db: dict, args) -> dict:
+    hdr("Collecting Hardware Info")
+
+    pci_ids  = collect_pci_ids()
+    usb_ids  = collect_usb_ids()
+    aliases  = collect_modalias()
+    dmi      = collect_dmi()
+    failures = collect_firmware_failures()
+    modules  = collect_loaded_modules()
+
+    info(f"PCI devices    : {len(pci_ids)}")
+    info(f"USB devices    : {len(usb_ids)}")
+    info(f"Modalias       : {len(aliases)}")
+    info(f"DMI vendor     : {dmi.get('sys_vendor','?')}")
+    info(f"DMI product    : {dmi.get('product_name','?')}")
+    if failures:
+        warn(f"Firmware fails : {len(failures)}")
+        for f in failures:
+            dim(f"    → {f}")
+    else:
+        ok("No firmware load failures in dmesg")
+
+    hdr("Cross-referencing Hardware DB")
+
+    matched   = []   # entry matched + full status
+    unmatched_pci = [p for p in pci_ids
+                     if not any(p in e.get("match", {}).get("pci_ids", [])
+                                for e in db["entries"])]
+    unmatched_usb = [u for u in usb_ids
+                     if not any(u in e.get("match", {}).get("usb_ids", [])
+                                for e in db["entries"])]
+
+    for entry in db["entries"]:
+        if not match_entry(entry, pci_ids, usb_ids, aliases):
+            continue
+
+        mod    = entry.get("kernel_module")
+        fw     = entry.get("firmware_files", [])
+        mod_ok = (mod is None) or (mod in modules)
+
+        fw_present, fw_missing = firmware_present(fw)
+
+        # Cross-check: did dmesg complain about any of our expected files?
+        fw_dmesg_failed = [f for f in fw
+                           if any(fail in f or f in fail
+                                  for fail in failures)]
+
+        status = {
+            "id":              entry["id"],
+            "description":     entry["description"],
+            "class":           entry["class"],
+            "kernel_module":   mod,
+            "module_loaded":   mod_ok,
+            "firmware_files":  fw,
+            "fw_present":      fw_present,
+            "fw_missing":      fw_missing,
+            "fw_dmesg_failed": fw_dmesg_failed,
+            "action_needed":   bool(fw_missing) or not mod_ok,
+        }
+        matched.append(status)
+
+    return {
+        "dmi":             dmi,
+        "pci_ids":         pci_ids,
+        "usb_ids":         usb_ids,
+        "fw_failures":     failures,
+        "matched":         matched,
+        "unmatched_pci":   unmatched_pci,
+        "unmatched_usb":   unmatched_usb,
+    }
+
+# ---------------------------------------------------------------------------
+# Report
+# ---------------------------------------------------------------------------
+
+def print_report(result: dict):
+
+    matched   = result["matched"]
+    failures  = result["fw_failures"]
+    unmatched_pci = result["unmatched_pci"]
+    unmatched_usb = result["unmatched_usb"]
+
+    # ── Devices that need action ────────────────────────────────────────────
+    needs_action = [m for m in matched if m["action_needed"]]
+    hdr("Action Required")
+    if not needs_action:
+        ok("Nothing — all matched devices have firmware and modules loaded")
+    else:
+        for m in needs_action:
+            err(f"{m['description']}  [{m['id']}]")
+            if not m["module_loaded"] and m["kernel_module"]:
+                warn(f"    module not loaded: {m['kernel_module']}")
+                dim( f"    → firmware fetch won't help; kernel module support required")
+            for f in m["fw_missing"]:
+                warn(f"    missing firmware : {f}")
+
+    # ── Devices that are fine ───────────────────────────────────────────────
+    hdr("No Action Needed")
+    happy = [m for m in matched if not m["action_needed"]]
+    if not happy:
+        dim("  (no matched devices fully satisfied)")
+    for m in happy:
+        ok(f"{m['description']}  [{m['id']}]")
+        if m["kernel_module"]:
+            dim(f"    module: {m['kernel_module']} ✓")
+        if m["fw_present"]:
+            dim(f"    firmware: {len(m['fw_present'])} file(s) present")
+
+    # ── dmesg failures not covered by DB ────────────────────────────────────
+    db_fw_all = {f for m in matched for f in m["firmware_files"]}
+    orphan_failures = [f for f in failures
+                       if not any(f in dbf or dbf in f for dbf in db_fw_all)]
+    if orphan_failures:
+        hdr("Firmware Failures Not in DB")
+        for f in orphan_failures:
+            warn(f)
+            dim("    → unknown device; add to hardware-db.json manually")
+
+    # ── Unknown PCI/USB devices ─────────────────────────────────────────────
+    SKIP_CLASSES = {
+        # Boring infra — skip from unknown report
+        "0600", "0601", "0604", "0680",  # PCI bridges
+        "0c05",                           # SMBus
+        "0c80",                           # Serial bus
+        "1180",                           # Signal processing
+    }
+
+    hdr("Unknown Devices (not in DB)")
+    unknown_pci = result["unmatched_pci"]
+    unknown_usb = result["unmatched_usb"]
+
+    if not unknown_pci and not unknown_usb:
+        ok("All detected devices are in the DB")
+    else:
+        if unknown_pci:
+            dim("PCI:")
+            for p in unknown_pci:
+                dim(f"    {p}")
+        if unknown_usb:
+            dim("USB:")
+            for u in unknown_usb:
+                dim(f"    {u}")
+
+    # ── Summary ─────────────────────────────────────────────────────────────
+    hdr("Summary")
+    info(f"Devices matched in DB : {len(matched)}")
+    info(f"Need action           : {len(needs_action)}")
+    info(f"Clean                 : {len(happy)}")
+    info(f"Unknown PCI           : {len(unknown_pci)}")
+    info(f"Unknown USB           : {len(unknown_usb)}")
+    if failures:
+        warn(f"dmesg firmware failures: {len(failures)}")
+    print()
+    if needs_action:
+        print(f"{YELLOW}Run sable-firmware to fetch and install missing firmware.{NC}")
+    else:
+        print(f"{GREEN}System looks good — no firmware action required.{NC}")
+    print()
+
+# ---------------------------------------------------------------------------
+# Entry point
+# ---------------------------------------------------------------------------
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--json",    action="store_true",
+                    help="Write JSON report to /tmp/sable-detect.json and exit quietly")
+    ap.add_argument("--db",      default=str(DB_PATH),
+                    help=f"Path to hardware-db.json (default: {DB_PATH})")
+    ap.add_argument("--no-root-check", action="store_true",
+                    help="Skip root check (some enumeration may be incomplete)")
+    args = ap.parse_args()
+
+    if os.geteuid() != 0 and not args.no_root_check:
+        print(f"{RED}Run as root for complete dmesg access: sudo python3 sable-detect{NC}",
+              file=sys.stderr)
+        sys.exit(1)
+
+    db_path = Path(args.db)
+    if not db_path.exists():
+        print(f"{RED}hardware-db.json not found at {db_path}{NC}", file=sys.stderr)
+        sys.exit(1)
+
+    db = json.loads(db_path.read_text())
+
+    if not args.json:
+        print(f"\n{BOLD}SableLinux Hardware Detector{NC}")
+        print(f"DB: {db_path}  ({db['entry_count']} entries, updated {db['updated']})")
+
+    result = detect(db, args)
+
+    if not args.json:
+        print_report(result)
+
+    REPORT_OUT.write_text(json.dumps(result, indent=2))
+    if not args.json:
+        info(f"Machine-readable report written to {REPORT_OUT}")
+
+
+if __name__ == "__main__":
+    main()
