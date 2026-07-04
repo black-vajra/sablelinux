@@ -7,3 +7,24 @@ Videos/
 Books/BLFS/*.tar.xz
 chroot2live
 chroot2live
+
+# SableLinux local build/test artifacts
+sablelinux-builds/
+sablelinux-artifacts/
+artifacts/images/
+staging/
+output/
+*.squashfs
+*.img
+*.img.zst
+*.iso
+*.raw
+*.qcow2
+*.vdi
+*.vmdk
+
+# Local archive artifacts
+assets/archives/*.tar
+assets/archives/*.tar.gz
+assets/archives/*.tgz
+assets/archives/*.zip

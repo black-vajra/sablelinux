@@ -2271,3 +2271,103 @@ Additionally discovered: `/etc/pam.d/su` includes `system-auth`, NOT
 - Config-file-presence is necessary but not sufficient for diagnosing "service
   doesn't start" issues — always attempt direct manual foreground launch to see
   real stderr before assuming a config/copy logic problem
+---
+
+## 2026-07-03 — EliteBook vulfen Live Media Recovery / Rebuild Checkpoint
+
+### Context
+
+The working SableLinux installation on the EliteBook was used as the current gold-master source for rebuilding live/install media.
+
+Work was performed from Kubuntu/Ubuntu 26.04 on the EliteBook with the SableLinux internal partitions mounted offline/read-only.
+
+### Source system verified
+
+- Build host: EliteBook, hostname logos
+- Source Sable install hostname: vulfen
+- Source Sable root: /dev/nvme0n1p3
+- Source Sable boot: /dev/nvme0n1p2
+- Source Sable EFI: /dev/nvme0n1p1
+- Source kernel: 6.16.1-sable-compat2
+- Source boot image: vmlinuz-6.16.1-sable-compat2
+- Source initramfs: initramfs-6.16.1-sable-compat2.img
+
+### Staging result
+
+A new staging root was created from the working vulfen install.
+
+- Staged rootfs size: approximately 22G
+- Rebuilt SquashFS size: approximately 5.7G
+- SquashFS format: SquashFS 4.0
+- Compression: xz
+- Block size: 1M
+- Validation: unsquashfs -s reported a valid superblock
+
+Final clean live payload:
+
+- boot/vmlinuz-6.16.1-sable-compat2
+- boot/initramfs-6.16.1-sable-compat2.img
+- live/filesystem.squashfs
+
+### Verified payload hashes
+
+- a1582514ef786631e0e15f2f0fea0002fa6d458cf3e3c620bd66875d1d8a45ba  vmlinuz-6.16.1-sable-compat2
+- 8a0c382d8cbd63526d658329a1c838c998c26d81770cb4e02f8689312b4a17e2  initramfs-6.16.1-sable-compat2.img
+- 7655b52c7b3cb87c2b2021edb26a1afb15b2b9fe3e411dc060b708a2230111bf  filesystem.squashfs
+
+### Z890 transfer checkpoint
+
+The clean live payload was transferred to the Z890 at:
+
+/home/pepper/sablelinux-builds/elitebook-vulfen-20260703/staging/live/
+
+Hashes were verified on the Z890 and matched the EliteBook source payload.
+
+The Z890 remains the primary QEMU/release-validation machine for now. The EliteBook remains the mobile development/source-staging system until QEMU capability and thermal behavior are validated.
+
+### USB clone checkpoint
+
+A known-good SableLinux live/install USB was cloned.
+
+- Source USB: SanDisk serial 03005503013026003502
+- Target USB: SanDisk serial beginning 040114
+- Clone method: raw device clone using dd
+- EFI partition hash comparison: matched
+- SABLELINUX partition hash comparison: matched
+
+The clone is structurally verified. Boot testing remains pending.
+
+### Device inventory
+
+An EliteBook hardware inventory was captured for project records:
+
+assets/devices/elitebook-logos-hardware-20260703-2332.md
+
+Key hardware summary:
+
+- HP EliteBook 645 14 inch G9 Notebook PC
+- AMD Ryzen 7 PRO 5875U, 8C/16T
+- AMD-V available
+- AMD Barcelo iGPU using amdgpu
+- Qualcomm QCNFA765 Wi-Fi using ath11k_pci
+- Samsung NVMe internal storage
+- UEFI boot mode
+
+### Engineering status
+
+Current known-good chain:
+
+working Sable install on EliteBook
+-> staged rootfs
+-> rebuilt filesystem.squashfs
+-> clean live payload
+-> verified transfer to Z890
+-> verified cloned live USB backup
+
+Next steps:
+
+1. Create raw known-good USB image artifact on the Z890.
+2. QEMU-test the transferred live payload on the Z890.
+3. Boot-test both physical USBs individually.
+4. Formalize the live media rebuild procedure into scripts/docs.
+5. Keep large artifacts out of Git; commit only docs, manifests, checksums, and scripts.
