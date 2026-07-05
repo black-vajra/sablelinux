@@ -1,0 +1,440 @@
+=== CPU INFO ===
+Architecture:                            x86_64
+CPU op-mode(s):                          32-bit, 64-bit
+Address sizes:                           46 bits physical, 48 bits virtual
+Byte Order:                              Little Endian
+CPU(s):                                  14
+On-line CPU(s) list:                     0-13
+Vendor ID:                               GenuineIntel
+BIOS Vendor ID:                          Intel(R) Corporation
+Model name:                              Intel(R) Core(TM) Ultra 5 245K
+BIOS Model name:                         Intel(R) Core(TM) Ultra 5 245K To Be Filled By O.E.M. CPU @ 4.2GHz
+BIOS CPU family:                         773
+CPU family:                              6
+Model:                                   198
+Thread(s) per core:                      1
+Core(s) per socket:                      14
+Socket(s):                               1
+Stepping:                                2
+CPU(s) scaling MHz:                      95%
+CPU max MHz:                             5200.0000
+CPU min MHz:                             800.0000
+BogoMIPS:                                8371.20
+Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdt_a rdseed adx smap clflushopt clwb intel_pt sha_ni xsaveopt xsavec xgetbv1 xsaves split_lock_detect user_shstk avx_vnni lam wbnoinvd dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp hwp_pkg_req hfi vnmi umip pku ospke waitpkg gfni vaes vpclmulqdq rdpid bus_lock_detect movdiri movdir64b fsrm md_clear serialize arch_lbr ibt flush_l1d arch_capabilities
+Virtualization:                          VT-x
+L1d cache:                               480 KiB (12 instances)
+L1i cache:                               768 KiB (12 instances)
+L2 cache:                                26 MiB (8 instances)
+L3 cache:                                24 MiB (1 instance)
+NUMA node(s):                            1
+NUMA node0 CPU(s):                       0-13
+Vulnerability Gather data sampling:      Not affected
+Vulnerability Ghostwrite:                Not affected
+Vulnerability Indirect target selection: Not affected
+Vulnerability Itlb multihit:             Not affected
+Vulnerability L1tf:                      Not affected
+Vulnerability Mds:                       Not affected
+Vulnerability Meltdown:                  Not affected
+Vulnerability Mmio stale data:           Not affected
+Vulnerability Old microcode:             Not affected
+Vulnerability Reg file data sampling:    Not affected
+Vulnerability Retbleed:                  Not affected
+Vulnerability Spec rstack overflow:      Not affected
+Vulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:                Mitigation; Enhanced / Automatic IBRS; IBPB conditional; PBRSB-eIBRS Not affected; BHI BHI_DIS_S
+Vulnerability Srbds:                     Not affected
+Vulnerability Tsa:                       Not affected
+Vulnerability Tsx async abort:           Not affected
+Vulnerability Vmscape:                   Mitigation; IBPB before exit to userspace
+
+=== CPU FLAGS (security-relevant) ===
+aes
+avx
+avx2
+avx_vnni
+ibt
+ospke
+pku
+sha_ni
+smx
+tpr_shadow
+user_shstk
+vaes
+vmx
+
+=== SGX STATUS ===
+No SGX devices found
+No SGX in cpuinfo
+
+=== TPM ===
+/dev/tpm0
+/dev/tpmrm0
+2
+(TPM version above)
+
+=== INTEL TXT ===
+
+=== SECURE BOOT ===
+SecureBoot disabled
+bootctl not available
+
+=== MEMORY ===
+               total        used        free      shared  buff/cache   available
+Mem:            30Gi       8.8Gi        11Gi       408Mi        11Gi        22Gi
+Swap:          8.0Gi        12Ki       8.0Gi
+	Error Correction Type: None
+	Size: No Module Installed
+	Type: Unknown
+	Size: 16 GB
+	Type: DDR5
+	Speed: 5600 MT/s
+	Manufacturer: Team Group Inc
+	Configured Memory Speed: 5600 MT/s
+	Module Manufacturer ID: Bank 5, Hex 0xEF
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 16 GB
+	Cache Size: None
+	Logical Size: None
+	Size: No Module Installed
+	Type: Unknown
+	Size: 16 GB
+	Type: DDR5
+	Speed: 5600 MT/s
+	Manufacturer: Team Group Inc
+	Configured Memory Speed: 5600 MT/s
+	Module Manufacturer ID: Bank 5, Hex 0xEF
+	Memory Subsystem Controller Manufacturer ID: Unknown
+	Non-Volatile Size: None
+	Volatile Size: 16 GB
+	Cache Size: None
+	Logical Size: None
+
+=== CPU VULNERABILITIES ===
+/sys/devices/system/cpu/vulnerabilities/spectre_v2:Mitigation: Enhanced / Automatic IBRS; IBPB: conditional; PBRSB-eIBRS: Not affected; BHI: BHI_DIS_S
+/sys/devices/system/cpu/vulnerabilities/indirect_target_selection:Not affected
+/sys/devices/system/cpu/vulnerabilities/itlb_multihit:Not affected
+/sys/devices/system/cpu/vulnerabilities/ghostwrite:Not affected
+/sys/devices/system/cpu/vulnerabilities/vmscape:Mitigation: IBPB before exit to userspace
+/sys/devices/system/cpu/vulnerabilities/mmio_stale_data:Not affected
+/sys/devices/system/cpu/vulnerabilities/mds:Not affected
+/sys/devices/system/cpu/vulnerabilities/reg_file_data_sampling:Not affected
+/sys/devices/system/cpu/vulnerabilities/tsa:Not affected
+/sys/devices/system/cpu/vulnerabilities/l1tf:Not affected
+/sys/devices/system/cpu/vulnerabilities/spec_store_bypass:Mitigation: Speculative Store Bypass disabled via prctl
+/sys/devices/system/cpu/vulnerabilities/tsx_async_abort:Not affected
+/sys/devices/system/cpu/vulnerabilities/old_microcode:Not affected
+/sys/devices/system/cpu/vulnerabilities/spectre_v1:Mitigation: usercopy/swapgs barriers and __user pointer sanitization
+/sys/devices/system/cpu/vulnerabilities/gather_data_sampling:Not affected
+/sys/devices/system/cpu/vulnerabilities/retbleed:Not affected
+/sys/devices/system/cpu/vulnerabilities/spec_rstack_overflow:Not affected
+/sys/devices/system/cpu/vulnerabilities/srbds:Not affected
+/sys/devices/system/cpu/vulnerabilities/meltdown:Not affected
+
+=== IOMMU / SMMU ===
+[    0.005147] ACPI: DMAR 0x00000000418A8000 000098 (v01 ALASKA A M I    01072009 AMI  01000013)
+[    0.005176] ACPI: Reserving DMAR table memory at [mem 0x418a8000-0x418a8097]
+[    0.090522] DMAR: Host address width 42
+[    0.090522] DMAR: DRHD base: 0x000000fc800000 flags: 0x0
+[    0.090536] DMAR: dmar0: reg_base_addr fc800000 ver 7:0 cap e9de008cee690462 ecap 1aca9a00f0ef5e
+[    0.090556] DMAR: DRHD base: 0x000000fc810000 flags: 0x1
+[    0.090564] DMAR: dmar1: reg_base_addr fc810000 ver 7:0 cap e9de008cee690462 ecap 1aca9a00f0efde
+[    0.090581] DMAR: SATC flags: 0x1
+[    0.090584] DMAR-IR: IOAPIC id 2 under DRHD base  0xfc810000 IOMMU 1
+[    0.090585] DMAR-IR: HPET id 0 under DRHD base 0xfc810000
+[    0.090585] DMAR-IR: Queued invalidation will be enabled to support x2apic and Intr-remapping.
+[    0.092093] DMAR-IR: Enabled IRQ remapping in x2apic mode
+[    0.985421] pci 0000:00:02.0: DMAR: Skip IOMMU disabling for graphics
+[    1.007125] iommu: Default domain type: Translated
+[    1.007125] iommu: DMA domain TLB invalidation policy: lazy mode
+[    1.041799] DMAR: No RMRR found
+[    1.041800] DMAR: No ATSR found
+[    1.041801] DMAR: dmar0: Using Queued invalidation
+[    1.041803] DMAR: dmar1: Using Queued invalidation
+[    1.042180] pci 0000:00:02.0: Adding to iommu group 0
+dmar0
+dmar1
+(IOMMU entries above)
+
+=== GPU ===
+00:02.0 VGA compatible controller: Intel Corporation Arrow Lake-U [Intel Graphics] (rev 06)
+01:00.0 PCI bridge: Advanced Micro Devices, Inc. [AMD/ATI] Navi 10 XL Upstream Port of PCI Express Switch (rev 25)
+02:00.0 PCI bridge: Advanced Micro Devices, Inc. [AMD/ATI] Navi 10 XL Downstream Port of PCI Express Switch (rev 25)
+03:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] Device 7590 (rev c0)
+03:00.1 Audio device: Advanced Micro Devices, Inc. [AMD/ATI] Device ab40
+80:14.5 Non-VGA unclassified device: Intel Corporation Device 7f2f (rev 10)
+server glx vendor string: SGI
+server glx version string: 1.4
+client glx vendor string: Mesa Project and SGI
+client glx version string: 1.4
+    GLX_MESA_copy_sub_buffer, GLX_MESA_gl_interop, GLX_MESA_query_renderer, 
+
+=== STORAGE ===
+NAME                                            SIZE TYPE  FSTYPE      MOUNTPOINT                     ROTA TRAN
+loop0                                             4K loop  squashfs    /snap/bare/5                      0 
+loop1                                         180.9M loop  squashfs    /snap/chromium/3369               0 
+loop2                                         180.7M loop  squashfs    /snap/chromium/3361               0 
+loop3                                          13.4M loop  squashfs    /snap/canonical-livepatch/384     0 
+loop4                                         104.2M loop  squashfs    /snap/core/17247                  0 
+loop5                                           105M loop  squashfs    /snap/core/17272                  0 
+loop6                                          55.5M loop  squashfs    /snap/core18/2999                 0 
+loop7                                          55.5M loop  squashfs    /snap/core18/2979                 0 
+loop8                                            13M loop  squashfs    /snap/canonical-livepatch/378     0 
+loop9                                          63.8M loop  squashfs    /snap/core20/2686                 0 
+loop10                                         63.8M loop  squashfs    /snap/core20/2717                 0 
+loop11                                         73.9M loop  squashfs    /snap/core22/2216                 0 
+loop12                                           74M loop  squashfs    /snap/core22/2292                 0 
+loop13                                         66.8M loop  squashfs    /snap/core24/1267                 0 
+loop14                                         66.9M loop  squashfs    /snap/core24/1349                 0 
+loop15                                         47.6M loop  squashfs    /snap/cups/1142                   0 
+loop16                                         48.8M loop  squashfs    /snap/cups/1146                   0 
+loop17                                        182.3M loop  squashfs    /snap/element-desktop/192         0 
+loop18                                         62.2M loop  squashfs    /snap/ffmpeg-2204/126             0 
+loop19                                        183.7M loop  squashfs    /snap/element-desktop/197         0 
+loop20                                        254.6M loop  squashfs    /snap/firefox/7869                0 
+loop21                                         18.5M loop  squashfs    /snap/firmware-updater/210        0 
+loop22                                         54.1M loop  squashfs    /snap/ghostwriter/73              0 
+loop23                                        254.6M loop  squashfs    /snap/firefox/7901                0 
+loop24                                         16.4M loop  squashfs    /snap/firmware-updater/216        0 
+loop25                                        516.2M loop  squashfs    /snap/gnome-42-2204/226           0 
+loop26                                        164.8M loop  squashfs    /snap/gnome-3-28-1804/198         0 
+loop27                                         91.7M loop  squashfs    /snap/gtk-common-themes/1535      0 
+loop28                                          140K loop  squashfs    /snap/gtk2-common-themes/13       0 
+loop29                                        669.8M loop  squashfs    /snap/gnome-46-2404/145           0 
+loop30                                        531.4M loop  squashfs    /snap/gnome-42-2204/247           0 
+loop31                                         32.1M loop  squashfs    /snap/hunspell-dictionaries/21    0 
+loop32                                        606.1M loop  squashfs    /snap/gnome-46-2404/153           0 
+loop33                                          1.3G loop  squashfs    /snap/kf6-core24/34               0 
+loop34                                          1.5G loop  squashfs    /snap/kf5-core22/3                0 
+loop35                                          1.4G loop  squashfs    /snap/kf6-core24/36               0 
+loop36                                        371.5M loop  squashfs    /snap/krita/109                   0 
+loop37                                        164.6M loop  squashfs    /snap/losslesscut/140             0 
+loop38                                         42.6M loop  squashfs    /snap/leafpad/97                  0 
+loop39                                        264.3M loop  squashfs    /snap/losslesscut/141             0 
+loop40                                          395M loop  squashfs    /snap/mesa-2404/1165              0 
+loop41                                          2.1G loop  squashfs    /snap/rocm-validation-suite/16    0 
+loop42                                        290.8M loop  squashfs    /snap/mesa-2404/912               0 
+loop43                                         50.9M loop  squashfs    /snap/snapd/25577                 0 
+loop44                                         48.1M loop  squashfs    /snap/snapd/25935                 0 
+loop45                                          940K loop  squashfs    /snap/speedtest/12                0 
+loop46                                          940K loop  squashfs    /snap/speedtest/9                 0 
+loop47                                          227M loop  squashfs    /snap/thunderbird/1001            0 
+loop48                                          4.4M loop  squashfs    /snap/tree/54                     0 
+loop49                                          227M loop  squashfs    /snap/thunderbird/995             0 
+sda                                           465.8G disk                                                1 usb
+├─sda1                                          512M part  vfat                                          1 
+├─sda2                                            2G part  ext4                                          1 
+└─sda3                                        463.3G part  ext4                                          1 
+sdb                                             4.5T disk                                                1 usb
+└─sdb1                                          4.5T part  crypto_LUKS                                   1 
+  └─external4t                                  4.5T crypt ext4        /mnt/two                          1 
+nvme0n1                                       931.5G disk                                                0 nvme
+├─nvme0n1p1                                     300M part  vfat        /boot/efi                         0 nvme
+├─nvme0n1p2                                       4G part  ext4        /boot                             0 nvme
+└─nvme0n1p3                                   927.2G part  crypto_LUKS                                   0 nvme
+  └─luks-782b5ffc-97c0-47dc-9a17-c7f295ef6f9b 927.2G crypt ext4        /                                 0 
+NAME      SIZE ROTA TRAN   VENDOR   MODEL
+loop0       4K    0                 
+loop1   180.9M    0                 
+loop2   180.7M    0                 
+loop3    13.4M    0                 
+loop4   104.2M    0                 
+loop5     105M    0                 
+loop6    55.5M    0                 
+loop7    55.5M    0                 
+loop8      13M    0                 
+loop9    63.8M    0                 
+loop10   63.8M    0                 
+loop11   73.9M    0                 
+loop12     74M    0                 
+loop13   66.8M    0                 
+loop14   66.9M    0                 
+loop15   47.6M    0                 
+loop16   48.8M    0                 
+loop17  182.3M    0                 
+loop18   62.2M    0                 
+loop19  183.7M    0                 
+loop20  254.6M    0                 
+loop21   18.5M    0                 
+loop22   54.1M    0                 
+loop23  254.6M    0                 
+loop24   16.4M    0                 
+loop25  516.2M    0                 
+loop26  164.8M    0                 
+loop27   91.7M    0                 
+loop28    140K    0                 
+loop29  669.8M    0                 
+loop30  531.4M    0                 
+loop31   32.1M    0                 
+loop32  606.1M    0                 
+loop33    1.3G    0                 
+loop34    1.5G    0                 
+loop35    1.4G    0                 
+loop36  371.5M    0                 
+loop37  164.6M    0                 
+loop38   42.6M    0                 
+loop39  264.3M    0                 
+loop40    395M    0                 
+loop41    2.1G    0                 
+loop42  290.8M    0                 
+loop43   50.9M    0                 
+loop44   48.1M    0                 
+loop45    940K    0                 
+loop46    940K    0                 
+loop47    227M    0                 
+loop48    4.4M    0                 
+loop49    227M    0                 
+sda     465.8G    1 usb    PNY CS90 PNY CS900 500GB SSD
+sdb       4.5T    1 usb    WD       WDC WD50NDZW-11BCSS0
+nvme0n1 931.5G    0 nvme            PNY CS2150 1TB SSD
+
+=== LUKS DEVICES ===
+└─sdb1                                        crypto_LUKS
+└─nvme0n1p3                                   crypto_LUKS
+external4t	(252, 1)
+luks-782b5ffc-97c0-47dc-9a17-c7f295ef6f9b	(252, 0)
+
+=== KERNEL & BOOT ===
+Linux pots 6.17.0-14-generic #14~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Thu Jan 15 15:52:10 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+BOOT_IMAGE=/vmlinuz-6.17.0-14-generic root=UUID=affff63a-c833-4b7c-abf2-3363dbbbb794 ro quiet cryptdevice=UUID=782b5ffc-97c0-47dc-9a17-c7f295ef6f9b:luks-782b5ffc-97c0-47dc-9a17-c7f295ef6f9b root=/dev/mapper/luks-782b5ffc-97c0-47dc-9a17-c7f295ef6f9b splash vt.handoff=7
+BOOT_IMAGE=/vmlinuz-6.17.0-14-generic root=UUID=affff63a-c833-4b7c-abf2-3363dbbbb794 ro quiet cryptdevice=UUID=782b5ffc-97c0-47dc-9a17-c7f295ef6f9b:luks-782b5ffc-97c0-47dc-9a17-c7f295ef6f9b root=/dev/mapper/luks-782b5ffc-97c0-47dc-9a17-c7f295ef6f9b splash vt.handoff=7
+
+=== KERNEL SECURITY CONFIG ===
+CONFIG_AUDIT=y
+CONFIG_AUDITSYSCALL=y
+CONFIG_AUDIT_ARCH=y
+CONFIG_X86_SGX=y
+CONFIG_X86_SGX_KVM=y
+CONFIG_MODULE_SIG_FORMAT=y
+CONFIG_MODULE_SIG=y
+# CONFIG_MODULE_SIG_FORCE is not set
+CONFIG_MODULE_SIG_ALL=y
+# CONFIG_MODULE_SIG_SHA1 is not set
+# CONFIG_MODULE_SIG_SHA256 is not set
+# CONFIG_MODULE_SIG_SHA384 is not set
+CONFIG_MODULE_SIG_SHA512=y
+# CONFIG_MODULE_SIG_SHA3_256 is not set
+# CONFIG_MODULE_SIG_SHA3_384 is not set
+# CONFIG_MODULE_SIG_SHA3_512 is not set
+CONFIG_MODULE_SIG_HASH="sha512"
+CONFIG_IOMMU_MM_DATA=y
+CONFIG_TCG_TPM=y
+# CONFIG_TCG_TPM2_HMAC is not set
+CONFIG_IOMMU_IOVA=y
+CONFIG_IOMMU_API=y
+CONFIG_IOMMUFD_DRIVER=y
+CONFIG_IOMMU_SUPPORT=y
+CONFIG_IOMMU_IO_PGTABLE=y
+# CONFIG_IOMMU_DEBUGFS is not set
+# CONFIG_IOMMU_DEFAULT_DMA_STRICT is not set
+CONFIG_IOMMU_DEFAULT_DMA_LAZY=y
+# CONFIG_IOMMU_DEFAULT_PASSTHROUGH is not set
+CONFIG_IOMMU_DMA=y
+CONFIG_IOMMU_SVA=y
+CONFIG_IOMMU_IOPF=y
+CONFIG_IOMMUFD_DRIVER_CORE=y
+CONFIG_IOMMUFD=m
+CONFIG_SECURITY_DMESG_RESTRICT=y
+CONFIG_SECURITY_PERF_EVENTS_RESTRICT=y
+CONFIG_SECURITY=y
+CONFIG_SECURITYFS=y
+CONFIG_SECURITY_NETWORK=y
+CONFIG_SECURITY_INFINIBAND=y
+CONFIG_SECURITY_NETWORK_XFRM=y
+CONFIG_SECURITY_PATH=y
+CONFIG_INTEL_TXT=y
+CONFIG_SECURITY_SELINUX=y
+CONFIG_SECURITY_SELINUX_BOOTPARAM=y
+CONFIG_SECURITY_SELINUX_DEVELOP=y
+CONFIG_SECURITY_SELINUX_AVC_STATS=y
+CONFIG_SECURITY_SELINUX_SIDTAB_HASH_BITS=9
+CONFIG_SECURITY_SELINUX_SID2STR_CACHE_SIZE=256
+# CONFIG_SECURITY_SELINUX_DEBUG is not set
+CONFIG_SECURITY_SMACK=y
+# CONFIG_SECURITY_SMACK_BRINGUP is not set
+CONFIG_SECURITY_SMACK_NETFILTER=y
+CONFIG_SECURITY_SMACK_APPEND_SIGNALS=y
+CONFIG_SECURITY_TOMOYO=y
+CONFIG_SECURITY_TOMOYO_MAX_ACCEPT_ENTRY=2048
+CONFIG_SECURITY_TOMOYO_MAX_AUDIT_LOG=1024
+# CONFIG_SECURITY_TOMOYO_OMIT_USERSPACE_LOADER is not set
+CONFIG_SECURITY_TOMOYO_POLICY_LOADER="/sbin/tomoyo-init"
+CONFIG_SECURITY_TOMOYO_ACTIVATION_TRIGGER="/sbin/init"
+# CONFIG_SECURITY_TOMOYO_INSECURE_BUILTIN_SETTING is not set
+CONFIG_SECURITY_APPARMOR=y
+# CONFIG_SECURITY_APPARMOR_DEBUG is not set
+CONFIG_SECURITY_APPARMOR_INTROSPECT_POLICY=y
+CONFIG_SECURITY_APPARMOR_HASH=y
+CONFIG_SECURITY_APPARMOR_HASH_DEFAULT=y
+CONFIG_SECURITY_APPARMOR_EXPORT_BINARY=y
+CONFIG_SECURITY_APPARMOR_PARANOID_LOAD=y
+# CONFIG_SECURITY_APPARMOR_RESTRICT_USERNS is not set
+# CONFIG_SECURITY_LOADPIN is not set
+CONFIG_SECURITY_YAMA=y
+CONFIG_SECURITY_SAFESETID=y
+CONFIG_SECURITY_LOCKDOWN_LSM=y
+CONFIG_SECURITY_LOCKDOWN_LSM_EARLY=y
+CONFIG_SECURITY_LANDLOCK=y
+CONFIG_SECURITY_IPE=y
+CONFIG_IMA=y
+CONFIG_IMA_KEXEC=y
+CONFIG_IMA_MEASURE_PCR_IDX=10
+CONFIG_IMA_LSM_RULES=y
+CONFIG_IMA_NG_TEMPLATE=y
+# CONFIG_IMA_SIG_TEMPLATE is not set
+CONFIG_IMA_DEFAULT_TEMPLATE="ima-ng"
+# CONFIG_IMA_DEFAULT_HASH_SHA1 is not set
+CONFIG_IMA_DEFAULT_HASH_SHA256=y
+# CONFIG_IMA_DEFAULT_HASH_SHA512 is not set
+CONFIG_IMA_DEFAULT_HASH="sha256"
+# CONFIG_IMA_WRITE_POLICY is not set
+# CONFIG_IMA_READ_POLICY is not set
+CONFIG_IMA_APPRAISE=y
+CONFIG_IMA_ARCH_POLICY=y
+# CONFIG_IMA_APPRAISE_BUILD_POLICY is not set
+CONFIG_IMA_APPRAISE_BOOTPARAM=y
+CONFIG_IMA_APPRAISE_MODSIG=y
+# CONFIG_IMA_KEYRINGS_PERMIT_SIGNED_BY_BUILTIN_OR_SECONDARY is not set
+# CONFIG_IMA_BLACKLIST_KEYRING is not set
+# CONFIG_IMA_LOAD_X509 is not set
+CONFIG_IMA_MEASURE_ASYMMETRIC_KEYS=y
+CONFIG_IMA_QUEUE_EARLY_BOOT_KEYS=y
+CONFIG_IMA_SECURE_AND_OR_TRUSTED_BOOT=y
+# CONFIG_IMA_DISABLE_HTABLE is not set
+CONFIG_IMA_KEXEC_EXTRA_MEMORY_KB=0
+CONFIG_MODULE_SIG_KEY="certs/signing_key.pem"
+CONFIG_MODULE_SIG_KEY_TYPE_RSA=y
+# CONFIG_MODULE_SIG_KEY_TYPE_ECDSA is not set
+CONFIG_IOMMU_HELPER=y
+# CONFIG_IOMMU_DEBUG is not set
+
+=== LSM STATUS ===
+lockdown,capability,landlock,yama,apparmor,ima,evmapparmor module is loaded.
+239 profiles are loaded.
+140 profiles are in enforce mode.
+   /snap/core/17272/usr/lib/snapd/snap-confine
+   /snap/core/17272/usr/lib/snapd/snap-confine//mount-namespace-capture-helper
+
+=== NETWORK INTERFACES ===
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: enp130s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel master br0 state UP mode DEFAULT group default qlen 1000
+    link/ether 10:ff:e0:6b:da:50 brd ff:ff:ff:ff:ff:ff
+3: wlp129s0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether 44:fa:66:65:df:9b brd ff:ff:ff:ff:ff:ff
+4: br0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default qlen 1000
+    link/ether 56:77:03:42:88:3f brd ff:ff:ff:ff:ff:ff
+5: client1: <POINTOPOINT,NOARP,UP,LOWER_UP> mtu 1280 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/none 
+6: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default 
+    link/ether e2:d5:1a:91:ad:8a brd ff:ff:ff:ff:ff:ff
+
+=== MOTHERBOARD / FIRMWARE ===
+	Vendor: American Megatrends International, LLC.
+	Version: F19
+	Release Date: 02/02/2026
+		UEFI is supported
+	Manufacturer: Gigabyte Technology Co., Ltd.
+	Product Name: Z890 AORUS ELITE X ICE
+	Version: x.x
