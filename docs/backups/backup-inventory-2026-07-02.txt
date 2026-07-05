@@ -1,0 +1,56 @@
+# Backup Inventory — 2026-07-02
+
+Thu Jul  2 11:41:47 AM EDT 2026
+
+## Mounts
+TARGET   SOURCE               FSTYPE OPTIONS
+/mnt/one /dev/mapper/volume01 ext4   rw,relatime
+
+## Top-level backup directory
+total 932G
+drwx------  5 pepper pepper 4.0K May 11 09:31 .
+drwx------ 12 pepper pepper 4.0K Mar  5 19:10 ..
+-rwx------  1 pepper pepper 2.2K Jan  8 12:19 .backup_procedures.txt
+-rwx------  1 pepper pepper 2.8K Dec 30  2025 disk_identity_map.txt
+drwx------  3 pepper pepper 4.0K May  3 11:05 iso
+-rwx------  1 pepper pepper  16M May 11 09:31 Kubuntu-drive-2026-05-11.bin
+-rwx------  1 pepper pepper  16M Apr 23 18:35 Kubuntu-drive.bin
+drwx------  3 pepper pepper 4.0K May 11 09:39 kubu-system
+drwx------  7 pepper pepper 4.0K May 10 19:47 sable-system
+-rwx------  1 pepper pepper 932G Mar  2 18:26 system.img
+-rwx------  1 pepper pepper  16M Apr 23 18:38 WD-drive.bin
+
+## Backup sizes
+4.0K	/mnt/one/backups/disk_identity_map.txt
+16M	/mnt/one/backups/Kubuntu-drive-2026-05-11.bin
+16M	/mnt/one/backups/Kubuntu-drive.bin
+16M	/mnt/one/backups/WD-drive.bin
+12G	/mnt/one/backups/iso
+480G	/mnt/one/backups/sable-system
+564G	/mnt/one/backups/kubu-system
+932G	/mnt/one/backups/system.img
+
+## Sable backup tree
+2026-04-23 15:57 12065653 /mnt/one/backups/sable-system/sable-nvme-04-23/sable-efi.img.gz
+2026-04-23 15:57 4096 /mnt/one/backups/sable-system/sable-nvme-04-23
+2026-04-23 15:57 493438151 /mnt/one/backups/sable-system/sable-nvme-04-23/sable-boot.img.gz
+2026-04-23 17:29 135453609411 /mnt/one/backups/sable-system/sable-nvme-04-23/sable-root.img.gz
+2026-05-03 11:25 12065653 /mnt/one/backups/sable-system/sable-nvme-05-03/sable-efi-05-03.img.gz
+2026-05-03 13:07 4096 /mnt/one/backups/sable-system/sable-nvme-05-03
+2026-05-03 14:55 159361739971 /mnt/one/backups/sable-system/sable-nvme-05-03/sable-root-05-03.img.gz
+2026-05-07 17:28 4096 /mnt/one/backups/sable-system/iso/first-working
+2026-05-07 17:29 12718956544 /mnt/one/backups/sable-system/iso/first-working/sablelinux-live.iso
+2026-05-07 17:32 12718956544 /mnt/one/backups/sable-system/iso/sablelinux-live.iso
+2026-05-07 17:34 15303199926 /mnt/one/backups/sable-system/iso/sablelinux-live-wifi.iso.gz
+2026-05-09 17:49 4096 /mnt/one/backups/sable-system/sable-nvme-05-09
+2026-05-09 18:26 163576632564 /mnt/one/backups/sable-system/sable-nvme-05-09/sable-root-05-09.img.gz
+2026-05-10 19:47 4096 /mnt/one/backups/sable-system
+2026-05-10 19:49 4096 /mnt/one/backups/sable-system/liveroot
+2026-05-10 19:57 8641305264 /mnt/one/backups/sable-system/liveroot/liveroot-2026-05-10.tar.gz
+2026-05-10 20:09 4096 /mnt/one/backups/sable-system/iso
+2026-05-10 20:13 6042768082 /mnt/one/backups/sable-system/iso/sablelinux-live-wifi-asus.iso.gz
+
+## ISO backup tree
+2026-05-03 11:05 4096 /mnt/one/backups/iso
+2026-05-03 11:06 4096 /mnt/one/backups/iso/first-working
+2026-05-03 11:07 12718956544 /mnt/one/backups/iso/first-working/sablelinux-live.iso

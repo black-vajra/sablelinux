@@ -1,0 +1,607 @@
+=== SABLE INVENTORY ===
+Thu Jul  2 12:03:38 EDT 2026
+vulfen
+sable
+Linux vulfen 6.16.1-sable-compat2 #13 SMP PREEMPT_DYNAMIC Mon Jun  1 22:17:27 EDT 2026 x86_64 GNU/Linux
+
+=== OS RELEASE ===
+NAME="SableLinux"
+PRETTY_NAME="Sable Linux 1.0"
+ID=sablelinux
+VERSION="1.0"
+VERSION_ID="1.0"
+HOME_URL="https://sablelinux.dev"
+BUG_REPORT_URL="https://github.com/black-vajra/sablelinux/issues"
+ANSI_COLOR="1;30"
+
+=== KERNEL CMDLINE ===
+BOOT_IMAGE=/vmlinuz-6.16.1-sable-compat2 root=UUID=97b76a3c-825a-4012-aa83-90c7e58e5dc2 ro
+
+=== FILESYSTEMS ===
+NAME          SIZE FSTYPE      LABEL        UUID                                 MOUNTPOINTS
+nvme0n1     238.5G                                                               
+|-nvme0n1p1   512M vfat        EFI          C1AA-C814                            /boot/efi
+|-nvme0n1p2     2G ext4        BOOT         716d0784-4280-4a1e-aca1-8c29657b7d89 /boot
+|-nvme0n1p3   147G ext4        ROOT         97b76a3c-825a-4012-aa83-90c7e58e5dc2 /
+|-nvme0n1p4     4G ext4        kubuntu_boot 7c69951e-e465-428f-9578-3cedecc4562b 
+`-nvme0n1p5    85G crypto_LUKS              94c0f7f4-de6a-4bc0-9b09-a4f6d4c8c4ea 
+Filesystem     Type      Size  Used Avail Use% Mounted on
+/dev/nvme0n1p3 ext4      144G   22G  115G  16% /
+devtmpfs       devtmpfs  7.5G     0  7.5G   0% /dev
+tmpfs          tmpfs     7.5G  416K  7.5G   1% /dev/shm
+efivarfs       efivarfs  150K   73K   73K  51% /sys/firmware/efi/efivars
+tmpfs          tmpfs     3.0G  1.1M  3.0G   1% /run
+tmpfs          tmpfs     1.0M     0  1.0M   0% /run/credentials/systemd-journald.service
+tmpfs          tmpfs     1.0M     0  1.0M   0% /run/credentials/systemd-resolved.service
+tmpfs          tmpfs     1.0M     0  1.0M   0% /run/credentials/systemd-networkd.service
+tmpfs          tmpfs     7.5G     0  7.5G   0% /tmp
+/dev/nvme0n1p2 ext4      2.0G  192M  1.6G  11% /boot
+/dev/nvme0n1p1 vfat      511M  8.3M  503M   2% /boot/efi
+tmpfs          tmpfs     1.0M     0  1.0M   0% /run/credentials/getty@tty1.service
+tmpfs          tmpfs     1.5G   12K  1.5G   1% /run/user/1000
+
+=== MEMORY / CPU ===
+               total        used        free      shared  buff/cache   available
+Mem:            14Gi       523Mi        14Gi       9.5Mi       312Mi        14Gi
+Swap:             0B          0B          0B
+16
+Architecture:                            x86_64
+CPU op-mode(s):                          32-bit, 64-bit
+Address sizes:                           48 bits physical, 48 bits virtual
+Byte Order:                              Little Endian
+CPU(s):                                  16
+On-line CPU(s) list:                     0-15
+Vendor ID:                               AuthenticAMD
+Model name:                              AMD Ryzen 7 PRO 5875U with Radeon Graphics
+CPU family:                              25
+Model:                                   80
+Thread(s) per core:                      2
+Core(s) per socket:                      8
+Socket(s):                               1
+Stepping:                                0
+Frequency boost:                         enabled
+CPU(s) scaling MHz:                      37%
+CPU max MHz:                             4547.9458
+CPU min MHz:                             410.9590
+BogoMIPS:                                3992.39
+Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba ibrs ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic v_vmsave_vmload vgif v_spec_ctrl umip pku ospke vaes vpclmulqdq rdpid overflow_recov succor smca fsrm debug_swap
+Virtualization:                          AMD-V
+L1d cache:                               256 KiB (8 instances)
+L1i cache:                               256 KiB (8 instances)
+L2 cache:                                4 MiB (8 instances)
+L3 cache:                                16 MiB (1 instance)
+NUMA node(s):                            1
+NUMA node0 CPU(s):                       0-15
+Vulnerability Gather data sampling:      Not affected
+Vulnerability Ghostwrite:                Not affected
+Vulnerability Indirect target selection: Not affected
+Vulnerability Itlb multihit:             Not affected
+Vulnerability L1tf:                      Not affected
+Vulnerability Mds:                       Not affected
+Vulnerability Meltdown:                  Not affected
+Vulnerability Mmio stale data:           Not affected
+
+=== PCI DISPLAY / NETWORK / STORAGE ===
+
+=== USB DEVICES ===
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 001 Device 002: ID 0489:e0d6 Foxconn / Hon Hai 
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 003 Device 002: ID 05c8:0b06 Cheng Uei Precision Industry Co., Ltd (Foxlink) HP HD Camera
+Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+
+=== BOOT FILES ===
+2026-05-10 12:20 15610880 /boot/vmlinuz-6.16.1-lfs-12.4-systemd
+2026-05-10 12:20 25944406 /boot/initrd.img-6.16.1-lfs-12.4-systemd
+2026-05-24 23:04 14119936 /boot/vmlinuz-6.16.1-sable-compat
+2026-05-24 23:04 29514696 /boot/initramfs-6.16.1-sable-compat.img
+2026-05-31 00:04 15811584 /boot/vmlinuz-6.16.1-sable-compat2.bak-0601
+2026-05-31 00:05 35852899 /boot/initramfs-6.16.1-sable-compat2.img.bak-0601
+2026-05-31 00:54 6337 /boot/grub/grub.cfg
+2026-05-31 00:55 1024 /boot/grub/grubenv
+2026-06-01 22:33 15983616 /boot/vmlinuz-6.16.1-sable-compat2
+2026-06-01 22:34 35887984 /boot/initramfs-6.16.1-sable-compat2.img
+
+=== FIRMWARE HIGHLIGHTS ===
+/lib/firmware/amdgpu/aldebaran_mec.bin
+/lib/firmware/amdgpu/aldebaran_rlc.bin
+/lib/firmware/amdgpu/aldebaran_sdma.bin
+/lib/firmware/amdgpu/aldebaran_sjt_mec.bin
+/lib/firmware/amdgpu/aldebaran_smc.bin
+/lib/firmware/amdgpu/aldebaran_sos.bin
+/lib/firmware/amdgpu/aldebaran_ta.bin
+/lib/firmware/amdgpu/aldebaran_vcn.bin
+/lib/firmware/amdgpu/arcturus_asd.bin
+/lib/firmware/amdgpu/arcturus_gpu_info.bin
+/lib/firmware/amdgpu/arcturus_mec.bin
+/lib/firmware/amdgpu/arcturus_rlc.bin
+/lib/firmware/amdgpu/arcturus_sdma.bin
+/lib/firmware/amdgpu/arcturus_smc.bin
+/lib/firmware/amdgpu/arcturus_sos.bin
+/lib/firmware/amdgpu/arcturus_ta.bin
+/lib/firmware/amdgpu/arcturus_vcn.bin
+/lib/firmware/amdgpu/banks_k_2_smc.bin
+/lib/firmware/amdgpu/beige_goby_ce.bin
+/lib/firmware/amdgpu/beige_goby_dmcub.bin
+/lib/firmware/amdgpu/beige_goby_me.bin
+/lib/firmware/amdgpu/beige_goby_mec.bin
+/lib/firmware/amdgpu/beige_goby_pfp.bin
+/lib/firmware/amdgpu/beige_goby_rlc.bin
+/lib/firmware/amdgpu/beige_goby_sdma.bin
+/lib/firmware/amdgpu/beige_goby_smc.bin
+/lib/firmware/amdgpu/beige_goby_sos.bin
+/lib/firmware/amdgpu/beige_goby_ta.bin
+/lib/firmware/amdgpu/beige_goby_vcn.bin
+/lib/firmware/amdgpu/bonaire_ce.bin
+/lib/firmware/amdgpu/bonaire_k_smc.bin
+/lib/firmware/amdgpu/bonaire_mc.bin
+/lib/firmware/amdgpu/bonaire_me.bin
+/lib/firmware/amdgpu/bonaire_mec.bin
+/lib/firmware/amdgpu/bonaire_pfp.bin
+/lib/firmware/amdgpu/bonaire_rlc.bin
+/lib/firmware/amdgpu/bonaire_sdma.bin
+/lib/firmware/amdgpu/bonaire_sdma1.bin
+/lib/firmware/amdgpu/bonaire_smc.bin
+/lib/firmware/amdgpu/bonaire_uvd.bin
+/lib/firmware/amdgpu/bonaire_vce.bin
+/lib/firmware/amdgpu/carrizo_ce.bin
+/lib/firmware/amdgpu/carrizo_me.bin
+/lib/firmware/amdgpu/carrizo_mec.bin
+/lib/firmware/amdgpu/carrizo_pfp.bin
+/lib/firmware/amdgpu/carrizo_rlc.bin
+/lib/firmware/amdgpu/carrizo_sdma.bin
+/lib/firmware/amdgpu/carrizo_uvd.bin
+/lib/firmware/amdgpu/carrizo_vce.bin
+/lib/firmware/amdgpu/cyan_skillfish2_ce.bin
+/lib/firmware/amdgpu/cyan_skillfish2_me.bin
+/lib/firmware/amdgpu/cyan_skillfish2_mec.bin
+/lib/firmware/amdgpu/cyan_skillfish2_pfp.bin
+/lib/firmware/amdgpu/cyan_skillfish2_rlc.bin
+/lib/firmware/amdgpu/cyan_skillfish2_sdma.bin
+/lib/firmware/amdgpu/cyan_skillfish2_sdma1.bin
+/lib/firmware/amdgpu/dcn_3_1_4_dmcub.bin
+/lib/firmware/amdgpu/dcn_3_1_5_dmcub.bin
+/lib/firmware/amdgpu/dcn_3_1_6_dmcub.bin
+/lib/firmware/amdgpu/dcn_3_2_0_dmcub.bin
+/lib/firmware/amdgpu/dcn_3_2_1_dmcub.bin
+/lib/firmware/amdgpu/dcn_3_5_1_dmcub.bin
+/lib/firmware/amdgpu/dcn_3_5_dmcub.bin
+/lib/firmware/amdgpu/dcn_3_6_dmcub.bin
+/lib/firmware/amdgpu/dcn_4_0_1_dmcub.bin
+/lib/firmware/amdgpu/dimgrey_cavefish_ce.bin
+/lib/firmware/amdgpu/dimgrey_cavefish_me.bin
+/lib/firmware/amdgpu/dimgrey_cavefish_mec.bin
+/lib/firmware/amdgpu/dimgrey_cavefish_pfp.bin
+/lib/firmware/amdgpu/dimgrey_cavefish_rlc.bin
+/lib/firmware/amdgpu/dimgrey_cavefish_sdma.bin
+/lib/firmware/amdgpu/dimgrey_cavefish_smc.bin
+/lib/firmware/amdgpu/dimgrey_cavefish_sos.bin
+/lib/firmware/amdgpu/fiji_ce.bin
+/lib/firmware/amdgpu/fiji_mc.bin
+/lib/firmware/amdgpu/fiji_me.bin
+/lib/firmware/amdgpu/fiji_mec.bin
+/lib/firmware/amdgpu/fiji_pfp.bin
+/lib/firmware/amdgpu/fiji_rlc.bin
+/lib/firmware/amdgpu/fiji_sdma.bin
+/lib/firmware/amdgpu/fiji_sdma1.bin
+/lib/firmware/amdgpu/fiji_smc.bin
+/lib/firmware/amdgpu/fiji_uvd.bin
+/lib/firmware/amdgpu/fiji_vce.bin
+/lib/firmware/amdgpu/gc_10_3_6_ce.bin
+/lib/firmware/amdgpu/gc_10_3_6_me.bin
+/lib/firmware/amdgpu/gc_10_3_6_mec.bin
+/lib/firmware/amdgpu/gc_10_3_6_pfp.bin
+/lib/firmware/amdgpu/gc_10_3_6_rlc.bin
+/lib/firmware/amdgpu/gc_10_3_7_ce.bin
+/lib/firmware/amdgpu/gc_10_3_7_me.bin
+/lib/firmware/amdgpu/gc_10_3_7_mec.bin
+/lib/firmware/amdgpu/gc_10_3_7_pfp.bin
+/lib/firmware/amdgpu/gc_10_3_7_rlc.bin
+/lib/firmware/amdgpu/gc_11_0_0_imu.bin
+/lib/firmware/amdgpu/gc_11_0_0_imu_kicker.bin
+/lib/firmware/amdgpu/gc_11_0_0_me.bin
+/lib/firmware/amdgpu/gc_11_0_0_mec.bin
+/lib/firmware/amdgpu/gc_11_0_0_mes.bin
+/lib/firmware/amdgpu/gc_11_0_0_mes1.bin
+/lib/firmware/amdgpu/gc_11_0_0_mes_2.bin
+/lib/firmware/amdgpu/gc_11_0_0_pfp.bin
+/lib/firmware/amdgpu/gc_11_0_0_rlc.bin
+/lib/firmware/amdgpu/gc_11_0_0_rlc_1.bin
+/lib/firmware/amdgpu/gc_11_0_0_rlc_kicker.bin
+/lib/firmware/amdgpu/gc_11_0_1_imu.bin
+/lib/firmware/amdgpu/gc_11_0_1_me.bin
+/lib/firmware/amdgpu/gc_11_0_1_mec.bin
+/lib/firmware/amdgpu/gc_11_0_1_mes.bin
+/lib/firmware/amdgpu/gc_11_0_1_mes1.bin
+/lib/firmware/amdgpu/gc_11_0_1_mes_2.bin
+/lib/firmware/amdgpu/gc_11_0_1_pfp.bin
+/lib/firmware/amdgpu/gc_11_0_1_rlc.bin
+/lib/firmware/amdgpu/gc_11_0_2_imu.bin
+/lib/firmware/amdgpu/gc_11_0_2_me.bin
+/lib/firmware/amdgpu/gc_11_0_2_mec.bin
+/lib/firmware/amdgpu/gc_11_0_2_mes.bin
+/lib/firmware/amdgpu/gc_11_0_2_mes1.bin
+/lib/firmware/amdgpu/gc_11_0_2_mes_2.bin
+/lib/firmware/amdgpu/gc_11_0_2_pfp.bin
+/lib/firmware/amdgpu/gc_11_0_2_rlc.bin
+/lib/firmware/amdgpu/gc_11_0_3_imu.bin
+/lib/firmware/amdgpu/gc_11_0_3_me.bin
+/lib/firmware/amdgpu/gc_11_0_3_mec.bin
+/lib/firmware/amdgpu/gc_11_0_3_mes1.bin
+/lib/firmware/amdgpu/gc_11_0_3_mes_2.bin
+/lib/firmware/amdgpu/gc_11_0_3_pfp.bin
+/lib/firmware/amdgpu/gc_11_0_3_rlc.bin
+/lib/firmware/amdgpu/gc_11_0_4_me.bin
+/lib/firmware/amdgpu/gc_11_0_4_mec.bin
+/lib/firmware/amdgpu/gc_11_0_4_mes1.bin
+/lib/firmware/amdgpu/gc_11_0_4_mes_2.bin
+/lib/firmware/amdgpu/gc_11_0_4_pfp.bin
+/lib/firmware/amdgpu/gc_11_0_4_rlc.bin
+/lib/firmware/amdgpu/gc_11_5_0_imu.bin
+/lib/firmware/amdgpu/gc_11_5_0_me.bin
+/lib/firmware/amdgpu/gc_11_5_0_mec.bin
+/lib/firmware/amdgpu/gc_11_5_0_mes1.bin
+/lib/firmware/amdgpu/gc_11_5_0_mes_2.bin
+/lib/firmware/amdgpu/gc_11_5_0_pfp.bin
+/lib/firmware/amdgpu/gc_11_5_0_rlc.bin
+/lib/firmware/amdgpu/gc_11_5_1_imu.bin
+/lib/firmware/amdgpu/gc_11_5_1_me.bin
+/lib/firmware/amdgpu/gc_11_5_1_mec.bin
+/lib/firmware/amdgpu/gc_11_5_1_mes1.bin
+/lib/firmware/amdgpu/gc_11_5_1_mes_2.bin
+/lib/firmware/amdgpu/gc_11_5_1_pfp.bin
+/lib/firmware/amdgpu/gc_11_5_1_rlc.bin
+/lib/firmware/amdgpu/gc_11_5_2_imu.bin
+/lib/firmware/amdgpu/gc_11_5_2_me.bin
+/lib/firmware/amdgpu/gc_11_5_2_mec.bin
+/lib/firmware/amdgpu/gc_11_5_2_mes1.bin
+/lib/firmware/amdgpu/gc_11_5_2_mes_2.bin
+/lib/firmware/amdgpu/gc_11_5_2_pfp.bin
+/lib/firmware/amdgpu/gc_11_5_2_rlc.bin
+/lib/firmware/amdgpu/gc_11_5_3_imu.bin
+/lib/firmware/amdgpu/gc_11_5_3_me.bin
+/lib/firmware/amdgpu/gc_11_5_3_mec.bin
+/lib/firmware/amdgpu/gc_11_5_3_mes1.bin
+/lib/firmware/amdgpu/gc_11_5_3_mes_2.bin
+/lib/firmware/amdgpu/gc_11_5_3_pfp.bin
+/lib/firmware/amdgpu/gc_11_5_3_rlc.bin
+/lib/firmware/amdgpu/gc_12_0_0_imu.bin
+/lib/firmware/amdgpu/gc_12_0_0_me.bin
+/lib/firmware/amdgpu/gc_12_0_0_mec.bin
+/lib/firmware/amdgpu/gc_12_0_0_mes.bin
+/lib/firmware/amdgpu/gc_12_0_0_mes1.bin
+/lib/firmware/amdgpu/gc_12_0_0_pfp.bin
+/lib/firmware/amdgpu/gc_12_0_0_rlc.bin
+/lib/firmware/amdgpu/gc_12_0_0_toc.bin
+/lib/firmware/amdgpu/gc_12_0_0_uni_mes.bin
+/lib/firmware/amdgpu/gc_12_0_1_imu.bin
+/lib/firmware/amdgpu/gc_12_0_1_me.bin
+/lib/firmware/amdgpu/gc_12_0_1_mec.bin
+/lib/firmware/amdgpu/gc_12_0_1_mes.bin
+/lib/firmware/amdgpu/gc_12_0_1_mes1.bin
+/lib/firmware/amdgpu/gc_12_0_1_pfp.bin
+/lib/firmware/amdgpu/gc_12_0_1_rlc.bin
+/lib/firmware/amdgpu/gc_12_0_1_uni_mes.bin
+/lib/firmware/amdgpu/gc_9_4_3_mec.bin
+/lib/firmware/amdgpu/gc_9_4_3_rlc.bin
+/lib/firmware/amdgpu/gc_9_4_3_sjt_mec.bin
+/lib/firmware/amdgpu/gc_9_4_4_mec.bin
+/lib/firmware/amdgpu/gc_9_4_4_rlc.bin
+/lib/firmware/amdgpu/gc_9_4_4_sjt_mec.bin
+/lib/firmware/amdgpu/gfx1201_ce.bin
+/lib/firmware/amdgpu/gfx1201_me.bin
+/lib/firmware/amdgpu/gfx1201_mec.bin
+/lib/firmware/amdgpu/gfx1201_pfp.bin
+/lib/firmware/amdgpu/gfx1201_rlc.bin
+/lib/firmware/amdgpu/green_sardine_asd.bin
+/lib/firmware/amdgpu/green_sardine_ce.bin
+/lib/firmware/amdgpu/green_sardine_dmcub.bin
+/lib/firmware/amdgpu/green_sardine_me.bin
+/lib/firmware/amdgpu/green_sardine_mec.bin
+/lib/firmware/amdgpu/green_sardine_pfp.bin
+/lib/firmware/amdgpu/green_sardine_rlc.bin
+/lib/firmware/amdgpu/green_sardine_sdma.bin
+/lib/firmware/amdgpu/green_sardine_ta.bin
+/lib/firmware/amdgpu/green_sardine_vcn.bin
+/lib/firmware/amdgpu/hainan_ce.bin
+/lib/firmware/amdgpu/hainan_k_smc.bin
+/lib/firmware/amdgpu/hainan_mc.bin
+/lib/firmware/amdgpu/hainan_me.bin
+/lib/firmware/amdgpu/hainan_pfp.bin
+/lib/firmware/amdgpu/hainan_rlc.bin
+/lib/firmware/amdgpu/hainan_smc.bin
+/lib/firmware/amdgpu/hawaii_ce.bin
+/lib/firmware/amdgpu/hawaii_k_smc.bin
+/lib/firmware/amdgpu/hawaii_mc.bin
+/lib/firmware/amdgpu/hawaii_me.bin
+/lib/firmware/amdgpu/hawaii_mec.bin
+/lib/firmware/amdgpu/hawaii_pfp.bin
+/lib/firmware/amdgpu/hawaii_rlc.bin
+/lib/firmware/amdgpu/hawaii_smc.bin
+/lib/firmware/amdgpu/isp_4_1_1.bin
+/lib/firmware/amdgpu/kabini_ce.bin
+/lib/firmware/amdgpu/kabini_me.bin
+/lib/firmware/amdgpu/kabini_mec.bin
+/lib/firmware/amdgpu/kabini_pfp.bin
+/lib/firmware/amdgpu/kabini_rlc.bin
+/lib/firmware/amdgpu/kaveri_mec.bin
+/lib/firmware/amdgpu/kaveri_mec2.bin
+/lib/firmware/amdgpu/kaveri_pfp.bin
+/lib/firmware/amdgpu/kaveri_rlc.bin
+/lib/firmware/amdgpu/mullins_rlc.bin
+/lib/firmware/amdgpu/navi10_asd.bin
+/lib/firmware/amdgpu/navi10_ce.bin
+/lib/firmware/amdgpu/navi10_gpu_info.bin
+/lib/firmware/amdgpu/navi10_me.bin
+/lib/firmware/amdgpu/navi10_mec.bin
+/lib/firmware/amdgpu/navi10_pfp.bin
+/lib/firmware/amdgpu/navi10_rlc.bin
+/lib/firmware/amdgpu/navi10_sdma.bin
+/lib/firmware/amdgpu/navi10_sdma1.bin
+/lib/firmware/amdgpu/navi10_smc.bin
+/lib/firmware/amdgpu/navi10_sos.bin
+/lib/firmware/amdgpu/navi10_ta.bin
+/lib/firmware/amdgpu/navi10_vcn.bin
+/lib/firmware/amdgpu/navi12_ce.bin
+/lib/firmware/amdgpu/navi12_dmcu.bin
+/lib/firmware/amdgpu/navi12_gpu_info.bin
+/lib/firmware/amdgpu/navi12_me.bin
+/lib/firmware/amdgpu/navi12_mec.bin
+/lib/firmware/amdgpu/navi12_pfp.bin
+/lib/firmware/amdgpu/navi12_rlc.bin
+/lib/firmware/amdgpu/navi12_sdma.bin
+/lib/firmware/amdgpu/navi12_sdma1.bin
+/lib/firmware/amdgpu/navi12_smc.bin
+/lib/firmware/amdgpu/navi12_sos.bin
+/lib/firmware/amdgpu/navi12_ta.bin
+/lib/firmware/amdgpu/navi14_ce.bin
+/lib/firmware/amdgpu/navi14_ce_wks.bin
+/lib/firmware/amdgpu/navi14_gpu_info.bin
+/lib/firmware/amdgpu/navi14_me.bin
+/lib/firmware/amdgpu/navi14_me_wks.bin
+/lib/firmware/amdgpu/navi14_mec.bin
+/lib/firmware/amdgpu/navi14_mec2_wks.bin
+/lib/firmware/amdgpu/navi14_pfp.bin
+/lib/firmware/amdgpu/navi14_pfp_wks.bin
+/lib/firmware/amdgpu/navi14_rlc.bin
+/lib/firmware/amdgpu/navi14_sdma.bin
+/lib/firmware/amdgpu/navi14_sdma1.bin
+/lib/firmware/amdgpu/navi14_smc.bin
+/lib/firmware/amdgpu/navi14_sos.bin
+/lib/firmware/amdgpu/navy_flounder_ce.bin
+/lib/firmware/amdgpu/navy_flounder_me.bin
+/lib/firmware/amdgpu/navy_flounder_mec.bin
+/lib/firmware/amdgpu/navy_flounder_pfp.bin
+/lib/firmware/amdgpu/navy_flounder_rlc.bin
+/lib/firmware/amdgpu/navy_flounder_sdma.bin
+/lib/firmware/amdgpu/navy_flounder_smc.bin
+/lib/firmware/amdgpu/navy_flounder_sos.bin
+/lib/firmware/amdgpu/oland_k_smc.bin
+/lib/firmware/amdgpu/oland_mc.bin
+/lib/firmware/amdgpu/oland_pfp.bin
+/lib/firmware/amdgpu/oland_rlc.bin
+/lib/firmware/amdgpu/oland_smc.bin
+/lib/firmware/amdgpu/oland_uvd.bin
+/lib/firmware/amdgpu/picasso_asd.bin
+/lib/firmware/amdgpu/picasso_ce.bin
+/lib/firmware/amdgpu/picasso_gpu_info.bin
+/lib/firmware/amdgpu/picasso_me.bin
+/lib/firmware/amdgpu/picasso_mec.bin
+/lib/firmware/amdgpu/picasso_pfp.bin
+/lib/firmware/amdgpu/picasso_rlc.bin
+/lib/firmware/amdgpu/picasso_rlc_am4.bin
+/lib/firmware/amdgpu/picasso_sdma.bin
+/lib/firmware/amdgpu/picasso_ta.bin
+/lib/firmware/amdgpu/picasso_vcn.bin
+/lib/firmware/amdgpu/pitcairn_k_smc.bin
+/lib/firmware/amdgpu/pitcairn_mc.bin
+/lib/firmware/amdgpu/pitcairn_pfp.bin
+/lib/firmware/amdgpu/pitcairn_rlc.bin
+/lib/firmware/amdgpu/pitcairn_smc.bin
+/lib/firmware/amdgpu/polaris10_ce.bin
+/lib/firmware/amdgpu/polaris10_ce_2.bin
+/lib/firmware/amdgpu/polaris10_k2_smc.bin
+/lib/firmware/amdgpu/polaris10_k_mc.bin
+/lib/firmware/amdgpu/polaris10_k_smc.bin
+/lib/firmware/amdgpu/polaris10_mc.bin
+/lib/firmware/amdgpu/polaris10_me.bin
+/lib/firmware/amdgpu/polaris10_me_2.bin
+/lib/firmware/amdgpu/polaris10_mec.bin
+/lib/firmware/amdgpu/polaris10_mec2_2.bin
+/lib/firmware/amdgpu/polaris10_mec_2.bin
+/lib/firmware/amdgpu/polaris10_pfp.bin
+/lib/firmware/amdgpu/polaris10_pfp_2.bin
+/lib/firmware/amdgpu/polaris10_rlc.bin
+/lib/firmware/amdgpu/polaris10_sdma.bin
+/lib/firmware/amdgpu/polaris10_sdma1.bin
+/lib/firmware/amdgpu/polaris10_smc.bin
+/lib/firmware/amdgpu/polaris10_smc_sk.bin
+/lib/firmware/amdgpu/polaris10_uvd.bin
+/lib/firmware/amdgpu/polaris10_vce.bin
+/lib/firmware/amdgpu/polaris11_k2_smc.bin
+/lib/firmware/amdgpu/polaris11_k_mc.bin
+/lib/firmware/amdgpu/polaris11_k_smc.bin
+/lib/firmware/amdgpu/polaris11_mc.bin
+/lib/firmware/amdgpu/polaris11_me.bin
+/lib/firmware/amdgpu/polaris11_me_2.bin
+/lib/firmware/amdgpu/polaris11_mec.bin
+/lib/firmware/amdgpu/polaris11_mec2_2.bin
+/lib/firmware/amdgpu/polaris11_mec_2.bin
+/lib/firmware/amdgpu/polaris11_pfp.bin
+/lib/firmware/amdgpu/polaris11_pfp_2.bin
+/lib/firmware/amdgpu/polaris11_rlc.bin
+/lib/firmware/amdgpu/polaris11_smc.bin
+/lib/firmware/amdgpu/polaris11_smc_sk.bin
+/lib/firmware/amdgpu/polaris12_32_mc.bin
+/lib/firmware/amdgpu/polaris12_ce.bin
+/lib/firmware/amdgpu/polaris12_ce_2.bin
+/lib/firmware/amdgpu/polaris12_k_mc.bin
+/lib/firmware/amdgpu/polaris12_k_smc.bin
+/lib/firmware/amdgpu/polaris12_mc.bin
+/lib/firmware/amdgpu/polaris12_me.bin
+/lib/firmware/amdgpu/polaris12_me_2.bin
+/lib/firmware/amdgpu/polaris12_mec.bin
+/lib/firmware/amdgpu/polaris12_mec2_2.bin
+/lib/firmware/amdgpu/polaris12_mec_2.bin
+/lib/firmware/amdgpu/polaris12_pfp.bin
+/lib/firmware/amdgpu/polaris12_pfp_2.bin
+/lib/firmware/amdgpu/polaris12_rlc.bin
+/lib/firmware/amdgpu/polaris12_smc.bin
+/lib/firmware/amdgpu/psp_13_0_0_sos.bin
+/lib/firmware/amdgpu/psp_13_0_0_sos_kicker.bin
+/lib/firmware/amdgpu/psp_13_0_0_ta.bin
+/lib/firmware/amdgpu/psp_13_0_0_ta_kicker.bin
+/lib/firmware/amdgpu/psp_13_0_10_sos.bin
+/lib/firmware/amdgpu/psp_13_0_10_ta.bin
+/lib/firmware/amdgpu/psp_13_0_11_ta.bin
+/lib/firmware/amdgpu/psp_13_0_11_toc.bin
+/lib/firmware/amdgpu/psp_13_0_14_sos.bin
+/lib/firmware/amdgpu/psp_13_0_14_ta.bin
+/lib/firmware/amdgpu/psp_13_0_4_ta.bin
+/lib/firmware/amdgpu/psp_13_0_5_asd.bin
+/lib/firmware/amdgpu/psp_13_0_5_ta.bin
+/lib/firmware/amdgpu/psp_13_0_5_toc.bin
+/lib/firmware/amdgpu/psp_13_0_6_sos.bin
+/lib/firmware/amdgpu/psp_13_0_6_ta.bin
+/lib/firmware/amdgpu/psp_13_0_7_sos.bin
+/lib/firmware/amdgpu/psp_13_0_8_asd.bin
+/lib/firmware/amdgpu/psp_13_0_8_toc.bin
+/lib/firmware/amdgpu/psp_14_0_0_ta.bin
+/lib/firmware/amdgpu/psp_14_0_0_toc.bin
+/lib/firmware/amdgpu/psp_14_0_1_ta.bin
+/lib/firmware/amdgpu/psp_14_0_1_toc.bin
+/lib/firmware/amdgpu/psp_14_0_2_sos.bin
+/lib/firmware/amdgpu/psp_14_0_2_ta.bin
+/lib/firmware/amdgpu/psp_14_0_3_sos.bin
+/lib/firmware/amdgpu/psp_14_0_3_ta.bin
+/lib/firmware/amdgpu/psp_14_0_4_ta.bin
+/lib/firmware/amdgpu/psp_14_0_4_ta.bin.zst
+/lib/firmware/amdgpu/psp_14_0_4_toc.bin
+/lib/firmware/amdgpu/psp_14_0_4_toc.bin.zst
+/lib/firmware/amdgpu/psp_14_0_5_ta.bin
+/lib/firmware/amdgpu/psp_14_0_5_toc.bin
+/lib/firmware/amdgpu/raven2_asd.bin
+/lib/firmware/amdgpu/raven2_ce.bin
+/lib/firmware/amdgpu/raven2_gpu_info.bin
+/lib/firmware/amdgpu/raven2_me.bin
+/lib/firmware/amdgpu/raven2_mec.bin
+/lib/firmware/amdgpu/raven2_pfp.bin
+/lib/firmware/amdgpu/raven2_rlc.bin
+/lib/firmware/amdgpu/raven2_sdma.bin
+/lib/firmware/amdgpu/raven2_ta.bin
+/lib/firmware/amdgpu/raven_dmcu.bin
+/lib/firmware/amdgpu/raven_rlc.bin
+/lib/firmware/amdgpu/raven_ta.bin
+/lib/firmware/amdgpu/renoir_ce.bin
+/lib/firmware/amdgpu/renoir_gpu_info.bin
+/lib/firmware/amdgpu/renoir_me.bin
+/lib/firmware/amdgpu/renoir_pfp.bin
+/lib/firmware/amdgpu/renoir_ta.bin
+/lib/firmware/amdgpu/sdma_4_4_2.bin
+/lib/firmware/amdgpu/sdma_4_4_5.bin
+/lib/firmware/amdgpu/sdma_5_2_6.bin
+/lib/firmware/amdgpu/sdma_5_2_7.bin
+/lib/firmware/amdgpu/sdma_6_0_0.bin
+/lib/firmware/amdgpu/sdma_6_0_1.bin
+
+=== PAM / LIMITS ===
+
+--- /etc/pam.d/system-auth ---
+auth      required    pam_unix.so nullok
+account   required    pam_unix.so
+password  required    pam_unix.so shadow sha512
+session   required    pam_unix.so
+
+--- /etc/pam.d/system-session ---
+# Begin /etc/pam.d/system-session
+session required pam_env.so readenv=1
+session required pam_unix.so
+# End /etc/pam.d/system-session
+# Begin Systemd addition
+session required pam_loginuid.so
+session optional pam_systemd.so
+# End Systemd addition
+
+--- /etc/security/limits.conf ---
+missing
+
+--- /etc/security/limits.d/99-filedesc.conf ---
+missing
+ulimit -n: 1024
+
+=== WAYLAND / WAYBAR / PIPEWIRE STATE ===
+/usr/bin/sway
+/usr/bin/waybar
+Waybar v0.11.0
+766 sway
+801 swaybg -o * -i /home/sable/.config/sway/wallpapers/sable-wallpaper.png -m fill
+815 swayidle -w timeout 300 swaylock -f -c 000000 before-sleep swaylock -f -c 000000
+809 waybar -b bar-0
+763 /usr/bin/pipewire
+764 /usr/bin/pipewire-pulse
+
+=== NETWORK STATE ===
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+enp1s0f1         DOWN           
+sit0@NONE        DOWN           
+wlp2s0           UP             192.168.0.240/24 metric 2048 fe80::3203:c8ff:fea9:db75/64 
+wg0              UNKNOWN        10.6.0.5/24 
+default via 192.168.0.1 dev wlp2s0 proto dhcp src 192.168.0.240 metric 2048 
+10.6.0.0/24 dev wg0 proto kernel scope link src 10.6.0.5 
+69.89.207.99 via 192.168.0.1 dev wlp2s0 proto dhcp src 192.168.0.240 metric 2048 
+192.168.0.0/24 dev wlp2s0 proto kernel scope link src 192.168.0.240 metric 2048 
+192.168.0.1 dev wlp2s0 proto dhcp scope link src 192.168.0.240 metric 2048 
+Global
+           Protocols: +LLMNR +mDNS -DNSOverTLS DNSSEC=yes/supported
+    resolv.conf mode: uplink
+  Current DNS Server: 9.9.9.9#dns.quad9.net
+         DNS Servers: 9.9.9.9#dns.quad9.net 149.112.112.112#dns.quad9.net
+Fallback DNS Servers: 9.9.9.9#dns.quad9.net 149.112.112.112#dns.quad9.net
+
+Link 2 (enp1s0f1)
+    Current Scopes: none
+         Protocols: -DefaultRoute +LLMNR -mDNS -DNSOverTLS DNSSEC=yes/supported
+     Default Route: no
+
+Link 3 (sit0)
+    Current Scopes: none
+         Protocols: -DefaultRoute +LLMNR +mDNS -DNSOverTLS DNSSEC=yes/supported
+     Default Route: no
+
+Link 4 (wlp2s0)
+    Current Scopes: LLMNR/IPv4 LLMNR/IPv6
+         Protocols: -DefaultRoute +LLMNR -mDNS -DNSOverTLS DNSSEC=yes/supported
+     Default Route: no
+
+Link 5 (wg0)
+    Current Scopes: none
+         Protocols: -DefaultRoute +LLMNR +mDNS -DNSOverTLS DNSSEC=yes/supported
+     Default Route: no
+# This is /run/systemd/resolve/resolv.conf managed by man:systemd-resolved(8).
+# Do not edit.
+#
+# This file might be symlinked as /etc/resolv.conf. If you're looking at
+# /etc/resolv.conf and seeing this text, you have followed the symlink.
+#
+# This is a dynamic resolv.conf file for connecting local clients directly to
+# all known uplink DNS servers. This file lists all configured search domains.
+#
+# Third party programs should typically not access this file directly, but only
+# through the symlink at /etc/resolv.conf. To manage man:resolv.conf(5) in a
+# different way, replace this symlink by a static file or a different symlink.
+#
+# See man:systemd-resolved.service(8) for details about the supported modes of
+# operation for /etc/resolv.conf.
+
+nameserver 9.9.9.9
+nameserver 149.112.112.112
+search .
+
+=== SABLE REPO IF PRESENT ===
+
+=== SABLE / LIVE / INSTALL PATHS ===
+
+=== RECENT BOOT ERRORS ===
+
+Inventory written to: sable-inventory-vulfen-20260702-120338.txt
