@@ -2368,3 +2368,22 @@ Next steps:
 3. Boot-test both physical USBs individually.
 4. Formalize the live media rebuild procedure into scripts/docs.
 5. Keep large artifacts out of Git; commit only docs, manifests, checksums, and scripts.
+
+## 2026-07-05 — QEMU/KVM OVMF and EliteBook Staging Verification Checkpoint
+
+- QEMU/KVM validation on Z890 resumed after repository cleanup.
+- Old `/var/lib/qemu/disks/sablelinux-live-test.img` was confirmed bootable and useful as a historical baseline, but not authoritative for current release validation.
+- Clean OVMF CODE/VARS templates were imported from the mounted Kubuntu system into `/opt/sablelinux/qemu/firmware/ovmf/`.
+- Reusing stale OVMF VARS caused repeated UEFI shell boot behavior; fresh per-test VARS copies fixed live boot behavior.
+- A fresh QEMU install target was created and installed from the older live image as a diagnostic pass.
+- Pre-first-boot `e2fsck -fn` on the installed target passed cleanly.
+- Installed VM booted successfully into Sway; terminal, Firefox, DHCP networking, and external ping worked.
+- Remaining VM polish issues observed: swaybar/waybar not autostarting in installed VM, sshd service/config packaging needs cleanup, WireGuard config is not interface-portable.
+- Authoritative EliteBook-derived staging payload was located at:
+  `/mnt/kubuntu-root/home/pepper/sablelinux-builds/elitebook-vulfen-20260703/staging/live/`
+- BUILDLOG hashes were reverified on Z890:
+  - `vmlinuz-6.16.1-sable-compat2`: PASS
+  - `initramfs-6.16.1-sable-compat2.img`: PASS
+  - `filesystem.squashfs`: PASS
+- Next step: build a new QEMU live disk from the verified EliteBook-derived staging tree, not from the older historical QEMU live image.
+
