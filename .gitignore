@@ -28,3 +28,14 @@ assets/archives/*.tar
 assets/archives/*.tar.gz
 assets/archives/*.tgz
 assets/archives/*.zip
+
+# Local live-build / ISO staging artifacts
+sablelinux-live-work-*/
+sablelinux-transfer-live/
+usb-backups/
+*.raw
+*.vdi
+*.vmdk
+*.tar.xz
+*.tar.zst
+*.zst
