@@ -2387,3 +2387,84 @@ Next steps:
   - `filesystem.squashfs`: PASS
 - Next step: build a new QEMU live disk from the verified EliteBook-derived staging tree, not from the older historical QEMU live image.
 
+
+---
+
+## 2026-07-07 — EliteBook Recovered Live Payload Boots in QEMU/KVM on logos
+
+Host:
+
+- Machine: HP EliteBook 645 14 inch G9
+- Hostname: logos
+- Host OS: Ubuntu/Kubuntu 26.04 LTS
+- Kernel: 7.0.0-27-generic
+- User: angel
+- Virtualization: AMD SVM, `/dev/kvm`, `kvm_amd`, libvirt, QEMU, OVMF available
+
+Objective:
+
+- Test the recovered EliteBook-derived SableLinux live payload in QEMU/KVM without using the physical USB drive.
+- Preserve host disk space by using a single sparse VM live-media image.
+- Avoid creating an install qcow2 until live boot is proven.
+
+Artifacts:
+
+- Repository: `/home/angel/sablelinux`
+- Recovered live payload: `/home/angel/sablelinux-transfer-live`
+- VM workspace: `/home/angel/VMs/sablelinux`
+- Live media image: `/home/angel/VMs/sablelinux/disks/sable-live-media.raw`
+- Test initramfs: `/home/angel/VMs/sablelinux/disks/initramfs-live-busybox-test.img`
+
+Recovered payload components:
+
+- `live/filesystem.squashfs`
+- `boot/vmlinuz-6.16.1-sable-compat2`
+- `boot/initramfs-6.16.1-sable-compat2.img`
+
+Work completed:
+
+1. Confirmed QEMU/KVM/libvirt stack on `logos` was installed and functional.
+2. Confirmed no existing libvirt VMs or VM disks were present.
+3. Created a sparse 8G raw live-media image under `~/VMs/sablelinux/disks`.
+4. Partitioned and formatted the image with an ext4 filesystem labeled `SABLELINUX`.
+5. Copied the recovered EliteBook-derived `filesystem.squashfs`, kernel, initramfs, and checksum log into the expected live-media layout.
+6. Attempted direct boot using the transferred dracut/systemd initramfs.
+7. Confirmed the dracut initramfs path was not suitable for the current recovered live-media layout:
+   - First attempt dropped to initramfs emergency mode at switch-root.
+   - Dracut live command-line attempt waited on `/dev/mapper/live-rw`.
+   - Overlayfs dracut attempt failed resolving `/run/rootfsbase`.
+8. Built a temporary minimal BusyBox live initramfs on the Kubuntu host using static `/usr/bin/busybox`.
+9. Booted SableLinux successfully in QEMU/KVM using:
+   - the recovered kernel,
+   - the temporary BusyBox live initramfs,
+   - the recovered squashfs inside the `SABLELINUX`-labeled live media image.
+
+Result:
+
+- SableLinux 1.0 booted successfully inside QEMU/KVM on the Kubuntu partition of the EliteBook.
+- The live root reached graphical Sway userspace.
+- A terminal was available as user `sable` on host `vulfen`.
+- QEMU user networking assigned `10.0.2.15/24`.
+- WireGuard interface `wg0` was present with `10.6.0.5/24`.
+- This proves the recovered EliteBook-derived squashfs payload is bootable in VM when paired with the simple BusyBox live-initramfs design.
+
+Engineering conclusion:
+
+- The recovered live payload is valid.
+- QEMU/KVM on `logos` is valid as a SableLinux VM test host.
+- The dracut live-initramfs path is currently too complex and mismatched for this recovery pipeline.
+- The simple documented live boot model is confirmed viable:
+  - find `LABEL=SABLELINUX`
+  - mount `/live/filesystem.squashfs`
+  - create tmpfs overlay
+  - `switch_root` into SableLinux userspace
+
+Next engineering tasks:
+
+1. Preserve the working VM test artifacts for now.
+2. Convert the temporary BusyBox initramfs test into a repo-owned script, likely under `scripts/live/`.
+3. Replace hardcoded old `/opt/initramfs-tools` assumptions in `build/make-live-initramfs.sh`.
+4. Add a documented QEMU direct-boot test command.
+5. Perform full in-guest validation later from a network environment where SableLinux can be used conveniently.
+6. Only after repeatable VM live boot is documented should install-target qcow2 testing begin.
+
