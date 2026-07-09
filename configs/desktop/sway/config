@@ -1,0 +1,171 @@
+### SableLinux Sway Configuration
+
+### Variables
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+set $term foot
+set $menu fuzzel
+
+### Environment
+exec_always export WLR_DRM_DEVICES=/dev/dri/card1
+xwayland enable
+
+### Output
+output * bg /home/pepper/.config/sway/wallpapers/sable-wallpaper.png fill
+
+### Autostart
+exec mako
+exec_always swayidle -w \
+    timeout 1200 'swaylock -f -c 000000' \
+    before-sleep 'swaylock -f -c 000000'
+
+### Appearance
+gaps inner 6
+gaps outer 4
+default_border pixel 2
+default_floating_border pixel 2
+smart_gaps on
+smart_borders on
+
+# Border colors          border   bg       text     indicator child_border
+client.focused           #7c3aed #7c3aed  #ffffff  #a78bfa   #7c3aed
+client.focused_inactive  #1e1e2e #1e1e2e  #888888  #1e1e2e   #1e1e2e
+client.unfocused         #1e1e2e #1e1e2e  #555555  #1e1e2e   #1e1e2e
+client.urgent            #ef4444 #ef4444  #ffffff  #ef4444   #ef4444
+
+### Input
+input "type:keyboard" {
+    xkb_layout us
+    repeat_delay 300
+    repeat_rate 50
+}
+input "type:touchpad" {
+    tap enabled
+    natural_scroll enabled
+    dwt enabled
+}
+
+### Named Workspaces
+set $ws1  "1:term"
+set $ws2  "2:web"
+set $ws3  "3:recon"
+set $ws4  "4:exploit"
+set $ws5  "5:analysis"
+set $ws6  "6:ai"
+set $ws7  "7:files"
+set $ws8  "8:comms"
+set $ws9  "9:media"
+set $ws10 "10:misc"
+
+### Key Bindings — Basics
+bindsym $mod+Return exec $term
+bindsym $mod+Shift+q kill
+bindsym $mod+d exec $menu
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+e exec swaynag -t warning \
+    -m 'Exit sway?' \
+    -B 'Yes' 'swaymsg exit'
+floating_modifier $mod normal
+bindsym $mod+F8  exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym $mod+F7  exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+### Key Bindings — Focus
+bindsym $mod+$left  focus left
+bindsym $mod+$down  focus down
+bindsym $mod+$up    focus up
+bindsym $mod+$right focus right
+bindsym $mod+Left   focus left
+bindsym $mod+Down   focus down
+bindsym $mod+Up     focus up
+bindsym $mod+Right  focus right
+
+### Key Bindings — Move
+bindsym $mod+Shift+$left  move left
+bindsym $mod+Shift+$down  move down
+bindsym $mod+Shift+$up    move up
+bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+Left   move left
+bindsym $mod+Shift+Down   move down
+bindsym $mod+Shift+Up     move up
+bindsym $mod+Shift+Right  move right
+
+### Key Bindings — Workspaces
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+### Key Bindings — Layout
+bindsym $mod+b splith
+bindsym $mod+v splitv
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+f fullscreen
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+
+### Key Bindings — Scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+### Key Bindings — Resize Mode
+mode "resize" {
+    bindsym $left  resize shrink width  10px
+    bindsym $down  resize grow   height 10px
+    bindsym $up    resize shrink height 10px
+    bindsym $right resize grow   width  10px
+    bindsym Left   resize shrink width  10px
+    bindsym Down   resize grow   height 10px
+    bindsym Up     resize shrink height 10px
+    bindsym Right  resize grow   width  10px
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+### Key Bindings — Screenshots
+bindsym Print      exec grim /home/pepper/screenshots/$(date +%Y%m%d_%H%M%S).png
+bindsym $mod+Print exec grim -g "$(slurp)" /home/pepper/screenshots/$(date +%Y%m%d_%H%M%S).png
+bindsym $mod+Shift+Print exec grim -g "$(slurp)" - | wl-copy
+
+bindsym $mod+Shift+x exec swaylock -f -c 000000
+
+### Key Bindings — Audio
+bindsym --locked XF86AudioMute        exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym --locked XF86AudioMicMute     exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+### Floating Window Rules
+for_window [app_id="org.gnome.Calculator"] floating enable
+for_window [app_id="nm-connection-editor"] floating enable
+for_window [title="(?i)^(confirm|dialog|error|warning|preferences)"] floating enable
+
+### Status Bar
+bar {
+    swaybar_command waybar
+}
+
+include /etc/sway/config.d/*
