@@ -1,0 +1,173 @@
+#!/usr/bin/env python3
+
+import argparse
+import json
+import sys
+import urllib.error
+import urllib.request
+
+URL = "http://127.0.0.1:8080/v1/chat/completions"
+
+SYSTEM = (
+    "You are a concise, direct assistant. "
+    "No LaTeX, no markdown formatting, and no step-by-step breakdowns "
+    "unless explicitly requested. Plain text responses only."
+)
+
+
+def chat(
+    prompt: str,
+    show_thinking: bool = False,
+    max_tokens: int = 1024,
+    temperature: float = 0.2,
+) -> None:
+    payload = {
+        "model": "deepseek",
+        "messages": [
+            {"role": "system", "content": SYSTEM},
+            {"role": "user", "content": prompt},
+        ],
+        "stream": False,
+        "max_tokens": max_tokens,
+        "temperature": temperature,
+    }
+
+    request = urllib.request.Request(
+        URL,
+        data=json.dumps(payload).encode("utf-8"),
+        headers={"Content-Type": "application/json"},
+    )
+
+    try:
+        with urllib.request.urlopen(request, timeout=600) as response:
+            result = json.loads(response.read())
+    except urllib.error.HTTPError as error:
+        body = error.read().decode("utf-8", errors="replace")
+        raise SystemExit(f"Server returned HTTP {error.code}:\n{body}")
+    except urllib.error.URLError as error:
+        raise SystemExit(f"Cannot reach llama-server at {URL}: {error.reason}")
+    except json.JSONDecodeError as error:
+        raise SystemExit(f"Invalid JSON returned by llama-server: {error}")
+
+    try:
+        choice = result["choices"][0]
+        message = choice["message"]
+    except (KeyError, IndexError, TypeError) as error:
+        raise SystemExit(
+            "Unexpected llama-server response:\n"
+            + json.dumps(result, indent=2)
+        ) from error
+
+    reasoning = message.get("reasoning_content", "").strip()
+    content = message.get("content", "").strip()
+    finish_reason = choice.get("finish_reason")
+
+    if show_thinking and reasoning:
+        print("\033[90m[Thinking]\033[0m")
+        print(f"\033[90m{reasoning}\033[0m")
+        print("\033[90m[/Thinking]\033[0m\n")
+
+    if content:
+        print(content)
+    else:
+        print(
+            "[No visible response was produced.]",
+            file=sys.stderr,
+        )
+
+    if finish_reason == "length":
+        print(
+            f"\nWarning: response reached the {max_tokens}-token limit "
+            "before completion.",
+            file=sys.stderr,
+        )
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="SableLinux local DeepSeek client"
+    )
+    parser.add_argument(
+        "--think",
+        action="store_true",
+        help="show DeepSeek reasoning output",
+    )
+    parser.add_argument(
+        "--max-tokens",
+        type=int,
+        default=1024,
+        metavar="N",
+        help="maximum completion tokens (default: 1024)",
+    )
+    parser.add_argument(
+        "--temperature",
+        type=float,
+        default=0.2,
+        metavar="VALUE",
+        help="sampling temperature (default: 0.2)",
+    )
+    parser.add_argument(
+        "prompt",
+        nargs="*",
+        help="prompt text; omit for interactive mode",
+    )
+
+    args = parser.parse_args()
+
+    if args.max_tokens < 1:
+        parser.error("--max-tokens must be greater than zero")
+
+    if not 0.0 <= args.temperature <= 2.0:
+        parser.error("--temperature must be between 0.0 and 2.0")
+
+    return args
+
+
+def interactive(args: argparse.Namespace) -> None:
+    show_thinking = args.think
+
+    print(
+        "DS interactive mode. Ctrl+C to exit. "
+        "Type --think to toggle reasoning."
+    )
+
+    while True:
+        try:
+            prompt = input("\n> ").strip()
+
+            if not prompt:
+                continue
+
+            if prompt == "--think":
+                show_thinking = not show_thinking
+                print(f"Thinking: {'on' if show_thinking else 'off'}")
+                continue
+
+            chat(
+                prompt,
+                show_thinking=show_thinking,
+                max_tokens=args.max_tokens,
+                temperature=args.temperature,
+            )
+
+        except (KeyboardInterrupt, EOFError):
+            print("\nExiting.")
+            return
+
+
+def main() -> None:
+    args = parse_args()
+
+    if args.prompt:
+        chat(
+            " ".join(args.prompt),
+            show_thinking=args.think,
+            max_tokens=args.max_tokens,
+            temperature=args.temperature,
+        )
+    else:
+        interactive(args)
+
+
+if __name__ == "__main__":
+    main()

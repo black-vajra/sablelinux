@@ -2468,3 +2468,49 @@ Next engineering tasks:
 5. Perform full in-guest validation later from a network environment where SableLinux can be used conveniently.
 6. Only after repeatable VM live boot is documented should install-target qcow2 testing begin.
 
+
+## Local AI Client Hardening — 2026-07-11
+
+### Context
+Validated the existing ROCm 7.2.2 and llama.cpp HIP inference stack on the running SableLinux Z890 installation.
+
+### Validation
+- Kernel: 6.16.1-sable-compat
+- ROCm detected AMD GPU target: gfx1201
+- llama-server.service active and enabled
+- DeepSeek-R1-Distill-Qwen-14B-Q4_K_M.gguf loaded successfully
+- Server bound only to 127.0.0.1:8080
+- GPU utilization reached 99–100% during inference
+- Measured generation speed: approximately 28.7 tokens/sec
+- ds client and sable-ai client both functional
+
+### Findings
+- DeepSeek reasoning tokens count against max_tokens.
+- Low token limits can exhaust the completion budget before visible content is emitted.
+- Exact word-count compliance is unreliable even when generation completes normally.
+- jq was documented as previously installed but is absent from the current running installation.
+
+### ds Client Improvements
+Updated /usr/local/bin/ds with:
+- argparse-based CLI
+- --think support
+- --max-tokens option, default 1024
+- --temperature option, default 0.2
+- localhost-only API endpoint
+- HTTP, connection, and JSON error handling
+- safe handling of empty visible responses
+- explicit warning when finish_reason is length
+- interactive mode with reasoning toggle
+- argument validation
+
+### Repository Preservation
+Canonical client source added at:
+
+scripts/ai/ds
+
+The installed /usr/local/bin/ds should be treated as a deployed copy of this repository-owned script.
+
+### Validation
+- Normal inference completed successfully.
+- Deliberate 32-token limit produced no visible response and correctly emitted a truncation warning.
+- Python syntax validation passed.
