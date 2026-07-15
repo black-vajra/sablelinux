@@ -2514,3 +2514,20 @@ The installed /usr/local/bin/ds should be treated as a deployed copy of this rep
 - Normal inference completed successfully.
 - Deliberate 32-token limit produced no visible response and correctly emitted a truncation warning.
 - Python syntax validation passed.
+## 2026-07-15 — EliteBook KVM host validation
+
+Validated the EliteBook SableLinux installation as a functional direct
+QEMU/KVM host. AMD-V, KVM access, nested virtualization, nested paging,
+IOMMU, Q35, EDK2 UEFI, VirtIO devices, user networking, and graphical output
+were confirmed.
+
+Recovered the July live payload from the encrypted Kubuntu installation.
+Confirmed that direct live boot requires the repository BusyBox live
+initramfs rather than the installed system initramfs.
+
+A SableLinux live guest reached userspace using SDL with 2 vCPUs and 3072 MiB
+RAM while the host Sway session and Firefox remained usable. An earlier GTK
+display problem produced no OOM, GPU-reset, panic, or coredump evidence.
+
+Documentation:
+docs/testing/elitebook-kvm-host-validation-2026-07-15.md
