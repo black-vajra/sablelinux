@@ -2645,3 +2645,17 @@ The policy retains the dedicated sable live user, injects repository-controlled
 Sway and Waybar profiles, removes build-host user identities and password
 hashes, and excludes installer integration until the competing installer
 implementations are reconciled.
+
+## Rootfs Rsync Capability Handling — 2026-07-17
+
+The first canonical rootfs dry run stopped before copying files because the
+Z890 rsync 3.3.0 build does not support ACL preservation through the -A
+option.
+
+The rootfs generator was changed to probe ACL and extended-attribute support
+at runtime. It now enables -A and -X only when the installed rsync client
+successfully supports those operations.
+
+Archive mode, hard links, ownership, permissions, timestamps, numeric IDs,
+device boundaries, deletion policy, and the maintained exclusion policy
+remain enabled independently of ACL and xattr support.

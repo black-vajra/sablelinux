@@ -130,7 +130,8 @@ REPORT="$BUILD_ROOT/reports/rootfs-${MODE}-${TIMESTAMP}.txt"
 LOG="$BUILD_ROOT/logs/rootfs-${MODE}-${TIMESTAMP}.log"
 
 RSYNC_OPTIONS=(
-    -aHAXx
+    -aH
+    -x
     --numeric-ids
     --delete
     --delete-excluded
@@ -138,6 +139,31 @@ RSYNC_OPTIONS=(
     --stats
     --exclude-from="$EXCLUDES"
 )
+
+PROBE_ROOT="$BUILD_ROOT/tmp/rsync-capability-probe"
+PROBE_SOURCE="$PROBE_ROOT/source"
+PROBE_DESTINATION="$PROBE_ROOT/destination"
+
+rm -rf "$PROBE_ROOT"
+mkdir -p "$PROBE_SOURCE" "$PROBE_DESTINATION"
+touch "$PROBE_SOURCE/test-file"
+
+RSYNC_ACL_SUPPORT="no"
+RSYNC_XATTR_SUPPORT="no"
+
+if rsync -aH -A --dry-run     "$PROBE_SOURCE/" "$PROBE_DESTINATION/"     >/dev/null 2>&1
+then
+    RSYNC_OPTIONS+=(-A)
+    RSYNC_ACL_SUPPORT="yes"
+fi
+
+if rsync -aH -X --dry-run     "$PROBE_SOURCE/" "$PROBE_DESTINATION/"     >/dev/null 2>&1
+then
+    RSYNC_OPTIONS+=(-X)
+    RSYNC_XATTR_SUPPORT="yes"
+fi
+
+rm -rf "$PROBE_ROOT"
 
 if [ "$MODE" = "dry-run" ]; then
     RSYNC_OPTIONS+=(--dry-run)
@@ -155,6 +181,8 @@ fi
     echo "Destination: $ROOTFS"
     echo "Git commit: $CURRENT_COMMIT"
     echo "Kernel: $(uname -r)"
+    echo "Rsync ACL preservation: $RSYNC_ACL_SUPPORT"
+    echo "Rsync xattr preservation: $RSYNC_XATTR_SUPPORT"
     echo
 
     echo "=== EXCLUSION POLICY HASH ==="
