@@ -2622,3 +2622,26 @@ scripts/release/create-build.sh
 
 The initializer creates a uniquely identified per-build directory and records
 provenance before any root filesystem content is generated.
+
+## Canonical Rootfs Boundary Policy — 2026-07-17
+
+Audited the running Z890 system before generating a live root.
+
+The audit confirmed that a blind root-filesystem copy would include personal
+home data, host credentials, SSH host keys, WireGuard private material,
+machine identity, Z890 UUID-based filesystem configuration, QEMU disks,
+source trees, caches, logs, the inactive swapfile, and the local AI model.
+
+Added:
+
+- configs/live/rootfs-excludes.rsync
+- configs/live/disabled-services.list
+- docs/release/rootfs-generation-policy.md
+- scripts/live/generate-rootfs.sh
+
+The generator supports dry-run and execute modes.
+
+The policy retains the dedicated sable live user, injects repository-controlled
+Sway and Waybar profiles, removes build-host user identities and password
+hashes, and excludes installer integration until the competing installer
+implementations are reconciled.

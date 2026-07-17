@@ -1,0 +1,89 @@
+# Pseudo, volatile, mounted, and generated filesystems
+/dev/***
+/proc/***
+/sys/***
+/run/***
+/tmp/***
+/mnt/***
+/media/***
+/srv/***
+
+# Canonical build inputs and host build sources
+/sources/***
+/boot/***
+
+# Host storage and swap
+/swapfile
+/lost+found/***
+
+# Personal and non-release user data
+/home/pepper/***
+/home/tester/***
+/root/***
+
+# Shell and interactive history
+/.bash_history
+**/.bash_history
+**/.zsh_history
+**/.python_history
+
+# User credentials and private configuration
+**/.ssh/***
+**/.gnupg/***
+**/.pki/***
+**/.password-store/***
+**/.aws/***
+**/.kube/***
+**/.docker/***
+**/.config/gh/***
+**/.config/rclone/***
+
+# Browser and user cache state
+**/.cache/***
+**/.mozilla/***
+**/.config/BraveSoftware/***
+
+# Host identity and secret material
+/etc/machine-id
+/etc/ssh/ssh_host_*
+/etc/wireguard/***
+/etc/NetworkManager/system-connections/***
+/etc/wpa_supplicant/***
+/etc/ssl/private/***
+/etc/pki/private/***
+/etc/letsencrypt/***
+/etc/shadow
+/etc/gshadow
+
+# Host-specific filesystem configuration
+/etc/fstab
+/etc/crypttab
+
+# Runtime state, logs, caches, and VM payloads
+/var/cache/***
+/var/log/***
+/var/tmp/***
+/var/lib/qemu/***
+/var/lib/libvirt/***
+/var/lib/NetworkManager/***
+/var/lib/bluetooth/***
+/var/lib/systemd/random-seed
+/var/lib/systemd/rfkill/***
+/var/lib/dbus/machine-id
+/var/lib/acme/***
+/var/lib/containers/***
+/var/lib/docker/***
+
+# Large local-only AI payload
+/opt/models/***
+
+# Build and version-control metadata not needed at runtime
+/usr/src/***
+**/.git/***
+**/.git
+
+# Temporary editor and packaging files
+**/*~
+**/*.swp
+**/*.swo
+**/.DS_Store

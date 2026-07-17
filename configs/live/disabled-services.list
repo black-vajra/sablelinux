@@ -1,0 +1,5 @@
+# Services disabled in the generated live root.
+# Unit files remain installed unless excluded separately.
+
+llama-server.service
+sshd.service
