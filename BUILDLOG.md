@@ -2531,3 +2531,43 @@ display problem produced no OOM, GPU-reset, panic, or coredump evidence.
 
 Documentation:
 docs/testing/elitebook-kvm-host-validation-2026-07-15.md
+
+## Z890 Canonical Build-Host Storage Cleanup — 2026-07-17
+
+A read-only filesystem audit found that the canonical Z890 root filesystem
+was consuming 512 GiB, leaving 376 GiB available. The installed operating
+system was not the primary consumer. Most space was occupied by historical
+manual live-root trees, generated live-media artifacts, obsolete QEMU disks,
+and non-Sable VM images.
+
+Removed after verification:
+
+- non-Sable Ubuntu, Alpine, Kali, and BlackArch VM and ISO artifacts
+- obsolete archived Sable installer targets
+- historical 115 GiB raw live-test image
+- historical generated live ISO and ISO staging tree
+- six obsolete manually maintained live-root staging trees
+
+Before deleting the live-root trees, selected installer, network, PAM,
+desktop, and live-user configuration files were preserved under:
+
+`history/recovered-live-root-20260717/`
+
+The preserved files are historical evidence only and are not authoritative
+release inputs. Each file must be reviewed before any useful change is
+promoted into maintained repository scripts or profiles.
+
+The original evidence archive was verified with SHA-256:
+
+`9a823786810910087c36bcdff25ef787c5cf82e508a1ea825c88ec8b7350fe59`
+
+Filesystem result:
+
+- before cleanup: 512 GiB used, 376 GiB available
+- after cleanup: 166 GiB used, 723 GiB available
+- recovered capacity: approximately 347 GiB
+- final root usage: 19%
+
+This cleanup removes historical staging trees as accidental build
+dependencies. Future live roots and release artifacts must be generated from
+the canonical Z890 installation through repository-controlled procedures.

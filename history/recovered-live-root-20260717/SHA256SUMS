@@ -1,0 +1,12 @@
+8b46c6cde531985aa10b55bb880851010f92467ad21dd6bb7818901d00b19320  ./etc/modules-load.d/wifi.conf
+48e2815bdf53261eec2df4bebb39b5cd1e02abe64401ca79bcc3df2826c63d6c  ./etc/pam.d/system-auth
+5d108eede8ad1877aeaaf162e472062267041aa1145e07b1c43883f4b0c6bbcd  ./etc/pam.d/system-session
+0274aed9813f997d4ce7309caed8c61bd89a2ff11e680a2da394688b3898a70c  ./etc/profile.d/path.sh
+705c982b4c64aaf1ca85acd05a3ee57edef518c81fec21323eee93fab5c6717a  ./etc/security/limits.d/99-filedesc.conf
+c1fd85f71aee8e9b66e2827a7b05aadfb68132357fd33001dfab3009bbb70803  ./etc/systemd/network/25-wifi.network
+949266abf07b757443a71477303c07cd64588665be272c908a7549dbdf0db2c8  ./etc/xdg/waybar/config.jsonc
+ea1cac0294afa44da7ff2f97a6ff995554f16079a4e6a29bec7e6c6454355838  ./home/sable/.config/sway/audio-init.sh
+d7837d41dc6e8961a8989aca81e4847ee396689c0cd6128eaeec2acdf3edbc22  ./home/sable/.config/sway/config
+11cfa0429401cfd1c403bf0c91933e43d183839ab25f296e4d2c25c89d31e1f3  ./README.md
+cbd031af4daa727077e369ee17bd52967ff0f49de46636d05e0f8b9265f326b3  ./usr/local/bin/sable-install
+d2530769f15353a982b7b3c0aded414b0623d7b4f19b07ceb243ba5401e579b8  ./usr/local/bin/wifi-connect

@@ -1,0 +1,52 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 32,
+    "spacing": 4,
+    "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["network", "pulseaudio", "cpu", "memory", "temperature", "tray"],
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name}"
+    },
+    "sway/mode": {
+        "format": " [{}]"
+    },
+    "sway/window": {
+        "max-length": 50
+    },
+    "clock": {
+        "timezone": "America/New_York",
+        "format": "{:%Y-%m-%d  %H:%M:%S}",
+        "interval": 1,
+        "tooltip": false
+    },
+    "cpu": {
+        "format": "cpu {usage}%",
+        "interval": 2
+    },
+    "memory": {
+        "format": "mem {}%",
+        "interval": 5
+    },
+    "temperature": {
+        "critical-threshold": 85,
+        "format": "tmp {temperatureC}C"
+    },
+    "network": {
+        "interface": "wg0",
+        "format-ethernet": "vpn {ipaddr}",
+        "format-disconnected": "vpn down",
+        "interval": 5
+    },
+    "pulseaudio": {
+        "format": "vol {volume}%",
+        "format-muted": "muted",
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+    },
+    "tray": {
+        "spacing": 8
+    }
+}

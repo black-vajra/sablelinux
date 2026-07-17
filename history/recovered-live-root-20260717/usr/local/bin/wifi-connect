@@ -1,0 +1,20 @@
+#!/bin/sh
+if [ -z "$1" ]; then
+    echo "Usage: wifi-connect <SSID>"
+    echo "You will be prompted for the password"
+    exit 1
+fi
+IFACE=$(ip link | grep -o 'wlp[^ :]*' | head -1)
+if [ -z "$IFACE" ]; then
+    echo "ERROR: no WiFi interface found"
+    exit 1
+fi
+mkdir -p /run/wpa_supplicant
+wpa_passphrase "$1" | grep -v '#psk' | tee /tmp/wpa.conf
+killall wpa_supplicant 2>/dev/null
+sleep 1
+wpa_supplicant -B -i $IFACE -c /tmp/wpa.conf -D nl80211
+sleep 5
+echo "Getting IP via DHCP..."
+udhcpc -i $IFACE -t 10 -q
+ip addr show $IFACE
