@@ -2681,3 +2681,28 @@ Corrected the generator to:
   desktop profiles, service enablement, and orphaned host ownership
 
 No rootfs files had been copied by the affected generator.
+
+## First Canonical Rootfs Generation — 2026-07-17
+
+Build:
+
+20260717T205430Z-be56bfc-k6.16.1-sable-compat
+
+The canonical Z890 rootfs generator copied and sanitized the running system
+successfully.
+
+Result:
+
+- approximately 23 GiB on disk
+- 271,539 filesystem objects
+- approximately 26.00 GB logical source size
+- matching 6.16.1-sable-compat module tree
+- executable init present
+- repository-controlled Sway and Waybar profile injected
+- pepper and tester identities removed
+- host credentials and machine identity removed
+- prohibited services disabled
+- generated-root validation passed
+
+This build validates the rootfs stage. It is not a release candidate because
+the SquashFS generator was added after its source commit.
