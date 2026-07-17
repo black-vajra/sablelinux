@@ -2706,3 +2706,24 @@ Result:
 
 This build validates the rootfs stage. It is not a release candidate because
 the SquashFS generator was added after its source commit.
+
+## First Canonical SquashFS Generation — 2026-07-17
+
+Build:
+
+20260717T210558Z-a7a685e-k6.16.1-sable-compat
+
+The canonical pipeline regenerated the sanitized live root and produced a
+validated SquashFS image.
+
+The build reached state:
+
+squashfs-generated
+
+The SquashFS generator validated the filesystem format, read the embedded
+SableLinux identity and build metadata, recorded its generation parameters,
+and stored the artifact SHA-256.
+
+This build validates the SquashFS stage. It is preserved as stage evidence
+but is not a release candidate because live-initramfs integration was added
+after its source commit.

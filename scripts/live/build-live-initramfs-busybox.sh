@@ -16,10 +16,12 @@
 # =============================================================================
 
 set -euo pipefail
+umask 022
 
 OUT="${1:-}"
 BUSYBOX="${BUSYBOX:-/usr/bin/busybox}"
 WORK="${WORK:-/tmp/sable-live-initramfs-build}"
+SOURCE_DATE_EPOCH="${SOURCE_DATE_EPOCH:-$(date +%s)}"
 
 die() {
     echo "ERROR: $*" >&2
@@ -28,6 +30,12 @@ die() {
 
 [ -n "$OUT" ] || die "Usage: $0 OUTPUT.img"
 [ -x "$BUSYBOX" ] || die "BusyBox not found or not executable: $BUSYBOX"
+
+case "$SOURCE_DATE_EPOCH" in
+    ''|*[!0-9]*)
+        die "SOURCE_DATE_EPOCH must be an integer"
+        ;;
+esac
 
 if ! "$BUSYBOX" --list >/dev/null 2>&1; then
     die "BusyBox applet listing failed: $BUSYBOX"
@@ -46,9 +54,10 @@ else
 fi
 
 echo "=== Building SableLinux BusyBox live initramfs ==="
-echo "Output:  $OUT"
-echo "BusyBox: $BUSYBOX"
-echo "Workdir: $WORK"
+echo "Output:            $OUT"
+echo "BusyBox:           $BUSYBOX"
+echo "Workdir:           $WORK"
+echo "Source date epoch: $SOURCE_DATE_EPOCH"
 
 rm -rf "$WORK"
 mkdir -p "$WORK"/{bin,dev,proc,sys,mnt/scan,mnt/squashfs,mnt/overlay,mnt/rootfs}
@@ -147,11 +156,28 @@ ENDINIT
 
 chmod 755 "$WORK/init"
 
+while IFS= read -r -d '' path; do
+    touch -h -d "@$SOURCE_DATE_EPOCH" "$path"
+done < <(find "$WORK" -print0)
+
 mkdir -p "$(dirname "$OUT")"
+
+CPIO_OPTIONS=(
+    --null
+    -H newc
+    -o
+)
+
+if cpio --help 2>&1 | grep -q -- '--reproducible'; then
+    CPIO_OPTIONS+=(--reproducible)
+fi
 
 (
     cd "$WORK"
-    find . | cpio -H newc -o | gzip -9 > "$OUT"
+    LC_ALL=C find . -print0 |
+        LC_ALL=C sort -z |
+        cpio "${CPIO_OPTIONS[@]}" |
+        gzip -n -9 > "$OUT"
 )
 
 echo "=== Done ==="
