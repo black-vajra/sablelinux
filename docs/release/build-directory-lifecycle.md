@@ -35,6 +35,7 @@ initialized
   -> rootfs-generated
   -> squashfs-generated
   -> initramfs-generated
+  -> test-media-generated
   -> tier1-validated
   -> boot-media-generated
   -> tier2-validated

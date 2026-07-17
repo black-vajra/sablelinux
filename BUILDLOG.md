@@ -2727,3 +2727,22 @@ and stored the artifact SHA-256.
 This build validates the SquashFS stage. It is preserved as stage evidence
 but is not a release candidate because live-initramfs integration was added
 after its source commit.
+
+## First Reproducible Canonical Live Initramfs — 2026-07-17
+
+Build:
+
+20260717T211948Z-e1acf1f-k6.16.1-sable-compat
+
+The canonical Z890 pipeline regenerated the live root and SquashFS, copied
+the matching 6.16.1-sable-compat kernel, and generated the live BusyBox
+initramfs twice in independent work directories.
+
+The two initramfs outputs were byte-identical.
+
+The archive passed gzip and cpio validation. Its embedded init uses the
+SABLELINUX filesystem label, expects /live/filesystem.squashfs, constructs
+the tmpfs-backed overlay, and switches into the generated live root.
+
+The build reached state initramfs-generated and is preserved as successful
+stage evidence. Its successor commit adds Tier 1 ext4 test-media generation.
