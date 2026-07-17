@@ -2591,3 +2591,34 @@ reports, release candidates, published releases, and operational state.
 Historical /mnt/liveroot* directories are no longer part of the build
 architecture. Future builds must use uniquely identified directories beneath
 /srv/sablelinux/builds/.
+
+## Canonical Build-Input Audit and Build Initialization — 2026-07-17
+
+Audited the Z890 repository and installed build toolchain.
+
+Confirmed available:
+
+- rsync
+- cpio and compression tools
+- static-BusyBox live-initramfs support
+- SquashFS tools 4.6.1
+- QEMU 9.2.3
+- GRUB 2.12
+- xorriso 1.5.6
+- mkfs.vfat
+- canonical kernel 6.16.1-sable-compat
+- matching kernel module tree
+
+The maintained BusyBox live-initramfs builder under scripts/live is the
+current live-boot implementation.
+
+Older files beneath build and build-scripts contain historical hard-coded
+versions, paths, or package-build procedures and are not authoritative
+release-generation scripts.
+
+Added a canonical build initializer:
+
+scripts/release/create-build.sh
+
+The initializer creates a uniquely identified per-build directory and records
+provenance before any root filesystem content is generated.
