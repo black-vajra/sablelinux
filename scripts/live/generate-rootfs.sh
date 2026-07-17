@@ -230,7 +230,9 @@ install -d -m 0755 \
     "$ROOTFS/run" \
     "$ROOTFS/mnt" \
     "$ROOTFS/media" \
-    "$ROOTFS/home"
+    "$ROOTFS/home" \
+    "$ROOTFS/var/log" \
+    "$ROOTFS/var/cache"
 
 install -d -m 1777 \
     "$ROOTFS/tmp" \
@@ -390,18 +392,22 @@ SUDOERS
 
 chmod 0440 "$ROOTFS/etc/sudoers.d/90-sable-live"
 
-[ -x "$ROOTFS/usr/bin/agetty" ] ||
-[ -x "$ROOTFS/usr/sbin/agetty" ] ||
+if [ -x "$ROOTFS/usr/bin/agetty" ]; then
+    AGETTY_PATH="/usr/bin/agetty"
+elif [ -x "$ROOTFS/usr/sbin/agetty" ]; then
+    AGETTY_PATH="/usr/sbin/agetty"
+else
     die "agetty is missing from generated rootfs"
+fi
 
 install -d -m 0755 \
     "$ROOTFS/etc/systemd/system/getty@tty1.service.d"
 
 cat > \
-    "$ROOTFS/etc/systemd/system/getty@tty1.service.d/autologin.conf" <<'AUTOLOGIN'
+    "$ROOTFS/etc/systemd/system/getty@tty1.service.d/autologin.conf" <<AUTOLOGIN
 [Service]
 ExecStart=
-ExecStart=-/sbin/agetty --autologin sable --noclear %I $TERM
+ExecStart=-$AGETTY_PATH --autologin sable --noclear %I \$TERM
 Type=idle
 AUTOLOGIN
 
@@ -469,8 +475,10 @@ find "$ROOTFS/var/cache" \
 install -d -m 0755 \
     "$ROOTFS/etc/sablelinux"
 
-cp "$BUILD_ENV" \
-    "$ROOTFS/etc/sablelinux/build.env"
+sed \
+    's/^BUILD_STATE=.*/BUILD_STATE=rootfs-generated/' \
+    "$BUILD_ENV" \
+    > "$ROOTFS/etc/sablelinux/build.env"
 
 cp "$POLICY" \
     "$ROOTFS/etc/sablelinux/rootfs-generation-policy.md"
@@ -499,6 +507,175 @@ find "$ROOTFS" -xdev -type f |
     wc -l \
     > "$BUILD_ROOT/metadata/rootfs-regular-file-count.txt"
 
+echo
+echo "=== VALIDATE GENERATED ROOTFS ===" |
+    tee -a "$REPORT"
+
+VALIDATION_REPORT="$BUILD_ROOT/reports/rootfs-validation-${TIMESTAMP}.txt"
+: > "$VALIDATION_REPORT"
+
+validation_log() {
+    printf '%s\n' "$*" |
+        tee -a "$VALIDATION_REPORT" "$REPORT"
+}
+
+REQUIRED_ABSENT=(
+    "$ROOTFS/sources"
+    "$ROOTFS/srv"
+    "$ROOTFS/swapfile"
+    "$ROOTFS/home/pepper"
+    "$ROOTFS/home/tester"
+    "$ROOTFS/opt/models"
+    "$ROOTFS/var/lib/qemu"
+    "$ROOTFS/var/lib/libvirt"
+    "$ROOTFS/etc/wireguard"
+    "$ROOTFS/etc/wpa_supplicant"
+    "$ROOTFS/etc/NetworkManager/system-connections"
+    "$ROOTFS/etc/ssl/private"
+    "$ROOTFS/etc/pki/private"
+    "$ROOTFS/etc/letsencrypt"
+    "$ROOTFS/.bash_history"
+)
+
+for path in "${REQUIRED_ABSENT[@]}"; do
+    if [ -e "$path" ] || [ -L "$path" ]; then
+        die "excluded path exists in generated rootfs: $path"
+    fi
+done
+
+validation_log "PASS: excluded host and credential paths are absent"
+
+[ ! -s "$ROOTFS/etc/machine-id" ] ||
+    die "generated machine-id is not empty"
+
+validation_log "PASS: machine-id is empty"
+
+if grep -Eq 'UUID=|PARTUUID=' "$ROOTFS/etc/fstab"; then
+    die "generated fstab contains host-specific UUID data"
+fi
+
+validation_log "PASS: fstab contains no host UUIDs"
+
+for database in passwd group shadow gshadow; do
+    if grep -Eq '^(pepper|tester):' "$ROOTFS/etc/$database"; then
+        die "build-host account remains in $database"
+    fi
+done
+
+validation_log "PASS: pepper and tester accounts were removed"
+
+grep -q '^sable:' "$ROOTFS/etc/passwd" ||
+    die "sable account is missing"
+
+validation_log "PASS: sable live account exists"
+
+[ "$(stat -c '%a' "$ROOTFS/etc/shadow")" = "600" ] ||
+    die "incorrect mode on generated shadow file"
+
+[ "$(stat -c '%a' "$ROOTFS/etc/gshadow")" = "600" ] ||
+    die "incorrect mode on generated gshadow file"
+
+validation_log "PASS: shadow database permissions are correct"
+
+SSH_HOST_KEY="$(
+    find "$ROOTFS/etc/ssh" \
+        -maxdepth 1 \
+        -type f \
+        -name 'ssh_host_*' \
+        -print -quit 2>/dev/null ||
+        true
+)"
+
+[ -z "$SSH_HOST_KEY" ] ||
+    die "SSH host identity remains: $SSH_HOST_KEY"
+
+validation_log "PASS: SSH host keys are absent"
+
+ROOT_CONTENT="$(
+    find "$ROOTFS/root" \
+        -mindepth 1 \
+        -print -quit 2>/dev/null ||
+        true
+)"
+
+[ -z "$ROOT_CONTENT" ] ||
+    die "root home contains copied host data"
+
+validation_log "PASS: root home is empty"
+
+test -d "$ROOTFS/var/log" ||
+    die "generated /var/log is missing"
+
+test -d "$ROOTFS/var/cache" ||
+    die "generated /var/cache is missing"
+
+test -d "$ROOTFS/var/tmp" ||
+    die "generated /var/tmp is missing"
+
+validation_log "PASS: required empty runtime directories exist"
+
+test -x "$ROOTFS/sbin/init" ||
+test -x "$ROOTFS/usr/lib/systemd/systemd" ||
+    die "generated rootfs has no executable init"
+
+validation_log "PASS: executable init is present"
+
+test -d "$ROOTFS/lib/modules/$(uname -r)" ||
+    die "matching kernel module tree is absent"
+
+validation_log "PASS: matching kernel module tree is present"
+
+cmp -s \
+    "$REPO/configs/desktop/sway/config" \
+    "$ROOTFS/home/sable/.config/sway/config" ||
+    die "injected Sway profile does not match repository"
+
+cmp -s \
+    "$REPO/configs/desktop/waybar/config" \
+    "$ROOTFS/home/sable/.config/waybar/config" ||
+    die "injected Waybar configuration does not match repository"
+
+cmp -s \
+    "$REPO/configs/desktop/waybar/style.css" \
+    "$ROOTFS/home/sable/.config/waybar/style.css" ||
+    die "injected Waybar stylesheet does not match repository"
+
+validation_log "PASS: repository desktop profile was injected exactly"
+
+for uid in "$PEPPER_UID" "$TESTER_UID"; do
+    [ -n "$uid" ] || continue
+
+    LEFTOVER="$(
+        find "$ROOTFS" \
+            -xdev \
+            -uid "$uid" \
+            -print -quit 2>/dev/null ||
+            true
+    )"
+
+    [ -z "$LEFTOVER" ] ||
+        die "removed host UID still owns rootfs content: $LEFTOVER"
+done
+
+validation_log "PASS: removed host UIDs own no rootfs content"
+
+for service in llama-server.service sshd.service; do
+    ENABLED_LINK="$(
+        find "$ROOTFS/etc/systemd/system" \
+            -type l \
+            -lname "*$service" \
+            -print -quit 2>/dev/null ||
+            true
+    )"
+
+    [ -z "$ENABLED_LINK" ] ||
+        die "disabled service remains enabled: $ENABLED_LINK"
+done
+
+validation_log "PASS: prohibited live services are not enabled"
+
+validation_log "PASS: generated rootfs validation completed"
+
 printf '%s\n' "rootfs-generated" \
     > "$BUILD_ROOT/BUILD_STATE"
 
@@ -506,8 +683,49 @@ sed -i \
     's/^BUILD_STATE=.*/BUILD_STATE=rootfs-generated/' \
     "$BUILD_ENV"
 
-chown -R root:"$BUILD_GROUP" "$BUILD_ROOT"
-find "$BUILD_ROOT" -type d -exec chmod 2775 {} +
+CONTROL_DIRECTORIES=(
+    "$BUILD_ROOT"
+    "$BUILD_ROOT/rootfs"
+    "$BUILD_ROOT/boot"
+    "$BUILD_ROOT/squashfs"
+    "$BUILD_ROOT/initramfs"
+    "$BUILD_ROOT/media"
+    "$BUILD_ROOT/installer"
+    "$BUILD_ROOT/logs"
+    "$BUILD_ROOT/metadata"
+    "$BUILD_ROOT/reports"
+    "$BUILD_ROOT/tmp"
+)
+
+chown root:"$BUILD_GROUP" "${CONTROL_DIRECTORIES[@]}"
+chmod 2775 "${CONTROL_DIRECTORIES[@]}"
+
+chown -R root:"$BUILD_GROUP" \
+    "$BUILD_ROOT/logs" \
+    "$BUILD_ROOT/metadata" \
+    "$BUILD_ROOT/reports"
+
+find \
+    "$BUILD_ROOT/logs" \
+    "$BUILD_ROOT/metadata" \
+    "$BUILD_ROOT/reports" \
+    -type d \
+    -exec chmod 2775 {} +
+
+find \
+    "$BUILD_ROOT/logs" \
+    "$BUILD_ROOT/metadata" \
+    "$BUILD_ROOT/reports" \
+    -type f \
+    -exec chmod g+rw {} +
+
+chown root:"$BUILD_GROUP" \
+    "$BUILD_ROOT/BUILD_STATE" \
+    "$BUILD_ROOT/README.txt"
+
+chmod 0664 \
+    "$BUILD_ROOT/BUILD_STATE" \
+    "$BUILD_ROOT/README.txt"
 
 {
     echo

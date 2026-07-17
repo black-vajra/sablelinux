@@ -2659,3 +2659,25 @@ successfully supports those operations.
 Archive mode, hard links, ownership, permissions, timestamps, numeric IDs,
 device boundaries, deletion policy, and the maintained exclusion policy
 remain enabled independently of ACL and xattr support.
+
+## Rootfs Execute-Path Hardening — 2026-07-17
+
+Review of the successful canonical rootfs dry run identified a critical
+execute-path defect before any rootfs files were copied.
+
+The generator would have recursively changed all generated rootfs ownership
+to root:pepper and all rootfs directory modes to 2775 after rsync completed.
+That would have destroyed preserved system ownership and permissions.
+
+Corrected the generator to:
+
+- preserve copied rootfs ownership and directory modes
+- apply group-writable permissions only to build-control directories
+- create empty /var/log and /var/cache directories
+- select the actual installed agetty path
+- embed the correct rootfs-generated state in live-root metadata
+- validate excluded secrets and host state before changing build state
+- validate accounts, machine identity, fstab, kernel modules, init,
+  desktop profiles, service enablement, and orphaned host ownership
+
+No rootfs files had been copied by the affected generator.
