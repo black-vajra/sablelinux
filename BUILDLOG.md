@@ -2571,3 +2571,23 @@ Filesystem result:
 This cleanup removes historical staging trees as accidental build
 dependencies. Future live roots and release artifacts must be generated from
 the canonical Z890 installation through repository-controlled procedures.
+
+## Canonical Z890 Artifact Workspace — 2026-07-17
+
+Established /srv/sablelinux as the canonical generated-artifact workspace
+on the authoritative Z890 SableLinux installation.
+
+Repository-controlled policy:
+
+docs/release/canonical-artifact-layout.md
+
+Repository-controlled initializer:
+
+scripts/release/init-canonical-workspace.sh
+
+The workspace separates per-build generated state, disposable caches,
+reports, release candidates, published releases, and operational state.
+
+Historical /mnt/liveroot* directories are no longer part of the build
+architecture. Future builds must use uniquely identified directories beneath
+/srv/sablelinux/builds/.
