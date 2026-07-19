@@ -1,0 +1,145 @@
+=== LIBNOTIFY 0.8.8 STAGED BUILD ===
+2026-07-18T14:33:12-04:00
+
+=== REQUIRED MODULES ===
+PASS: glib-2.0 2.87.3
+PASS: gio-2.0 2.87.3
+PASS: gio-unix-2.0 2.87.3
+PASS: gdk-pixbuf-2.0 2.42.12
+
+=== DOWNLOAD OFFICIAL SOURCE AND CHECKSUM ===
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0 13  112k   13 15854    0     0   6631      0  0:00:17  0:00:02  0:00:15  6630100  112k  100  112k    0     0  37819      0  0:00:03  0:00:03 --:--:-- 37829
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0100   176  100   176    0     0     34      0  0:00:05  0:00:05 --:--:--    34100   176  100   176    0     0     34      0  0:00:05  0:00:05 --:--:--    39
+
+=== VERIFY CHECKSUM ===
+libnotify-0.8.8.tar.xz: OK
+
+=== PREPARE CLEAN SOURCE TREE ===
+
+=== CONFIGURE ===
+The Meson build system
+Version: 1.7.0
+Source dir: /home/sable/src/libnotify-0.8.8
+Build dir: /home/sable/src/libnotify-0.8.8/build-sable
+Build type: native build
+Project name: libnotify
+Project version: 0.8.8
+C compiler for the host machine: cc (gcc 15.2.0 "cc (GCC) 15.2.0")
+C linker for the host machine: cc ld.bfd 2.45
+Host machine cpu family: x86_64
+Host machine cpu: x86_64
+Found pkg-config: YES (/usr/bin/pkg-config) 2.5.1
+Run-time dependency gdk-pixbuf-2.0 found: YES 2.42.12
+Run-time dependency glib-2.0 found: YES 2.87.3
+Run-time dependency gio-2.0 found: YES 2.87.3
+Run-time dependency gio-unix-2.0 found: YES 2.87.3
+Found CMake: /usr/bin/cmake (3.31.6)
+Run-time dependency gtk4 found: NO (tried pkgconfig and cmake)
+Check usable header "gio/gdesktopappinfo.h" with dependency gio-unix-2.0: YES 
+Configuring config.h using configuration
+Configuring notify-features.h using configuration
+Dependency glib-2.0 found: YES 2.87.3 (cached)
+Program /usr/bin/glib-mkenums found: YES (/usr/bin/glib-mkenums)
+Dependency glib-2.0 found: YES 2.87.3 (cached)
+Program /usr/bin/glib-mkenums found: YES (/usr/bin/glib-mkenums)
+Compiler for C supports link arguments -Wl,--version-script,/home/sable/src/libnotify-0.8.8/libnotify/libnotify.map: YES 
+Program g-ir-scanner found: NO
+Build targets in project: 4
+
+libnotify 0.8.8
+
+  User defined options
+    buildtype    : release
+    docbook_docs : disabled
+    gtk_doc      : false
+    introspection: disabled
+    man          : false
+    prefix       : /opt/libnotify/0.8.8
+    tests        : false
+
+Found ninja-1.13.1 at /usr/bin/ninja
+Generating targets:   0%|          | 0/4 eta ?                                              Writing build.ninja:   0%|          | 0/39 eta ?                                                
+=== COMPILE ===
+ninja: Entering directory `/home/sable/src/libnotify-0.8.8/build-sable'
+[1/10] Generating GObject enum file libnotify/notify-enum-types.c (wrapped by meson because command contains newlines, to capture output)
+[2/10] Generating GObject enum file libnotify/notify-enum-types.h (wrapped by meson because command contains newlines, to capture output)
+[3/10] Compiling C object libnotify/libnotify.so.4.0.0.p/meson-generated_.._notify-enum-types.c.o
+[4/10] Compiling C object libnotify/libnotify.so.4.0.0.p/launch-context.c.o
+[5/10] Compiling C object libnotify/libnotify.so.4.0.0.p/notify.c.o
+[6/10] Compiling C object tools/notify-send.p/notify-send.c.o
+[7/10] Compiling C object libnotify/libnotify.so.4.0.0.p/notification.c.o
+[8/10] Linking target libnotify/libnotify.so.4.0.0
+[9/10] Generating symbol file libnotify/libnotify.so.4.0.0.p/libnotify.so.4.0.0.symbols
+[10/10] Linking target tools/notify-send
+INFO: autodetecting backend as ninja
+INFO: calculating backend command to run: /usr/bin/ninja -C /home/sable/src/libnotify-0.8.8/build-sable -j 4
+
+=== STAGED INSTALL ===
+ninja: Entering directory `/home/sable/src/libnotify-0.8.8/build-sable'
+ninja: no work to do.
+Installing libnotify/notify-enum-types.h to /home/sable/libnotify-stage-0.8.8/opt/libnotify/0.8.8/include/libnotify
+Installing libnotify/libnotify.so.4.0.0 to /home/sable/libnotify-stage-0.8.8/opt/libnotify/0.8.8/lib64
+Installing tools/notify-send to /home/sable/libnotify-stage-0.8.8/opt/libnotify/0.8.8/bin
+Installing /home/sable/src/libnotify-0.8.8/libnotify/notify.h to /home/sable/libnotify-stage-0.8.8/opt/libnotify/0.8.8/include/libnotify
+Installing /home/sable/src/libnotify-0.8.8/libnotify/notification.h to /home/sable/libnotify-stage-0.8.8/opt/libnotify/0.8.8/include/libnotify
+Installing /home/sable/src/libnotify-0.8.8/libnotify/notification-hints.h to /home/sable/libnotify-stage-0.8.8/opt/libnotify/0.8.8/include/libnotify
+Installing /home/sable/src/libnotify-0.8.8/build-sable/libnotify/notify-features.h to /home/sable/libnotify-stage-0.8.8/opt/libnotify/0.8.8/include/libnotify
+Installing /home/sable/src/libnotify-0.8.8/build-sable/meson-private/libnotify.pc to /home/sable/libnotify-stage-0.8.8/opt/libnotify/0.8.8/lib64/pkgconfig
+Installing symlink pointing to libnotify.so.4.0.0 to /home/sable/libnotify-stage-0.8.8/opt/libnotify/0.8.8/lib64/libnotify.so.4
+Installing symlink pointing to libnotify.so.4 to /home/sable/libnotify-stage-0.8.8/opt/libnotify/0.8.8/lib64/libnotify.so
+
+=== STAGED FILES ===
+/home/sable/libnotify-stage-0.8.8/opt/libnotify/0.8.8/bin/notify-send
+/home/sable/libnotify-stage-0.8.8/opt/libnotify/0.8.8/include/libnotify/notification.h
+/home/sable/libnotify-stage-0.8.8/opt/libnotify/0.8.8/include/libnotify/notification-hints.h
+/home/sable/libnotify-stage-0.8.8/opt/libnotify/0.8.8/include/libnotify/notify-enum-types.h
+/home/sable/libnotify-stage-0.8.8/opt/libnotify/0.8.8/include/libnotify/notify-features.h
+/home/sable/libnotify-stage-0.8.8/opt/libnotify/0.8.8/include/libnotify/notify.h
+/home/sable/libnotify-stage-0.8.8/opt/libnotify/0.8.8/lib64/libnotify.so
+/home/sable/libnotify-stage-0.8.8/opt/libnotify/0.8.8/lib64/libnotify.so.4
+/home/sable/libnotify-stage-0.8.8/opt/libnotify/0.8.8/lib64/libnotify.so.4.0.0
+/home/sable/libnotify-stage-0.8.8/opt/libnotify/0.8.8/lib64/pkgconfig/libnotify.pc
+
+=== PKG-CONFIG FILE ===
+prefix=/opt/libnotify/0.8.8
+includedir=${prefix}/include
+libdir=${prefix}/lib64
+
+Name: libnotify
+Description: Notifications Library
+Version: 0.8.8
+Requires: gdk-pixbuf-2.0, gio-2.0 >=  2.62.0, glib-2.0 >=  2.62.0, gio-unix-2.0 >=  2.62.0
+Libs: -L${libdir} -lnotify
+Cflags: -I${includedir}
+
+=== LIBRARY CHECK ===
+/home/sable/libnotify-stage-0.8.8/opt/libnotify/0.8.8/lib64/libnotify.so.4.0.0: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, with debug_info, not stripped
+	linux-vdso.so.1 (0x00007f5c5973c000)
+	libgdk_pixbuf-2.0.so.0 => /usr/lib/libgdk_pixbuf-2.0.so.0 (0x00007f5c596e7000)
+	libgobject-2.0.so.0 => /usr/lib64/libgobject-2.0.so.0 (0x00007f5c59677000)
+	libglib-2.0.so.0 => /usr/lib64/libglib-2.0.so.0 (0x00007f5c59509000)
+	libgio-2.0.so.0 => /usr/lib64/libgio-2.0.so.0 (0x00007f5c59300000)
+	libc.so.6 => /usr/lib/libc.so.6 (0x00007f5c59119000)
+	libjpeg.so.8.2.2 => /usr/lib/libjpeg.so.8.2.2 (0x00007f5c590af000)
+	libm.so.6 => /usr/lib/libm.so.6 (0x00007f5c58fba000)
+	libgmodule-2.0.so.0 => /usr/lib64/libgmodule-2.0.so.0 (0x00007f5c58fb3000)
+	libpng16.so.16 => /usr/lib/libpng16.so.16 (0x00007f5c58f7a000)
+	libffi.so.8 => /usr/lib/libffi.so.8 (0x00007f5c58f69000)
+	libpcre2-8.so.0 => /usr/lib/libpcre2-8.so.0 (0x00007f5c58ec8000)
+	libz.so.1 => /usr/lib/libz.so.1 (0x00007f5c58ea6000)
+	libmount.so.1 => /usr/lib/libmount.so.1 (0x00007f5c58e30000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f5c5973e000)
+	libblkid.so.1 => /usr/lib/libblkid.so.1 (0x00007f5c58dd0000)
+
+=== SHA256 ===
+23420ef619dc2cb5aebad613f4823a2fa41c07e5a1d05628d40f6ec4b35bfddd  /home/sable/src/libnotify-0.8.8.tar.xz
+937aef133503e867500db6b403e90f691577c4d1bd3069d1f601c3de4828cb51  /home/sable/libnotify-stage-0.8.8/opt/libnotify/0.8.8/lib64/libnotify.so.4.0.0
+
+=== STAGED BUILD PASS ===
+Stage:  /home/sable/libnotify-stage-0.8.8
+Prefix: /opt/libnotify/0.8.8
+Log:    /home/sable/Desktop/libnotify-0.8.8-build-20260718-143312.txt

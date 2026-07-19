@@ -1,0 +1,3 @@
+# Preserve imported machine-generated logs byte-for-byte.
+# Their historical whitespace is evidence, not source formatting.
+reports/*.txt -whitespace

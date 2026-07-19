@@ -1,0 +1,42 @@
+=== INSTALL LIBNOTIFY 0.8.8 ===
+2026-07-18T14:35:04-04:00
+
+=== INSTALL VERSIONED TREE ===
+
+=== REGISTER RUNTIME LIBRARY PATH ===
+
+=== VERIFY RUNTIME REGISTRATION ===
+	libnotify.so.4 (libc6,x86-64) => /opt/libnotify/0.8.8/lib64/libnotify.so.4
+
+=== VERIFY PKG-CONFIG ===
+0.8.8
+-I/opt/libnotify/0.8.8/include -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/gio-unix-2.0 -pthread -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/usr/include/libmount -I/usr/include/blkid -L/opt/libnotify/0.8.8/lib64 -lnotify -L/usr/lib64 -lgdk_pixbuf-2.0 -lgio-2.0 -lgobject-2.0 -lglib-2.0
+
+=== VERIFY EXECUTABLE AND LIBRARY ===
+/opt/libnotify/0.8.8/bin/notify-send 0.8.8
+/opt/libnotify/0.8.8/lib64/libnotify.so.4.0.0: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, with debug_info, not stripped
+	linux-vdso.so.1 (0x00007f3bef2ce000)
+	libgdk_pixbuf-2.0.so.0 => /usr/lib/libgdk_pixbuf-2.0.so.0 (0x00007f3bef279000)
+	libgobject-2.0.so.0 => /usr/lib64/libgobject-2.0.so.0 (0x00007f3bef209000)
+	libglib-2.0.so.0 => /usr/lib64/libglib-2.0.so.0 (0x00007f3bef09b000)
+	libgio-2.0.so.0 => /usr/lib64/libgio-2.0.so.0 (0x00007f3beee92000)
+	libc.so.6 => /usr/lib/libc.so.6 (0x00007f3beecab000)
+	libjpeg.so.8.2.2 => /usr/lib/libjpeg.so.8.2.2 (0x00007f3beec41000)
+	libm.so.6 => /usr/lib/libm.so.6 (0x00007f3beeb4c000)
+	libgmodule-2.0.so.0 => /usr/lib64/libgmodule-2.0.so.0 (0x00007f3beeb45000)
+	libpng16.so.16 => /usr/lib/libpng16.so.16 (0x00007f3beeb0c000)
+	libffi.so.8 => /usr/lib/libffi.so.8 (0x00007f3beeafb000)
+	libpcre2-8.so.0 => /usr/lib/libpcre2-8.so.0 (0x00007f3beea5a000)
+	libz.so.1 => /usr/lib/libz.so.1 (0x00007f3beea38000)
+	libmount.so.1 => /usr/lib/libmount.so.1 (0x00007f3bee9c2000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f3bef2d0000)
+	libblkid.so.1 => /usr/lib/libblkid.so.1 (0x00007f3bee962000)
+
+=== INSTALLED FILE HASHES ===
+937aef133503e867500db6b403e90f691577c4d1bd3069d1f601c3de4828cb51  /opt/libnotify/0.8.8/lib64/libnotify.so.4.0.0
+4b3af8520665cb814ba7110d6a02a409d570bb4a12c90ca02ae865c801860733  /opt/libnotify/0.8.8/bin/notify-send
+
+=== INSTALL PASS ===
+Installed: /opt/libnotify/0.8.8
+Current:   /opt/libnotify/current
+Log:       /home/sable/Desktop/libnotify-0.8.8-install-20260718-143504.txt

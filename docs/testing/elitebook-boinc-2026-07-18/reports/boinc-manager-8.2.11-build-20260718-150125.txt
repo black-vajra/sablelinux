@@ -1,0 +1,2703 @@
+=== BUILD BOINC MANAGER 8.2.11 ===
+2026-07-18T15:01:25-04:00
+
+=== VERIFY PREREQUISITES ===
+BOINC commit:
+5511380b8980935c25c3ea41df3980445419e59e
+wxWidgets:
+3.2.11
+gtk3-unicode-3.2
+libnotify:
+0.8.8
+
+=== PREPARE CLEAN MANAGER SOURCE ===
+Cloning into '/home/sable/src/boinc-8.2.11-manager-src'...
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+Note: switching to '5511380b8980935c25c3ea41df3980445419e59e'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 5511380 Client/Manager Release 8.2.11
+
+=== GENERATE BUILD SYSTEM ===
+Bootstrapping configure script and makefiles:
+Checking version of 'make' >= 379... succeeded. (404)
+Checking version of 'm4' >= 104... succeeded. (104)
+Checking version of 'pkg-config' >= 15... succeeded. (205)
+Checking version of 'autoreconf' >= 258... succeeded. (272)
+Checking version of 'automake' >= 108... succeeded. (118)
+Checking version of 'libtoolize' >= 105... succeeded. (205)
+autoreconf -i
+libtoolize: putting auxiliary files in '.'.
+libtoolize: copying file './ltmain.sh'
+libtoolize: putting macros in AC_CONFIG_MACRO_DIRS, 'm4'.
+libtoolize: copying file 'm4/libtool.m4'
+libtoolize: copying file 'm4/ltoptions.m4'
+libtoolize: copying file 'm4/ltsugar.m4'
+libtoolize: copying file 'm4/ltversion.m4'
+libtoolize: copying file 'm4/lt~obsolete.m4'
+configure.ac:56: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:56: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+./lib/autoconf/programs.m4:358: AC_PROG_AWK is expanded from...
+aclocal.m4:780: AM_INIT_AUTOMAKE is expanded from...
+configure.ac:56: the top level
+configure.ac:81: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:81: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+./lib/autoconf/programs.m4:246: AC_CHECK_TOOLS is expanded from...
+./lib/autoconf/c.m4:460: AC_PROG_CC is expanded from...
+configure.ac:81: the top level
+configure.ac:82: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:82: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+./lib/autoconf/programs.m4:246: AC_CHECK_TOOLS is expanded from...
+./lib/autoconf/c.m4:687: AC_PROG_CXX is expanded from...
+configure.ac:82: the top level
+configure.ac:124: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:124: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+./lib/autoconf/programs.m4:246: AC_CHECK_TOOLS is expanded from...
+./lib/autoconf/c.m4:1004: AC_PROG_OBJCXX is expanded from...
+configure.ac:124: the top level
+configure.ac:446: warning: The macro 'AC_HELP_STRING' is obsolete.
+configure.ac:446: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+m4/ax_winsock.m4:1: AX_WINSOCK is expanded from...
+m4/boinc_check_cygwin.m4:1: BOINC_CHECK_CYGWIN is expanded from...
+configure.ac:446: the top level
+configure.ac:463: warning: The macro 'AC_LIBTOOL_DLOPEN' is obsolete.
+configure.ac:463: You should run autoupdate.
+m4/ltoptions.m4:113: AC_LIBTOOL_DLOPEN is expanded from...
+configure.ac:463: the top level
+configure.ac:463: warning: AC_LIBTOOL_DLOPEN: Remove this warning and the call to _LT_SET_OPTION when you
+configure.ac:463: put the 'dlopen' option into LT_INIT's first parameter.
+./lib/autoconf/general.m4:2434: AC_DIAGNOSE is expanded from...
+m4/ltoptions.m4:113: AC_LIBTOOL_DLOPEN is expanded from...
+configure.ac:463: the top level
+configure.ac:464: warning: The macro 'AC_LIBTOOL_WIN32_DLL' is obsolete.
+configure.ac:464: You should run autoupdate.
+m4/ltoptions.m4:148: AC_LIBTOOL_WIN32_DLL is expanded from...
+configure.ac:464: the top level
+configure.ac:464: warning: AC_LIBTOOL_WIN32_DLL: Remove this warning and the call to _LT_SET_OPTION when you
+configure.ac:464: put the 'win32-dll' option into LT_INIT's first parameter.
+./lib/autoconf/general.m4:2434: AC_DIAGNOSE is expanded from...
+m4/ltoptions.m4:148: AC_LIBTOOL_WIN32_DLL is expanded from...
+configure.ac:464: the top level
+configure.ac:465: warning: The macro 'AC_PROG_LIBTOOL' is obsolete.
+configure.ac:465: You should run autoupdate.
+m4/libtool.m4:100: AC_PROG_LIBTOOL is expanded from...
+configure.ac:465: the top level
+configure.ac:465: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:465: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+./lib/autoconf/programs.m4:246: AC_CHECK_TOOLS is expanded from...
+m4/libtool.m4:3795: LT_PATH_NM is expanded from...
+m4/libtool.m4:153: _LT_SETUP is expanded from...
+m4/libtool.m4:62: LT_INIT is expanded from...
+m4/libtool.m4:100: AC_PROG_LIBTOOL is expanded from...
+configure.ac:465: the top level
+configure.ac:465: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:465: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+./lib/autoconf/programs.m4:246: AC_CHECK_TOOLS is expanded from...
+m4/libtool.m4:1527: _LT_PROG_AR is expanded from...
+m4/libtool.m4:1577: _LT_CMD_OLD_ARCHIVE is expanded from...
+m4/libtool.m4:153: _LT_SETUP is expanded from...
+m4/libtool.m4:62: LT_INIT is expanded from...
+m4/libtool.m4:100: AC_PROG_LIBTOOL is expanded from...
+configure.ac:465: the top level
+configure.ac:471: warning: The macro 'AC_HELP_STRING' is obsolete.
+configure.ac:471: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+m4/sah_select_bitness.m4:97: SAH_OPTION_BITNESS is expanded from...
+configure.ac:471: the top level
+configure.ac:474: warning: The macro 'AC_HELP_STRING' is obsolete.
+configure.ac:474: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+m4/boinc_platform.m4:1: BOINC_PLATFORM is expanded from...
+configure.ac:474: the top level
+configure.ac:570: warning: The macro 'AC_HELP_STRING' is obsolete.
+configure.ac:570: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+m4/check_ssl.m4:1: CHECK_SSL is expanded from...
+lib/m4sugar/m4sh.m4:697: AS_IF is expanded from...
+configure.ac:570: the top level
+configure.ac:570: warning: The macro 'AC_HELP_STRING' is obsolete.
+configure.ac:570: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+m4/boinc_check_lib_with.m4:1: BOINC_CHECK_LIB_WITH is expanded from...
+m4/check_ssl.m4:1: CHECK_SSL is expanded from...
+lib/m4sugar/m4sh.m4:697: AS_IF is expanded from...
+configure.ac:570: the top level
+configure.ac:576: warning: The macro 'AC_HELP_STRING' is obsolete.
+configure.ac:576: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+m4/libcurl.m4:37: LIBCURL_CHECK_CONFIG is expanded from...
+lib/m4sugar/m4sh.m4:697: AS_IF is expanded from...
+configure.ac:576: the top level
+configure.ac:576: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:576: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+./lib/autoconf/programs.m4:358: AC_PROG_AWK is expanded from...
+m4/libcurl.m4:37: LIBCURL_CHECK_CONFIG is expanded from...
+lib/m4sugar/m4sh.m4:697: AS_IF is expanded from...
+configure.ac:576: the top level
+configure.ac:576: warning: The macro 'AC_HELP_STRING' is obsolete.
+configure.ac:576: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+m4/boinc_check_lib_with.m4:1: BOINC_CHECK_LIB_WITH is expanded from...
+m4/libcurl.m4:37: LIBCURL_CHECK_CONFIG is expanded from...
+lib/m4sugar/m4sh.m4:697: AS_IF is expanded from...
+configure.ac:576: the top level
+configure.ac:663: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:663: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+lib/m4sugar/m4sh.m4:595: AS_CASE is expanded from...
+lib/m4sugar/m4sh.m4:595: AS_CASE is expanded from...
+m4/ax_pthread.m4:126: AX_PTHREAD is expanded from...
+configure.ac:663: the top level
+configure.ac:699: warning: The macro 'ACX_PTHREAD' is obsolete.
+configure.ac:699: You should run autoupdate.
+m4/ax_pthread.m4:125: ACX_PTHREAD is expanded from...
+m4/ax_check_gl.m4:4: AX_CHECK_GL is expanded from...
+configure.ac:699: the top level
+configure.ac:699: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:699: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+lib/m4sugar/m4sh.m4:595: AS_CASE is expanded from...
+lib/m4sugar/m4sh.m4:595: AS_CASE is expanded from...
+m4/ax_pthread.m4:126: AX_PTHREAD is expanded from...
+m4/ax_pthread.m4:125: ACX_PTHREAD is expanded from...
+m4/ax_check_gl.m4:4: AX_CHECK_GL is expanded from...
+configure.ac:699: the top level
+configure.ac:699: warning: The macro 'AC_HELP_STRING' is obsolete.
+configure.ac:699: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+./lib/autoconf/general.m4:1553: AC_ARG_WITH is expanded from...
+m4/ax_check_gl.m4:4: AX_CHECK_GL is expanded from...
+configure.ac:699: the top level
+configure.ac:806: warning: The macro 'AC_HEADER_STDC' is obsolete.
+configure.ac:806: You should run autoupdate.
+./lib/autoconf/headers.m4:663: AC_HEADER_STDC is expanded from...
+configure.ac:806: the top level
+configure.ac:808: warning: The macro 'AC_HEADER_TIME' is obsolete.
+configure.ac:808: You should run autoupdate.
+./lib/autoconf/headers.m4:702: AC_HEADER_TIME is expanded from...
+configure.ac:808: the top level
+configure.ac:809: warning: The macro 'AC_TYPE_SIGNAL' is obsolete.
+configure.ac:809: You should run autoupdate.
+./lib/autoconf/types.m4:805: AC_TYPE_SIGNAL is expanded from...
+configure.ac:809: the top level
+configure.ac:1074: warning: AC_CHECK_HEADERS($sah_stdcxx_headers): you should use literals
+./lib/autoconf/headers.m4:217: AC_CHECK_HEADERS is expanded from...
+lib/m4sugar/m4sh.m4:690: _AS_IF_ELSE is expanded from...
+lib/m4sugar/m4sh.m4:697: AS_IF is expanded from...
+./lib/autoconf/general.m4:2821: _AC_COMPILE_IFELSE is expanded from...
+./lib/autoconf/general.m4:2837: AC_COMPILE_IFELSE is expanded from...
+m4/sah_header_stdcxx.m4:23: SAH_HEADER_STDCXX is expanded from...
+configure.ac:1074: the top level
+configure.ac:1084: warning: The macro 'AC_PROG_GCC_TRADITIONAL' is obsolete.
+configure.ac:1084: You should run autoupdate.
+./lib/autoconf/c.m4:1676: AC_PROG_GCC_TRADITIONAL is expanded from...
+configure.ac:1084: the top level
+configure.ac:81: installing './compile'
+configure.ac:47: installing './config.guess'
+configure.ac:47: installing './config.sub'
+configure.ac:56: installing './install-sh'
+configure.ac:56: installing './missing'
+api/Makefile.am:22: warning: source file '$(top_srcdir)/samples/image_libs/bmplib.cpp' is in a subdirectory,
+api/Makefile.am:22: but option 'subdir-objects' is disabled
+automake: warning: possible forward-incompatibility.
+automake: At least one source file is in a subdirectory, but the 'subdir-objects'
+automake: automake option hasn't been enabled.  For now, the corresponding output
+automake: object file(s) will be placed in the top-level directory.  However, this
+automake: behavior may change in a future Automake major version, with object
+automake: files being placed in the same subdirectory as the corresponding sources.
+automake: You are advised to start using 'subdir-objects' option throughout your
+automake: project, to avoid future incompatibility.
+api/Makefile.am:22: warning: source file '$(top_srcdir)/samples/image_libs/tgalib.cpp' is in a subdirectory,
+api/Makefile.am:22: but option 'subdir-objects' is disabled
+api/Makefile.am: installing './depcomp'
+client/Makefile.am:4: warning: ':='-style assignments are not portable
+client/Makefile.am:4: warning: filter-out -mfpu=vfpv3-d16,$(CXXFLAGS: non-POSIX variable name
+client/Makefile.am:4: (probably a GNU make extension)
+client/Makefile.am:126: warning: filter-out -mfpu=vfpv3-d16,$(boinc_client_CXXFLAGS: non-POSIX variable name
+client/Makefile.am:126: (probably a GNU make extension)
+client/Makefile.am:4: warning: 'CXXFLAGS' is a user variable, you should not override it;
+client/Makefile.am:4: use 'AM_CXXFLAGS' instead
+clientgui/Makefile.am:26: warning: source file 'common/wxPieCtrl.cpp' is in a subdirectory,
+clientgui/Makefile.am:26: but option 'subdir-objects' is disabled
+clientgui/Makefile.am:26: warning: source file 'gtk/taskbarex.cpp' is in a subdirectory,
+clientgui/Makefile.am:26: but option 'subdir-objects' is disabled
+lib/Makefile.am:127: warning: source file 'mac/mac_backtrace.cpp' is in a subdirectory,
+lib/Makefile.am:127: but option 'subdir-objects' is disabled
+lib/Makefile.am:127: warning: source file 'mac/mac_spawn.cpp' is in a subdirectory,
+lib/Makefile.am:127: but option 'subdir-objects' is disabled
+lib/Makefile.am:127: warning: source file 'mac/QBacktrace.c' is in a subdirectory,
+lib/Makefile.am:127: but option 'subdir-objects' is disabled
+lib/Makefile.am:127: warning: source file 'mac/QCrashReport.c' is in a subdirectory,
+lib/Makefile.am:127: but option 'subdir-objects' is disabled
+lib/Makefile.am:127: warning: source file 'mac/QMachOImage.c' is in a subdirectory,
+lib/Makefile.am:127: but option 'subdir-objects' is disabled
+lib/Makefile.am:127: warning: source file 'mac/QMachOImageList.c' is in a subdirectory,
+lib/Makefile.am:127: but option 'subdir-objects' is disabled
+lib/Makefile.am:127: warning: source file 'mac/QSymbols.c' is in a subdirectory,
+lib/Makefile.am:127: but option 'subdir-objects' is disabled
+lib/Makefile.am:127: warning: source file 'mac/QTaskMemory.c' is in a subdirectory,
+lib/Makefile.am:127: but option 'subdir-objects' is disabled
+lib/Makefile.am:127: warning: source file 'mac/mac_branding.cpp' is in a subdirectory,
+lib/Makefile.am:127: but option 'subdir-objects' is disabled
+sched/Makefile.am:11: warning: source file '../db/boinc_db.cpp' is in a subdirectory,
+sched/Makefile.am:11: but option 'subdir-objects' is disabled
+sched/Makefile.am:11: warning: source file '../db/db_base.cpp' is in a subdirectory,
+sched/Makefile.am:11: but option 'subdir-objects' is disabled
+sched/Makefile.am:11: warning: source file '../tools/process_result_template.cpp' is in a subdirectory,
+sched/Makefile.am:11: but option 'subdir-objects' is disabled
+sched/Makefile.am:11: warning: source file '../tools/process_input_template.cpp' is in a subdirectory,
+sched/Makefile.am:11: but option 'subdir-objects' is disabled
+sched/Makefile.am:11: warning: source file '../tools/backend_lib.cpp' is in a subdirectory,
+sched/Makefile.am:11: but option 'subdir-objects' is disabled
+sched/Makefile.am:158: warning: source file '../vda/sched_vda.cpp' is in a subdirectory,
+sched/Makefile.am:158: but option 'subdir-objects' is disabled
+sched/Makefile.am:205: warning: source file '../lib/synch.cpp' is in a subdirectory,
+sched/Makefile.am:205: but option 'subdir-objects' is disabled
+sched/Makefile.am:212: warning: source file '../lib/synch.cpp' is in a subdirectory,
+sched/Makefile.am:212: but option 'subdir-objects' is disabled
+tools/Makefile.am:69: warning: source file '../lib/remote_submit.cpp' is in a subdirectory,
+tools/Makefile.am:69: but option 'subdir-objects' is disabled
+Done, now run ./configure
+ ./configure -C                         to enable caching
+
+=== CONFIGURE MANAGER-ONLY BUILD ===
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether sleep supports fractional seconds... yes
+checking filesystem timestamp resolution... 0.01
+checking whether build environment is sane... yes
+checking for a race-free mkdir -p... /usr/bin/mkdir -p
+checking for gawk... /usr/bin/gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking xargs -n works... yes
+checking whether UID '1000' is supported by ustar format... yes
+checking whether GID '1000' is supported by ustar format... yes
+checking how to create a ustar tar archive... gnutar
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to enable C11 features... none needed
+checking whether gcc understands -c and -o together... yes
+checking whether make supports the include directive... yes (GNU style)
+checking dependency style of gcc... gcc3
+checking for g++... /usr/bin/g++
+checking whether the compiler supports GNU C++... yes
+checking whether /usr/bin/g++ accepts -g... yes
+checking for /usr/bin/g++ option to enable C++11 features... none needed
+checking dependency style of /usr/bin/g++... gcc3
+checking whether /usr/bin/g++ supports C++11... yes, with -std=c++11
+checking for g++... /usr/bin/g++
+checking whether the compiler supports GNU Objective C++... no
+checking whether /usr/bin/g++ accepts -g... no
+checking dependency style of /usr/bin/g++... gcc3
+checking how to run the C preprocessor... gcc -E
+checking whether make sets $(MAKE)... (cached) yes
+checking for ln... /usr/bin/ln
+checking whether '/usr/bin/ln' works... yes
+checking whether ln -s works... yes
+checking whether 'ln -s' really works or whether I'm deluding myself... it works
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking if C compiler supports -Wall... yes
+checking if C++ compiler supports -Wall... yes
+--- Configuring BOINC 8.2.11 (Release) ---
+--- Build Components: ( manager libraries) ---
+checking for docbook2x-man... no
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for sys/time.h... yes
+checking whether we are compiling for cygwin... no
+checking for winsock2.h... (cached) no
+checking for winsock.h... (cached) no
+checking for windows.h... no
+checking for sys/socket.h... yes
+checking dependency style of gcc... gcc3
+checking how to print strings... printf
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by gcc... /usr/x86_64-pc-linux-gnu/bin/ld
+checking if the linker (/usr/x86_64-pc-linux-gnu/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking the maximum length of command line arguments... 1572864
+checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/x86_64-pc-linux-gnu/bin/ld option to reload object files... -r
+checking for file... file
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... dlltool
+checking how to associate runtime and link libraries... printf %s\n
+checking for ranlib... ranlib
+checking for ar... /usr/bin/ar
+checking for archiver @FILE support... @
+checking for strip... strip
+checking command to parse /usr/bin/nm -B output from gcc object... ok
+checking for sysroot... no
+checking for a working dd... /usr/bin/dd
+checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+checking for mt... mt
+checking if mt is a manifest tool... no
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if gcc supports -fno-rtti -fno-exceptions... no
+checking for gcc option to produce PIC... -fPIC -DPIC
+checking if gcc PIC flag -fPIC -DPIC works... yes
+checking if gcc static flag -static works... yes
+checking if gcc supports -c -o file.o... yes
+checking if gcc supports -c -o file.o... (cached) yes
+checking whether the gcc linker (/usr/x86_64-pc-linux-gnu/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking for shl_load... no
+checking for shl_load in -ldld... no
+checking for dlopen... yes
+checking whether a program can dlopen itself... yes
+checking whether a statically linked program can dlopen itself... no
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking how to run the C++ preprocessor... /usr/bin/g++ -E
+checking for ld used by /usr/bin/g++... /usr/x86_64-pc-linux-gnu/bin/ld -m elf_x86_64
+checking if the linker (/usr/x86_64-pc-linux-gnu/bin/ld -m elf_x86_64) is GNU ld... yes
+checking whether the /usr/bin/g++ linker (/usr/x86_64-pc-linux-gnu/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking for /usr/bin/g++ option to produce PIC... -fPIC -DPIC
+checking if /usr/bin/g++ PIC flag -fPIC -DPIC works... yes
+checking if /usr/bin/g++ static flag -static works... yes
+checking if /usr/bin/g++ supports -c -o file.o... yes
+checking if /usr/bin/g++ supports -c -o file.o... (cached) yes
+checking whether the /usr/bin/g++ linker (/usr/x86_64-pc-linux-gnu/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking dynamic linker characteristics... (cached) GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking default bitness of C compiler... 64
+checking default bitness of C++ compiler... 64
+checking boinc platform... x86_64-pc-linux-gnu
+checking alternate boinc platform... i686-pc-linux-gnu
+checking library extension... a
+checking shared object extension... so
+checking for shmget in dynamic library cygipc... no
+checking for aio_fork in dynamic library aio... no
+checking for dlopen in dynamic library dl...  -ldl
+checking for gethostbyname in static library nsl... no
+checking for gethostbyname in dynamic library nsl... no
+checking for static library freetype...  -lfreetype
+checking for bind in static library socket... no
+checking for bind in dynamic library socket... no
+checking for shm_open in static library rt...  -lrt
+checking for gzopen in static library z...  -lz
+checking for md5_finish in dynamic library cups... no
+checking for xkb_state_key_get_utf8 in dynamic library xkbcommon...  -lxkbcommon
+checking for the pthreads library -lpthreads... no
+checking whether pthreads work without any flags... yes
+checking for joinable pthread attribute... PTHREAD_CREATE_JOINABLE
+checking if more special flags are required for pthreads... no
+checking for PTHREAD_PRIO_INHERIT... yes
+checking for X... libraries , headers 
+checking for gethostbyname... yes
+checking for connect... yes
+checking for remove... yes
+checking for shmat... yes
+checking for IceConnectionNumber in -lICE... yes
+configure: checking for usable OpenCL opencl.h header
+checking for OpenCL/opencl.h... no
+checking for CL/opencl.h... no
+configure: no usable OpenCL installation found
+configure: WARNING: OpenCL is missing, OpenClApp example is disabled
+checking for the pthreads library -lpthreads... no
+checking whether pthreads work without any flags... yes
+checking for joinable pthread attribute... PTHREAD_CREATE_JOINABLE
+checking if more special flags are required for pthreads... no
+checking for PTHREAD_PRIO_INHERIT... (cached) yes
+checking whether we are using the Microsoft C compiler... no
+checking for windows.h... (cached) no
+checking for OpenGL library... -lGL
+checking for OpenGL Utility library... -lGLU
+checking for fopen in -lXmu... yes
+checking for fopen in -lXi... yes
+checking for GLUT library... no
+configure: WARNING:
+================================================================================
+WARNING: Development libraries and headers ("-dev") of {openGL, GLU, glut} needed!
+
+The GL, GLU and glut libraries are required in order to build the graphical parts
+of the BOINC application API library.
+
+==> only building non-graphical parts of the BOINC API Library for now.
+
+HINT: on MacOS X/Darwin you might consider running configure with the option
+      './configure --with-apple-opengl-framework'
+      in order to use the Mac-native openGL framework
+
+================================================================================
+       
+checking for dirent.h that defines DIR... yes
+checking for library containing opendir... none required
+checking for egrep... (cached) /usr/bin/grep -E
+checking for sys/wait.h that is POSIX.1 compatible... yes
+checking return type of signal handlers... void
+checking for sys/types.h... (cached) yes
+checking for sys/un.h... yes
+checking for arpa/inet.h... yes
+checking for dirent.h... yes
+checking for grp.h... yes
+checking for fcntl.h... yes
+checking for inttypes.h... (cached) yes
+checking for stdint.h... (cached) yes
+checking for memory.h... yes
+checking for netdb.h... yes
+checking for netinet/in.h... yes
+checking for netinet/tcp.h... yes
+checking for netinet/ether.h... yes
+checking for net/if.h... yes
+checking for net/if_arp.h... yes
+checking for signal.h... yes
+checking for strings.h... (cached) yes
+checking for sys/auxv.h... yes
+checking for sys/file.h... yes
+checking for sys/fcntl.h... yes
+checking for sys/ipc.h... yes
+checking for sys/ioctl.h... yes
+checking for sys/msg.h... yes
+checking for sys/param.h... yes
+checking for sys/resource.h... yes
+checking for sys/select.h... yes
+checking for sys/sem.h... yes
+checking for sys/shm.h... yes
+checking for sys/sockio.h... no
+checking for sys/socket.h... (cached) yes
+checking for sys/stat.h... (cached) yes
+checking for sys/statvfs.h... yes
+checking for sys/statfs.h... yes
+checking for sys/systeminfo.h... no
+checking for sys/time.h... (cached) yes
+checking for sys/types.h... (cached) yes
+checking for sys/utsname.h... yes
+checking for sys/vmmeter.h... no
+checking for sys/wait.h... (cached) yes
+checking for unistd.h... (cached) yes
+checking for utmp.h... yes
+checking for errno.h... yes
+checking for procfs.h... no
+checking for ieeefp.h... no
+checking for setjmp.h... yes
+checking for float.h... yes
+checking for sal.h... no
+checking for execinfo.h... yes
+checking for xlocale.h... no
+checking for intrin.h... no
+checking for x86intrin.h... yes
+checking for pmmintrin.h... yes
+checking for xmmintrin.h... yes
+checking for emmintrin.h... yes
+checking for immintrin.h... yes
+checking for gcc options needed to detect all undeclared functions... none needed
+checking whether _xgetbv is declared... yes
+checking whether xgetbv is declared... no
+checking whether __xgetbv is declared... no
+checking whether cpuid is declared... no
+checking whether _cpuid is declared... no
+checking whether __cpuid is declared... no
+checking if assembler supports xgetbv... yes
+checking for nvapi.h... no
+checking for socklen_t... yes
+checking for net/if.h... (cached) yes
+checking for net/if_arp.h... (cached) yes
+checking for sys/mount.h... yes
+checking for sys/swap.h... yes
+checking for sys/sensors.h... no
+checking for sys/sysctl.h... no
+checking for resolv.h... yes
+checking for netinet/if_ether.h... yes
+checking for struct lifconf... no
+checking for struct lifreq... no
+checking for struct ifconf... yes
+checking for struct ifreq... yes
+checking for struct ether_addr... yes
+checking for gcc option to enable large file support... none needed
+checking whether largefile support breaks C++... no
+checking standard C++ headers... yes
+checking for C++ header <algorithm>... (cached) yes
+checking for C++ header <bitset>... (cached) yes
+checking for C++ header <cassert>... (cached) yes
+checking for C++ header <cctype>... (cached) yes
+checking for C++ header <cerrno>... (cached) yes
+checking for C++ header <cfloat>... (cached) yes
+checking for C++ header <climits>... (cached) yes
+checking for C++ header <clocale>... (cached) yes
+checking for C++ header <cmath>... (cached) yes
+checking for C++ header <complex>... (cached) yes
+checking for C++ header <csetjmp>... (cached) yes
+checking for C++ header <csignal>... (cached) yes
+checking for C++ header <cstdarg>... (cached) yes
+checking for C++ header <cstddef>... (cached) yes
+checking for C++ header <cstdio>... (cached) yes
+checking for C++ header <cstdlib>... (cached) yes
+checking for C++ header <cstring>... (cached) yes
+checking for C++ header <ctime>... (cached) yes
+checking for C++ header <deque>... (cached) yes
+checking for C++ header <fstream>... (cached) yes
+checking for C++ header <functional>... (cached) yes
+checking for C++ header <iomanip>... (cached) yes
+checking for C++ header <ios>... (cached) yes
+checking for C++ header <iosfwd>... (cached) yes
+checking for C++ header <iostream>... (cached) yes
+checking for C++ header <istream>... (cached) yes
+checking for C++ header <iterator>... (cached) yes
+checking for C++ header <limits>... (cached) yes
+checking for C++ header <list>... (cached) yes
+checking for C++ header <locale>... (cached) yes
+checking for C++ header <map>... (cached) yes
+checking for C++ header <memory>... (cached) yes
+checking for C++ header <numeric>... (cached) yes
+checking for C++ header <ostream>... (cached) yes
+checking for C++ header <queue>... (cached) yes
+checking for C++ header <set>... (cached) yes
+checking for C++ header <sstream>... (cached) yes
+checking for C++ header <stack>... (cached) yes
+checking for C++ header <stdexcept>... (cached) yes
+checking for C++ header <streambuf>... (cached) yes
+checking for C++ header <string>... (cached) yes
+checking for C++ header <utility>... (cached) yes
+checking for C++ header <valarray>... (cached) yes
+checking for C++ header <vector>... (cached) yes
+checking for C++ namespaces... yes
+checking for min(0,0) in namespace std... yes
+checking for max(0,0) in namespace std... yes
+checking for transform((char *)0,(char *) 0,(char *)0,(int(*)(int))malloc) in namespace std... yes
+checking for locale("") in namespace std... yes
+checking for vprintf... yes
+checking for ether_ntoa... yes
+checking for setpriority... yes
+checking for sched_setscheduler... yes
+checking for strlcpy... yes
+checking for strlcat... yes
+checking for strcasestr... yes
+checking for strcasecmp... yes
+checking for sigaction... yes
+checking for getutent... yes
+checking for setutent... yes
+checking for getisax... no
+checking for strdup... yes
+checking for _strdup... no
+checking for strdupa... no
+checking for _strdupa... no
+checking for daemon... yes
+checking for stat64... yes
+checking for putenv... yes
+checking for setenv... yes
+checking for unsetenv... yes
+checking for res_init... no
+checking for strtoull... yes
+checking for localtime... yes
+checking for localtime_r... yes
+checking for gmtime... yes
+checking for gmtime_r... yes
+checking for uselocale... yes
+checking for _configthreadlocale... no
+checking for ftok... yes
+checking whether _fpreset is declared... no
+checking whether fpreset is declared... no
+checking for an ANSI C-conforming const... yes
+checking for size_t... yes
+checking whether struct tm is in sys/time.h or time.h... time.h
+checking for struct tm.tm_zone... yes
+checking for wx-config... /opt/wxwidgets/current/bin/wx-config
+checking for wxWidgets version >= 3.1.3... yes (version 3.2.11)
+checking for wxWidgets static library... no
+checking if wxWidgets works... yes
+checking for default wxWidgets config... gtk3-unicode-3.2
+checking for wxwidgets options...  --unicode=yes
+checking wxWidgets config to use... gtk3-unicode-3.2
+checking for wx-config... (cached) /opt/wxwidgets/current/bin/wx-config
+checking for wxWidgets version >= 3.1.3 ( --unicode=yes)... yes (version 3.2.11)
+checking for wxWidgets static library... no
+checking if wxWidgets uses the GTK+ toolkit... gtk+-3.0
+checking for libnotify... yes
+checking for xcb... yes
+checking for xcb-atom... no
+WARNING: Xcb-atom not found, x11_screensaver will not be built
+checking for sin in dynamic library m...  -lm
+checking for pthread_join in dynamic library pthread...  -lpthread
+checking for dynamic library nvapi... no
+checking for res_init in -lresolv... no
+checking for res_query in static library resolv...  -lresolv
+checking for whoami... /usr/bin/whoami
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating version.h
+config.status: creating api/Makefile
+config.status: creating api/libboinc_api.pc
+config.status: creating api/libboinc_graphics2.pc
+config.status: creating api/libboinc_opencl.pc
+config.status: creating apps/Makefile
+config.status: creating clientgui/Makefile
+config.status: creating clientgui/res/Makefile
+config.status: creating clientgui/skins/Makefile
+config.status: creating clientscr/Makefile
+config.status: creating client/Makefile
+config.status: creating client/win/boinc_path_config.py
+config.status: creating client/scripts/Makefile
+config.status: creating client/scripts/boinc-client
+config.status: creating client/scripts/boinc-client.service
+config.status: creating db/Makefile
+config.status: creating doc/Makefile
+config.status: creating doc/manpages/Makefile
+config.status: creating html/Makefile
+config.status: creating lib/Makefile
+config.status: creating lib/libboinc.pc
+config.status: creating lib/libboinc_crypt.pc
+config.status: creating lib/libboinc_fcgi.pc
+config.status: creating locale/Makefile
+config.status: creating Makefile
+config.status: creating py/Boinc/version.py
+config.status: creating py/Makefile
+config.status: creating py/boinc_path_config.py
+config.status: creating py/setup.py
+config.status: creating sched/boinc_path_config.py
+config.status: creating sched/Makefile
+config.status: creating packages/generic/sea/Makefile
+config.status: creating packages/solaris/CSW/Makefile
+config.status: creating packages/solaris/CSW/boincclient/Makefile
+config.status: creating packages/solaris/CSW/boincclient/pkginfo
+config.status: creating packages/solaris/CSW/boincclient/prototype
+config.status: creating packages/solaris/CSW/boincdevel/Makefile
+config.status: creating packages/solaris/CSW/boincdevel/pkginfo
+config.status: creating packages/solaris/CSW/boincdevel/prototype
+config.status: creating packages/solaris/CSW/boinclibs/Makefile
+config.status: creating packages/solaris/CSW/boinclibs/pkginfo
+config.status: creating packages/solaris/CSW/boinclibs/prototype
+config.status: creating packages/solaris/CSW/boincmanager/Makefile
+config.status: creating packages/solaris/CSW/boincmanager/pkginfo
+config.status: creating packages/solaris/CSW/boincmanager/prototype
+config.status: creating samples/Makefile
+config.status: creating tools/boinc_path_config.py
+config.status: creating tools/Makefile
+config.status: creating vda/Makefile
+config.status: creating zip/Makefile
+config.status: creating zip/libboinc_zip.pc
+config.status: creating m4/Makefile
+config.status: creating config.h
+config.status: executing depfiles commands
+config.status: executing libtool commands
+--- Configuring BOINC 8.2.11 (Release) ---
+--- Build Components: ( manager libraries) ---
+
+=== CONFIGURATION CHECK ===
+configure:42410: checking for wxWidgets version >= 3.1.3
+configure:42464: checking for wxWidgets static library
+configure:42604: checking if wxWidgets works
+configure:42707: checking for default wxWidgets config
+configure:42767: checking wxWidgets config to use
+configure:42858: checking for wxWidgets version >= 3.1.3 ( --unicode=yes)
+configure:42909: checking for wxWidgets static library
+configure:43052: checking if wxWidgets uses the GTK+ toolkit
+configure:43097: checking for libnotify
+configure:43104: $PKG_CONFIG --exists --print-errors "libnotify"
+configure:43121: $PKG_CONFIG --exists --print-errors "libnotify"
+ac_cv_env_PKG_CONFIG_PATH_value=/opt/libnotify/current/lib64/pkgconfig:/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
+pkg_cv_LIBNOTIFY_CFLAGS='-I/opt/libnotify/0.8.8/include -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/gio-unix-2.0 -pthread -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/usr/include/libmount -I/usr/include/blkid'
+pkg_cv_LIBNOTIFY_LIBS='-L/opt/libnotify/0.8.8/lib64 -lnotify -L/usr/lib64 -lgdk_pixbuf-2.0 -lgio-2.0 -lgobject-2.0 -lglib-2.0'
+LIBNOTIFY_CFLAGS='-I/opt/libnotify/0.8.8/include -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/gio-unix-2.0 -pthread -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/usr/include/libmount -I/usr/include/blkid'
+LIBNOTIFY_LIBS='-L/opt/libnotify/0.8.8/lib64 -lnotify -L/usr/lib64 -lgdk_pixbuf-2.0 -lgio-2.0 -lgobject-2.0 -lglib-2.0'
+PKG_CONFIG_PATH='/opt/libnotify/current/lib64/pkgconfig:/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig'
+
+=== COMPILE MANAGER ===
+cd . && sh generate_svn_version.sh
+fatal: No names found, cannot describe anything.
+make  all-recursive
+make[1]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src'
+Making all in m4
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/m4'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/m4'
+Making all in api
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/api'
+  CXX      graphics2_util.lo
+  CXX      boinc_api.lo
+  CXX      reduce_main.lo
+  CXX      boinc_opencl.lo
+  CXXLD    libboinc_opencl.la
+rm -f libboinc_opencl.a
+/usr/bin/ln .libs/libboinc_opencl.a .
+  CXXLD    libboinc_api.la
+rm -f libboinc_api.a
+/usr/bin/ln .libs/libboinc_api.a .
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/api'
+Making all in lib
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/lib'
+  CXX      libboinc_la-app_ipc.lo
+  CXX      libboinc_la-base64.lo
+  CXX      libboinc_la-cc_config.lo
+  CXX      libboinc_la-cert_sig.lo
+  CXX      libboinc_la-coproc.lo
+  CXX      libboinc_la-diagnostics.lo
+  CXX      libboinc_la-filesys.lo
+  CXX      libboinc_la-gui_rpc_client.lo
+  CXX      libboinc_la-gui_rpc_client_ops.lo
+  CXX      libboinc_la-gui_rpc_client_print.lo
+  CXX      libboinc_la-hostinfo.lo
+  CXX      libboinc_la-keyword.lo
+  CXX      libboinc_la-md5.lo
+  CXX      libboinc_la-md5_file.lo
+  CXX      libboinc_la-mem_usage.lo
+  CXX      libboinc_la-mfile.lo
+  CXX      libboinc_la-miofile.lo
+  CXX      libboinc_la-msg_log.lo
+  CXX      libboinc_la-network.lo
+  CXX      libboinc_la-notice.lo
+  CXX      libboinc_la-opencl_boinc.lo
+  CXX      libboinc_la-parse.lo
+  CXX      libboinc_la-prefs.lo
+  CXX      libboinc_la-procinfo.lo
+  CXX      libboinc_la-proc_control.lo
+  CXX      libboinc_la-project_init.lo
+  CXX      libboinc_la-proxy_info.lo
+  CXX      libboinc_la-sched_msgs.lo
+  CXX      libboinc_la-shmem.lo
+  CXX      libboinc_la-str_util.lo
+  CXX      libboinc_la-url.lo
+  CXX      libboinc_la-util.lo
+  CXX      libboinc_la-wslinfo.lo
+  CXX      libboinc_la-procinfo_unix.lo
+  CXX      libboinc_la-synch.lo
+  CXX      libboinc_la-unix_util.lo
+  CXXLD    libboinc.la
+rm -f libboinc.a
+/usr/bin/ln .libs/libboinc.a .
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/lib'
+Making all in clientgui
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/clientgui'
+  CXX      boincmgr-AccountInfoPage.o
+  CXX      boincmgr-AccountManagerInfoPage.o
+  CXX      boincmgr-AccountManagerProcessingPage.o
+  CXX      boincmgr-AccountManagerPropertiesPage.o
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from AccountManagerInfoPage.cpp:22:
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:326:43: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  326 | #define EVT_WIZARDEX_PAGE_CHANGED(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGED, id, fn)
+      |                                           ^~~~~~~~~~~~~~~~~~~~~~~
+AccountManagerInfoPage.cpp:59:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGED’
+   59 |     EVT_WIZARDEX_PAGE_CHANGED( -1, CAccountManagerInfoPage::OnPageChanged )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:330:44: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  330 | #define EVT_WIZARDEX_PAGE_CHANGING(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGING, id, fn)
+      |                                            ^~~~~~~~~~~~~~~~~~~~~~~
+AccountManagerInfoPage.cpp:60:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGING’
+   60 |     EVT_WIZARDEX_PAGE_CHANGING( -1, CAccountManagerInfoPage::OnPageChanging )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:334:37: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  334 | #define EVT_WIZARDEX_CANCEL(id, fn) wx__DECLARE_WIZARDEXEVT(CANCEL, id, fn)
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~
+AccountManagerInfoPage.cpp:64:5: note: in expansion of macro ‘EVT_WIZARDEX_CANCEL’
+   64 |     EVT_WIZARDEX_CANCEL( -1, CAccountManagerInfoPage::OnCancel )
+      |     ^~~~~~~~~~~~~~~~~~~
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from AccountManagerPropertiesPage.cpp:22:
+AccountManagerPropertiesPage.h:47:107: warning: cast between incompatible pointer to member types from ‘void (CAccountManagerPropertiesPage::*)(CAccountManagerPropertiesPageEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+   47 |     DECLARE_EVENT_TABLE_ENTRY(wxEVT_ACCOUNTMANAGERPROPERTIES_STATECHANGE, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+AccountManagerPropertiesPage.h:47:5: note: in expansion of macro ‘DECLARE_EVENT_TABLE_ENTRY’
+   47 |     DECLARE_EVENT_TABLE_ENTRY(wxEVT_ACCOUNTMANAGERPROPERTIES_STATECHANGE, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+AccountManagerPropertiesPage.cpp:76:5: note: in expansion of macro ‘EVT_ACCOUNTMANAGERPROPERTIES_STATECHANGE’
+   76 |     EVT_ACCOUNTMANAGERPROPERTIES_STATECHANGE( CAccountManagerPropertiesPage::OnStateChange )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:326:43: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  326 | #define EVT_WIZARDEX_PAGE_CHANGED(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGED, id, fn)
+      |                                           ^~~~~~~~~~~~~~~~~~~~~~~
+AccountManagerPropertiesPage.cpp:79:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGED’
+   79 |     EVT_WIZARDEX_PAGE_CHANGED( -1, CAccountManagerPropertiesPage::OnPageChanged )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:334:37: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  334 | #define EVT_WIZARDEX_CANCEL(id, fn) wx__DECLARE_WIZARDEXEVT(CANCEL, id, fn)
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~
+AccountManagerPropertiesPage.cpp:80:5: note: in expansion of macro ‘EVT_WIZARDEX_CANCEL’
+   80 |     EVT_WIZARDEX_CANCEL( -1, CAccountManagerPropertiesPage::OnCancel )
+      |     ^~~~~~~~~~~~~~~~~~~
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from AccountInfoPage.cpp:22:
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:326:43: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  326 | #define EVT_WIZARDEX_PAGE_CHANGED(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGED, id, fn)
+      |                                           ^~~~~~~~~~~~~~~~~~~~~~~
+AccountInfoPage.cpp:57:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGED’
+   57 |     EVT_WIZARDEX_PAGE_CHANGED( wxID_ANY, CAccountInfoPage::OnPageChanged )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:330:44: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  330 | #define EVT_WIZARDEX_PAGE_CHANGING(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGING, id, fn)
+      |                                            ^~~~~~~~~~~~~~~~~~~~~~~
+AccountInfoPage.cpp:58:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGING’
+   58 |     EVT_WIZARDEX_PAGE_CHANGING( wxID_ANY, CAccountInfoPage::OnPageChanging )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:334:37: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  334 | #define EVT_WIZARDEX_CANCEL(id, fn) wx__DECLARE_WIZARDEXEVT(CANCEL, id, fn)
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~
+AccountInfoPage.cpp:59:5: note: in expansion of macro ‘EVT_WIZARDEX_CANCEL’
+   59 |     EVT_WIZARDEX_CANCEL( wxID_ANY, CAccountInfoPage::OnCancel )
+      |     ^~~~~~~~~~~~~~~~~~~
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from AccountManagerProcessingPage.cpp:22:
+AccountManagerProcessingPage.h:47:107: warning: cast between incompatible pointer to member types from ‘void (CAccountManagerProcessingPage::*)(CAccountManagerProcessingPageEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+   47 |     DECLARE_EVENT_TABLE_ENTRY(wxEVT_ACCOUNTMANAGERPROCESSING_STATECHANGE, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+AccountManagerProcessingPage.h:47:5: note: in expansion of macro ‘DECLARE_EVENT_TABLE_ENTRY’
+   47 |     DECLARE_EVENT_TABLE_ENTRY(wxEVT_ACCOUNTMANAGERPROCESSING_STATECHANGE, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+AccountManagerProcessingPage.cpp:74:5: note: in expansion of macro ‘EVT_ACCOUNTMANAGERPROCESSING_STATECHANGE’
+   74 |     EVT_ACCOUNTMANAGERPROCESSING_STATECHANGE( CAccountManagerProcessingPage::OnStateChange )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:326:43: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  326 | #define EVT_WIZARDEX_PAGE_CHANGED(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGED, id, fn)
+      |                                           ^~~~~~~~~~~~~~~~~~~~~~~
+AccountManagerProcessingPage.cpp:77:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGED’
+   77 |     EVT_WIZARDEX_PAGE_CHANGED( -1, CAccountManagerProcessingPage::OnPageChanged )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:334:37: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  334 | #define EVT_WIZARDEX_CANCEL(id, fn) wx__DECLARE_WIZARDEXEVT(CANCEL, id, fn)
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~
+AccountManagerProcessingPage.cpp:78:5: note: in expansion of macro ‘EVT_WIZARDEX_CANCEL’
+   78 |     EVT_WIZARDEX_CANCEL( -1, CAccountManagerProcessingPage::OnCancel )
+      |     ^~~~~~~~~~~~~~~~~~~
+  CXX      boincmgr-AdvancedFrame.o
+  CXX      boincmgr-AlreadyExistsPage.o
+  CXX      boincmgr-AsyncRPC.o
+  CXX      boincmgr-BOINCBaseFrame.o
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from AdvancedFrame.cpp:29:
+BOINCBaseFrame.h:208:121: warning: cast between incompatible pointer to member types from ‘void (CAdvancedFrame::*)(CFrameEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  208 | #define EVT_FRAME_CONNECT(fn)            DECLARE_EVENT_TABLE_ENTRY(wxEVT_FRAME_CONNECT, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+BOINCBaseFrame.h:208:42: note: in expansion of macro ‘DECLARE_EVENT_TABLE_ENTRY’
+  208 | #define EVT_FRAME_CONNECT(fn)            DECLARE_EVENT_TABLE_ENTRY(wxEVT_FRAME_CONNECT, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+      |                                          ^~~~~~~~~~~~~~~~~~~~~~~~~
+AdvancedFrame.cpp:202:5: note: in expansion of macro ‘EVT_FRAME_CONNECT’
+  202 |     EVT_FRAME_CONNECT(CAdvancedFrame::OnConnect)
+      |     ^~~~~~~~~~~~~~~~~
+BOINCBaseFrame.h:213:126: warning: cast between incompatible pointer to member types from ‘void (CAdvancedFrame::*)(CFrameEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  213 | #define EVT_FRAME_NOTIFICATION(fn)       DECLARE_EVENT_TABLE_ENTRY(wxEVT_FRAME_NOTIFICATION, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+BOINCBaseFrame.h:213:42: note: in expansion of macro ‘DECLARE_EVENT_TABLE_ENTRY’
+  213 | #define EVT_FRAME_NOTIFICATION(fn)       DECLARE_EVENT_TABLE_ENTRY(wxEVT_FRAME_NOTIFICATION, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+      |                                          ^~~~~~~~~~~~~~~~~~~~~~~~~
+AdvancedFrame.cpp:203:5: note: in expansion of macro ‘EVT_FRAME_NOTIFICATION’
+  203 |     EVT_FRAME_NOTIFICATION(CAdvancedFrame::OnNotification)
+      |     ^~~~~~~~~~~~~~~~~~~~~~
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from AlreadyExistsPage.cpp:22:
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:326:43: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  326 | #define EVT_WIZARDEX_PAGE_CHANGED(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGED, id, fn)
+      |                                           ^~~~~~~~~~~~~~~~~~~~~~~
+AlreadyExistsPage.cpp:52:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGED’
+   52 |     EVT_WIZARDEX_PAGE_CHANGED( -1, CErrAlreadyExistsPage::OnPageChanged )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:334:37: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  334 | #define EVT_WIZARDEX_CANCEL(id, fn) wx__DECLARE_WIZARDEXEVT(CANCEL, id, fn)
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~
+AlreadyExistsPage.cpp:53:5: note: in expansion of macro ‘EVT_WIZARDEX_CANCEL’
+   53 |     EVT_WIZARDEX_CANCEL( -1, CErrAlreadyExistsPage::OnCancel )
+      |     ^~~~~~~~~~~~~~~~~~~
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from BOINCBaseFrame.cpp:22:
+BOINCBaseFrame.h:209:125: warning: cast between incompatible pointer to member types from ‘void (CBOINCBaseFrame::*)(CFrameEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  209 | #define EVT_FRAME_INITIALIZED(fn)        DECLARE_EVENT_TABLE_ENTRY(wxEVT_FRAME_INITIALIZED, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+BOINCBaseFrame.h:209:42: note: in expansion of macro ‘DECLARE_EVENT_TABLE_ENTRY’
+  209 | #define EVT_FRAME_INITIALIZED(fn)        DECLARE_EVENT_TABLE_ENTRY(wxEVT_FRAME_INITIALIZED, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+      |                                          ^~~~~~~~~~~~~~~~~~~~~~~~~
+BOINCBaseFrame.cpp:58:5: note: in expansion of macro ‘EVT_FRAME_INITIALIZED’
+   58 |     EVT_FRAME_INITIALIZED(CBOINCBaseFrame::OnInitialized)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+BOINCBaseFrame.h:207:119: warning: cast between incompatible pointer to member types from ‘void (CBOINCBaseFrame::*)(CFrameAlertEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  207 | #define EVT_FRAME_ALERT(fn)              DECLARE_EVENT_TABLE_ENTRY(wxEVT_FRAME_ALERT, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+BOINCBaseFrame.h:207:42: note: in expansion of macro ‘DECLARE_EVENT_TABLE_ENTRY’
+  207 | #define EVT_FRAME_ALERT(fn)              DECLARE_EVENT_TABLE_ENTRY(wxEVT_FRAME_ALERT, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+      |                                          ^~~~~~~~~~~~~~~~~~~~~~~~~
+BOINCBaseFrame.cpp:59:5: note: in expansion of macro ‘EVT_FRAME_ALERT’
+   59 |     EVT_FRAME_ALERT(CBOINCBaseFrame::OnAlert)
+      |     ^~~~~~~~~~~~~~~
+BOINCBaseFrame.h:210:125: warning: cast between incompatible pointer to member types from ‘void (CBOINCBaseFrame::*)(CFrameEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  210 | #define EVT_FRAME_REFRESH(fn)            DECLARE_EVENT_TABLE_ENTRY(wxEVT_FRAME_REFRESHVIEW, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+BOINCBaseFrame.h:210:42: note: in expansion of macro ‘DECLARE_EVENT_TABLE_ENTRY’
+  210 | #define EVT_FRAME_REFRESH(fn)            DECLARE_EVENT_TABLE_ENTRY(wxEVT_FRAME_REFRESHVIEW, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+      |                                          ^~~~~~~~~~~~~~~~~~~~~~~~~
+BOINCBaseFrame.cpp:60:5: note: in expansion of macro ‘EVT_FRAME_REFRESH’
+   60 |     EVT_FRAME_REFRESH(CBOINCBaseFrame::OnRefreshView)
+      |     ^~~~~~~~~~~~~~~~~
+  CXX      boincmgr-BOINCBaseView.o
+AsyncRPC.cpp: In member function ‘int CMainDocument::RequestRPC(ASYNC_RPC_REQUEST&, bool)’:
+AsyncRPC.cpp:512:27: warning: storing the address of local variable ‘retval’ in ‘*request.ASYNC_RPC_REQUEST::resultPtr’ [-Wdangling-pointer=]
+  512 |         request.resultPtr = &retval;
+      |         ~~~~~~~~~~~~~~~~~~^~~~~~~~~
+AsyncRPC.cpp:478:9: note: ‘retval’ declared here
+  478 |     int retval = 0;
+      |         ^~~~~~
+AsyncRPC.cpp:476:50: note: ‘request’ declared here
+  476 | int CMainDocument::RequestRPC(ASYNC_RPC_REQUEST& request, bool hasPriority) {
+      |                               ~~~~~~~~~~~~~~~~~~~^~~~~~~
+  CXX      boincmgr-BOINCBaseWizard.o
+  CXX      boincmgr-BOINCClientManager.o
+  CXX      boincmgr-BOINCDialupManager.o
+  CXX      boincmgr-BOINCGUIApp.o
+  CXX      boincmgr-BOINCListCtrl.o
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from BOINCGUIApp.cpp:32:
+AsyncRPC.h:407:83: warning: cast between incompatible pointer to member types from ‘void (CBOINCGUIApp::*)(CRPCFinishedEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  407 |     DECLARE_EVENT_TABLE_ENTRY(wxEVT_RPC_FINISHED, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+AsyncRPC.h:407:5: note: in expansion of macro ‘DECLARE_EVENT_TABLE_ENTRY’
+  407 |     DECLARE_EVENT_TABLE_ENTRY(wxEVT_RPC_FINISHED, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+BOINCGUIApp.cpp:67:5: note: in expansion of macro ‘EVT_RPC_FINISHED’
+   67 |     EVT_RPC_FINISHED(CBOINCGUIApp::OnRPCFinished)
+      |     ^~~~~~~~~~~~~~~~
+  CXX      boincmgr-BOINCTaskBar.o
+  CXX      boincmgr-BOINCTaskCtrl.o
+  CXX      boincmgr-wxPieCtrl.o
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from BOINCTaskBar.cpp:22:
+BOINCTaskBar.h:157:115: warning: cast between incompatible pointer to member types from ‘void (CTaskBarIcon::*)(CTaskbarEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  157 | #define EVT_TASKBAR_REFRESH(fn)  DECLARE_EVENT_TABLE_ENTRY(wxEVT_TASKBAR_REFRESH, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+BOINCTaskBar.h:157:34: note: in expansion of macro ‘DECLARE_EVENT_TABLE_ENTRY’
+  157 | #define EVT_TASKBAR_REFRESH(fn)  DECLARE_EVENT_TABLE_ENTRY(wxEVT_TASKBAR_REFRESH, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+      |                                  ^~~~~~~~~~~~~~~~~~~~~~~~~
+BOINCTaskBar.cpp:55:5: note: in expansion of macro ‘EVT_TASKBAR_REFRESH’
+   55 |     EVT_TASKBAR_REFRESH(CTaskBarIcon::OnRefresh)
+      |     ^~~~~~~~~~~~~~~~~~~
+BOINCTaskBar.h:156:120: warning: cast between incompatible pointer to member types from ‘void (CTaskBarIcon::*)(CTaskbarEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  156 | #define EVT_TASKBAR_RELOADSKIN(fn) DECLARE_EVENT_TABLE_ENTRY(wxEVT_TASKBAR_RELOADSKIN, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+BOINCTaskBar.h:156:36: note: in expansion of macro ‘DECLARE_EVENT_TABLE_ENTRY’
+  156 | #define EVT_TASKBAR_RELOADSKIN(fn) DECLARE_EVENT_TABLE_ENTRY(wxEVT_TASKBAR_RELOADSKIN, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+      |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~
+BOINCTaskBar.cpp:56:5: note: in expansion of macro ‘EVT_TASKBAR_RELOADSKIN’
+   56 |     EVT_TASKBAR_RELOADSKIN(CTaskBarIcon::OnReloadSkin)
+      |     ^~~~~~~~~~~~~~~~~~~~~~
+gtk/taskbarex.h:120:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxTaskBarIconExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  120 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxTaskBarIconExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4510:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+ 4510 |     wx__DECLARE_EVT1(evt, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+gtk/taskbarex.h:123:5: note: in expansion of macro ‘wx__DECLARE_EVT0’
+  123 |     wx__DECLARE_EVT0(wxEVT_TASKBAR_ ## evt, wxTaskBarIconExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+gtk/taskbarex.h:123:45: note: in expansion of macro ‘wxTaskBarIconExEventHandler’
+  123 |     wx__DECLARE_EVT0(wxEVT_TASKBAR_ ## evt, wxTaskBarIconExEventHandler(fn))
+      |                                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+gtk/taskbarex.h:132:46: note: in expansion of macro ‘wx__DECLARE_TASKBAREXEVT’
+  132 | #define EVT_TASKBAR_CONTEXT_USERCLICK(fn)    wx__DECLARE_TASKBAREXEVT(BALLOON_USERCLICK, fn)
+      |                                              ^~~~~~~~~~~~~~~~~~~~~~~~
+BOINCTaskBar.cpp:61:5: note: in expansion of macro ‘EVT_TASKBAR_CONTEXT_USERCLICK’
+   61 |     EVT_TASKBAR_CONTEXT_USERCLICK(CTaskBarIcon::OnNotificationClick)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+gtk/taskbarex.h:120:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxTaskBarIconExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  120 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxTaskBarIconExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4510:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+ 4510 |     wx__DECLARE_EVT1(evt, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+gtk/taskbarex.h:123:5: note: in expansion of macro ‘wx__DECLARE_EVT0’
+  123 |     wx__DECLARE_EVT0(wxEVT_TASKBAR_ ## evt, wxTaskBarIconExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+gtk/taskbarex.h:123:45: note: in expansion of macro ‘wxTaskBarIconExEventHandler’
+  123 |     wx__DECLARE_EVT0(wxEVT_TASKBAR_ ## evt, wxTaskBarIconExEventHandler(fn))
+      |                                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+gtk/taskbarex.h:131:46: note: in expansion of macro ‘wx__DECLARE_TASKBAREXEVT’
+  131 | #define EVT_TASKBAR_BALLOON_USERTIMEOUT(fn)  wx__DECLARE_TASKBAREXEVT(BALLOON_USERTIMEOUT, fn)
+      |                                              ^~~~~~~~~~~~~~~~~~~~~~~~
+BOINCTaskBar.cpp:62:5: note: in expansion of macro ‘EVT_TASKBAR_BALLOON_USERTIMEOUT’
+   62 |     EVT_TASKBAR_BALLOON_USERTIMEOUT(CTaskBarIcon::OnNotificationTimeout)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/version.h:16,
+                 from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/defs.h:189,
+                 from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:14:
+BOINCTaskBar.cpp: In constructor ‘CTaskBarIcon::CTaskBarIcon(wxIconBundle*, wxIconBundle*, wxIconBundle*)’:
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/chartype.h:199:40: warning: ISO C++ forbids converting a string constant to ‘wxChar*’ {aka ‘wchar_t*’} [-Wwrite-strings]
+  199 |         #define wxT(x) wxCONCAT_HELPER(L, x)
+      |                                        ^
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/cpp.h:18:37: note: in definition of macro ‘wxCONCAT_HELPER’
+   18 | #define wxCONCAT_HELPER(text, line) text ## line
+      |                                     ^~~~
+BOINCTaskBar.cpp:87:21: note: in expansion of macro ‘wxT’
+   87 |     wxTaskBarIconEx(wxT("BOINCManagerSystray"), 1)
+      |                     ^~~
+  CXX      boincmgr-CompletionErrorPage.o
+  CXX      boincmgr-CompletionPage.o
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from CompletionErrorPage.cpp:22:
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:326:43: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  326 | #define EVT_WIZARDEX_PAGE_CHANGED(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGED, id, fn)
+      |                                           ^~~~~~~~~~~~~~~~~~~~~~~
+CompletionErrorPage.cpp:52:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGED’
+   52 |     EVT_WIZARDEX_PAGE_CHANGED( -1, CCompletionErrorPage::OnPageChanged )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:334:37: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  334 | #define EVT_WIZARDEX_CANCEL(id, fn) wx__DECLARE_WIZARDEXEVT(CANCEL, id, fn)
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~
+CompletionErrorPage.cpp:53:5: note: in expansion of macro ‘EVT_WIZARDEX_CANCEL’
+   53 |     EVT_WIZARDEX_CANCEL( -1, CCompletionErrorPage::OnCancel )
+      |     ^~~~~~~~~~~~~~~~~~~
+  CXX      boincmgr-DlgAbout.o
+  CXX      boincmgr-DlgAdvPreferences.o
+  CXX      boincmgr-DlgAdvPreferencesBase.o
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from CompletionPage.cpp:22:
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:326:43: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  326 | #define EVT_WIZARDEX_PAGE_CHANGED(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGED, id, fn)
+      |                                           ^~~~~~~~~~~~~~~~~~~~~~~
+CompletionPage.cpp:53:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGED’
+   53 |     EVT_WIZARDEX_PAGE_CHANGED( -1, CCompletionPage::OnPageChanged )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:334:37: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  334 | #define EVT_WIZARDEX_CANCEL(id, fn) wx__DECLARE_WIZARDEXEVT(CANCEL, id, fn)
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~
+CompletionPage.cpp:54:5: note: in expansion of macro ‘EVT_WIZARDEX_CANCEL’
+   54 |     EVT_WIZARDEX_CANCEL( -1, CCompletionPage::OnCancel )
+      |     ^~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:337:39: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  337 | #define EVT_WIZARDEX_FINISHED(id, fn) wx__DECLARE_WIZARDEXEVT(FINISHED, id, fn)
+      |                                       ^~~~~~~~~~~~~~~~~~~~~~~
+CompletionPage.cpp:55:5: note: in expansion of macro ‘EVT_WIZARDEX_FINISHED’
+   55 |     EVT_WIZARDEX_FINISHED( ID_COMPLETIONPAGE, CCompletionPage::OnFinished )
+      |     ^~~~~~~~~~~~~~~~~~~~~
+  CXX      boincmgr-DlgDiagnosticLogFlags.o
+  CXX      boincmgr-DlgEventLog.o
+  CXX      boincmgr-DlgEventLogListCtrl.o
+  CXX      boincmgr-DlgExclusiveApps.o
+  CXX      boincmgr-DlgExitMessage.o
+  CXX      boincmgr-DlgGenericMessage.o
+  CXX      boincmgr-DlgHiddenColumns.o
+  CXX      boincmgr-DlgItemProperties.o
+  CXX      boincmgr-DlgOptions.o
+  CXX      boincmgr-DlgSelectComputer.o
+  CXX      boincmgr-taskbarex.o
+DlgOptions.cpp: In member function ‘bool CDlgOptions::SaveSettings()’:
+DlgOptions.cpp:758:24: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<GUI_SUPPORTED_LANG>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  758 |         if (selLangIdx < langs.size()) {
+      |             ~~~~~~~~~~~^~~~~~~~~~~~~~
+  CXX      boincmgr-LogBOINC.o
+gtk/taskbarex.cpp: In function ‘void status_icon_notification_actions(NotifyNotification*, gchar*, wxTaskBarIconEx*)’:
+gtk/taskbarex.cpp:77:58: warning: unused parameter ‘notification’ [-Wunused-parameter]
+   77 |     status_icon_notification_actions(NotifyNotification* notification, gchar *action, wxTaskBarIconEx* taskBarIcon)
+      |                                      ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+gtk/taskbarex.cpp: In function ‘void status_icon_notification_closed(NotifyNotification*, wxTaskBarIconEx*)’:
+gtk/taskbarex.cpp:85:57: warning: unused parameter ‘notification’ [-Wunused-parameter]
+   85 |     status_icon_notification_closed(NotifyNotification* notification, wxTaskBarIconEx* taskBarIcon)
+      |                                     ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+gtk/taskbarex.cpp: In member function ‘virtual bool wxTaskBarIconEx::SetIcon(const wxIcon&, const wxString&)’:
+gtk/taskbarex.cpp:203:56: warning: ‘GtkStatusIcon* gtk_status_icon_new_from_pixbuf(GdkPixbuf*)’ is deprecated [-Wdeprecated-declarations]
+  203 |         g_pStatusIcon = gtk_status_icon_new_from_pixbuf(bitmap.GetPixbuf());
+      |                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/gtk-3.0/gtk/gtk.h:275,
+                 from gtk/taskbarex.cpp:17:
+/usr/include/gtk-3.0/gtk/deprecated/gtkstatusicon.h:86:23: note: declared here
+   86 | GtkStatusIcon        *gtk_status_icon_new_from_pixbuf    (GdkPixbuf          *pixbuf);
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+gtk/taskbarex.cpp:208:36: warning: ‘void gtk_status_icon_set_from_pixbuf(GtkStatusIcon*, GdkPixbuf*)’ is deprecated [-Wdeprecated-declarations]
+  208 |     gtk_status_icon_set_from_pixbuf(g_pStatusIcon, bitmap.GetPixbuf());
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/gtk-3.0/gtk/deprecated/gtkstatusicon.h:97:23: note: declared here
+   97 | void                  gtk_status_icon_set_from_pixbuf    (GtkStatusIcon      *status_icon,
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+gtk/taskbarex.cpp:211:41: warning: ‘void gtk_status_icon_set_tooltip_text(GtkStatusIcon*, const gchar*)’ is deprecated [-Wdeprecated-declarations]
+  211 |         gtk_status_icon_set_tooltip_text(g_pStatusIcon, message.mb_str());
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/gtk-3.0/gtk/deprecated/gtkstatusicon.h:137:23: note: declared here
+  137 | void                  gtk_status_icon_set_tooltip_text   (GtkStatusIcon      *status_icon,
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+gtk/taskbarex.cpp:213:32: warning: ‘void gtk_status_icon_set_visible(GtkStatusIcon*, gboolean)’ is deprecated [-Wdeprecated-declarations]
+  213 |     gtk_status_icon_set_visible(g_pStatusIcon, TRUE);
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+/usr/include/gtk-3.0/gtk/deprecated/gtkstatusicon.h:151:23: note: declared here
+  151 | void                  gtk_status_icon_set_visible        (GtkStatusIcon      *status_icon,
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/gtk-3.0/gtk/deprecated/gtkactiongroup.h:37,
+                 from /usr/include/gtk-3.0/gtk/gtk.h:254:
+gtk/taskbarex.cpp: In function ‘const char* SetBalloon__returnIcon(unsigned int)’:
+/usr/include/gtk-3.0/gtk/deprecated/gtkstock.h:275:38: warning: ‘GtkStock’ is deprecated [-Wdeprecated-declarations]
+  275 | #define GTK_STOCK_DIALOG_INFO      ((GtkStock)"gtk-dialog-info")
+      |                                      ^~~~~~~~
+gtk/taskbarex.cpp:222:20: note: in expansion of macro ‘GTK_STOCK_DIALOG_INFO’
+  222 |             return(GTK_STOCK_DIALOG_INFO);
+      |                    ^~~~~~~~~~~~~~~~~~~~~
+/usr/include/gtk-3.0/gtk/deprecated/gtkstock.h:108:16: note: declared here
+  108 | typedef char * GtkStock;
+      |                ^~~~~~~~
+/usr/include/gtk-3.0/gtk/deprecated/gtkstock.h:284:38: warning: ‘GtkStock’ is deprecated [-Wdeprecated-declarations]
+  284 | #define GTK_STOCK_DIALOG_WARNING   ((GtkStock)"gtk-dialog-warning")
+      |                                      ^~~~~~~~
+gtk/taskbarex.cpp:225:20: note: in expansion of macro ‘GTK_STOCK_DIALOG_WARNING’
+  225 |             return(GTK_STOCK_DIALOG_WARNING);
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/gtk-3.0/gtk/deprecated/gtkstock.h:108:16: note: declared here
+  108 | typedef char * GtkStock;
+      |                ^~~~~~~~
+/usr/include/gtk-3.0/gtk/deprecated/gtkstock.h:293:38: warning: ‘GtkStock’ is deprecated [-Wdeprecated-declarations]
+  293 | #define GTK_STOCK_DIALOG_ERROR     ((GtkStock)"gtk-dialog-error")
+      |                                      ^~~~~~~~
+gtk/taskbarex.cpp:229:20: note: in expansion of macro ‘GTK_STOCK_DIALOG_ERROR’
+  229 |             return(GTK_STOCK_DIALOG_ERROR);
+      |                    ^~~~~~~~~~~~~~~~~~~~~~
+/usr/include/gtk-3.0/gtk/deprecated/gtkstock.h:108:16: note: declared here
+  108 | typedef char * GtkStock;
+      |                ^~~~~~~~
+gtk/taskbarex.cpp: In member function ‘virtual bool wxTaskBarIconEx::SetBalloon(const wxIcon&, wxString, wxString, unsigned int)’:
+gtk/taskbarex.cpp:272:50: warning: ‘const gchar* gtk_status_icon_get_icon_name(GtkStatusIcon*)’ is deprecated [-Wdeprecated-declarations]
+  272 |                     gtk_status_icon_get_icon_name(g_pStatusIcon)
+      |                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+/usr/include/gtk-3.0/gtk/deprecated/gtkstatusicon.h:120:23: note: declared here
+  120 | const gchar *         gtk_status_icon_get_icon_name      (GtkStatusIcon      *status_icon);
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  CXX      boincmgr-MainDocument.o
+  CXX      boincmgr-NoInternetConnectionPage.o
+  CXX      boincmgr-NotDetectedPage.o
+  CXX      boincmgr-NotFoundPage.o
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from NoInternetConnectionPage.cpp:22:
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:326:43: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  326 | #define EVT_WIZARDEX_PAGE_CHANGED(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGED, id, fn)
+      |                                           ^~~~~~~~~~~~~~~~~~~~~~~
+NoInternetConnectionPage.cpp:52:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGED’
+   52 |     EVT_WIZARDEX_PAGE_CHANGED( -1, CErrNoInternetConnectionPage::OnPageChanged )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:334:37: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  334 | #define EVT_WIZARDEX_CANCEL(id, fn) wx__DECLARE_WIZARDEXEVT(CANCEL, id, fn)
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~
+NoInternetConnectionPage.cpp:53:5: note: in expansion of macro ‘EVT_WIZARDEX_CANCEL’
+   53 |     EVT_WIZARDEX_CANCEL( -1, CErrNoInternetConnectionPage::OnCancel )
+      |     ^~~~~~~~~~~~~~~~~~~
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from NotDetectedPage.cpp:22:
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:326:43: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  326 | #define EVT_WIZARDEX_PAGE_CHANGED(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGED, id, fn)
+      |                                           ^~~~~~~~~~~~~~~~~~~~~~~
+NotDetectedPage.cpp:52:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGED’
+   52 |     EVT_WIZARDEX_PAGE_CHANGED( -1, CErrNotDetectedPage::OnPageChanged )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:334:37: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  334 | #define EVT_WIZARDEX_CANCEL(id, fn) wx__DECLARE_WIZARDEXEVT(CANCEL, id, fn)
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~
+NotDetectedPage.cpp:53:5: note: in expansion of macro ‘EVT_WIZARDEX_CANCEL’
+   53 |     EVT_WIZARDEX_CANCEL( -1, CErrNotDetectedPage::OnCancel )
+      |     ^~~~~~~~~~~~~~~~~~~
+  CXX      boincmgr-NoticeListCtrl.o
+  CXX      boincmgr-ProjectInfoPage.o
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from NotFoundPage.cpp:22:
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:326:43: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  326 | #define EVT_WIZARDEX_PAGE_CHANGED(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGED, id, fn)
+      |                                           ^~~~~~~~~~~~~~~~~~~~~~~
+NotFoundPage.cpp:52:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGED’
+   52 |     EVT_WIZARDEX_PAGE_CHANGED( -1, CErrNotFoundPage::OnPageChanged )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:334:37: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  334 | #define EVT_WIZARDEX_CANCEL(id, fn) wx__DECLARE_WIZARDEXEVT(CANCEL, id, fn)
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~
+NotFoundPage.cpp:53:5: note: in expansion of macro ‘EVT_WIZARDEX_CANCEL’
+   53 |     EVT_WIZARDEX_CANCEL( -1, CErrNotFoundPage::OnCancel )
+      |     ^~~~~~~~~~~~~~~~~~~
+  CXX      boincmgr-ProjectProcessingPage.o
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from ProjectInfoPage.cpp:22:
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:326:43: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  326 | #define EVT_WIZARDEX_PAGE_CHANGED(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGED, id, fn)
+      |                                           ^~~~~~~~~~~~~~~~~~~~~~~
+ProjectInfoPage.cpp:115:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGED’
+  115 |     EVT_WIZARDEX_PAGE_CHANGED( wxID_ANY, CProjectInfoPage::OnPageChanged )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:330:44: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  330 | #define EVT_WIZARDEX_PAGE_CHANGING(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGING, id, fn)
+      |                                            ^~~~~~~~~~~~~~~~~~~~~~~
+ProjectInfoPage.cpp:116:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGING’
+  116 |     EVT_WIZARDEX_PAGE_CHANGING( wxID_ANY, CProjectInfoPage::OnPageChanging )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:334:37: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  334 | #define EVT_WIZARDEX_CANCEL(id, fn) wx__DECLARE_WIZARDEXEVT(CANCEL, id, fn)
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~
+ProjectInfoPage.cpp:117:5: note: in expansion of macro ‘EVT_WIZARDEX_CANCEL’
+  117 |     EVT_WIZARDEX_CANCEL( wxID_ANY, CProjectInfoPage::OnCancel )
+      |     ^~~~~~~~~~~~~~~~~~~
+  CXX      boincmgr-ProjectPropertiesPage.o
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from ProjectProcessingPage.cpp:22:
+ProjectProcessingPage.h:47:100: warning: cast between incompatible pointer to member types from ‘void (CProjectProcessingPage::*)(CProjectProcessingPageEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+   47 |     DECLARE_EVENT_TABLE_ENTRY(wxEVT_PROJECTPROCESSING_STATECHANGE, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+ProjectProcessingPage.h:47:5: note: in expansion of macro ‘DECLARE_EVENT_TABLE_ENTRY’
+   47 |     DECLARE_EVENT_TABLE_ENTRY(wxEVT_PROJECTPROCESSING_STATECHANGE, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+ProjectProcessingPage.cpp:74:5: note: in expansion of macro ‘EVT_PROJECTPROCESSING_STATECHANGE’
+   74 |     EVT_PROJECTPROCESSING_STATECHANGE( CProjectProcessingPage::OnStateChange )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:326:43: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  326 | #define EVT_WIZARDEX_PAGE_CHANGED(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGED, id, fn)
+      |                                           ^~~~~~~~~~~~~~~~~~~~~~~
+ProjectProcessingPage.cpp:77:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGED’
+   77 |     EVT_WIZARDEX_PAGE_CHANGED( -1, CProjectProcessingPage::OnPageChanged )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:334:37: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  334 | #define EVT_WIZARDEX_CANCEL(id, fn) wx__DECLARE_WIZARDEXEVT(CANCEL, id, fn)
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~
+ProjectProcessingPage.cpp:78:5: note: in expansion of macro ‘EVT_WIZARDEX_CANCEL’
+   78 |     EVT_WIZARDEX_CANCEL( -1, CProjectProcessingPage::OnCancel )
+      |     ^~~~~~~~~~~~~~~~~~~
+  CXX      boincmgr-ProjectWelcomePage.o
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from ProjectPropertiesPage.cpp:22:
+ProjectPropertiesPage.h:47:100: warning: cast between incompatible pointer to member types from ‘void (CProjectPropertiesPage::*)(CProjectPropertiesPageEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+   47 |     DECLARE_EVENT_TABLE_ENTRY(wxEVT_PROJECTPROPERTIES_STATECHANGE, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+ProjectPropertiesPage.h:47:5: note: in expansion of macro ‘DECLARE_EVENT_TABLE_ENTRY’
+   47 |     DECLARE_EVENT_TABLE_ENTRY(wxEVT_PROJECTPROPERTIES_STATECHANGE, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+ProjectPropertiesPage.cpp:75:5: note: in expansion of macro ‘EVT_PROJECTPROPERTIES_STATECHANGE’
+   75 |     EVT_PROJECTPROPERTIES_STATECHANGE( CProjectPropertiesPage::OnStateChange )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:326:43: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  326 | #define EVT_WIZARDEX_PAGE_CHANGED(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGED, id, fn)
+      |                                           ^~~~~~~~~~~~~~~~~~~~~~~
+ProjectPropertiesPage.cpp:78:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGED’
+   78 |     EVT_WIZARDEX_PAGE_CHANGED( -1, CProjectPropertiesPage::OnPageChanged )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:334:37: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  334 | #define EVT_WIZARDEX_CANCEL(id, fn) wx__DECLARE_WIZARDEXEVT(CANCEL, id, fn)
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~
+ProjectPropertiesPage.cpp:79:5: note: in expansion of macro ‘EVT_WIZARDEX_CANCEL’
+   79 |     EVT_WIZARDEX_CANCEL( -1, CProjectPropertiesPage::OnCancel )
+      |     ^~~~~~~~~~~~~~~~~~~
+  CXX      boincmgr-ProxyInfoPage.o
+  CXX      boincmgr-ProxyPage.o
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from ProjectWelcomePage.cpp:28:
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:326:43: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  326 | #define EVT_WIZARDEX_PAGE_CHANGED(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGED, id, fn)
+      |                                           ^~~~~~~~~~~~~~~~~~~~~~~
+ProjectWelcomePage.cpp:61:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGED’
+   61 |     EVT_WIZARDEX_PAGE_CHANGED( -1, CProjectWelcomePage::OnPageChanged )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:334:37: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  334 | #define EVT_WIZARDEX_CANCEL(id, fn) wx__DECLARE_WIZARDEXEVT(CANCEL, id, fn)
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~
+ProjectWelcomePage.cpp:62:5: note: in expansion of macro ‘EVT_WIZARDEX_CANCEL’
+   62 |     EVT_WIZARDEX_CANCEL( -1, CProjectWelcomePage::OnCancel )
+      |     ^~~~~~~~~~~~~~~~~~~
+  CXX      boincmgr-sg_BoincSimpleFrame.o
+  CXX      boincmgr-sg_CustomControls.o
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from ProxyInfoPage.cpp:22:
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:326:43: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  326 | #define EVT_WIZARDEX_PAGE_CHANGED(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGED, id, fn)
+      |                                           ^~~~~~~~~~~~~~~~~~~~~~~
+ProxyInfoPage.cpp:52:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGED’
+   52 |     EVT_WIZARDEX_PAGE_CHANGED( -1, CErrProxyInfoPage::OnPageChanged )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:334:37: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  334 | #define EVT_WIZARDEX_CANCEL(id, fn) wx__DECLARE_WIZARDEXEVT(CANCEL, id, fn)
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~
+ProxyInfoPage.cpp:53:5: note: in expansion of macro ‘EVT_WIZARDEX_CANCEL’
+   53 |     EVT_WIZARDEX_CANCEL( -1, CErrProxyInfoPage::OnCancel )
+      |     ^~~~~~~~~~~~~~~~~~~
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from ProxyPage.cpp:22:
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:326:43: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  326 | #define EVT_WIZARDEX_PAGE_CHANGED(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGED, id, fn)
+      |                                           ^~~~~~~~~~~~~~~~~~~~~~~
+ProxyPage.cpp:52:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGED’
+   52 |     EVT_WIZARDEX_PAGE_CHANGED( -1, CErrProxyPage::OnPageChanged )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:330:44: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  330 | #define EVT_WIZARDEX_PAGE_CHANGING(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGING, id, fn)
+      |                                            ^~~~~~~~~~~~~~~~~~~~~~~
+ProxyPage.cpp:53:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGING’
+   53 |     EVT_WIZARDEX_PAGE_CHANGING( -1, CErrProxyPage::OnPageChanging )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:334:37: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  334 | #define EVT_WIZARDEX_CANCEL(id, fn) wx__DECLARE_WIZARDEXEVT(CANCEL, id, fn)
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~
+ProxyPage.cpp:54:5: note: in expansion of macro ‘EVT_WIZARDEX_CANCEL’
+   54 |     EVT_WIZARDEX_CANCEL( -1, CErrProxyPage::OnCancel )
+      |     ^~~~~~~~~~~~~~~~~~~
+  CXX      boincmgr-sg_DlgMessages.o
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from sg_BoincSimpleFrame.cpp:23:
+BOINCBaseFrame.h:208:121: warning: cast between incompatible pointer to member types from ‘void (CSimpleFrame::*)(CFrameEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  208 | #define EVT_FRAME_CONNECT(fn)            DECLARE_EVENT_TABLE_ENTRY(wxEVT_FRAME_CONNECT, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+BOINCBaseFrame.h:208:42: note: in expansion of macro ‘DECLARE_EVENT_TABLE_ENTRY’
+  208 | #define EVT_FRAME_CONNECT(fn)            DECLARE_EVENT_TABLE_ENTRY(wxEVT_FRAME_CONNECT, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+      |                                          ^~~~~~~~~~~~~~~~~~~~~~~~~
+sg_BoincSimpleFrame.cpp:79:5: note: in expansion of macro ‘EVT_FRAME_CONNECT’
+   79 |     EVT_FRAME_CONNECT(CSimpleFrame::OnConnect)
+      |     ^~~~~~~~~~~~~~~~~
+BOINCBaseFrame.h:212:124: warning: cast between incompatible pointer to member types from ‘void (CSimpleFrame::*)(CFrameEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  212 | #define EVT_FRAME_RELOADSKIN(fn)         DECLARE_EVENT_TABLE_ENTRY(wxEVT_FRAME_RELOADSKIN, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+BOINCBaseFrame.h:212:42: note: in expansion of macro ‘DECLARE_EVENT_TABLE_ENTRY’
+  212 | #define EVT_FRAME_RELOADSKIN(fn)         DECLARE_EVENT_TABLE_ENTRY(wxEVT_FRAME_RELOADSKIN, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+      |                                          ^~~~~~~~~~~~~~~~~~~~~~~~~
+sg_BoincSimpleFrame.cpp:80:5: note: in expansion of macro ‘EVT_FRAME_RELOADSKIN’
+   80 |     EVT_FRAME_RELOADSKIN(CSimpleFrame::OnReloadSkin)
+      |     ^~~~~~~~~~~~~~~~~~~~
+BOINCBaseFrame.h:213:126: warning: cast between incompatible pointer to member types from ‘void (CSimpleFrame::*)(CFrameEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  213 | #define EVT_FRAME_NOTIFICATION(fn)       DECLARE_EVENT_TABLE_ENTRY(wxEVT_FRAME_NOTIFICATION, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+BOINCBaseFrame.h:213:42: note: in expansion of macro ‘DECLARE_EVENT_TABLE_ENTRY’
+  213 | #define EVT_FRAME_NOTIFICATION(fn)       DECLARE_EVENT_TABLE_ENTRY(wxEVT_FRAME_NOTIFICATION, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+      |                                          ^~~~~~~~~~~~~~~~~~~~~~~~~
+sg_BoincSimpleFrame.cpp:81:5: note: in expansion of macro ‘EVT_FRAME_NOTIFICATION’
+   81 |     EVT_FRAME_NOTIFICATION(CSimpleFrame::OnNotification)
+      |     ^~~~~~~~~~~~~~~~~~~~~~
+  CXX      boincmgr-sg_DlgPreferences.o
+  CXX      boincmgr-sg_PanelBase.o
+  CXX      boincmgr-sg_ProjectCommandPopup.o
+  CXX      boincmgr-sg_ProjectPanel.o
+  CXX      boincmgr-sg_ProjectWebSitesPopup.o
+sg_ProjectCommandPopup.cpp: In constructor ‘CSimpleProjectCommandPopupButton::CSimpleProjectCommandPopupButton(wxWindow*, wxWindowID, const wxString&, const wxPoint&, const wxSize&, long int, const wxValidator&, const wxString&)’:
+sg_ProjectCommandPopup.cpp:53:33: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxCommandEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+   53 |         (wxObjectEventFunction) (wxEventFunction) (wxCommandEventFunction) &CSimpleProjectCommandPopupButton::OnProjectCommandsKeyboardNav
+      |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  CXX      boincmgr-sg_TaskCommandPopup.o
+sg_ProjectWebSitesPopup.cpp: In constructor ‘CSimpleProjectWebSitesPopupButton::CSimpleProjectWebSitesPopupButton(wxWindow*, wxWindowID, const wxString&, const wxPoint&, const wxSize&, long int, const wxValidator&, const wxString&)’:
+sg_ProjectWebSitesPopup.cpp:47:33: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxCommandEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+   47 |         (wxObjectEventFunction) (wxEventFunction) (wxCommandEventFunction) &CSimpleProjectWebSitesPopupButton::OnProjectWebSitesKeyboardNav
+      |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  CXX      boincmgr-sg_TaskPanel.o
+  CXX      boincmgr-SkinManager.o
+  CXX      boincmgr-stdwx.o
+sg_TaskCommandPopup.cpp: In constructor ‘CSimpleTaskPopupButton::CSimpleTaskPopupButton(wxWindow*, wxWindowID, const wxString&, const wxPoint&, const wxSize&, long int, const wxValidator&, const wxString&)’:
+sg_TaskCommandPopup.cpp:52:33: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxCommandEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+   52 |         (wxObjectEventFunction) (wxEventFunction) (wxCommandEventFunction) &CSimpleTaskPopupButton::OnTaskCommandsKeyboardNav
+      |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  CXX      boincmgr-TermsOfUsePage.o
+  CXX      boincmgr-UnavailablePage.o
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from TermsOfUsePage.cpp:22:
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:326:43: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  326 | #define EVT_WIZARDEX_PAGE_CHANGED(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGED, id, fn)
+      |                                           ^~~~~~~~~~~~~~~~~~~~~~~
+TermsOfUsePage.cpp:52:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGED’
+   52 |     EVT_WIZARDEX_PAGE_CHANGED( -1, CTermsOfUsePage::OnPageChanged )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:330:44: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  330 | #define EVT_WIZARDEX_PAGE_CHANGING(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGING, id, fn)
+      |                                            ^~~~~~~~~~~~~~~~~~~~~~~
+TermsOfUsePage.cpp:53:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGING’
+   53 |     EVT_WIZARDEX_PAGE_CHANGING( -1, CTermsOfUsePage::OnPageChanging )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:334:37: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  334 | #define EVT_WIZARDEX_CANCEL(id, fn) wx__DECLARE_WIZARDEXEVT(CANCEL, id, fn)
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~
+TermsOfUsePage.cpp:54:5: note: in expansion of macro ‘EVT_WIZARDEX_CANCEL’
+   54 |     EVT_WIZARDEX_CANCEL( -1, CTermsOfUsePage::OnCancel )
+      |     ^~~~~~~~~~~~~~~~~~~
+  CXX      boincmgr-ValidateAccountKey.o
+  CXX      boincmgr-ValidateEmailAddress.o
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from UnavailablePage.cpp:22:
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:326:43: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  326 | #define EVT_WIZARDEX_PAGE_CHANGED(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGED, id, fn)
+      |                                           ^~~~~~~~~~~~~~~~~~~~~~~
+UnavailablePage.cpp:52:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGED’
+   52 |     EVT_WIZARDEX_PAGE_CHANGED( -1, CErrUnavailablePage::OnPageChanged )
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:334:37: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  334 | #define EVT_WIZARDEX_CANCEL(id, fn) wx__DECLARE_WIZARDEXEVT(CANCEL, id, fn)
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~
+UnavailablePage.cpp:53:5: note: in expansion of macro ‘EVT_WIZARDEX_CANCEL’
+   53 |     EVT_WIZARDEX_CANCEL( -1, CErrUnavailablePage::OnCancel )
+      |     ^~~~~~~~~~~~~~~~~~~
+  CXX      boincmgr-ValidateURL.o
+  CXX      boincmgr-ViewNotices.o
+  CXX      boincmgr-ViewProjects.o
+  CXX      boincmgr-ViewResources.o
+  CXX      boincmgr-ViewStatistics.o
+  CXX      boincmgr-ViewTransfers.o
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from ViewProjects.cpp:22:
+BOINCListCtrl.h:163:141: warning: cast between incompatible pointer to member types from ‘void (CBOINCBaseView::*)(CCheckSelectionChangedEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  163 | #define EVT_CHECK_SELECTION_CHANGED(fn)            DECLARE_EVENT_TABLE_ENTRY(wxEVT_CHECK_SELECTION_CHANGED, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+BOINCListCtrl.h:163:52: note: in expansion of macro ‘DECLARE_EVENT_TABLE_ENTRY’
+  163 | #define EVT_CHECK_SELECTION_CHANGED(fn)            DECLARE_EVENT_TABLE_ENTRY(wxEVT_CHECK_SELECTION_CHANGED, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+      |                                                    ^~~~~~~~~~~~~~~~~~~~~~~~~
+ViewProjects.cpp:114:9: note: in expansion of macro ‘EVT_CHECK_SELECTION_CHANGED’
+  114 |         EVT_CHECK_SELECTION_CHANGED(CViewProjects::OnCheckSelectionChanged)
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+  CXX      boincmgr-ViewWork.o
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from ViewTransfers.cpp:22:
+BOINCListCtrl.h:163:141: warning: cast between incompatible pointer to member types from ‘void (CBOINCBaseView::*)(CCheckSelectionChangedEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  163 | #define EVT_CHECK_SELECTION_CHANGED(fn)            DECLARE_EVENT_TABLE_ENTRY(wxEVT_CHECK_SELECTION_CHANGED, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+BOINCListCtrl.h:163:52: note: in expansion of macro ‘DECLARE_EVENT_TABLE_ENTRY’
+  163 | #define EVT_CHECK_SELECTION_CHANGED(fn)            DECLARE_EVENT_TABLE_ENTRY(wxEVT_CHECK_SELECTION_CHANGED, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+      |                                                    ^~~~~~~~~~~~~~~~~~~~~~~~~
+ViewTransfers.cpp:104:9: note: in expansion of macro ‘EVT_CHECK_SELECTION_CHANGED’
+  104 |         EVT_CHECK_SELECTION_CHANGED(CViewTransfers::OnCheckSelectionChanged)
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+  CXX      boincmgr-WizardAttach.o
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from ViewWork.cpp:22:
+BOINCListCtrl.h:163:141: warning: cast between incompatible pointer to member types from ‘void (CBOINCBaseView::*)(CCheckSelectionChangedEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  163 | #define EVT_CHECK_SELECTION_CHANGED(fn)            DECLARE_EVENT_TABLE_ENTRY(wxEVT_CHECK_SELECTION_CHANGED, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+BOINCListCtrl.h:163:52: note: in expansion of macro ‘DECLARE_EVENT_TABLE_ENTRY’
+  163 | #define EVT_CHECK_SELECTION_CHANGED(fn)            DECLARE_EVENT_TABLE_ENTRY(wxEVT_CHECK_SELECTION_CHANGED, -1, -1, (wxObjectEventFunction) (wxEventFunction) &fn, NULL),
+      |                                                    ^~~~~~~~~~~~~~~~~~~~~~~~~
+ViewWork.cpp:125:9: note: in expansion of macro ‘EVT_CHECK_SELECTION_CHANGED’
+  125 |         EVT_CHECK_SELECTION_CHANGED(CViewWork::OnCheckSelectionChanged)
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+  CXX      boincmgr-wizardex.o
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from WizardAttach.cpp:22:
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:337:39: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  337 | #define EVT_WIZARDEX_FINISHED(id, fn) wx__DECLARE_WIZARDEXEVT(FINISHED, id, fn)
+      |                                       ^~~~~~~~~~~~~~~~~~~~~~~
+WizardAttach.cpp:69:5: note: in expansion of macro ‘EVT_WIZARDEX_FINISHED’
+   69 |     EVT_WIZARDEX_FINISHED( ID_ATTACHWIZARD, CWizardAttach::OnFinished )
+      |     ^~~~~~~~~~~~~~~~~~~~~
+In file included from /opt/wxwidgets/3.2.11/include/wx-3.2/wx/wx.h:24,
+                 from stdwx.h:49,
+                 from wizardex.cpp:16:
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:326:43: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  326 | #define EVT_WIZARDEX_PAGE_CHANGED(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGED, id, fn)
+      |                                           ^~~~~~~~~~~~~~~~~~~~~~~
+wizardex.cpp:240:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGED’
+  240 |     EVT_WIZARDEX_PAGE_CHANGED(wxID_ANY, wxWizardEx::OnWizEvent)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:330:44: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  330 | #define EVT_WIZARDEX_PAGE_CHANGING(id, fn) wx__DECLARE_WIZARDEXEVT(PAGE_CHANGING, id, fn)
+      |                                            ^~~~~~~~~~~~~~~~~~~~~~~
+wizardex.cpp:241:5: note: in expansion of macro ‘EVT_WIZARDEX_PAGE_CHANGING’
+  241 |     EVT_WIZARDEX_PAGE_CHANGING(wxID_ANY, wxWizardEx::OnWizEvent)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:334:37: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  334 | #define EVT_WIZARDEX_CANCEL(id, fn) wx__DECLARE_WIZARDEXEVT(CANCEL, id, fn)
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~
+wizardex.cpp:242:5: note: in expansion of macro ‘EVT_WIZARDEX_CANCEL’
+  242 |     EVT_WIZARDEX_CANCEL(wxID_ANY, wxWizardEx::OnWizEvent)
+      |     ^~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:337:39: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  337 | #define EVT_WIZARDEX_FINISHED(id, fn) wx__DECLARE_WIZARDEXEVT(FINISHED, id, fn)
+      |                                       ^~~~~~~~~~~~~~~~~~~~~~~
+wizardex.cpp:243:5: note: in expansion of macro ‘EVT_WIZARDEX_FINISHED’
+  243 |     EVT_WIZARDEX_FINISHED(wxID_ANY, wxWizardEx::OnWizEvent)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+wizardex.h:320:28: warning: cast between incompatible pointer to member types from ‘void (wxEvtHandler::*)(wxWizardExEvent&)’ to ‘wxEventFunction’ {aka ‘void (wxEvtHandler::*)(wxEvent&)’} [-Wcast-function-type]
+  320 |     (wxObjectEventFunction)(wxEventFunction)wxStaticCastEvent(wxWizardExEventFunction, &func)
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:87:73: note: in definition of macro ‘wxDECLARE_EVENT_TABLE_ENTRY’
+   87 |     wxEventTableEntry(type, winid, idLast, wxNewEventTableFunctor(type, fn), obj)
+      |                                                                         ^~
+/opt/wxwidgets/3.2.11/include/wx-3.2/wx/event.h:4508:5: note: in expansion of macro ‘wx__DECLARE_EVT2’
+ 4508 |     wx__DECLARE_EVT2(evt, id, wxID_ANY, fn)
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:5: note: in expansion of macro ‘wx__DECLARE_EVT1’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |     ^~~~~~~~~~~~~~~~
+wizardex.h:323:50: note: in expansion of macro ‘wxWizardExEventHandler’
+  323 |     wx__DECLARE_EVT1(wxEVT_WIZARDEX_ ## evt, id, wxWizardExEventHandler(fn))
+      |                                                  ^~~~~~~~~~~~~~~~~~~~~~
+wizardex.h:340:35: note: in expansion of macro ‘wx__DECLARE_WIZARDEXEVT’
+  340 | #define EVT_WIZARDEX_HELP(id, fn) wx__DECLARE_WIZARDEXEVT(HELP, id, fn)
+      |                                   ^~~~~~~~~~~~~~~~~~~~~~~
+wizardex.cpp:244:5: note: in expansion of macro ‘EVT_WIZARDEX_HELP’
+  244 |     EVT_WIZARDEX_HELP(wxID_ANY, wxWizardEx::OnWizEvent)
+      |     ^~~~~~~~~~~~~~~~~
+  CXXLD    boincmgr
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/clientgui'
+Making all in locale
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/locale'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/locale'
+Making all in clientgui/res
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/clientgui/res'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/clientgui/res'
+Making all in clientgui/skins
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/clientgui/skins'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/clientgui/skins'
+Making all in doc
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/doc'
+make[3]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/doc'
+make[3]: Nothing to be done for 'all-am'.
+make[3]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/doc'
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/doc'
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src'
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src'
+make[1]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src'
+
+=== STAGE MANAGER INSTALLATION ===
+cd . && sh generate_svn_version.sh
+fatal: No names found, cannot describe anything.
+make  install-recursive
+make[1]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src'
+Making install in m4
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/m4'
+make[3]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/m4'
+make[3]: Nothing to be done for 'install-exec-am'.
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/m4'
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/m4'
+Making install in api
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/api'
+rm -f libboinc_api.a
+/usr/bin/ln .libs/libboinc_api.a .
+rm -f libboinc_opencl.a
+/usr/bin/ln .libs/libboinc_opencl.a .
+make[3]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/api'
+ /usr/bin/mkdir -p '/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib'
+ /bin/sh ../libtool   --mode=install /usr/bin/install -c   libboinc_api.la libboinc_opencl.la '/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib'
+libtool: install: /usr/bin/install -c .libs/libboinc_api.so.8.2.11 /home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_api.so.8.2.11
+libtool: install: (cd /home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib && { ln -s -f libboinc_api.so.8.2.11 libboinc_api.so.8 || { rm -f libboinc_api.so.8 && ln -s libboinc_api.so.8.2.11 libboinc_api.so.8; }; })
+libtool: install: (cd /home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib && { ln -s -f libboinc_api.so.8.2.11 libboinc_api.so || { rm -f libboinc_api.so && ln -s libboinc_api.so.8.2.11 libboinc_api.so; }; })
+libtool: install: /usr/bin/install -c .libs/libboinc_api.lai /home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_api.la
+libtool: install: /usr/bin/install -c .libs/libboinc_opencl.so.8.2.11 /home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_opencl.so.8.2.11
+libtool: install: (cd /home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib && { ln -s -f libboinc_opencl.so.8.2.11 libboinc_opencl.so.8 || { rm -f libboinc_opencl.so.8 && ln -s libboinc_opencl.so.8.2.11 libboinc_opencl.so.8; }; })
+libtool: install: (cd /home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib && { ln -s -f libboinc_opencl.so.8.2.11 libboinc_opencl.so || { rm -f libboinc_opencl.so && ln -s libboinc_opencl.so.8.2.11 libboinc_opencl.so; }; })
+libtool: install: /usr/bin/install -c .libs/libboinc_opencl.lai /home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_opencl.la
+libtool: install: /usr/bin/install -c .libs/libboinc_api.a /home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_api.a
+libtool: install: chmod 644 /home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_api.a
+libtool: install: ranlib /home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_api.a
+libtool: install: /usr/bin/install -c .libs/libboinc_opencl.a /home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_opencl.a
+libtool: install: chmod 644 /home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_opencl.a
+libtool: install: ranlib /home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_opencl.a
+libtool: warning: remember to run 'libtool --finish /opt/boinc/8.2.11/lib'
+ /usr/bin/mkdir -p '/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/pkgconfig'
+ /usr/bin/install -c -m 644 libboinc_api.pc libboinc_opencl.pc '/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/pkgconfig'
+make[3]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/api'
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/api'
+Making install in lib
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/lib'
+rm -f libboinc.a
+/usr/bin/ln .libs/libboinc.a .
+make[3]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/lib'
+ /usr/bin/mkdir -p '/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib'
+ /bin/sh ../libtool   --mode=install /usr/bin/install -c   libboinc.la '/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib'
+libtool: install: /usr/bin/install -c .libs/libboinc.lai /home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc.la
+libtool: install: /usr/bin/install -c .libs/libboinc.a /home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc.a
+libtool: install: chmod 644 /home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc.a
+libtool: install: ranlib /home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc.a
+libtool: warning: remember to run 'libtool --finish /opt/boinc/8.2.11/lib'
+ /usr/bin/mkdir -p '/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/pkgconfig'
+ /usr/bin/install -c -m 644 libboinc.pc '/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/pkgconfig'
+make[3]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/lib'
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/lib'
+Making install in clientgui
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/clientgui'
+make[3]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/clientgui'
+ /usr/bin/mkdir -p '/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/bin'
+  /bin/sh ../libtool   --mode=install /usr/bin/install -c boincmgr '/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/bin'
+libtool: install: /usr/bin/install -c boincmgr /home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/bin/boincmgr
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/clientgui'
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/clientgui'
+Making install in locale
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/locale'
+make[3]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/locale'
+make[3]: Nothing to be done for 'install-exec-am'.
+make  install-data-hook
+make[4]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/locale'
+mydir=/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale ;\
+for ldir in ar be bg ca cs da de el es fa fa_IR fi fr gl he hr hu it_IT ja ka ko lt lv ms nb nl nn pl pt_BR pt_PT ro ru sk sl sv tr uk zh_CN zh_TW ; do \
+  /usr/bin/install -c -d $mydir/$ldir/LC_MESSAGES ; \
+  if [ -f ../locale/$ldir/BOINC-Manager.mo ] ; then \
+    /usr/bin/install -c -m 644 ../locale/$ldir/BOINC-Manager.mo $mydir/$ldir/LC_MESSAGES/BOINC-Manager.mo ; \
+  fi ;\
+  if [ -f ../locale/$ldir/BOINC-Client.mo ] ; then \
+    /usr/bin/install -c -m 644 ../locale/$ldir/BOINC-Client.mo $mydir/$ldir/LC_MESSAGES/BOINC-Client.mo ; \
+  fi ;\
+done
+make[4]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/locale'
+make[3]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/locale'
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/locale'
+Making install in clientgui/res
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/clientgui/res'
+make[3]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/clientgui/res'
+make[3]: Nothing to be done for 'install-exec-am'.
+ /usr/bin/mkdir -p '/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/applications'
+ /usr/bin/install -c -m 644 boinc.desktop '/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/applications'
+ /usr/bin/mkdir -p '/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/icons/hicolor/64x64/apps'
+ /usr/bin/install -c -m 644 boinc.png '/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/icons/hicolor/64x64/apps'
+ /usr/bin/mkdir -p '/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/icons/hicolor/scalable/apps'
+ /usr/bin/install -c -m 644 boinc.svg '/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/icons/hicolor/scalable/apps'
+make[3]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/clientgui/res'
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/clientgui/res'
+Making install in clientgui/skins
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/clientgui/skins'
+make[3]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/clientgui/skins'
+make[3]: Nothing to be done for 'install-exec-am'.
+make  install-data-hook
+make[4]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/clientgui/skins'
+mydir=/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins ;\
+for sdir in "Charity Engine" "GridRepublic" "People for a Smarter Planet" "People for a Smarter Planet/graphic" "ProgressThruProcessors" "World Community Grid" "Default" ; do \
+  /usr/bin/install -c -d "$mydir/$sdir" ; \
+  find "../../clientgui/skins/$sdir" -maxdepth 1 -type f -print0 | while read -d $'\0' file ; do \
+    /usr/bin/install -c -m 644 "$file" "$mydir/$sdir" ; \
+  done ; \
+done
+make[4]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/clientgui/skins'
+make[3]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/clientgui/skins'
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/clientgui/skins'
+Making install in doc
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/doc'
+make[3]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/doc'
+make[4]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src/doc'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/doc'
+make[3]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/doc'
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src/doc'
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src'
+make[3]: Entering directory '/home/sable/src/boinc-8.2.11-manager-src'
+make[3]: Nothing to be done for 'install-exec-am'.
+make[3]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src'
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src'
+make[1]: Leaving directory '/home/sable/src/boinc-8.2.11-manager-src'
+
+=== LOCATE STAGED MANAGER ===
+Manager: /home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/bin/boincmgr
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/bin/boincmgr: ELF 64-bit LSB pie executable, x86-64, version 1 (GNU/Linux), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 5.4.0, with debug_info, not stripped
+
+=== RUNTIME LINKAGE ===
+	linux-vdso.so.1 (0x00007f220767b000)
+	libstdc++.so.6 => /usr/lib/../lib64/libstdc++.so.6 (0x00007f2206fb9000)
+	libnotify.so.4 => /opt/libnotify/0.8.8/lib64/libnotify.so.4 (0x00007f2206f9f000)
+	libwx_gtk3u_xrc-3.2.so.0 => /opt/wxwidgets/3.2.11/lib/libwx_gtk3u_xrc-3.2.so.0 (0x00007f2206e73000)
+	libwx_gtk3u_html-3.2.so.0 => /opt/wxwidgets/3.2.11/lib/libwx_gtk3u_html-3.2.so.0 (0x00007f2206d8d000)
+	libwx_gtk3u_qa-3.2.so.0 => /opt/wxwidgets/3.2.11/lib/libwx_gtk3u_qa-3.2.so.0 (0x00007f2206d5b000)
+	libwx_gtk3u_core-3.2.so.0 => /opt/wxwidgets/3.2.11/lib/libwx_gtk3u_core-3.2.so.0 (0x00007f220648b000)
+	libwx_baseu_xml-3.2.so.0 => /opt/wxwidgets/3.2.11/lib/libwx_baseu_xml-3.2.so.0 (0x00007f2206476000)
+	libwx_baseu_net-3.2.so.0 => /opt/wxwidgets/3.2.11/lib/libwx_baseu_net-3.2.so.0 (0x00007f220640c000)
+	libwx_baseu-3.2.so.0 => /opt/wxwidgets/3.2.11/lib/libwx_baseu-3.2.so.0 (0x00007f2206125000)
+	libfreetype.so.6 => /usr/lib/libfreetype.so.6 (0x00007f2206068000)
+	libbz2.so.1.0 => /usr/lib/libbz2.so.1.0 (0x00007f2206054000)
+	libpng16.so.16 => /usr/lib/libpng16.so.16 (0x00007f2206019000)
+	libz.so.1 => /usr/lib/libz.so.1 (0x00007f2205ff9000)
+	libxkbcommon.so.0 => /usr/lib/libxkbcommon.so.0 (0x00007f2205f9e000)
+	libresolv.so.2 => /usr/lib/libresolv.so.2 (0x00007f2205f8c000)
+	libgtk-3.so.0 => /usr/lib/../lib64/libgtk-3.so.0 (0x00007f2205761000)
+	libgdk-3.so.0 => /usr/lib/../lib64/libgdk-3.so.0 (0x00007f2205662000)
+	libpangocairo-1.0.so.0 => /usr/lib/../lib64/libpangocairo-1.0.so.0 (0x00007f220564f000)
+	libcairo-gobject.so.2 => /usr/lib/../lib64/libcairo-gobject.so.2 (0x00007f2205644000)
+	libgdk_pixbuf-2.0.so.0 => /usr/lib/../lib64/libgdk_pixbuf-2.0.so.0 (0x00007f2205610000)
+	libatk-1.0.so.0 => /usr/lib/../lib64/libatk-1.0.so.0 (0x00007f22055e6000)
+	libpango-1.0.so.0 => /usr/lib/../lib64/libpango-1.0.so.0 (0x00007f220556a000)
+	libcairo.so.2 => /usr/lib/../lib64/libcairo.so.2 (0x00007f22053e7000)
+	libharfbuzz.so.0 => /usr/lib/../lib64/libharfbuzz.so.0 (0x00007f220524b000)
+	libgio-2.0.so.0 => /usr/lib/../lib64/libgio-2.0.so.0 (0x00007f2205042000)
+	libgobject-2.0.so.0 => /usr/lib/../lib64/libgobject-2.0.so.0 (0x00007f2204fd2000)
+	libglib-2.0.so.0 => /usr/lib/../lib64/libglib-2.0.so.0 (0x00007f2204e64000)
+	libm.so.6 => /usr/lib/libm.so.6 (0x00007f2204d71000)
+	libgcc_s.so.1 => /usr/lib/../lib64/libgcc_s.so.1 (0x00007f2204d44000)
+	libc.so.6 => /usr/lib/libc.so.6 (0x00007f2204b5b000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f220767d000)
+	libgthread-2.0.so.0 => /usr/lib64/libgthread-2.0.so.0 (0x00007f2204b56000)
+	libX11.so.6 => /usr/lib/libX11.so.6 (0x00007f2204a0e000)
+	libXxf86vm.so.1 => /usr/lib/libXxf86vm.so.1 (0x00007f2204a07000)
+	libSM.so.6 => /usr/lib/libSM.so.6 (0x00007f22049fd000)
+	libXtst.so.6 => /usr/lib/libXtst.so.6 (0x00007f22049f5000)
+	libpangoft2-1.0.so.0 => /usr/lib/libpangoft2-1.0.so.0 (0x00007f22049d8000)
+	libfontconfig.so.1 => /usr/lib/libfontconfig.so.1 (0x00007f220498a000)
+	libjpeg.so.8.2.2 => /usr/lib/libjpeg.so.8.2.2 (0x00007f2204920000)
+	libcurl.so.4 => /usr/lib/libcurl.so.4 (0x00007f220485d000)
+	libpcre2-32.so.0 => /usr/lib/libpcre2-32.so.0 (0x00007f22047d0000)
+	libexpat.so.1 => /usr/lib/libexpat.so.1 (0x00007f22047a2000)
+	libepoxy.so.0 => /usr/lib/libepoxy.so.0 (0x00007f2204685000)
+	libgmodule-2.0.so.0 => /usr/lib64/libgmodule-2.0.so.0 (0x00007f220467e000)
+	libfribidi.so.0 => /usr/lib/libfribidi.so.0 (0x00007f220465e000)
+	libXi.so.6 => /usr/lib/libXi.so.6 (0x00007f2204649000)
+	libatk-bridge-2.0.so.0 => /usr/lib/libatk-bridge-2.0.so.0 (0x00007f220460b000)
+	libXfixes.so.3 => /usr/lib/libXfixes.so.3 (0x00007f2204603000)
+	libwayland-client.so.0 => /usr/lib/libwayland-client.so.0 (0x00007f22045f0000)
+	libwayland-cursor.so.0 => /usr/lib/libwayland-cursor.so.0 (0x00007f22045e6000)
+	libwayland-egl.so.1 => /usr/lib/libwayland-egl.so.1 (0x00007f22045df000)
+	libXext.so.6 => /usr/lib/libXext.so.6 (0x00007f22045cb000)
+	libXcursor.so.1 => /usr/lib/libXcursor.so.1 (0x00007f22045be000)
+	libXdamage.so.1 => /usr/lib/libXdamage.so.1 (0x00007f22045b9000)
+	libXcomposite.so.1 => /usr/lib/libXcomposite.so.1 (0x00007f22045b4000)
+	libXrandr.so.2 => /usr/lib/libXrandr.so.2 (0x00007f22045a7000)
+	libXinerama.so.1 => /usr/lib/libXinerama.so.1 (0x00007f22045a0000)
+	libXrender.so.1 => /usr/lib/libXrender.so.1 (0x00007f2204593000)
+	libxcb.so.1 => /usr/lib/libxcb.so.1 (0x00007f2204569000)
+	libxcb-render.so.0 => /usr/lib/libxcb-render.so.0 (0x00007f220455b000)
+	libxcb-shm.so.0 => /usr/lib/libxcb-shm.so.0 (0x00007f2204556000)
+	libpixman-1.so.0 => /usr/lib/libpixman-1.so.0 (0x00007f2204443000)
+	libmount.so.1 => /usr/lib/libmount.so.1 (0x00007f22043cd000)
+	libffi.so.8 => /usr/lib/libffi.so.8 (0x00007f22043bc000)
+	libpcre2-8.so.0 => /usr/lib/libpcre2-8.so.0 (0x00007f220431b000)
+	libXau.so.6 => /usr/lib/libXau.so.6 (0x00007f2204316000)
+	libICE.so.6 => /usr/lib/libICE.so.6 (0x00007f22042f6000)
+	libuuid.so.1 => /usr/lib/libuuid.so.1 (0x00007f22042ec000)
+	libpsl.so.5 => /usr/lib/libpsl.so.5 (0x00007f22042d8000)
+	libssl.so.3 => /usr/lib/libssl.so.3 (0x00007f22041c6000)
+	libcrypto.so.3 => /usr/lib/libcrypto.so.3 (0x00007f2203ba0000)
+	libzstd.so.1 => /usr/lib/libzstd.so.1 (0x00007f2203aa4000)
+	libatspi.so.0 => /usr/lib/libatspi.so.0 (0x00007f2203a69000)
+	libdbus-1.so.3 => /usr/lib/libdbus-1.so.3 (0x00007f2203a0e000)
+	libblkid.so.1 => /usr/lib/libblkid.so.1 (0x00007f22039ae000)
+	libsystemd.so.0 => /usr/lib/libsystemd.so.0 (0x00007f2203862000)
+	libcap.so.2 => /usr/lib/libcap.so.2 (0x00007f2203856000)
+
+=== STAGED MANAGER FILES ===
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/bin/boincmgr
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc.a
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_api.a
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_api.la
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_api.so
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_api.so.8
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_api.so.8.2.11
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc.la
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_opencl.a
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_opencl.la
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_opencl.so
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_opencl.so.8
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_opencl.so.8.2.11
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/pkgconfig/libboinc_api.pc
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/pkgconfig/libboinc_opencl.pc
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/lib/pkgconfig/libboinc.pc
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/applications/boinc.desktop
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/Charity Engine/background_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/Charity Engine/ce_about.ico
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/Charity Engine/ce_icon_play.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/Charity Engine/ce_pause.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/Charity Engine/ce_play.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/Charity Engine/ce_stop.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/Charity Engine/dialog_background_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/Charity Engine/project_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/Charity Engine/skin.xml
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/Charity Engine/workunit_running_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/Charity Engine/workunit_suspended_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/Charity Engine/workunit_waiting_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/Default/background_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/Default/skin.xml
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/Default/workunit_running_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/Default/workunit_suspended_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/Default/workunit_waiting_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/GridRepublic/background_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/GridRepublic/dialog_background_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/GridRepublic/gr_about.ico
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/GridRepublic/gr_icon_play.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/GridRepublic/gr_pause.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/GridRepublic/gr_play.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/GridRepublic/gr_stop.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/GridRepublic/project_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/GridRepublic/skin.xml
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/GridRepublic/workunit_running_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/GridRepublic/workunit_suspended_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/GridRepublic/workunit_waiting_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/advanced_link_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/attach_project_button.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/background_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/cancel_button.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/close_button.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/connecting_indicator_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/copy_all_button.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/copy_button.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/dialog_background_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/error_indicator_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/gauge_bg.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/help_button.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/left_arrow_button.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/messages_alert_link_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/messages_link_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/preferences_link_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/project_area_background_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/project_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/resume_link_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/right_arrow_button.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/save_button.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/spacer_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/state_indicator_background_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/suspend_link_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/tabArea_bg.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/wcg_about.ico
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/wcg_pause.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/wcg_play.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/wcg_stop.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/workunit_active_tab.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/workunit_animation_background_image copy.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/workunit_animation_background_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/workunit_area_background_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/workunit_gauge_background_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/workunit_gauge_progress_indicator_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/workunit_suspended_tab.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/graphic/workunit_tab_area_background_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/People for a Smarter Planet/skin.xml
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/ProgressThruProcessors/background_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/ProgressThruProcessors/dialog_background_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/ProgressThruProcessors/project_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/ProgressThruProcessors/ptp_about.ico
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/ProgressThruProcessors/ptp_icon_play.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/ProgressThruProcessors/ptp_pause.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/ProgressThruProcessors/ptp_play.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/ProgressThruProcessors/ptp_stop.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/ProgressThruProcessors/skin.xml
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/ProgressThruProcessors/workunit_running_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/ProgressThruProcessors/workunit_suspended_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/ProgressThruProcessors/workunit_waiting_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/World Community Grid/background_image.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/World Community Grid/Green_dot.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/World Community Grid/Red_dot.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/World Community Grid/skin.xml
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/World Community Grid/wcg_32.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/World Community Grid/wcg_50.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/World Community Grid/wcg_about.ico
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/World Community Grid/wcg.ico
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/World Community Grid/wcg_pause.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/World Community Grid/wcg_play.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/World Community Grid/wcg_stop.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/boinc-manager/skins/World Community Grid/Yellow_dot.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/icons/hicolor/64x64/apps/boinc.png
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/icons/hicolor/scalable/apps/boinc.svg
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/ar/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/bg/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/bg/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/ca/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/ca/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/cs/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/cs/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/da/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/da/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/de/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/de/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/el/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/es/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/es/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/fa_IR/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/fi/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/fi/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/fr/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/fr/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/he/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/he/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/hu/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/hu/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/it_IT/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/it_IT/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/ja/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/ja/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/ka/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/ka/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/ko/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/ko/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/lt/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/lv/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/lv/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/nb/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/nb/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/nl/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/nl/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/pl/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/pl/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/pt_BR/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/pt_BR/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/pt_PT/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/pt_PT/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/ro/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/ro/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/ru/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/ru/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/sk/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/sk/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/sv/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/sv/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/tr/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/tr/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/uk/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/uk/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/zh_CN/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/zh_CN/LC_MESSAGES/BOINC-Manager.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/zh_TW/LC_MESSAGES/BOINC-Client.mo
+/home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/share/locale/zh_TW/LC_MESSAGES/BOINC-Manager.mo
+
+=== MANAGER HASH ===
+7cbd7fe89ae80f14993029f6a806a80813091d60412d7bddcfc51445d716f666  /home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/bin/boincmgr
+
+=== STAGED MANAGER BUILD PASS ===
+Stage:   /home/sable/boinc-manager-stage-8.2.11
+Manager: /home/sable/boinc-manager-stage-8.2.11/opt/boinc/8.2.11/bin/boincmgr
+Log:     /home/sable/Desktop/boinc-manager-8.2.11-build-20260718-150125.txt

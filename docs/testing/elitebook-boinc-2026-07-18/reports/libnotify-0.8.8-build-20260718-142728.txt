@@ -1,0 +1,25 @@
+=== LIBNOTIFY 0.8.8 STAGED BUILD ===
+2026-07-18T14:27:28-04:00
+
+=== REQUIRED MODULES ===
+PASS: glib-2.0 2.87.3
+PASS: gio-2.0 2.87.3
+PASS: gio-unix-2.0 2.87.3
+PASS: gdk-pixbuf-2.0 2.42.12
+
+=== DOWNLOAD OFFICIAL SOURCE AND CHECKSUM ===
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0 42  112k   42 48622    0     0  10549      0  0:00:10  0:00:04  0:00:06 10549100  112k  100  112k    0     0  23656      0  0:00:04  0:00:04 --:--:-- 26402
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   176  100   176    0     0    181      0 --:--:-- --:--:-- --:--:--   181
+
+=== VERIFY CHECKSUM ===
+libnotify-0.8.8.tar.xz: OK
+sha256sum: libnotify-0.8.8.news: No such file or directory
+libnotify-0.8.8.news: FAILED open or read
+sha256sum: WARNING: 1 listed file could not be read
+
+FAIL: checksum verification failed
+Log: /home/sable/Desktop/libnotify-0.8.8-build-20260718-142728.txt

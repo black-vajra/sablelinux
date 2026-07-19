@@ -1,0 +1,72 @@
+=== INSTALL BOINC 8.2.11 ON SABLELINUX ===
+2026-07-18T13:31:04-04:00
+Host:   vulfen
+Stage:  /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11
+Target: /opt/boinc/8.2.11
+Data:   /var/lib/boinc-client
+
+=== VERIFY STAGED INSTALLATION ===
+Staged version: 8.2.11 x86_64-pc-linux-gnu
+PASS: staged version is 8.2.11
+
+=== VERIFY TARGET IS UNUSED ===
+PASS: installation target is unused
+
+=== SELECT NON-LOGIN SHELL ===
+Service shell: /usr/sbin/nologin
+
+=== CREATE BOINC GROUP ===
+boinc:x:997:
+
+=== CREATE BOINC SERVICE ACCOUNT ===
+boinc:x:999:997:BOINC client service:/var/lib/boinc-client:/usr/sbin/nologin
+
+=== INSTALL VERSIONED PROGRAM TREE ===
+
+=== CREATE PERSISTENT DATA DIRECTORY ===
+
+=== RECORD BUILD PROVENANCE ===
+
+=== VERIFY INSTALLED EXECUTABLES ===
+--- /opt/boinc/current/bin/boinc
+/opt/boinc/current/bin/boinc: ELF 64-bit LSB pie executable, x86-64, version 1 (GNU/Linux), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 5.4.0, with debug_info, not stripped
+--- /opt/boinc/current/bin/boinc_client
+/opt/boinc/current/bin/boinc_client: ELF 64-bit LSB pie executable, x86-64, version 1 (GNU/Linux), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 5.4.0, with debug_info, not stripped
+--- /opt/boinc/current/bin/boinccmd
+/opt/boinc/current/bin/boinccmd: ELF 64-bit LSB pie executable, x86-64, version 1 (GNU/Linux), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 5.4.0, with debug_info, not stripped
+
+=== VERSION TEST ===
+8.2.11 x86_64-pc-linux-gnu
+
+=== RUNTIME LINKAGE TEST ===
+--- /opt/boinc/current/bin/boinc
+PASS: no unresolved libraries
+--- /opt/boinc/current/bin/boinc_client
+PASS: no unresolved libraries
+--- /opt/boinc/current/bin/boinccmd
+PASS: no unresolved libraries
+
+=== OWNERSHIP AND LAYOUT ===
+drwxr-xr-x 3 root  root  4096 Jul 18 13:31 /opt/boinc
+drwxr-xr-x 5 root  root  4096 Jul 18 13:31 /opt/boinc/8.2.11
+lrwxrwxrwx 1 root  root     6 Jul 18 13:31 /opt/boinc/current -> 8.2.11
+drwxr-x--- 2 boinc boinc 4096 Jul 18 13:31 /var/lib/boinc-client
+
+-rwxr-xr-x root:root 3369536 /opt/boinc/8.2.11/bin/boinccmd
+-rwxr-xr-x root:root 3839656 /opt/boinc/8.2.11/bin/boinc
+-rwxr-xr-x root:root 3839656 /opt/boinc/8.2.11/bin/boinc_client
+
+=== SHA256 ===
+d6c94057aac3b82ff05068e10e55603e8ad4b24f7de73f67478012076f2bc566  /opt/boinc/8.2.11/bin/boinc_client
+78fccbb2b4f6d95d207c9cedc403a493c381d42c55167a6f6efc79d672b8971e  /opt/boinc/8.2.11/bin/boinccmd
+
+=== PROCESS CHECK ===
+PASS: BOINC is installed but not running
+
+=== INSTALLATION PASS ===
+BOINC 8.2.11 is installed under /opt/boinc/8.2.11
+Current link: /opt/boinc/current
+Runtime data: /var/lib/boinc-client
+No service has been created or enabled.
+No project has been attached.
+Log: /home/sable/Desktop/boinc-8.2.11-system-install-20260718-133104.txt

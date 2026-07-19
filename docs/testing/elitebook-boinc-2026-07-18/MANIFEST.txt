@@ -1,0 +1,78 @@
+SABLELINUX ELITEBOOK BOINC VALIDATION EVIDENCE
+
+COLLECTED_AT=2026-07-19T12:27:29-04:00
+HOST=vulfen
+OS=Sable Linux 1.0
+KERNEL=6.16.1-sable-compat2
+ROLE=secondary-host-validation
+AUTHORITATIVE_RELEASE_INPUT=false
+
+=== HARDWARE ===
+Architecture:                            x86_64
+CPU(s):                                  16
+Model name:                              AMD Ryzen 7 PRO 5875U with Radeon Graphics
+               total        used        free      shared  buff/cache   available
+Mem:            14Gi       527Mi        14Gi       9.9Mi       309Mi        14Gi
+Swap:             0B          0B          0B
+
+=== SERVICE POLICY ===
+SERVICE_ACTIVE=inactive
+SERVICE_ENABLED=disabled
+START_POLICY=manual-only
+CPU_ALLOCATION_PERCENT=50
+RUN_WHILE_USER_ACTIVE=true
+RUN_ON_BATTERY=false
+
+=== COMPONENT VERSIONS ===
+BOINC=8.2.11 x86_64-pc-linux-gnu
+WXWIDGETS=3.2.11
+WX_CONFIGURATION=gtk3-unicode-3.2
+LIBNOTIFY=0.8.8
+
+=== BOINC UPSTREAM SOURCE ===
+COMMIT=5511380b8980935c25c3ea41df3980445419e59e
+SOURCE_DIRTY=false
+
+=== BOINC EXECUTABLE HASHES ===
+d6c94057aac3b82ff05068e10e55603e8ad4b24f7de73f67478012076f2bc566  /opt/boinc/8.2.11/bin/boinc
+d6c94057aac3b82ff05068e10e55603e8ad4b24f7de73f67478012076f2bc566  /opt/boinc/8.2.11/bin/boinc_client
+78fccbb2b4f6d95d207c9cedc403a493c381d42c55167a6f6efc79d672b8971e  /opt/boinc/8.2.11/bin/boinccmd
+7cbd7fe89ae80f14993029f6a806a80813091d60412d7bddcfc51445d716f666  /opt/boinc/8.2.11/bin/boincmgr
+
+=== LIBNOTIFY HASHES ===
+937aef133503e867500db6b403e90f691577c4d1bd3069d1f601c3de4828cb51  /opt/libnotify/0.8.8/lib64/libnotify.so.4.0.0
+4b3af8520665cb814ba7110d6a02a409d570bb4a12c90ca02ae865c801860733  /opt/libnotify/0.8.8/bin/notify-send
+
+=== WXWIDGETS LIBRARY HASHES ===
+c3c94ab4886a1fa133f9dc07df9193016c35fe7d9891655380d84f39042e9874  /opt/wxwidgets/3.2.11/lib/libwx_baseu-3.2.so.0.4.3
+639686074f56e9fc35dc76a3bbc5274ec00076a4a48ab22d26829ddaf4e3fa7f  /opt/wxwidgets/3.2.11/lib/libwx_baseu_net-3.2.so.0.4.3
+1ecbe8d4fc3a82d4a5f4fa335a5ee3a9d014c081248225fac41b6fc24338586b  /opt/wxwidgets/3.2.11/lib/libwx_baseu_xml-3.2.so.0.4.3
+e53c2f336633584bd271f6f2f7b977db166904c107b9e84eab4aebabf13d995c  /opt/wxwidgets/3.2.11/lib/libwx_gtk3u_adv-3.2.so.0.4.3
+c4552b3692ebd5d0e63cd545b49d825da4be34990636569cb187cb333ab49fe4  /opt/wxwidgets/3.2.11/lib/libwx_gtk3u_aui-3.2.so.0.4.3
+316c322cd10f52b3fd6a276a01ae976804c2d80ebd5c93aea213bae9d3ea7c53  /opt/wxwidgets/3.2.11/lib/libwx_gtk3u_core-3.2.so.0.4.3
+00187353a4186bf90e8989d86ccd67c4f485917f4aaecb165e2cc19b2ff48a4d  /opt/wxwidgets/3.2.11/lib/libwx_gtk3u_gl-3.2.so.0.4.3
+8e69da1d10111feddbca691b58243099c0fdf5b6a896bcd5a373208c089e4777  /opt/wxwidgets/3.2.11/lib/libwx_gtk3u_html-3.2.so.0.4.3
+420b9f5751e5d85464bed5bb1e4a1e8b69393e79d6710ab4b2ad7b618df95a32  /opt/wxwidgets/3.2.11/lib/libwx_gtk3u_propgrid-3.2.so.0.4.3
+d7593a85747df5760d16a4ef79778a15599c1975392f94bcc6f6483ed794062a  /opt/wxwidgets/3.2.11/lib/libwx_gtk3u_qa-3.2.so.0.4.3
+1f7aa6193bf8fa8fc53783a1f5b6a376cbf4f54d876c6cbcd3a5285a518fb7e9  /opt/wxwidgets/3.2.11/lib/libwx_gtk3u_ribbon-3.2.so.0.4.3
+eddde861c0f14092848830a77ae5efa95586cede5a2fc60279c519eaed021209  /opt/wxwidgets/3.2.11/lib/libwx_gtk3u_richtext-3.2.so.0.4.3
+b83c72fee5133f119355459969f34d3ed8c83ff02df03fd8401d592e8b38c694  /opt/wxwidgets/3.2.11/lib/libwx_gtk3u_stc-3.2.so.0.4.3
+25416dc0b5b6161cef82601e8ca761b77fe6a208666200f9047259f2714a0f50  /opt/wxwidgets/3.2.11/lib/libwx_gtk3u_xrc-3.2.so.0.4.3
+
+=== ACCOUNT STATE ===
+uid=1000(sable) gid=1000(sable) groups=1000(sable),11(audio),12(video),24(input),61(kvm),97(wheel),44(render),997(boinc)
+boinc:x:999:997:BOINC client service:/var/lib/boinc-client:/usr/sbin/nologin
+boinc:x:997:sable
+
+=== ATTACHED PROJECT DIRECTORIES ===
+asteroidsathome.net_boinc
+milkyway.cs.rpi.edu_milkyway
+
+=== SECURITY EXCLUSIONS ===
+GUI_RPC_AUTH_EXCLUDED=true
+ACCOUNT_KEYS_EXCLUDED=true
+CLIENT_STATE_EXCLUDED=true
+PROJECT_DATA_EXCLUDED=true
+BOINC_BINARIES_EXCLUDED=true
+WXWIDGETS_BINARIES_EXCLUDED=true
+LIBNOTIFY_BINARIES_EXCLUDED=true

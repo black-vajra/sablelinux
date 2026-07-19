@@ -1,0 +1,122 @@
+=== BOINC SYSTEM HEALTH ===
+2026-07-18T15:31:08-04:00
+Host: vulfen
+
+=== BOINC STATE ===
+active
+disabled
+
+=== LOAD AVERAGE ===
+ 15:31:08 up 13 min,  1 user,  load average: 9.37, 8.39, 4.83
+
+=== CPU ACTIVITY SAMPLE ===
+procs -----------memory---------- ---swap-- -----io---- -system-- -------cpu-------
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st gu
+ 9  0      0 11582392 31772 1992580  0    0  2321   162 13792   4 43  1 57  0  0  0
+ 8  0      0 11584460 31772 1993064  0    0     0   380 12036 4801 50 0 50  0  0  0
+ 8  0      0 11586860 31796 1993072  0    0     0    72 12070 4717 50 0 49  0  0  0
+ 9  0      0 11586824 31796 1993076  0    0     0     8 11922 4642 50 0 50  0  0  0
+ 8  0      0 11584688 31804 1993080  0    0     0    32 12098 4765 50 0 50  0  0  0
+
+=== MEMORY AND SWAP ===
+               total        used        free      shared  buff/cache   available
+Mem:            14Gi       2.2Gi        11Gi        48Mi       1.9Gi        12Gi
+Swap:             0B          0B          0B
+
+
+=== TEMPERATURES AND FANS ===
+The sensors command is not installed.
+
+acpitz                   83.0°C
+acpitz                   25.0°C
+acpitz                   40.0°C
+acpitz                   49.0°C
+acpitz                   30.0°C
+
+=== CPU FREQUENCY ===
+Logical CPUs sampled: 16
+Minimum clock:       2371 MHz
+Average clock:       2391 MHz
+Maximum clock:       2397 MHz
+
+=== HIGHEST CPU PROCESSES ===
+    PID    PPID  NI PSR %CPU %MEM   RSS     ELAPSED COMMAND         COMMAND
+   5199    1373   -  14 99.2  0.0  8764       11:25 period_search_1 ../../projects/asteroidsathome.net_boinc/period_search_10221_x86_64-pc-linux-gnu
+   5203    1373   -   5 99.2  0.0  8764       11:25 period_search_1 ../../projects/asteroidsathome.net_boinc/period_search_10221_x86_64-pc-linux-gnu
+   5200    1373   -   8 99.2  0.0  8668       11:25 period_search_1 ../../projects/asteroidsathome.net_boinc/period_search_10221_x86_64-pc-linux-gnu
+   5205    1373   -   1 99.2  0.0  8704       11:25 period_search_1 ../../projects/asteroidsathome.net_boinc/period_search_10221_x86_64-pc-linux-gnu
+   5201    1373   -  13 99.2  0.0  8780       11:25 period_search_1 ../../projects/asteroidsathome.net_boinc/period_search_10221_x86_64-pc-linux-gnu
+   5198    1373   -  10 99.2  0.0  8656       11:25 period_search_1 ../../projects/asteroidsathome.net_boinc/period_search_10221_x86_64-pc-linux-gnu
+   5202    1373   -   7 99.2  0.0  8744       11:25 period_search_1 ../../projects/asteroidsathome.net_boinc/period_search_10221_x86_64-pc-linux-gnu
+   5204    1373   -   3 99.2  0.0  8684       11:25 period_search_1 ../../projects/asteroidsathome.net_boinc/period_search_10221_x86_64-pc-linux-gnu
+   1317    1201   0   7 13.3  4.4 704408      11:45 Isolated Web Co /opt/firefox/firefox-bin -contentproc -isForBrowser -prefsHandle 0:44311 -prefMapHandle 1:286657 -jsInitHandle 2:156120 -parentBuildID 20260713164047 -sandboxReporter 3 -ipcHandle 4 -initialChannelId {b705c303-f9ff-4216-a84a-a9a63dbe0625} -parentPid 982 -crashReporter 5 -crashHelperPid 1110 -crashHelper 6 -greomni /opt/firefox/omni.ja -appomni /opt/firefox/browser/omni.ja -appDir /opt/firefox/browser 6 tab
+    982       1   0  10 10.5  3.3 518840      11:52 firefox-bin     firefox
+   1516    1201   0   4  5.9  2.7 435828      11:44 Isolated Web Co /opt/firefox/firefox-bin -contentproc -isForBrowser -prefsHandle 0:44404 -prefMapHandle 1:286657 -jsInitHandle 2:156120 -parentBuildID 20260713164047 -sandboxReporter 3 -ipcHandle 4 -initialChannelId {8a9a8865-6bfa-4346-96fa-ea95fab42ce0} -parentPid 982 -crashReporter 5 -crashHelperPid 1110 -crashHelper 6 -greomni /opt/firefox/omni.ja -appomni /opt/firefox/browser/omni.ja -appDir /opt/firefox/browser 8 tab
+   4551    1201   0  15  4.5  2.6 413256      11:29 Isolated Web Co /opt/firefox/firefox-bin -contentproc -isForBrowser -prefsHandle 0:44404 -prefMapHandle 1:286657 -jsInitHandle 2:156120 -parentBuildID 20260713164047 -sandboxReporter 3 -ipcHandle 4 -initialChannelId {d4148a08-a95e-4ada-80a4-9a64ec23bc11} -parentPid 982 -crashReporter 5 -crashHelperPid 1110 -crashHelper 6 -greomni /opt/firefox/omni.ja -appomni /opt/firefox/browser/omni.ja -appDir /opt/firefox/browser 12 tab
+    771     737   0   1  1.5  0.6 103272      13:39 sway            sway
+   1378    1201   0   4  1.1  0.2 46396       11:44 Utility Process /opt/firefox/firefox-bin -contentproc -parentBuildID 20260713164047 -sandboxingKind 0 -prefsHandle 0:47660 -prefMapHandle 1:286657 -sandboxReporter 2 -ipcHandle 3 -initialChannelId {ea926df9-5561-4baf-a151-e0dbbd3231ad} -parentPid 982 -crashReporter 4 -crashHelperPid 1110 -crashHelper 5 -appDir /opt/firefox/browser 7 utility
+   1235    1201   0  15  1.1  0.4 64712       11:45 RDD Process     /opt/firefox/firefox-bin -contentproc -parentBuildID 20260713164047 -prefsHandle 0:35092 -prefMapHandle 1:286657 -sandboxReporter 2 -ipcHandle 3 -initialChannelId {cd9b5a12-33d8-4d46-a408-7d92b99cd8aa} -parentPid 982 -crashReporter 4 -crashHelperPid 1110 -crashHelper 5 -appDir /opt/firefox/browser 4 rdd
+   5566     863   0   2  1.0  0.4 66344       09:39 boincmgr        boincmgr
+    604       2   -   6  0.2  0.0     0       13:46 irq/109-ELAN077 [irq/109-ELAN077E:00]
+    769     758   0  11  0.2  0.1 20220       13:39 pipewire-pulse  /usr/bin/pipewire-pulse
+   1227    1201   0   2  0.1  0.9 151396      11:45 Privileged Cont /opt/firefox/firefox-bin -contentproc -isForBrowser -prefsHandle 0:35092 -prefMapHandle 1:286657 -jsInitHandle 2:156120 -parentBuildID 20260713164047 -sandboxReporter 3 -ipcHandle 4 -initialChannelId {6d663c32-282f-4e54-aa10-33f0b1f9cf17} -parentPid 982 -crashReporter 5 -crashHelperPid 1110 -crashHelper 6 -greomni /opt/firefox/omni.ja -appomni /opt/firefox/browser/omni.ja -appDir /opt/firefox/browser 3 tab
+    768     758   0  13  0.1  0.0 14032       13:39 pipewire        /usr/bin/pipewire
+   1373       1   0   7  0.1  0.1 16872       11:44 boinc           /opt/boinc/current/bin/boinc --dir /var/lib/boinc-client
+     12       2   0   9  0.1  0.0     0       13:48 kworker/u64:0-e [kworker/u64:0-events_unbound]
+    100       2   0   9  0.1  0.0     0       13:48 kworker/u64:1-c [kworker/u64:1-comp_1.2.0]
+    815       1   0  13  0.1  0.3 53756       13:39 waybar          waybar -b bar-0
+
+=== BOINC SERVICE PROCESSES ===
+    PID    PPID  NI PSR %CPU %MEM   RSS     ELAPSED COMMAND         COMMAND
+   5199    1373   -  14 99.2  0.0  8764       11:25 period_search_1 ../../projects/asteroidsathome.net_boinc/period_search_10221_x86_64-pc-linux-gnu
+   5203    1373   -   3 99.2  0.0  8764       11:25 period_search_1 ../../projects/asteroidsathome.net_boinc/period_search_10221_x86_64-pc-linux-gnu
+   5200    1373   -   5 99.2  0.0  8668       11:25 period_search_1 ../../projects/asteroidsathome.net_boinc/period_search_10221_x86_64-pc-linux-gnu
+   5205    1373   -   0 99.2  0.0  8704       11:25 period_search_1 ../../projects/asteroidsathome.net_boinc/period_search_10221_x86_64-pc-linux-gnu
+   5201    1373   -   6 99.2  0.0  8780       11:25 period_search_1 ../../projects/asteroidsathome.net_boinc/period_search_10221_x86_64-pc-linux-gnu
+   5202    1373   -   9 99.2  0.0  8744       11:25 period_search_1 ../../projects/asteroidsathome.net_boinc/period_search_10221_x86_64-pc-linux-gnu
+   5198    1373   -  10 99.2  0.0  8656       11:25 period_search_1 ../../projects/asteroidsathome.net_boinc/period_search_10221_x86_64-pc-linux-gnu
+   5204    1373   -  13 99.2  0.0  8684       11:25 period_search_1 ../../projects/asteroidsathome.net_boinc/period_search_10221_x86_64-pc-linux-gnu
+   1373       1   0   7  0.1  0.1 16872       11:44 boinc           /opt/boinc/current/bin/boinc --dir /var/lib/boinc-client
+
+=== ACTIVE BOINC TASKS ===
+Project         % Done  Elapsed   Deadline              Status         Procs   WU name                                                                    
+Asteroids@home  99.96%  01:17:14  29-Jul-2026 01:50:24  executing      1 CPU   ps_260712_input_220845_1                                                   
+Asteroids@home  44.91%  00:22:33  29-Jul-2026 01:55:46  executing      1 CPU   ps_260712_input_220878_36                                                  
+Asteroids@home  42.29%  00:21:33  29-Jul-2026 01:55:46  executing      1 CPU   ps_260712_input_220878_12                                                  
+Asteroids@home  42.10%  00:21:33  29-Jul-2026 01:55:46  executing      1 CPU   ps_260712_input_220878_10                                                  
+Asteroids@home  ---     ---       29-Jul-2026 01:55:46  uninitialized  1 CPU   ps_260712_input_220878_15                                                  
+Asteroids@home  49.01%  00:25:11  29-Jul-2026 01:55:46  executing      1 CPU   ps_260712_input_220878_32                                                  
+Asteroids@home  ---     ---       29-Jul-2026 01:55:46  uninitialized  1 CPU   ps_260712_input_220878_16                                                  
+Asteroids@home  ---     ---       29-Jul-2026 01:55:46  uninitialized  1 CPU   ps_260712_input_220878_17                                                  
+Asteroids@home  ---     ---       29-Jul-2026 01:55:46  uninitialized  1 CPU   ps_260712_input_220878_13                                                  
+Asteroids@home  ---     ---       29-Jul-2026 01:55:46  uninitialized  1 CPU   ps_260712_input_220878_34                                                  
+Asteroids@home  40.75%  00:24:11  29-Jul-2026 01:55:46  executing      1 CPU   ps_260712_input_220861_4                                                   
+Asteroids@home  ---     ---       29-Jul-2026 01:55:46  uninitialized  1 CPU   ps_260712_input_220878_35                                                  
+Asteroids@home  ---     ---       29-Jul-2026 01:55:46  uninitialized  1 CPU   ps_260712_input_220878_2                                                   
+Asteroids@home  48.38%  00:25:11  29-Jul-2026 01:55:46  executing      1 CPU   ps_260712_input_220878_31                                                  
+Asteroids@home  ---     ---       29-Jul-2026 01:55:46  uninitialized  1 CPU   ps_260712_input_220878_19                                                  
+Asteroids@home  ---     ---       29-Jul-2026 01:55:46  uninitialized  1 CPU   ps_260712_input_220878_1                                                   
+Asteroids@home  ---     ---       29-Jul-2026 01:55:46  uninitialized  1 CPU   ps_260712_input_220878_14                                                  
+Asteroids@home  ---     ---       29-Jul-2026 01:55:46  uninitialized  1 CPU   ps_260712_input_220878_11                                                  
+Asteroids@home  ---     ---       29-Jul-2026 01:55:46  uninitialized  1 CPU   ps_260712_input_220878_18                                                  
+Asteroids@home  ---     ---       29-Jul-2026 01:55:46  uninitialized  1 CPU   ps_260712_input_220878_33                                                  
+Asteroids@home  48.62%  00:25:11  29-Jul-2026 01:55:46  executing      1 CPU   ps_260712_input_220878_29                                                  
+Asteroids@home  ---     ---       29-Jul-2026 02:50:19  uninitialized  1 CPU   ps_260712_input_220943_6                                                   
+Asteroids@home  ---     ---       29-Jul-2026 02:50:37  uninitialized  1 CPU   ps_260712_input_221137_3                                                   
+Asteroids@home  ---     ---       29-Jul-2026 02:51:46  uninitialized  1 CPU   ps_260712_input_221137_6                                                   
+Milkyway@home   ---     ---       30-Jul-2026 15:23:02  uninitialized  8 CPUs  de_nbody_v196_OCS_north_core_fitting_40k_bodies__data__1_1784309391_11070  
+
+=== BOINC DATA STORAGE ===
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme0n1p3  144G   23G  114G  17% /
+/dev/nvme0n1p3  144G   23G  114G  17% /
+
+13M	/var/lib/boinc-client
+
+=== BATTERY AND AC POWER ===
+AC online: 1
+BAT0:
+  status:   Not charging
+  capacity: 99
+
+=== END REPORT ===

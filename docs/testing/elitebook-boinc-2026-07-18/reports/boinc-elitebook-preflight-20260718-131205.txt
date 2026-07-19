@@ -1,0 +1,182 @@
+=== SABLELINUX ELITEBOOK BOINC PREFLIGHT ===
+2026-07-18T13:12:05-04:00
+
+=== SYSTEM IDENTITY ===
+Failed to query product UUID, ignoring: Access denied
+Failed to query hardware serial, ignoring: Access denied
+ Static hostname: vulfen
+       Icon name: computer-laptop
+         Chassis: laptop 💻
+      Machine ID: 67f6b96695fa474cace66ef0f7f8fbdd
+         Boot ID: 09d3c7bee5cc4ab8a26732f2fbc42021
+Operating System: Sable Linux 1.0
+          Kernel: Linux 6.16.1-sable-compat2
+    Architecture: x86-64
+ Hardware Vendor: HP
+  Hardware Model: HP EliteBook 645 14 inch G9 Notebook PC
+Firmware Version: U77 Ver. 01.20.00
+   Firmware Date: Tue 2025-08-19
+    Firmware Age: 10month 4w 1d
+
+Linux vulfen 6.16.1-sable-compat2 #13 SMP PREEMPT_DYNAMIC Mon Jun  1 22:17:27 EDT 2026 x86_64 GNU/Linux
+
+uid=1000(sable) gid=1000(sable) groups=1000(sable),11(audio),12(video),24(input),44(render),61(kvm),97(wheel)
+
+=== CPU AND MEMORY ===
+16
+Architecture:                            x86_64
+CPU(s):                                  16
+Model name:                              AMD Ryzen 7 PRO 5875U with Radeon Graphics
+Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba ibrs ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic v_vmsave_vmload vgif v_spec_ctrl umip pku ospke vaes vpclmulqdq rdpid overflow_recov succor smca fsrm debug_swap
+Virtualization:                          AMD-V
+               total        used        free      shared  buff/cache   available
+Mem:            14Gi       1.9Gi        11Gi        43Mi       1.6Gi        13Gi
+Swap:             0B          0B          0B
+
+=== STORAGE ===
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme0n1p3  144G   22G  115G  16% /
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme0n1p3  144G   22G  115G  16% /
+
+=== EXISTING BOINC COMMANDS ===
+boinc           not found
+boinccmd        not found
+boincmgr        not found
+boinc_client    not found
+
+=== EXISTING BOINC FILES ===
+MISSING: /etc/boinc-client
+MISSING: /etc/boinc
+MISSING: /var/lib/boinc
+MISSING: /var/lib/boinc-client
+MISSING: /home/sable/.BOINC
+
+=== BOINC USER AND GROUP ===
+No boinc user
+No boinc group
+
+=== SYSTEMD BOINC UNITS ===
+No BOINC systemd unit installed
+
+=== BUILD TOOLCHAIN ===
+gcc             gcc (GCC) 15.2.0
+g++             g++ (GCC) 15.2.0
+make            GNU Make 4.4.1
+cmake           cmake version 3.31.6
+ninja           1.13.1
+git             git version 2.48.1
+pkg-config      2.5.1
+python3         Python 3.13.7
+curl            curl 8.15.0 (x86_64-pc-linux-gnu) libcurl/8.15.0 OpenSSL/3.5.2 zlib/1.3.1 zstd/1.5.7 libpsl/0.21.5
+wget            GNU Wget 1.21.4 built on linux-gnu.
+tar             tar (GNU tar) 1.35
+
+=== IMPORTANT LIBRARIES ===
+	libcrypto.so.3 (libc6,x86-64) => /usr/lib/libcrypto.so.3
+	libcrypto.so (libc6,x86-64) => /usr/lib/libcrypto.so
+	libcurl.so.4 (libc6,x86-64) => /usr/lib/libcurl.so.4
+	libcurl.so (libc6,x86-64) => /usr/lib/libcurl.so
+	libexpat.so.1 (libc6,x86-64) => /usr/lib/libexpat.so.1
+	libexpat.so (libc6,x86-64) => /usr/lib/libexpat.so
+	libjpeg.so.8.2.2 (libc6,x86-64) => /usr/lib64/libjpeg.so.8.2.2
+	libjpeg.so.8.2.2 (libc6,x86-64) => /usr/lib/libjpeg.so.8.2.2
+	libjpeg.so (libc6,x86-64) => /usr/lib64/libjpeg.so
+	libjpeg.so (libc6,x86-64) => /usr/lib/libjpeg.so
+	libpng16.so.16 (libc6,x86-64) => /usr/lib/libpng16.so.16
+	libpng16.so (libc6,x86-64) => /usr/lib/libpng16.so
+	libpthread.so.0 (libc6,x86-64) => /usr/lib/libpthread.so.0
+	libsqlite3.so.0 (libc6,x86-64) => /usr/lib/libsqlite3.so.0
+	libsqlite3.so (libc6,x86-64) => /usr/lib/libsqlite3.so
+	libssl.so.3 (libc6,x86-64) => /usr/lib/libssl.so.3
+	libssl.so (libc6,x86-64) => /usr/lib/libssl.so
+	libstdc++.so.6 (libc6,x86-64) => /usr/lib64/libstdc++.so.6
+	libstdc++.so.6 (libc6,x86-64) => /usr/lib/libstdc++.so.6
+	libstdc++.so (libc6,x86-64) => /usr/lib64/libstdc++.so
+	libstdc++.so (libc6,x86-64) => /usr/lib/libstdc++.so
+	libudev.so.1 (libc6,x86-64) => /usr/lib/libudev.so.1
+	libudev.so (libc6,x86-64) => /usr/lib/libudev.so
+	libX11.so.6 (libc6,x86-64) => /usr/lib/libX11.so.6
+	libX11.so (libc6,x86-64) => /usr/lib/libX11.so
+	libX11-xcb.so.1 (libc6,x86-64) => /usr/lib/libX11-xcb.so.1
+	libX11-xcb.so (libc6,x86-64) => /usr/lib/libX11-xcb.so
+	libxcb-composite.so.0 (libc6,x86-64) => /usr/lib/libxcb-composite.so.0
+	libxcb-composite.so (libc6,x86-64) => /usr/lib/libxcb-composite.so
+	libxcb-damage.so.0 (libc6,x86-64) => /usr/lib/libxcb-damage.so.0
+	libxcb-damage.so (libc6,x86-64) => /usr/lib/libxcb-damage.so
+	libxcb-dbe.so.0 (libc6,x86-64) => /usr/lib/libxcb-dbe.so.0
+	libxcb-dbe.so (libc6,x86-64) => /usr/lib/libxcb-dbe.so
+	libxcb-dpms.so.0 (libc6,x86-64) => /usr/lib/libxcb-dpms.so.0
+	libxcb-dpms.so (libc6,x86-64) => /usr/lib/libxcb-dpms.so
+	libxcb-dri2.so.0 (libc6,x86-64) => /usr/lib/libxcb-dri2.so.0
+	libxcb-dri2.so (libc6,x86-64) => /usr/lib/libxcb-dri2.so
+	libxcb-dri3.so.0 (libc6,x86-64) => /usr/lib/libxcb-dri3.so.0
+	libxcb-dri3.so (libc6,x86-64) => /usr/lib/libxcb-dri3.so
+	libxcb-ewmh.so.2 (libc6,x86-64) => /usr/lib/libxcb-ewmh.so.2
+	libxcb-ewmh.so (libc6,x86-64) => /usr/lib/libxcb-ewmh.so
+	libxcb-glx.so.0 (libc6,x86-64) => /usr/lib/libxcb-glx.so.0
+	libxcb-glx.so (libc6,x86-64) => /usr/lib/libxcb-glx.so
+	libxcb-icccm.so.4 (libc6,x86-64) => /usr/lib/libxcb-icccm.so.4
+	libxcb-icccm.so (libc6,x86-64) => /usr/lib/libxcb-icccm.so
+	libxcb-present.so.0 (libc6,x86-64) => /usr/lib/libxcb-present.so.0
+	libxcb-present.so (libc6,x86-64) => /usr/lib/libxcb-present.so
+	libxcb-randr.so.0 (libc6,x86-64) => /usr/lib/libxcb-randr.so.0
+	libxcb-randr.so (libc6,x86-64) => /usr/lib/libxcb-randr.so
+	libxcb-record.so.0 (libc6,x86-64) => /usr/lib/libxcb-record.so.0
+	libxcb-record.so (libc6,x86-64) => /usr/lib/libxcb-record.so
+	libxcb-render.so.0 (libc6,x86-64) => /usr/lib/libxcb-render.so.0
+	libxcb-render.so (libc6,x86-64) => /usr/lib/libxcb-render.so
+	libxcb-res.so.0 (libc6,x86-64) => /usr/lib/libxcb-res.so.0
+	libxcb-res.so (libc6,x86-64) => /usr/lib/libxcb-res.so
+	libxcb-screensaver.so.0 (libc6,x86-64) => /usr/lib/libxcb-screensaver.so.0
+	libxcb-screensaver.so (libc6,x86-64) => /usr/lib/libxcb-screensaver.so
+	libxcb-shape.so.0 (libc6,x86-64) => /usr/lib/libxcb-shape.so.0
+	libxcb-shape.so (libc6,x86-64) => /usr/lib/libxcb-shape.so
+	libxcb-shm.so.0 (libc6,x86-64) => /usr/lib/libxcb-shm.so.0
+	libxcb-shm.so (libc6,x86-64) => /usr/lib/libxcb-shm.so
+	libxcb.so.1 (libc6,x86-64) => /usr/lib/libxcb.so.1
+	libxcb.so (libc6,x86-64) => /usr/lib/libxcb.so
+	libxcb-sync.so.1 (libc6,x86-64) => /usr/lib/libxcb-sync.so.1
+	libxcb-sync.so (libc6,x86-64) => /usr/lib/libxcb-sync.so
+	libxcb-xf86dri.so.0 (libc6,x86-64) => /usr/lib/libxcb-xf86dri.so.0
+	libxcb-xf86dri.so (libc6,x86-64) => /usr/lib/libxcb-xf86dri.so
+	libxcb-xfixes.so.0 (libc6,x86-64) => /usr/lib/libxcb-xfixes.so.0
+	libxcb-xfixes.so (libc6,x86-64) => /usr/lib/libxcb-xfixes.so
+	libxcb-xinerama.so.0 (libc6,x86-64) => /usr/lib/libxcb-xinerama.so.0
+	libxcb-xinerama.so (libc6,x86-64) => /usr/lib/libxcb-xinerama.so
+	libxcb-xinput.so.0 (libc6,x86-64) => /usr/lib/libxcb-xinput.so.0
+	libxcb-xinput.so (libc6,x86-64) => /usr/lib/libxcb-xinput.so
+	libxcb-xkb.so.1 (libc6,x86-64) => /usr/lib/libxcb-xkb.so.1
+	libxcb-xkb.so (libc6,x86-64) => /usr/lib/libxcb-xkb.so
+	libxcb-xtest.so.0 (libc6,x86-64) => /usr/lib/libxcb-xtest.so.0
+	libxcb-xtest.so (libc6,x86-64) => /usr/lib/libxcb-xtest.so
+	libxcb-xvmc.so.0 (libc6,x86-64) => /usr/lib/libxcb-xvmc.so.0
+	libxcb-xvmc.so (libc6,x86-64) => /usr/lib/libxcb-xvmc.so
+	libxcb-xv.so.0 (libc6,x86-64) => /usr/lib/libxcb-xv.so.0
+	libxcb-xv.so (libc6,x86-64) => /usr/lib/libxcb-xv.so
+	libz.so.1 (libc6,x86-64) => /usr/lib/libz.so.1
+	libz.so (libc6,x86-64) => /usr/lib/libz.so
+	libzstd.so.1 (libc6,x86-64) => /usr/lib/libzstd.so.1
+	libzstd.so (libc6,x86-64) => /usr/lib/libzstd.so
+
+=== GPU / DISPLAY HARDWARE ===
+
+=== NETWORK AND DNS ===
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+enp1s0f1         DOWN           
+sit0@NONE        DOWN           
+wlp2s0           UP             10.102.60.92/8 metric 2048 fe80::3203:c8ff:fea9:db75/64 
+wg0              UNKNOWN        10.6.0.5/24 
+
+default via 10.128.128.128 dev wlp2s0 proto dhcp src 10.102.60.92 metric 2048 
+10.0.0.0/8 dev wlp2s0 proto kernel scope link src 10.102.60.92 metric 2048 
+10.6.0.0/24 dev wg0 proto kernel scope link src 10.6.0.5 
+10.128.128.128 dev wlp2s0 proto dhcp scope link src 10.102.60.92 metric 2048 
+
+208.68.240.115  STREAM boinc.berkeley.edu
+208.68.240.115  DGRAM  
+208.68.240.115  RAW    
+
+=== POSSIBLE BOINC SOURCE TREES ===
+
+=== END PREFLIGHT ===

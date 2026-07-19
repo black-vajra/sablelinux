@@ -1,0 +1,10 @@
+=== BOINC CLIENT-ONLY BUILD ===
+2026-07-18T13:20:06-04:00
+Host: vulfen
+Version: 8.2.11
+Branch: client_release/8.2/8.2.11
+Source: /home/sable/src/boinc-8.2.11
+
+=== SAFETY CHECK ===
+STOP: source path already exists: /home/sable/src/boinc-8.2.11
+Nothing was removed or overwritten.

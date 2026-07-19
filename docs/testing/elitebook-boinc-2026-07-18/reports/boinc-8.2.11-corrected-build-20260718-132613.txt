@@ -1,0 +1,1349 @@
+=== CORRECTED BOINC 8.2.11 BUILD ===
+2026-07-18T13:26:13-04:00
+Source: /home/sable/src/boinc-8.2.11
+
+=== VERIFY SOURCE ===
+Commit: 5511380b8980935c25c3ea41df3980445419e59e
+27:AC_INIT(BOINC, 8.2.11)
+PASS: tracked source is unchanged
+
+=== REMOVE GENERATED BUILD FILES ===
+Removing Makefile
+Removing Makefile.in
+Removing aclocal.m4
+Removing api/.deps/
+Removing api/Makefile
+Removing api/Makefile.in
+Removing api/libboinc_api.pc
+Removing api/libboinc_graphics2.pc
+Removing api/libboinc_opencl.pc
+Removing apps/.deps/
+Removing apps/Makefile
+Removing apps/Makefile.in
+Removing autom4te.cache/
+Removing client/.deps/
+Removing client/.libs/
+Removing client/Makefile
+Removing client/Makefile.in
+Removing client/boinc_client-acct_mgr.o
+Removing client/boinc_client-acct_setup.o
+Removing client/boinc_client-app.o
+Removing client/boinc_client-app_config.o
+Removing client/boinc_client-app_control.o
+Removing client/boinc_client-app_start.o
+Removing client/boinc_client-app_test.o
+Removing client/boinc_client-async_file.o
+Removing client/boinc_client-check_state.o
+Removing client/boinc_client-client_msgs.o
+Removing client/boinc_client-client_state.o
+Removing client/boinc_client-client_types.o
+Removing client/boinc_client-coproc_sched.o
+Removing client/boinc_client-cpu_sched.o
+Removing client/boinc_client-cs_account.o
+Removing client/boinc_client-cs_apps.o
+Removing client/boinc_client-cs_benchmark.o
+Removing client/boinc_client-cs_cmdline.o
+Removing client/boinc_client-cs_files.o
+Removing client/boinc_client-cs_notice.o
+Removing client/boinc_client-cs_platforms.o
+Removing client/boinc_client-cs_prefs.o
+Removing client/boinc_client-cs_proxy.o
+Removing client/boinc_client-cs_scheduler.o
+Removing client/boinc_client-cs_sporadic.o
+Removing client/boinc_client-cs_statefile.o
+Removing client/boinc_client-cs_trickle.o
+Removing client/boinc_client-current_version.o
+Removing client/boinc_client-dhrystone.o
+Removing client/boinc_client-dhrystone2.o
+Removing client/boinc_client-file_names.o
+Removing client/boinc_client-file_xfer.o
+Removing client/boinc_client-gpu_amd.o
+Removing client/boinc_client-gpu_detect.o
+Removing client/boinc_client-gpu_intel.o
+Removing client/boinc_client-gpu_nvidia.o
+Removing client/boinc_client-gpu_opencl.o
+Removing client/boinc_client-gui_http.o
+Removing client/boinc_client-gui_rpc_server.o
+Removing client/boinc_client-gui_rpc_server_ops.o
+Removing client/boinc_client-hostinfo_linux.o
+Removing client/boinc_client-hostinfo_network.o
+Removing client/boinc_client-hostinfo_unix.o
+Removing client/boinc_client-http_curl.o
+Removing client/boinc_client-log_flags.o
+Removing client/boinc_client-mac_address.o
+Removing client/boinc_client-main.o
+Removing client/boinc_client-net_stats.o
+Removing client/boinc_client-pers_file_xfer.o
+Removing client/boinc_client-project.o
+Removing client/boinc_client-project_list.o
+Removing client/boinc_client-result.o
+Removing client/boinc_client-rr_sim.o
+Removing client/boinc_client-sandbox.o
+Removing client/boinc_client-scheduler_op.o
+Removing client/boinc_client-thread.o
+Removing client/boinc_client-time_stats.o
+Removing client/boinc_client-whetstone.o
+Removing client/boinc_client-work_fetch.o
+Removing client/boinccmd-boinc_cmd.o
+Removing client/scripts/Makefile
+Removing client/scripts/Makefile.in
+Removing client/scripts/boinc-client
+Removing client/scripts/boinc-client.service
+Removing client/win/boinc_path_config.py
+Removing clientgui/.deps/
+Removing clientgui/Makefile
+Removing clientgui/Makefile.in
+Removing clientgui/res/Makefile
+Removing clientgui/res/Makefile.in
+Removing clientgui/skins/Makefile
+Removing clientgui/skins/Makefile.in
+Removing clientscr/.deps/
+Removing clientscr/Makefile
+Removing clientscr/Makefile.in
+Removing compile
+Removing config.guess
+Removing config.h
+Removing config.h.in
+Removing config.log
+Removing config.status
+Removing config.sub
+Removing configure
+Removing db/Makefile
+Removing db/Makefile.in
+Removing depcomp
+Removing doc/Makefile
+Removing doc/Makefile.in
+Removing doc/manpages/Makefile
+Removing doc/manpages/Makefile.in
+Removing html/Makefile
+Removing html/Makefile.in
+Removing install-sh
+Removing lib/.deps/
+Removing lib/.libs/
+Removing lib/Makefile
+Removing lib/Makefile.in
+Removing lib/libboinc.la
+Removing lib/libboinc.pc
+Removing lib/libboinc_crypt.pc
+Removing lib/libboinc_fcgi.pc
+Removing libtool
+Removing locale/Makefile
+Removing locale/Makefile.in
+Removing ltmain.sh
+Removing m4/Makefile
+Removing m4/Makefile.in
+Removing m4/libtool.m4
+Removing m4/ltoptions.m4
+Removing m4/ltsugar.m4
+Removing m4/ltversion.m4
+Removing m4/lt~obsolete.m4
+Removing missing
+Removing packages/generic/sea/Makefile
+Removing packages/generic/sea/Makefile.in
+Removing packages/solaris/CSW/Makefile
+Removing packages/solaris/CSW/Makefile.in
+Removing packages/solaris/CSW/boincclient/Makefile
+Removing packages/solaris/CSW/boincclient/Makefile.in
+Removing packages/solaris/CSW/boincclient/pkginfo
+Removing packages/solaris/CSW/boincclient/prototype
+Removing packages/solaris/CSW/boincdevel/Makefile
+Removing packages/solaris/CSW/boincdevel/Makefile.in
+Removing packages/solaris/CSW/boincdevel/pkginfo
+Removing packages/solaris/CSW/boincdevel/prototype
+Removing packages/solaris/CSW/boinclibs/Makefile
+Removing packages/solaris/CSW/boinclibs/Makefile.in
+Removing packages/solaris/CSW/boinclibs/pkginfo
+Removing packages/solaris/CSW/boinclibs/prototype
+Removing packages/solaris/CSW/boincmanager/Makefile
+Removing packages/solaris/CSW/boincmanager/Makefile.in
+Removing packages/solaris/CSW/boincmanager/pkginfo
+Removing packages/solaris/CSW/boincmanager/prototype
+Removing py/Boinc/version.py
+Removing py/Makefile
+Removing py/Makefile.in
+Removing py/boinc_path_config.py
+Removing py/setup.py
+Removing samples/Makefile
+Removing samples/Makefile.in
+Removing sched/.deps/
+Removing sched/Makefile
+Removing sched/Makefile.in
+Removing sched/boinc_path_config.py
+Removing stamp-h1
+Removing svn_version.h
+Removing tools/.deps/
+Removing tools/Makefile
+Removing tools/Makefile.in
+Removing tools/boinc_path_config.py
+Removing vda/.deps/
+Removing vda/Makefile
+Removing vda/Makefile.in
+Removing zip/.deps/
+Removing zip/Makefile
+Removing zip/Makefile.in
+Removing zip/libboinc_zip.pc
+
+=== REGENERATE AUTOTOOLS FILES ===
+Bootstrapping configure script and makefiles:
+Checking version of 'make' >= 379... succeeded. (404)
+Checking version of 'm4' >= 104... succeeded. (104)
+Checking version of 'pkg-config' >= 15... succeeded. (205)
+Checking version of 'autoreconf' >= 258... succeeded. (272)
+Checking version of 'automake' >= 108... succeeded. (118)
+Checking version of 'libtoolize' >= 105... succeeded. (205)
+autoreconf -i
+libtoolize: putting auxiliary files in '.'.
+libtoolize: copying file './ltmain.sh'
+libtoolize: putting macros in AC_CONFIG_MACRO_DIRS, 'm4'.
+libtoolize: copying file 'm4/libtool.m4'
+libtoolize: copying file 'm4/ltoptions.m4'
+libtoolize: copying file 'm4/ltsugar.m4'
+libtoolize: copying file 'm4/ltversion.m4'
+libtoolize: copying file 'm4/lt~obsolete.m4'
+configure.ac:56: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:56: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+./lib/autoconf/programs.m4:358: AC_PROG_AWK is expanded from...
+aclocal.m4:780: AM_INIT_AUTOMAKE is expanded from...
+configure.ac:56: the top level
+configure.ac:81: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:81: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+./lib/autoconf/programs.m4:246: AC_CHECK_TOOLS is expanded from...
+./lib/autoconf/c.m4:460: AC_PROG_CC is expanded from...
+configure.ac:81: the top level
+configure.ac:82: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:82: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+./lib/autoconf/programs.m4:246: AC_CHECK_TOOLS is expanded from...
+./lib/autoconf/c.m4:687: AC_PROG_CXX is expanded from...
+configure.ac:82: the top level
+configure.ac:124: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:124: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+./lib/autoconf/programs.m4:246: AC_CHECK_TOOLS is expanded from...
+./lib/autoconf/c.m4:1004: AC_PROG_OBJCXX is expanded from...
+configure.ac:124: the top level
+configure.ac:446: warning: The macro 'AC_HELP_STRING' is obsolete.
+configure.ac:446: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+m4/ax_winsock.m4:1: AX_WINSOCK is expanded from...
+m4/boinc_check_cygwin.m4:1: BOINC_CHECK_CYGWIN is expanded from...
+configure.ac:446: the top level
+configure.ac:463: warning: The macro 'AC_LIBTOOL_DLOPEN' is obsolete.
+configure.ac:463: You should run autoupdate.
+m4/ltoptions.m4:113: AC_LIBTOOL_DLOPEN is expanded from...
+configure.ac:463: the top level
+configure.ac:463: warning: AC_LIBTOOL_DLOPEN: Remove this warning and the call to _LT_SET_OPTION when you
+configure.ac:463: put the 'dlopen' option into LT_INIT's first parameter.
+./lib/autoconf/general.m4:2434: AC_DIAGNOSE is expanded from...
+m4/ltoptions.m4:113: AC_LIBTOOL_DLOPEN is expanded from...
+configure.ac:463: the top level
+configure.ac:464: warning: The macro 'AC_LIBTOOL_WIN32_DLL' is obsolete.
+configure.ac:464: You should run autoupdate.
+m4/ltoptions.m4:148: AC_LIBTOOL_WIN32_DLL is expanded from...
+configure.ac:464: the top level
+configure.ac:464: warning: AC_LIBTOOL_WIN32_DLL: Remove this warning and the call to _LT_SET_OPTION when you
+configure.ac:464: put the 'win32-dll' option into LT_INIT's first parameter.
+./lib/autoconf/general.m4:2434: AC_DIAGNOSE is expanded from...
+m4/ltoptions.m4:148: AC_LIBTOOL_WIN32_DLL is expanded from...
+configure.ac:464: the top level
+configure.ac:465: warning: The macro 'AC_PROG_LIBTOOL' is obsolete.
+configure.ac:465: You should run autoupdate.
+m4/libtool.m4:100: AC_PROG_LIBTOOL is expanded from...
+configure.ac:465: the top level
+configure.ac:465: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:465: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+./lib/autoconf/programs.m4:246: AC_CHECK_TOOLS is expanded from...
+m4/libtool.m4:3795: LT_PATH_NM is expanded from...
+m4/libtool.m4:153: _LT_SETUP is expanded from...
+m4/libtool.m4:62: LT_INIT is expanded from...
+m4/libtool.m4:100: AC_PROG_LIBTOOL is expanded from...
+configure.ac:465: the top level
+configure.ac:465: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:465: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+./lib/autoconf/programs.m4:246: AC_CHECK_TOOLS is expanded from...
+m4/libtool.m4:1527: _LT_PROG_AR is expanded from...
+m4/libtool.m4:1577: _LT_CMD_OLD_ARCHIVE is expanded from...
+m4/libtool.m4:153: _LT_SETUP is expanded from...
+m4/libtool.m4:62: LT_INIT is expanded from...
+m4/libtool.m4:100: AC_PROG_LIBTOOL is expanded from...
+configure.ac:465: the top level
+configure.ac:471: warning: The macro 'AC_HELP_STRING' is obsolete.
+configure.ac:471: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+m4/sah_select_bitness.m4:97: SAH_OPTION_BITNESS is expanded from...
+configure.ac:471: the top level
+configure.ac:474: warning: The macro 'AC_HELP_STRING' is obsolete.
+configure.ac:474: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+m4/boinc_platform.m4:1: BOINC_PLATFORM is expanded from...
+configure.ac:474: the top level
+configure.ac:570: warning: The macro 'AC_HELP_STRING' is obsolete.
+configure.ac:570: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+m4/check_ssl.m4:1: CHECK_SSL is expanded from...
+lib/m4sugar/m4sh.m4:697: AS_IF is expanded from...
+configure.ac:570: the top level
+configure.ac:570: warning: The macro 'AC_HELP_STRING' is obsolete.
+configure.ac:570: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+m4/boinc_check_lib_with.m4:1: BOINC_CHECK_LIB_WITH is expanded from...
+m4/check_ssl.m4:1: CHECK_SSL is expanded from...
+lib/m4sugar/m4sh.m4:697: AS_IF is expanded from...
+configure.ac:570: the top level
+configure.ac:576: warning: The macro 'AC_HELP_STRING' is obsolete.
+configure.ac:576: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+m4/libcurl.m4:37: LIBCURL_CHECK_CONFIG is expanded from...
+lib/m4sugar/m4sh.m4:697: AS_IF is expanded from...
+configure.ac:576: the top level
+configure.ac:576: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:576: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+./lib/autoconf/programs.m4:358: AC_PROG_AWK is expanded from...
+m4/libcurl.m4:37: LIBCURL_CHECK_CONFIG is expanded from...
+lib/m4sugar/m4sh.m4:697: AS_IF is expanded from...
+configure.ac:576: the top level
+configure.ac:576: warning: The macro 'AC_HELP_STRING' is obsolete.
+configure.ac:576: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+m4/boinc_check_lib_with.m4:1: BOINC_CHECK_LIB_WITH is expanded from...
+m4/libcurl.m4:37: LIBCURL_CHECK_CONFIG is expanded from...
+lib/m4sugar/m4sh.m4:697: AS_IF is expanded from...
+configure.ac:576: the top level
+configure.ac:663: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:663: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+lib/m4sugar/m4sh.m4:595: AS_CASE is expanded from...
+lib/m4sugar/m4sh.m4:595: AS_CASE is expanded from...
+m4/ax_pthread.m4:126: AX_PTHREAD is expanded from...
+configure.ac:663: the top level
+configure.ac:699: warning: The macro 'ACX_PTHREAD' is obsolete.
+configure.ac:699: You should run autoupdate.
+m4/ax_pthread.m4:125: ACX_PTHREAD is expanded from...
+m4/ax_check_gl.m4:4: AX_CHECK_GL is expanded from...
+configure.ac:699: the top level
+configure.ac:699: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:699: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+lib/m4sugar/m4sh.m4:595: AS_CASE is expanded from...
+lib/m4sugar/m4sh.m4:595: AS_CASE is expanded from...
+m4/ax_pthread.m4:126: AX_PTHREAD is expanded from...
+m4/ax_pthread.m4:125: ACX_PTHREAD is expanded from...
+m4/ax_check_gl.m4:4: AX_CHECK_GL is expanded from...
+configure.ac:699: the top level
+configure.ac:699: warning: The macro 'AC_HELP_STRING' is obsolete.
+configure.ac:699: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+./lib/autoconf/general.m4:1553: AC_ARG_WITH is expanded from...
+m4/ax_check_gl.m4:4: AX_CHECK_GL is expanded from...
+configure.ac:699: the top level
+configure.ac:806: warning: The macro 'AC_HEADER_STDC' is obsolete.
+configure.ac:806: You should run autoupdate.
+./lib/autoconf/headers.m4:663: AC_HEADER_STDC is expanded from...
+configure.ac:806: the top level
+configure.ac:808: warning: The macro 'AC_HEADER_TIME' is obsolete.
+configure.ac:808: You should run autoupdate.
+./lib/autoconf/headers.m4:702: AC_HEADER_TIME is expanded from...
+configure.ac:808: the top level
+configure.ac:809: warning: The macro 'AC_TYPE_SIGNAL' is obsolete.
+configure.ac:809: You should run autoupdate.
+./lib/autoconf/types.m4:805: AC_TYPE_SIGNAL is expanded from...
+configure.ac:809: the top level
+configure.ac:1074: warning: AC_CHECK_HEADERS($sah_stdcxx_headers): you should use literals
+./lib/autoconf/headers.m4:217: AC_CHECK_HEADERS is expanded from...
+lib/m4sugar/m4sh.m4:690: _AS_IF_ELSE is expanded from...
+lib/m4sugar/m4sh.m4:697: AS_IF is expanded from...
+./lib/autoconf/general.m4:2821: _AC_COMPILE_IFELSE is expanded from...
+./lib/autoconf/general.m4:2837: AC_COMPILE_IFELSE is expanded from...
+m4/sah_header_stdcxx.m4:23: SAH_HEADER_STDCXX is expanded from...
+configure.ac:1074: the top level
+configure.ac:1084: warning: The macro 'AC_PROG_GCC_TRADITIONAL' is obsolete.
+configure.ac:1084: You should run autoupdate.
+./lib/autoconf/c.m4:1676: AC_PROG_GCC_TRADITIONAL is expanded from...
+configure.ac:1084: the top level
+configure.ac:81: installing './compile'
+configure.ac:47: installing './config.guess'
+configure.ac:47: installing './config.sub'
+configure.ac:56: installing './install-sh'
+configure.ac:56: installing './missing'
+api/Makefile.am:22: warning: source file '$(top_srcdir)/samples/image_libs/bmplib.cpp' is in a subdirectory,
+api/Makefile.am:22: but option 'subdir-objects' is disabled
+automake: warning: possible forward-incompatibility.
+automake: At least one source file is in a subdirectory, but the 'subdir-objects'
+automake: automake option hasn't been enabled.  For now, the corresponding output
+automake: object file(s) will be placed in the top-level directory.  However, this
+automake: behavior may change in a future Automake major version, with object
+automake: files being placed in the same subdirectory as the corresponding sources.
+automake: You are advised to start using 'subdir-objects' option throughout your
+automake: project, to avoid future incompatibility.
+api/Makefile.am:22: warning: source file '$(top_srcdir)/samples/image_libs/tgalib.cpp' is in a subdirectory,
+api/Makefile.am:22: but option 'subdir-objects' is disabled
+api/Makefile.am: installing './depcomp'
+client/Makefile.am:4: warning: ':='-style assignments are not portable
+client/Makefile.am:4: warning: filter-out -mfpu=vfpv3-d16,$(CXXFLAGS: non-POSIX variable name
+client/Makefile.am:4: (probably a GNU make extension)
+client/Makefile.am:126: warning: filter-out -mfpu=vfpv3-d16,$(boinc_client_CXXFLAGS: non-POSIX variable name
+client/Makefile.am:126: (probably a GNU make extension)
+client/Makefile.am:4: warning: 'CXXFLAGS' is a user variable, you should not override it;
+client/Makefile.am:4: use 'AM_CXXFLAGS' instead
+clientgui/Makefile.am:26: warning: source file 'common/wxPieCtrl.cpp' is in a subdirectory,
+clientgui/Makefile.am:26: but option 'subdir-objects' is disabled
+clientgui/Makefile.am:26: warning: source file 'gtk/taskbarex.cpp' is in a subdirectory,
+clientgui/Makefile.am:26: but option 'subdir-objects' is disabled
+lib/Makefile.am:95: warning: source file 'mac/mac_backtrace.cpp' is in a subdirectory,
+lib/Makefile.am:95: but option 'subdir-objects' is disabled
+lib/Makefile.am:95: warning: source file 'mac/mac_spawn.cpp' is in a subdirectory,
+lib/Makefile.am:95: but option 'subdir-objects' is disabled
+lib/Makefile.am:95: warning: source file 'mac/QBacktrace.c' is in a subdirectory,
+lib/Makefile.am:95: but option 'subdir-objects' is disabled
+lib/Makefile.am:95: warning: source file 'mac/QCrashReport.c' is in a subdirectory,
+lib/Makefile.am:95: but option 'subdir-objects' is disabled
+lib/Makefile.am:95: warning: source file 'mac/QMachOImage.c' is in a subdirectory,
+lib/Makefile.am:95: but option 'subdir-objects' is disabled
+lib/Makefile.am:95: warning: source file 'mac/QMachOImageList.c' is in a subdirectory,
+lib/Makefile.am:95: but option 'subdir-objects' is disabled
+lib/Makefile.am:95: warning: source file 'mac/QSymbols.c' is in a subdirectory,
+lib/Makefile.am:95: but option 'subdir-objects' is disabled
+lib/Makefile.am:95: warning: source file 'mac/QTaskMemory.c' is in a subdirectory,
+lib/Makefile.am:95: but option 'subdir-objects' is disabled
+lib/Makefile.am:95: warning: source file 'mac/mac_branding.cpp' is in a subdirectory,
+lib/Makefile.am:95: but option 'subdir-objects' is disabled
+sched/Makefile.am:11: warning: source file '../db/boinc_db.cpp' is in a subdirectory,
+sched/Makefile.am:11: but option 'subdir-objects' is disabled
+sched/Makefile.am:11: warning: source file '../db/db_base.cpp' is in a subdirectory,
+sched/Makefile.am:11: but option 'subdir-objects' is disabled
+sched/Makefile.am:11: warning: source file '../tools/process_result_template.cpp' is in a subdirectory,
+sched/Makefile.am:11: but option 'subdir-objects' is disabled
+sched/Makefile.am:11: warning: source file '../tools/process_input_template.cpp' is in a subdirectory,
+sched/Makefile.am:11: but option 'subdir-objects' is disabled
+sched/Makefile.am:11: warning: source file '../tools/backend_lib.cpp' is in a subdirectory,
+sched/Makefile.am:11: but option 'subdir-objects' is disabled
+sched/Makefile.am:158: warning: source file '../vda/sched_vda.cpp' is in a subdirectory,
+sched/Makefile.am:158: but option 'subdir-objects' is disabled
+sched/Makefile.am:205: warning: source file '../lib/synch.cpp' is in a subdirectory,
+sched/Makefile.am:205: but option 'subdir-objects' is disabled
+sched/Makefile.am:212: warning: source file '../lib/synch.cpp' is in a subdirectory,
+sched/Makefile.am:212: but option 'subdir-objects' is disabled
+tools/Makefile.am:69: warning: source file '../lib/remote_submit.cpp' is in a subdirectory,
+tools/Makefile.am:69: but option 'subdir-objects' is disabled
+Done, now run ./configure
+ ./configure -C                         to enable caching
+
+=== CONFIGURE CLIENT AND REQUIRED LIBRARIES ===
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether sleep supports fractional seconds... yes
+checking filesystem timestamp resolution... 0.01
+checking whether build environment is sane... yes
+checking for a race-free mkdir -p... /usr/bin/mkdir -p
+checking for gawk... /usr/bin/gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking xargs -n works... yes
+checking whether UID '1000' is supported by ustar format... yes
+checking whether GID '1000' is supported by ustar format... yes
+checking how to create a ustar tar archive... gnutar
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to enable C11 features... none needed
+checking whether gcc understands -c and -o together... yes
+checking whether make supports the include directive... yes (GNU style)
+checking dependency style of gcc... gcc3
+checking for g++... /usr/bin/g++
+checking whether the compiler supports GNU C++... yes
+checking whether /usr/bin/g++ accepts -g... yes
+checking for /usr/bin/g++ option to enable C++11 features... none needed
+checking dependency style of /usr/bin/g++... gcc3
+checking whether /usr/bin/g++ supports C++11... yes, with -std=c++11
+checking for g++... /usr/bin/g++
+checking whether the compiler supports GNU Objective C++... no
+checking whether /usr/bin/g++ accepts -g... no
+checking dependency style of /usr/bin/g++... gcc3
+checking how to run the C preprocessor... gcc -E
+checking whether make sets $(MAKE)... (cached) yes
+checking for ln... /usr/bin/ln
+checking whether '/usr/bin/ln' works... yes
+checking whether ln -s works... yes
+checking whether 'ln -s' really works or whether I'm deluding myself... it works
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking if C compiler supports -Wall... yes
+checking if C++ compiler supports -Wall... yes
+--- Configuring BOINC 8.2.11 (Release) ---
+--- Build Components: (client libraries) ---
+checking for docbook2x-man... no
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for sys/time.h... yes
+checking whether we are compiling for cygwin... no
+checking for winsock2.h... (cached) no
+checking for winsock.h... (cached) no
+checking for windows.h... no
+checking for sys/socket.h... yes
+checking dependency style of gcc... gcc3
+checking how to print strings... printf
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by gcc... /usr/x86_64-pc-linux-gnu/bin/ld
+checking if the linker (/usr/x86_64-pc-linux-gnu/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking the maximum length of command line arguments... 1572864
+checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/x86_64-pc-linux-gnu/bin/ld option to reload object files... -r
+checking for file... file
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... dlltool
+checking how to associate runtime and link libraries... printf %s\n
+checking for ranlib... ranlib
+checking for ar... /usr/bin/ar
+checking for archiver @FILE support... @
+checking for strip... strip
+checking command to parse /usr/bin/nm -B output from gcc object... ok
+checking for sysroot... no
+checking for a working dd... /usr/bin/dd
+checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+checking for mt... mt
+checking if mt is a manifest tool... no
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if gcc supports -fno-rtti -fno-exceptions... no
+checking for gcc option to produce PIC... -fPIC -DPIC
+checking if gcc PIC flag -fPIC -DPIC works... yes
+checking if gcc static flag -static works... yes
+checking if gcc supports -c -o file.o... yes
+checking if gcc supports -c -o file.o... (cached) yes
+checking whether the gcc linker (/usr/x86_64-pc-linux-gnu/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking for shl_load... no
+checking for shl_load in -ldld... no
+checking for dlopen... yes
+checking whether a program can dlopen itself... yes
+checking whether a statically linked program can dlopen itself... no
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking how to run the C++ preprocessor... /usr/bin/g++ -E
+checking for ld used by /usr/bin/g++... /usr/x86_64-pc-linux-gnu/bin/ld -m elf_x86_64
+checking if the linker (/usr/x86_64-pc-linux-gnu/bin/ld -m elf_x86_64) is GNU ld... yes
+checking whether the /usr/bin/g++ linker (/usr/x86_64-pc-linux-gnu/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking for /usr/bin/g++ option to produce PIC... -fPIC -DPIC
+checking if /usr/bin/g++ PIC flag -fPIC -DPIC works... yes
+checking if /usr/bin/g++ static flag -static works... yes
+checking if /usr/bin/g++ supports -c -o file.o... yes
+checking if /usr/bin/g++ supports -c -o file.o... (cached) yes
+checking whether the /usr/bin/g++ linker (/usr/x86_64-pc-linux-gnu/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking dynamic linker characteristics... (cached) GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking default bitness of C compiler... 64
+checking default bitness of C++ compiler... 64
+checking boinc platform... x86_64-pc-linux-gnu
+checking alternate boinc platform... i686-pc-linux-gnu
+checking library extension... a
+checking shared object extension... so
+checking for pkg-config... /usr/bin/pkg-config
+checking for openssl... yes
+OpenSSL found in /usr
+checking for gawk... (cached) /usr/bin/gawk
+checking for ... no
+checking for curl-config... /usr/bin/curl-config
+checking for the version of libcurl... 8.15.0
+checking for libcurl >= version 7.17.1... yes
+checking whether libcurl is usable... yes
+checking for curl_free... yes
+checking for shmget in dynamic library cygipc... no
+checking for aio_fork in dynamic library aio... no
+checking for dlopen in dynamic library dl...  -ldl
+checking for gethostbyname in static library nsl... no
+checking for gethostbyname in dynamic library nsl... no
+checking for static library freetype...  -lfreetype
+checking for bind in static library socket... no
+checking for bind in dynamic library socket... no
+checking for shm_open in static library rt...  -lrt
+checking for gzopen in static library z...  -lz
+checking for md5_finish in dynamic library cups... no
+checking for the pthreads library -lpthreads... no
+checking whether pthreads work without any flags... yes
+checking for joinable pthread attribute... PTHREAD_CREATE_JOINABLE
+checking if more special flags are required for pthreads... no
+checking for PTHREAD_PRIO_INHERIT... yes
+checking for X... libraries , headers 
+checking for gethostbyname... yes
+checking for connect... yes
+checking for remove... yes
+checking for shmat... yes
+checking for IceConnectionNumber in -lICE... yes
+configure: checking for usable OpenCL opencl.h header
+checking for OpenCL/opencl.h... no
+checking for CL/opencl.h... no
+configure: no usable OpenCL installation found
+configure: WARNING: OpenCL is missing, OpenClApp example is disabled
+checking for the pthreads library -lpthreads... no
+checking whether pthreads work without any flags... yes
+checking for joinable pthread attribute... PTHREAD_CREATE_JOINABLE
+checking if more special flags are required for pthreads... no
+checking for PTHREAD_PRIO_INHERIT... (cached) yes
+checking whether we are using the Microsoft C compiler... no
+checking for windows.h... (cached) no
+checking for OpenGL library... -lGL
+checking for OpenGL Utility library... -lGLU
+checking for fopen in -lXmu... yes
+checking for fopen in -lXi... yes
+checking for GLUT library... no
+configure: WARNING:
+================================================================================
+WARNING: Development libraries and headers ("-dev") of {openGL, GLU, glut} needed!
+
+The GL, GLU and glut libraries are required in order to build the graphical parts
+of the BOINC application API library.
+
+==> only building non-graphical parts of the BOINC API Library for now.
+
+HINT: on MacOS X/Darwin you might consider running configure with the option
+      './configure --with-apple-opengl-framework'
+      in order to use the Mac-native openGL framework
+
+================================================================================
+       
+checking for XScreenSaverAllocInfo in -lXss... yes
+checking for X11/extensions/scrnsaver.h... yes
+checking for dirent.h that defines DIR... yes
+checking for library containing opendir... none required
+checking for egrep... (cached) /usr/bin/grep -E
+checking for sys/wait.h that is POSIX.1 compatible... yes
+checking return type of signal handlers... void
+checking for sys/types.h... (cached) yes
+checking for sys/un.h... yes
+checking for arpa/inet.h... yes
+checking for dirent.h... yes
+checking for grp.h... yes
+checking for fcntl.h... yes
+checking for inttypes.h... (cached) yes
+checking for stdint.h... (cached) yes
+checking for memory.h... yes
+checking for netdb.h... yes
+checking for netinet/in.h... yes
+checking for netinet/tcp.h... yes
+checking for netinet/ether.h... yes
+checking for net/if.h... yes
+checking for net/if_arp.h... yes
+checking for signal.h... yes
+checking for strings.h... (cached) yes
+checking for sys/auxv.h... yes
+checking for sys/file.h... yes
+checking for sys/fcntl.h... yes
+checking for sys/ipc.h... yes
+checking for sys/ioctl.h... yes
+checking for sys/msg.h... yes
+checking for sys/param.h... yes
+checking for sys/resource.h... yes
+checking for sys/select.h... yes
+checking for sys/sem.h... yes
+checking for sys/shm.h... yes
+checking for sys/sockio.h... no
+checking for sys/socket.h... (cached) yes
+checking for sys/stat.h... (cached) yes
+checking for sys/statvfs.h... yes
+checking for sys/statfs.h... yes
+checking for sys/systeminfo.h... no
+checking for sys/time.h... (cached) yes
+checking for sys/types.h... (cached) yes
+checking for sys/utsname.h... yes
+checking for sys/vmmeter.h... no
+checking for sys/wait.h... (cached) yes
+checking for unistd.h... (cached) yes
+checking for utmp.h... yes
+checking for errno.h... yes
+checking for procfs.h... no
+checking for ieeefp.h... no
+checking for setjmp.h... yes
+checking for float.h... yes
+checking for sal.h... no
+checking for execinfo.h... yes
+checking for xlocale.h... no
+checking for intrin.h... no
+checking for x86intrin.h... yes
+checking for pmmintrin.h... yes
+checking for xmmintrin.h... yes
+checking for emmintrin.h... yes
+checking for immintrin.h... yes
+checking for gcc options needed to detect all undeclared functions... none needed
+checking whether _xgetbv is declared... yes
+checking whether xgetbv is declared... no
+checking whether __xgetbv is declared... no
+checking whether cpuid is declared... no
+checking whether _cpuid is declared... no
+checking whether __cpuid is declared... no
+checking if assembler supports xgetbv... yes
+checking for nvapi.h... no
+checking for socklen_t... yes
+checking for net/if.h... (cached) yes
+checking for net/if_arp.h... (cached) yes
+checking for sys/mount.h... yes
+checking for sys/swap.h... yes
+checking for sys/sensors.h... no
+checking for sys/sysctl.h... no
+checking for resolv.h... yes
+checking for netinet/if_ether.h... yes
+checking for struct lifconf... no
+checking for struct lifreq... no
+checking for struct ifconf... yes
+checking for struct ifreq... yes
+checking for struct ether_addr... yes
+checking for gcc option to enable large file support... none needed
+checking whether largefile support breaks C++... no
+checking standard C++ headers... yes
+checking for C++ header <algorithm>... (cached) yes
+checking for C++ header <bitset>... (cached) yes
+checking for C++ header <cassert>... (cached) yes
+checking for C++ header <cctype>... (cached) yes
+checking for C++ header <cerrno>... (cached) yes
+checking for C++ header <cfloat>... (cached) yes
+checking for C++ header <climits>... (cached) yes
+checking for C++ header <clocale>... (cached) yes
+checking for C++ header <cmath>... (cached) yes
+checking for C++ header <complex>... (cached) yes
+checking for C++ header <csetjmp>... (cached) yes
+checking for C++ header <csignal>... (cached) yes
+checking for C++ header <cstdarg>... (cached) yes
+checking for C++ header <cstddef>... (cached) yes
+checking for C++ header <cstdio>... (cached) yes
+checking for C++ header <cstdlib>... (cached) yes
+checking for C++ header <cstring>... (cached) yes
+checking for C++ header <ctime>... (cached) yes
+checking for C++ header <deque>... (cached) yes
+checking for C++ header <fstream>... (cached) yes
+checking for C++ header <functional>... (cached) yes
+checking for C++ header <iomanip>... (cached) yes
+checking for C++ header <ios>... (cached) yes
+checking for C++ header <iosfwd>... (cached) yes
+checking for C++ header <iostream>... (cached) yes
+checking for C++ header <istream>... (cached) yes
+checking for C++ header <iterator>... (cached) yes
+checking for C++ header <limits>... (cached) yes
+checking for C++ header <list>... (cached) yes
+checking for C++ header <locale>... (cached) yes
+checking for C++ header <map>... (cached) yes
+checking for C++ header <memory>... (cached) yes
+checking for C++ header <numeric>... (cached) yes
+checking for C++ header <ostream>... (cached) yes
+checking for C++ header <queue>... (cached) yes
+checking for C++ header <set>... (cached) yes
+checking for C++ header <sstream>... (cached) yes
+checking for C++ header <stack>... (cached) yes
+checking for C++ header <stdexcept>... (cached) yes
+checking for C++ header <streambuf>... (cached) yes
+checking for C++ header <string>... (cached) yes
+checking for C++ header <utility>... (cached) yes
+checking for C++ header <valarray>... (cached) yes
+checking for C++ header <vector>... (cached) yes
+checking for C++ namespaces... yes
+checking for min(0,0) in namespace std... yes
+checking for max(0,0) in namespace std... yes
+checking for transform((char *)0,(char *) 0,(char *)0,(int(*)(int))malloc) in namespace std... yes
+checking for locale("") in namespace std... yes
+checking for vprintf... yes
+checking for ether_ntoa... yes
+checking for setpriority... yes
+checking for sched_setscheduler... yes
+checking for strlcpy... yes
+checking for strlcat... yes
+checking for strcasestr... yes
+checking for strcasecmp... yes
+checking for sigaction... yes
+checking for getutent... yes
+checking for setutent... yes
+checking for getisax... no
+checking for strdup... yes
+checking for _strdup... no
+checking for strdupa... no
+checking for _strdupa... no
+checking for daemon... yes
+checking for stat64... yes
+checking for putenv... yes
+checking for setenv... yes
+checking for unsetenv... yes
+checking for res_init... no
+checking for strtoull... yes
+checking for localtime... yes
+checking for localtime_r... yes
+checking for gmtime... yes
+checking for gmtime_r... yes
+checking for uselocale... yes
+checking for _configthreadlocale... no
+checking for ftok... yes
+checking whether _fpreset is declared... no
+checking whether fpreset is declared... no
+checking for an ANSI C-conforming const... yes
+checking for size_t... yes
+checking whether struct tm is in sys/time.h or time.h... time.h
+checking for struct tm.tm_zone... yes
+checking for sin in dynamic library m...  -lm
+checking for pthread_join in dynamic library pthread...  -lpthread
+checking for dynamic library nvapi... no
+checking for res_init in -lresolv... no
+checking for XScreenSaverAllocInfo in dynamic library Xss...  -lXss
+checking for XOpenDisplay in dynamic library X11...  -lX11
+checking for res_query in static library resolv...  -lresolv
+checking for whoami... /usr/bin/whoami
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating version.h
+config.status: creating api/Makefile
+config.status: creating api/libboinc_api.pc
+config.status: creating api/libboinc_graphics2.pc
+config.status: creating api/libboinc_opencl.pc
+config.status: creating apps/Makefile
+config.status: creating clientgui/Makefile
+config.status: creating clientgui/res/Makefile
+config.status: creating clientgui/skins/Makefile
+config.status: creating clientscr/Makefile
+config.status: creating client/Makefile
+config.status: creating client/win/boinc_path_config.py
+config.status: creating client/scripts/Makefile
+config.status: creating client/scripts/boinc-client
+config.status: creating client/scripts/boinc-client.service
+config.status: creating db/Makefile
+config.status: creating doc/Makefile
+config.status: creating doc/manpages/Makefile
+config.status: creating html/Makefile
+config.status: creating lib/Makefile
+config.status: creating lib/libboinc.pc
+config.status: creating lib/libboinc_crypt.pc
+config.status: creating lib/libboinc_fcgi.pc
+config.status: creating locale/Makefile
+config.status: creating Makefile
+config.status: creating py/Boinc/version.py
+config.status: creating py/Makefile
+config.status: creating py/boinc_path_config.py
+config.status: creating py/setup.py
+config.status: creating sched/boinc_path_config.py
+config.status: creating sched/Makefile
+config.status: creating packages/generic/sea/Makefile
+config.status: creating packages/solaris/CSW/Makefile
+config.status: creating packages/solaris/CSW/boincclient/Makefile
+config.status: creating packages/solaris/CSW/boincclient/pkginfo
+config.status: creating packages/solaris/CSW/boincclient/prototype
+config.status: creating packages/solaris/CSW/boincdevel/Makefile
+config.status: creating packages/solaris/CSW/boincdevel/pkginfo
+config.status: creating packages/solaris/CSW/boincdevel/prototype
+config.status: creating packages/solaris/CSW/boinclibs/Makefile
+config.status: creating packages/solaris/CSW/boinclibs/pkginfo
+config.status: creating packages/solaris/CSW/boinclibs/prototype
+config.status: creating packages/solaris/CSW/boincmanager/Makefile
+config.status: creating packages/solaris/CSW/boincmanager/pkginfo
+config.status: creating packages/solaris/CSW/boincmanager/prototype
+config.status: creating samples/Makefile
+config.status: creating tools/boinc_path_config.py
+config.status: creating tools/Makefile
+config.status: creating vda/Makefile
+config.status: creating zip/Makefile
+config.status: creating zip/libboinc_zip.pc
+config.status: creating m4/Makefile
+config.status: creating config.h
+config.status: executing depfiles commands
+config.status: executing libtool commands
+--- Configuring BOINC 8.2.11 (Release) ---
+--- Build Components: (client libraries) ---
+
+=== VERIFY CONFIGURATION ===
+
+=== BUILD ===
+cd . && sh generate_svn_version.sh
+fatal: No names found, cannot describe anything.
+make  all-recursive
+make[1]: Entering directory '/home/sable/src/boinc-8.2.11'
+Making all in m4
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11/m4'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11/m4'
+Making all in api
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11/api'
+  CXX      boinc_api.lo
+  CXX      graphics2_util.lo
+  CXX      reduce_main.lo
+  CXX      boinc_opencl.lo
+  CXXLD    libboinc_opencl.la
+rm -f libboinc_opencl.a
+/usr/bin/ln .libs/libboinc_opencl.a .
+  CXXLD    libboinc_api.la
+rm -f libboinc_api.a
+/usr/bin/ln .libs/libboinc_api.a .
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11/api'
+Making all in lib
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11/lib'
+  CXX      libboinc_la-base64.lo
+  CXX      libboinc_la-app_ipc.lo
+  CXX      libboinc_la-cc_config.lo
+  CXX      libboinc_la-coproc.lo
+  CXX      libboinc_la-cert_sig.lo
+  CXX      libboinc_la-gui_rpc_client.lo
+  CXX      libboinc_la-filesys.lo
+  CXX      libboinc_la-diagnostics.lo
+  CXX      libboinc_la-gui_rpc_client_ops.lo
+  CXX      libboinc_la-gui_rpc_client_print.lo
+  CXX      libboinc_la-hostinfo.lo
+  CXX      libboinc_la-keyword.lo
+  CXX      libboinc_la-md5.lo
+  CXX      libboinc_la-md5_file.lo
+  CXX      libboinc_la-mem_usage.lo
+  CXX      libboinc_la-mfile.lo
+  CXX      libboinc_la-miofile.lo
+  CXX      libboinc_la-msg_log.lo
+  CXX      libboinc_la-network.lo
+  CXX      libboinc_la-notice.lo
+  CXX      libboinc_la-opencl_boinc.lo
+  CXX      libboinc_la-parse.lo
+  CXX      libboinc_la-prefs.lo
+  CXX      libboinc_la-procinfo.lo
+  CXX      libboinc_la-proc_control.lo
+  CXX      libboinc_la-project_init.lo
+  CXX      libboinc_la-proxy_info.lo
+  CXX      libboinc_la-sched_msgs.lo
+  CXX      libboinc_la-shmem.lo
+  CXX      libboinc_la-str_util.lo
+  CXX      libboinc_la-url.lo
+  CXX      libboinc_la-util.lo
+  CXX      libboinc_la-wslinfo.lo
+  CXX      libboinc_la-procinfo_unix.lo
+  CXX      libboinc_la-synch.lo
+  CXX      libboinc_la-unix_util.lo
+  CXX      libboinc_crypt_la-crypt.lo
+crypt.cpp: In function ‘int encrypt_private(R_RSA_PRIVATE_KEY&, DATA_BLOCK&, DATA_BLOCK&)’:
+crypt.cpp:259:22: warning: ‘RSA* RSA_new()’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  259 |     RSA* rp = RSA_new();
+      |               ~~~~~~~^~
+In file included from /usr/include/openssl/x509.h:36,
+                 from /usr/include/openssl/ssl.h:32,
+                 from crypt.cpp:31:
+/usr/include/openssl/rsa.h:212:28: note: declared here
+  212 | OSSL_DEPRECATEDIN_3_0 RSA *RSA_new(void);
+      |                            ^~~~~~~
+crypt.cpp:261:33: warning: ‘int RSA_private_encrypt(int, const unsigned char*, unsigned char*, RSA*, int)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  261 |     retval = RSA_private_encrypt(n, in.data, out.data, rp, RSA_PKCS1_PADDING);
+      |              ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/rsa.h:296:5: note: declared here
+  296 | int RSA_private_encrypt(int flen, const unsigned char *from, unsigned char *to,
+      |     ^~~~~~~~~~~~~~~~~~~
+crypt.cpp:263:17: warning: ‘void RSA_free(RSA*)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  263 |         RSA_free(rp);
+      |         ~~~~~~~~^~~~
+/usr/include/openssl/rsa.h:304:28: note: declared here
+  304 | OSSL_DEPRECATEDIN_3_0 void RSA_free(RSA *r);
+      |                            ^~~~~~~~
+crypt.cpp:266:23: warning: ‘int RSA_size(const RSA*)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  266 |     out.len = RSA_size(rp);
+      |               ~~~~~~~~^~~~
+/usr/include/openssl/rsa.h:215:27: note: declared here
+  215 | OSSL_DEPRECATEDIN_3_0 int RSA_size(const RSA *rsa);
+      |                           ^~~~~~~~
+crypt.cpp:267:13: warning: ‘void RSA_free(RSA*)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  267 |     RSA_free(rp);
+      |     ~~~~~~~~^~~~
+/usr/include/openssl/rsa.h:304:28: note: declared here
+  304 | OSSL_DEPRECATEDIN_3_0 void RSA_free(RSA *r);
+      |                            ^~~~~~~~
+crypt.cpp: In function ‘int decrypt_public(R_RSA_PUBLIC_KEY&, DATA_BLOCK&, DATA_BLOCK&)’:
+crypt.cpp:273:22: warning: ‘RSA* RSA_new()’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  273 |     RSA* rp = RSA_new();
+      |               ~~~~~~~^~
+/usr/include/openssl/rsa.h:212:28: note: declared here
+  212 | OSSL_DEPRECATEDIN_3_0 RSA *RSA_new(void);
+      |                            ^~~~~~~
+crypt.cpp:275:32: warning: ‘int RSA_public_decrypt(int, const unsigned char*, unsigned char*, RSA*, int)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  275 |     retval = RSA_public_decrypt(in.len, in.data, out.data, rp, RSA_PKCS1_PADDING);
+      |              ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/rsa.h:299:5: note: declared here
+  299 | int RSA_public_decrypt(int flen, const unsigned char *from, unsigned char *to,
+      |     ^~~~~~~~~~~~~~~~~~
+crypt.cpp:277:17: warning: ‘void RSA_free(RSA*)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  277 |         RSA_free(rp);
+      |         ~~~~~~~~^~~~
+/usr/include/openssl/rsa.h:304:28: note: declared here
+  304 | OSSL_DEPRECATEDIN_3_0 void RSA_free(RSA *r);
+      |                            ^~~~~~~~
+crypt.cpp:280:23: warning: ‘int RSA_size(const RSA*)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  280 |     out.len = RSA_size(rp);
+      |               ~~~~~~~~^~~~
+/usr/include/openssl/rsa.h:215:27: note: declared here
+  215 | OSSL_DEPRECATEDIN_3_0 int RSA_size(const RSA *rsa);
+      |                           ^~~~~~~~
+crypt.cpp:281:13: warning: ‘void RSA_free(RSA*)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  281 |     RSA_free(rp);
+      |     ~~~~~~~~^~~~
+/usr/include/openssl/rsa.h:304:28: note: declared here
+  304 | OSSL_DEPRECATEDIN_3_0 void RSA_free(RSA *r);
+      |                            ^~~~~~~~
+crypt.cpp: In function ‘void openssl_to_keys(RSA*, int, R_RSA_PRIVATE_KEY&, R_RSA_PUBLIC_KEY&)’:
+crypt.cpp:468:17: warning: ‘void RSA_get0_key(const RSA*, const BIGNUM**, const BIGNUM**, const BIGNUM**)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  468 |     RSA_get0_key(rp, &n, &e, &d);
+      |     ~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+/usr/include/openssl/rsa.h:228:28: note: declared here
+  228 | OSSL_DEPRECATEDIN_3_0 void RSA_get0_key(const RSA *r,
+      |                            ^~~~~~~~~~~~
+crypt.cpp:469:21: warning: ‘void RSA_get0_factors(const RSA*, const BIGNUM**, const BIGNUM**)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  469 |     RSA_get0_factors(rp, &p, &q);
+      |     ~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+/usr/include/openssl/rsa.h:231:28: note: declared here
+  231 | OSSL_DEPRECATEDIN_3_0 void RSA_get0_factors(const RSA *r,
+      |                            ^~~~~~~~~~~~~~~~
+crypt.cpp:470:24: warning: ‘void RSA_get0_crt_params(const RSA*, const BIGNUM**, const BIGNUM**, const BIGNUM**)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  470 |     RSA_get0_crt_params(rp, &dmp1, &dmq1, &iqmp);
+      |     ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/rsa.h:236:28: note: declared here
+  236 | OSSL_DEPRECATEDIN_3_0 void RSA_get0_crt_params(const RSA *r,
+      |                            ^~~~~~~~~~~~~~~~~~~
+crypt.cpp: In function ‘void private_to_openssl(R_RSA_PRIVATE_KEY&, RSA*)’:
+crypt.cpp:531:17: warning: ‘int RSA_set0_key(RSA*, BIGNUM*, BIGNUM*, BIGNUM*)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  531 |     RSA_set0_key(rp, n, e, d);
+      |     ~~~~~~~~~~~~^~~~~~~~~~~~~
+/usr/include/openssl/rsa.h:218:27: note: declared here
+  218 | OSSL_DEPRECATEDIN_3_0 int RSA_set0_key(RSA *r, BIGNUM *n, BIGNUM *e, BIGNUM *d);
+      |                           ^~~~~~~~~~~~
+crypt.cpp:532:21: warning: ‘int RSA_set0_factors(RSA*, BIGNUM*, BIGNUM*)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  532 |     RSA_set0_factors(rp, p, q);
+      |     ~~~~~~~~~~~~~~~~^~~~~~~~~~
+/usr/include/openssl/rsa.h:219:27: note: declared here
+  219 | OSSL_DEPRECATEDIN_3_0 int RSA_set0_factors(RSA *r, BIGNUM *p, BIGNUM *q);
+      |                           ^~~~~~~~~~~~~~~~
+crypt.cpp:533:24: warning: ‘int RSA_set0_crt_params(RSA*, BIGNUM*, BIGNUM*, BIGNUM*)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  533 |     RSA_set0_crt_params(rp, dmp1, dmq1, iqmp);
+      |     ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/rsa.h:220:27: note: declared here
+  220 | OSSL_DEPRECATEDIN_3_0 int RSA_set0_crt_params(RSA *r,
+      |                           ^~~~~~~~~~~~~~~~~~~
+crypt.cpp: In function ‘void public_to_openssl(R_RSA_PUBLIC_KEY&, RSA*)’:
+crypt.cpp:552:17: warning: ‘int RSA_set0_key(RSA*, BIGNUM*, BIGNUM*, BIGNUM*)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  552 |     RSA_set0_key(rp, n, e, NULL);
+      |     ~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+/usr/include/openssl/rsa.h:218:27: note: declared here
+  218 | OSSL_DEPRECATEDIN_3_0 int RSA_set0_key(RSA *r, BIGNUM *n, BIGNUM *e, BIGNUM *d);
+      |                           ^~~~~~~~~~~~
+crypt.cpp: In function ‘int openssl_to_private(RSA*, R_RSA_PRIVATE_KEY*)’:
+crypt.cpp:582:17: warning: ‘void RSA_get0_key(const RSA*, const BIGNUM**, const BIGNUM**, const BIGNUM**)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  582 |     RSA_get0_key(from, &n, &e, &d);
+      |     ~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+/usr/include/openssl/rsa.h:228:28: note: declared here
+  228 | OSSL_DEPRECATEDIN_3_0 void RSA_get0_key(const RSA *r,
+      |                            ^~~~~~~~~~~~
+crypt.cpp:583:21: warning: ‘void RSA_get0_factors(const RSA*, const BIGNUM**, const BIGNUM**)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  583 |     RSA_get0_factors(from, &p, &q);
+      |     ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/usr/include/openssl/rsa.h:231:28: note: declared here
+  231 | OSSL_DEPRECATEDIN_3_0 void RSA_get0_factors(const RSA *r,
+      |                            ^~~~~~~~~~~~~~~~
+crypt.cpp:584:24: warning: ‘void RSA_get0_crt_params(const RSA*, const BIGNUM**, const BIGNUM**, const BIGNUM**)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  584 |     RSA_get0_crt_params(from, &dmp1, &dmq1, &iqmp);
+      |     ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/rsa.h:236:28: note: declared here
+  236 | OSSL_DEPRECATEDIN_3_0 void RSA_get0_crt_params(const RSA *r,
+      |                            ^~~~~~~~~~~~~~~~~~~
+crypt.cpp: In function ‘int check_validity_of_cert(const char*, const unsigned char*, unsigned char*, int, const char*)’:
+crypt.cpp:684:41: warning: ‘const rsa_st* EVP_PKEY_get0_RSA(const EVP_PKEY*)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  684 |         rsa = (rsa_st*)EVP_PKEY_get0_RSA(pubKey);
+      |                        ~~~~~~~~~~~~~~~~~^~~~~~~~
+In file included from /usr/include/openssl/x509.h:29:
+/usr/include/openssl/evp.h:1405:22: note: declared here
+ 1405 | const struct rsa_st *EVP_PKEY_get0_RSA(const EVP_PKEY *pkey);
+      |                      ^~~~~~~~~~~~~~~~~
+crypt.cpp:685:29: warning: ‘int RSA_blinding_on(RSA*, BN_CTX*)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  685 |         if (!RSA_blinding_on(rsa, c)) {
+      |              ~~~~~~~~~~~~~~~^~~~~~~~
+/usr/include/openssl/rsa.h:382:27: note: declared here
+  382 | OSSL_DEPRECATEDIN_3_0 int RSA_blinding_on(RSA *rsa, BN_CTX *ctx);
+      |                           ^~~~~~~~~~~~~~~
+crypt.cpp:696:28: warning: ‘int RSA_verify(int, const unsigned char*, unsigned int, const unsigned char*, unsigned int, RSA*)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  696 |         retval = RSA_verify(NID_md5, md5_md, MD5_DIGEST_LENGTH, sfileMsg, sfsize, rsa);
+      |                  ~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/rsa.h:362:27: note: declared here
+  362 | OSSL_DEPRECATEDIN_3_0 int RSA_verify(int type, const unsigned char *m,
+      |                           ^~~~~~~~~~
+crypt.cpp:697:25: warning: ‘void RSA_blinding_off(RSA*)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  697 |         RSA_blinding_off(rsa);
+      |         ~~~~~~~~~~~~~~~~^~~~~
+/usr/include/openssl/rsa.h:383:28: note: declared here
+  383 | OSSL_DEPRECATEDIN_3_0 void RSA_blinding_off(RSA *rsa);
+      |                            ^~~~~~~~~~~~~~~~
+crypt.cpp: In function ‘char* check_validity(const char*, const char*, unsigned char*, char*)’:
+crypt.cpp:740:13: warning: ‘int MD5_Init(MD5_CTX*)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  740 |     MD5_Init(&md5CTX);
+      |     ~~~~~~~~^~~~~~~~~
+In file included from crypt.cpp:32:
+/usr/include/openssl/md5.h:49:27: note: declared here
+   49 | OSSL_DEPRECATEDIN_3_0 int MD5_Init(MD5_CTX *c);
+      |                           ^~~~~~~~
+crypt.cpp:742:19: warning: ‘int MD5_Update(MD5_CTX*, const void*, size_t)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  742 |         MD5_Update(&md5CTX, rbuf, rbytes);
+      |         ~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/md5.h:50:27: note: declared here
+   50 | OSSL_DEPRECATEDIN_3_0 int MD5_Update(MD5_CTX *c, const void *data, size_t len);
+      |                           ^~~~~~~~~~
+crypt.cpp:744:14: warning: ‘int MD5_Final(unsigned char*, MD5_CTX*)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  744 |     MD5_Final(md5_md, &md5CTX);
+      |     ~~~~~~~~~^~~~~~~~~~~~~~~~~
+/usr/include/openssl/md5.h:51:27: note: declared here
+   51 | OSSL_DEPRECATEDIN_3_0 int MD5_Final(unsigned char *md, MD5_CTX *c);
+      |                           ^~~~~~~~~
+crypt.cpp: In function ‘int cert_verify_file(CERT_SIGS*, const char*, const char*)’:
+crypt.cpp:791:13: warning: ‘int MD5_Init(MD5_CTX*)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  791 |     MD5_Init(&md5CTX);
+      |     ~~~~~~~~^~~~~~~~~
+/usr/include/openssl/md5.h:49:27: note: declared here
+   49 | OSSL_DEPRECATEDIN_3_0 int MD5_Init(MD5_CTX *c);
+      |                           ^~~~~~~~
+crypt.cpp:793:19: warning: ‘int MD5_Update(MD5_CTX*, const void*, size_t)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  793 |         MD5_Update(&md5CTX, rbuf, rbytes);
+      |         ~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/openssl/md5.h:50:27: note: declared here
+   50 | OSSL_DEPRECATEDIN_3_0 int MD5_Update(MD5_CTX *c, const void *data, size_t len);
+      |                           ^~~~~~~~~~
+crypt.cpp:795:14: warning: ‘int MD5_Final(unsigned char*, MD5_CTX*)’ is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  795 |     MD5_Final(md5_md, &md5CTX);
+      |     ~~~~~~~~~^~~~~~~~~~~~~~~~~
+/usr/include/openssl/md5.h:51:27: note: declared here
+   51 | OSSL_DEPRECATEDIN_3_0 int MD5_Final(unsigned char *md, MD5_CTX *c);
+      |                           ^~~~~~~~~
+  CXXLD    libboinc_crypt.la
+rm -f libboinc_crypt.a
+/usr/bin/ln .libs/libboinc_crypt.a .
+  CXXLD    libboinc.la
+rm -f libboinc.a
+/usr/bin/ln .libs/libboinc.a .
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11/lib'
+Making all in client
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11/client'
+  CXX      boinc_client-acct_mgr.o
+  CXX      boinc_client-acct_setup.o
+  CXX      boinc_client-app.o
+  CXX      boinc_client-app_config.o
+  CXX      boinc_client-app_control.o
+  CXX      boinc_client-app_test.o
+  CXX      boinc_client-app_start.o
+  CXX      boinc_client-async_file.o
+  CXX      boinc_client-check_state.o
+  CXX      boinc_client-client_msgs.o
+  CXX      boinc_client-client_state.o
+  CXX      boinc_client-client_types.o
+  CXX      boinc_client-coproc_sched.o
+  CXX      boinc_client-cpu_sched.o
+  CXX      boinc_client-cs_account.o
+  CXX      boinc_client-cs_apps.o
+  CXX      boinc_client-cs_benchmark.o
+  CXX      boinc_client-cs_cmdline.o
+  CXX      boinc_client-cs_files.o
+  CXX      boinc_client-cs_notice.o
+  CXX      boinc_client-cs_platforms.o
+  CXX      boinc_client-cs_prefs.o
+  CXX      boinc_client-cs_proxy.o
+  CXX      boinc_client-cs_scheduler.o
+  CXX      boinc_client-cs_sporadic.o
+  CXX      boinc_client-cs_statefile.o
+  CXX      boinc_client-cs_trickle.o
+  CXX      boinc_client-current_version.o
+  CXX      boinc_client-dhrystone.o
+  CXX      boinc_client-dhrystone2.o
+  CXX      boinc_client-file_names.o
+  CXX      boinc_client-file_xfer.o
+  CXX      boinc_client-gpu_amd.o
+  CXX      boinc_client-gpu_detect.o
+  CXX      boinc_client-gpu_intel.o
+  CXX      boinc_client-gpu_nvidia.o
+  CXX      boinc_client-gpu_opencl.o
+  CXX      boinc_client-gui_http.o
+  CXX      boinc_client-gui_rpc_server.o
+  CXX      boinc_client-gui_rpc_server_ops.o
+  CXX      boinc_client-hostinfo_linux.o
+  CXX      boinc_client-hostinfo_network.o
+  CXX      boinc_client-http_curl.o
+  CXX      boinc_client-log_flags.o
+  CXX      boinc_client-mac_address.o
+  CXX      boinc_client-main.o
+  CXX      boinc_client-net_stats.o
+  CXX      boinc_client-pers_file_xfer.o
+  CXX      boinc_client-project.o
+  CXX      boinc_client-project_list.o
+In file included from http_curl.h:27,
+                 from gui_http.h:53,
+                 from cs_notice.h:58,
+                 from client_types.h:47,
+                 from client_msgs.h:26,
+                 from http_curl.cpp:44:
+http_curl.cpp: In member function ‘int HTTP_OP::libcurl_exec(const char*, const char*, const char*, double, double, bool)’:
+http_curl.cpp:671:36: warning: ‘CURLOPT_IOCTLFUNCTION’ is deprecated: since 7.18.0. Use CURLOPT_SEEKFUNCTION [-Wdeprecated-declarations]
+  671 |         curl_easy_setopt(curlEasy, CURLOPT_IOCTLFUNCTION, libcurl_ioctl);
+      |                                    ^~~~~~~~~~~~~~~~~~~~~
+/usr/include/curl/curl.h:1607:3: note: declared here
+ 1607 |   CURLOPTDEPRECATED(CURLOPT_IOCTLFUNCTION, CURLOPTTYPE_FUNCTIONPOINT, 130,
+      |   ^~~~~~~~~~~~~~~~~
+http_curl.cpp:672:36: warning: ‘CURLOPT_IOCTLDATA’ is deprecated: since 7.18.0. Use CURLOPT_SEEKDATA [-Wdeprecated-declarations]
+  672 |         curl_easy_setopt(curlEasy, CURLOPT_IOCTLDATA, this);
+      |                                    ^~~~~~~~~~~~~~~~~
+/usr/include/curl/curl.h:1609:3: note: declared here
+ 1609 |   CURLOPTDEPRECATED(CURLOPT_IOCTLDATA, CURLOPTTYPE_CBPOINT, 131,
+      |   ^~~~~~~~~~~~~~~~~
+http_curl.cpp: In member function ‘void HTTP_OP::close_socket()’:
+http_curl.cpp:887:22: warning: ‘void curl_formfree(curl_httppost*)’ is deprecated: since 7.56.0. Use curl_mime_free() [-Wdeprecated-declarations]
+  887 |         curl_formfree(pcurlFormStart);
+      |         ~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+/usr/include/curl/curl.h:2661:1: note: declared here
+ 2661 | curl_formfree(struct curl_httppost *form);
+      | ^~~~~~~~~~~~~
+http_curl.cpp:888:22: warning: ‘void curl_formfree(curl_httppost*)’ is deprecated: since 7.56.0. Use curl_mime_free() [-Wdeprecated-declarations]
+  888 |         curl_formfree(pcurlFormEnd);
+      |         ~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/usr/include/curl/curl.h:2661:1: note: declared here
+ 2661 | curl_formfree(struct curl_httppost *form);
+      | ^~~~~~~~~~~~~
+http_curl.cpp: In member function ‘void HTTP_OP::handle_messages(CURLMsg*)’:
+http_curl.cpp:943:37: warning: ‘CURLINFO_SIZE_DOWNLOAD’ is deprecated: since 7.55.0. Use CURLINFO_SIZE_DOWNLOAD_T [-Wdeprecated-declarations]
+  943 |         curl_easy_getinfo(curlEasy, CURLINFO_SIZE_DOWNLOAD, &size_download);
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~
+/usr/include/curl/curl.h:2906:3: note: declared here
+ 2906 |   CURLINFO_SIZE_DOWNLOAD
+      |   ^~~~~~~~~~~~~~~~~~~~~~
+http_curl.cpp:955:37: warning: ‘CURLINFO_SIZE_UPLOAD’ is deprecated: since 7.55.0. Use CURLINFO_SIZE_UPLOAD_T [-Wdeprecated-declarations]
+  955 |         curl_easy_getinfo(curlEasy, CURLINFO_SIZE_UPLOAD, &size_upload);
+      |                                     ^~~~~~~~~~~~~~~~~~~~
+/usr/include/curl/curl.h:2903:3: note: declared here
+ 2903 |   CURLINFO_SIZE_UPLOAD CURL_DEPRECATED(7.55.0, "Use CURLINFO_SIZE_UPLOAD_T")
+      |   ^~~~~~~~~~~~~~~~~~~~
+  CXX      boinc_client-result.o
+  CXX      boinc_client-rr_sim.o
+  CXX      boinc_client-sandbox.o
+  CXX      boinc_client-scheduler_op.o
+  CXX      boinc_client-thread.o
+  CXX      boinc_client-time_stats.o
+  CXX      boinc_client-whetstone.o
+  CXX      boinc_client-work_fetch.o
+  CXX      boinc_client-hostinfo_unix.o
+  CXX      boinccmd-boinc_cmd.o
+hostinfo_unix.cpp: In function ‘std::vector<std::__cxx11::basic_string<char> > get_tty_list()’:
+hostinfo_unix.cpp:1924:56: warning: ‘snprintf’ output may be truncated before the last format character [-Wformat-truncation=]
+ 1924 |             snprintf(fullname, sizeof(fullname), "%s/%s", tty_patterns[i].dir, devname);
+      |                                                        ^
+hostinfo_unix.cpp:1924:21: note: ‘snprintf’ output 2 or more bytes (assuming 1025) into a destination of size 1024
+ 1924 |             snprintf(fullname, sizeof(fullname), "%s/%s", tty_patterns[i].dir, devname);
+      |             ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  CXXLD    boinccmd
+  CXXLD    boinc_client
+rm -f boinc .libs/boinc
+/usr/bin/ln boinc_client boinc
+if test -f .libs/boinc_client ; then /usr/bin/ln .libs/boinc_client .libs/boinc ; fi
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11/client'
+Making all in client/scripts
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11/client/scripts'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11/client/scripts'
+Making all in doc
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11/doc'
+make[3]: Entering directory '/home/sable/src/boinc-8.2.11/doc'
+make[3]: Nothing to be done for 'all-am'.
+make[3]: Leaving directory '/home/sable/src/boinc-8.2.11/doc'
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11/doc'
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11'
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11'
+make[1]: Leaving directory '/home/sable/src/boinc-8.2.11'
+
+=== RESULTING FILES ===
+client/boinccmd
+client/boinc_client
+client/boinc
+lib/libboinc.a
+lib/.libs/libboinc.a
+lib/.libs/libboinc_crypt.a
+lib/libboinc_crypt.a
+
+=== VERSION TEST ===
+8.2.11 x86_64-pc-linux-gnu
+
+=== BOINCCMD TEST ===
+
+usage: boinccmd [--host hostname] [--passwd passwd] [--unix_domain] command
+
+default hostname: localhost
+default password: contents of gui_rpc_auth.cfg
+Commands:
+ --acct_mgr attach URL name passwd  attach to account manager
+ --acct_mgr info                    show current account manager info
+ --acct_mgr sync                    synchronize with acct mgr
+ --acct_mgr detach                  detach from acct mgr
+ --client_version                   show client version
+ --create_account URL email passwd name
+ --file_transfer URL filename op    file transfer operation
+   op = retry | abort
+ --get_app_config URL               show app config for given project
+ --get_cc_status
+ --get_daily_xfer_history           show network traffic history
+ --get_disk_usage                   show disk usage
+ --get_file_transfers               show file transfers
+ --get_host_info
+ --get_message_count                show largest message seqno
+ --get_messages [ seqno ]           show messages > seqno
+ --get_notices [ seqno ]            show notices > seqno
+ --get_project_config URL
+ --get_project_status               show status of all attached projects
+ --get_proxy_settings
+ --get_simple_gui_info              show status of projects and active tasks
+ --get_state                        show entire state
+ --get_tasks                        show tasks (detailed)
+ --get_task_summary [pcedsrw]       show tasks (1 task per line)
+    p: project name
+    c: completion %
+    e: elapsed time
+    d: deadline
+    s: status
+    r: resource usage
+    w: WU name
+ --get_old_tasks                    show reported tasks from last 1 hour
+ --join_acct_mgr URL name passwd    same as --acct_mgr attach
+ --lookup_account URL email passwd
+ --network_available                retry deferred network communication
+ --project URL op                   project operation
+   op = reset | detach | update | suspend | resume | nomorework | allowmorework | detach_when_done | dont_detach_when_done
+ --project_attach URL auth          attach to project
+ --quit                             tell client to exit
+ --quit_acct_mgr                    same as --acct_mgr detach
+ --read_cc_config
+ --read_global_prefs_override
+ --reset_host_info                  have client get mem size, #CPUs etc. again
+ --run_benchmarks
+ --run_graphics_app id op         (Macintosh only) run, test or stop graphics app
+   op = run | runfullscreen | stop | test
+   id = slot # for run or runfullscreen, process ID for stop or test
+   id = -1 for default screensaver (boincscr)
+ --set_gpu_mode mode duration       set GPU run mode for given duration
+   mode = always | auto | never
+ --set_host_info product_name
+ --set_network_mode mode duration   set network mode for given duration
+   mode = always | auto | never
+ --set_proxy_settings
+ --set_run_mode mode duration       set run mode for given duration
+   mode = always | auto | never
+ --task url task_name op            task operation
+   op = suspend | resume | abort

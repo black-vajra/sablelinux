@@ -1,0 +1,51 @@
+=== BZIP2 ===
+bzip2          /usr/bin/bzip2
+bzip2, a block-sorting file compressor.  Version 1.0.8, 13-Jul-2019.
+
+=== REQUIRED BOINC MANAGER MODULES ===
+gtk+-3.0             PASS 3.24.43
+xkbcommon            PASS 1.7.0
+xcb                  PASS 1.17.0
+xcb-atom             MISSING
+libnotify            MISSING
+
+=== WXWIDGETS BUILD MODULES ===
+glib-2.0             PASS 2.87.3
+gio-2.0              PASS 2.87.3
+gobject-2.0          PASS 2.87.3
+gdk-pixbuf-2.0       PASS 2.42.12
+cairo                PASS 1.18.2
+pango                PASS 1.56.3
+pangocairo           PASS 1.56.3
+gtk+-3.0             PASS 3.24.43
+zlib                 PASS 1.3.1
+expat                PASS 2.7.1
+libpng               PASS 1.6.44
+libjpeg              PASS 2.1.2
+libtiff-4            not found
+x11                  PASS 1.8.13
+xext                 PASS 1.3.7
+xinerama             PASS 1.1.6
+xcursor              PASS 1.2.3
+xrandr               PASS 1.5.5
+xi                   PASS 1.8.2
+
+=== IMPORTANT HEADERS ===
+PASS: /usr/include/gtk-3.0/gtk/gtk.h
+PASS: /usr/include/glib-2.0/glib.h
+PASS: /usr/include/cairo/cairo.h
+PASS: /usr/include/pango-1.0/pango/pango.h
+PASS: /usr/include/png.h
+PASS: /usr/include/jpeglib.h
+MISSING: /usr/include/tiffio.h
+PASS: /usr/include/expat.h
+
+=== CURRENT WXWIDGETS STATE ===
+wx-config absent
+No installed wxWidgets libraries found
+
+=== BOINC SOURCE STATE ===
+5511380b8980935c25c3ea41df3980445419e59e
+27:AC_INIT(BOINC, 8.2.11)
+
+=== END AUDIT ===

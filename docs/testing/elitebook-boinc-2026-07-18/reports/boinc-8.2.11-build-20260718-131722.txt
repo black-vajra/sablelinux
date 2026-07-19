@@ -1,0 +1,1015 @@
+=== BOINC CLIENT-ONLY BUILD ===
+2026-07-18T13:17:22-04:00
+Host: vulfen
+Version: 8.2.11
+Branch: client_release/8.2/8.2.11
+Source: /home/sable/src/boinc-8.2.11
+
+=== SAFETY CHECK ===
+PASS: source path is unused
+
+=== CLONE PINNED UPSTREAM RELEASE ===
+Cloning into '/home/sable/src/boinc-8.2.11'...
+Note: switching to '5511380b8980935c25c3ea41df3980445419e59e'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+
+=== SOURCE IDENTITY ===
+origin	https://github.com/BOINC/boinc.git (fetch)
+origin	https://github.com/BOINC/boinc.git (push)
+5511380b8980935c25c3ea41df3980445419e59e
+
+=== VERIFY DECLARED VERSION ===
+27:AC_INIT(BOINC, 8.2.11)
+PASS: source declares BOINC 8.2.11
+
+=== GENERATE BUILD SYSTEM ===
+Bootstrapping configure script and makefiles:
+Checking version of 'make' >= 379... succeeded. (404)
+Checking version of 'm4' >= 104... succeeded. (104)
+Checking version of 'pkg-config' >= 15... succeeded. (205)
+Checking version of 'autoreconf' >= 258... succeeded. (272)
+Checking version of 'automake' >= 108... succeeded. (118)
+Checking version of 'libtoolize' >= 105... succeeded. (205)
+autoreconf -i
+libtoolize: putting auxiliary files in '.'.
+libtoolize: copying file './ltmain.sh'
+libtoolize: putting macros in AC_CONFIG_MACRO_DIRS, 'm4'.
+libtoolize: copying file 'm4/libtool.m4'
+libtoolize: copying file 'm4/ltoptions.m4'
+libtoolize: copying file 'm4/ltsugar.m4'
+libtoolize: copying file 'm4/ltversion.m4'
+libtoolize: copying file 'm4/lt~obsolete.m4'
+configure.ac:56: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:56: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+./lib/autoconf/programs.m4:358: AC_PROG_AWK is expanded from...
+aclocal.m4:780: AM_INIT_AUTOMAKE is expanded from...
+configure.ac:56: the top level
+configure.ac:81: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:81: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+./lib/autoconf/programs.m4:246: AC_CHECK_TOOLS is expanded from...
+./lib/autoconf/c.m4:460: AC_PROG_CC is expanded from...
+configure.ac:81: the top level
+configure.ac:82: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:82: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+./lib/autoconf/programs.m4:246: AC_CHECK_TOOLS is expanded from...
+./lib/autoconf/c.m4:687: AC_PROG_CXX is expanded from...
+configure.ac:82: the top level
+configure.ac:124: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:124: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+./lib/autoconf/programs.m4:246: AC_CHECK_TOOLS is expanded from...
+./lib/autoconf/c.m4:1004: AC_PROG_OBJCXX is expanded from...
+configure.ac:124: the top level
+configure.ac:446: warning: The macro 'AC_HELP_STRING' is obsolete.
+configure.ac:446: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+m4/ax_winsock.m4:1: AX_WINSOCK is expanded from...
+m4/boinc_check_cygwin.m4:1: BOINC_CHECK_CYGWIN is expanded from...
+configure.ac:446: the top level
+configure.ac:463: warning: The macro 'AC_LIBTOOL_DLOPEN' is obsolete.
+configure.ac:463: You should run autoupdate.
+m4/ltoptions.m4:113: AC_LIBTOOL_DLOPEN is expanded from...
+configure.ac:463: the top level
+configure.ac:463: warning: AC_LIBTOOL_DLOPEN: Remove this warning and the call to _LT_SET_OPTION when you
+configure.ac:463: put the 'dlopen' option into LT_INIT's first parameter.
+./lib/autoconf/general.m4:2434: AC_DIAGNOSE is expanded from...
+m4/ltoptions.m4:113: AC_LIBTOOL_DLOPEN is expanded from...
+configure.ac:463: the top level
+configure.ac:464: warning: The macro 'AC_LIBTOOL_WIN32_DLL' is obsolete.
+configure.ac:464: You should run autoupdate.
+m4/ltoptions.m4:148: AC_LIBTOOL_WIN32_DLL is expanded from...
+configure.ac:464: the top level
+configure.ac:464: warning: AC_LIBTOOL_WIN32_DLL: Remove this warning and the call to _LT_SET_OPTION when you
+configure.ac:464: put the 'win32-dll' option into LT_INIT's first parameter.
+./lib/autoconf/general.m4:2434: AC_DIAGNOSE is expanded from...
+m4/ltoptions.m4:148: AC_LIBTOOL_WIN32_DLL is expanded from...
+configure.ac:464: the top level
+configure.ac:465: warning: The macro 'AC_PROG_LIBTOOL' is obsolete.
+configure.ac:465: You should run autoupdate.
+m4/libtool.m4:100: AC_PROG_LIBTOOL is expanded from...
+configure.ac:465: the top level
+configure.ac:465: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:465: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+./lib/autoconf/programs.m4:246: AC_CHECK_TOOLS is expanded from...
+m4/libtool.m4:3795: LT_PATH_NM is expanded from...
+m4/libtool.m4:153: _LT_SETUP is expanded from...
+m4/libtool.m4:62: LT_INIT is expanded from...
+m4/libtool.m4:100: AC_PROG_LIBTOOL is expanded from...
+configure.ac:465: the top level
+configure.ac:465: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:465: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+./lib/autoconf/programs.m4:246: AC_CHECK_TOOLS is expanded from...
+m4/libtool.m4:1527: _LT_PROG_AR is expanded from...
+m4/libtool.m4:1577: _LT_CMD_OLD_ARCHIVE is expanded from...
+m4/libtool.m4:153: _LT_SETUP is expanded from...
+m4/libtool.m4:62: LT_INIT is expanded from...
+m4/libtool.m4:100: AC_PROG_LIBTOOL is expanded from...
+configure.ac:465: the top level
+configure.ac:471: warning: The macro 'AC_HELP_STRING' is obsolete.
+configure.ac:471: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+m4/sah_select_bitness.m4:97: SAH_OPTION_BITNESS is expanded from...
+configure.ac:471: the top level
+configure.ac:474: warning: The macro 'AC_HELP_STRING' is obsolete.
+configure.ac:474: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+m4/boinc_platform.m4:1: BOINC_PLATFORM is expanded from...
+configure.ac:474: the top level
+configure.ac:570: warning: The macro 'AC_HELP_STRING' is obsolete.
+configure.ac:570: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+m4/check_ssl.m4:1: CHECK_SSL is expanded from...
+lib/m4sugar/m4sh.m4:697: AS_IF is expanded from...
+configure.ac:570: the top level
+configure.ac:570: warning: The macro 'AC_HELP_STRING' is obsolete.
+configure.ac:570: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+m4/boinc_check_lib_with.m4:1: BOINC_CHECK_LIB_WITH is expanded from...
+m4/check_ssl.m4:1: CHECK_SSL is expanded from...
+lib/m4sugar/m4sh.m4:697: AS_IF is expanded from...
+configure.ac:570: the top level
+configure.ac:576: warning: The macro 'AC_HELP_STRING' is obsolete.
+configure.ac:576: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+m4/libcurl.m4:37: LIBCURL_CHECK_CONFIG is expanded from...
+lib/m4sugar/m4sh.m4:697: AS_IF is expanded from...
+configure.ac:576: the top level
+configure.ac:576: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:576: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+./lib/autoconf/programs.m4:358: AC_PROG_AWK is expanded from...
+m4/libcurl.m4:37: LIBCURL_CHECK_CONFIG is expanded from...
+lib/m4sugar/m4sh.m4:697: AS_IF is expanded from...
+configure.ac:576: the top level
+configure.ac:576: warning: The macro 'AC_HELP_STRING' is obsolete.
+configure.ac:576: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+m4/boinc_check_lib_with.m4:1: BOINC_CHECK_LIB_WITH is expanded from...
+m4/libcurl.m4:37: LIBCURL_CHECK_CONFIG is expanded from...
+lib/m4sugar/m4sh.m4:697: AS_IF is expanded from...
+configure.ac:576: the top level
+configure.ac:663: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:663: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+lib/m4sugar/m4sh.m4:595: AS_CASE is expanded from...
+lib/m4sugar/m4sh.m4:595: AS_CASE is expanded from...
+m4/ax_pthread.m4:126: AX_PTHREAD is expanded from...
+configure.ac:663: the top level
+configure.ac:699: warning: The macro 'ACX_PTHREAD' is obsolete.
+configure.ac:699: You should run autoupdate.
+m4/ax_pthread.m4:125: ACX_PTHREAD is expanded from...
+m4/ax_check_gl.m4:4: AX_CHECK_GL is expanded from...
+configure.ac:699: the top level
+configure.ac:699: warning: The macro 'AC_CHECK_PROGS' is obsolete.
+configure.ac:699: You should run autoupdate.
+m4/ax_pthread.m4:111: AC_CHECK_PROGS is expanded from...
+lib/m4sugar/m4sh.m4:595: AS_CASE is expanded from...
+lib/m4sugar/m4sh.m4:595: AS_CASE is expanded from...
+m4/ax_pthread.m4:126: AX_PTHREAD is expanded from...
+m4/ax_pthread.m4:125: ACX_PTHREAD is expanded from...
+m4/ax_check_gl.m4:4: AX_CHECK_GL is expanded from...
+configure.ac:699: the top level
+configure.ac:699: warning: The macro 'AC_HELP_STRING' is obsolete.
+configure.ac:699: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+./lib/autoconf/general.m4:1553: AC_ARG_WITH is expanded from...
+m4/ax_check_gl.m4:4: AX_CHECK_GL is expanded from...
+configure.ac:699: the top level
+configure.ac:806: warning: The macro 'AC_HEADER_STDC' is obsolete.
+configure.ac:806: You should run autoupdate.
+./lib/autoconf/headers.m4:663: AC_HEADER_STDC is expanded from...
+configure.ac:806: the top level
+configure.ac:808: warning: The macro 'AC_HEADER_TIME' is obsolete.
+configure.ac:808: You should run autoupdate.
+./lib/autoconf/headers.m4:702: AC_HEADER_TIME is expanded from...
+configure.ac:808: the top level
+configure.ac:809: warning: The macro 'AC_TYPE_SIGNAL' is obsolete.
+configure.ac:809: You should run autoupdate.
+./lib/autoconf/types.m4:805: AC_TYPE_SIGNAL is expanded from...
+configure.ac:809: the top level
+configure.ac:1074: warning: AC_CHECK_HEADERS($sah_stdcxx_headers): you should use literals
+./lib/autoconf/headers.m4:217: AC_CHECK_HEADERS is expanded from...
+lib/m4sugar/m4sh.m4:690: _AS_IF_ELSE is expanded from...
+lib/m4sugar/m4sh.m4:697: AS_IF is expanded from...
+./lib/autoconf/general.m4:2821: _AC_COMPILE_IFELSE is expanded from...
+./lib/autoconf/general.m4:2837: AC_COMPILE_IFELSE is expanded from...
+m4/sah_header_stdcxx.m4:23: SAH_HEADER_STDCXX is expanded from...
+configure.ac:1074: the top level
+configure.ac:1084: warning: The macro 'AC_PROG_GCC_TRADITIONAL' is obsolete.
+configure.ac:1084: You should run autoupdate.
+./lib/autoconf/c.m4:1676: AC_PROG_GCC_TRADITIONAL is expanded from...
+configure.ac:1084: the top level
+configure.ac:81: installing './compile'
+configure.ac:47: installing './config.guess'
+configure.ac:47: installing './config.sub'
+configure.ac:56: installing './install-sh'
+configure.ac:56: installing './missing'
+api/Makefile.am:22: warning: source file '$(top_srcdir)/samples/image_libs/bmplib.cpp' is in a subdirectory,
+api/Makefile.am:22: but option 'subdir-objects' is disabled
+automake: warning: possible forward-incompatibility.
+automake: At least one source file is in a subdirectory, but the 'subdir-objects'
+automake: automake option hasn't been enabled.  For now, the corresponding output
+automake: object file(s) will be placed in the top-level directory.  However, this
+automake: behavior may change in a future Automake major version, with object
+automake: files being placed in the same subdirectory as the corresponding sources.
+automake: You are advised to start using 'subdir-objects' option throughout your
+automake: project, to avoid future incompatibility.
+api/Makefile.am:22: warning: source file '$(top_srcdir)/samples/image_libs/tgalib.cpp' is in a subdirectory,
+api/Makefile.am:22: but option 'subdir-objects' is disabled
+api/Makefile.am: installing './depcomp'
+client/Makefile.am:4: warning: ':='-style assignments are not portable
+client/Makefile.am:4: warning: filter-out -mfpu=vfpv3-d16,$(CXXFLAGS: non-POSIX variable name
+client/Makefile.am:4: (probably a GNU make extension)
+client/Makefile.am:126: warning: filter-out -mfpu=vfpv3-d16,$(boinc_client_CXXFLAGS: non-POSIX variable name
+client/Makefile.am:126: (probably a GNU make extension)
+client/Makefile.am:4: warning: 'CXXFLAGS' is a user variable, you should not override it;
+client/Makefile.am:4: use 'AM_CXXFLAGS' instead
+clientgui/Makefile.am:26: warning: source file 'common/wxPieCtrl.cpp' is in a subdirectory,
+clientgui/Makefile.am:26: but option 'subdir-objects' is disabled
+clientgui/Makefile.am:26: warning: source file 'gtk/taskbarex.cpp' is in a subdirectory,
+clientgui/Makefile.am:26: but option 'subdir-objects' is disabled
+lib/Makefile.am:95: warning: source file 'mac/mac_backtrace.cpp' is in a subdirectory,
+lib/Makefile.am:95: but option 'subdir-objects' is disabled
+lib/Makefile.am:95: warning: source file 'mac/mac_spawn.cpp' is in a subdirectory,
+lib/Makefile.am:95: but option 'subdir-objects' is disabled
+lib/Makefile.am:95: warning: source file 'mac/QBacktrace.c' is in a subdirectory,
+lib/Makefile.am:95: but option 'subdir-objects' is disabled
+lib/Makefile.am:95: warning: source file 'mac/QCrashReport.c' is in a subdirectory,
+lib/Makefile.am:95: but option 'subdir-objects' is disabled
+lib/Makefile.am:95: warning: source file 'mac/QMachOImage.c' is in a subdirectory,
+lib/Makefile.am:95: but option 'subdir-objects' is disabled
+lib/Makefile.am:95: warning: source file 'mac/QMachOImageList.c' is in a subdirectory,
+lib/Makefile.am:95: but option 'subdir-objects' is disabled
+lib/Makefile.am:95: warning: source file 'mac/QSymbols.c' is in a subdirectory,
+lib/Makefile.am:95: but option 'subdir-objects' is disabled
+lib/Makefile.am:95: warning: source file 'mac/QTaskMemory.c' is in a subdirectory,
+lib/Makefile.am:95: but option 'subdir-objects' is disabled
+lib/Makefile.am:95: warning: source file 'mac/mac_branding.cpp' is in a subdirectory,
+lib/Makefile.am:95: but option 'subdir-objects' is disabled
+sched/Makefile.am:11: warning: source file '../db/boinc_db.cpp' is in a subdirectory,
+sched/Makefile.am:11: but option 'subdir-objects' is disabled
+sched/Makefile.am:11: warning: source file '../db/db_base.cpp' is in a subdirectory,
+sched/Makefile.am:11: but option 'subdir-objects' is disabled
+sched/Makefile.am:11: warning: source file '../tools/process_result_template.cpp' is in a subdirectory,
+sched/Makefile.am:11: but option 'subdir-objects' is disabled
+sched/Makefile.am:11: warning: source file '../tools/process_input_template.cpp' is in a subdirectory,
+sched/Makefile.am:11: but option 'subdir-objects' is disabled
+sched/Makefile.am:11: warning: source file '../tools/backend_lib.cpp' is in a subdirectory,
+sched/Makefile.am:11: but option 'subdir-objects' is disabled
+sched/Makefile.am:158: warning: source file '../vda/sched_vda.cpp' is in a subdirectory,
+sched/Makefile.am:158: but option 'subdir-objects' is disabled
+sched/Makefile.am:205: warning: source file '../lib/synch.cpp' is in a subdirectory,
+sched/Makefile.am:205: but option 'subdir-objects' is disabled
+sched/Makefile.am:212: warning: source file '../lib/synch.cpp' is in a subdirectory,
+sched/Makefile.am:212: but option 'subdir-objects' is disabled
+tools/Makefile.am:69: warning: source file '../lib/remote_submit.cpp' is in a subdirectory,
+tools/Makefile.am:69: but option 'subdir-objects' is disabled
+Done, now run ./configure
+ ./configure -C                         to enable caching
+
+=== CONFIGURE CLIENT-ONLY BUILD ===
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether sleep supports fractional seconds... yes
+checking filesystem timestamp resolution... 0.01
+checking whether build environment is sane... yes
+checking for a race-free mkdir -p... /usr/bin/mkdir -p
+checking for gawk... /usr/bin/gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking xargs -n works... yes
+checking whether UID '1000' is supported by ustar format... yes
+checking whether GID '1000' is supported by ustar format... yes
+checking how to create a ustar tar archive... gnutar
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to enable C11 features... none needed
+checking whether gcc understands -c and -o together... yes
+checking whether make supports the include directive... yes (GNU style)
+checking dependency style of gcc... gcc3
+checking for g++... /usr/bin/g++
+checking whether the compiler supports GNU C++... yes
+checking whether /usr/bin/g++ accepts -g... yes
+checking for /usr/bin/g++ option to enable C++11 features... none needed
+checking dependency style of /usr/bin/g++... gcc3
+checking whether /usr/bin/g++ supports C++11... yes, with -std=c++11
+checking for g++... /usr/bin/g++
+checking whether the compiler supports GNU Objective C++... no
+checking whether /usr/bin/g++ accepts -g... no
+checking dependency style of /usr/bin/g++... gcc3
+checking how to run the C preprocessor... gcc -E
+checking whether make sets $(MAKE)... (cached) yes
+checking for ln... /usr/bin/ln
+checking whether '/usr/bin/ln' works... yes
+checking whether ln -s works... yes
+checking whether 'ln -s' really works or whether I'm deluding myself... it works
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking if C compiler supports -Wall... yes
+checking if C++ compiler supports -Wall... yes
+--- Configuring BOINC 8.2.11 (Release) ---
+--- Build Components: (client) ---
+checking for docbook2x-man... no
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for sys/time.h... yes
+checking whether we are compiling for cygwin... no
+checking for winsock2.h... (cached) no
+checking for winsock.h... (cached) no
+checking for windows.h... no
+checking for sys/socket.h... yes
+checking dependency style of gcc... gcc3
+checking how to print strings... printf
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by gcc... /usr/x86_64-pc-linux-gnu/bin/ld
+checking if the linker (/usr/x86_64-pc-linux-gnu/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking the maximum length of command line arguments... 1572864
+checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/x86_64-pc-linux-gnu/bin/ld option to reload object files... -r
+checking for file... file
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... dlltool
+checking how to associate runtime and link libraries... printf %s\n
+checking for ranlib... ranlib
+checking for ar... /usr/bin/ar
+checking for archiver @FILE support... @
+checking for strip... strip
+checking command to parse /usr/bin/nm -B output from gcc object... ok
+checking for sysroot... no
+checking for a working dd... /usr/bin/dd
+checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+checking for mt... mt
+checking if mt is a manifest tool... no
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if gcc supports -fno-rtti -fno-exceptions... no
+checking for gcc option to produce PIC... -fPIC -DPIC
+checking if gcc PIC flag -fPIC -DPIC works... yes
+checking if gcc static flag -static works... yes
+checking if gcc supports -c -o file.o... yes
+checking if gcc supports -c -o file.o... (cached) yes
+checking whether the gcc linker (/usr/x86_64-pc-linux-gnu/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking for shl_load... no
+checking for shl_load in -ldld... no
+checking for dlopen... yes
+checking whether a program can dlopen itself... yes
+checking whether a statically linked program can dlopen itself... no
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking how to run the C++ preprocessor... /usr/bin/g++ -E
+checking for ld used by /usr/bin/g++... /usr/x86_64-pc-linux-gnu/bin/ld -m elf_x86_64
+checking if the linker (/usr/x86_64-pc-linux-gnu/bin/ld -m elf_x86_64) is GNU ld... yes
+checking whether the /usr/bin/g++ linker (/usr/x86_64-pc-linux-gnu/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking for /usr/bin/g++ option to produce PIC... -fPIC -DPIC
+checking if /usr/bin/g++ PIC flag -fPIC -DPIC works... yes
+checking if /usr/bin/g++ static flag -static works... yes
+checking if /usr/bin/g++ supports -c -o file.o... yes
+checking if /usr/bin/g++ supports -c -o file.o... (cached) yes
+checking whether the /usr/bin/g++ linker (/usr/x86_64-pc-linux-gnu/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking dynamic linker characteristics... (cached) GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking default bitness of C compiler... 64
+checking default bitness of C++ compiler... 64
+checking boinc platform... x86_64-pc-linux-gnu
+checking alternate boinc platform... i686-pc-linux-gnu
+checking library extension... a
+checking shared object extension... so
+checking for pkg-config... /usr/bin/pkg-config
+checking for openssl... yes
+OpenSSL found in /usr
+checking for gawk... (cached) /usr/bin/gawk
+checking for ... no
+checking for curl-config... /usr/bin/curl-config
+checking for the version of libcurl... 8.15.0
+checking for libcurl >= version 7.17.1... yes
+checking whether libcurl is usable... yes
+checking for curl_free... yes
+checking for shmget in dynamic library cygipc... no
+checking for aio_fork in dynamic library aio... no
+checking for dlopen in dynamic library dl...  -ldl
+checking for gethostbyname in static library nsl... no
+checking for gethostbyname in dynamic library nsl... no
+checking for static library freetype...  -lfreetype
+checking for bind in static library socket... no
+checking for bind in dynamic library socket... no
+checking for shm_open in static library rt...  -lrt
+checking for gzopen in static library z...  -lz
+checking for md5_finish in dynamic library cups... no
+checking for the pthreads library -lpthreads... no
+checking whether pthreads work without any flags... yes
+checking for joinable pthread attribute... PTHREAD_CREATE_JOINABLE
+checking if more special flags are required for pthreads... no
+checking for PTHREAD_PRIO_INHERIT... yes
+checking for X... libraries , headers 
+checking for gethostbyname... yes
+checking for connect... yes
+checking for remove... yes
+checking for shmat... yes
+checking for IceConnectionNumber in -lICE... yes
+configure: checking for usable OpenCL opencl.h header
+checking for OpenCL/opencl.h... no
+checking for CL/opencl.h... no
+configure: no usable OpenCL installation found
+configure: WARNING: OpenCL is missing, OpenClApp example is disabled
+checking for the pthreads library -lpthreads... no
+checking whether pthreads work without any flags... yes
+checking for joinable pthread attribute... PTHREAD_CREATE_JOINABLE
+checking if more special flags are required for pthreads... no
+checking for PTHREAD_PRIO_INHERIT... (cached) yes
+checking whether we are using the Microsoft C compiler... no
+checking for windows.h... (cached) no
+checking for OpenGL library... -lGL
+checking for OpenGL Utility library... -lGLU
+checking for fopen in -lXmu... yes
+checking for fopen in -lXi... yes
+checking for GLUT library... no
+configure: WARNING:
+================================================================================
+WARNING: Development libraries and headers ("-dev") of {openGL, GLU, glut} needed!
+
+The GL, GLU and glut libraries are required in order to build the graphical parts
+of the BOINC application API library.
+
+==> only building non-graphical parts of the BOINC API Library for now.
+
+HINT: on MacOS X/Darwin you might consider running configure with the option
+      './configure --with-apple-opengl-framework'
+      in order to use the Mac-native openGL framework
+
+================================================================================
+       
+checking for XScreenSaverAllocInfo in -lXss... yes
+checking for X11/extensions/scrnsaver.h... yes
+checking for dirent.h that defines DIR... yes
+checking for library containing opendir... none required
+checking for egrep... (cached) /usr/bin/grep -E
+checking for sys/wait.h that is POSIX.1 compatible... yes
+checking return type of signal handlers... void
+checking for sys/types.h... (cached) yes
+checking for sys/un.h... yes
+checking for arpa/inet.h... yes
+checking for dirent.h... yes
+checking for grp.h... yes
+checking for fcntl.h... yes
+checking for inttypes.h... (cached) yes
+checking for stdint.h... (cached) yes
+checking for memory.h... yes
+checking for netdb.h... yes
+checking for netinet/in.h... yes
+checking for netinet/tcp.h... yes
+checking for netinet/ether.h... yes
+checking for net/if.h... yes
+checking for net/if_arp.h... yes
+checking for signal.h... yes
+checking for strings.h... (cached) yes
+checking for sys/auxv.h... yes
+checking for sys/file.h... yes
+checking for sys/fcntl.h... yes
+checking for sys/ipc.h... yes
+checking for sys/ioctl.h... yes
+checking for sys/msg.h... yes
+checking for sys/param.h... yes
+checking for sys/resource.h... yes
+checking for sys/select.h... yes
+checking for sys/sem.h... yes
+checking for sys/shm.h... yes
+checking for sys/sockio.h... no
+checking for sys/socket.h... (cached) yes
+checking for sys/stat.h... (cached) yes
+checking for sys/statvfs.h... yes
+checking for sys/statfs.h... yes
+checking for sys/systeminfo.h... no
+checking for sys/time.h... (cached) yes
+checking for sys/types.h... (cached) yes
+checking for sys/utsname.h... yes
+checking for sys/vmmeter.h... no
+checking for sys/wait.h... (cached) yes
+checking for unistd.h... (cached) yes
+checking for utmp.h... yes
+checking for errno.h... yes
+checking for procfs.h... no
+checking for ieeefp.h... no
+checking for setjmp.h... yes
+checking for float.h... yes
+checking for sal.h... no
+checking for execinfo.h... yes
+checking for xlocale.h... no
+checking for intrin.h... no
+checking for x86intrin.h... yes
+checking for pmmintrin.h... yes
+checking for xmmintrin.h... yes
+checking for emmintrin.h... yes
+checking for immintrin.h... yes
+checking for gcc options needed to detect all undeclared functions... none needed
+checking whether _xgetbv is declared... yes
+checking whether xgetbv is declared... no
+checking whether __xgetbv is declared... no
+checking whether cpuid is declared... no
+checking whether _cpuid is declared... no
+checking whether __cpuid is declared... no
+checking if assembler supports xgetbv... yes
+checking for nvapi.h... no
+checking for socklen_t... yes
+checking for net/if.h... (cached) yes
+checking for net/if_arp.h... (cached) yes
+checking for sys/mount.h... yes
+checking for sys/swap.h... yes
+checking for sys/sensors.h... no
+checking for sys/sysctl.h... no
+checking for resolv.h... yes
+checking for netinet/if_ether.h... yes
+checking for struct lifconf... no
+checking for struct lifreq... no
+checking for struct ifconf... yes
+checking for struct ifreq... yes
+checking for struct ether_addr... yes
+checking for gcc option to enable large file support... none needed
+checking whether largefile support breaks C++... no
+checking standard C++ headers... yes
+checking for C++ header <algorithm>... (cached) yes
+checking for C++ header <bitset>... (cached) yes
+checking for C++ header <cassert>... (cached) yes
+checking for C++ header <cctype>... (cached) yes
+checking for C++ header <cerrno>... (cached) yes
+checking for C++ header <cfloat>... (cached) yes
+checking for C++ header <climits>... (cached) yes
+checking for C++ header <clocale>... (cached) yes
+checking for C++ header <cmath>... (cached) yes
+checking for C++ header <complex>... (cached) yes
+checking for C++ header <csetjmp>... (cached) yes
+checking for C++ header <csignal>... (cached) yes
+checking for C++ header <cstdarg>... (cached) yes
+checking for C++ header <cstddef>... (cached) yes
+checking for C++ header <cstdio>... (cached) yes
+checking for C++ header <cstdlib>... (cached) yes
+checking for C++ header <cstring>... (cached) yes
+checking for C++ header <ctime>... (cached) yes
+checking for C++ header <deque>... (cached) yes
+checking for C++ header <fstream>... (cached) yes
+checking for C++ header <functional>... (cached) yes
+checking for C++ header <iomanip>... (cached) yes
+checking for C++ header <ios>... (cached) yes
+checking for C++ header <iosfwd>... (cached) yes
+checking for C++ header <iostream>... (cached) yes
+checking for C++ header <istream>... (cached) yes
+checking for C++ header <iterator>... (cached) yes
+checking for C++ header <limits>... (cached) yes
+checking for C++ header <list>... (cached) yes
+checking for C++ header <locale>... (cached) yes
+checking for C++ header <map>... (cached) yes
+checking for C++ header <memory>... (cached) yes
+checking for C++ header <numeric>... (cached) yes
+checking for C++ header <ostream>... (cached) yes
+checking for C++ header <queue>... (cached) yes
+checking for C++ header <set>... (cached) yes
+checking for C++ header <sstream>... (cached) yes
+checking for C++ header <stack>... (cached) yes
+checking for C++ header <stdexcept>... (cached) yes
+checking for C++ header <streambuf>... (cached) yes
+checking for C++ header <string>... (cached) yes
+checking for C++ header <utility>... (cached) yes
+checking for C++ header <valarray>... (cached) yes
+checking for C++ header <vector>... (cached) yes
+checking for C++ namespaces... yes
+checking for min(0,0) in namespace std... yes
+checking for max(0,0) in namespace std... yes
+checking for transform((char *)0,(char *) 0,(char *)0,(int(*)(int))malloc) in namespace std... yes
+checking for locale("") in namespace std... yes
+checking for vprintf... yes
+checking for ether_ntoa... yes
+checking for setpriority... yes
+checking for sched_setscheduler... yes
+checking for strlcpy... yes
+checking for strlcat... yes
+checking for strcasestr... yes
+checking for strcasecmp... yes
+checking for sigaction... yes
+checking for getutent... yes
+checking for setutent... yes
+checking for getisax... no
+checking for strdup... yes
+checking for _strdup... no
+checking for strdupa... no
+checking for _strdupa... no
+checking for daemon... yes
+checking for stat64... yes
+checking for putenv... yes
+checking for setenv... yes
+checking for unsetenv... yes
+checking for res_init... no
+checking for strtoull... yes
+checking for localtime... yes
+checking for localtime_r... yes
+checking for gmtime... yes
+checking for gmtime_r... yes
+checking for uselocale... yes
+checking for _configthreadlocale... no
+checking for ftok... yes
+checking whether _fpreset is declared... no
+checking whether fpreset is declared... no
+checking for an ANSI C-conforming const... yes
+checking for size_t... yes
+checking whether struct tm is in sys/time.h or time.h... time.h
+checking for struct tm.tm_zone... yes
+checking for sin in dynamic library m...  -lm
+checking for pthread_join in dynamic library pthread...  -lpthread
+checking for dynamic library nvapi... no
+checking for res_init in -lresolv... no
+checking for XScreenSaverAllocInfo in dynamic library Xss...  -lXss
+checking for XOpenDisplay in dynamic library X11...  -lX11
+checking for res_query in static library resolv...  -lresolv
+checking for whoami... /usr/bin/whoami
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating version.h
+config.status: creating api/Makefile
+config.status: creating api/libboinc_api.pc
+config.status: creating api/libboinc_graphics2.pc
+config.status: creating api/libboinc_opencl.pc
+config.status: creating apps/Makefile
+config.status: creating clientgui/Makefile
+config.status: creating clientgui/res/Makefile
+config.status: creating clientgui/skins/Makefile
+config.status: creating clientscr/Makefile
+config.status: creating client/Makefile
+config.status: creating client/win/boinc_path_config.py
+config.status: creating client/scripts/Makefile
+config.status: creating client/scripts/boinc-client
+config.status: creating client/scripts/boinc-client.service
+config.status: creating db/Makefile
+config.status: creating doc/Makefile
+config.status: creating doc/manpages/Makefile
+config.status: creating html/Makefile
+config.status: creating lib/Makefile
+config.status: creating lib/libboinc.pc
+config.status: creating lib/libboinc_crypt.pc
+config.status: creating lib/libboinc_fcgi.pc
+config.status: creating locale/Makefile
+config.status: creating Makefile
+config.status: creating py/Boinc/version.py
+config.status: creating py/Makefile
+config.status: creating py/boinc_path_config.py
+config.status: creating py/setup.py
+config.status: creating sched/boinc_path_config.py
+config.status: creating sched/Makefile
+config.status: creating packages/generic/sea/Makefile
+config.status: creating packages/solaris/CSW/Makefile
+config.status: creating packages/solaris/CSW/boincclient/Makefile
+config.status: creating packages/solaris/CSW/boincclient/pkginfo
+config.status: creating packages/solaris/CSW/boincclient/prototype
+config.status: creating packages/solaris/CSW/boincdevel/Makefile
+config.status: creating packages/solaris/CSW/boincdevel/pkginfo
+config.status: creating packages/solaris/CSW/boincdevel/prototype
+config.status: creating packages/solaris/CSW/boinclibs/Makefile
+config.status: creating packages/solaris/CSW/boinclibs/pkginfo
+config.status: creating packages/solaris/CSW/boinclibs/prototype
+config.status: creating packages/solaris/CSW/boincmanager/Makefile
+config.status: creating packages/solaris/CSW/boincmanager/pkginfo
+config.status: creating packages/solaris/CSW/boincmanager/prototype
+config.status: creating samples/Makefile
+config.status: creating tools/boinc_path_config.py
+config.status: creating tools/Makefile
+config.status: creating vda/Makefile
+config.status: creating zip/Makefile
+config.status: creating zip/libboinc_zip.pc
+config.status: creating m4/Makefile
+config.status: creating config.h
+config.status: executing depfiles commands
+config.status: executing libtool commands
+--- Configuring BOINC 8.2.11 (Release) ---
+--- Build Components: (client) ---
+
+=== CONFIGURATION RESULT ===
+PACKAGE_NAME = BOINC
+PACKAGE_VERSION = 8.2.11
+bindir = ${exec_prefix}/bin
+exec_prefix = /opt/boinc/8.2.11
+prefix = /opt/boinc/8.2.11
+
+=== COMPILE WITH 8 JOBS ===
+cd . && sh generate_svn_version.sh
+fatal: No names found, cannot describe anything.
+make  all-recursive
+make[1]: Entering directory '/home/sable/src/boinc-8.2.11'
+Making all in m4
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11/m4'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11/m4'
+Making all in client
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11/client'
+  CXX      boinc_client-acct_mgr.o
+  CXX      boinc_client-acct_setup.o
+  CXX      boinc_client-app.o
+  CXX      boinc_client-app_config.o
+  CXX      boinc_client-app_control.o
+  CXX      boinc_client-app_start.o
+  CXX      boinc_client-async_file.o
+  CXX      boinc_client-app_test.o
+  CXX      boinc_client-check_state.o
+  CXX      boinc_client-client_msgs.o
+  CXX      boinc_client-client_state.o
+  CXX      boinc_client-client_types.o
+  CXX      boinc_client-coproc_sched.o
+  CXX      boinc_client-cpu_sched.o
+  CXX      boinc_client-cs_account.o
+  CXX      boinc_client-cs_apps.o
+  CXX      boinc_client-cs_benchmark.o
+  CXX      boinc_client-cs_cmdline.o
+  CXX      boinc_client-cs_files.o
+  CXX      boinc_client-cs_notice.o
+  CXX      boinc_client-cs_platforms.o
+  CXX      boinc_client-cs_prefs.o
+  CXX      boinc_client-cs_proxy.o
+  CXX      boinc_client-cs_scheduler.o
+  CXX      boinc_client-cs_sporadic.o
+  CXX      boinc_client-cs_statefile.o
+  CXX      boinc_client-cs_trickle.o
+  CXX      boinc_client-current_version.o
+  CXX      boinc_client-dhrystone.o
+  CXX      boinc_client-dhrystone2.o
+  CXX      boinc_client-file_names.o
+  CXX      boinc_client-file_xfer.o
+  CXX      boinc_client-gpu_amd.o
+  CXX      boinc_client-gpu_detect.o
+  CXX      boinc_client-gpu_intel.o
+  CXX      boinc_client-gpu_nvidia.o
+  CXX      boinc_client-gpu_opencl.o
+  CXX      boinc_client-gui_http.o
+  CXX      boinc_client-gui_rpc_server.o
+  CXX      boinc_client-gui_rpc_server_ops.o
+  CXX      boinc_client-hostinfo_linux.o
+  CXX      boinc_client-hostinfo_network.o
+  CXX      boinc_client-http_curl.o
+  CXX      boinc_client-log_flags.o
+  CXX      boinc_client-mac_address.o
+  CXX      boinc_client-main.o
+  CXX      boinc_client-net_stats.o
+  CXX      boinc_client-pers_file_xfer.o
+  CXX      boinc_client-project.o
+  CXX      boinc_client-project_list.o
+In file included from http_curl.h:27,
+                 from gui_http.h:53,
+                 from cs_notice.h:58,
+                 from client_types.h:47,
+                 from client_msgs.h:26,
+                 from http_curl.cpp:44:
+http_curl.cpp: In member function ‘int HTTP_OP::libcurl_exec(const char*, const char*, const char*, double, double, bool)’:
+http_curl.cpp:671:36: warning: ‘CURLOPT_IOCTLFUNCTION’ is deprecated: since 7.18.0. Use CURLOPT_SEEKFUNCTION [-Wdeprecated-declarations]
+  671 |         curl_easy_setopt(curlEasy, CURLOPT_IOCTLFUNCTION, libcurl_ioctl);
+      |                                    ^~~~~~~~~~~~~~~~~~~~~
+/usr/include/curl/curl.h:1607:3: note: declared here
+ 1607 |   CURLOPTDEPRECATED(CURLOPT_IOCTLFUNCTION, CURLOPTTYPE_FUNCTIONPOINT, 130,
+      |   ^~~~~~~~~~~~~~~~~
+http_curl.cpp:672:36: warning: ‘CURLOPT_IOCTLDATA’ is deprecated: since 7.18.0. Use CURLOPT_SEEKDATA [-Wdeprecated-declarations]
+  672 |         curl_easy_setopt(curlEasy, CURLOPT_IOCTLDATA, this);
+      |                                    ^~~~~~~~~~~~~~~~~
+/usr/include/curl/curl.h:1609:3: note: declared here
+ 1609 |   CURLOPTDEPRECATED(CURLOPT_IOCTLDATA, CURLOPTTYPE_CBPOINT, 131,
+      |   ^~~~~~~~~~~~~~~~~
+http_curl.cpp: In member function ‘void HTTP_OP::close_socket()’:
+http_curl.cpp:887:22: warning: ‘void curl_formfree(curl_httppost*)’ is deprecated: since 7.56.0. Use curl_mime_free() [-Wdeprecated-declarations]
+  887 |         curl_formfree(pcurlFormStart);
+      |         ~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+/usr/include/curl/curl.h:2661:1: note: declared here
+ 2661 | curl_formfree(struct curl_httppost *form);
+      | ^~~~~~~~~~~~~
+http_curl.cpp:888:22: warning: ‘void curl_formfree(curl_httppost*)’ is deprecated: since 7.56.0. Use curl_mime_free() [-Wdeprecated-declarations]
+  888 |         curl_formfree(pcurlFormEnd);
+      |         ~~~~~~~~~~~~~^~~~~~~~~~~~~~
+/usr/include/curl/curl.h:2661:1: note: declared here
+ 2661 | curl_formfree(struct curl_httppost *form);
+      | ^~~~~~~~~~~~~
+http_curl.cpp: In member function ‘void HTTP_OP::handle_messages(CURLMsg*)’:
+http_curl.cpp:943:37: warning: ‘CURLINFO_SIZE_DOWNLOAD’ is deprecated: since 7.55.0. Use CURLINFO_SIZE_DOWNLOAD_T [-Wdeprecated-declarations]
+  943 |         curl_easy_getinfo(curlEasy, CURLINFO_SIZE_DOWNLOAD, &size_download);
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~
+/usr/include/curl/curl.h:2906:3: note: declared here
+ 2906 |   CURLINFO_SIZE_DOWNLOAD
+      |   ^~~~~~~~~~~~~~~~~~~~~~
+http_curl.cpp:955:37: warning: ‘CURLINFO_SIZE_UPLOAD’ is deprecated: since 7.55.0. Use CURLINFO_SIZE_UPLOAD_T [-Wdeprecated-declarations]
+  955 |         curl_easy_getinfo(curlEasy, CURLINFO_SIZE_UPLOAD, &size_upload);
+      |                                     ^~~~~~~~~~~~~~~~~~~~
+/usr/include/curl/curl.h:2903:3: note: declared here
+ 2903 |   CURLINFO_SIZE_UPLOAD CURL_DEPRECATED(7.55.0, "Use CURLINFO_SIZE_UPLOAD_T")
+      |   ^~~~~~~~~~~~~~~~~~~~
+  CXX      boinc_client-result.o
+  CXX      boinc_client-rr_sim.o
+  CXX      boinc_client-sandbox.o
+  CXX      boinc_client-scheduler_op.o
+  CXX      boinc_client-thread.o
+  CXX      boinc_client-time_stats.o
+  CXX      boinc_client-whetstone.o
+  CXX      boinc_client-work_fetch.o
+  CXX      boinc_client-hostinfo_unix.o
+cd ../lib; make libboinc.la
+  CXX      boinccmd-boinc_cmd.o
+make[3]: Entering directory '/home/sable/src/boinc-8.2.11/lib'
+  CXXLD    libboinc.la
+make[3]: Leaving directory '/home/sable/src/boinc-8.2.11/lib'
+hostinfo_unix.cpp: In function ‘std::vector<std::__cxx11::basic_string<char> > get_tty_list()’:
+hostinfo_unix.cpp:1924:56: warning: ‘snprintf’ output may be truncated before the last format character [-Wformat-truncation=]
+ 1924 |             snprintf(fullname, sizeof(fullname), "%s/%s", tty_patterns[i].dir, devname);
+      |                                                        ^
+hostinfo_unix.cpp:1924:21: note: ‘snprintf’ output 2 or more bytes (assuming 1025) into a destination of size 1024
+ 1924 |             snprintf(fullname, sizeof(fullname), "%s/%s", tty_patterns[i].dir, devname);
+      |             ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  CXXLD    boinccmd
+  CXXLD    boinc_client
+libtool:   error: cannot find the library '../lib/libboinc_crypt.la' or unhandled argument '../lib/libboinc_crypt.la'
+make[2]: *** [Makefile:824: boinc_client] Error 1
+make[2]: *** Waiting for unfinished jobs....
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinccmd-boinc_cmd.o: in function `acct_mgr_do_rpc(RPC_CLIENT&, char*, char*, char*)':
+boinc_cmd.cpp:(.text+0x14a): undefined reference to `RPC_CLIENT::acct_mgr_rpc(char const*, char const*, char const*, bool)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x170): undefined reference to `RPC_CLIENT::acct_mgr_rpc(char const*, char const*, char const*, bool)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x198): undefined reference to `ACCT_MGR_RPC_REPLY::ACCT_MGR_RPC_REPLY()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1ab): undefined reference to `RPC_CLIENT::acct_mgr_rpc_poll(ACCT_MGR_RPC_REPLY&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1be): undefined reference to `boincerror(int)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1ee): undefined reference to `boincerror(int)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x22d): undefined reference to `boinc_sleep(double)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinccmd-boinc_cmd.o: in function `show_alerts(RPC_CLIENT&)':
+boinc_cmd.cpp:(.text+0x32d): undefined reference to `MESSAGES::MESSAGES()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x34a): undefined reference to `RPC_CLIENT::get_messages(int, MESSAGES&, bool)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x366): undefined reference to `boincerror(int)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x424): undefined reference to `strip_whitespace(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinccmd-boinc_cmd.o: in function `show_task_summary(RPC_CLIENT&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)':
+boinc_cmd.cpp:(.text+0x8e6): undefined reference to `RPC_CLIENT::get_results(RESULTS&, bool)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0xb4e): undefined reference to `RPC_CLIENT::get_project_status(PROJECTS&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0xe9e): undefined reference to `timediff_format[abi:cxx11](double)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0xf32): undefined reference to `time_to_string(double, bool)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0xf90): undefined reference to `active_task_state_string(int)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinccmd-boinc_cmd.o: in function `main':
+boinc_cmd.cpp:(.text+0x129f): undefined reference to `RPC_CLIENT::RPC_CLIENT()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x12b8): undefined reference to `MESSAGES::MESSAGES()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x12c7): undefined reference to `NOTICES::NOTICES()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1720): undefined reference to `read_gui_rpc_password(char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1797): undefined reference to `RPC_CLIENT::init_unix_domain()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x17f3): undefined reference to `RPC_CLIENT::init(char const*, int)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x186b): undefined reference to `RPC_CLIENT::authorize(char const*)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1976): undefined reference to `RPC_CLIENT::exchange_versions(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, VERSION_INFO&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x19f9): undefined reference to `CC_STATE::CC_STATE()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1a12): undefined reference to `RPC_CLIENT::get_state(CC_STATE&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1a30): undefined reference to `CC_STATE::print()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1a8e): undefined reference to `RPC_CLIENT::get_results(RESULTS&, bool)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1aac): undefined reference to `RESULTS::print()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1c75): undefined reference to `RPC_CLIENT::get_old_results(std::vector<OLD_RESULT, std::allocator<OLD_RESULT> >&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1ce1): undefined reference to `OLD_RESULT::print() const'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1d70): undefined reference to `FILE_TRANSFERS::FILE_TRANSFERS()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1d89): undefined reference to `RPC_CLIENT::get_file_transfers(FILE_TRANSFERS&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1da7): undefined reference to `FILE_TRANSFERS::print()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1e00): undefined reference to `RPC_CLIENT::get_daily_xfer_history(DAILY_XFER_HISTORY&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1e1e): undefined reference to `DAILY_XFER_HISTORY::print()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1e77): undefined reference to `RPC_CLIENT::get_project_status(PROJECTS&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1e95): undefined reference to `PROJECTS::print()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1eee): undefined reference to `RPC_CLIENT::get_project_status(PROJECTS&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1f0c): undefined reference to `PROJECTS::print_urls()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1f65): undefined reference to `RPC_CLIENT::get_simple_gui_info(SIMPLE_GUI_INFO&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1f83): undefined reference to `SIMPLE_GUI_INFO::print()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1fdc): undefined reference to `RPC_CLIENT::get_disk_usage(DISK_USAGE&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x1ffa): undefined reference to `DISK_USAGE::print()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x203e): undefined reference to `RESULT::RESULT()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x212d): undefined reference to `RPC_CLIENT::result_op(RESULT&, char const*)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x2175): undefined reference to `RPC_CLIENT::result_op(RESULT&, char const*)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x21bd): undefined reference to `RPC_CLIENT::result_op(RESULT&, char const*)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x2222): undefined reference to `PROJECT::PROJECT()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x226e): undefined reference to `canonicalize_master_url(char*, int)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x22d0): undefined reference to `RPC_CLIENT::project_op(PROJECT&, char const*)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x2318): undefined reference to `RPC_CLIENT::project_op(PROJECT&, char const*)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x2360): undefined reference to `RPC_CLIENT::project_op(PROJECT&, char const*)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x23a8): undefined reference to `RPC_CLIENT::project_op(PROJECT&, char const*)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x23f0): undefined reference to `RPC_CLIENT::project_op(PROJECT&, char const*)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinccmd-boinc_cmd.o:boinc_cmd.cpp:(.text+0x2438): more undefined references to `RPC_CLIENT::project_op(PROJECT&, char const*)' follow
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinccmd-boinc_cmd.o: in function `main':
+boinc_cmd.cpp:(.text+0x25bb): undefined reference to `canonicalize_master_url(char*, int)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x260e): undefined reference to `RPC_CLIENT::project_attach(char const*, char const*, char const*, char const*)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x2658): undefined reference to `FILE_TRANSFER::FILE_TRANSFER()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x2724): undefined reference to `RPC_CLIENT::file_transfer_op(FILE_TRANSFER&, char const*)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x2769): undefined reference to `RPC_CLIENT::file_transfer_op(FILE_TRANSFER&, char const*)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x289f): undefined reference to `RPC_CLIENT::set_run_mode(int, double)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x28e7): undefined reference to `RPC_CLIENT::set_run_mode(int, double)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x292f): undefined reference to `RPC_CLIENT::set_run_mode(int, double)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x2a59): undefined reference to `RPC_CLIENT::set_gpu_mode(int, double)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x2aa1): undefined reference to `RPC_CLIENT::set_gpu_mode(int, double)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x2ae9): undefined reference to `RPC_CLIENT::set_gpu_mode(int, double)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x2b4a): undefined reference to `HOST_INFO::HOST_INFO()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x2bad): undefined reference to `RPC_CLIENT::set_host_info(HOST_INFO&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x2cad): undefined reference to `RPC_CLIENT::set_network_mode(int, double)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x2cf5): undefined reference to `RPC_CLIENT::set_network_mode(int, double)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x2d3d): undefined reference to `RPC_CLIENT::set_network_mode(int, double)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x2d9e): undefined reference to `GR_PROXY_INFO::GR_PROXY_INFO()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x2db7): undefined reference to `RPC_CLIENT::get_proxy_settings(GR_PROXY_INFO&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x2dd5): undefined reference to `GR_PROXY_INFO::print()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x2e19): undefined reference to `GR_PROXY_INFO::GR_PROXY_INFO()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x307d): undefined reference to `RPC_CLIENT::set_proxy_settings(GR_PROXY_INFO&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x30cd): undefined reference to `RPC_CLIENT::get_message_count(int&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3189): undefined reference to `RPC_CLIENT::get_messages(int, MESSAGES&, bool)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x320d): undefined reference to `strip_whitespace(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x326f): undefined reference to `time_to_string(double, bool)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3352): undefined reference to `RPC_CLIENT::get_notices(int, NOTICES&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x33ce): undefined reference to `strip_whitespace(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3403): undefined reference to `time_to_string(double, bool)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x34a7): undefined reference to `HOST_INFO::HOST_INFO()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x34c0): undefined reference to `RPC_CLIENT::get_host_info(HOST_INFO&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x34e2): undefined reference to `HOST_INFO::print()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3621): undefined reference to `ACCT_MGR_INFO::ACCT_MGR_INFO()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x363a): undefined reference to `RPC_CLIENT::acct_mgr_info(ACCT_MGR_INFO&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3658): undefined reference to `ACCT_MGR_INFO::print()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x36f3): undefined reference to `RPC_CLIENT::acct_mgr_rpc(char const*, char const*, char const*, bool)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3821): undefined reference to `RPC_CLIENT::acct_mgr_rpc(char const*, char const*, char const*, bool)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3858): undefined reference to `RPC_CLIENT::run_benchmarks()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x38f2): undefined reference to `RPC_CLIENT::get_project_config(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3933): undefined reference to `PROJECT_CONFIG::PROJECT_CONFIG()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x394c): undefined reference to `RPC_CLIENT::get_project_config_poll(PROJECT_CONFIG&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3968): undefined reference to `boincerror(int)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x399b): undefined reference to `boincerror(int)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x39da): undefined reference to `boinc_sleep(double)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x39eb): undefined reference to `PROJECT_CONFIG::print()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3a44): undefined reference to `ACCOUNT_IN::ACCOUNT_IN()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3afe): undefined reference to `RPC_CLIENT::lookup_account(ACCOUNT_IN&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3b11): undefined reference to `boincerror(int)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3b47): undefined reference to `ACCOUNT_OUT::ACCOUNT_OUT()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3b60): undefined reference to `RPC_CLIENT::lookup_account_poll(ACCOUNT_OUT&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3b7c): undefined reference to `boincerror(int)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3baf): undefined reference to `boincerror(int)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3be7): undefined reference to `boinc_sleep(double)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3bf8): undefined reference to `ACCOUNT_OUT::print()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3c53): undefined reference to `ACCOUNT_IN::ACCOUNT_IN()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3d44): undefined reference to `RPC_CLIENT::create_account(ACCOUNT_IN&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3d57): undefined reference to `boincerror(int)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3d8d): undefined reference to `ACCOUNT_OUT::ACCOUNT_OUT()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3da6): undefined reference to `RPC_CLIENT::create_account_poll(ACCOUNT_OUT&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3dc2): undefined reference to `boincerror(int)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3df5): undefined reference to `boincerror(int)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3e2d): undefined reference to `boinc_sleep(double)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3e3e): undefined reference to `ACCOUNT_OUT::print()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3e95): undefined reference to `RPC_CLIENT::read_global_prefs_override()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3ecc): undefined reference to `RPC_CLIENT::read_cc_config()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3f1f): undefined reference to `RPC_CLIENT::reset_host_info()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x3f56): undefined reference to `RPC_CLIENT::network_available()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x4026): undefined reference to `RPC_CLIENT::set_app_config(char const*, APP_CONFIGS&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x40aa): undefined reference to `RPC_CLIENT::get_app_config(char const*, APP_CONFIGS&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x40c8): undefined reference to `MIOFILE::MIOFILE()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x40e1): undefined reference to `MIOFILE::init_file(_IO_FILE*)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x40fa): undefined reference to `APP_CONFIGS::write(MIOFILE&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x4109): undefined reference to `MIOFILE::~MIOFILE()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x4149): undefined reference to `CC_STATUS::CC_STATUS()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x4162): undefined reference to `RPC_CLIENT::get_cc_status(CC_STATUS&)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x4180): undefined reference to `CC_STATUS::print()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x41ae): undefined reference to `RPC_CLIENT::quit()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x41d1): undefined reference to `boincerror(int)'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x447e): undefined reference to `MIOFILE::~MIOFILE()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinc_cmd.cpp:(.text+0x44dd): undefined reference to `RPC_CLIENT::~RPC_CLIENT()'
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/ld: boinccmd-boinc_cmd.o: in function `DISK_USAGE::DISK_USAGE()':
+boinc_cmd.cpp:(.text._ZN10DISK_USAGEC2Ev[_ZN10DISK_USAGEC5Ev]+0x21): undefined reference to `DISK_USAGE::clear()'
+collect2: error: ld returned 1 exit status
+make[2]: *** [Makefile:828: boinccmd] Error 1
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11/client'
+make[1]: *** [Makefile:694: all-recursive] Error 1
+make[1]: Leaving directory '/home/sable/src/boinc-8.2.11'
+make: *** [Makefile:598: all] Error 2

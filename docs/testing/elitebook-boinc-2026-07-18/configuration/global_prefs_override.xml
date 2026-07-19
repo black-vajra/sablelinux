@@ -1,0 +1,6 @@
+<global_preferences>
+    <run_on_batteries>0</run_on_batteries>
+    <run_if_user_active>1</run_if_user_active>
+    <max_ncpus_pct>50.000000</max_ncpus_pct>
+    <cpu_usage_limit>100.000000</cpu_usage_limit>
+</global_preferences>

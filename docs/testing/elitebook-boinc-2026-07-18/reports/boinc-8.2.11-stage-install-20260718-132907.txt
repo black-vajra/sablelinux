@@ -1,0 +1,255 @@
+=== BOINC 8.2.11 STAGED INSTALL ===
+2026-07-18T13:29:07-04:00
+Source: /home/sable/src/boinc-8.2.11
+Stage:  /home/sable/boinc-install-stage-8.2.11
+
+=== CREATE CLEAN STAGING DIRECTORY ===
+
+=== RUN MAKE INSTALL INTO STAGING ROOT ===
+cd . && sh generate_svn_version.sh
+fatal: No names found, cannot describe anything.
+make  install-recursive
+make[1]: Entering directory '/home/sable/src/boinc-8.2.11'
+Making install in m4
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11/m4'
+make[3]: Entering directory '/home/sable/src/boinc-8.2.11/m4'
+make[3]: Nothing to be done for 'install-exec-am'.
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/home/sable/src/boinc-8.2.11/m4'
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11/m4'
+Making install in api
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11/api'
+rm -f libboinc_api.a
+/usr/bin/ln .libs/libboinc_api.a .
+rm -f libboinc_opencl.a
+/usr/bin/ln .libs/libboinc_opencl.a .
+make[3]: Entering directory '/home/sable/src/boinc-8.2.11/api'
+ /usr/bin/mkdir -p '/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib'
+ /bin/sh ../libtool   --mode=install /usr/bin/install -c   libboinc_api.la libboinc_opencl.la '/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib'
+libtool: install: /usr/bin/install -c .libs/libboinc_api.so.8.2.11 /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_api.so.8.2.11
+libtool: install: (cd /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib && { ln -s -f libboinc_api.so.8.2.11 libboinc_api.so.8 || { rm -f libboinc_api.so.8 && ln -s libboinc_api.so.8.2.11 libboinc_api.so.8; }; })
+libtool: install: (cd /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib && { ln -s -f libboinc_api.so.8.2.11 libboinc_api.so || { rm -f libboinc_api.so && ln -s libboinc_api.so.8.2.11 libboinc_api.so; }; })
+libtool: install: /usr/bin/install -c .libs/libboinc_api.lai /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_api.la
+libtool: install: /usr/bin/install -c .libs/libboinc_opencl.so.8.2.11 /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_opencl.so.8.2.11
+libtool: install: (cd /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib && { ln -s -f libboinc_opencl.so.8.2.11 libboinc_opencl.so.8 || { rm -f libboinc_opencl.so.8 && ln -s libboinc_opencl.so.8.2.11 libboinc_opencl.so.8; }; })
+libtool: install: (cd /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib && { ln -s -f libboinc_opencl.so.8.2.11 libboinc_opencl.so || { rm -f libboinc_opencl.so && ln -s libboinc_opencl.so.8.2.11 libboinc_opencl.so; }; })
+libtool: install: /usr/bin/install -c .libs/libboinc_opencl.lai /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_opencl.la
+libtool: install: /usr/bin/install -c .libs/libboinc_api.a /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_api.a
+libtool: install: chmod 644 /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_api.a
+libtool: install: ranlib /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_api.a
+libtool: install: /usr/bin/install -c .libs/libboinc_opencl.a /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_opencl.a
+libtool: install: chmod 644 /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_opencl.a
+libtool: install: ranlib /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_opencl.a
+libtool: warning: remember to run 'libtool --finish /opt/boinc/8.2.11/lib'
+ /usr/bin/mkdir -p '/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/pkgconfig'
+ /usr/bin/install -c -m 644 libboinc_api.pc libboinc_opencl.pc '/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/pkgconfig'
+make[3]: Leaving directory '/home/sable/src/boinc-8.2.11/api'
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11/api'
+Making install in lib
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11/lib'
+rm -f libboinc.a
+/usr/bin/ln .libs/libboinc.a .
+rm -f libboinc_crypt.a
+/usr/bin/ln .libs/libboinc_crypt.a .
+make[3]: Entering directory '/home/sable/src/boinc-8.2.11/lib'
+ /usr/bin/mkdir -p '/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib'
+ /bin/sh ../libtool   --mode=install /usr/bin/install -c   libboinc.la libboinc_crypt.la '/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib'
+libtool: install: /usr/bin/install -c .libs/libboinc.lai /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc.la
+libtool: install: /usr/bin/install -c .libs/libboinc_crypt.lai /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_crypt.la
+libtool: install: /usr/bin/install -c .libs/libboinc.a /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc.a
+libtool: install: chmod 644 /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc.a
+libtool: install: ranlib /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc.a
+libtool: install: /usr/bin/install -c .libs/libboinc_crypt.a /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_crypt.a
+libtool: install: chmod 644 /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_crypt.a
+libtool: install: ranlib /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_crypt.a
+libtool: warning: remember to run 'libtool --finish /opt/boinc/8.2.11/lib'
+ /usr/bin/mkdir -p '/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/pkgconfig'
+ /usr/bin/install -c -m 644 libboinc.pc libboinc_crypt.pc '/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/pkgconfig'
+make[3]: Leaving directory '/home/sable/src/boinc-8.2.11/lib'
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11/lib'
+Making install in client
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11/client'
+make[3]: Entering directory '/home/sable/src/boinc-8.2.11/client'
+ /usr/bin/mkdir -p '/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/bin'
+  /bin/sh ../libtool   --mode=install /usr/bin/install -c boinc_client boinccmd boinc '/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/bin'
+libtool: install: /usr/bin/install -c boinc_client /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/bin/boinc_client
+libtool: install: /usr/bin/install -c boinccmd /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/bin/boinccmd
+libtool: install: /usr/bin/install -c boinc /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/bin/boinc
+make  install-exec-hook
+make[4]: Entering directory '/home/sable/src/boinc-8.2.11/client'
+rm -f /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/bin/boinc
+/usr/bin/ln /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/bin/boinc_client /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/bin/boinc
+make[4]: Leaving directory '/home/sable/src/boinc-8.2.11/client'
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/home/sable/src/boinc-8.2.11/client'
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11/client'
+Making install in client/scripts
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11/client/scripts'
+make[3]: Entering directory '/home/sable/src/boinc-8.2.11/client/scripts'
+make  install-exec-hook
+make[4]: Entering directory '/home/sable/src/boinc-8.2.11/client/scripts'
+chmod +x boinc-client
+if [ -d /etc/init.d ] ; then \
+	/usr/bin/install -c -d /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/etc/init.d ; \
+	/usr/bin/install -c -b boinc-client /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/etc/init.d/boinc-client ; \
+fi
+if [ -d /usr/lib/systemd/system ] ; then \
+	/usr/bin/install -c -d /home/sable/boinc-install-stage-8.2.11/usr/lib/systemd/system/ ; \
+	/usr/bin/install -c -m 644 boinc-client.service /home/sable/boinc-install-stage-8.2.11/usr/lib/systemd/system/boinc-client.service ; \
+elif [ -d /lib/systemd/system ] ; then \
+	/usr/bin/install -c -d /home/sable/boinc-install-stage-8.2.11/lib/systemd/system/ ; \
+	/usr/bin/install -c -m 644 boinc-client.service /home/sable/boinc-install-stage-8.2.11/lib/systemd/system/boinc-client.service ; \
+fi
+if [ -d /etc/sysconfig ] ; then \
+  /usr/bin/install -c -d /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/etc/sysconfig ; \
+  /usr/bin/install -c -m 644 ./boinc-client.conf /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/etc/sysconfig/boinc-client ; \
+elif [ -d /etc/default ] ; then \
+  /usr/bin/install -c -d /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/etc/default ; \
+  /usr/bin/install -c -m 644 ./boinc-client.conf /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/etc/default/boinc-client ; \
+else \
+  /usr/bin/install -c -d /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/etc ; \
+  /usr/bin/install -c -m 644 ./boinc-client.conf /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/etc/boinc-client.conf ; \
+fi
+make[4]: Leaving directory '/home/sable/src/boinc-8.2.11/client/scripts'
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/home/sable/src/boinc-8.2.11/client/scripts'
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11/client/scripts'
+Making install in doc
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11/doc'
+make[3]: Entering directory '/home/sable/src/boinc-8.2.11/doc'
+make[4]: Entering directory '/home/sable/src/boinc-8.2.11/doc'
+make[4]: Nothing to be done for 'install-exec-am'.
+make[4]: Nothing to be done for 'install-data-am'.
+make[4]: Leaving directory '/home/sable/src/boinc-8.2.11/doc'
+make[3]: Leaving directory '/home/sable/src/boinc-8.2.11/doc'
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11/doc'
+make[2]: Entering directory '/home/sable/src/boinc-8.2.11'
+make[3]: Entering directory '/home/sable/src/boinc-8.2.11'
+make[3]: Nothing to be done for 'install-exec-am'.
+make[3]: Leaving directory '/home/sable/src/boinc-8.2.11'
+make[2]: Leaving directory '/home/sable/src/boinc-8.2.11'
+make[1]: Leaving directory '/home/sable/src/boinc-8.2.11'
+
+=== INSTALL EXIT STATUS: 0 ===
+
+=== STAGED FILES ===
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/bin/boinc
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/bin/boinc_client
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/bin/boinccmd
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/etc/init.d/boinc-client
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/etc/sysconfig/boinc-client
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc.a
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_api.a
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_api.la
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_api.so
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_api.so.8
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_api.so.8.2.11
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_crypt.a
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_crypt.la
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc.la
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_opencl.a
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_opencl.la
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_opencl.so
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_opencl.so.8
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_opencl.so.8.2.11
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/pkgconfig/libboinc_api.pc
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/pkgconfig/libboinc_crypt.pc
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/pkgconfig/libboinc_opencl.pc
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/pkgconfig/libboinc.pc
+/home/sable/boinc-install-stage-8.2.11/usr/lib/systemd/system/boinc-client.service
+
+=== STAGED EXECUTABLES ===
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/bin/boinc
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/bin/boinc_client
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/bin/boinccmd
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/etc/init.d/boinc-client
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_api.la
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_api.so.8.2.11
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_crypt.la
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc.la
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_opencl.la
+/home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/lib/libboinc_opencl.so.8.2.11
+
+=== VERSION CHECKS ===
+--- /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/bin/boinc
+8.2.11 x86_64-pc-linux-gnu
+--- /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/bin/boinc_client
+8.2.11 x86_64-pc-linux-gnu
+
+=== BOINCCMD PRESENCE CHECK ===
+PASS: /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/bin/boinccmd
+boinccmd --help exit status: 1
+Status 1 is expected for the usage display.
+
+=== RUNTIME LIBRARY CHECK ===
+--- /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/bin/boinc
+	linux-vdso.so.1 (0x00007f9f1a31f000)
+	libstdc++.so.6 => /usr/lib/../lib64/libstdc++.so.6 (0x00007f9f19ebd000)
+	libcurl.so.4 => /usr/lib/libcurl.so.4 (0x00007f9f19def000)
+	libpsl.so.5 => /usr/lib/libpsl.so.5 (0x00007f9f19ddb000)
+	libzstd.so.1 => /usr/lib/libzstd.so.1 (0x00007f9f19ce1000)
+	libssl.so.3 => /usr/lib/libssl.so.3 (0x00007f9f19bcf000)
+	libcrypto.so.3 => /usr/lib/libcrypto.so.3 (0x00007f9f195a7000)
+	libfreetype.so.6 => /usr/lib/libfreetype.so.6 (0x00007f9f194ea000)
+	libbz2.so.1.0 => /usr/lib/libbz2.so.1.0 (0x00007f9f194d6000)
+	libpng16.so.16 => /usr/lib/libpng16.so.16 (0x00007f9f1949d000)
+	libharfbuzz.so.0 => /usr/lib/../lib64/libharfbuzz.so.0 (0x00007f9f19303000)
+	libz.so.1 => /usr/lib/libz.so.1 (0x00007f9f192e3000)
+	libresolv.so.2 => /usr/lib/libresolv.so.2 (0x00007f9f192cf000)
+	libXss.so.1 => /usr/lib/libXss.so.1 (0x00007f9f192ca000)
+	libXext.so.6 => /usr/lib/libXext.so.6 (0x00007f9f192b6000)
+	libX11.so.6 => /usr/lib/libX11.so.6 (0x00007f9f1916e000)
+	libxcb.so.1 => /usr/lib/libxcb.so.1 (0x00007f9f19144000)
+	libXau.so.6 => /usr/lib/libXau.so.6 (0x00007f9f1913f000)
+	libm.so.6 => /usr/lib/libm.so.6 (0x00007f9f1904a000)
+	libgcc_s.so.1 => /usr/lib/../lib64/libgcc_s.so.1 (0x00007f9f1901d000)
+	libc.so.6 => /usr/lib/libc.so.6 (0x00007f9f18e36000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f9f1a321000)
+--- /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/bin/boinc_client
+	linux-vdso.so.1 (0x00007f4499e49000)
+	libstdc++.so.6 => /usr/lib/../lib64/libstdc++.so.6 (0x00007f44999e7000)
+	libcurl.so.4 => /usr/lib/libcurl.so.4 (0x00007f4499919000)
+	libpsl.so.5 => /usr/lib/libpsl.so.5 (0x00007f4499905000)
+	libzstd.so.1 => /usr/lib/libzstd.so.1 (0x00007f449980b000)
+	libssl.so.3 => /usr/lib/libssl.so.3 (0x00007f44996f9000)
+	libcrypto.so.3 => /usr/lib/libcrypto.so.3 (0x00007f44990d1000)
+	libfreetype.so.6 => /usr/lib/libfreetype.so.6 (0x00007f4499014000)
+	libbz2.so.1.0 => /usr/lib/libbz2.so.1.0 (0x00007f4499000000)
+	libpng16.so.16 => /usr/lib/libpng16.so.16 (0x00007f4498fc7000)
+	libharfbuzz.so.0 => /usr/lib/../lib64/libharfbuzz.so.0 (0x00007f4498e2d000)
+	libz.so.1 => /usr/lib/libz.so.1 (0x00007f4498e0d000)
+	libresolv.so.2 => /usr/lib/libresolv.so.2 (0x00007f4498df9000)
+	libXss.so.1 => /usr/lib/libXss.so.1 (0x00007f4498df4000)
+	libXext.so.6 => /usr/lib/libXext.so.6 (0x00007f4498de0000)
+	libX11.so.6 => /usr/lib/libX11.so.6 (0x00007f4498c98000)
+	libxcb.so.1 => /usr/lib/libxcb.so.1 (0x00007f4498c6e000)
+	libXau.so.6 => /usr/lib/libXau.so.6 (0x00007f4498c69000)
+	libm.so.6 => /usr/lib/libm.so.6 (0x00007f4498b74000)
+	libgcc_s.so.1 => /usr/lib/../lib64/libgcc_s.so.1 (0x00007f4498b47000)
+	libc.so.6 => /usr/lib/libc.so.6 (0x00007f4498960000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f4499e4b000)
+--- /home/sable/boinc-install-stage-8.2.11/opt/boinc/8.2.11/bin/boinccmd
+	linux-vdso.so.1 (0x00007fec45883000)
+	libstdc++.so.6 => /usr/lib/../lib64/libstdc++.so.6 (0x00007fec4558b000)
+	libcurl.so.4 => /usr/lib/libcurl.so.4 (0x00007fec454bd000)
+	libpsl.so.5 => /usr/lib/libpsl.so.5 (0x00007fec454a9000)
+	libzstd.so.1 => /usr/lib/libzstd.so.1 (0x00007fec453af000)
+	libssl.so.3 => /usr/lib/libssl.so.3 (0x00007fec4529d000)
+	libcrypto.so.3 => /usr/lib/libcrypto.so.3 (0x00007fec44c75000)
+	libfreetype.so.6 => /usr/lib/libfreetype.so.6 (0x00007fec44bb8000)
+	libbz2.so.1.0 => /usr/lib/libbz2.so.1.0 (0x00007fec44ba4000)
+	libpng16.so.16 => /usr/lib/libpng16.so.16 (0x00007fec44b6b000)
+	libharfbuzz.so.0 => /usr/lib/../lib64/libharfbuzz.so.0 (0x00007fec449d1000)
+	libz.so.1 => /usr/lib/libz.so.1 (0x00007fec449b1000)
+	libresolv.so.2 => /usr/lib/libresolv.so.2 (0x00007fec4499d000)
+	libXss.so.1 => /usr/lib/libXss.so.1 (0x00007fec44998000)
+	libXext.so.6 => /usr/lib/libXext.so.6 (0x00007fec44984000)
+	libX11.so.6 => /usr/lib/libX11.so.6 (0x00007fec4483c000)
+	libxcb.so.1 => /usr/lib/libxcb.so.1 (0x00007fec44812000)
+	libXau.so.6 => /usr/lib/libXau.so.6 (0x00007fec4480d000)
+	libm.so.6 => /usr/lib/libm.so.6 (0x00007fec44718000)
+	libgcc_s.so.1 => /usr/lib/../lib64/libgcc_s.so.1 (0x00007fec446eb000)
+	libc.so.6 => /usr/lib/libc.so.6 (0x00007fec44504000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007fec45885000)
+
+PASS: staged BOINC installation is populated.

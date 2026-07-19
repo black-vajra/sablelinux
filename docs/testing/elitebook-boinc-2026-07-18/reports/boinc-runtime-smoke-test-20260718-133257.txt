@@ -1,0 +1,212 @@
+=== BOINC MANUAL RUNTIME SMOKE TEST ===
+2026-07-18T13:32:57-04:00
+Host: vulfen
+Binary directory: /opt/boinc/current/bin
+Data directory: /var/lib/boinc-client
+
+=== VERIFY INSTALLATION ===
+Data-directory owner: boinc:boinc
+8.2.11 x86_64-pc-linux-gnu
+
+=== PRE-START PROCESS CHECK ===
+PASS: no BOINC client is running
+
+=== CURRENT DATA DIRECTORY ===
+drwxr-x--- boinc:boinc /var/lib/boinc-client
+
+=== START CLIENT AS UNPRIVILEGED USER ===
+Start exit status: 0
+
+=== WAIT FOR CLIENT INITIALIZATION ===
+Client initialized after approximately 20 second(s)
+
+=== RUNNING PROCESS ===
+34685 /opt/boinc/current/bin/boinc --dir /var/lib/boinc-client --daemon --redirectio
+38183 /opt/boinc/current/bin/boinc --dir /var/lib/boinc-client --daemon --redirectio
+38184 /opt/boinc/current/bin/boinc --dir /var/lib/boinc-client --daemon --redirectio
+38185 /opt/boinc/current/bin/boinc --dir /var/lib/boinc-client --daemon --redirectio
+38186 /opt/boinc/current/bin/boinc --dir /var/lib/boinc-client --daemon --redirectio
+38187 /opt/boinc/current/bin/boinc --dir /var/lib/boinc-client --daemon --redirectio
+38188 /opt/boinc/current/bin/boinc --dir /var/lib/boinc-client --daemon --redirectio
+38189 /opt/boinc/current/bin/boinc --dir /var/lib/boinc-client --daemon --redirectio
+38190 /opt/boinc/current/bin/boinc --dir /var/lib/boinc-client --daemon --redirectio
+38191 /opt/boinc/current/bin/boinc --dir /var/lib/boinc-client --daemon --redirectio
+38192 /opt/boinc/current/bin/boinc --dir /var/lib/boinc-client --daemon --redirectio
+38193 /opt/boinc/current/bin/boinc --dir /var/lib/boinc-client --daemon --redirectio
+38194 /opt/boinc/current/bin/boinc --dir /var/lib/boinc-client --daemon --redirectio
+38195 /opt/boinc/current/bin/boinc --dir /var/lib/boinc-client --daemon --redirectio
+38196 /opt/boinc/current/bin/boinc --dir /var/lib/boinc-client --daemon --redirectio
+38197 /opt/boinc/current/bin/boinc --dir /var/lib/boinc-client --daemon --redirectio
+38198 /opt/boinc/current/bin/boinc --dir /var/lib/boinc-client --daemon --redirectio
+
+=== AUTHENTICATION FILE ===
+-rw-r----- 1 boinc boinc 32 Jul 18 13:33 /var/lib/boinc-client/gui_rpc_auth.cfg
+Mode:  640
+Owner: boinc:boinc
+Authentication secret intentionally not displayed.
+
+=== CLIENT VERSION THROUGH RPC ===
+Client version: 8.2.11
+
+=== DETECTED HOST INFORMATION ===
+  timezone: -14400
+  domain name: vulfen
+  IP addr: 127.0.1.1
+  #CPUS: 16
+  CPU vendor: AuthenticAMD
+  CPU model: AMD Ryzen 7 PRO 5875U with Radeon Graphics [Family 25 Model 80 Stepping 0]
+  CPU FP OPS: 1000000000.000000
+  CPU int OPS: 1000000000.000000
+  OS name: Linux SableLinux
+  OS version: Sable Linux 1.0 [6.16.1-sable-compat2|libc 2.42]
+  mem size: 16045137920.000000
+  cache size: 524288.000000
+  swap size: 0.000000
+  disk size: 154182238208.000000
+  disk free: 122840580096.000000
+
+=== CLIENT STATUS ===
+network connection status: reference site lookup pending
+CPU status
+    suspended: CPU benchmarks in progress
+    current mode: according to prefs
+    perm mode: according to prefs
+    perm becomes current in 0 sec
+GPU status
+    not suspended
+    current mode: according to prefs
+    perm mode: according to prefs
+    perm becomes current in 0 sec
+Network status
+    not suspended
+    current mode: according to prefs
+    perm mode: according to prefs
+    perm becomes current in 0 sec
+
+=== PROJECT STATUS ===
+======== Projects ========
+
+=== INITIAL CLIENT MESSAGES ===
+1: 18-Jul-2026 13:32:57 (low) [] cc_config.xml not found - using defaults
+2: 18-Jul-2026 13:33:15 (low) [] Starting BOINC client version 8.2.11 for x86_64-pc-linux-gnu
+3: 18-Jul-2026 13:33:15 (low) [] log flags: file_xfer, sched_ops, task
+4: 18-Jul-2026 13:33:15 (low) [] cURL libraries: libcurl/8.15.0 OpenSSL/3.5.2 zlib/1.3.1 zstd/1.5.7 libpsl/0.21.5
+5: 18-Jul-2026 13:33:15 (low) [] Running as a daemon
+6: 18-Jul-2026 13:33:15 (low) [] Data directory: /var/lib/boinc-client
+7: 18-Jul-2026 13:33:16 (low) [] No usable GPUs found
+8: 18-Jul-2026 13:33:16 (low) [] Creating new client state file
+9: 18-Jul-2026 13:33:16 (low) [] Computer name: vulfen
+10: 18-Jul-2026 13:33:16 (low) [] Processor: 16 AuthenticAMD AMD Ryzen 7 PRO 5875U with Radeon Graphics [Family 25 Model 80 Stepping 0]
+11: 18-Jul-2026 13:33:16 (low) [] Processor features: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba ibrs ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic v_vmsave_vmload vgif v_spec_ctrl umip pku ospke vaes vpclmulqdq rdpid overflow_recov succor smca fsrm debug_swap
+12: 18-Jul-2026 13:33:16 (low) [] OS: Linux SableLinux: Sable Linux 1.0 [6.16.1-sable-compat2|libc 2.42]
+13: 18-Jul-2026 13:33:16 (low) [] Memory: 14.94 GB physical, 0 bytes virtual
+14: 18-Jul-2026 13:33:16 (low) [] Disk: 143.59 GB total, 114.40 GB free
+15: 18-Jul-2026 13:33:16 (low) [] Local time is UTC -4 hours
+16: 18-Jul-2026 13:33:16 (user notification) [] Some projects require Docker; we recommend that you install it.
+17: 18-Jul-2026 13:33:16 (low) [] No general preferences found - using defaults
+18: 18-Jul-2026 13:33:16 (low) [] Computing preferences:
+19: 18-Jul-2026 13:33:16 (low) [] -  When computer is in use
+20: 18-Jul-2026 13:33:16 (low) [] -     'In use' means mouse/keyboard input in last 3.00 minutes
+21: 18-Jul-2026 13:33:16 (low) [] -     don't use GPU
+22: 18-Jul-2026 13:33:16 (low) [] -     Use at most 100% of the CPU time
+23: 18-Jul-2026 13:33:16 (low) [] -     suspend if non-BOINC CPU load exceeds 25%
+24: 18-Jul-2026 13:33:16 (low) [] -     max memory usage: 7.47 GB
+25: 18-Jul-2026 13:33:16 (low) [] -  When computer is not in use
+26: 18-Jul-2026 13:33:16 (low) [] -     max CPUs used: 16
+27: 18-Jul-2026 13:33:16 (low) [] -     Use at most 100% of the CPU time
+28: 18-Jul-2026 13:33:16 (low) [] -     suspend if non-BOINC CPU load exceeds 50%
+29: 18-Jul-2026 13:33:16 (low) [] -     max memory usage: 13.45 GB
+30: 18-Jul-2026 13:33:16 (low) [] -  Suspend if running on batteries
+31: 18-Jul-2026 13:33:16 (low) [] -  Store at least 0.10 days of work
+32: 18-Jul-2026 13:33:16 (low) [] -  Store up to an additional 0.50 days of work
+33: 18-Jul-2026 13:33:16 (low) [] -  max disk usage: 114.30 GB
+34: 18-Jul-2026 13:33:16 (low) [] -  (to change preferences, visit a project web site or select 'Options / Computing preferences...' in the Manager)
+35: 18-Jul-2026 13:33:16 (low) [] Setting up project and slot directories
+36: 18-Jul-2026 13:33:16 (low) [] Checking active tasks
+37: 18-Jul-2026 13:33:16 (low) [] Setting up GUI RPC socket
+38: 18-Jul-2026 13:33:16 (low) [] Checking presence of 0 project files
+39: 18-Jul-2026 13:33:16 (low) [] This computer is not attached to any projects
+40: 18-Jul-2026 13:33:16 (low) [] Running CPU benchmarks
+41: 18-Jul-2026 13:33:16 (low) [] Currently BOINC uses legacy idle detection methods that might not work properly on all systems. Please consider installing a modern idle detection utility that works on Wayland and X11: https://github.com/jamescowens/idle_detect
+42: 18-Jul-2026 13:33:16 (low) [] Suspending computation - CPU benchmarks in progress
+
+=== REQUEST CLEAN SHUTDOWN ===
+Client stopped after approximately 2 second(s)
+
+=== GENERATED RUNTIME FILES ===
+drwxrwx--x boinc:boinc 4096 /var/lib/boinc-client/notices
+drwxr-x--- boinc:boinc 4096 /var/lib/boinc-client
+-rw-r----- boinc:boinc 32 /var/lib/boinc-client/gui_rpc_auth.cfg
+-rw-r--r-- boinc:boinc 0 /var/lib/boinc-client/all_projects_list_temp.xml
+-rw-r--r-- boinc:boinc 0 /var/lib/boinc-client/lockfile
+-rw-r--r-- boinc:boinc 0 /var/lib/boinc-client/notices/feeds.xml
+-rw-r--r-- boinc:boinc 0 /var/lib/boinc-client/stderrdae.txt
+-rw-r--r-- boinc:boinc 239 /var/lib/boinc-client/stderrgpudetect.txt
+-rw-r--r-- boinc:boinc 29 /var/lib/boinc-client/daily_xfer_history.xml
+-rw-r--r-- boinc:boinc 325 /var/lib/boinc-client/coproc_info.xml
+-rw-r--r-- boinc:boinc 3603 /var/lib/boinc-client/client_state_prev.xml
+-rw-r--r-- boinc:boinc 3621 /var/lib/boinc-client/client_state.xml
+-rw-r--r-- boinc:boinc 4169 /var/lib/boinc-client/stdoutdae.txt
+-rw-r--r-- boinc:boinc 55 /var/lib/boinc-client/time_stats_log
+-rw-r--r-- boinc:boinc 68 /var/lib/boinc-client/stdoutgpudetect.txt
+
+=== OWNERSHIP AUDIT ===
+PASS: all runtime files belong to boinc:boinc
+
+=== FINAL DAEMON LOG ===
+18-Jul-2026 13:32:57 [---] cc_config.xml not found - using defaults
+18-Jul-2026 13:33:15 [---] Starting BOINC client version 8.2.11 for x86_64-pc-linux-gnu
+18-Jul-2026 13:33:15 [---] log flags: file_xfer, sched_ops, task
+18-Jul-2026 13:33:15 [---] cURL libraries: libcurl/8.15.0 OpenSSL/3.5.2 zlib/1.3.1 zstd/1.5.7 libpsl/0.21.5
+18-Jul-2026 13:33:15 [---] Running as a daemon
+18-Jul-2026 13:33:15 [---] Data directory: /var/lib/boinc-client
+18-Jul-2026 13:33:16 [---] No usable GPUs found
+18-Jul-2026 13:33:16 [---] Creating new client state file
+18-Jul-2026 13:33:16 [---] Computer name: vulfen
+18-Jul-2026 13:33:16 [---] Processor: 16 AuthenticAMD AMD Ryzen 7 PRO 5875U with Radeon Graphics [Family 25 Model 80 Stepping 0]
+18-Jul-2026 13:33:16 [---] Processor features: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba ibrs ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local clzero irperf xsaveerptr rdpru wbnoinvd cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic v_vmsave_vmload vgif v_spec_ctrl umip pku ospke vaes vpclmulqdq rdpid overflow_recov succor smca fsrm debug_swap
+18-Jul-2026 13:33:16 [---] OS: Linux SableLinux: Sable Linux 1.0 [6.16.1-sable-compat2|libc 2.42]
+18-Jul-2026 13:33:16 [---] Memory: 14.94 GB physical, 0 bytes virtual
+18-Jul-2026 13:33:16 [---] Disk: 143.59 GB total, 114.40 GB free
+18-Jul-2026 13:33:16 [---] Local time is UTC -4 hours
+18-Jul-2026 13:33:16 [---] Some projects require Docker; we recommend that you install it.
+18-Jul-2026 13:33:16 [---] See https://github.com/BOINC/boinc/wiki/Installing-Docker-on-Linux
+18-Jul-2026 13:33:16 [---] No general preferences found - using defaults
+18-Jul-2026 13:33:16 [---] Computing preferences:
+18-Jul-2026 13:33:16 [---] -  When computer is in use
+18-Jul-2026 13:33:16 [---] -     'In use' means mouse/keyboard input in last 3.00 minutes
+18-Jul-2026 13:33:16 [---] -     don't use GPU
+18-Jul-2026 13:33:16 [---] -     Use at most 100% of the CPU time
+18-Jul-2026 13:33:16 [---] -     suspend if non-BOINC CPU load exceeds 25%
+18-Jul-2026 13:33:16 [---] -     max memory usage: 7.47 GB
+18-Jul-2026 13:33:16 [---] -  When computer is not in use
+18-Jul-2026 13:33:16 [---] -     max CPUs used: 16
+18-Jul-2026 13:33:16 [---] -     Use at most 100% of the CPU time
+18-Jul-2026 13:33:16 [---] -     suspend if non-BOINC CPU load exceeds 50%
+18-Jul-2026 13:33:16 [---] -     max memory usage: 13.45 GB
+18-Jul-2026 13:33:16 [---] -  Suspend if running on batteries
+18-Jul-2026 13:33:16 [---] -  Store at least 0.10 days of work
+18-Jul-2026 13:33:16 [---] -  Store up to an additional 0.50 days of work
+18-Jul-2026 13:33:16 [---] -  max disk usage: 114.30 GB
+18-Jul-2026 13:33:16 [---] -  (to change preferences, visit a project web site or select 'Options / Computing preferences...' in the Manager)
+18-Jul-2026 13:33:16 [---] Setting up project and slot directories
+18-Jul-2026 13:33:16 [---] Checking active tasks
+18-Jul-2026 13:33:16 [---] Setting up GUI RPC socket
+18-Jul-2026 13:33:16 [---] Checking presence of 0 project files
+18-Jul-2026 13:33:16 [---] This computer is not attached to any projects
+18-Jul-2026 13:33:16 [---] Running CPU benchmarks
+18-Jul-2026 13:33:16 [---] Currently BOINC uses legacy idle detection methods that might not work properly on all systems. Please consider installing a modern idle detection utility that works on Wayland and X11: https://github.com/jamescowens/idle_detect
+18-Jul-2026 13:33:16 [---] Suspending computation - CPU benchmarks in progress
+18-Jul-2026 13:33:17 [---] Exiting
+
+=== FINAL ERROR LOG ===
+No daemon error output recorded.
+
+=== SMOKE TEST PASS ===
+BOINC started as the boinc service account.
+Local RPC communication succeeded.
+Host detection succeeded.
+The client shut down cleanly.
+No project was attached.
+No service was created or enabled.
+Log: /home/sable/Desktop/boinc-runtime-smoke-test-20260718-133257.txt

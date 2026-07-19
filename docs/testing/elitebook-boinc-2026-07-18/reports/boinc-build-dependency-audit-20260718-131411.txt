@@ -1,0 +1,58 @@
+=== BOINC CLIENT BUILD DEPENDENCY AUDIT ===
+2026-07-18T13:14:11-04:00
+
+=== AUTOTOOLS COMMANDS ===
+m4             /usr/bin/m4
+m4 (GNU M4) 1.4.20
+autoconf       /usr/bin/autoconf
+autoconf (GNU Autoconf) 2.72
+autoheader     /usr/bin/autoheader
+autoheader (GNU Autoconf) 2.72
+automake       /usr/bin/automake
+automake (GNU automake) 1.18.1
+aclocal        /usr/bin/aclocal
+aclocal (GNU automake) 1.18.1
+libtool        /usr/bin/libtool
+libtool (GNU libtool) 2.5.4
+libtoolize     /usr/bin/libtoolize
+libtoolize (GNU libtool) 2.5.4
+makeinfo       /usr/bin/makeinfo
+texi2any (GNU texinfo) 7.2
+gettext        /usr/bin/gettext
+gettext (GNU gettext-runtime) 0.26
+msgfmt         /usr/bin/msgfmt
+msgfmt (GNU gettext-tools) 0.26
+
+=== REQUIRED PKG-CONFIG MODULES ===
+libcurl        PASS version=8.15.0
+  cflags: 
+  libs:   -lcurl
+openssl        PASS version=3.5.2
+  cflags: 
+  libs:   -lssl -lcrypto
+zlib           PASS version=1.3.1
+  cflags: 
+  libs:   -lz
+
+=== USEFUL OPTIONAL PKG-CONFIG MODULES ===
+sqlite3        PASS version=3.47.0
+libnotify      not found
+libudev        PASS version=257
+
+=== DEVELOPMENT HEADERS ===
+PASS: /usr/include/curl/curl.h
+PASS: /usr/include/openssl/ssl.h
+PASS: /usr/include/openssl/crypto.h
+PASS: /usr/include/zlib.h
+PASS: /usr/include/sqlite3.h
+PASS: /usr/include/expat.h
+
+=== LIBRARY LINK TESTS ===
+PASS: libcurl compile and link
+PASS: OpenSSL compile and link
+PASS: zlib compile and link
+
+=== PCI UTILITY ===
+lspci is not installed
+
+=== END AUDIT ===

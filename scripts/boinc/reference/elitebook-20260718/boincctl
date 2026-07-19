@@ -1,0 +1,215 @@
+#!/bin/bash
+
+set -u
+
+SERVICE="boinc-client.service"
+BIN="/opt/boinc/current/bin"
+DATA="/var/lib/boinc-client"
+PROJECT_URL="https://asteroidsathome.net/boinc/"
+
+if [ "${EUID}" -ne 0 ]; then
+    exec sudo -- "$0" "$@"
+fi
+
+rpc() {
+    (
+        cd "$DATA" || exit 1
+        sudo -u boinc env HOME="$DATA" \
+            "$BIN/boinccmd" "$@"
+    )
+}
+
+wait_ready() {
+    for SECOND in $(seq 1 30); do
+        if systemctl is-active --quiet "$SERVICE" &&
+           rpc --client_version >/dev/null 2>&1; then
+            echo "BOINC RPC ready after approximately ${SECOND} second(s)."
+            return 0
+        fi
+        sleep 1
+    done
+
+    echo "FAIL: BOINC did not become RPC-ready."
+    systemctl status "$SERVICE" --no-pager -l || true
+    return 1
+}
+
+apply_manual_policy() {
+    echo "Applying manual-run policy..."
+
+    rpc --read_global_prefs_override || {
+        echo "FAIL: could not read local computing preferences."
+        return 1
+    }
+
+    rpc --set_run_mode always 0 || {
+        echo "FAIL: could not set CPU mode."
+        return 1
+    }
+
+    rpc --set_network_mode always 0 || {
+        echo "FAIL: could not set network mode."
+        return 1
+    }
+
+    echo "CPU mode: always"
+    echo "Network mode: always"
+    echo "Processor allocation: 50% — 8 of 16 logical CPUs"
+    echo "CPU duty cycle: 100%"
+    echo "Run while user active: yes"
+    echo "Run on battery: no"
+}
+
+show_enablement() {
+    printf "Boot enablement: "
+    systemctl is-enabled "$SERVICE" 2>/dev/null || true
+}
+
+case "${1:-}" in
+    start)
+        # Enforce the manual-start-only policy.
+        systemctl disable "$SERVICE" >/dev/null 2>&1 || true
+
+        if systemctl is-active --quiet "$SERVICE"; then
+            echo "BOINC is already running."
+        else
+            systemctl start "$SERVICE" || exit 1
+            wait_ready || exit 1
+        fi
+
+        apply_manual_policy || exit 1
+
+        echo
+        show_enablement
+        rpc --get_cc_status
+        ;;
+
+    stop)
+        if systemctl is-active --quiet "$SERVICE"; then
+            systemctl stop "$SERVICE" || exit 1
+            echo "BOINC stopped cleanly."
+        else
+            echo "BOINC is already stopped."
+        fi
+
+        echo
+        show_enablement
+        ;;
+
+    restart)
+        systemctl disable "$SERVICE" >/dev/null 2>&1 || true
+        systemctl restart "$SERVICE" || exit 1
+        wait_ready || exit 1
+        apply_manual_policy || exit 1
+
+        echo
+        show_enablement
+        rpc --get_cc_status
+        ;;
+
+    status)
+        show_enablement
+        echo
+
+        if systemctl is-active --quiet "$SERVICE"; then
+            echo "Runtime state: active"
+            systemctl status "$SERVICE" --no-pager -l
+            echo
+            rpc --get_cc_status
+        else
+            echo "Runtime state: inactive"
+            systemctl status "$SERVICE" --no-pager -l || true
+        fi
+        ;;
+
+    preferences)
+        echo "=== LOCAL BOINC PREFERENCES ==="
+        cat "$DATA/global_prefs_override.xml"
+        echo
+
+        if systemctl is-active --quiet "$SERVICE"; then
+            apply_manual_policy
+        else
+            echo "BOINC is stopped; these preferences will apply at next start."
+        fi
+        ;;
+
+    attach-asteroids)
+        if ! systemctl is-active --quiet "$SERVICE"; then
+            echo "BOINC is not running."
+            echo "Run: boincctl start"
+            exit 1
+        fi
+
+        echo "Project: Asteroids@home"
+        echo "URL: $PROJECT_URL"
+        echo
+        read -rsp "Asteroids@home account key: " ACCOUNT_KEY
+        echo
+
+        [ -n "$ACCOUNT_KEY" ] || {
+            echo "FAIL: no account key supplied."
+            exit 1
+        }
+
+        rpc --project_attach "$PROJECT_URL" "$ACCOUNT_KEY"
+        RC=$?
+        unset ACCOUNT_KEY
+
+        [ "$RC" -eq 0 ] || exit "$RC"
+
+        sleep 3
+        rpc --get_project_status
+        ;;
+
+    projects)
+        rpc --get_project_status
+        ;;
+
+    tasks)
+        rpc --get_tasks
+        ;;
+
+    summary)
+        rpc --get_task_summary pcedsrw
+        ;;
+
+    messages-live)
+        if ! systemctl is-active --quiet "$SERVICE"; then
+            echo "BOINC is not running."
+            echo "Run: boincctl start"
+            exit 1
+        fi
+
+        exec /usr/local/libexec/boinc-active-view.py
+        ;;
+
+    messages)
+        rpc --get_messages 0 | tail -n 100
+        ;;
+
+    logs)
+        journalctl -u "$SERVICE" -n 100 --no-pager
+        ;;
+
+    *)
+        cat <<USAGE
+Usage: boincctl COMMAND
+
+Commands:
+  start              Start BOINC and apply manual-run policy
+  stop               Stop BOINC cleanly
+  restart            Restart BOINC and reapply policy
+  status             Show service and client status
+  preferences        Show and reapply local preferences
+  attach-asteroids   Attach to Asteroids@home
+  projects           Show attached projects
+  tasks              Show detailed tasks
+  summary            Show compact task summary
+  messages           Show recent BOINC messages
+  messages-live      Follow BOINC messages until Ctrl-C
+  logs               Show recent systemd journal
+USAGE
+        exit 2
+        ;;
+esac

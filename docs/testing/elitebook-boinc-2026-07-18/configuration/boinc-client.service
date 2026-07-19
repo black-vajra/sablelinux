@@ -1,0 +1,24 @@
+[Unit]
+Description=BOINC 8.2.11 Volunteer Computing Client
+Documentation=https://boinc.berkeley.edu/
+Wants=network-online.target
+After=network-online.target
+ConditionPathIsExecutable=/opt/boinc/current/bin/boinc
+
+[Service]
+Type=simple
+User=boinc
+Group=boinc
+WorkingDirectory=/var/lib/boinc-client
+Environment=HOME=/var/lib/boinc-client
+ExecStart=/opt/boinc/current/bin/boinc --dir /var/lib/boinc-client
+Restart=on-failure
+RestartSec=10
+TimeoutStopSec=90
+KillSignal=SIGTERM
+UMask=0027
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
