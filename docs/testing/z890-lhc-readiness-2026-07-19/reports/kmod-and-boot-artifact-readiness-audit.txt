@@ -1,0 +1,856 @@
+SABLELINUX KMOD AND BOOT ARTIFACT READINESS AUDIT
+timestamp_utc=2026-07-19T21:54:58Z
+build_id=20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1
+running_release=6.16.1-sable-compat
+target_release=6.16.1-sable-lhc-test1
+
+=== MODULE COMMAND RESOLUTION ===
+
+--- kmod ---
+command_path=/usr/bin/kmod
+resolved_path=/usr/bin/kmod
+/usr/bin/kmod: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 5.4.0, with debug_info, not stripped
+ae088807bdde28d1ed80d25d4209ccbe550bebd8fb74c6aac678681c8ceeaa10  /usr/bin/kmod
+--- version ---
+kmod version 34.2
++ZSTD +XZ +ZLIB +OPENSSL
+--- supported options ---
+kmod - Manage kernel modules: list, load, unload, etc
+Usage:
+	kmod [options] command [command_options]
+
+Options:
+	-V, --version     show version
+	-h, --help        show this help
+
+Commands:
+  help         show help message
+  list         list currently loaded modules
+  static-nodes output the static-node information installed with the currently running kernel
+
+kmod also handles gracefully if called from following symlinks:
+  lsmod        compat lsmod command
+  rmmod        compat rmmod command
+  insmod       compat insmod command
+  modinfo      compat modinfo command
+  modprobe     compat modprobe command
+  depmod       compat depmod command
+
+--- depmod ---
+command_path=/usr/bin/depmod
+resolved_path=/usr/bin/busybox
+/usr/bin/busybox: ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), statically linked, BuildID[sha1]=351ba74c282274bdd56e030c641d226cab5c14b7, for GNU/Linux 3.2.0, stripped
+dbac288c29ba568459550a2da9e7ae0ded6b1fc728ee9fad3044c44e62d6ac14  /usr/bin/busybox
+--- version ---
+depmod: unrecognized option '--version'
+BusyBox v1.36.1 (Ubuntu 1:1.36.1-6ubuntu3.1) multi-call binary.
+
+Usage: depmod [-n] [-b BASE] [VERSION] [MODFILES]...
+
+Generate modules.dep, alias, and symbols files
+
+	-b BASE	Use BASE/lib/modules/VERSION
+	-n	Dry run: print files to stdout
+--- supported options ---
+BusyBox v1.36.1 (Ubuntu 1:1.36.1-6ubuntu3.1) multi-call binary.
+
+Usage: depmod [-n] [-b BASE] [VERSION] [MODFILES]...
+
+Generate modules.dep, alias, and symbols files
+
+	-b BASE	Use BASE/lib/modules/VERSION
+	-n	Dry run: print files to stdout
+
+--- modprobe ---
+command_path=/usr/bin/modprobe
+resolved_path=/usr/bin/busybox
+/usr/bin/busybox: ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), statically linked, BuildID[sha1]=351ba74c282274bdd56e030c641d226cab5c14b7, for GNU/Linux 3.2.0, stripped
+dbac288c29ba568459550a2da9e7ae0ded6b1fc728ee9fad3044c44e62d6ac14  /usr/bin/busybox
+--- version ---
+modprobe: unrecognized option '--version'
+BusyBox v1.36.1 (Ubuntu 1:1.36.1-6ubuntu3.1) multi-call binary.
+
+Usage: modprobe [-alrqvsDb] MODULE [SYMBOL=VALUE]...
+
+	-a	Load multiple MODULEs
+	-l	List (MODULE is a pattern)
+	-r	Remove MODULE (stacks) or do autoclean
+	-q	Quiet
+	-v	Verbose
+--- supported options ---
+BusyBox v1.36.1 (Ubuntu 1:1.36.1-6ubuntu3.1) multi-call binary.
+
+Usage: modprobe [-alrqvsDb] MODULE [SYMBOL=VALUE]...
+
+	-a	Load multiple MODULEs
+	-l	List (MODULE is a pattern)
+	-r	Remove MODULE (stacks) or do autoclean
+	-q	Quiet
+	-v	Verbose
+	-s	Log to syslog
+	-D	Show dependencies
+	-b	Apply blacklist to module names too
+
+--- modinfo ---
+command_path=/usr/bin/modinfo
+resolved_path=/usr/bin/busybox
+/usr/bin/busybox: ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), statically linked, BuildID[sha1]=351ba74c282274bdd56e030c641d226cab5c14b7, for GNU/Linux 3.2.0, stripped
+dbac288c29ba568459550a2da9e7ae0ded6b1fc728ee9fad3044c44e62d6ac14  /usr/bin/busybox
+--- version ---
+modinfo: unrecognized option '--version'
+BusyBox v1.36.1 (Ubuntu 1:1.36.1-6ubuntu3.1) multi-call binary.
+
+Usage: modinfo [-adlpn0] [-F keyword] MODULE
+
+	-a		Shortcut for '-F author'
+	-d		Shortcut for '-F description'
+	-l		Shortcut for '-F license'
+	-p		Shortcut for '-F parm'
+	-F keyword	Keyword to look for
+--- supported options ---
+BusyBox v1.36.1 (Ubuntu 1:1.36.1-6ubuntu3.1) multi-call binary.
+
+Usage: modinfo [-adlpn0] [-F keyword] MODULE
+
+	-a		Shortcut for '-F author'
+	-d		Shortcut for '-F description'
+	-l		Shortcut for '-F license'
+	-p		Shortcut for '-F parm'
+	-F keyword	Keyword to look for
+	-0		NUL terminated output
+
+--- insmod ---
+command_path=/usr/bin/insmod
+resolved_path=/usr/bin/busybox
+/usr/bin/busybox: ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), statically linked, BuildID[sha1]=351ba74c282274bdd56e030c641d226cab5c14b7, for GNU/Linux 3.2.0, stripped
+dbac288c29ba568459550a2da9e7ae0ded6b1fc728ee9fad3044c44e62d6ac14  /usr/bin/busybox
+--- version ---
+insmod: can't insert '--version': No such file or directory
+--- supported options ---
+BusyBox v1.36.1 (Ubuntu 1:1.36.1-6ubuntu3.1) multi-call binary.
+
+Usage: insmod FILE [SYMBOL=VALUE]...
+
+Load kernel module
+
+--- rmmod ---
+command_path=/usr/bin/rmmod
+resolved_path=/usr/bin/busybox
+/usr/bin/busybox: ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), statically linked, BuildID[sha1]=351ba74c282274bdd56e030c641d226cab5c14b7, for GNU/Linux 3.2.0, stripped
+dbac288c29ba568459550a2da9e7ae0ded6b1fc728ee9fad3044c44e62d6ac14  /usr/bin/busybox
+--- version ---
+rmmod: unrecognized option '--version'
+BusyBox v1.36.1 (Ubuntu 1:1.36.1-6ubuntu3.1) multi-call binary.
+
+Usage: rmmod [-wfa] [MODULE]...
+
+Unload kernel modules
+
+	-w	Wait until the module is no longer used
+	-f	Force unload
+	-a	Remove all unused modules (recursively)
+--- supported options ---
+BusyBox v1.36.1 (Ubuntu 1:1.36.1-6ubuntu3.1) multi-call binary.
+
+Usage: rmmod [-wfa] [MODULE]...
+
+Unload kernel modules
+
+	-w	Wait until the module is no longer used
+	-f	Force unload
+	-a	Remove all unused modules (recursively)
+
+--- lsmod ---
+command_path=/usr/bin/lsmod
+resolved_path=/usr/bin/busybox
+/usr/bin/busybox: ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), statically linked, BuildID[sha1]=351ba74c282274bdd56e030c641d226cab5c14b7, for GNU/Linux 3.2.0, stripped
+dbac288c29ba568459550a2da9e7ae0ded6b1fc728ee9fad3044c44e62d6ac14  /usr/bin/busybox
+--- version ---
+Module                  Size  Used by    Tainted: G  
+amdgpu              13139968 18 
+mt7925e                24576  0 
+mt7925_common         131072  1 mt7925e
+mt792x_lib             65536  2 mt7925e,mt7925_common
+mt76_connac_lib        94208  3 mt7925e,mt7925_common,mt792x_lib
+amdxcp                 12288  1 amdgpu
+mfd_core               12288  1 amdgpu
+mt76                  139264  4 mt7925e,mt7925_common,mt792x_lib,mt76_connac_lib
+x86_pkg_temp_thermal    16384  0 
+--- supported options ---
+BusyBox v1.36.1 (Ubuntu 1:1.36.1-6ubuntu3.1) multi-call binary.
+
+Usage: lsmod
+
+List loaded kernel modules
+
+=== KMOD LIBRARY DISCOVERY ===
+	libzstd.so.1 (libc6,x86-64) => /usr/lib/libzstd.so.1
+	libzstd.so (libc6,x86-64) => /usr/lib/libzstd.so
+	libz.so.1 (libc6,x86-64) => /usr/lib/libz.so.1
+	libz.so (libc6,x86-64) => /usr/lib/libz.so
+	liblzma.so.5 (libc6,x86-64) => /usr/lib/liblzma.so.5
+	liblzma.so (libc6,x86-64) => /usr/lib/liblzma.so
+	libkmod.so.2 (libc6,x86-64) => /usr/lib/libkmod.so.2
+	libkmod.so (libc6,x86-64) => /usr/lib/libkmod.so
+
+=== KMOD FILE DISCOVERY ===
+lrwxrwxrwx root:root         11 /usr/sbin/depmod -> ../bin/kmod
+lrwxrwxrwx root:root         11 /usr/sbin/modinfo -> ../bin/kmod
+lrwxrwxrwx root:root         11 /usr/sbin/modprobe -> ../bin/kmod
+lrwxrwxrwx root:root         12 /usr/lib/libkmod.so -> libkmod.so.2
+lrwxrwxrwx root:root         16 /usr/bin/depmod -> /usr/bin/busybox
+lrwxrwxrwx root:root         16 /usr/bin/modinfo -> /usr/bin/busybox
+lrwxrwxrwx root:root         16 /usr/bin/modprobe -> /usr/bin/busybox
+lrwxrwxrwx root:root         16 /usr/lib/libkmod.so.2 -> libkmod.so.2.5.1
+-rwxr-xr-x root:root     134248 /usr/lib/libkmod.so.2.5.1 -> 
+-rwxr-xr-x root:root     212472 /usr/bin/kmod -> 
+
+=== PKG-CONFIG KMOD STATE ===
+pkg_config_libkmod=yes
+34.2
+
+=== KMOD SOURCE ARCHIVES ===
+/sources/kmod-34.2.tar.xz
+kmod_archive_count=1
+
+--- /sources/kmod-34.2.tar.xz ---
+mode=-rw-rw-r-- owner=tester group=pepper size=443748 modified=2025-03-28 00:06:23.000000000 -0400 path=/sources/kmod-34.2.tar.xz
+5a5d5073070cc7e0c7a7a3c6ec2a0e1780850c8b47b3e3892226b93ffcb9cb54  /sources/kmod-34.2.tar.xz
+kmod-34.2/
+kmod-34.2/.clang-format
+kmod-34.2/.codespellignore
+kmod-34.2/.editorconfig
+kmod-34.2/.github/
+kmod-34.2/.github/actions/
+kmod-34.2/.github/actions/setup-alpine/
+kmod-34.2/.github/actions/setup-alpine/action.yml
+kmod-34.2/.github/actions/setup-archlinux/
+kmod-34.2/.github/actions/setup-archlinux/action.yml
+kmod-34.2/.github/actions/setup-debian/
+kmod-34.2/.github/actions/setup-debian/action.yml
+
+=== REPOSITORY KMOD HISTORY ===
+/home/pepper/sablelinux/docs/inventory/installed-packages-2026-05-23.md:1865:- /usr/bin/kmod
+
+=== KMOD BUILD PREREQUISITES ===
+PASS: gcc=/usr/bin/gcc
+gcc (GCC) 15.2.0
+Copyright (C) 2025 Free Software Foundation, Inc.
+PASS: make=/usr/bin/make
+GNU Make 4.4.1
+Built for x86_64-pc-linux-gnu
+PASS: meson=/usr/bin/meson
+1.7.0
+PASS: ninja=/usr/bin/ninja
+1.13.1
+PASS: pkg-config=/usr/bin/pkg-config
+2.5.1
+PASS: scdoc=/usr/local/bin/scdoc
+Usage: scdoc < input.scd > output.roff
+INFO: unavailable: xsltproc
+
+=== DEVELOPMENT LIBRARIES ===
+PASS: header present: /usr/include/zlib.h
+PASS: header present: /usr/include/lzma.h
+PASS: header present: /usr/include/zstd.h
+PASS: header present: /usr/include/openssl/ssl.h
+
+=== DRACUT MODULE-TOOL REQUIREMENTS ===
+/usr/bin/dracut:1470:# libkmod global variables
+/usr/bin/dracut:1471:set_global_var "libkmod" "depmodd" "/usr/lib/depmod.d"
+/usr/bin/dracut:1472:set_global_var "libkmod" "depmodconfdir" "/etc/depmod.d"
+/usr/lib/dracut/dracut-functions:740:    modprobe -d "$dracutsysrootdir" -S "$kernel" --dry-run "$1" &> /dev/null || return 1
+/usr/lib/dracut/dracut-init.sh:64:    if ! command -v kmod &> /dev/null && vercmp "$(modprobe --version | cut -d' ' -f3)" lt 3.7; then
+/usr/lib/dracut/dracut-init.sh:1053:        && ! depmod -a -b "$initdir" "$kernel"; then
+/usr/lib/dracut/dracut-init.sh:1054:        dfatal "\"depmod -a $kernel\" failed."
+/usr/lib/dracut/modules.d/99base/init.sh:76:if command -v kmod > /dev/null 2> /dev/null; then
+/usr/lib/dracut/dracut-functions.sh:740:    modprobe -d "$dracutsysrootdir" -S "$kernel" --dry-run "$1" &> /dev/null || return 1
+
+=== DRACUT MODULE TOOL ASSESSMENT ===
+FAIL: installed dracut requires kmod-compatible command semantics
+FAIL: active modprobe implementation is BusyBox
+
+=== BOOT FILESYSTEM ===
+TARGET SOURCE         FSTYPE OPTIONS
+/      /dev/nvme1n1p3 ext4   rw,relatime
+TARGET SOURCE         FSTYPE OPTIONS
+/boot  /dev/nvme1n1p2 ext4   rw,relatime
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme1n1p2  2.0G  969M  859M  54% /boot
+/dev/nvme1n1p3  936G  288G  601G  33% /
+Filesystem       Inodes   IUsed    IFree IUse% Mounted on
+/dev/nvme1n1p2   131072     358   130714    1% /boot
+/dev/nvme1n1p3 62349312 2772082 59577230    5% /
+
+=== COMPLETE BOOT DIRECTORY INVENTORY ===
+find: ‘/boot/lost+found’: Permission denied
+-rw------- root:root     15470949 2026-04-15T10:27:51.8753897730 /boot/initramfs.img -> 
+-rw------- root:root    164520365 2026-04-13T18:01:05.1107328510 /boot/initramfs-6.16.1-sable-compat-live.img -> 
+-rw------- root:root      2676965 2026-02-22T17:24:31.6404758400 /boot/initrd.img-6.16.1 -> 
+-rw------- root:root     35671694 2026-05-25T14:56:04.6639870270 /boot/initramfs-6.16.1-sable-compat.img -> 
+-rw-r--r-- root:root        10056 2026-04-10T15:07:08.9921867710 /boot/grub/x86_64-efi/bfs.mod -> 
+-rw-r--r-- root:root        10072 2026-04-10T15:07:09.6162099360 /boot/grub/x86_64-efi/video_colors.mod -> 
+-rw-r--r-- root:root       100930 2026-04-10T15:07:08.4411663130 /boot/grub/locale/lt.mo -> 
+-rw-r--r-- root:root        10176 2026-04-10T15:07:09.1781936770 /boot/grub/x86_64-efi/uhci.mod -> 
+-rw-r--r-- root:root         1024 2026-02-22T12:13:02.9622241820 /boot/grub/grubenv -> 
+-rw-r--r-- root:root       103027 2026-04-10T15:07:08.4821678360 /boot/grub/locale/gl.mo -> 
+-rw-r--r-- root:root        10384 2026-04-10T15:07:09.0291881450 /boot/grub/x86_64-efi/nilfs2.mod -> 
+-rw-r--r-- root:root        10440 2026-04-10T15:07:09.8352180670 /boot/grub/x86_64-efi/hfs.mod -> 
+-rw-r--r-- root:root        10464 2026-04-10T15:07:09.5972092310 /boot/grub/x86_64-efi/squash4.mod -> 
+-rw-r--r-- root:root        10480 2026-04-10T15:07:09.1451924510 /boot/grub/x86_64-efi/f2fs.mod -> 
+-rw-r--r-- root:root        10576 2026-04-10T15:07:08.8221804590 /boot/grub/x86_64-efi/zfsinfo.mod -> 
+-rw-r--r-- root:root        10616 2026-04-10T15:07:09.1511926740 /boot/grub/x86_64-efi/hdparm.mod -> 
+-rw-r--r-- root:root        10912 2026-04-10T15:07:09.8802197370 /boot/grub/x86_64-efi/macho.mod -> 
+-rw-r--r-- root:root        11088 2026-04-10T15:07:09.7062132780 /boot/grub/x86_64-efi/efinet.mod -> 
+-rw-r--r-- root:root        11120 2026-04-10T15:07:09.5322068180 /boot/grub/x86_64-efi/usbms.mod -> 
+-rw-r--r-- root:root          111 2026-04-10T15:07:10.0002241920 /boot/grub/x86_64-efi/partmap.lst -> 
+-rw-r--r-- root:root        11208 2026-04-10T15:07:09.5132061130 /boot/grub/x86_64-efi/png.mod -> 
+-rw-r--r-- root:root        11272 2026-04-10T15:07:09.5042057790 /boot/grub/x86_64-efi/jpeg.mod -> 
+-rw-r--r-- root:root        11352 2026-04-10T15:07:09.0111874760 /boot/grub/x86_64-efi/plainmount.mod -> 
+-rw-r--r-- root:root        11616 2026-04-10T15:07:09.1041909290 /boot/grub/x86_64-efi/hfsplus.mod -> 
+-rw-r--r-- root:root       116936 2026-04-10T15:07:08.4461664990 /boot/grub/locale/it.mo -> 
+-rw-r--r-- root:root        11720 2026-04-10T15:07:08.9681858800 /boot/grub/x86_64-efi/xfs.mod -> 
+-rw-r--r-- root:root       119228 2026-04-10T15:07:08.4521667220 /boot/grub/locale/da.mo -> 
+-rw-r--r-- root:root        11928 2026-04-10T15:07:09.8522186980 /boot/grub/x86_64-efi/gcry_crc.mod -> 
+-rw-r--r-- root:root        12624 2026-04-10T15:07:09.4482037000 /boot/grub/x86_64-efi/lvm.mod -> 
+-rw-r--r-- root:root       126941 2026-04-10T15:07:08.5981721420 /boot/grub/locale/nl.mo -> 
+-rw-r--r-- root:root       127089 2026-04-10T15:07:08.4301659050 /boot/grub/locale/ast.mo -> 
+-rw-r--r-- root:root       127966 2026-04-10T15:07:08.6481739990 /boot/grub/locale/ca.mo -> 
+-rw-r--r-- root:root       128143 2026-04-10T15:07:08.6041723650 /boot/grub/locale/nb.mo -> 
+-rw-r--r-- root:root        12832 2026-04-10T15:07:09.1191914860 /boot/grub/x86_64-efi/efi_gop.mod -> 
+-rw-r--r-- root:root       128361 2026-04-10T15:07:08.6601744450 /boot/grub/locale/sv.mo -> 
+-rw-r--r-- root:root        12976 2026-04-10T15:07:09.9812234870 /boot/grub/x86_64-efi/udf.mod -> 
+-rw-r--r-- root:root       130252 2026-04-10T15:07:08.6541742220 /boot/grub/locale/hr.mo -> 
+-rw-r--r-- root:root       130267 2026-04-10T15:07:08.5201692470 /boot/grub/locale/es.mo -> 
+-rw-r--r-- root:root        13032 2026-04-10T15:07:09.5272066330 /boot/grub/x86_64-efi/gzio.mod -> 
+-rw-r--r-- root:root       131747 2026-04-10T15:07:08.4651672040 /boot/grub/locale/pt.mo -> 
+-rw-r--r-- root:root       132479 2026-04-10T15:07:08.5551705460 /boot/grub/locale/fi.mo -> 
+-rw-r--r-- root:root        13392 2026-04-10T15:07:09.4812049250 /boot/grub/x86_64-efi/gcry_tiger.mod -> 
+-rw-r--r-- root:root        13424 2026-04-10T15:07:09.7012130920 /boot/grub/x86_64-efi/diskfilter.mod -> 
+-rw-r--r-- root:root        13672 2026-04-10T15:07:09.1941942700 /boot/grub/x86_64-efi/iso9660.mod -> 
+-rw-r--r-- root:root       137568 2026-04-10T15:07:09.6212101220 /boot/grub/x86_64-efi/net.mod -> 
+-rw-r--r-- root:root         1376 2026-04-10T15:07:09.4442035510 /boot/grub/x86_64-efi/div.mod -> 
+-rw-r--r-- root:root       137952 2026-04-10T15:07:08.5031686150 /boot/grub/locale/hu.mo -> 
+-rw-r--r-- root:root       138592 2026-04-10T15:07:08.5751712890 /boot/grub/locale/en@quot.mo -> 
+-rw-r--r-- root:root       139130 2026-04-10T15:07:08.4761676130 /boot/grub/locale/zh_CN.mo -> 
+-rw-r--r-- root:root        14280 2026-04-10T15:07:09.7442146880 /boot/grub/x86_64-efi/reiserfs.mod -> 
+-rw-r--r-- root:root       147456 2026-04-10T15:07:10.0302253060 /boot/grub/x86_64-efi/core.efi -> 
+-rw-r--r-- root:root       147456 2026-04-10T15:07:10.0363626830 /boot/grub/x86_64-efi/grub.efi -> 
+-rw-r--r-- root:root        14832 2026-04-10T15:07:09.6272103450 /boot/grub/x86_64-efi/gcry_cast5.mod -> 
+-rw-r--r-- root:root       149584 2026-04-10T15:07:08.5251694320 /boot/grub/locale/pl.mo -> 
+-rw-r--r-- root:root         1496 2026-04-10T15:07:09.3271992080 /boot/grub/x86_64-efi/aout.mod -> 
+-rw-r--r-- root:root       150650 2026-04-10T15:07:08.5811715110 /boot/grub/locale/de.mo -> 
+-rw-r--r-- root:root       150657 2026-04-10T15:07:08.5081688010 /boot/grub/locale/de_CH.mo -> 
+-rw-r--r-- root:root        15160 2026-04-10T15:07:09.1671932680 /boot/grub/x86_64-efi/gcry_seed.mod -> 
+-rw-r--r-- root:root       156029 2026-04-10T15:07:08.4871680210 /boot/grub/locale/ko.mo -> 
+-rw-r--r-- root:root     15610880 2026-04-11T11:18:45.9399863510 /boot/vmlinuz-6.16.1-lfs-12.4-systemd.bak -> 
+-rw-r--r-- root:root     15610880 2026-05-10T12:15:58.5484275460 /boot/vmlinuz-6.16.1-lfs-12.4-systemd -> 
+-rw-r--r-- root:root       156882 2026-04-10T15:07:08.6661746670 /boot/grub/locale/ka.mo -> 
+-rw-r--r-- root:root       157104 2026-04-10T15:07:08.6151727740 /boot/grub/locale/en@piglatin.mo -> 
+-rw-r--r-- root:root       157703 2026-04-10T15:07:08.5321696920 /boot/grub/locale/fr.mo -> 
+-rw-r--r-- root:root        15800 2026-04-10T15:07:09.7832161360 /boot/grub/x86_64-efi/ohci.mod -> 
+-rw-r--r-- root:root     15836160 2026-05-25T14:55:38.0320697460 /boot/vmlinuz-6.16.1-sable-compat -> 
+-rw-r--r-- root:root       158375 2026-04-10T15:07:08.4361661280 /boot/grub/locale/ro.mo -> 
+-rw-r--r-- root:root        15920 2026-04-10T15:07:09.0431886650 /boot/grub/x86_64-efi/usb.mod -> 
+-rw-r--r-- root:root        15968 2026-04-10T15:07:09.6852124980 /boot/grub/x86_64-efi/legacy_password_test.mod -> 
+-rw-r--r-- root:root        16080 2026-04-10T15:07:09.6952128690 /boot/grub/x86_64-efi/acpi.mod -> 
+-rw-r--r-- root:root       162193 2026-04-11T11:18:45.9472266720 /boot/config-6.16.1 -> 
+-rw-r--r-- root:root          162 2026-04-10T15:07:10.0182248600 /boot/grub/x86_64-efi/terminal.lst -> 
+-rw-r--r-- root:root       162663 2026-04-10T15:07:08.4921682070 /boot/grub/locale/vi.mo -> 
+-rw-r--r-- root:root        16336 2026-04-10T15:07:09.7942165450 /boot/grub/x86_64-efi/gcry_serpent.mod -> 
+-rw-r--r-- root:root        16424 2026-04-10T15:07:09.2231953470 /boot/grub/x86_64-efi/ntfs.mod -> 
+-rw-r--r-- root:root         1648 2026-04-10T15:07:09.3502000610 /boot/grub/x86_64-efi/reboot.mod -> 
+-rw-r--r-- root:root         1656 2026-04-10T15:07:09.8572188840 /boot/grub/x86_64-efi/cbtable.mod -> 
+-rw-r--r-- root:root        16984 2026-04-10T15:07:09.0481888500 /boot/grub/x86_64-efi/gcry_des.mod -> 
+-rw-r--r-- root:root       170229 2026-04-10T15:07:08.4251657190 /boot/grub/locale/ru.mo -> 
+-rw-r--r-- root:root        17112 2026-04-10T15:07:09.2611967570 /boot/grub/x86_64-efi/gfxterm.mod -> 
+-rw-r--r-- root:root           17 2026-04-10T15:07:10.0042243410 /boot/grub/x86_64-efi/parttool.lst -> 
+-rw-r--r-- root:root        17400 2026-04-10T15:07:08.7891792340 /boot/grub/x86_64-efi/serial.mod -> 
+-rw-r--r-- root:root       177536 2026-04-10T15:07:08.5921719200 /boot/grub/locale/en@greek.mo -> 
+-rw-r--r-- root:root       177539 2026-04-10T15:07:08.5431701010 /boot/grub/locale/en@cyrillic.mo -> 
+-rw-r--r-- root:root       178592 2026-04-10T15:07:08.9401848400 /boot/grub/x86_64-efi/normal.mod -> 
+-rw-r--r-- root:root       188002 2026-04-10T15:07:08.5141690240 /boot/grub/locale/en@arabic.mo -> 
+-rw-r--r-- root:root         1888 2026-04-10T15:07:09.0011871050 /boot/grub/x86_64-efi/hello.mod -> 
+-rw-r--r-- root:root       190584 2026-04-10T15:07:08.6411737390 /boot/grub/locale/sr.mo -> 
+-rw-r--r-- root:root         1928 2026-04-10T15:07:09.7282140940 /boot/grub/x86_64-efi/true.mod -> 
+-rw-r--r-- root:root        19520 2026-04-10T15:07:09.8762195890 /boot/grub/x86_64-efi/terminfo.mod -> 
+-rw-r--r-- root:root         1952 2026-04-10T15:07:08.7011759670 /boot/grub/x86_64-efi/adler32.mod -> 
+-rw-r--r-- root:root        19560 2026-04-10T15:07:09.5552076720 /boot/grub/x86_64-efi/pgp.mod -> 
+-rw-r--r-- root:root        19608 2026-04-10T15:07:08.8411811650 /boot/grub/x86_64-efi/font.mod -> 
+-rw-r--r-- root:root       199280 2026-04-10T15:07:08.6091725510 /boot/grub/locale/uk.mo -> 
+-rw-r--r-- root:root         2000 2026-04-10T15:07:08.8781825390 /boot/grub/x86_64-efi/raid5rec.mod -> 
+-rw-r--r-- root:root        20096 2026-04-10T15:07:09.3041983540 /boot/grub/x86_64-efi/xzio.mod -> 
+-rw-r--r-- root:root         2016 2026-04-10T15:07:08.6921756330 /boot/grub/x86_64-efi/pbkdf2.mod -> 
+-rw-r--r-- root:root       203723 2026-04-10T15:07:08.6351735160 /boot/grub/locale/en@hebrew.mo -> 
+-rw-r--r-- root:root        20552 2026-04-10T15:07:08.9871865860 /boot/grub/x86_64-efi/gcry_rijndael.mod -> 
+-rw-r--r-- root:root         2056 2026-04-10T15:07:08.7751787140 /boot/grub/x86_64-efi/trig.mod -> 
+-rw-r--r-- root:root         2088 2026-04-10T15:07:09.5222064470 /boot/grub/x86_64-efi/test_blockarg.mod -> 
+-rw-r--r-- root:root        21176 2026-04-10T15:07:08.8881829090 /boot/grub/x86_64-efi/luks2.mod -> 
+-rw-r--r-- root:root         2184 2026-04-10T15:07:09.9002204800 /boot/grub/x86_64-efi/exfctest.mod -> 
+-rw-r--r-- root:root          219 2026-04-10T15:07:09.9952240070 /boot/grub/x86_64-efi/fs.lst -> 
+-rw-r--r-- root:root         2208 2026-04-10T15:07:09.4532038850 /boot/grub/x86_64-efi/afsplitter.mod -> 
+-rw-r--r-- root:root         2216 2026-04-10T15:07:09.2711971290 /boot/grub/x86_64-efi/crc64.mod -> 
+-rw-r--r-- root:root        22192 2026-04-10T15:07:09.1141913000 /boot/grub/x86_64-efi/ahci.mod -> 
+-rw-r--r-- root:root         2232 2026-04-10T15:07:09.6902126840 /boot/grub/x86_64-efi/eval.mod -> 
+-rw-r--r-- root:root        22344 2026-04-10T15:07:09.0721897410 /boot/grub/x86_64-efi/multiboot.mod -> 
+-rw-r--r-- root:root         2248 2026-04-10T15:07:09.3972018070 /boot/grub/x86_64-efi/part_dvh.mod -> 
+-rw-r--r-- root:root       226648 2026-04-10T15:07:08.5371698780 /boot/grub/locale/de@hebrew.mo -> 
+-rw-r--r-- root:root         2280 2026-04-10T15:07:09.3552002470 /boot/grub/x86_64-efi/part_sun.mod -> 
+-rw-r--r-- root:root        22968 2026-04-10T15:07:09.0951905950 /boot/grub/x86_64-efi/gcry_whirlpool.mod -> 
+-rw-r--r-- root:root        23056 2026-04-10T15:07:08.7661783800 /boot/grub/x86_64-efi/cryptodisk.mod -> 
+-rw-r--r-- root:root         2320 2026-04-10T15:07:08.8591818330 /boot/grub/x86_64-efi/offsetio.mod -> 
+-rw-r--r-- root:root         2328 2026-04-10T15:07:09.0061872910 /boot/grub/x86_64-efi/part_acorn.mod -> 
+-rw-r--r-- root:root         2328 2026-04-10T15:07:09.9102208510 /boot/grub/x86_64-efi/priority_queue.mod -> 
+-rw-r--r-- root:root         2392 2026-04-10T15:07:09.1241916710 /boot/grub/x86_64-efi/usbserial_usbdebug.mod -> 
+-rw-r--r-- root:root      2411806 2026-02-22T12:13:02.9513676960 /boot/grub/fonts/unicode.pf2 -> 
+-rw-r--r-- root:root         2416 2026-04-10T15:07:09.2421960520 /boot/grub/x86_64-efi/time.mod -> 
+-rw-r--r-- root:root         2448 2026-04-10T15:07:09.9762233010 /boot/grub/x86_64-efi/wrmsr.mod -> 
+-rw-r--r-- root:root         2464 2026-04-10T15:07:08.8691822040 /boot/grub/x86_64-efi/gcry_arcfour.mod -> 
+-rw-r--r-- root:root         2488 2026-04-10T15:07:09.2281955320 /boot/grub/x86_64-efi/mul_test.mod -> 
+-rw-r--r-- root:root        25232 2026-04-10T15:07:08.8641820190 /boot/grub/x86_64-efi/multiboot2.mod -> 
+-rw-r--r-- root:root         2536 2026-04-10T15:07:09.1341920430 /boot/grub/x86_64-efi/part_plan.mod -> 
+-rw-r--r-- root:root         2536 2026-04-10T15:07:09.3411997270 /boot/grub/x86_64-efi/part_sunpc.mod -> 
+-rw-r--r-- root:root         2552 2026-04-10T15:07:09.5502074860 /boot/grub/x86_64-efi/backtrace.mod -> 
+-rw-r--r-- root:root        25904 2026-04-10T15:07:09.9402219650 /boot/grub/x86_64-efi/ehci.mod -> 
+-rw-r--r-- root:root         2591 2026-04-10T15:07:10.0232250460 /boot/grub/x86_64-efi/modinfo.sh -> 
+-rw-r--r-- root:root     25944406 2026-05-10T12:17:21.9437640840 /boot/initrd.img-6.16.1-lfs-12.4-systemd -> 
+-rw-r--r-- root:root         2600 2026-04-10T15:07:09.6802123120 /boot/grub/x86_64-efi/cpuid.mod -> 
+-rw-r--r-- root:root         2664 2026-04-10T15:07:09.2851976490 /boot/grub/x86_64-efi/setjmp_test.mod -> 
+-rw-r--r-- root:root         2672 2026-04-10T15:07:09.1561928600 /boot/grub/x86_64-efi/ctz_test.mod -> 
+-rw-r--r-- root:root        26728 2026-04-10T15:07:09.9152210370 /boot/grub/x86_64-efi/relocator.mod -> 
+-rw-r--r-- root:root        26856 2026-04-10T15:07:09.6752121270 /boot/grub/x86_64-efi/file.mod -> 
+-rw-r--r-- root:root         2712 2026-04-10T15:07:09.1891940850 /boot/grub/x86_64-efi/mdraid1x.mod -> 
+-rw-r--r-- root:root         2720 2026-04-10T15:07:09.4582040710 /boot/grub/x86_64-efi/part_dfly.mod -> 
+-rw-r--r-- root:root         2728 2026-04-10T15:07:09.6642117180 /boot/grub/x86_64-efi/part_amiga.mod -> 
+-rw-r--r-- root:root         2728 2026-04-10T15:07:09.9582226330 /boot/grub/x86_64-efi/efifwsetup.mod -> 
+-rw-r--r-- root:root        27880 2026-04-10T15:07:08.9341846180 /boot/grub/x86_64-efi/gcry_camellia.mod -> 
+-rw-r--r-- root:root         2800 2026-04-10T15:07:09.0671895560 /boot/grub/x86_64-efi/mdraid09.mod -> 
+-rw-r--r-- root:root        28229 2026-04-10T15:07:08.6301733310 /boot/grub/locale/id.mo -> 
+-rw-r--r-- root:root         2832 2026-04-10T15:07:09.0761898890 /boot/grub/x86_64-efi/mdraid09_be.mod -> 
+-rw-r--r-- root:root         2832 2026-04-10T15:07:09.6372107150 /boot/grub/x86_64-efi/dm_nv.mod -> 
+-rw-r--r-- root:root        28328 2026-04-10T15:07:09.2941979830 /boot/grub/x86_64-efi/linux.mod -> 
+-rw-r--r-- root:root        28656 2026-04-10T15:07:09.0341883300 /boot/grub/x86_64-efi/btrfs.mod -> 
+-rw-r--r-- root:root         2912 2026-04-10T15:07:09.2381959040 /boot/grub/x86_64-efi/usbserial_common.mod -> 
+-rw-r--r-- root:root         2920 2026-04-10T15:07:09.5742083770 /boot/grub/x86_64-efi/fixvideo.mod -> 
+-rw-r--r-- root:root         2936 2026-04-10T15:07:08.6721748900 /boot/grub/x86_64-efi/datetime.mod -> 
+-rw-r--r-- root:root         2960 2026-04-10T15:07:08.9451850260 /boot/grub/x86_64-efi/read.mod -> 
+-rw-r--r-- root:root         2984 2026-04-10T15:07:09.7392145030 /boot/grub/x86_64-efi/lsmmap.mod -> 
+-rw-r--r-- root:root         2992 2026-04-10T15:07:09.6592115330 /boot/grub/x86_64-efi/password.mod -> 
+-rw-r--r-- root:root         2992 2026-04-10T15:07:09.8852199230 /boot/grub/x86_64-efi/keystatus.mod -> 
+-rw-r--r-- root:root        29976 2026-04-10T15:07:09.3642005810 /boot/grub/x86_64-efi/syslinuxcfg.mod -> 
+-rw-r--r-- root:root        30016 2026-04-10T15:07:08.9241842460 /boot/grub/x86_64-efi/video_fb.mod -> 
+-rw-r--r-- root:root         3024 2026-04-10T15:07:08.7291770060 /boot/grub/x86_64-efi/bufio.mod -> 
+-rw-r--r-- root:root        30315 2026-04-10T15:07:08.5701711030 /boot/grub/locale/zh_TW.mo -> 
+-rw-r--r-- root:root         3064 2026-04-10T15:07:08.7711785660 /boot/grub/x86_64-efi/datehook.mod -> 
+-rw-r--r-- root:root         3064 2026-04-10T15:07:09.2521964240 /boot/grub/x86_64-efi/echo.mod -> 
+-rw-r--r-- root:root         3064 2026-04-10T15:07:09.4302030320 /boot/grub/x86_64-efi/part_msdos.mod -> 
+-rw-r--r-- root:root         3080 2026-04-10T15:07:09.2001944930 /boot/grub/x86_64-efi/blocklist.mod -> 
+-rw-r--r-- root:root         3104 2026-04-10T15:07:09.3361995420 /boot/grub/x86_64-efi/part_apple.mod -> 
+-rw-r--r-- root:root         3120 2026-04-10T15:07:09.5882088970 /boot/grub/x86_64-efi/spkmodem.mod -> 
+-rw-r--r-- root:root         3128 2026-04-10T15:07:08.8311807940 /boot/grub/x86_64-efi/sleep_test.mod -> 
+-rw-r--r-- root:root         3128 2026-04-10T15:07:09.1721934540 /boot/grub/x86_64-efi/rdmsr.mod -> 
+-rw-r--r-- root:root         3152 2026-04-10T15:07:09.1291918570 /boot/grub/x86_64-efi/gcry_rfc2268.mod -> 
+-rw-r--r-- root:root         3152 2026-04-10T15:07:09.1621930820 /boot/grub/x86_64-efi/disk.mod -> 
+-rw-r--r-- root:root         3160 2026-04-10T15:07:09.0241879590 /boot/grub/x86_64-efi/xnu_uuid_test.mod -> 
+-rw-r--r-- root:root         3216 2026-04-10T15:07:08.6871754470 /boot/grub/x86_64-efi/progress.mod -> 
+-rw-r--r-- root:root         3240 2026-04-10T15:07:09.4952054450 /boot/grub/x86_64-efi/bitmap.mod -> 
+-rw-r--r-- root:root         3248 2026-04-10T15:07:08.7101763010 /boot/grub/x86_64-efi/date.mod -> 
+-rw-r--r-- root:root         3280 2026-04-10T15:07:09.4852050730 /boot/grub/x86_64-efi/shift_test.mod -> 
+-rw-r--r-- root:root         3280 2026-04-10T15:07:09.8252176960 /boot/grub/x86_64-efi/bswap_test.mod -> 
+-rw-r--r-- root:root         3296 2026-04-10T15:07:09.8302178810 /boot/grub/x86_64-efi/configfile.mod -> 
+-rw-r--r-- root:root         3304 2026-04-10T15:07:09.3221990220 /boot/grub/x86_64-efi/morse.mod -> 
+-rw-r--r-- root:root         3304 2026-04-10T15:07:09.7342143170 /boot/grub/x86_64-efi/strtoull_test.mod -> 
+-rw-r--r-- root:root         3312 2026-04-10T15:07:08.6781751130 /boot/grub/x86_64-efi/xnu_uuid.mod -> 
+-rw-r--r-- root:root         3312 2026-04-10T15:07:09.2331957180 /boot/grub/x86_64-efi/raid6rec.mod -> 
+-rw-r--r-- root:root         3336 2026-04-10T15:07:09.5182062990 /boot/grub/x86_64-efi/part_gpt.mod -> 
+-rw-r--r-- root:root        33432 2026-04-10T15:07:09.0851902240 /boot/grub/x86_64-efi/gcry_twofish.mod -> 
+-rw-r--r-- root:root         3368 2026-04-10T15:07:08.8991833180 /boot/grub/x86_64-efi/gcry_rsa.mod -> 
+-rw-r--r-- root:root         3392 2026-04-10T15:07:09.0201878100 /boot/grub/x86_64-efi/memdisk.mod -> 
+-rw-r--r-- root:root         3424 2026-04-10T15:07:09.4992055930 /boot/grub/x86_64-efi/sleep.mod -> 
+-rw-r--r-- root:root         3448 2026-04-10T15:07:09.1401922650 /boot/grub/x86_64-efi/cmp.mod -> 
+-rw-r--r-- root:root         3472 2026-04-10T15:07:08.9191840610 /boot/grub/x86_64-efi/pbkdf2_test.mod -> 
+-rw-r--r-- root:root         3472 2026-04-10T15:07:09.5922090450 /boot/grub/x86_64-efi/gcry_dsa.mod -> 
+-rw-r--r-- root:root         3480 2026-04-10T15:07:08.9631856940 /boot/grub/x86_64-efi/usbserial_ftdi.mod -> 
+-rw-r--r-- root:root         3568 2026-04-10T15:07:09.9672229670 /boot/grub/x86_64-efi/testspeed.mod -> 
+-rw-r--r-- root:root         3576 2026-04-10T15:07:09.4672044050 /boot/grub/x86_64-efi/pcidump.mod -> 
+-rw-r--r-- root:root         3640 2026-04-10T15:07:08.8731823530 /boot/grub/x86_64-efi/bli.mod -> 
+-rw-r--r-- root:root         3707 2026-04-10T15:07:09.9912238580 /boot/grub/x86_64-efi/command.lst -> 
+-rw-r--r-- root:root         3712 2026-04-10T15:07:08.7341771920 /boot/grub/x86_64-efi/videotest_checksum.mod -> 
+-rw-r--r-- root:root         3712 2026-04-10T15:07:09.2891977970 /boot/grub/x86_64-efi/lsefimmap.mod -> 
+-rw-r--r-- root:root         3720 2026-04-10T15:07:08.7611781940 /boot/grub/x86_64-efi/tr.mod -> 
+-rw-r--r-- root:root         3720 2026-04-10T15:07:08.7941794200 /boot/grub/x86_64-efi/random.mod -> 
+-rw-r--r-- root:root         3744 2026-04-10T15:07:08.8451813130 /boot/grub/x86_64-efi/msdospart.mod -> 
+-rw-r--r-- root:root         3768 2026-04-10T15:07:08.8081799400 /boot/grub/x86_64-efi/lssal.mod -> 
+-rw-r--r-- root:root         3792 2026-04-10T15:07:09.3081985020 /boot/grub/x86_64-efi/efitextmode.mod -> 
+-rw-r--r-- root:root         3840 2026-04-10T15:07:09.2571966090 /boot/grub/x86_64-efi/usbserial_pl2303.mod -> 
+-rw-r--r-- root:root         3872 2026-04-10T15:07:09.3882014720 /boot/grub/x86_64-efi/boot.mod -> 
+-rw-r--r-- root:root         3896 2026-04-10T15:07:09.6692119040 /boot/grub/x86_64-efi/procfs.mod -> 
+-rw-r--r-- root:root         3936 2026-04-10T15:07:08.8831827240 /boot/grub/x86_64-efi/testload.mod -> 
+-rw-r--r-- root:root         3936 2026-04-10T15:07:09.2471962380 /boot/grub/x86_64-efi/cbmemc.mod -> 
+-rw-r--r-- root:root         3976 2026-04-10T15:07:08.9041835040 /boot/grub/x86_64-efi/play.mod -> 
+-rw-r--r-- root:root         3984 2026-04-10T15:07:09.5832087120 /boot/grub/x86_64-efi/cs5536.mod -> 
+-rw-r--r-- root:root         4080 2026-04-10T15:07:08.8361809790 /boot/grub/x86_64-efi/gcry_idea.mod -> 
+-rw-r--r-- root:root         4096 2026-04-10T15:07:09.6422109010 /boot/grub/x86_64-efi/help.mod -> 
+-rw-r--r-- root:root           41 2026-04-10T15:07:10.0092245270 /boot/grub/x86_64-efi/video.lst -> 
+-rw-r--r-- root:root         4160 2026-04-10T15:07:09.9442221130 /boot/grub/x86_64-efi/gcry_md4.mod -> 
+-rw-r--r-- root:root        42656 2026-04-10T15:07:09.7172136860 /boot/grub/x86_64-efi/xnu.mod -> 
+-rw-r--r-- root:root         4280 2026-04-10T15:07:08.9971869570 /boot/grub/x86_64-efi/part_bsd.mod -> 
+-rw-r--r-- root:root        43394 2026-04-10T15:07:08.5651709170 /boot/grub/locale/eo.mo -> 
+-rw-r--r-- root:root         4352 2026-04-10T15:07:09.5462073380 /boot/grub/x86_64-efi/hfspluscomp.mod -> 
+-rw-r--r-- root:root         4360 2026-04-10T15:07:08.8171802740 /boot/grub/x86_64-efi/memrw.mod -> 
+-rw-r--r-- root:root         4392 2026-04-10T15:07:08.7471776750 /boot/grub/x86_64-efi/iorw.mod -> 
+-rw-r--r-- root:root         4456 2026-04-10T15:07:08.8271806450 /boot/grub/x86_64-efi/gfxterm_background.mod -> 
+-rw-r--r-- root:root        44576 2026-04-10T15:07:09.4392033660 /boot/grub/x86_64-efi/mpi.mod -> 
+-rw-r--r-- root:root        45083 2026-04-10T15:07:08.4701673900 /boot/grub/locale/ja.mo -> 
+-rw-r--r-- root:root         4512 2026-04-10T15:07:08.6971758180 /boot/grub/x86_64-efi/fshelp.mod -> 
+-rw-r--r-- root:root         4528 2026-04-10T15:07:09.5642080060 /boot/grub/x86_64-efi/cat.mod -> 
+-rw-r--r-- root:root         4536 2026-04-10T15:07:08.7241768210 /boot/grub/x86_64-efi/cbtime.mod -> 
+-rw-r--r-- root:root         4544 2026-04-10T15:07:08.7431775260 /boot/grub/x86_64-efi/password_pbkdf2.mod -> 
+-rw-r--r-- root:root        45704 2026-04-10T15:07:09.5692081920 /boot/grub/x86_64-efi/legacycfg.mod -> 
+-rw-r--r-- root:root         4608 2026-04-10T15:07:09.3692007670 /boot/grub/x86_64-efi/lsefisystab.mod -> 
+-rw-r--r-- root:root         4616 2026-04-10T15:07:09.4212026970 /boot/grub/x86_64-efi/gcry_md5.mod -> 
+-rw-r--r-- root:root         4632 2026-04-10T15:07:09.0901904090 /boot/grub/x86_64-efi/loadbios.mod -> 
+-rw-r--r-- root:root         4648 2026-04-10T15:07:08.7801789000 /boot/grub/x86_64-efi/cmdline_cat_test.mod -> 
+-rw-r--r-- root:root        46864 2026-04-10T15:07:08.9591855460 /boot/grub/x86_64-efi/functional_test.mod -> 
+-rw-r--r-- root:root         4704 2026-04-10T15:07:09.2171951240 /boot/grub/x86_64-efi/hexdump.mod -> 
+-rw-r--r-- root:root         4736 2026-04-10T15:07:09.0811900750 /boot/grub/x86_64-efi/odc.mod -> 
+-rw-r--r-- root:root         4768 2026-04-10T15:07:08.8121800880 /boot/grub/x86_64-efi/cpio_be.mod -> 
+-rw-r--r-- root:root         4768 2026-04-10T15:07:09.0621893700 /boot/grub/x86_64-efi/cpio.mod -> 
+-rw-r--r-- root:root         4792 2026-04-10T15:07:09.8712194030 /boot/grub/x86_64-efi/archelp.mod -> 
+-rw-r--r-- root:root         4920 2026-04-10T15:07:08.7061761530 /boot/grub/x86_64-efi/newc.mod -> 
+-rw-r--r-- root:root         4968 2026-04-10T15:07:09.6322105300 /boot/grub/x86_64-efi/macbless.mod -> 
+-rw-r--r-- root:root         4976 2026-04-10T15:07:08.7521778600 /boot/grub/x86_64-efi/search_fs_file.mod -> 
+-rw-r--r-- root:root         5000 2026-04-10T15:07:09.4112023260 /boot/grub/x86_64-efi/search_label.mod -> 
+-rw-r--r-- root:root        50360 2026-04-10T15:07:09.1831938620 /boot/grub/x86_64-efi/bsd.mod -> 
+-rw-r--r-- root:root         5048 2026-04-10T15:07:09.8042169160 /boot/grub/x86_64-efi/search_fs_uuid.mod -> 
+-rw-r--r-- root:root         5128 2026-04-10T15:07:08.9291844320 /boot/grub/x86_64-efi/appleldr.mod -> 
+-rw-r--r-- root:root         5152 2026-04-10T15:07:09.7612153200 /boot/grub/x86_64-efi/lsefi.mod -> 
+-rw-r--r-- root:root         5318 2026-04-10T15:07:09.9862236720 /boot/grub/x86_64-efi/moddep.lst -> 
+-rw-r--r-- root:root         5320 2026-04-10T15:07:09.7722157280 /boot/grub/x86_64-efi/tar.mod -> 
+-rw-r--r-- root:root         5376 2026-04-10T15:07:09.3932016580 /boot/grub/x86_64-efi/bitmap_scale.mod -> 
+-rw-r--r-- root:root         5416 2026-04-10T15:07:09.7992167300 /boot/grub/x86_64-efi/loopback.mod -> 
+-rw-r--r-- root:root         5424 2026-04-10T15:07:08.7381773410 /boot/grub/x86_64-efi/gptsync.mod -> 
+-rw-r--r-- root:root         5528 2026-04-10T15:07:08.9781862510 /boot/grub/x86_64-efi/videotest.mod -> 
+-rw-r--r-- root:root         5536 2026-04-10T15:07:09.0151876250 /boot/grub/x86_64-efi/videoinfo.mod -> 
+-rw-r--r-- root:root         5584 2026-04-10T15:07:09.3742009520 /boot/grub/x86_64-efi/search.mod -> 
+-rw-r--r-- root:root         5592 2026-04-10T15:07:08.9141838750 /boot/grub/x86_64-efi/gcry_sha256.mod -> 
+-rw-r--r-- root:root         5688 2026-04-10T15:07:08.7851790860 /boot/grub/x86_64-efi/usbtest.mod -> 
+-rw-r--r-- root:root         5720 2026-04-10T15:07:09.6112097510 /boot/grub/x86_64-efi/probe.mod -> 
+-rw-r--r-- root:root         5736 2026-04-10T15:07:09.5412071520 /boot/grub/x86_64-efi/cbls.mod -> 
+-rw-r--r-- root:root         5848 2026-04-10T15:07:09.4342031800 /boot/grub/x86_64-efi/ntfscomp.mod -> 
+-rw-r--r-- root:root         5864 2026-04-10T15:07:09.5362069660 /boot/grub/x86_64-efi/usb_keyboard.mod -> 
+-rw-r--r-- root:root         5912 2026-04-10T15:07:09.4252028460 /boot/grub/x86_64-efi/json.mod -> 
+-rw-r--r-- root:root        59192 2026-04-10T15:07:09.7772159130 /boot/grub/x86_64-efi/zfs.mod -> 
+-rw-r--r-- root:root         5968 2026-04-10T15:07:09.4072021780 /boot/grub/x86_64-efi/romfs.mod -> 
+-rw-r--r-- root:root         5984 2026-04-10T15:07:08.6821752620 /boot/grub/x86_64-efi/minix.mod -> 
+-rw-r--r-- root:root         6032 2026-04-10T15:07:09.4022019920 /boot/grub/x86_64-efi/luks.mod -> 
+-rw-r--r-- root:root         6064 2026-04-10T15:07:09.2801974630 /boot/grub/x86_64-efi/cbfs.mod -> 
+-rw-r--r-- root:root        60776 2026-04-10T15:07:09.2761973140 /boot/grub/x86_64-efi/gfxmenu.mod -> 
+-rw-r--r-- root:root         6080 2026-04-10T15:07:09.3181988730 /boot/grub/x86_64-efi/minix_be.mod -> 
+-rw-r--r-- root:root         6104 2026-04-10T15:07:08.9731860660 /boot/grub/x86_64-efi/minix2.mod -> 
+-rw-r--r-- root:root         6136 2026-04-10T15:07:09.7882163220 /boot/grub/x86_64-efi/minix3.mod -> 
+-rw-r--r-- root:root         6176 2026-04-10T15:07:09.8152173240 /boot/grub/x86_64-efi/minix2_be.mod -> 
+-rw-r--r-- root:root        61811 2026-04-10T15:07:08.4981684300 /boot/grub/locale/pa.mo -> 
+-rw-r--r-- root:root         6208 2026-04-10T15:07:08.8941831320 /boot/grub/x86_64-efi/minix3_be.mod -> 
+-rw-r--r-- root:root         6240 2026-04-10T15:07:08.7571780460 /boot/grub/x86_64-efi/minicmd.mod -> 
+-rw-r--r-- root:root         6384 2026-04-10T15:07:09.7562151340 /boot/grub/x86_64-efi/gcry_sha512.mod -> 
+-rw-r--r-- root:root         6456 2026-04-10T15:07:09.3131986870 /boot/grub/x86_64-efi/keylayouts.mod -> 
+-rw-r--r-- root:root         6552 2026-04-10T15:07:08.9501852120 /boot/grub/x86_64-efi/ls.mod -> 
+-rw-r--r-- root:root         6672 2026-05-25T12:37:29.4269375020 /boot/grub/grub.cfg -> 
+-rw-r--r-- root:root         6704 2026-04-10T15:07:09.9052206650 /boot/grub/x86_64-efi/terminal.mod -> 
+-rw-r--r-- root:root         6776 2026-04-10T15:07:09.5782085260 /boot/grub/x86_64-efi/nativedisk.mod -> 
+-rw-r--r-- root:root         6792 2026-04-10T15:07:09.3451998760 /boot/grub/x86_64-efi/cmp_test.mod -> 
+-rw-r--r-- root:root    685768704 2026-05-10T17:00:27.2071926220 /boot/initramfs-6.16.1.img -> 
+-rw-r--r-- root:root         6896 2026-04-10T15:07:09.6022094170 /boot/grub/x86_64-efi/at_keyboard.mod -> 
+-rw-r--r-- root:root         6904 2026-04-10T15:07:09.9722231530 /boot/grub/x86_64-efi/lzopio.mod -> 
+-rw-r--r-- root:root         6968 2026-04-10T15:07:09.9302215930 /boot/grub/x86_64-efi/tga.mod -> 
+-rw-r--r-- root:root         7040 2026-04-10T15:07:09.4622042200 /boot/grub/x86_64-efi/efi_uga.mod -> 
+-rw-r--r-- root:root         7184 2026-04-10T15:07:09.8092171010 /boot/grub/x86_64-efi/crypto.mod -> 
+-rw-r--r-- root:root         7232 2026-04-10T15:07:09.2991981680 /boot/grub/x86_64-efi/scsi.mod -> 
+-rw-r--r-- root:root         7256 2026-04-10T15:07:09.0531890360 /boot/grub/x86_64-efi/lsacpi.mod -> 
+-rw-r--r-- root:root         7272 2026-04-10T15:07:08.8031797540 /boot/grub/x86_64-efi/lspci.mod -> 
+-rw-r--r-- root:root         7536 2026-04-10T15:07:09.7232139090 /boot/grub/x86_64-efi/parttool.mod -> 
+-rw-r--r-- root:root         7568 2026-04-10T15:07:08.9541853610 /boot/grub/x86_64-efi/pata.mod -> 
+-rw-r--r-- root:root         7632 2026-04-10T15:07:09.8902201080 /boot/grub/x86_64-efi/halt.mod -> 
+-rw-r--r-- root:root         7720 2026-04-10T15:07:08.7201766730 /boot/grub/x86_64-efi/extcmd.mod -> 
+-rw-r--r-- root:root         7768 2026-04-10T15:07:09.5602078580 /boot/grub/x86_64-efi/gfxterm_menu.mod -> 
+-rw-r--r-- root:root         7774 2026-04-10T15:07:08.5601707320 /boot/grub/locale/lg.mo -> 
+-rw-r--r-- root:root         7776 2026-04-10T15:07:09.4162025120 /boot/grub/x86_64-efi/test.mod -> 
+-rw-r--r-- root:root         7912 2026-04-10T15:07:08.7151764870 /boot/grub/x86_64-efi/gcry_rmd160.mod -> 
+-rw-r--r-- root:root        79584 2026-04-10T15:07:09.0391885160 /boot/grub/x86_64-efi/regexp.mod -> 
+-rw-r--r-- root:root         8096 2026-04-10T15:07:09.4712045540 /boot/grub/x86_64-efi/sfs.mod -> 
+-rw-r--r-- root:root         8168 2026-04-10T15:07:09.9492222990 /boot/grub/x86_64-efi/ufs1.mod -> 
+-rw-r--r-- root:root         8168 2026-04-10T15:07:09.9542224840 /boot/grub/x86_64-efi/ufs2.mod -> 
+-rw-r--r-- root:root        81736 2026-04-10T15:07:08.9821864000 /boot/grub/x86_64-efi/zstd.mod -> 
+-rw-r--r-- root:root         8192 2026-04-10T15:07:08.8551816850 /boot/grub/x86_64-efi/div_test.mod -> 
+-rw-r--r-- root:root          824 2026-04-10T15:07:09.7502149110 /boot/grub/x86_64-efi/all_video.mod -> 
+-rw-r--r-- root:root         8280 2026-04-10T15:07:09.6532113100 /boot/grub/x86_64-efi/chain.mod -> 
+-rw-r--r-- root:root         8288 2026-04-10T15:07:09.2661969430 /boot/grub/x86_64-efi/tpm.mod -> 
+-rw-r--r-- root:root         8304 2026-04-10T15:07:09.4762047390 /boot/grub/x86_64-efi/setpci.mod -> 
+-rw-r--r-- root:root         8312 2026-04-10T15:07:09.3602004330 /boot/grub/x86_64-efi/gcry_sha1.mod -> 
+-rw-r--r-- root:root         8328 2026-04-10T15:07:09.3792011380 /boot/grub/x86_64-efi/ufs1_be.mod -> 
+-rw-r--r-- root:root         8344 2026-04-10T15:07:09.8622190690 /boot/grub/x86_64-efi/smbios.mod -> 
+-rw-r--r-- root:root        83570 2026-04-10T15:07:08.5861716970 /boot/grub/locale/tr.mo -> 
+-rw-r--r-- root:root         8360 2026-04-10T15:07:09.8662192180 /boot/grub/x86_64-efi/ldm.mod -> 
+-rw-r--r-- root:root         8384 2026-04-10T15:07:09.8462184750 /boot/grub/x86_64-efi/signature_test.mod -> 
+-rw-r--r-- root:root         8448 2026-04-10T15:07:09.8412182890 /boot/grub/x86_64-efi/affs.mod -> 
+-rw-r--r-- root:root         8464 2026-04-10T15:07:09.6062095650 /boot/grub/x86_64-efi/hashsum.mod -> 
+-rw-r--r-- root:root         8472 2026-04-10T15:07:09.3321993930 /boot/grub/x86_64-efi/video_bochs.mod -> 
+-rw-r--r-- root:root      8474826 2026-03-07T22:09:31.0877514980 /boot/System.map-6.16.1 -> 
+-rw-r--r-- root:root         8584 2026-04-10T15:07:09.4902052590 /boot/grub/x86_64-efi/zfscrypt.mod -> 
+-rw-r--r-- root:root        86581 2026-04-10T15:07:08.6241731080 /boot/grub/locale/pt_BR.mo -> 
+-rw-r--r-- root:root         8664 2026-04-10T15:07:09.9252214080 /boot/grub/x86_64-efi/gettext.mod -> 
+-rw-r--r-- root:root         8688 2026-04-10T15:07:09.0571891840 /boot/grub/x86_64-efi/linux16.mod -> 
+-rw-r--r-- root:root         8704 2026-04-10T15:07:09.5082059270 /boot/grub/x86_64-efi/exfat.mod -> 
+-rw-r--r-- root:root         8752 2026-04-10T15:07:09.6482111240 /boot/grub/x86_64-efi/tftp.mod -> 
+-rw-r--r-- root:root         8824 2026-04-10T15:07:09.3832012870 /boot/grub/x86_64-efi/fat.mod -> 
+-rw-r--r-- root:root         8840 2026-04-10T15:07:09.9202212220 /boot/grub/x86_64-efi/geli.mod -> 
+-rw-r--r-- root:root         8856 2026-04-10T15:07:08.8501814990 /boot/grub/x86_64-efi/ata.mod -> 
+-rw-r--r-- root:root         8864 2026-04-10T15:07:09.7662155050 /boot/grub/x86_64-efi/afs.mod -> 
+-rw-r--r-- root:root         8976 2026-04-10T15:07:09.2121949380 /boot/grub/x86_64-efi/elf.mod -> 
+-rw-r--r-- root:root      8983062 2026-04-10T15:04:56.1992013050 /boot/System.map-6.16.1-lfs-12.4-systemd -> 
+-rw-r--r-- root:root         9000 2026-04-10T15:07:09.9632228190 /boot/grub/x86_64-efi/ext2.mod -> 
+-rw-r--r-- root:root         9016 2026-04-10T15:07:08.7991796050 /boot/grub/x86_64-efi/video.mod -> 
+-rw-r--r-- root:root         9024 2026-04-10T15:07:09.2061947160 /boot/grub/x86_64-efi/video_cirrus.mod -> 
+-rw-r--r-- root:root      9105857 2026-05-25T12:57:28.8241354910 /boot/System.map-6.16.1-sable-compat -> 
+-rw-r--r-- root:root          912 2026-04-10T15:07:08.9091836890 /boot/grub/x86_64-efi/setjmp.mod -> 
+-rw-r--r-- root:root        91753 2026-04-10T15:07:08.5481702860 /boot/grub/locale/he.mo -> 
+-rw-r--r-- root:root         9192 2026-04-10T15:07:09.8202175100 /boot/grub/x86_64-efi/gcry_blowfish.mod -> 
+-rw-r--r-- root:root         9248 2026-04-10T15:07:09.0991907430 /boot/grub/x86_64-efi/loadenv.mod -> 
+-rw-r--r-- root:root         9344 2026-04-10T15:07:09.7122135000 /boot/grub/x86_64-efi/mmap.mod -> 
+-rw-r--r-- root:root          936 2026-04-10T15:07:10.0132246750 /boot/grub/x86_64-efi/crypto.lst -> 
+-rw-r--r-- root:root        93925 2026-04-10T15:07:08.4581669440 /boot/grub/locale/sl.mo -> 
+-rw-r--r-- root:root         9672 2026-04-10T15:07:09.1091911150 /boot/grub/x86_64-efi/peimage.mod -> 
+-rw-r--r-- root:root         9720 2026-04-10T15:07:09.9352217790 /boot/grub/x86_64-efi/http.mod -> 
+-rw-r--r-- root:root         9728 2026-04-10T15:07:09.8952202940 /boot/grub/x86_64-efi/jfs.mod -> 
+
+=== INITRAMFS CANDIDATES ===
+find: ‘/boot/lost+found’: Permission denied
+/boot/initramfs-6.16.1.img
+/boot/initramfs-6.16.1-sable-compat.img
+/boot/initramfs-6.16.1-sable-compat-live.img
+/boot/initramfs.img
+/boot/initrd.img-6.16.1
+/boot/initrd.img-6.16.1-lfs-12.4-systemd
+initramfs_candidate_count=6
+
+--- /boot/initramfs-6.16.1.img ---
+mode=-rw-r--r-- owner=root group=root size=685768704 modified=2026-05-10 17:00:27.207192622 -0400 path=/boot/initramfs-6.16.1.img
+33ee3215096cd30798d3ba6a2b5e5c9d10e6deb356ef68ace16bb35ef39bb29b  /boot/initramfs-6.16.1.img
+/boot/initramfs-6.16.1.img: gzip compressed data, max compression, from Unix, original size modulo 2^32 2450807594 gzip compressed data, unknown method, has CRC, extra field, has comment, encrypted, from FAT filesystem (MS-DOS, OS/2, NT), original size modulo 2^32 2450807594
+
+--- /boot/initrd.img-6.16.1-lfs-12.4-systemd ---
+mode=-rw-r--r-- owner=root group=root size=25944406 modified=2026-05-10 12:17:21.943764084 -0400 path=/boot/initrd.img-6.16.1-lfs-12.4-systemd
+ebb507af8a3fe95afbc83e422f1743cd508cc8f9fc206b19a9498af4a70c7d9a  /boot/initrd.img-6.16.1-lfs-12.4-systemd
+/boot/initrd.img-6.16.1-lfs-12.4-systemd: gzip compressed data, from Unix, original size modulo 2^32 34947072
+
+=== GRUB CONFIGURATION LOCATION ===
+grub_config=/boot/grub/grub.cfg
+1827589b3bbd04f8121fd8268f31a82693cc181d62ce842e8ece7a178c5dceca  /boot/grub/grub.cfg
+
+=== ALL GRUB LINUX AND INITRD DIRECTIVES ===
+87:menuentry 'GNU/Linux' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-simple-70148917-ed5a-466c-b71b-444596ca684a' {
+94:	linux	/vmlinuz-6.16.1-sable-compat root=UUID=70148917-ed5a-466c-b71b-444596ca684a ro  
+96:	initrd	/initramfs-6.16.1-sable-compat.img
+98:submenu 'Advanced options for GNU/Linux' $menuentry_id_option 'gnulinux-advanced-70148917-ed5a-466c-b71b-444596ca684a' {
+99:	menuentry 'GNU/Linux, with Linux 6.16.1-sable-compat' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-6.16.1-sable-compat-advanced-70148917-ed5a-466c-b71b-444596ca684a' {
+106:		linux	/vmlinuz-6.16.1-sable-compat root=UUID=70148917-ed5a-466c-b71b-444596ca684a ro  
+108:		initrd	/initramfs-6.16.1-sable-compat.img
+110:	menuentry 'GNU/Linux, with Linux 6.16.1-sable-compat (recovery mode)' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-6.16.1-sable-compat-recovery-70148917-ed5a-466c-b71b-444596ca684a' {
+117:		linux	/vmlinuz-6.16.1-sable-compat root=UUID=70148917-ed5a-466c-b71b-444596ca684a ro single 
+119:		initrd	/initramfs-6.16.1-sable-compat.img
+121:	menuentry 'GNU/Linux, with Linux 6.16.1-lfs-12.4-systemd.bak' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-6.16.1-lfs-12.4-systemd.bak-advanced-70148917-ed5a-466c-b71b-444596ca684a' {
+128:		linux	/vmlinuz-6.16.1-lfs-12.4-systemd.bak root=/dev/nvme1n1p3 ro  
+130:	menuentry 'GNU/Linux, with Linux 6.16.1-lfs-12.4-systemd.bak (recovery mode)' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-6.16.1-lfs-12.4-systemd.bak-recovery-70148917-ed5a-466c-b71b-444596ca684a' {
+137:		linux	/vmlinuz-6.16.1-lfs-12.4-systemd.bak root=/dev/nvme1n1p3 ro single 
+139:	menuentry 'GNU/Linux, with Linux 6.16.1-lfs-12.4-systemd' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-6.16.1-lfs-12.4-systemd-advanced-70148917-ed5a-466c-b71b-444596ca684a' {
+146:		linux	/vmlinuz-6.16.1-lfs-12.4-systemd root=UUID=70148917-ed5a-466c-b71b-444596ca684a ro  
+148:		initrd	/initrd.img-6.16.1-lfs-12.4-systemd
+150:	menuentry 'GNU/Linux, with Linux 6.16.1-lfs-12.4-systemd (recovery mode)' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-6.16.1-lfs-12.4-systemd-recovery-70148917-ed5a-466c-b71b-444596ca684a' {
+157:		linux	/vmlinuz-6.16.1-lfs-12.4-systemd root=UUID=70148917-ed5a-466c-b71b-444596ca684a ro single 
+159:		initrd	/initrd.img-6.16.1-lfs-12.4-systemd
+181:		menuentry 'UEFI Firmware Settings' $menuentry_id_option 'uefi-firmware' {
+
+=== COMPATIBILITY KERNEL MENU CONTEXT ===
+89-	insmod gzio
+90-	insmod part_gpt
+91-	insmod ext2
+92-	search --no-floppy --fs-uuid --set=root 13816e16-93ea-4e55-9b82-cfbb7946b7a0
+93:	echo	'Loading Linux 6.16.1-sable-compat ...'
+94:	linux	/vmlinuz-6.16.1-sable-compat root=UUID=70148917-ed5a-466c-b71b-444596ca684a ro  
+95-	echo	'Loading initial ramdisk ...'
+96:	initrd	/initramfs-6.16.1-sable-compat.img
+97-}
+98-submenu 'Advanced options for GNU/Linux' $menuentry_id_option 'gnulinux-advanced-70148917-ed5a-466c-b71b-444596ca684a' {
+99:	menuentry 'GNU/Linux, with Linux 6.16.1-sable-compat' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-6.16.1-sable-compat-advanced-70148917-ed5a-466c-b71b-444596ca684a' {
+100-		load_video
+101-		insmod gzio
+102-		insmod part_gpt
+103-		insmod ext2
+104-		search --no-floppy --fs-uuid --set=root 13816e16-93ea-4e55-9b82-cfbb7946b7a0
+105:		echo	'Loading Linux 6.16.1-sable-compat ...'
+106:		linux	/vmlinuz-6.16.1-sable-compat root=UUID=70148917-ed5a-466c-b71b-444596ca684a ro  
+107-		echo	'Loading initial ramdisk ...'
+108:		initrd	/initramfs-6.16.1-sable-compat.img
+109-	}
+110:	menuentry 'GNU/Linux, with Linux 6.16.1-sable-compat (recovery mode)' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-6.16.1-sable-compat-recovery-70148917-ed5a-466c-b71b-444596ca684a' {
+111-		load_video
+112-		insmod gzio
+113-		insmod part_gpt
+114-		insmod ext2
+115-		search --no-floppy --fs-uuid --set=root 13816e16-93ea-4e55-9b82-cfbb7946b7a0
+116:		echo	'Loading Linux 6.16.1-sable-compat ...'
+117:		linux	/vmlinuz-6.16.1-sable-compat root=UUID=70148917-ed5a-466c-b71b-444596ca684a ro single 
+118-		echo	'Loading initial ramdisk ...'
+119:		initrd	/initramfs-6.16.1-sable-compat.img
+120-	}
+121-	menuentry 'GNU/Linux, with Linux 6.16.1-lfs-12.4-systemd.bak' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-6.16.1-lfs-12.4-systemd.bak-advanced-70148917-ed5a-466c-b71b-444596ca684a' {
+122-		load_video
+123-		insmod gzio
+124-		insmod part_gpt
+125-		insmod ext2
+126-		search --no-floppy --fs-uuid --set=root 13816e16-93ea-4e55-9b82-cfbb7946b7a0
+127-		echo	'Loading Linux 6.16.1-lfs-12.4-systemd.bak ...'
+128-		linux	/vmlinuz-6.16.1-lfs-12.4-systemd.bak root=/dev/nvme1n1p3 ro  
+129-	}
+130-	menuentry 'GNU/Linux, with Linux 6.16.1-lfs-12.4-systemd.bak (recovery mode)' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-6.16.1-lfs-12.4-systemd.bak-recovery-70148917-ed5a-466c-b71b-444596ca684a' {
+131-		load_video
+132-		insmod gzio
+133-		insmod part_gpt
+134-		insmod ext2
+135-		search --no-floppy --fs-uuid --set=root 13816e16-93ea-4e55-9b82-cfbb7946b7a0
+136-		echo	'Loading Linux 6.16.1-lfs-12.4-systemd.bak ...'
+137-		linux	/vmlinuz-6.16.1-lfs-12.4-systemd.bak root=/dev/nvme1n1p3 ro single 
+138-	}
+139-	menuentry 'GNU/Linux, with Linux 6.16.1-lfs-12.4-systemd' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-6.16.1-lfs-12.4-systemd-advanced-70148917-ed5a-466c-b71b-444596ca684a' {
+
+=== SIMPLE DEFAULT ENTRY CONTEXT ===
+  set timeout=5
+# Fallback normal timeout code in case the timeout_style feature is
+# unavailable.
+else
+  set timeout=5
+fi
+### END /etc/grub.d/00_header ###
+
+### BEGIN /etc/grub.d/10_linux ###
+menuentry 'GNU/Linux' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-simple-70148917-ed5a-466c-b71b-444596ca684a' {
+	load_video
+	insmod gzio
+	insmod part_gpt
+	insmod ext2
+	search --no-floppy --fs-uuid --set=root 13816e16-93ea-4e55-9b82-cfbb7946b7a0
+	echo	'Loading Linux 6.16.1-sable-compat ...'
+	linux	/vmlinuz-6.16.1-sable-compat root=UUID=70148917-ed5a-466c-b71b-444596ca684a ro  
+	echo	'Loading initial ramdisk ...'
+	initrd	/initramfs-6.16.1-sable-compat.img
+}
+submenu 'Advanced options for GNU/Linux' $menuentry_id_option 'gnulinux-advanced-70148917-ed5a-466c-b71b-444596ca684a' {
+	menuentry 'GNU/Linux, with Linux 6.16.1-sable-compat' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-6.16.1-sable-compat-advanced-70148917-ed5a-466c-b71b-444596ca684a' {
+		load_video
+		insmod gzio
+		insmod part_gpt
+		insmod ext2
+		search --no-floppy --fs-uuid --set=root 13816e16-93ea-4e55-9b82-cfbb7946b7a0
+		echo	'Loading Linux 6.16.1-sable-compat ...'
+		linux	/vmlinuz-6.16.1-sable-compat root=UUID=70148917-ed5a-466c-b71b-444596ca684a ro  
+		echo	'Loading initial ramdisk ...'
+		initrd	/initramfs-6.16.1-sable-compat.img
+	}
+	menuentry 'GNU/Linux, with Linux 6.16.1-sable-compat (recovery mode)' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-6.16.1-sable-compat-recovery-70148917-ed5a-466c-b71b-444596ca684a' {
+		load_video
+		insmod gzio
+		insmod part_gpt
+		insmod ext2
+		search --no-floppy --fs-uuid --set=root 13816e16-93ea-4e55-9b82-cfbb7946b7a0
+		echo	'Loading Linux 6.16.1-sable-compat ...'
+		linux	/vmlinuz-6.16.1-sable-compat root=UUID=70148917-ed5a-466c-b71b-444596ca684a ro single 
+		echo	'Loading initial ramdisk ...'
+		initrd	/initramfs-6.16.1-sable-compat.img
+	}
+	menuentry 'GNU/Linux, with Linux 6.16.1-lfs-12.4-systemd.bak' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-6.16.1-lfs-12.4-systemd.bak-advanced-70148917-ed5a-466c-b71b-444596ca684a' {
+		load_video
+
+=== GRUB POLICY FILES ===
+
+--- /etc/grub.d/00_header ---
+mode=-rwxr-xr-x owner=root group=root size=8718 modified=2026-02-21 11:47:51.325131439 -0500 path=/etc/grub.d/00_header
+
+--- /etc/grub.d/10_linux ---
+mode=-rwxr-xr-x owner=root group=root size=11577 modified=2026-02-21 11:47:51.325160170 -0500 path=/etc/grub.d/10_linux
+
+--- /etc/grub.d/20_linux_xen ---
+mode=-rwxr-xr-x owner=root group=root size=14341 modified=2026-02-21 11:47:51.325178929 -0500 path=/etc/grub.d/20_linux_xen
+
+--- /etc/grub.d/25_bli ---
+mode=-rwxr-xr-x owner=root group=root size=786 modified=2026-02-21 11:47:51.325197081 -0500 path=/etc/grub.d/25_bli
+
+--- /etc/grub.d/30_os-prober ---
+mode=-rwxr-xr-x owner=root group=root size=12289 modified=2026-02-21 11:47:51.325212167 -0500 path=/etc/grub.d/30_os-prober
+
+--- /etc/grub.d/30_uefi-firmware ---
+mode=-rwxr-xr-x owner=root group=root size=1174 modified=2026-02-21 11:47:51.325228991 -0500 path=/etc/grub.d/30_uefi-firmware
+
+--- /etc/grub.d/40_custom ---
+mode=-rwxr-xr-x owner=root group=root size=214 modified=2026-02-21 11:47:51.325242697 -0500 path=/etc/grub.d/40_custom
+
+--- /etc/grub.d/41_custom ---
+mode=-rwxr-xr-x owner=root group=root size=215 modified=2026-02-21 11:47:51.325257976 -0500 path=/etc/grub.d/41_custom
+
+--- /etc/grub.d/README ---
+mode=-rw-r--r-- owner=root group=root size=483 modified=2026-02-21 11:47:51.324836924 -0500 path=/etc/grub.d/README
+
+--- /boot/grub/grubenv ---
+mode=-rw-r--r-- owner=root group=root size=1024 modified=2026-02-22 12:13:02.962224182 -0500 path=/boot/grub/grubenv
+
+=== CURRENT MODULE TREE ===
+current_module_root=/lib/modules/6.16.1-sable-compat
+lrwxrwxrwx root:root         21 /lib/modules/6.16.1-sable-compat/build -> /usr/src/linux-6.16.1
+-rw-r--r-- root:root          0 /lib/modules/6.16.1-sable-compat/modules.devname -> 
+-rw-r--r-- root:root      12704 /lib/modules/6.16.1-sable-compat/modules.builtin.alias.bin -> 
+-rw-r--r-- root:root     147180 /lib/modules/6.16.1-sable-compat/modules.builtin.modinfo -> 
+-rw-r--r-- root:root      14857 /lib/modules/6.16.1-sable-compat/modules.builtin -> 
+-rw-r--r-- root:root       1566 /lib/modules/6.16.1-sable-compat/modules.order -> 
+-rw-r--r-- root:root      17169 /lib/modules/6.16.1-sable-compat/modules.builtin.bin -> 
+-rw-r--r-- root:root      19397 /lib/modules/6.16.1-sable-compat/modules.alias.bin -> 
+-rw-r--r-- root:root      21119 /lib/modules/6.16.1-sable-compat/modules.alias -> 
+-rw-r--r-- root:root      21718 /lib/modules/6.16.1-sable-compat/modules.symbols -> 
+-rw-r--r-- root:root      26329 /lib/modules/6.16.1-sable-compat/modules.symbols.bin -> 
+-rw-r--r-- root:root       3348 /lib/modules/6.16.1-sable-compat/modules.dep -> 
+-rw-r--r-- root:root       5191 /lib/modules/6.16.1-sable-compat/modules.dep.bin -> 
+-rw-r--r-- root:root         55 /lib/modules/6.16.1-sable-compat/modules.weakdep -> 
+-rw-r--r-- root:root         89 /lib/modules/6.16.1-sable-compat/modules.softdep -> 
+
+=== CURRENT MODULE DATABASE ===
+modules.alias.bin size=19397
+modules.alias size=21119
+modules.builtin.alias.bin size=12704
+modules.builtin.bin size=17169
+modules.builtin.modinfo size=147180
+modules.builtin size=14857
+modules.dep.bin size=5191
+modules.dep size=3348
+modules.devname size=0
+modules.order size=1566
+modules.softdep size=89
+modules.symbols.bin size=26329
+modules.symbols size=21718
+modules.weakdep size=55
+
+=== COLLISION CHECK ===
+PASS: target absent: /lib/modules/6.16.1-sable-lhc-test1
+PASS: target absent: /boot/vmlinuz-6.16.1-sable-lhc-test1
+PASS: target absent: /boot/System.map-6.16.1-sable-lhc-test1
+PASS: target absent: /boot/config-6.16.1-sable-lhc-test1
+PASS: target absent: /boot/initramfs-6.16.1-sable-lhc-test1.img
+PASS: target absent: /boot/initrd-6.16.1-sable-lhc-test1.img
+
+=== FINAL ASSESSMENT ===
+PASS: a standalone kmod command is installed
+PASS: local kmod source archive candidate exists
+PASS: at least one current initramfs/initrd candidate exists
+
+No kmod software was installed.
+No module tree was installed.
+No boot artifact was modified.
+No GRUB configuration was regenerated.

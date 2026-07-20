@@ -1,0 +1,41 @@
+SABLELINUX CORRECTED INSTALLED-ROOT INITRAMFS VALIDATION
+timestamp_utc=2026-07-19T22:07:42Z
+build_id=20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1
+target_release=6.16.1-sable-lhc-test1
+initramfs=/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/initramfs-installed-root/initramfs-6.16.1-sable-lhc-test1.img
+initramfs_size=13144365
+initramfs_sha256=b21e2e1adf6a7622fedc803e444ea065b9c049de690de06da2d60e6a1d46b5f3
+hard_live_marker_count=1
+generic_squashfs_reference_count=0
+included_live_dracut_module_count=0
+
+=== LIVE-MEDIA CLASSIFICATION ===
+FAIL: hard live-boot content markers remain
+PASS: all live-media dracut modules are excluded
+INFO: no generic SquashFS references are present
+
+=== STRUCTURAL VALIDATION ===
+PASS: lsinitrd parses the candidate image
+PASS: image contains the candidate release
+PASS: image contains kmod
+PASS: image contains modprobe
+PASS: image contains the binary module index
+PASS: required dracut module present: systemd
+PASS: required dracut module present: systemd-initrd
+PASS: required dracut module present: kernel-modules
+PASS: required dracut module present: rootfs-block
+PASS: required dracut module present: udev-rules
+PASS: required dracut module present: base
+PASS: required dracut module present: fs-lib
+PASS: required dracut module present: shutdown
+
+=== FALLBACK AND HOST SAFETY ===
+PASS: fallback kernel remains unchanged
+PASS: fallback initramfs remains unchanged
+PASS: GRUB configuration remains unchanged
+PASS: candidate modules remain uninstalled
+PASS: candidate kernel remains outside /boot
+PASS: candidate initramfs remains outside /boot
+PASS: running kernel remains unchanged
+PASS: BOINC remains inactive
+PASS: BOINC remains disabled at boot

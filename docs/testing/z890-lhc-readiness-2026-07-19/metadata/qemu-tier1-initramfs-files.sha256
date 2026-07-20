@@ -1,0 +1,7 @@
+dbac288c29ba568459550a2da9e7ae0ded6b1fc728ee9fad3044c44e62d6ac14  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-kernel-smoke/root/bin/busybox
+168d9b32e14b0397983c591e447426fa2d3917d46373753f72894bd126a676ce  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-kernel-smoke/root/init
+ababbfbba1002434b8a3095fccc853f03d44eaea31f3ee3f3433533db3a37243  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-kernel-smoke/root/lib64/ld-linux-x86-64.so.2
+895db63ed79a2fa52df88eeae901b52f5649988fbdcc77c690746e4af85e8ef9  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-kernel-smoke/root/lib/modules/6.16.1-sable-lhc-test1/kernel/fs/fuse/fuse.ko
+dbac288c29ba568459550a2da9e7ae0ded6b1fc728ee9fad3044c44e62d6ac14  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-kernel-smoke/root/usr/bin/setpriv
+90db31d3e203258d5434d21cfd0d38e5332a7cffb3b77cdc7cdca79641dcc376  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-kernel-smoke/root/usr/bin/unshare
+e253764b65b5b4a07e010132f3d615cee7018cc0f3bbbf55ccb85ebc56bd1bc1  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-kernel-smoke/root/usr/lib/libc.so.6

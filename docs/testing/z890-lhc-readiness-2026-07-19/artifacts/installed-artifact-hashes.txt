@@ -1,0 +1,13 @@
+SABLELINUX INSTALLED LHC KERNEL ARTIFACT REFERENCES
+captured_at=2026-07-20T00:28:50Z
+build_id=20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1
+
+77c2a123bb8c3eb5c1b376c8af502052e5731715680d46ccf7c2ace0b863237c  /boot/vmlinuz-6.16.1-sable-lhc-test1
+b21e2e1adf6a7622fedc803e444ea065b9c049de690de06da2d60e6a1d46b5f3  /boot/initramfs-6.16.1-sable-lhc-test1.img
+9a9dd3fc7ac49707c95daafce792b77badd35802221e70c51caab85d6b084933  /boot/config-6.16.1-sable-lhc-test1
+67e9b0ca0032dc01bbbeabb9694d2bb95f899d2e84139f6f864f34441cce3de1  /boot/System.map-6.16.1-sable-lhc-test1
+
+d58468c6102b95162fc35b6fb88743e4ad5505adb5566afc96cc4f61973bc9c6  /boot/vmlinuz-6.16.1-sable-compat
+e6f85c3232570684e86da7cd5c33e347ad05081cb5a9816c0278c909b47cf3b2  /boot/initramfs-6.16.1-sable-compat.img
+1827589b3bbd04f8121fd8268f31a82693cc181d62ce842e8ece7a178c5dceca  /boot/grub/grub.cfg
+3a581fc11b16aed03b7ec84e5d6ad22dbe3e82f9b888632818a9832e45a5b7b6  /boot/grub/custom.cfg

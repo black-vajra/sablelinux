@@ -1,0 +1,41 @@
+SABLELINUX CONTAINER REPOSITORY REFERENCES
+timestamp_utc=2026-07-20T00:07:54Z
+repository=/home/pepper/sablelinux
+
+branch=development
+commit=eb762ba46c313f8dfdb0ff6de7ab84b39bc27178
+dirty_count=0
+
+/home/pepper/sablelinux/scripts/live/generate-rootfs.sh:368:for database in subuid subgid; do
+/home/pepper/sablelinux/scripts/live/build-test-media.sh:110:    truncate \
+/home/pepper/sablelinux/scripts/live/build-test-media.sh:211:truncate -s "$IMAGE_BYTES" "$PARTIAL"
+/home/pepper/sablelinux/tools/maintenance/wipe-ds-traces.sh:59:    # Overwrite file contents with zeros before truncating
+/home/pepper/sablelinux/tools/maintenance/wipe-ds-traces.sh:60:    run "dd if=/dev/zero of=\"$HISTFILE_PATH\" bs=1 count=\$(wc -c < \"$HISTFILE_PATH\") conv=notrunc 2>/dev/null"
+/home/pepper/sablelinux/tools/maintenance/wipe-ds-traces.sh:61:    run "truncate -s 0 \"$HISTFILE_PATH\""
+/home/pepper/sablelinux/BUILDLOG.md:1557:- wipe-ds.sh — Full ds trace wipe: bash history file truncation, in-session history -c, journal vacuum for llama-server.service unit
+/home/pepper/sablelinux/BUILDLOG.md:1601:- wipe-ds.sh — Full ds trace wipe: bash history file truncation, in-session history -c, journal vacuum for llama-server.service unit
+/home/pepper/sablelinux/BUILDLOG.md:1645:- wipe-ds.sh — Full ds trace wipe: bash history file truncation, in-session history -c, journal vacuum for llama-server.service unit
+/home/pepper/sablelinux/BUILDLOG.md:2515:- Deliberate 32-token limit produced no visible response and correctly emitted a truncation warning.
+/home/pepper/sablelinux/docs/inventory/installed-packages-2026-05-23.md:1072:- wipe-ds.sh — Full ds trace wipe: bash history file truncation, in-session history -c, journal vacuum for llama-server.service unit
+/home/pepper/sablelinux/docs/inventory/installed-packages-2026-05-23.md:1097:- wipe-ds.sh — Full ds trace wipe: bash history file truncation, in-session history -c, journal vacuum for llama-server.service unit
+/home/pepper/sablelinux/docs/inventory/installed-packages-2026-05-23.md:1122:- wipe-ds.sh — Full ds trace wipe: bash history file truncation, in-session history -c, journal vacuum for llama-server.service unit
+/home/pepper/sablelinux/docs/inventory/installed-packages-2026-05-23.md:2388:- /usr/bin/runcon
+/home/pepper/sablelinux/docs/inventory/installed-packages-2026-05-23.md:2626:- /usr/bin/truncate
+/home/pepper/sablelinux/docs/testing/elitebook-boinc-2026-07-18/reports/boinc-8.2.11-build-20260718-131722.txt:358:checking for a sed that does not truncate output... /usr/bin/sed
+/home/pepper/sablelinux/docs/testing/elitebook-boinc-2026-07-18/reports/boinc-8.2.11-build-20260718-131722.txt:382:checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+/home/pepper/sablelinux/docs/testing/elitebook-boinc-2026-07-18/reports/boinc-8.2.11-build-20260718-131722.txt:857:hostinfo_unix.cpp:1924:56: warning: ‘snprintf’ output may be truncated before the last format character [-Wformat-truncation=]
+/home/pepper/sablelinux/docs/testing/elitebook-boinc-2026-07-18/reports/boinc-manager-8.2.11-build-20260718-150125.txt:362:checking for a sed that does not truncate output... /usr/bin/sed
+/home/pepper/sablelinux/docs/testing/elitebook-boinc-2026-07-18/reports/boinc-manager-8.2.11-build-20260718-150125.txt:386:checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+/home/pepper/sablelinux/docs/testing/elitebook-boinc-2026-07-18/reports/boinc-manager-8.2.11-build-20260718-145430.txt:362:checking for a sed that does not truncate output... /usr/bin/sed
+/home/pepper/sablelinux/docs/testing/elitebook-boinc-2026-07-18/reports/boinc-manager-8.2.11-build-20260718-145430.txt:386:checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+/home/pepper/sablelinux/docs/testing/elitebook-boinc-2026-07-18/reports/boinc-8.2.11-corrected-build-20260718-132613.txt:504:checking for a sed that does not truncate output... /usr/bin/sed
+/home/pepper/sablelinux/docs/testing/elitebook-boinc-2026-07-18/reports/boinc-8.2.11-corrected-build-20260718-132613.txt:528:checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+/home/pepper/sablelinux/docs/testing/elitebook-boinc-2026-07-18/reports/boinc-8.2.11-corrected-build-20260718-132613.txt:1247:hostinfo_unix.cpp:1924:56: warning: ‘snprintf’ output may be truncated before the last format character [-Wformat-truncation=]
+/home/pepper/sablelinux/docs/isoDevel/legacy-asus-hwscan.txt:2905:CONFIG_NVME_TARGET_PASSTHRU=y
+/home/pepper/sablelinux/history/buildlog-6Mar26:1791:wipe-ds.sh — Full ds trace wipe: bash history file truncation, in-session history -c, journal vacuum for llama-server.service unit
+/home/pepper/sablelinux/history/buildlog-6Mar26:1838:wipe-ds.sh — Full ds trace wipe: bash history file truncation, in-session history -c, journal vacuum for llama-server.service unit
+/home/pepper/sablelinux/history/buildlog-6Mar26:1885:wipe-ds.sh — Full ds trace wipe: bash history file truncation, in-session history -c, journal vacuum for llama-server.service unit
+/home/pepper/sablelinux/history/documents/sable-build-targets.md:37:qemu/kvm, libvirt, virt-manager, vagrant, podman, buildah, skopeo, crun, nerdctl, lxc, lxd, bubblewrap, firejail, distrobox
+/home/pepper/sablelinux/history/documents/memory-claude.md:60:Coding tools/editors: neovim ecosystem, emacs+doom, helix, clangd, podman, buildah, distrobox, and more
+/home/pepper/sablelinux/history/documents/imported/sable_hw_assessment.txt:332:# CONFIG_IOMMU_DEFAULT_PASSTHROUGH is not set
+/home/pepper/sablelinux/build/kernel-config-6.16.1:4294:# CONFIG_IOMMU_DEFAULT_PASSTHROUGH is not set

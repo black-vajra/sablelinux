@@ -1,0 +1,71 @@
+SABLELINUX TIER 1 QEMU CONSOLE ISOLATION AUDIT
+timestamp_utc=2026-07-19T22:35:55Z
+build_id=20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1
+current_release=6.16.1-sable-compat
+target_release=6.16.1-sable-lhc-test1
+
+=== CASE RESULTS ===
+
+--- /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-console-isolation/candidate-pc/result.env ---
+CASE_NAME=candidate-pc
+MACHINE=pc
+KERNEL=/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/build/arch/x86/boot/bzImage
+STATUS=0
+ELAPSED_SECONDS=2
+SERIAL_SIZE=25932
+STDERR_SIZE=0
+DEBUG_SIZE=5400
+KERNEL_BANNER_COUNT=1
+CONSOLE_MARKER_COUNT=1
+BEGIN_MARKER_COUNT=1
+PASS_MARKER_COUNT=0
+FAIL_MARKER_COUNT=1
+RUNNING_RELEASE=6.16.1-sable-lhc-test1
+
+--- /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-console-isolation/candidate-q35/result.env ---
+CASE_NAME=candidate-q35
+MACHINE=q35
+KERNEL=/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/build/arch/x86/boot/bzImage
+STATUS=0
+ELAPSED_SECONDS=2
+SERIAL_SIZE=28078
+STDERR_SIZE=0
+DEBUG_SIZE=5400
+KERNEL_BANNER_COUNT=1
+CONSOLE_MARKER_COUNT=1
+BEGIN_MARKER_COUNT=1
+PASS_MARKER_COUNT=0
+FAIL_MARKER_COUNT=1
+RUNNING_RELEASE=6.16.1-sable-lhc-test1
+
+--- /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-console-isolation/current-q35/result.env ---
+CASE_NAME=current-q35
+MACHINE=q35
+KERNEL=/boot/vmlinuz-6.16.1-sable-compat
+STATUS=0
+ELAPSED_SECONDS=1
+SERIAL_SIZE=28607
+STDERR_SIZE=0
+DEBUG_SIZE=5400
+KERNEL_BANNER_COUNT=1
+CONSOLE_MARKER_COUNT=1
+BEGIN_MARKER_COUNT=1
+PASS_MARKER_COUNT=0
+FAIL_MARKER_COUNT=1
+RUNNING_RELEASE=6.16.1-sable-compat
+
+=== INTERPRETATION ===
+PASS: known-good compatibility kernel produces explicit serial output
+PASS: candidate produces serial output under Q35
+PASS: candidate produces serial output under pc/i440fx
+
+=== DIAGNOSTIC CLASSIFICATION ===
+CLASSIFICATION=previous-stdio-serial-capture-failure
+Explicit ISA serial capture resolves the visibility problem.
+
+=== HOST SAFETY ===
+PASS: host remains on the compatibility kernel
+PASS: candidate modules remain uninstalled
+PASS: candidate kernel remains outside /boot
+PASS: BOINC remains inactive
+PASS: BOINC remains disabled at boot

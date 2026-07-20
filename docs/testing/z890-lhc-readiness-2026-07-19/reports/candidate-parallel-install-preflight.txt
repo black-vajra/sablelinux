@@ -1,0 +1,274 @@
+SABLELINUX CANDIDATE PARALLEL INSTALL PREFLIGHT
+timestamp_utc=2026-07-19T22:50:27Z
+build_id=20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1
+current_release=6.16.1-sable-compat
+target_release=6.16.1-sable-lhc-test1
+build_state=kernel-tier1-qemu-validated
+
+=== ROOT AND BOOT FILESYSTEMS ===
+root_source=/dev/nvme1n1p3
+root_fstype=ext4
+root_uuid=70148917-ed5a-466c-b71b-444596ca684a
+boot_is_separate_mount=yes
+boot_target=/boot
+boot_source=/dev/nvme1n1p2
+boot_fstype=ext4
+
+--- filesystem usage ---
+Filesystem     Type  Size  Used Avail Use% Mounted on
+/dev/nvme1n1p3 ext4  936G  288G  601G  33% /
+/dev/nvme1n1p2 ext4  2.0G  969M  859M  54% /boot
+Filesystem       Inodes   IUsed    IFree IUse% Mounted on
+/dev/nvme1n1p3 62349312 2773097 59576215    5% /
+/dev/nvme1n1p2   131072     358   130714    1% /boot
+
+=== CURRENT BOOT ARTIFACTS ===
+mode=-rw-r--r-- owner=root group=root size=15836160 path=/boot/vmlinuz-6.16.1-sable-compat
+mode=-rw------- owner=root group=root size=35671694 path=/boot/initramfs-6.16.1-sable-compat.img
+mode=-rw-r--r-- owner=root group=root size=6672 path=/boot/grub/grub.cfg
+current_kernel_sha256=d58468c6102b95162fc35b6fb88743e4ad5505adb5566afc96cc4f61973bc9c6
+current_initramfs_sha256=e6f85c3232570684e86da7cd5c33e347ad05081cb5a9816c0278c909b47cf3b2
+grub_config_sha256=1827589b3bbd04f8121fd8268f31a82693cc181d62ce842e8ece7a178c5dceca
+
+=== CANDIDATE ARTIFACTS ===
+mode=-rw-r--r-- owner=pepper group=pepper size=15897600 path=/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/build/arch/x86/boot/bzImage
+mode=-rw-r--r-- owner=pepper group=pepper size=162464 path=/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/build/.config
+mode=-rw-r--r-- owner=pepper group=pepper size=9111137 path=/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/build/System.map
+mode=-rw------- owner=pepper group=pepper size=13144365 path=/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/initramfs-installed-root/initramfs-6.16.1-sable-lhc-test1.img
+candidate_kernel_sha256=77c2a123bb8c3eb5c1b376c8af502052e5731715680d46ccf7c2ace0b863237c
+candidate_config_sha256=9a9dd3fc7ac49707c95daafce792b77badd35802221e70c51caab85d6b084933
+candidate_system_map_sha256=67e9b0ca0032dc01bbbeabb9694d2bb95f899d2e84139f6f864f34441cce3de1
+candidate_initramfs_sha256=b21e2e1adf6a7622fedc803e444ea065b9c049de690de06da2d60e6a1d46b5f3
+candidate_module_file_count=50
+candidate_module_directory_size=34724003
+
+=== CANDIDATE MODULE TREE ===
+d drwxr-sr-x pepper:pepper /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1 -> 
+d drwxr-sr-x pepper:pepper /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/kernel -> 
+d drwxr-sr-x pepper:pepper /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/kernel/drivers -> 
+d drwxr-sr-x pepper:pepper /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/kernel/fs -> 
+d drwxr-sr-x pepper:pepper /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/kernel/net -> 
+d drwxr-sr-x pepper:pepper /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/kernel/sound -> 
+f -rw-r--r-- pepper:pepper /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.alias -> 
+f -rw-r--r-- pepper:pepper /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.alias.bin -> 
+f -rw-r--r-- pepper:pepper /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.builtin -> 
+f -rw-r--r-- pepper:pepper /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.builtin.alias.bin -> 
+f -rw-r--r-- pepper:pepper /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.builtin.bin -> 
+f -rw-r--r-- pepper:pepper /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.builtin.modinfo -> 
+f -rw-r--r-- pepper:pepper /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.dep -> 
+f -rw-r--r-- pepper:pepper /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.dep.bin -> 
+f -rw-r--r-- pepper:pepper /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.devname -> 
+f -rw-r--r-- pepper:pepper /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.order -> 
+f -rw-r--r-- pepper:pepper /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.softdep -> 
+f -rw-r--r-- pepper:pepper /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.symbols -> 
+f -rw-r--r-- pepper:pepper /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.symbols.bin -> 
+f -rw-r--r-- pepper:pepper /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.weakdep -> 
+l lrwxrwxrwx pepper:pepper /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/build -> /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/build
+
+--- module database files ---
+modules.alias 21235 bytes
+modules.alias.bin 19557 bytes
+modules.builtin 14882 bytes
+modules.builtin.alias.bin 12704 bytes
+modules.builtin.bin 17184 bytes
+modules.builtin.modinfo 147330 bytes
+modules.dep 3372 bytes
+modules.dep.bin 5227 bytes
+modules.devname 70 bytes
+modules.order 1589 bytes
+modules.softdep 89 bytes
+modules.symbols 22669 bytes
+modules.symbols.bin 27476 bytes
+modules.weakdep 55 bytes
+
+--- FUSE resolution ---
+insmod /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/kernel/fs/fuse/fuse.ko 
+
+=== ACTIVE MODULE TOOLCHAIN ===
+depmod_path=/usr/bin/depmod
+depmod_resolved=/usr/bin/kmod
+depmod_version=kmod version 34.2
+modprobe_path=/usr/bin/modprobe
+modprobe_resolved=/usr/bin/kmod
+modprobe_version=kmod version 34.2
+modinfo_path=/usr/bin/modinfo
+modinfo_resolved=/usr/bin/kmod
+modinfo_version=kmod version 34.2
+insmod_path=/usr/bin/insmod
+insmod_resolved=/usr/bin/kmod
+insmod_version=kmod version 34.2
+rmmod_path=/usr/bin/rmmod
+rmmod_resolved=/usr/bin/kmod
+rmmod_version=kmod version 34.2
+lsmod_path=/usr/bin/lsmod
+lsmod_resolved=/usr/bin/kmod
+lsmod_version=kmod version 34.2
+
+=== GRUB TOOLCHAIN ===
+grub-mkconfig=/usr/sbin/grub-mkconfig
+grub-mkconfig (GRUB) 2.12
+grub-install=/usr/sbin/grub-install
+grub-install (GRUB) 2.12
+grub-editenv=/usr/bin/grub-editenv
+grub-editenv (GRUB) 2.12
+grub-probe=/usr/sbin/grub-probe
+grub-probe (GRUB) 2.12
+
+=== GRUB DEFAULT POLICY ===
+/etc/default/grub is absent or empty
+
+--- GRUB environment ---
+
+=== CURRENT GRUB MENU STRUCTURE ===
+87:menuentry 'GNU/Linux' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-simple-70148917-ed5a-466c-b71b-444596ca684a' {
+98:submenu 'Advanced options for GNU/Linux' $menuentry_id_option 'gnulinux-advanced-70148917-ed5a-466c-b71b-444596ca684a' {
+99:	menuentry 'GNU/Linux, with Linux 6.16.1-sable-compat' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-6.16.1-sable-compat-advanced-70148917-ed5a-466c-b71b-444596ca684a' {
+110:	menuentry 'GNU/Linux, with Linux 6.16.1-sable-compat (recovery mode)' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-6.16.1-sable-compat-recovery-70148917-ed5a-466c-b71b-444596ca684a' {
+121:	menuentry 'GNU/Linux, with Linux 6.16.1-lfs-12.4-systemd.bak' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-6.16.1-lfs-12.4-systemd.bak-advanced-70148917-ed5a-466c-b71b-444596ca684a' {
+130:	menuentry 'GNU/Linux, with Linux 6.16.1-lfs-12.4-systemd.bak (recovery mode)' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-6.16.1-lfs-12.4-systemd.bak-recovery-70148917-ed5a-466c-b71b-444596ca684a' {
+139:	menuentry 'GNU/Linux, with Linux 6.16.1-lfs-12.4-systemd' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-6.16.1-lfs-12.4-systemd-advanced-70148917-ed5a-466c-b71b-444596ca684a' {
+150:	menuentry 'GNU/Linux, with Linux 6.16.1-lfs-12.4-systemd (recovery mode)' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-6.16.1-lfs-12.4-systemd-recovery-70148917-ed5a-466c-b71b-444596ca684a' {
+181:		menuentry 'UEFI Firmware Settings' $menuentry_id_option 'uefi-firmware' {
+
+=== CURRENT COMPATIBILITY ENTRY CONTEXT ===
+86-### BEGIN /etc/grub.d/10_linux ###
+87-menuentry 'GNU/Linux' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-simple-70148917-ed5a-466c-b71b-444596ca684a' {
+88-	load_video
+89-	insmod gzio
+90-	insmod part_gpt
+91-	insmod ext2
+92-	search --no-floppy --fs-uuid --set=root 13816e16-93ea-4e55-9b82-cfbb7946b7a0
+93-	echo	'Loading Linux 6.16.1-sable-compat ...'
+94:	linux	/vmlinuz-6.16.1-sable-compat root=UUID=70148917-ed5a-466c-b71b-444596ca684a ro  
+95-	echo	'Loading initial ramdisk ...'
+96-	initrd	/initramfs-6.16.1-sable-compat.img
+97-}
+98-submenu 'Advanced options for GNU/Linux' $menuentry_id_option 'gnulinux-advanced-70148917-ed5a-466c-b71b-444596ca684a' {
+99-	menuentry 'GNU/Linux, with Linux 6.16.1-sable-compat' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-6.16.1-sable-compat-advanced-70148917-ed5a-466c-b71b-444596ca684a' {
+100-		load_video
+101-		insmod gzio
+102-		insmod part_gpt
+103-		insmod ext2
+104-		search --no-floppy --fs-uuid --set=root 13816e16-93ea-4e55-9b82-cfbb7946b7a0
+105-		echo	'Loading Linux 6.16.1-sable-compat ...'
+106:		linux	/vmlinuz-6.16.1-sable-compat root=UUID=70148917-ed5a-466c-b71b-444596ca684a ro  
+107-		echo	'Loading initial ramdisk ...'
+108-		initrd	/initramfs-6.16.1-sable-compat.img
+109-	}
+110-	menuentry 'GNU/Linux, with Linux 6.16.1-sable-compat (recovery mode)' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-6.16.1-sable-compat-recovery-70148917-ed5a-466c-b71b-444596ca684a' {
+111-		load_video
+112-		insmod gzio
+113-		insmod part_gpt
+114-		insmod ext2
+115-		search --no-floppy --fs-uuid --set=root 13816e16-93ea-4e55-9b82-cfbb7946b7a0
+116-		echo	'Loading Linux 6.16.1-sable-compat ...'
+117:		linux	/vmlinuz-6.16.1-sable-compat root=UUID=70148917-ed5a-466c-b71b-444596ca684a ro single 
+118-		echo	'Loading initial ramdisk ...'
+119-		initrd	/initramfs-6.16.1-sable-compat.img
+120-	}
+121-	menuentry 'GNU/Linux, with Linux 6.16.1-lfs-12.4-systemd.bak' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-6.16.1-lfs-12.4-systemd.bak-advanced-70148917-ed5a-466c-b71b-444596ca684a' {
+122-		load_video
+123-		insmod gzio
+124-		insmod part_gpt
+125-		insmod ext2
+126-		search --no-floppy --fs-uuid --set=root 13816e16-93ea-4e55-9b82-cfbb7946b7a0
+127-		echo	'Loading Linux 6.16.1-lfs-12.4-systemd.bak ...'
+128-		linux	/vmlinuz-6.16.1-lfs-12.4-systemd.bak root=/dev/nvme1n1p3 ro  
+129-	}
+130-	menuentry 'GNU/Linux, with Linux 6.16.1-lfs-12.4-systemd.bak (recovery mode)' --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-6.16.1-lfs-12.4-systemd.bak-recovery-70148917-ed5a-466c-b71b-444596ca684a' {
+131-		load_video
+132-		insmod gzio
+133-		insmod part_gpt
+134-		insmod ext2
+135-		search --no-floppy --fs-uuid --set=root 13816e16-93ea-4e55-9b82-cfbb7946b7a0
+
+=== CUSTOM GRUB MECHANISMS ===
+
+--- /etc/grub.d/40_custom ---
+-rwxr-xr-x 1 root root 214 Feb 21 11:47 /etc/grub.d/40_custom
+#!/bin/sh
+exec tail -n +3 $0
+# This file provides an easy way to add custom menu entries.  Simply type the
+# menu entries you want to add after this comment.  Be careful not to change
+# the 'exec tail' line above.
+
+--- /etc/grub.d/41_custom ---
+-rwxr-xr-x 1 root root 215 Feb 21 11:47 /etc/grub.d/41_custom
+#!/bin/sh
+cat <<EOF
+if [ -f  \${config_directory}/custom.cfg ]; then
+  source \${config_directory}/custom.cfg
+elif [ -z "\${config_directory}" -a -f  \$prefix/custom.cfg ]; then
+  source \$prefix/custom.cfg
+fi
+EOF
+
+
+--- /boot/grub/custom.cfg ---
+ABSENT
+
+=== GRUB CUSTOM INCLUDE REFERENCES ===
+188:### BEGIN /etc/grub.d/40_custom ###
+192:### END /etc/grub.d/40_custom ###
+194:### BEGIN /etc/grub.d/41_custom ###
+195:if [ -f  ${config_directory}/custom.cfg ]; then
+196:  source ${config_directory}/custom.cfg
+197:elif [ -z "${config_directory}" -a -f  $prefix/custom.cfg ]; then
+198:  source $prefix/custom.cfg
+200:### END /etc/grub.d/41_custom ###
+
+=== KERNEL-INSTALL AND PACKAGE HOOKS ===
+kernel-install=/usr/bin/kernel-install
+systemd 257 (257.8)
++PAM -AUDIT -SELINUX -APPARMOR +IMA +IPE +SMACK -SECCOMP -GCRYPT -GNUTLS +OPENSSL -ACL +BLKID +CURL -ELFUTILS -FIDO2 -IDN2 -IDN -IPTC +KMOD -LIBCRYPTSETUP -LIBCRYPTSETUP_PLUGINS +LIBFDISK +PCRE2 -PWQUALITY +P11KIT -QRENCODE -TPM2 +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -BPF_FRAMEWORK -BTF -XKBCOMMON +UTMP +SYSVINIT -LIBARCHIVE
+installkernel=ABSENT
+
+--- /etc/kernel ---
+d drwxr-xr-x root:root /etc/kernel -> 
+d drwxr-xr-x root:root /etc/kernel/install.d -> 
+
+--- /usr/lib/kernel ---
+d drwxr-xr-x root:root /usr/lib/kernel -> 
+d drwxr-xr-x root:root /usr/lib/kernel/install.d -> 
+f -rw-r--r-- root:root /usr/lib/kernel/install.conf -> 
+f -rwxr-xr-x root:root /usr/lib/kernel/install.d/50-depmod.install -> 
+f -rwxr-xr-x root:root /usr/lib/kernel/install.d/50-dracut.install -> 
+f -rwxr-xr-x root:root /usr/lib/kernel/install.d/51-dracut-rescue.install -> 
+f -rwxr-xr-x root:root /usr/lib/kernel/install.d/90-loaderentry.install -> 
+f -rwxr-xr-x root:root /usr/lib/kernel/install.d/90-uki-copy.install -> 
+
+--- /etc/kernel/install.d ---
+d drwxr-xr-x root:root /etc/kernel/install.d -> 
+
+--- /usr/lib/kernel/install.d ---
+d drwxr-xr-x root:root /usr/lib/kernel/install.d -> 
+f -rwxr-xr-x root:root /usr/lib/kernel/install.d/50-depmod.install -> 
+f -rwxr-xr-x root:root /usr/lib/kernel/install.d/50-dracut.install -> 
+f -rwxr-xr-x root:root /usr/lib/kernel/install.d/51-dracut-rescue.install -> 
+f -rwxr-xr-x root:root /usr/lib/kernel/install.d/90-loaderentry.install -> 
+f -rwxr-xr-x root:root /usr/lib/kernel/install.d/90-uki-copy.install -> 
+
+=== EXISTING KERNEL SYMLINKS ===
+
+=== EFI BOOT CONTEXT ===
+firmware_boot_mode=UEFI
+BootCurrent: 0001
+Timeout: 1 seconds
+BootOrder: 0001,0002,0003
+Boot0001* SableLinux	HD(1,GPT,a5a5efa3-cb66-4e56-80df-64904949d193,0x800,0x100000)/File(\EFI\SableLinux\grubx64.efi)
+      dp: 04 01 2a 00 01 00 00 00 00 08 00 00 00 00 00 00 00 00 10 00 00 00 00 00 a3 ef a5 a5 66 cb 56 4e 80 df 64 90 49 49 d1 93 02 02 / 04 04 3c 00 5c 00 45 00 46 00 49 00 5c 00 53 00 61 00 62 00 6c 00 65 00 4c 00 69 00 6e 00 75 00 78 00 5c 00 67 00 72 00 75 00 62 00 78 00 36 00 34 00 2e 00 65 00 66 00 69 00 00 00 / 7f ff 04 00
+Boot0002* Ubuntu	HD(1,GPT,ef4a4fb3-1e1a-4e53-a85a-0c13a9c13762,0x1000,0x96000)/File(\EFI\ubuntu\shimx64.efi)
+      dp: 04 01 2a 00 01 00 00 00 00 10 00 00 00 00 00 00 00 60 09 00 00 00 00 00 b3 4f 4a ef 1a 1e 53 4e a8 5a 0c 13 a9 c1 37 62 02 02 / 04 04 34 00 5c 00 45 00 46 00 49 00 5c 00 75 00 62 00 75 00 6e 00 74 00 75 00 5c 00 73 00 68 00 69 00 6d 00 78 00 36 00 34 00 2e 00 65 00 66 00 69 00 00 00 / 7f ff 04 00
+Boot0003* UEFI OS	HD(1,GPT,a5a5efa3-cb66-4e56-80df-64904949d193,0x800,0x100000)/File(\EFI\BOOT\BOOTX64.EFI)0000424f
+      dp: 04 01 2a 00 01 00 00 00 00 08 00 00 00 00 00 00 00 00 10 00 00 00 00 00 a3 ef a5 a5 66 cb 56 4e 80 df 64 90 49 49 d1 93 02 02 / 04 04 30 00 5c 00 45 00 46 00 49 00 5c 00 42 00 4f 00 4f 00 54 00 5c 00 42 00 4f 00 4f 00 54 00 58 00 36 00 34 00 2e 00 45 00 46 00 49 00 00 00 / 7f ff 04 00
+    data: 00 00 42 4f
+
+=== SAFETY CONFIRMATION ===
+PASS: compatibility kernel remains active
+PASS: candidate modules remain uninstalled
+PASS: candidate kernel remains outside /boot
+PASS: candidate initramfs remains outside /boot
+PASS: BOINC remains inactive
+PASS: BOINC remains disabled at boot
+
+No system files were modified.

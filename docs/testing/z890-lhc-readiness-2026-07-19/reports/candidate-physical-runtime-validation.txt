@@ -1,0 +1,224 @@
+
+=== PRIVILEGE AND BUILD STATE ===
+validation_outer_uid=1000
+validation_outer_gid=1000
+PASS: validation is running as UID/GID 1000
+PASS: sudo authentication is available
+initial_build_state=kernel-candidate-reboot-ready
+PASS: build state permits physical runtime validation
+
+=== RUNNING KERNEL ===
+running_release=6.16.1-sable-lhc-test1
+PASS: candidate kernel is running on physical Z890 hardware
+
+=== BOINC SAFETY ===
+PASS: BOINC remains inactive
+PASS: BOINC remains disabled at boot
+
+=== KERNEL CONFIGURATION ===
+PASS: /proc/config.gz is available
+PASS: CONFIG_USER_NS=y
+PASS: CONFIG_FUSE_FS=m
+PASS: candidate local version is correct
+
+=== UNPRIVILEGED USER NAMESPACE ===
+PASS: user namespace interface exists
+max_user_namespaces=125560
+PASS: user namespaces are permitted by runtime sysctl
+inner_uid=0
+inner_gid=0
+PASS: unprivileged UID/GID 1000 created a mapped user namespace
+
+=== FUSE RUNTIME ===
+fuse_vermagic=6.16.1-sable-lhc-test1
+PASS: installed FUSE vermagic matches running kernel
+insmod /lib/modules/6.16.1-sable-lhc-test1/kernel/fs/fuse/fuse.ko 
+PASS: running kernel resolves FUSE through kmod
+PASS: candidate FUSE module loaded
+PASS: FUSE module is registered in sysfs
+PASS: /dev/fuse exists as a character device
+
+=== FILESYSTEM AND BOOT MOUNTS ===
+root_source=/dev/nvme1n1p3
+root_uuid=70148917-ed5a-466c-b71b-444596ca684a
+root_fstype=ext4
+root_options=rw,relatime
+boot_source=/dev/nvme1n1p2
+boot_uuid=13816e16-93ea-4e55-9b82-cfbb7946b7a0
+boot_fstype=ext4
+boot_options=rw,relatime
+PASS: canonical root filesystem mounted correctly
+PASS: root filesystem is writable
+PASS: separate /boot filesystem mounted correctly
+
+=== INSTALLED ARTIFACT INTEGRITY ===
+candidate_kernel_sha256=77c2a123bb8c3eb5c1b376c8af502052e5731715680d46ccf7c2ace0b863237c
+PASS: candidate_kernel hash matches
+candidate_initramfs_sha256=b21e2e1adf6a7622fedc803e444ea065b9c049de690de06da2d60e6a1d46b5f3
+PASS: candidate_initramfs hash matches
+candidate_config_sha256=9a9dd3fc7ac49707c95daafce792b77badd35802221e70c51caab85d6b084933
+PASS: candidate_config hash matches
+candidate_system_map_sha256=67e9b0ca0032dc01bbbeabb9694d2bb95f899d2e84139f6f864f34441cce3de1
+PASS: candidate_system_map hash matches
+compatibility_kernel_sha256=d58468c6102b95162fc35b6fb88743e4ad5505adb5566afc96cc4f61973bc9c6
+PASS: compatibility_kernel hash matches
+compatibility_initramfs_sha256=e6f85c3232570684e86da7cd5c33e347ad05081cb5a9816c0278c909b47cf3b2
+PASS: compatibility_initramfs hash matches
+generated_grub_config_sha256=1827589b3bbd04f8121fd8268f31a82693cc181d62ce842e8ece7a178c5dceca
+PASS: generated_grub_config hash matches
+candidate_custom_config_sha256=3a581fc11b16aed03b7ec84e5d6ad22dbe3e82f9b888632818a9832e45a5b7b6
+PASS: candidate_custom_config hash matches
+
+=== HARDWARE REGRESSION SIGNALS ===
+PASS: /dev/kvm is available
+PASS: DRM card device is available
+PASS: DRM render device is available
+PASS: /dev/kfd is available
+PASS: audio control device is available
+
+=== NETWORK SIGNALS ===
+BusyBox v1.36.1 (Ubuntu 1:1.36.1-6ubuntu3.1) multi-call binary.
+
+Usage: ip [OPTIONS] address|route|link|tunnel|neigh|rule [ARGS]
+
+OPTIONS := -f[amily] inet|inet6|link | -o[neline]
+
+ip addr add|del IFADDR dev IFACE | show|flush [dev IFACE] [to PREFIX]
+ip route list|flush|add|del|change|append|replace|test ROUTE
+ip link set IFACE [up|down] [arp on|off] [multicast on|off]
+	[promisc on|off] [mtu NUM] [name NAME] [qlen NUM] [address MAC]
+	[master IFACE | nomaster] [netns PID]
+ip tunnel add|change|del|show [NAME]
+	[mode ipip|gre|sit] [remote ADDR] [local ADDR] [ttl TTL]
+ip neigh show|flush [to PREFIX] [dev DEV] [nud STATE]
+ip rule [list] | add|del SELECTOR ACTION
+default dev wg0 scope link  metric 100 
+10.6.0.0/24 dev wg0 scope link  src 10.6.0.4 
+172.233.26.17 via 192.168.0.1 dev enp132s0 
+192.168.0.0/24 dev enp132s0 scope link  src 192.168.0.114  metric 1024 
+192.168.0.1 dev enp132s0 scope link  src 192.168.0.114  metric 1024 
+208.113.130.146 via 192.168.0.1 dev enp132s0  src 192.168.0.114  metric 1024 
+BusyBox v1.36.1 (Ubuntu 1:1.36.1-6ubuntu3.1) multi-call binary.
+
+Usage: ip [OPTIONS] address|route|link|tunnel|neigh|rule [ARGS]
+
+OPTIONS := -f[amily] inet|inet6|link | -o[neline]
+
+ip addr add|del IFADDR dev IFACE | show|flush [dev IFACE] [to PREFIX]
+ip route list|flush|add|del|change|append|replace|test ROUTE
+ip link set IFACE [up|down] [arp on|off] [multicast on|off]
+	[promisc on|off] [mtu NUM] [name NAME] [qlen NUM] [address MAC]
+	[master IFACE | nomaster] [netns PID]
+ip tunnel add|change|del|show [NAME]
+	[mode ipip|gre|sit] [remote ADDR] [local ADDR] [ttl TTL]
+ip neigh show|flush [to PREFIX] [dev DEV] [nud STATE]
+ip rule [list] | add|del SELECTOR ACTION
+WARN: no non-loopback interface is currently up
+PASS: default network route is present
+
+=== SYSTEMD STATE ===
+system_state=running
+PASS: systemd reports the system as running
+failed_unit_count=0
+PASS: no failed systemd units are present
+
+=== FINAL RESULT ===
+failure_count=0
+warning_count=1
+SABLE_PHYSICAL_RUNTIME_RESULT=PASS
+
+=== PHYSICAL VALIDATION MANIFEST ===
+BUILD_ID=20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1
+VALIDATED_AT=2026-07-19T23:56:07Z
+CANONICAL_HOST=SableLinux
+PHYSICAL_HOST=Z890
+RUNNING_KERNEL_RELEASE=6.16.1-sable-lhc-test1
+USERNS_OUTER_ID=1000:1000
+USERNS_INNER_ID=0:0
+USER_NAMESPACE_RUNTIME=pass
+FUSE_MODULE_RUNTIME=pass
+DEV_FUSE_RUNTIME=pass
+ROOT_FILESYSTEM_RUNTIME=pass
+BOOT_FILESYSTEM_RUNTIME=pass
+KVM_DEVICE_RUNTIME=pass
+DRM_RUNTIME=pass
+KFD_RUNTIME=pass
+AUDIO_DEVICE_RUNTIME=pass
+NETWORK_WARNINGS=1
+BOINC_ACTIVE=false
+BOINC_ENABLED=false
+BUILD_STATE=kernel-physical-runtime-validated
+
+=== UPDATED BUILD STATE ===
+BUILD_ID=20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1
+CREATED_AT=2026-07-19T21:18:45Z
+CANONICAL_HOST=SableLinux
+BUILD_USER=pepper
+BUILD_GROUP=pepper
+REPOSITORY=/home/pepper/sablelinux
+GIT_BRANCH=development
+GIT_COMMIT=eb762ba46c313f8dfdb0ff6de7ab84b39bc27178
+SOURCE_TREE=/usr/src/linux-6.16.1
+BASE_KERNEL_RELEASE=6.16.1-sable-compat
+TARGET_KERNEL_RELEASE=6.16.1-sable-lhc-test1
+BUILD_STATE=kernel-physical-runtime-validated
+SOURCE_ARCHIVE=/sources/linux-6.16.1.tar.xz
+SOURCE_ARCHIVE_SHA256=ea43491bc7ace1e414b3b2d957f8cf96e7049155123f0acce798accf8da1acba
+CLEAN_SOURCE_TREE=/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/source/linux-6.16.1
+MODULE_TOOL_IMPLEMENTATION=kmod-34.2-system
+MODULE_DATABASE_FORMAT=text-and-binary
+STAGED_MODULE_ROOT=/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1
+WORKSPACE_INITRAMFS=/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/initramfs-normal-root/initramfs-6.16.1-sable-lhc-test1.img
+WORKSPACE_INITRAMFS_SHA256=3d5b7aeb6c74c04b1ef5debc39514c877e2f5071174e754ede2f29b2721f309f
+INITRAMFS_PROFILE=installed-root-hostonly
+INITRAMFS_OMITTED_MODULES=sable-live,dmsquash-live,dmsquash-live-ntfs,squash
+FINAL_WORKSPACE_INITRAMFS=/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/initramfs-installed-root/initramfs-6.16.1-sable-lhc-test1.img
+FINAL_WORKSPACE_INITRAMFS_SHA256=b21e2e1adf6a7622fedc803e444ea065b9c049de690de06da2d60e6a1d46b5f3
+INITRAMFS_VALIDATION_NOTE=dracut-arguments-excluded-from-archive-content-scan
+KMOD_SYSTEM_BACKUP=/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/system-backups/kmod-activation
+TIER1_TEST_METHOD=QEMU-KVM-direct-kernel
+TIER1_QEMU_MACHINE=q35
+TIER1_SERIAL_CAPTURE=explicit-isa-serial-file
+TIER1_PRIVILEGE_DROP=busybox-su
+TIER1_ARCHIVE_PARSER=symlink-aware
+TIER1_USERNS_OUTER_ID=1000:1000
+TIER1_USERNS_INNER_ID=0:0
+TIER1_USER_NAMESPACE=pass
+TIER1_FUSE_MODULE=pass
+TIER1_DEV_FUSE=pass
+INSTALLED_CANDIDATE_KERNEL=/boot/vmlinuz-6.16.1-sable-lhc-test1
+INSTALLED_CANDIDATE_INITRAMFS=/boot/initramfs-6.16.1-sable-lhc-test1.img
+INSTALLED_CANDIDATE_MODULE_ROOT=/lib/modules/6.16.1-sable-lhc-test1
+INSTALLED_CANDIDATE_KERNEL_SHA256=77c2a123bb8c3eb5c1b376c8af502052e5731715680d46ccf7c2ace0b863237c
+INSTALLED_CANDIDATE_INITRAMFS_SHA256=b21e2e1adf6a7622fedc803e444ea065b9c049de690de06da2d60e6a1d46b5f3
+CANDIDATE_INSTALL_ROLLBACK=/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/metadata/rollback-candidate-artifacts-retry2.sh
+CANDIDATE_INSTALL_VALIDATOR=sudo-lsinitrd-plus-direct-archive
+CANDIDATE_GRUB_CONFIGURED=true
+CANDIDATE_GRUB_ENTRY_TITLE=SableLinux LHC test kernel 6.16.1-sable-lhc-test1
+CANDIDATE_GRUB_ENTRY_ID=sablelinux-lhc-test1
+CANDIDATE_GRUB_CUSTOM_CFG=/boot/grub/custom.cfg
+CANDIDATE_GRUB_CUSTOM_CFG_SHA256=3a581fc11b16aed03b7ec84e5d6ad22dbe3e82f9b888632818a9832e45a5b7b6
+CANDIDATE_ROOT_UUID=70148917-ed5a-466c-b71b-444596ca684a
+CANDIDATE_BOOT_UUID=13816e16-93ea-4e55-9b82-cfbb7946b7a0
+CANDIDATE_GRUB_ROLLBACK=/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/metadata/rollback-candidate-grub-entry.sh
+CANDIDATE_GRUB_DEFAULT=false
+PHYSICAL_RUNTIME_VALIDATION_SCRIPT=/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/metadata/validate-candidate-physical-runtime.sh
+PHYSICAL_RUNTIME_VALIDATION_SCRIPT_SHA256=b6a4f11c2a65058726f8a0bb083a46758a271f54526d6116402fa862bb4f2599
+PHYSICAL_REBOOT_READY=true
+PHYSICAL_VALIDATION_COMPLETE=false
+PHYSICAL_VALIDATION_HOST=Z890
+PHYSICAL_KERNEL_RUNTIME=pass
+PHYSICAL_USER_NAMESPACE=pass
+PHYSICAL_FUSE_MODULE=pass
+PHYSICAL_DEV_FUSE=pass
+PHYSICAL_KVM_DEVICE=pass
+PHYSICAL_DRM_DEVICES=pass
+PHYSICAL_KFD_DEVICE=pass
+PHYSICAL_AUDIO_DEVICES=pass
+PHYSICAL_BOINC_ACTIVE=false
+PHYSICAL_BOINC_ENABLED=false
+
+=== EVIDENCE HASHES ===
+579f422349f0b83d4ab9b25f108f8674a015a8d6c69690a271fa924f32556538  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/reports/candidate-physical-runtime-validation.txt
+62073d705562565f975f4d32f0470cbf03863fb2ba2aa55568bdadf5cfe30b17  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/metadata/candidate-physical-runtime-manifest.env
+9bc3f2b96aee5adc0f3a8dbc9576f7119c597f0867d9bce2f6c02ec64cee6d9a  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/reports/candidate-physical-fuse-resolution.txt

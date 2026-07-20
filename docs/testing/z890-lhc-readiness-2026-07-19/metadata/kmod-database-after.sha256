@@ -1,0 +1,14 @@
+6bef67ee8778b2108409be757cdc455e216a6a748f2bf61652cb09248256c491  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.alias
+320ad86f978fd13f9914ddd3f055088d28684b781b98158b6ed2797c67e98bc4  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.alias.bin
+69de2ea539c33a85a8906b199e3b2181747812e5b793e31743a3d0e789f3f11e  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.builtin
+4f9c5a2eff0186ce73a2f4a8be64b996cc5477407b5bed83d2ac64512004be6f  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.builtin.alias.bin
+3a1344890fff4391e443caf94902bdddfdbcf3b29123d630f7431979bcfc4f14  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.builtin.bin
+8ffec6d86558ddd83da4bb9279231d0b544ae65cab4544d1d82e8391f837192b  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.builtin.modinfo
+b85df091c32a3311393bdff40c6758d6de5dc324ccdf5ba6fb24e8151a682253  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.dep
+065e4805cacef8f25f66d58462a69e5956fa548710de1f1a57803db0f47de943  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.dep.bin
+a2b951c0a500f1199c4d97712cfb6be9dc681891bcc3e1a0ffb384c5a78d5d17  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.devname
+93cc8f87ae4b5db3a84da141f907458ba11706c21b04c9f3ebef944e15003199  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.order
+778c2d3d94892091a4f7324f11ee41d3b2fcaace467bf14a446820bcab6990ff  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.softdep
+f2cc466c0dcb2a41124a59e2022e0bf806cd12c29900f1437b28b4df39e7b6a1  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.symbols
+df09ef150ff115fe2be1b0fac568071c5d4d65c5d5d92c97aaa6ef7524d4a022  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.symbols.bin
+a1fffe1059d8150b5d402b3f284f507025a8d4b5881810cb17b3fda8b8ab9304  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1/modules.weakdep

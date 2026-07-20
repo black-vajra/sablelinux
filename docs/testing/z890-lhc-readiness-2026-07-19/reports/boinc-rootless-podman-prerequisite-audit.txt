@@ -1,0 +1,112 @@
+SABLELINUX BOINC ROOTLESS PODMAN PREREQUISITE AUDIT
+timestamp_utc=2026-07-20T00:03:12Z
+build_id=20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1
+running_release=6.16.1-sable-lhc-test1
+boinc_user=boinc
+boinc_uid=999
+boinc_gid=997
+boinc_home=/var/lib/boinc-client
+boinc_shell=/usr/sbin/nologin
+
+=== BOINC ACCOUNT ===
+boinc:x:999:997:BOINC client service account:/var/lib/boinc-client:/usr/sbin/nologin
+boinc:x:997:
+uid=999(boinc) gid=997(boinc) groups=997(boinc)
+PASS: boinc retains a non-login shell
+mode=drwxr-x--- owner=boinc group=boinc uid=999 gid=997 path=/var/lib/boinc-client
+PASS: boinc home is writable by boinc
+
+=== KERNEL FEATURES ===
+CONFIG_NAMESPACES=y
+CONFIG_USER_NS=y
+CONFIG_PID_NS=y
+CONFIG_NET_NS=y
+CONFIG_UTS_NS=y
+CONFIG_IPC_NS=y
+CONFIG_CGROUPS=y
+CONFIG_SECCOMP=y
+CONFIG_SECCOMP_FILTER=y
+CONFIG_OVERLAY_FS=y
+CONFIG_FUSE_FS=m
+
+max_user_namespaces=125560
+boinc_userns_outer_uid=0
+boinc_userns_inner_test_uid=0
+PASS: boinc can create an unprivileged user namespace
+
+=== CGROUP V2 ===
+TARGET         SOURCE  FSTYPE  OPTIONS
+/sys/fs/cgroup cgroup2 cgroup2 rw,nosuid,nodev,noexec,relatime,nsdelegate,memory_recursiveprot
+cgroup_fstype=cgroup2
+PASS: unified cgroup v2 is active
+cgroup_controllers=cpuset cpu io hugetlb pids rdma misc
+
+=== FUSE ACCESS ===
+mode=crw-rw-rw- owner=root group=root major=a minor=e5 path=/dev/fuse
+PASS: boinc has read/write access to /dev/fuse
+
+=== SUBORDINATE UID/GID RANGES ===
+MISSING: boinc has no subordinate UID range
+MISSING: boinc has no subordinate GID range
+
+=== UID/GID MAPPING HELPERS ===
+-rwsr-xr-x 1 root root 227952 Mar  8 04:53 /usr/bin/newuidmap
+newuidmap_mode=4755
+newuidmap_owner=root:root
+PASS: newuidmap has its setuid bit
+-rwsr-xr-x 1 root root 229928 Mar  8 04:53 /usr/bin/newgidmap
+newgidmap_mode=4755
+newgidmap_owner=root:root
+PASS: newgidmap has its setuid bit
+
+=== CONTAINER ENGINE COMPONENTS ===
+MISSING: required tool: podman
+MISSING: required tool: conmon
+MISSING: neither crun nor runc is available
+MISSING: no rootless networking helper is available
+MISSING: required tool: fuse-overlayfs
+ABSENT: optional tool: aardvark-dns
+ABSENT: optional tool: netavark
+ABSENT: optional tool: catatonit
+
+=== TOOL VERSIONS ===
+
+--- newuidmap ---
+usage: newuidmap [<pid>|fd:<pidfd>] <uid> <loweruid> <count> [ <uid> <loweruid> <count> ] ... 
+
+--- newgidmap ---
+usage: newgidmap [<pid|fd:<pidfd>] <gid> <lowergid> <count> [ <gid> <lowergid> <count> ] ... 
+
+=== BOINC RUNTIME DIRECTORY ===
+ABSENT: /run/user/999
+NOTE: a controlled RuntimeDirectory will be needed for service execution
+
+=== CONTAINER CONFIGURATION ===
+ABSENT: /etc/containers/containers.conf
+ABSENT: /etc/containers/storage.conf
+ABSENT: /etc/containers/registries.conf
+ABSENT: /etc/containers/policy.json
+ABSENT: /usr/share/containers/containers.conf
+ABSENT: /usr/share/containers/storage.conf
+ABSENT: /usr/share/containers/registries.conf
+ABSENT: /var/lib/boinc-client/.config/containers/containers.conf
+ABSENT: /var/lib/boinc-client/.config/containers/storage.conf
+ABSENT: /var/lib/boinc-client/.config/containers/registries.conf
+
+=== EXISTING ROOTLESS STORAGE STATE ===
+ABSENT: /var/lib/boinc-client/.local/share/containers
+ABSENT: /var/lib/boinc-client/.config/containers
+ABSENT: /run/user/999/containers
+
+=== AUDIT CLASSIFICATION ===
+missing_required_count=7
+warning_count=4
+AUDIT_CLASSIFICATION=missing-rootless-podman-prerequisites
+Rootless Podman is not ready for workload testing.
+
+=== SAFETY ===
+PASS: validated candidate kernel remains active
+PASS: BOINC remains inactive
+PASS: BOINC remains disabled at boot
+
+No packages, accounts, subordinate-ID ranges, services, or container state were modified.

@@ -1,0 +1,26 @@
+SABLELINUX KMOD SYSTEM ACTIVATION VALIDATION
+timestamp_utc=2026-07-19T22:15:26Z
+build_id=20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1
+running_release=6.16.1-sable-compat
+target_release=6.16.1-sable-lhc-test1
+kmod_version=34.2
+loaded_module_count_before=15
+test_module=efivarfs
+test_module_file=/lib/modules/6.16.1-sable-compat/kernel/fs/efivarfs/efivarfs.ko
+test_module_vermagic=6.16.1-sable-compat
+
+PASS: depmod resolves to kmod
+PASS: modprobe resolves to kmod
+PASS: modinfo resolves to kmod
+PASS: insmod resolves to kmod
+PASS: rmmod resolves to kmod
+PASS: lsmod resolves to kmod
+PASS: modprobe resolves efivarfs
+PASS: test-module vermagic matches
+PASS: dynamic module state remains unchanged
+PASS: fallback kernel remains unchanged
+PASS: fallback initramfs remains unchanged
+PASS: GRUB configuration remains unchanged
+PASS: candidate modules remain uninstalled
+PASS: BOINC remains inactive
+PASS: BOINC remains disabled at boot

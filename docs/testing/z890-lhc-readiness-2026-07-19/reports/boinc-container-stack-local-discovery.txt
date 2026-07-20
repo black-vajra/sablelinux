@@ -1,0 +1,381 @@
+SABLELINUX BOINC CONTAINER STACK LOCAL DISCOVERY
+timestamp_utc=2026-07-20T00:07:55Z
+build_id=20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1
+running_release=6.16.1-sable-lhc-test1
+boinc_user=boinc
+boinc_uid=999
+boinc_gid=997
+boinc_home=/var/lib/boinc-client
+boinc_shell=/usr/sbin/nologin
+
+=== CURRENT ACCOUNT AND IDENTITY FILES ===
+boinc:x:999:997:BOINC client service account:/var/lib/boinc-client:/usr/sbin/nologin
+uid=999(boinc) gid=997(boinc) groups=997(boinc)
+
+--- /etc/subuid ---
+ABSENT
+
+--- /etc/subgid ---
+ABSENT
+
+=== BUILD TOOLCHAIN ===
+
+--- gcc ---
+path=/usr/bin/gcc
+resolved=/usr/bin/gcc
+gcc (GCC) 15.2.0
+Copyright (C) 2025 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+
+--- g++ ---
+path=/usr/bin/g++
+resolved=/usr/bin/g++
+g++ (GCC) 15.2.0
+Copyright (C) 2025 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+
+--- make ---
+path=/usr/bin/make
+resolved=/usr/bin/make
+GNU Make 4.4.1
+Built for x86_64-pc-linux-gnu
+Copyright (C) 1988-2023 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+
+--- cmake ---
+path=/usr/bin/cmake
+resolved=/usr/bin/cmake
+cmake version 3.31.6
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+
+--- meson ---
+path=/usr/bin/meson
+resolved=/usr/bin/meson
+1.7.0
+
+--- ninja ---
+path=/usr/bin/ninja
+resolved=/usr/bin/ninja
+1.13.1
+
+--- pkg-config ---
+path=/usr/bin/pkg-config
+resolved=/usr/bin/pkgconf
+2.5.1
+
+--- autoconf ---
+path=/usr/bin/autoconf
+resolved=/usr/bin/autoconf
+autoconf (GNU Autoconf) 2.72
+Copyright (C) 2023 Free Software Foundation, Inc.
+License GPLv3+/Autoconf: GNU GPL version 3 or later
+<https://gnu.org/licenses/gpl.html>, <https://gnu.org/licenses/exceptions.html>
+This is free software: you are free to change and redistribute it.
+
+--- automake ---
+path=/usr/bin/automake
+resolved=/usr/bin/automake
+automake (GNU automake) 1.18.1
+Features: subsecond-mtime
+
+Copyright (C) 2025 Free Software Foundation, Inc.
+License GPLv2+: GNU GPL version 2 or later
+
+--- autoreconf ---
+path=/usr/bin/autoreconf
+resolved=/usr/bin/autoreconf
+autoreconf (GNU Autoconf) 2.72
+Copyright (C) 2023 Free Software Foundation, Inc.
+License GPLv3+/Autoconf: GNU GPL version 3 or later
+<https://gnu.org/licenses/gpl.html>, <https://gnu.org/licenses/exceptions.html>
+This is free software: you are free to change and redistribute it.
+
+--- libtool ---
+path=/usr/bin/libtool
+resolved=/usr/bin/libtool
+libtool (GNU libtool) 2.5.4
+Copyright (C) 2026 Free Software Foundation, Inc.
+License GPLv2+: GNU GPL version 2 or later <https://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+--- go ---
+ABSENT
+
+--- rustc ---
+ABSENT
+
+--- cargo ---
+ABSENT
+
+--- git ---
+path=/usr/bin/git
+resolved=/usr/bin/git
+git version 2.48.1
+
+--- curl ---
+path=/usr/bin/curl
+resolved=/usr/bin/curl
+curl 8.15.0 (x86_64-pc-linux-gnu) libcurl/8.15.0 OpenSSL/3.5.2 zlib/1.3.1 zstd/1.5.7 libpsl/0.21.5
+Release-Date: 2025-07-16
+Protocols: dict file ftp ftps gopher gophers http https imap imaps ipfs ipns mqtt pop3 pop3s rtsp smb smbs smtp smtps telnet tftp ws wss
+Features: alt-svc AsynchDNS HSTS HTTPS-proxy IPv6 Largefile libz NTLM PSL SSL threadsafe TLS-SRP UnixSockets zstd
+
+--- wget ---
+path=/usr/bin/wget
+resolved=/usr/bin/wget
+GNU Wget 1.21.4 built on linux-gnu.
+
+-cares +digest -gpgme +https +ipv6 -iri +large-file -metalink +nls 
++ntlm +opie -psl +ssl/openssl 
+
+
+--- python3 ---
+path=/usr/bin/python3
+resolved=/usr/bin/python3.13
+Python 3.13.7
+
+--- perl ---
+path=/usr/bin/perl
+resolved=/usr/bin/perl
+
+This is perl 5, version 42, subversion 0 (v5.42.0) built for x86_64-linux-thread-multi
+
+Copyright 1987-2025, Larry Wall
+
+
+--- tar ---
+path=/usr/bin/tar
+resolved=/usr/bin/tar
+tar (GNU tar) 1.35
+Copyright (C) 2023 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+--- gzip ---
+path=/usr/bin/gzip
+resolved=/usr/bin/gzip
+gzip 1.14
+Copyright (C) 2025 Free Software Foundation, Inc.
+Copyright (C) 1993 Jean-loup Gailly.
+This is free software.  You may redistribute copies of it under the terms of
+the GNU General Public License <https://www.gnu.org/licenses/gpl.html>.
+
+--- xz ---
+path=/usr/bin/xz
+resolved=/usr/bin/xz
+xz (XZ Utils) 5.8.1
+liblzma 5.8.1
+
+--- zstd ---
+path=/usr/bin/zstd
+resolved=/usr/bin/zstd
+*** Zstandard CLI (64-bit) v1.5.7, by Yann Collet ***
+
+=== CURRENT CONTAINER BINARIES ===
+ABSENT: podman
+ABSENT: conmon
+ABSENT: crun
+ABSENT: runc
+ABSENT: pasta
+ABSENT: passt
+ABSENT: slirp4netns
+ABSENT: fuse-overlayfs
+ABSENT: netavark
+ABSENT: aardvark-dns
+ABSENT: catatonit
+PRESENT: newuidmap path=/usr/bin/newuidmap resolved=/usr/bin/newuidmap
+-rwsr-xr-x 1 root root 227952 Mar  8 04:53 /usr/bin/newuidmap
+PRESENT: newgidmap path=/usr/bin/newgidmap resolved=/usr/bin/newgidmap
+-rwsr-xr-x 1 root root 229928 Mar  8 04:53 /usr/bin/newgidmap
+
+=== PKG-CONFIG DEPENDENCY INVENTORY ===
+ABSENT: libseccomp
+PRESENT: libcap version=2.76
+PRESENT: libsystemd version=257
+PRESENT: glib-2.0 version=2.87.3
+PRESENT: gio-2.0 version=2.87.3
+ABSENT: yajl
+ABSENT: libselinux
+ABSENT: libapparmor
+PRESENT: devmapper version=1.02.202
+ABSENT: libbtrfsutil
+ABSENT: gpgme
+PRESENT: libassuan version=3.0.2
+PRESENT: sqlite3 version=3.47.0
+PRESENT: libarchive version=3.7.7
+PRESENT: libzstd version=1.5.7
+PRESENT: mount version=2.41.1
+PRESENT: blkid version=2.41.1
+
+=== RELEVANT HEADERS ===
+ABSENT: /usr/include/seccomp.h
+PRESENT: /usr/include/sys/capability.h
+PRESENT: /usr/include/systemd/sd-daemon.h
+ABSENT: /usr/include/yajl/yajl_tree.h
+ABSENT: /usr/include/selinux/selinux.h
+ABSENT: /usr/include/gpgme.h
+PRESENT: /usr/include/libmount/libmount.h
+PRESENT: /usr/include/blkid/blkid.h
+ABSENT: /usr/include/fuse3/fuse.h
+
+=== RELEVANT SHARED LIBRARIES ===
+	libarchive.so.13 (libc6,x86-64) => /usr/lib/libarchive.so.13
+	libarchive.so (libc6,x86-64) => /usr/lib/libarchive.so
+	libassuan.so.9 (libc6,x86-64) => /usr/lib/libassuan.so.9
+	libassuan.so (libc6,x86-64) => /usr/lib/libassuan.so
+	libcap.so.2 (libc6,x86-64) => /usr/lib/libcap.so.2
+	libcap.so (libc6,x86-64) => /usr/lib/libcap.so
+	libdevmapper.so.1.02 (libc6,x86-64) => /usr/lib/libdevmapper.so.1.02
+	libdevmapper.so (libc6,x86-64) => /usr/lib/libdevmapper.so
+	libnss_systemd.so.2 (libc6,x86-64) => /usr/lib/libnss_systemd.so.2
+	libsqlite3.so.0 (libc6,x86-64) => /usr/lib/libsqlite3.so.0
+	libsqlite3.so (libc6,x86-64) => /usr/lib/libsqlite3.so
+	libsystemd.so.0 (libc6,x86-64) => /usr/lib/libsystemd.so.0
+	libsystemd.so (libc6,x86-64) => /usr/lib/libsystemd.so
+	libzstd.so.1 (libc6,x86-64) => /usr/lib/libzstd.so.1
+	libzstd.so (libc6,x86-64) => /usr/lib/libzstd.so
+
+=== KERNEL AND FILESYSTEM SUPPORT ===
+CONFIG_BRIDGE=y
+CONFIG_CGROUP_SCHED=y
+CONFIG_CGROUPS=y
+CONFIG_FUSE_FS=m
+CONFIG_IP6_NF_IPTABLES=y
+CONFIG_IPC_NS=y
+CONFIG_IP_NF_IPTABLES=y
+CONFIG_NAMESPACES=y
+CONFIG_NETFILTER=y
+CONFIG_NET_NS=y
+CONFIG_OVERLAY_FS=y
+CONFIG_PID_NS=y
+CONFIG_SECCOMP_FILTER=y
+CONFIG_SECCOMP=y
+CONFIG_USER_NS=y
+CONFIG_UTS_NS=y
+
+--- filesystems ---
+nodev	sysfs
+nodev	tmpfs
+nodev	bdev
+nodev	proc
+nodev	cgroup
+nodev	cgroup2
+nodev	devtmpfs
+nodev	binfmt_misc
+nodev	debugfs
+nodev	tracefs
+nodev	sockfs
+nodev	pipefs
+nodev	ramfs
+nodev	hugetlbfs
+nodev	rpc_pipefs
+nodev	devpts
+	ext3
+	ext2
+	ext4
+	squashfs
+	vfat
+	msdos
+	iso9660
+nodev	nfs
+nodev	nfs4
+nodev	autofs
+nodev	overlay
+nodev	9p
+nodev	mqueue
+nodev	selinuxfs
+nodev	efivarfs
+	fuseblk
+nodev	fuse
+nodev	fusectl
+
+--- overlay module resolution ---
+builtin overlay
+
+--- FUSE module resolution ---
+insmod /lib/modules/6.16.1-sable-lhc-test1/kernel/fs/fuse/fuse.ko 
+
+--- /dev/fuse ---
+mode=crw-rw-rw- owner=root group=root major=a minor=e5 path=/dev/fuse
+
+=== CGROUP AND SYSTEMD ENVIRONMENT ===
+TARGET         SOURCE  FSTYPE  OPTIONS
+/sys/fs/cgroup cgroup2 cgroup2 rw,nosuid,nodev,noexec,relatime,nsdelegate,memory_recursiveprot
+cpuset cpu io hugetlb pids rdma misc
+
+bash: systemd: command not found
+systemd_version=
+system_state=running
+
+--- boinc login/linger state ---
+Failed to get user: User ID 999 is not logged in or lingering
+linger_enabled=false
+
+--- runtime directory state ---
+ABSENT: /run/user/999
+
+=== BOINC CONTROLLED COMMAND ENVIRONMENT ===
+uid=999
+gid=997
+home=/var/lib/boinc-client
+shell=/usr/sbin/nologin
+umask=0022
+cwd=/home/pepper
+home_writable=true
+fuse_readable=true
+fuse_writable=true
+
+=== SUBORDINATE-ID ANALYSIS ===
+SABLELINUX SUBORDINATE ID RANGE ANALYSIS
+
+target_user=boinc
+range_size=65536
+
+=== SUBUID ===
+path=/etc/subuid
+exists=false
+No configured entries.
+subuid_target_entry_count=0
+
+=== SUBGID ===
+path=/etc/subgid
+exists=false
+No configured entries.
+subgid_target_entry_count=0
+
+=== INTERNAL OVERLAP ANALYSIS ===
+subuid_overlap_count=0
+subgid_overlap_count=0
+
+=== COMMON FREE RANGE CANDIDATE ===
+candidate_common_start=131072
+candidate_common_count=65536
+candidate_common_end=196607
+candidate_subuid_line=boinc:131072:65536
+candidate_subgid_line=boinc:131072:65536
+candidate_real_uid_collision_count=0
+
+This report is advisory only.
+No subordinate-ID files were modified.
+
+=== LOCAL SOURCE SUMMARY ===
+local_source_match_count=231
+
+=== REPOSITORY REFERENCE SUMMARY ===
+repository_reference_count=33
+
+=== SAFETY ===
+PASS: validated kernel remains active
+PASS: BOINC remains inactive
+PASS: BOINC remains disabled at boot
+
+No packages, source archives, accounts, ID ranges, services, or container configuration were modified.
+DISCOVERY_CLASSIFICATION=local-build-plan-required

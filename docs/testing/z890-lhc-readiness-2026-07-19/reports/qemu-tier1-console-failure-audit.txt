@@ -1,0 +1,162 @@
+SABLELINUX TIER 1 QEMU CONSOLE FAILURE AUDIT
+timestamp_utc=2026-07-19T22:25:06Z
+build_id=20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1
+target_release=6.16.1-sable-lhc-test1
+cpio_list_status=0
+
+=== FAILED QEMU LOG ===
+mode=-rw-r--r-- owner=pepper group=pepper size=0 modified=2026-07-19 18:20:36.487122092 -0400 path=/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/logs/qemu-tier1-kernel-smoke.log
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/logs/qemu-tier1-kernel-smoke.log
+CONFIRMED: QEMU serial log is empty
+
+=== KERNEL CONSOLE CONFIGURATION ===
+CONFIG_TTY=y
+CONFIG_VT=y
+CONFIG_PRINTK=y
+CONFIG_EARLY_PRINTK=y
+CONFIG_SERIAL_EARLYCON=y
+CONFIG_SERIAL_8250=y
+CONFIG_SERIAL_8250_CONSOLE=y
+CONFIG_SERIAL_8250_PCI=y
+CONFIG_SERIAL_CORE=y
+CONFIG_SERIAL_CORE_CONSOLE=y
+CONFIG_DEVTMPFS=y
+CONFIG_DEVTMPFS_MOUNT=y
+CONFIG_BLK_DEV_INITRD=y
+
+=== INITRAMFS DEVICE NODES ===
+drwxr-sr-x   2 root     root            0 Jul 19 18:20 dev
+
+=== REQUIRED EARLY DEVICE NODE CHECK ===
+FAIL: archive does not contain ./dev/console
+FAIL: archive does not contain ./dev/null
+FAIL: archive does not contain ./dev/tty
+
+=== SOURCE INITROOT DEVICE NODES ===
+d drwxr-sr-x pepper:pepper /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-kernel-smoke/root/dev
+
+=== INIT SCRIPT STARTUP ORDER ===
+     1	#!/bin/busybox sh
+     2	
+     3	BB=/bin/busybox
+     4	TARGET_RELEASE="6.16.1-sable-lhc-test1"
+     5	FUSE_MODULE="/lib/modules/$TARGET_RELEASE/kernel/fs/fuse/fuse.ko"
+     6	FAILURES=0
+     7	
+     8	export PATH=/bin:/usr/bin:/sbin:/usr/sbin
+     9	export HOME=/
+    10	export TERM=linux
+    11	
+    12	pass() {
+    13	    echo "PASS: $*"
+    14	}
+    15	
+    16	fail() {
+    17	    echo "FAIL: $*"
+    18	    FAILURES=$((FAILURES + 1))
+    19	}
+    20	
+    21	echo
+    22	echo "SABLE_TIER1_BEGIN"
+    23	echo "target_release=$TARGET_RELEASE"
+    24	
+    25	$BB mkdir -p /proc /sys /dev /tmp
+    26	
+    27	if $BB mount -t proc proc /proc; then
+    28	    pass "proc filesystem mounted"
+    29	else
+    30	    fail "proc filesystem mount failed"
+    31	fi
+    32	
+    33	if $BB mount -t sysfs sysfs /sys; then
+    34	    pass "sysfs mounted"
+    35	else
+    36	    fail "sysfs mount failed"
+    37	fi
+    38	
+    39	if $BB mount -t devtmpfs devtmpfs /dev; then
+    40	    pass "devtmpfs mounted"
+    41	else
+    42	    fail "devtmpfs mount failed"
+    43	fi
+    44	
+    45	RUNNING_RELEASE="$($BB uname -r)"
+    46	echo "running_release=$RUNNING_RELEASE"
+    47	
+    48	if [ "$RUNNING_RELEASE" = "$TARGET_RELEASE" ]; then
+    49	    pass "candidate kernel release is running"
+    50	else
+    51	    fail "unexpected kernel release: $RUNNING_RELEASE"
+    52	fi
+    53	
+    54	if [ -r /proc/config.gz ]; then
+    55	    pass "/proc/config.gz is available"
+    56	else
+    57	    fail "/proc/config.gz is unavailable"
+    58	fi
+    59	
+    60	if $BB zcat /proc/config.gz 2>/dev/null |
+    61	   $BB grep -Fqx 'CONFIG_USER_NS=y'; then
+    62	    pass "CONFIG_USER_NS=y"
+    63	else
+    64	    fail "CONFIG_USER_NS is not enabled"
+    65	fi
+    66	
+    67	if $BB zcat /proc/config.gz 2>/dev/null |
+    68	   $BB grep -Fqx 'CONFIG_FUSE_FS=m'; then
+    69	    pass "CONFIG_FUSE_FS=m"
+    70	else
+    71	    fail "CONFIG_FUSE_FS is not modular"
+    72	fi
+    73	
+    74	if [ -e /proc/self/ns/user ]; then
+    75	    pass "user namespace interface exists"
+    76	else
+    77	    fail "user namespace interface is absent"
+    78	fi
+    79	
+    80	if /usr/bin/setpriv \
+    81	        --reuid=1000 \
+    82	        --regid=1000 \
+    83	        --clear-groups \
+    84	        /usr/bin/unshare \
+    85	            --user \
+    86	            --map-root-user \
+    87	            /bin/busybox sh -c '
+    88	                test "$(/bin/busybox id -u)" = "0" &&
+    89	                test -e /proc/self/ns/user
+    90	            '
+    91	then
+    92	    pass "unprivileged user namespace creation succeeded"
+    93	else
+    94	    fail "unprivileged user namespace creation failed"
+    95	fi
+    96	
+    97	if [ -s "$FUSE_MODULE" ]; then
+    98	    pass "candidate FUSE module is present"
+    99	else
+   100	    fail "candidate FUSE module is missing"
+
+=== INITRAMFS ARCHIVE SUMMARY ===
+archive_entry_count=23
+/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-kernel-smoke/initramfs-6.16.1-sable-lhc-test1.img: gzip compressed data, max compression, from Unix, original size modulo 2^32 7176704
+84550af0e37141760c9c5de8926c4f3762148dbc39f1837dd23e08e79557f599  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-kernel-smoke/initramfs-6.16.1-sable-lhc-test1.img
+
+=== KERNEL IMAGE ===
+/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/build/arch/x86/boot/bzImage: Linux kernel x86 boot executable, bzImage, version 6.16.1-sable-lhc-test1 (pepper@SableLinux) #1 SMP PREEMPT_DYNAMIC Sun Jul 19 17:34:48 EDT 2026, RO-rootFS, Normal VGA, setup size 512*39, syssize 0xf2440, jump 0x26c 0x8cd88ec0fc8cd239 instruction, protocol 2.15, from protected-mode code at offset 0x2c4 0xf13181 bytes gzip compressed, relocatable, handover offset 0xf20710, legacy 64-bit entry point, can be above 4G, 32-bit EFI handoff entry point, 64-bit EFI handoff entry point, EFI kexec boot support, xloadflags bit 5, max cmdline size 2047, init_size 0x2f79000
+77c2a123bb8c3eb5c1b376c8af502052e5731715680d46ccf7c2ace0b863237c  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/build/arch/x86/boot/bzImage
+
+=== QEMU AND KVM ===
+QEMU emulator version 9.2.3
+Copyright (c) 2003-2024 Fabrice Bellard and the QEMU Project developers
+crw-rw---- 1 root kvm 10, 232 Jul 19 18:22 /dev/kvm
+
+=== ASSESSMENT ===
+PASS: 8250 serial driver is built into the kernel
+PASS: 8250 serial console is built into the kernel
+PASS: serial core console is built into the kernel
+FAIL: source initramfs lacks /dev/console
+FAIL: source initramfs lacks /dev/null
+FAIL: source initramfs lacks /dev/tty
+
+No kernel, initramfs, boot, or system files were modified.

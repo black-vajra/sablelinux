@@ -1,0 +1,31 @@
+SABLELINUX SUBORDINATE ID RANGE ANALYSIS
+
+target_user=boinc
+range_size=65536
+
+=== SUBUID ===
+path=/etc/subuid
+exists=false
+No configured entries.
+subuid_target_entry_count=0
+
+=== SUBGID ===
+path=/etc/subgid
+exists=false
+No configured entries.
+subgid_target_entry_count=0
+
+=== INTERNAL OVERLAP ANALYSIS ===
+subuid_overlap_count=0
+subgid_overlap_count=0
+
+=== COMMON FREE RANGE CANDIDATE ===
+candidate_common_start=131072
+candidate_common_count=65536
+candidate_common_end=196607
+candidate_subuid_line=boinc:131072:65536
+candidate_subgid_line=boinc:131072:65536
+candidate_real_uid_collision_count=0
+
+This report is advisory only.
+No subordinate-ID files were modified.

@@ -1,0 +1,456 @@
+drwxr-xr-x   3 root     root            0 Jul 19 18:05 .
+-rw-r--r--   1 root     root            2 Jul 19 18:05 early_cpio
+drwxr-xr-x   3 root     root            0 Jul 19 18:05 kernel
+drwxr-xr-x   3 root     root            0 Jul 19 18:05 kernel/x86
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 kernel/x86/microcode
+-rw-r--r--   1 root     root        91136 Jul 19 18:05 kernel/x86/microcode/GenuineIntel.bin
+drwxr-xr-x  13 root     root            0 Jul 19 18:05 .
+lrwxrwxrwx   1 root     root            7 Jul 19 18:05 bin -> usr/bin
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 dev
+drwxr-xr-x   9 root     root            0 Jul 19 18:05 etc
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 etc/cmdline.d
+-rw-r--r--   1 root     root           86 Jul 19 18:05 etc/cmdline.d/95root-dev.conf
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 etc/conf.d
+-rw-r--r--   1 root     root          124 Jul 19 18:05 etc/conf.d/systemd.conf
+-rw-r--r--   1 root     root            0 Jul 19 18:05 etc/fstab.empty
+-rw-r--r--   1 root     root          266 Jul 19 18:05 etc/group
+-rw-r--r--   1 root     root           11 Feb 27 00:54 etc/hostname
+-rw-r--r--   1 root     root          174 Feb 27 00:54 etc/hosts
+lrwxrwxrwx   1 root     root           25 Jul 19 18:05 etc/initrd-release -> ../usr/lib/initrd-release
+-rw-r--r--   1 root     root         1643 Jul 19 18:05 etc/ld.so.cache
+-rw-r--r--   1 root     root           72 Mar  8 19:32 etc/ld.so.conf
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 etc/ld.so.conf.d
+-rw-r--r--   1 root     root           20 Jul 19 14:36 etc/ld.so.conf.d/10-rocm-opencl.conf
+-rw-r--r--   1 root     root           11 May 18 02:13 etc/ld.so.conf.d/lib64.conf
+-rw-r--r--   1 root     root           20 Apr 24 10:31 etc/ld.so.conf.d/rocm.conf
+-rw-r--r--   1 root     root           17 Mar  8 14:12 etc/locale.conf
+-r--r--r--   1 root     root           33 Apr 11 13:57 etc/machine-id
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 etc/modprobe.d
+-rw-r--r--   1 root     root          220 Feb 22 12:07 etc/modprobe.d/usb.conf
+lrwxrwxrwx   1 root     root           17 Jul 19 18:05 etc/mtab -> /proc/self/mounts
+-rw-r--r--   1 root     root          388 Aug  5  2025 etc/nsswitch.conf
+lrwxrwxrwx   1 root     root           14 Jul 19 18:05 etc/os-release -> initrd-release
+-rw-r--r--   1 root     root          158 Jul 19 18:05 etc/passwd
+-rw-r--r--   1 root     root           98 Jul 19 18:05 etc/shadow
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 etc/sysctl.d
+-rw-r--r--   1 root     root           24 Apr 28 15:03 etc/sysctl.d/60-rocm.conf
+drwxr-xr-x   3 root     root            0 Jul 19 18:05 etc/systemd
+-rw-r--r--   1 root     root         1493 Jul 19 18:05 etc/systemd/journald.conf
+drwxr-xr-x   7 root     root            0 Jul 19 18:05 etc/systemd/system
+-rw-r--r--   1 root     root         2345 Mar  6 20:55 etc/systemd/system.conf
+lrwxrwxrwx   1 root     root           37 Jul 19 18:05 etc/systemd/system/default.target -> /usr/lib/systemd/system/initrd.target
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 etc/systemd/system/dev-disk-by\x2duuid-13816e16\x2d93ea\x2d4e55\x2d9b82\x2dcfbb7946b7a0.device.d
+-rw-r--r--   1 root     root           46 Jul 19 18:05 etc/systemd/system/dev-disk-by\x2duuid-13816e16\x2d93ea\x2d4e55\x2d9b82\x2dcfbb7946b7a0.device.d/timeout.conf
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 etc/systemd/system/emergency.target.wants
+lrwxrwxrwx   1 root     root           54 Jul 19 18:05 etc/systemd/system/emergency.target.wants/systemd-vconsole-setup.service -> /usr/lib/systemd/system/systemd-vconsole-setup.service
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 etc/systemd/system/initrd.target.wants
+lrwxrwxrwx   1 root     root           78 Jul 19 18:05 etc/systemd/system/initrd.target.wants/dev-disk-by\x2duuid-13816e16\x2d93ea\x2d4e55\x2d9b82\x2dcfbb7946b7a0.device -> ../dev-disk-by\x2duuid-13816e16\x2d93ea\x2d4e55\x2d9b82\x2dcfbb7946b7a0.device
+lrwxrwxrwx   1 root     root           50 Jul 19 18:05 etc/systemd/system/initrd.target.wants/dracut-cmdline-ask.service -> /usr/lib/systemd/system/dracut-cmdline-ask.service
+lrwxrwxrwx   1 root     root           46 Jul 19 18:05 etc/systemd/system/initrd.target.wants/dracut-cmdline.service -> /usr/lib/systemd/system/dracut-cmdline.service
+lrwxrwxrwx   1 root     root           48 Jul 19 18:05 etc/systemd/system/initrd.target.wants/dracut-initqueue.service -> /usr/lib/systemd/system/dracut-initqueue.service
+lrwxrwxrwx   1 root     root           44 Jul 19 18:05 etc/systemd/system/initrd.target.wants/dracut-mount.service -> /usr/lib/systemd/system/dracut-mount.service
+lrwxrwxrwx   1 root     root           48 Jul 19 18:05 etc/systemd/system/initrd.target.wants/dracut-pre-mount.service -> /usr/lib/systemd/system/dracut-pre-mount.service
+lrwxrwxrwx   1 root     root           48 Jul 19 18:05 etc/systemd/system/initrd.target.wants/dracut-pre-pivot.service -> /usr/lib/systemd/system/dracut-pre-pivot.service
+lrwxrwxrwx   1 root     root           50 Jul 19 18:05 etc/systemd/system/initrd.target.wants/dracut-pre-trigger.service -> /usr/lib/systemd/system/dracut-pre-trigger.service
+lrwxrwxrwx   1 root     root           47 Jul 19 18:05 etc/systemd/system/initrd.target.wants/dracut-pre-udev.service -> /usr/lib/systemd/system/dracut-pre-udev.service
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 etc/systemd/system/rescue.target.wants
+lrwxrwxrwx   1 root     root           54 Jul 19 18:05 etc/systemd/system/rescue.target.wants/systemd-vconsole-setup.service -> /usr/lib/systemd/system/systemd-vconsole-setup.service
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 etc/systemd/system/systemd-ask-password-console.service.wants
+lrwxrwxrwx   1 root     root           54 Jul 19 18:05 etc/systemd/system/systemd-ask-password-console.service.wants/systemd-vconsole-setup.service -> /usr/lib/systemd/system/systemd-vconsole-setup.service
+drwxr-xr-x   3 root     root            0 Jul 19 18:05 etc/udev
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 etc/udev/rules.d
+-rw-r--r--   1 root     root          297 Apr 13 17:56 etc/udev/rules.d/59-persistent-storage.rules
+-rw-r--r--   1 root     root         1030 Apr 13 17:56 etc/udev/rules.d/61-persistent-storage.rules
+-rw-r--r--   1 root     root          305 Aug  5  2025 etc/udev/udev.conf
+-rw-r--r--   1 root     root           31 Feb 22 11:05 etc/vconsole.conf
+lrwxrwxrwx   1 root     root           23 Jul 19 18:05 init -> usr/lib/systemd/systemd
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 lib64
+lrwxrwxrwx   1 root     root           31 Jul 19 18:05 lib64/ld-linux-x86-64.so.2 -> ../usr/lib/ld-linux-x86-64.so.2
+lrwxrwxrwx   1 root     root            7 Jul 19 18:05 lib -> usr/lib
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 proc
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 root
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 run
+lrwxrwxrwx   1 root     root            8 Jul 19 18:05 sbin -> usr/sbin
+-rwxr-xr-x   1 root     root         4778 Apr 13 17:56 shutdown
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 sys
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 sysroot
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 tmp
+drwxr-xr-x   7 root     root            0 Jul 19 18:05 usr
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/bin
+-rwxr-xr-x   1 root     root      1183864 Feb 20 23:58 usr/bin/bash
+-rwxr-xr-x   1 root     root      2124608 May 25 13:23 usr/bin/busybox
+-rwxr-xr-x   1 root     root        58784 Feb 21 11:33 usr/bin/cat
+-rwxr-xr-x   1 root     root        82536 Feb 21 11:33 usr/bin/chmod
+-rwxr-xr-x   1 root     root        91384 Feb 21 11:33 usr/bin/chown
+-rwxr-xr-x   1 root     root       143536 Feb 21 11:33 usr/bin/cp
+lrwxrwxrwx   1 root     root            7 Jul 19 18:05 usr/bin/depmod -> busybox
+-rwxr-xr-x   1 root     root       101232 Feb 21 12:34 usr/bin/dmesg
+-rwxr-xr-x   1 root     root         2285 Apr 13 17:56 usr/bin/dracut-cmdline
+-rwxr-xr-x   1 root     root          427 Apr 13 17:56 usr/bin/dracut-cmdline-ask
+-rwxr-xr-x   1 root     root         1636 Apr 13 17:56 usr/bin/dracut-emergency
+lrwxrwxrwx   1 root     root           11 Jul 19 18:05 usr/bin/dracut-getarg -> dracut-util
+lrwxrwxrwx   1 root     root           11 Jul 19 18:05 usr/bin/dracut-getargs -> dracut-util
+-rwxr-xr-x   1 root     root         2674 Apr 13 17:56 usr/bin/dracut-initqueue
+-rwxr-xr-x   1 root     root         1099 Apr 13 17:56 usr/bin/dracut-mount
+-rwxr-xr-x   1 root     root          511 Apr 13 17:56 usr/bin/dracut-pre-mount
+-rwxr-xr-x   1 root     root          913 Apr 13 17:56 usr/bin/dracut-pre-pivot
+-rwxr-xr-x   1 root     root          477 Apr 13 17:56 usr/bin/dracut-pre-trigger
+-rwxr-xr-x   1 root     root         1418 Apr 13 17:56 usr/bin/dracut-pre-udev
+-rwxr-xr-x   1 root     root        16536 Apr 13 17:59 usr/bin/dracut-util
+-rwxr-xr-x   1 root     root        52848 Feb 21 11:33 usr/bin/echo
+-rwxr-xr-x   1 root     root       118576 Feb 21 12:34 usr/bin/findmnt
+-rwxr-xr-x   1 root     root        43000 Feb 21 12:34 usr/bin/flock
+lrwxrwxrwx   1 root     root            7 Jul 19 18:05 usr/bin/halt -> busybox
+lrwxrwxrwx   1 root     root            7 Jul 19 18:05 usr/bin/insmod -> busybox
+-rwxr-xr-x   1 root     root       104960 Mar  6 20:55 usr/bin/journalctl
+-rwxr-xr-x   1 root     root        17912 Feb 21 11:52 usr/bin/kbd_mode
+-rwxr-xr-x   1 root     root       209528 Feb 21 11:32 usr/bin/kmod
+-rwxr-xr-x   1 root     root       295720 Feb 21 00:14 usr/bin/less
+-rwxr-xr-x   1 root     root        88768 Feb 21 11:33 usr/bin/ln
+-rwxr-xr-x   1 root     root       242392 Feb 21 11:52 usr/bin/loadkeys
+lrwxrwxrwx   1 root     root            4 Jul 19 18:05 usr/bin/loginctl -> true
+lrwxrwxrwx   1 root     root            7 Jul 19 18:05 usr/bin/losetup -> busybox
+-rwxr-xr-x   1 root     root       182512 Feb 21 11:33 usr/bin/ls
+lrwxrwxrwx   1 root     root            7 Jul 19 18:05 usr/bin/lsmod -> busybox
+-rwxr-xr-x   1 root     root        63352 Feb 21 11:33 usr/bin/mkdir
+-rwxr-xr-x   1 root     root        53168 Feb 21 11:33 usr/bin/mkfifo
+-rwxr-xr-x   1 root     root        57568 Feb 21 11:33 usr/bin/mknod
+lrwxrwxrwx   1 root     root            7 Jul 19 18:05 usr/bin/modinfo -> busybox
+lrwxrwxrwx   1 root     root            7 Jul 19 18:05 usr/bin/modprobe -> busybox
+-rwxr-xr-x   1 root     root        83248 Feb 21 12:34 usr/bin/mount
+-rwxr-xr-x   1 root     root       153560 Feb 21 11:33 usr/bin/mv
+lrwxrwxrwx   1 root     root            7 Jul 19 18:05 usr/bin/nologin -> busybox
+lrwxrwxrwx   1 root     root            7 Jul 19 18:05 usr/bin/poweroff -> busybox
+-rwxr-xr-x   1 root     root        63632 Feb 21 11:33 usr/bin/readlink
+lrwxrwxrwx   1 root     root            7 Jul 19 18:05 usr/bin/reboot -> busybox
+-rwxr-xr-x   1 root     root        92104 Feb 21 11:33 usr/bin/rm
+lrwxrwxrwx   1 root     root            7 Jul 19 18:05 usr/bin/rmmod -> busybox
+-rwxr-xr-x   1 root     root       144840 Feb 20 23:44 usr/bin/sed
+-rwxr-xr-x   1 root     root        69552 Feb 21 11:52 usr/bin/setfont
+-rwxr-xr-x   1 root     root        17808 Feb 21 12:34 usr/bin/setsid
+lrwxrwxrwx   1 root     root            4 Jul 19 18:05 usr/bin/sh -> bash
+-rwxr-xr-x   1 root     root        53568 Feb 21 11:33 usr/bin/sleep
+-rwxr-xr-x   1 root     root       120848 Feb 21 11:33 usr/bin/stat
+-rwxr-xr-x   1 root     root        87888 Feb 21 11:33 usr/bin/stty
+lrwxrwxrwx   1 root     root            7 Jul 19 18:05 usr/bin/sulogin -> busybox
+lrwxrwxrwx   1 root     root            7 Jul 19 18:05 usr/bin/swapoff -> busybox
+lrwxrwxrwx   1 root     root            7 Jul 19 18:05 usr/bin/sysctl -> busybox
+-rwxr-xr-x   1 root     root       336352 Mar  6 20:55 usr/bin/systemctl
+-rwxr-xr-x   1 root     root        22624 Mar  6 20:55 usr/bin/systemd-ask-password
+-rwxr-xr-x   1 root     root        27088 Mar  6 20:55 usr/bin/systemd-cgls
+-rwxr-xr-x   1 root     root        26592 Mar  6 20:55 usr/bin/systemd-escape
+-rwxr-xr-x   1 root     root       100432 Mar  6 20:55 usr/bin/systemd-run
+-rwxr-xr-x   1 root     root       134240 Mar  6 20:55 usr/bin/systemd-tmpfiles
+-rwxr-xr-x   1 root     root        42296 Mar  6 20:55 usr/bin/systemd-tty-ask-password-agent
+-rwxr-xr-x   1 root     root        59720 Feb 21 11:33 usr/bin/timeout
+-rwxr-xr-x   1 root     root        71512 Feb 21 11:33 usr/bin/tr
+-rwxr-xr-x   1 root     root        52608 Feb 21 11:33 usr/bin/true
+-rwxr-xr-x   1 root     root       700768 Mar  6 20:55 usr/bin/udevadm
+-rwxr-xr-x   1 root     root        69280 Feb 21 12:34 usr/bin/umount
+-rwxr-xr-x   1 root     root        53064 Feb 21 11:33 usr/bin/uname
+drwxr-xr-x   9 root     root            0 Jul 19 18:05 usr/lib
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib64
+drwxr-xr-x   3 root     root            0 Jul 19 18:05 usr/lib/dracut
+-rw-r--r--   1 root     root          373 Jul 19 18:05 usr/lib/dracut/build-parameter.txt
+-rwxr-xr-x   1 root     root         4074 Apr 13 17:56 usr/lib/dracut-dev-lib.sh
+-rw-r--r--   1 root     root           11 Jul 19 18:05 usr/lib/dracut/dracut-060
+drwxr-xr-x  15 root     root            0 Jul 19 18:05 usr/lib/dracut/hooks
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib/dracut/hooks/cleanup
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib/dracut/hooks/cmdline
+-rwxr-xr-x   1 root     root         1264 Apr 13 17:56 usr/lib/dracut/hooks/cmdline/00-parse-root.sh
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib/dracut/hooks/emergency
+-rw-r--r--   1 root     root          146 Jul 19 18:05 usr/lib/dracut/hooks/emergency/80-\x2fdev\x2fdisk\x2fby-uuid\x2f13816e16-93ea-4e55-9b82-cfbb7946b7a0.sh
+drwxr-xr-x   6 root     root            0 Jul 19 18:05 usr/lib/dracut/hooks/initqueue
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib/dracut/hooks/initqueue/finished
+-rw-r--r--   1 root     root           64 Jul 19 18:05 usr/lib/dracut/hooks/initqueue/finished/devexists-\x2fdev\x2fdisk\x2fby-uuid\x2f13816e16-93ea-4e55-9b82-cfbb7946b7a0.sh
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib/dracut/hooks/initqueue/online
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib/dracut/hooks/initqueue/settled
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib/dracut/hooks/initqueue/timeout
+-rwxr-xr-x   1 root     root          459 Apr 13 17:56 usr/lib/dracut/hooks/initqueue/timeout/99-rootfallback.sh
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib/dracut/hooks/mount
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib/dracut/hooks/netroot
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib/dracut/hooks/pre-mount
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib/dracut/hooks/pre-pivot
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib/dracut/hooks/pre-shutdown
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib/dracut/hooks/pre-trigger
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib/dracut/hooks/pre-udev
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib/dracut/hooks/shutdown
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib/dracut/hooks/shutdown-emergency
+-rw-r--r--   1 root     root          564 Jul 19 18:05 usr/lib/dracut/hostonly-files
+-rwxr-xr-x   1 root     root        29775 Apr 13 17:56 usr/lib/dracut-lib.sh
+-rw-r--r--   1 root     root          142 Jul 19 18:05 usr/lib/dracut/modules.txt
+-rw-r--r--   1 root     root            0 Jul 19 18:05 usr/lib/dracut/need-initqueue
+-rwxr-xr-x   1 root     root         6552 Apr 13 17:56 usr/lib/fs-lib.sh
+-rw-r--r--   1 root     root          266 Jul 19 18:05 usr/lib/initrd-release
+-rwxr-xr-x   1 root     root       224984 Feb 21 12:38 usr/lib/ld-linux-x86-64.so.2
+-rwxr-xr-x   1 root     root        31248 Feb 20 22:49 usr/lib/libattr.so.1.1.2502
+lrwxrwxrwx   1 root     root           19 Jul 19 18:05 usr/lib/libattr.so.1 -> libattr.so.1.1.2502
+lrwxrwxrwx   1 root     root           19 Jul 19 18:05 usr/lib/libattr.so -> libattr.so.1.1.2502
+-rwxr-xr-x   1 root     root       446048 Feb 21 12:34 usr/lib/libblkid.so.1.1.0
+lrwxrwxrwx   1 root     root           17 Jul 19 18:05 usr/lib/libblkid.so.1 -> libblkid.so.1.1.0
+lrwxrwxrwx   1 root     root           17 Jul 19 18:05 usr/lib/libblkid.so -> libblkid.so.1.1.0
+-rwxr-xr-x   1 root     root        49104 Feb 20 22:52 usr/lib/libcap.so.2.76
+lrwxrwxrwx   1 root     root           14 Jul 19 18:05 usr/lib/libcap.so.2 -> libcap.so.2.76
+lrwxrwxrwx   1 root     root           11 Jul 19 18:05 usr/lib/libcap.so -> libcap.so.2
+-rwxr-xr-x   1 root     root      7261904 Feb 21 00:48 usr/lib/libcrypto.so.3
+lrwxrwxrwx   1 root     root           14 Jul 19 18:05 usr/lib/libcrypto.so -> libcrypto.so.3
+-rwxr-xr-x   1 root     root       192352 Feb 20 23:00 usr/lib/libcrypt.so.2.0.0
+lrwxrwxrwx   1 root     root           17 Jul 19 18:05 usr/lib/libcrypt.so.2 -> libcrypt.so.2.0.0
+lrwxrwxrwx   1 root     root           17 Jul 19 18:05 usr/lib/libcrypt.so -> libcrypt.so.2.0.0
+-rw-r--r--   1 root     root          255 Feb 20 21:41 usr/lib/libc.so
+-rwxr-xr-x   1 root     root      1962864 Feb 21 12:38 usr/lib/libc.so.6
+-rwxr-xr-x   1 root     root        63872 Feb 20 22:13 usr/lib/libhistory.so.8.3
+lrwxrwxrwx   1 root     root           17 Jul 19 18:05 usr/lib/libhistory.so.8 -> libhistory.so.8.3
+lrwxrwxrwx   1 root     root           15 Jul 19 18:05 usr/lib/libhistory.so -> libhistory.so.8
+-rwxr-xr-x   1 root     root       223560 Feb 20 22:02 usr/lib/liblzma.so.5.8.1
+lrwxrwxrwx   1 root     root           16 Jul 19 18:05 usr/lib/liblzma.so.5 -> liblzma.so.5.8.1
+lrwxrwxrwx   1 root     root           16 Jul 19 18:05 usr/lib/liblzma.so -> liblzma.so.5.8.1
+-rwxr-xr-x   1 root     root       549320 Feb 21 12:34 usr/lib/libmount.so.1.1.0
+lrwxrwxrwx   1 root     root           17 Jul 19 18:05 usr/lib/libmount.so.1 -> libmount.so.1.1.0
+lrwxrwxrwx   1 root     root           17 Jul 19 18:05 usr/lib/libmount.so -> libmount.so.1.1.0
+-rw-r--r--   1 root     root          114 Feb 20 21:42 usr/lib/libm.so
+-rwxr-xr-x   1 root     root      1115496 Feb 20 21:42 usr/lib/libm.so.6
+-rwxr-xr-x   1 root     root       530112 Feb 20 23:42 usr/lib/libncursesw.so.6.5
+lrwxrwxrwx   1 root     root           18 Jul 19 18:05 usr/lib/libncursesw.so.6 -> libncursesw.so.6.5
+lrwxrwxrwx   1 root     root           16 Jul 19 18:05 usr/lib/libncursesw.so -> libncursesw.so.6
+-rwxr-xr-x   1 root     root        91928 Mar  8 04:48 usr/lib/libpam.so.0.85.1
+lrwxrwxrwx   1 root     root           16 Jul 19 18:05 usr/lib/libpam.so.0 -> libpam.so.0.85.1
+lrwxrwxrwx   1 root     root           11 Jul 19 18:05 usr/lib/libpam.so -> libpam.so.0
+-rwxr-xr-x   1 root     root       429560 Feb 20 22:13 usr/lib/libreadline.so.8.3
+lrwxrwxrwx   1 root     root           18 Jul 19 18:05 usr/lib/libreadline.so.8 -> libreadline.so.8.3
+lrwxrwxrwx   1 root     root           16 Jul 19 18:05 usr/lib/libreadline.so -> libreadline.so.8
+-rwxr-xr-x   1 root     root       356792 Feb 21 12:34 usr/lib/libsmartcols.so.1.1.0
+lrwxrwxrwx   1 root     root           21 Jul 19 18:05 usr/lib/libsmartcols.so.1 -> libsmartcols.so.1.1.0
+lrwxrwxrwx   1 root     root           21 Jul 19 18:05 usr/lib/libsmartcols.so -> libsmartcols.so.1.1.0
+-rwxr-xr-x   1 root     root       429912 Mar  6 20:55 usr/lib/libudev.so.1.7.10
+lrwxrwxrwx   1 root     root           17 Jul 19 18:05 usr/lib/libudev.so.1 -> libudev.so.1.7.10
+lrwxrwxrwx   1 root     root           12 Jul 19 18:05 usr/lib/libudev.so -> libudev.so.1
+-rwxr-xr-x   1 root     root       133416 Feb 20 21:52 usr/lib/libz.so.1.3.1
+lrwxrwxrwx   1 root     root           13 Jul 19 18:05 usr/lib/libz.so.1 -> libz.so.1.3.1
+lrwxrwxrwx   1 root     root           13 Jul 19 18:05 usr/lib/libz.so -> libz.so.1.3.1
+-rwxr-xr-x   1 root     root      1066216 Feb 20 22:08 usr/lib/libzstd.so.1.5.7
+lrwxrwxrwx   1 root     root           16 Jul 19 18:05 usr/lib/libzstd.so.1 -> libzstd.so.1.5.7
+lrwxrwxrwx   1 root     root           16 Jul 19 18:05 usr/lib/libzstd.so -> libzstd.so.1.5.7
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib/modprobe.d
+-rw-r--r--   1 root     root          884 Mar  6 23:42 usr/lib/modprobe.d/dist-blacklist.conf
+-rw-r--r--   1 root     root          821 Aug  5  2025 usr/lib/modprobe.d/systemd.conf
+drwxr-xr-x   3 root     root            0 Jul 19 18:05 usr/lib/modules
+drwxr-xr-x   3 root     root            0 Jul 19 18:05 usr/lib/modules/6.16.1-sable-lhc-test1
+drwxr-xr-x   3 root     root            0 Jul 19 18:05 usr/lib/modules/6.16.1-sable-lhc-test1/kernel
+drwxr-xr-x   3 root     root            0 Jul 19 18:05 usr/lib/modules/6.16.1-sable-lhc-test1/kernel/fs
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib/modules/6.16.1-sable-lhc-test1/kernel/fs/efivarfs
+-rw-r--r--   1 root     root        53880 Jul 19 17:43 usr/lib/modules/6.16.1-sable-lhc-test1/kernel/fs/efivarfs/efivarfs.ko
+-rw-r--r--   1 root     root           72 Jul 19 18:05 usr/lib/modules/6.16.1-sable-lhc-test1/modules.alias
+-rw-r--r--   1 root     root           46 Jul 19 18:05 usr/lib/modules/6.16.1-sable-lhc-test1/modules.alias.bin
+-rw-r--r--   1 root     root        14882 Jul 19 17:43 usr/lib/modules/6.16.1-sable-lhc-test1/modules.builtin
+-rw-r--r--   1 root     root        12704 Jul 19 18:05 usr/lib/modules/6.16.1-sable-lhc-test1/modules.builtin.alias.bin
+-rw-r--r--   1 root     root        17184 Jul 19 18:05 usr/lib/modules/6.16.1-sable-lhc-test1/modules.builtin.bin
+-rw-r--r--   1 root     root       147330 Jul 19 17:43 usr/lib/modules/6.16.1-sable-lhc-test1/modules.builtin.modinfo
+-rw-r--r--   1 root     root           32 Jul 19 18:05 usr/lib/modules/6.16.1-sable-lhc-test1/modules.dep
+-rw-r--r--   1 root     root           66 Jul 19 18:05 usr/lib/modules/6.16.1-sable-lhc-test1/modules.dep.bin
+-rw-r--r--   1 root     root            0 Jul 19 18:05 usr/lib/modules/6.16.1-sable-lhc-test1/modules.devname
+-rw-r--r--   1 root     root         1589 Jul 19 17:43 usr/lib/modules/6.16.1-sable-lhc-test1/modules.order
+-rw-r--r--   1 root     root           55 Jul 19 18:05 usr/lib/modules/6.16.1-sable-lhc-test1/modules.softdep
+-rw-r--r--   1 root     root           49 Jul 19 18:05 usr/lib/modules/6.16.1-sable-lhc-test1/modules.symbols
+-rw-r--r--   1 root     root           12 Jul 19 18:05 usr/lib/modules/6.16.1-sable-lhc-test1/modules.symbols.bin
+-rw-r--r--   1 root     root           55 Jul 19 18:05 usr/lib/modules/6.16.1-sable-lhc-test1/modules.weakdep
+lrwxrwxrwx   1 root     root           14 Jul 19 18:05 usr/lib/os-release -> initrd-release
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib/sysctl.d
+-rw-r--r--   1 root     root         1822 Mar  6 20:55 usr/lib/sysctl.d/50-coredump.conf
+-rw-r--r--   1 root     root         1919 Aug  5  2025 usr/lib/sysctl.d/50-default.conf
+-rw-r--r--   1 root     root          649 Aug  5  2025 usr/lib/sysctl.d/50-pid-max.conf
+drwxr-xr-x   4 root     root            0 Jul 19 18:05 usr/lib/systemd
+-rwxr-xr-x   1 root     root      2639320 Mar  6 20:55 usr/lib/systemd/libsystemd-core-257.so
+-rwxr-xr-x   1 root     root      4662848 Mar  6 20:55 usr/lib/systemd/libsystemd-shared-257.so
+drwxr-xr-x   4 root     root            0 Jul 19 18:05 usr/lib/systemd/system
+-rw-r--r--   1 root     root          927 Aug  5  2025 usr/lib/systemd/system/basic.target
+lrwxrwxrwx   1 root     root           13 Jul 19 18:05 usr/lib/systemd/system/ctrl-alt-del.target -> reboot.target
+-rwxr-xr-x   1 root     root       150336 Mar  6 20:55 usr/lib/systemd/systemd
+-rwxr-xr-x   1 root     root        16200 Mar  6 20:55 usr/lib/systemd/systemd-cgroups-agent
+-rwxr-xr-x   1 root     root        81000 Mar  6 20:55 usr/lib/systemd/systemd-coredump
+-rw-r--r--   1 root     root         1100 Mar  6 20:55 usr/lib/systemd/system/debug-shell.service
+lrwxrwxrwx   1 root     root           13 Jul 19 18:05 usr/lib/systemd/system/default.target -> initrd.target
+-rwxr-xr-x   1 root     root       157480 Mar  6 20:55 usr/lib/systemd/systemd-executor
+-rwxr-xr-x   1 root     root        31928 Mar  6 20:55 usr/lib/systemd/systemd-fsck
+-rwxr-xr-x   1 root     root       242680 Mar  6 20:55 usr/lib/systemd/systemd-journald
+-rwxr-xr-x   1 root     root        18440 Mar  6 20:55 usr/lib/systemd/systemd-modules-load
+-rw-r--r--   1 root     root          843 Apr 13 17:56 usr/lib/systemd/system/dracut-cmdline-ask.service
+-rw-r--r--   1 root     root          867 Apr 13 17:56 usr/lib/systemd/system/dracut-cmdline.service
+-rw-r--r--   1 root     root          679 Apr 13 17:56 usr/lib/systemd/system/dracut-emergency.service
+-rw-r--r--   1 root     root          784 Apr 13 17:56 usr/lib/systemd/system/dracut-initqueue.service
+-rw-r--r--   1 root     root          756 Apr 13 17:56 usr/lib/systemd/system/dracut-mount.service
+-rw-r--r--   1 root     root          785 Apr 13 17:56 usr/lib/systemd/system/dracut-pre-mount.service
+-rw-r--r--   1 root     root         1107 Apr 13 17:56 usr/lib/systemd/system/dracut-pre-pivot.service
+-rw-r--r--   1 root     root          877 Apr 13 17:56 usr/lib/systemd/system/dracut-pre-trigger.service
+-rw-r--r--   1 root     root          956 Apr 13 17:56 usr/lib/systemd/system/dracut-pre-udev.service
+-rwxr-xr-x   1 root     root        17456 Mar  6 20:55 usr/lib/systemd/systemd-reply-password
+-rwxr-xr-x   1 root     root        74472 Mar  6 20:55 usr/lib/systemd/systemd-shutdown
+-rwxr-xr-x   1 root     root        27776 Mar  6 20:55 usr/lib/systemd/systemd-sysctl
+lrwxrwxrwx   1 root     root           41 Jul 19 18:05 usr/lib/systemd/systemd-sysroot-fstab-check -> system-generators/systemd-fstab-generator
+lrwxrwxrwx   1 root     root           17 Jul 19 18:05 usr/lib/systemd/systemd-udevd -> ../../bin/udevadm
+-rwxr-xr-x   1 root     root        35112 Mar  6 20:55 usr/lib/systemd/systemd-vconsole-setup
+-rwxr-xr-x   1 root     root        26072 Mar  6 20:55 usr/lib/systemd/systemd-volatile-root
+-rw-r--r--   2 root     root            0 Apr 13 17:56 usr/lib/systemd/system/emergency.service
+-rw-r--r--   1 root     root          479 Aug  5  2025 usr/lib/systemd/system/emergency.target
+-rw-r--r--   1 root     root          500 Aug  5  2025 usr/lib/systemd/system/final.target
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib/systemd/system-generators
+-rwxr-xr-x   1 root     root         2940 Apr 13 17:56 usr/lib/systemd/system-generators/dracut-rootfs-generator
+-rwxr-xr-x   1 root     root        27904 Mar  6 20:55 usr/lib/systemd/system-generators/systemd-debug-generator
+-rwxr-xr-x   1 root     root        61960 Mar  6 20:55 usr/lib/systemd/system-generators/systemd-fstab-generator
+-rwxr-xr-x   1 root     root        37384 Mar  6 20:55 usr/lib/systemd/system-generators/systemd-gpt-auto-generator
+-rw-r--r--   1 root     root          590 Aug  5  2025 usr/lib/systemd/system/halt.target
+-rw-r--r--   1 root     root          697 Aug  5  2025 usr/lib/systemd/system/initrd-cleanup.service
+-rw-r--r--   1 root     root          598 Aug  5  2025 usr/lib/systemd/system/initrd-fs.target
+-rw-r--r--   1 root     root         1116 Mar  6 20:55 usr/lib/systemd/system/initrd-parse-etc.service
+-rw-r--r--   1 root     root          566 Aug  5  2025 usr/lib/systemd/system/initrd-root-device.target
+-rw-r--r--   1 root     root          571 Aug  5  2025 usr/lib/systemd/system/initrd-root-fs.target
+-rw-r--r--   1 root     root          614 Aug  5  2025 usr/lib/systemd/system/initrd-switch-root.service
+-rw-r--r--   1 root     root          779 Aug  5  2025 usr/lib/systemd/system/initrd-switch-root.target
+-rw-r--r--   1 root     root          810 Aug  5  2025 usr/lib/systemd/system/initrd.target
+-rw-r--r--   1 root     root          823 Aug  5  2025 usr/lib/systemd/system/initrd-udevadm-cleanup-db.service
+-rw-r--r--   1 root     root          571 Aug  5  2025 usr/lib/systemd/system/initrd-usr-fs.target
+-rw-r--r--   1 root     root          598 Aug  5  2025 usr/lib/systemd/system/kexec.target
+-rw-r--r--   1 root     root          745 Mar  6 20:55 usr/lib/systemd/system/kmod-static-nodes.service
+-rw-r--r--   1 root     root          453 Aug  5  2025 usr/lib/systemd/system/local-fs-pre.target
+-rw-r--r--   1 root     root          556 Aug  5  2025 usr/lib/systemd/system/local-fs.target
+-rw-r--r--   1 root     root          573 Aug  5  2025 usr/lib/systemd/system/modprobe@.service
+-rw-r--r--   1 root     root          540 Aug  5  2025 usr/lib/systemd/system/multi-user.target
+-rw-r--r--   1 root     root          483 Aug  5  2025 usr/lib/systemd/system/network-online.target
+-rw-r--r--   1 root     root          490 Aug  5  2025 usr/lib/systemd/system/network-pre.target
+-rw-r--r--   1 root     root          499 Aug  5  2025 usr/lib/systemd/system/network.target
+-rw-r--r--   1 root     root          562 Aug  5  2025 usr/lib/systemd/system/nss-lookup.target
+-rw-r--r--   1 root     root          521 Aug  5  2025 usr/lib/systemd/system/nss-user-lookup.target
+-rw-r--r--   1 root     root          407 Aug  5  2025 usr/lib/systemd/system/paths.target
+-rw-r--r--   1 root     root          607 Aug  5  2025 usr/lib/systemd/system/poweroff.target
+-rw-r--r--   1 root     root          598 Aug  5  2025 usr/lib/systemd/system/reboot.target
+-rw-r--r--   1 root     root          454 Aug  5  2025 usr/lib/systemd/system/remote-fs-pre.target
+-rw-r--r--   1 root     root          530 Aug  5  2025 usr/lib/systemd/system/remote-fs.target
+-rw-r--r--   2 root     root          690 Apr 13 17:56 usr/lib/systemd/system/rescue.service
+-rw-r--r--   1 root     root          500 Aug  5  2025 usr/lib/systemd/system/rescue.target
+-rw-r--r--   1 root     root          548 Aug  5  2025 usr/lib/systemd/system/rpcbind.target
+-rw-r--r--   1 root     root          457 Aug  5  2025 usr/lib/systemd/system/shutdown.target
+-rw-r--r--   1 root     root          410 Aug  5  2025 usr/lib/systemd/system/sigpwr.target
+-rw-r--r--   1 root     root          462 Aug  5  2025 usr/lib/systemd/system/slices.target
+-rw-r--r--   1 root     root          409 Aug  5  2025 usr/lib/systemd/system/sockets.target
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib/systemd/system/sockets.target.wants
+lrwxrwxrwx   1 root     root           34 Jul 19 18:05 usr/lib/systemd/system/sockets.target.wants/systemd-journald-dev-log.socket -> ../systemd-journald-dev-log.socket
+lrwxrwxrwx   1 root     root           26 Jul 19 18:05 usr/lib/systemd/system/sockets.target.wants/systemd-journald.socket -> ../systemd-journald.socket
+lrwxrwxrwx   1 root     root           31 Jul 19 18:05 usr/lib/systemd/system/sockets.target.wants/systemd-udevd-control.socket -> ../systemd-udevd-control.socket
+lrwxrwxrwx   1 root     root           30 Jul 19 18:05 usr/lib/systemd/system/sockets.target.wants/systemd-udevd-kernel.socket -> ../systemd-udevd-kernel.socket
+-rw-r--r--   1 root     root          402 Aug  5  2025 usr/lib/systemd/system/swap.target
+-rw-r--r--   1 root     root          574 Aug  5  2025 usr/lib/systemd/system/sysinit.target
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib/systemd/system/sysinit.target.wants
+lrwxrwxrwx   1 root     root           28 Jul 19 18:05 usr/lib/systemd/system/sysinit.target.wants/kmod-static-nodes.service -> ../kmod-static-nodes.service
+lrwxrwxrwx   1 root     root           36 Jul 19 18:05 usr/lib/systemd/system/sysinit.target.wants/systemd-ask-password-console.path -> ../systemd-ask-password-console.path
+lrwxrwxrwx   1 root     root           27 Jul 19 18:05 usr/lib/systemd/system/sysinit.target.wants/systemd-journald.service -> ../systemd-journald.service
+lrwxrwxrwx   1 root     root           31 Jul 19 18:05 usr/lib/systemd/system/sysinit.target.wants/systemd-modules-load.service -> ../systemd-modules-load.service
+lrwxrwxrwx   1 root     root           25 Jul 19 18:05 usr/lib/systemd/system/sysinit.target.wants/systemd-sysctl.service -> ../systemd-sysctl.service
+lrwxrwxrwx   1 root     root           43 Jul 19 18:05 usr/lib/systemd/system/sysinit.target.wants/systemd-tmpfiles-setup-dev-early.service -> ../systemd-tmpfiles-setup-dev-early.service
+lrwxrwxrwx   1 root     root           37 Jul 19 18:05 usr/lib/systemd/system/sysinit.target.wants/systemd-tmpfiles-setup-dev.service -> ../systemd-tmpfiles-setup-dev.service
+lrwxrwxrwx   1 root     root           33 Jul 19 18:05 usr/lib/systemd/system/sysinit.target.wants/systemd-tmpfiles-setup.service -> ../systemd-tmpfiles-setup.service
+lrwxrwxrwx   1 root     root           24 Jul 19 18:05 usr/lib/systemd/system/sysinit.target.wants/systemd-udevd.service -> ../systemd-udevd.service
+lrwxrwxrwx   1 root     root           31 Jul 19 18:05 usr/lib/systemd/system/sysinit.target.wants/systemd-udev-trigger.service -> ../systemd-udev-trigger.service
+-rw-r--r--   1 root     root         1082 Aug  5  2025 usr/lib/systemd/system/sys-kernel-config.mount
+-rw-r--r--   1 root     root         1353 Aug  5  2025 usr/lib/systemd/system/syslog.socket
+-rw-r--r--   1 root     root          771 Aug  5  2025 usr/lib/systemd/system/systemd-ask-password-console.path
+-rw-r--r--   1 root     root          834 Aug  5  2025 usr/lib/systemd/system/systemd-ask-password-console.service
+-rw-r--r--   1 root     root          771 Mar  6 20:55 usr/lib/systemd/system/systemd-fsck@.service
+-rw-r--r--   1 root     root          562 Aug  5  2025 usr/lib/systemd/system/systemd-halt.service
+-rw-r--r--   1 root     root          724 Aug  5  2025 usr/lib/systemd/system/systemd-journald-audit.socket
+-rw-r--r--   1 root     root         1182 Aug  5  2025 usr/lib/systemd/system/systemd-journald-dev-log.socket
+-rw-r--r--   1 root     root         2833 Mar  6 20:55 usr/lib/systemd/system/systemd-journald.service
+-rw-r--r--   1 root     root          935 Aug  5  2025 usr/lib/systemd/system/systemd-journald.socket
+-rw-r--r--   1 root     root          569 Aug  5  2025 usr/lib/systemd/system/systemd-kexec.service
+-rw-r--r--   1 root     root         1104 Mar  6 20:55 usr/lib/systemd/system/systemd-modules-load.service
+-rw-r--r--   1 root     root          575 Aug  5  2025 usr/lib/systemd/system/systemd-poweroff.service
+-rw-r--r--   1 root     root          568 Aug  5  2025 usr/lib/systemd/system/systemd-reboot.service
+-rw-r--r--   1 root     root          731 Mar  6 20:55 usr/lib/systemd/system/systemd-sysctl.service
+-rw-r--r--   1 root     root          852 Aug  5  2025 usr/lib/systemd/system/systemd-tmpfiles-setup-dev-early.service
+-rw-r--r--   1 root     root          877 Aug  5  2025 usr/lib/systemd/system/systemd-tmpfiles-setup-dev.service
+-rw-r--r--   1 root     root         1003 Aug  5  2025 usr/lib/systemd/system/systemd-tmpfiles-setup.service
+-rw-r--r--   1 root     root          650 Aug  5  2025 usr/lib/systemd/system/systemd-udevd-control.socket
+-rw-r--r--   1 root     root          624 Aug  5  2025 usr/lib/systemd/system/systemd-udevd-kernel.socket
+-rw-r--r--   1 root     root         1368 Mar  6 20:55 usr/lib/systemd/system/systemd-udevd.service
+-rw-r--r--   1 root     root          863 Aug  5  2025 usr/lib/systemd/system/systemd-udev-settle.service
+-rw-r--r--   1 root     root          758 Aug  5  2025 usr/lib/systemd/system/systemd-udev-trigger.service
+-rw-r--r--   1 root     root         1196 Mar  6 20:55 usr/lib/systemd/system/systemd-vconsole-setup.service
+-rw-r--r--   1 root     root          743 Mar  6 20:55 usr/lib/systemd/system/systemd-volatile-root.service
+-rw-r--r--   1 root     root          458 Aug  5  2025 usr/lib/systemd/system/timers.target
+-rw-r--r--   1 root     root          465 Aug  5  2025 usr/lib/systemd/system/umount.target
+lrwxrwxrwx   1 root     root           17 Jul 19 18:05 usr/lib/terminfo -> ../share/terminfo
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib/tmpfiles.d
+-rw-r--r--   1 root     root          135 Apr 13 17:56 usr/lib/tmpfiles.d/dracut-tmpfiles.conf
+-rw-r--r--   1 root     root         1419 Mar  6 20:55 usr/lib/tmpfiles.d/systemd.conf
+drwxr-xr-x   3 root     root            0 Jul 19 18:05 usr/lib/udev
+-rwxr-xr-x   1 root     root        21880 Mar  6 20:55 usr/lib/udev/ata_id
+-rwxr-xr-x   1 root     root        35416 Mar  6 20:55 usr/lib/udev/cdrom_id
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/lib/udev/rules.d
+-rw-r--r--   1 root     root         5180 Mar  6 20:55 usr/lib/udev/rules.d/50-udev-default.rules
+-rw-r--r--   1 root     root          721 Aug  5  2025 usr/lib/udev/rules.d/60-block.rules
+-rw-r--r--   1 root     root         1071 Aug  5  2025 usr/lib/udev/rules.d/60-cdrom_id.rules
+-rw-r--r--   1 root     root        10463 Mar  6 20:55 usr/lib/udev/rules.d/60-persistent-storage.rules
+-rw-r--r--   1 root     root          616 Mar  6 20:55 usr/lib/udev/rules.d/64-btrfs.rules
+-rw-r--r--   1 root     root         2046 May 24 16:21 usr/lib/udev/rules.d/70-nvmf-autoconnect.rules
+-rw-r--r--   1 root     root         3870 Mar  6 20:55 usr/lib/udev/rules.d/71-seat.rules
+-rw-r--r--   1 root     root          587 Mar  6 20:55 usr/lib/udev/rules.d/73-seat-late.rules
+-rw-r--r--   1 root     root          540 Aug  5  2025 usr/lib/udev/rules.d/75-net-description.rules
+-rw-r--r--   1 root     root          600 Aug  5  2025 usr/lib/udev/rules.d/80-drivers.rules
+-rw-r--r--   1 root     root          295 Aug  5  2025 usr/lib/udev/rules.d/80-net-setup-link.rules
+-rw-r--r--   1 root     root          518 Mar  6 20:55 usr/lib/udev/rules.d/90-vconsole.rules
+-rw-r--r--   1 root     root         5451 Mar  6 20:55 usr/lib/udev/rules.d/99-systemd.rules
+-rwxr-xr-x   1 root     root        40992 Mar  6 20:55 usr/lib/udev/scsi_id
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/sbin
+-rwxr-xr-x   1 root     root       168552 Feb 21 12:34 usr/sbin/blkid
+lrwxrwxrwx   1 root     root           11 Jul 19 18:05 usr/sbin/depmod -> ../bin/kmod
+-rwxr-xr-x   1 root     root        73568 Feb 21 12:34 usr/sbin/fsck
+lrwxrwxrwx   1 root     root           16 Jul 19 18:05 usr/sbin/halt -> ../bin/systemctl
+lrwxrwxrwx   1 root     root           22 Jul 19 18:05 usr/sbin/init -> ../lib/systemd/systemd
+-rwxr-xr-x   1 root     root         1341 Apr 13 17:56 usr/sbin/initqueue
+lrwxrwxrwx   1 root     root           11 Jul 19 18:05 usr/sbin/insmod -> ../bin/kmod
+-rwxr-xr-x   1 root     root          195 Apr 13 17:56 usr/sbin/insmodpost.sh
+-rwxr-xr-x   1 root     root          528 Apr 13 17:56 usr/sbin/loginit
+-rwxr-xr-x   1 root     root       157072 Feb 21 12:34 usr/sbin/losetup
+lrwxrwxrwx   1 root     root           11 Jul 19 18:05 usr/sbin/lsmod -> ../bin/kmod
+lrwxrwxrwx   1 root     root           11 Jul 19 18:05 usr/sbin/modinfo -> ../bin/kmod
+lrwxrwxrwx   1 root     root           11 Jul 19 18:05 usr/sbin/modprobe -> ../bin/kmod
+-rwxr-xr-x   1 root     root        16264 Mar  8 04:53 usr/sbin/nologin
+lrwxrwxrwx   1 root     root           16 Jul 19 18:05 usr/sbin/poweroff -> ../bin/systemctl
+-rwxr-xr-x   1 root     root         1450 Apr 13 17:56 usr/sbin/rdsosreport
+lrwxrwxrwx   1 root     root           16 Jul 19 18:05 usr/sbin/reboot -> ../bin/systemctl
+lrwxrwxrwx   1 root     root           11 Jul 19 18:05 usr/sbin/rmmod -> ../bin/kmod
+-rwxr-xr-x   1 root     root        67376 Feb 21 12:34 usr/sbin/sulogin
+-rwxr-xr-x   1 root     root        68448 Feb 21 12:34 usr/sbin/swapoff
+-rwxr-xr-x   1 root     root        36816 Feb 21 12:32 usr/sbin/sysctl
+drwxr-xr-x   5 root     root            0 Jul 19 18:05 usr/share
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/share/consolefonts
+-rw-r--r--   1 root     root        10558 Feb 21 11:52 usr/share/consolefonts/eurlatgr.psfu
+-rw-r--r--   1 root     root         5023 Feb 21 11:52 usr/share/consolefonts/Lat2-Terminus16.psfu
+drwxr-xr-x   4 root     root            0 Jul 19 18:05 usr/share/keymaps
+drwxr-xr-x   4 root     root            0 Jul 19 18:05 usr/share/keymaps/i386
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/share/keymaps/i386/include
+-rw-r--r--   1 root     root          278 Feb 21 11:52 usr/share/keymaps/i386/include/compose.inc
+-rw-r--r--   1 root     root          253 Feb 21 11:52 usr/share/keymaps/i386/include/euro1.map
+-rw-r--r--   1 root     root         4353 Feb 21 11:52 usr/share/keymaps/i386/include/linux-keys-bare.inc
+-rw-r--r--   1 root     root          746 Feb 21 11:52 usr/share/keymaps/i386/include/linux-with-alt-and-altgr.inc
+-rw-r--r--   1 root     root          456 Feb 21 11:52 usr/share/keymaps/i386/include/qwerty-layout.inc
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/share/keymaps/i386/qwerty
+-rw-r--r--   1 root     root         2004 Feb 21 11:52 usr/share/keymaps/i386/qwerty/us.map
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/share/keymaps/include
+-rw-r--r--   1 root     root          517 Feb 21 11:52 usr/share/keymaps/include/compose.8859_7
+-rw-r--r--   1 root     root           23 Feb 21 11:52 usr/share/keymaps/include/compose.8859_8
+-rw-r--r--   1 root     root         6030 Feb 21 11:52 usr/share/keymaps/include/compose.latin
+-rw-r--r--   1 root     root         3889 Feb 21 11:52 usr/share/keymaps/include/compose.latin1
+-rw-r--r--   1 root     root         3465 Feb 21 11:52 usr/share/keymaps/include/compose.latin2
+-rw-r--r--   1 root     root         2037 Feb 21 11:52 usr/share/keymaps/include/compose.latin3
+-rw-r--r--   1 root     root         2897 Feb 21 11:52 usr/share/keymaps/include/compose.latin4
+drwxr-xr-x   4 root     root            0 Jul 19 18:05 usr/share/terminfo
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/share/terminfo/l
+-rw-r--r--   1 root     root         1740 Feb 20 23:42 usr/share/terminfo/l/linux
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 usr/share/terminfo/v
+-rw-r--r--   1 root     root         1282 Feb 20 23:42 usr/share/terminfo/v/vt100
+-rw-r--r--   1 root     root         1276 Feb 20 23:42 usr/share/terminfo/v/vt102
+-rw-r--r--   1 root     root         1391 Feb 20 23:42 usr/share/terminfo/v/vt220
+drwxr-xr-x   3 root     root            0 Jul 19 18:05 var
+lrwxrwxrwx   1 root     root           11 Jul 19 18:05 var/lock -> ../run/lock
+lrwxrwxrwx   1 root     root            6 Jul 19 18:05 var/run -> ../run
+drwxr-xr-x   2 root     root            0 Jul 19 18:05 var/tmp

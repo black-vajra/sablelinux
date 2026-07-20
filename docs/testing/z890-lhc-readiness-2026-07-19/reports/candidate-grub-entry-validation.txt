@@ -1,0 +1,28 @@
+SABLELINUX CANDIDATE GRUB ENTRY VALIDATION
+timestamp_utc=2026-07-19T23:07:27Z
+build_id=20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1
+current_release=6.16.1-sable-compat
+target_release=6.16.1-sable-lhc-test1
+entry_title=SableLinux LHC test kernel 6.16.1-sable-lhc-test1
+entry_id=sablelinux-lhc-test1
+custom_cfg=/boot/grub/custom.cfg
+custom_cfg_previously_existed=false
+custom_cfg_sha256_before=absent
+custom_cfg_sha256_after=3a581fc11b16aed03b7ec84e5d6ad22dbe3e82f9b888632818a9832e45a5b7b6
+generated_grub_cfg_sha256=1827589b3bbd04f8121fd8268f31a82693cc181d62ce842e8ece7a178c5dceca
+grub_default_policy=0
+root_uuid=70148917-ed5a-466c-b71b-444596ca684a
+boot_uuid=13816e16-93ea-4e55-9b82-cfbb7946b7a0
+linux_command=linux
+initrd_command=initrd
+kernel_arguments=root=UUID=70148917-ed5a-466c-b71b-444596ca684a ro  
+
+PASS: dedicated candidate GRUB entry installed
+PASS: candidate entry is present exactly once
+PASS: candidate entry uses the validated kernel arguments
+PASS: candidate entry uses the separate /boot UUID
+PASS: generated grub.cfg remains unchanged
+PASS: GRUB environment and default selection remain unchanged
+PASS: compatibility boot artifacts remain unchanged
+PASS: candidate was not made the default
+PASS: BOINC remains inactive and disabled

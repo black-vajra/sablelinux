@@ -1,0 +1,33 @@
+SABLELINUX TIER 1 QEMU KERNEL SMOKE VALIDATION
+timestamp_utc=2026-07-19T22:22:06Z
+build_id=20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1
+target_release=6.16.1-sable-lhc-test1
+started_at=2026-07-19T22:20:36Z
+finished_at=2026-07-19T22:22:06Z
+elapsed_seconds=90
+qemu_status=124
+pass_marker_count=0
+fail_marker_count=0
+guest_failure_count=0
+smoke_initramfs=/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-kernel-smoke/initramfs-6.16.1-sable-lhc-test1.img
+smoke_initramfs_size=3436675
+smoke_initramfs_sha256=84550af0e37141760c9c5de8926c4f3762148dbc39f1837dd23e08e79557f599
+
+=== GUEST RESULT ===
+FAIL: Tier 1 guest validation did not complete cleanly
+FAIL: candidate kernel boot was not confirmed
+FAIL: user-namespace configuration was not confirmed
+FAIL: unprivileged user namespace runtime test failed
+FAIL: candidate FUSE module runtime load failed
+FAIL: /dev/fuse runtime creation failed
+
+=== HOST SAFETY ===
+PASS: fallback kernel remains unchanged
+PASS: fallback initramfs remains unchanged
+PASS: GRUB configuration remains unchanged
+PASS: candidate modules remain uninstalled
+PASS: candidate kernel remains outside /boot
+PASS: candidate initramfs remains outside /boot
+PASS: host continues running the compatibility kernel
+PASS: BOINC remains inactive
+PASS: BOINC remains disabled at boot

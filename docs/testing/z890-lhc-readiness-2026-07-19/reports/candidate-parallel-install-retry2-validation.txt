@@ -1,0 +1,30 @@
+SABLELINUX CANDIDATE PARALLEL INSTALL RETRY-2 VALIDATION
+timestamp_utc=2026-07-19T23:02:33Z
+build_id=20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1
+current_release=6.16.1-sable-compat
+target_release=6.16.1-sable-lhc-test1
+kernel=/boot/vmlinuz-6.16.1-sable-lhc-test1
+kernel_sha256=77c2a123bb8c3eb5c1b376c8af502052e5731715680d46ccf7c2ace0b863237c
+config=/boot/config-6.16.1-sable-lhc-test1
+config_sha256=9a9dd3fc7ac49707c95daafce792b77badd35802221e70c51caab85d6b084933
+system_map=/boot/System.map-6.16.1-sable-lhc-test1
+system_map_sha256=67e9b0ca0032dc01bbbeabb9694d2bb95f899d2e84139f6f864f34441cce3de1
+initramfs=/boot/initramfs-6.16.1-sable-lhc-test1.img
+initramfs_sha256=b21e2e1adf6a7622fedc803e444ea065b9c049de690de06da2d60e6a1d46b5f3
+module_root=/lib/modules/6.16.1-sable-lhc-test1
+module_file_count=50
+kernel_module_count=36
+fuse_vermagic=6.16.1-sable-lhc-test1
+sudo_lsinitrd_status=0
+direct_skipcpio_status=0
+direct_gzip_status=0
+direct_cpio_status=0
+
+PASS: candidate artifacts installed in parallel
+PASS: root-aware lsinitrd validation succeeded
+PASS: direct initramfs archive validation succeeded
+PASS: installed FUSE module resolves correctly
+PASS: installed modules match staged source
+PASS: compatibility boot artifacts remain unchanged
+PASS: GRUB configuration remains unchanged
+PASS: BOINC remains inactive and disabled

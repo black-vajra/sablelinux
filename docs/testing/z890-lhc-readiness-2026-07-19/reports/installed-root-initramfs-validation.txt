@@ -1,0 +1,63 @@
+SABLELINUX STRICT INSTALLED-ROOT INITRAMFS VALIDATION
+timestamp_utc=2026-07-19T22:05:16Z
+build_id=20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1
+target_release=6.16.1-sable-lhc-test1
+initramfs=/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/initramfs-installed-root/initramfs-6.16.1-sable-lhc-test1.img
+initramfs_size=13144365
+initramfs_sha256=b21e2e1adf6a7622fedc803e444ea065b9c049de690de06da2d60e6a1d46b5f3
+dracut_status=0
+lsinitrd_status=0
+module_list_status=0
+root_source=/dev/nvme1n1p3
+root_fstype=ext4
+root_uuid=70148917-ed5a-466c-b71b-444596ca684a
+
+=== STRUCTURAL VALIDATION ===
+PASS: lsinitrd parsed the image
+PASS: dracut module list was extracted
+PASS: image contains the candidate release
+PASS: image contains kmod
+PASS: image contains modprobe
+PASS: image contains the binary module index
+
+=== LIVE-MEDIA EXCLUSION ===
+PASS: live dracut module excluded: sable-live
+PASS: live dracut module excluded: dmsquash-live
+PASS: live dracut module excluded: dmsquash-live-ntfs
+PASS: live dracut module excluded: squash
+FAIL: live-media content markers remain
+Arguments:  --force --hostonly --omit 'sable-live dmsquash-live dmsquash-live-ntfs squash' --kver '6.16.1-sable-lhc-test1' --kmoddir '/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/stage-root/lib/modules/6.16.1-sable-lhc-test1' --kernel-image '/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/kernel/build/arch/x86/boot/bzImage'
+
+=== REQUIRED DRACUT MODULES ===
+PASS: required dracut module present: systemd
+PASS: required dracut module present: systemd-initrd
+PASS: required dracut module present: kernel-modules
+PASS: required dracut module present: rootfs-block
+PASS: required dracut module present: udev-rules
+PASS: required dracut module present: base
+PASS: required dracut module present: fs-lib
+PASS: required dracut module present: shutdown
+
+=== ROOT FILESYSTEM SUPPORT ===
+PASS: NVMe block-device support is built into the kernel
+PASS: NVMe core support is built into the kernel
+PASS: ext4 root-filesystem support is built into the kernel
+PASS: CONFIG_BLK_DEV_INITRD=y
+PASS: CONFIG_DEVTMPFS=y
+PASS: CONFIG_DEVTMPFS_MOUNT=y
+PASS: CONFIG_PROC_FS=y
+PASS: CONFIG_SYSFS=y
+PASS: CONFIG_TMPFS=y
+
+=== FALLBACK INTEGRITY ===
+PASS: fallback kernel remains unchanged
+PASS: fallback initramfs remains unchanged
+PASS: GRUB configuration remains unchanged
+
+=== HOST SAFETY ===
+PASS: candidate modules remain uninstalled
+PASS: candidate kernel remains outside /boot
+PASS: candidate initramfs remains outside /boot
+PASS: running kernel remains unchanged
+PASS: BOINC remains inactive
+PASS: BOINC remains disabled at boot

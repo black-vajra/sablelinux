@@ -1,0 +1,46 @@
+SABLELINUX FINAL TIER 1 QEMU VALIDATION
+timestamp_utc=2026-07-19T22:47:03Z
+build_id=20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1
+target_release=6.16.1-sable-lhc-test1
+started_at=2026-07-19T22:47:01Z
+finished_at=2026-07-19T22:47:03Z
+elapsed_seconds=2
+qemu_status=0
+pass_marker_count=1
+fail_marker_count=0
+guest_failure_count=0
+outer_uid_count=1
+outer_gid_count=1
+inner_uid_count=1
+inner_gid_count=1
+initramfs=/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-kernel-smoke-userns-fixed/initramfs-6.16.1-sable-lhc-test1.img
+initramfs_size=3437684
+initramfs_sha256=575c593b6623929e78e6116e6eff96f2d204685245e76bff5b6470de5137e88b
+
+=== QEMU RESULT ===
+PASS: QEMU exited cleanly after guest poweroff
+PASS: Tier 1 guest validation completed successfully
+
+=== USER-NAMESPACE VALIDATION ===
+PASS: test began as unprivileged UID/GID 1000
+PASS: UID/GID 1000 mapped to root inside a new user namespace
+PASS: candidate kernel release is running
+PASS: /proc/config.gz is available
+PASS: CONFIG_USER_NS=y
+PASS: CONFIG_FUSE_FS=m
+PASS: user namespace interface exists
+PASS: unprivileged user namespace creation succeeded
+PASS: candidate FUSE module loaded
+PASS: FUSE module is registered in sysfs
+PASS: /dev/fuse was created
+
+=== HOST SAFETY ===
+PASS: fallback kernel remains unchanged
+PASS: fallback initramfs remains unchanged
+PASS: GRUB configuration remains unchanged
+PASS: candidate modules remain uninstalled
+PASS: candidate kernel remains outside /boot
+PASS: candidate initramfs remains outside /boot
+PASS: host remains on compatibility kernel
+PASS: BOINC remains inactive
+PASS: BOINC remains disabled at boot

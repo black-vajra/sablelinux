@@ -1,0 +1,65 @@
+SABLELINUX PHYSICAL VALIDATION CORRECTION
+timestamp_utc=2026-07-20T00:00:18Z
+build_id=20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1
+running_release=6.16.1-sable-lhc-test1
+original_report=/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/reports/candidate-physical-runtime-validation.txt
+original_report_intermediate_self_hash=579f422349f0b83d4ab9b25f108f8674a015a8d6c69690a271fa924f32556538
+original_report_final_sha256=0dae8cb5545b4a2b0fb4269e4bc3f0be26f254d86d91233d56b3fbad4b30e8f5
+original_manifest=/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/metadata/candidate-physical-runtime-manifest.env
+original_manifest_sha256=62073d705562565f975f4d32f0470cbf03863fb2ba2aa55568bdadf5cfe30b17
+
+=== HASH CLASSIFICATION ===
+CLASSIFICATION=validator-self-referential-report-hash
+PASS: the validator hashed the report before tee wrote the hash line into it
+PASS: original validation contents record zero failures and a PASS result
+
+=== NETWORK VALIDATION USING SYSFS ===
+interface=enp132s0 operstate=up carrier=1 address=10:ff:e0:6b:da:50
+interface=lo operstate=unknown carrier=1 address=00:00:00:00:00:00
+interface=sit0 operstate=down carrier=unavailable address=00:00:00:00
+interface=wg0 operstate=unknown carrier=1 address=
+interface=wlp131s0 operstate=down carrier=unavailable address=44:fa:66:65:df:9b
+
+active_non_loopback_interface_count=2
+PASS: at least one non-loopback interface is operational
+
+=== ADDRESS INFORMATION ===
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: enp132s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000
+    link/ether 10:ff:e0:6b:da:50 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.0.114/24 brd 192.168.0.255 scope global dynamic enp132s0
+       valid_lft 6726sec preferred_lft 6726sec
+    inet6 fe80::12ff:e0ff:fe6b:da50/64 scope link 
+       valid_lft forever preferred_lft forever
+3: sit0@NONE: <NOARP> mtu 1480 qdisc noop qlen 1000
+    link/sit 0.0.0.0 brd 0.0.0.0
+4: wlp131s0: <BROADCAST,MULTICAST> mtu 1500 qdisc noop qlen 1000
+    link/ether 44:fa:66:65:df:9b brd ff:ff:ff:ff:ff:ff
+5: wg0: <POINTOPOINT,NOARP,UP,LOWER_UP> mtu 1420 qdisc noqueue qlen 1000
+    link/[65534] 
+    inet 10.6.0.4/24 scope global wg0
+       valid_lft forever preferred_lft forever
+
+=== ROUTING TABLE ===
+default dev wg0 scope link  metric 100 
+10.6.0.0/24 dev wg0 scope link  src 10.6.0.4 
+172.233.26.17 via 192.168.0.1 dev enp132s0 
+192.168.0.0/24 dev enp132s0 scope link  src 192.168.0.114  metric 1024 
+192.168.0.1 dev enp132s0 scope link  src 192.168.0.114  metric 1024 
+208.113.130.146 via 192.168.0.1 dev enp132s0  src 192.168.0.114  metric 1024 
+PASS: default route is present
+PASS: physical Ethernet route is present
+PASS: WireGuard route is present
+
+=== ORIGINAL NETWORK WARNING ===
+ip_path=/usr/bin/ip
+ip_resolved=/usr/bin/busybox
+PASS: installed BusyBox ip rejects unsupported -brief syntax
+NETWORK_WARNING_CLASSIFICATION=validator-busybox-ip-brief-incompatibility
+
+network_failure_count=0

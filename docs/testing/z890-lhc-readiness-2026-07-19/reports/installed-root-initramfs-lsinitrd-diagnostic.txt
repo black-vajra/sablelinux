@@ -1,0 +1,28 @@
+SABLELINUX LSINITRD FAILURE DIAGNOSTIC
+timestamp_utc=2026-07-19T22:58:32Z
+build_id=20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1
+current_release=6.16.1-sable-compat
+target_release=6.16.1-sable-lhc-test1
+current_lsinitrd_status=4
+candidate_lsinitrd_status=0
+current_trace_status=4
+candidate_trace_status=0
+candidate_sha256=b21e2e1adf6a7622fedc803e444ea065b9c049de690de06da2d60e6a1d46b5f3
+candidate_original_type=ASCII cpio archive (SVR4 with no CRC)
+payload_method=skipcpio
+payload_type=gzip compressed data, max compression, from Unix, original size modulo 2^32 32604672
+direct_decompressor=gzip
+direct_archive_status=0
+direct_archive_entry_count=450
+
+=== CLASSIFICATION ===
+CLASSIFICATION=installation-script-validation-bug
+The source image parses now; inspect the prior invocation and environment.
+
+=== SAFETY ===
+PASS: compatibility kernel remains active
+PASS: candidate remains uninstalled after rollback
+PASS: BOINC remains inactive
+PASS: BOINC remains disabled at boot
+
+No boot, module, GRUB, or system files were modified.

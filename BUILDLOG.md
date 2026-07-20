@@ -2746,3 +2746,49 @@ the tmpfs-backed overlay, and switches into the generated live root.
 
 The build reached state initramfs-generated and is preserved as successful
 stage evidence. Its successor commit adds Tier 1 ext4 test-media generation.
+
+## 2026-07-19/20 - Z890 LHC kernel and container readiness
+
+Canonical host: Z890 SableLinux
+Build ID: 20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1
+Validated kernel: 6.16.1-sable-lhc-test1
+
+Completed:
+- Built the LHC-readiness kernel from clean Linux 6.16.1 sources.
+- Enabled USER_NS, modular FUSE, and embedded kernel configuration access.
+- Activated and validated kmod 34.2.
+- Generated and validated an installed-root initramfs.
+- Passed direct QEMU/KVM Tier 1 USER_NS and FUSE testing.
+- Installed the candidate beside the compatibility kernel.
+- Added a dedicated non-default GRUB entry.
+- Booted and physically validated the candidate on the canonical Z890.
+- Confirmed storage, KVM, graphics, AMD KFD, audio, networking, systemd,
+  user namespaces, FUSE, and rollback integrity.
+- Preserved BOINC as inactive and disabled.
+
+Validator corrections:
+- Classified the runtime-report hash as self-referential because tee had not
+  finished appending when the report was hashed.
+- Replaced the unsupported BusyBox ip -brief check with sysfs, ip addr show,
+  and ip route validation.
+
+Rootless-container discovery:
+- Kernel and host primitives are ready.
+- BOINC lacks subordinate UID and GID ranges.
+- Podman, conmon, an OCI runtime, rootless networking, and fuse-overlayfs are
+  absent.
+- Candidate subordinate range: boinc:131072:65536.
+- No usable local Podman-stack source archives were found.
+- The next phase requires a verified upstream acquisition and build plan.
+
+Authoritative evidence:
+- docs/testing/z890-lhc-readiness-2026-07-19
+
+Evidence policy:
+- Machine-generated evidence is preserved byte-for-byte.
+- Whitespace checks apply only to human-authored documentation.
+- Raw evidence integrity is recorded in SHA256SUMS.
+
+Export policy:
+- Do not publish this interim subproject to the separate LHC@home repository.
+- Export it there only after Podman and LHC workload phases are complete.

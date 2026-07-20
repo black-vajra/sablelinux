@@ -1,0 +1,1 @@
+insmod /lib/modules/6.16.1-sable-compat/kernel/fs/efivarfs/efivarfs.ko 

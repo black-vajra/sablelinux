@@ -1,0 +1,42 @@
+SABLELINUX TIER 1 QEMU KERNEL SMOKE RETRY
+timestamp_utc=2026-07-19T22:31:54Z
+build_id=20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1
+target_release=6.16.1-sable-lhc-test1
+started_at=2026-07-19T22:30:24Z
+finished_at=2026-07-19T22:31:54Z
+elapsed_seconds=90
+qemu_status=124
+console_marker_count=0
+pass_marker_count=0
+fail_marker_count=0
+guest_failure_count=0
+smoke_initramfs=/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-kernel-smoke-console-fixed/initramfs-6.16.1-sable-lhc-test1.img
+smoke_initramfs_size=3437128
+smoke_initramfs_sha256=21b0595e869b6385c38e4f4f41a940746722ca845b413b31f9a22e866568eede
+
+=== HARNESS VALIDATION ===
+FAIL: guest serial console did not become operational
+FAIL: QEMU did not exit cleanly: status 124
+
+=== GUEST RESULT ===
+FAIL: Tier 1 guest validation did not complete cleanly
+FAIL: missing guest result: PASS: candidate kernel release is running
+FAIL: missing guest result: PASS: /proc/config.gz is available
+FAIL: missing guest result: PASS: CONFIG_USER_NS=y
+FAIL: missing guest result: PASS: CONFIG_FUSE_FS=m
+FAIL: missing guest result: PASS: user namespace interface exists
+FAIL: missing guest result: PASS: unprivileged user namespace creation succeeded
+FAIL: missing guest result: PASS: candidate FUSE module loaded
+FAIL: missing guest result: PASS: FUSE module is registered in sysfs
+FAIL: missing guest result: PASS: /dev/fuse was created
+
+=== HOST SAFETY ===
+PASS: fallback kernel remains unchanged
+PASS: fallback initramfs remains unchanged
+PASS: GRUB configuration remains unchanged
+PASS: candidate modules remain uninstalled
+PASS: candidate kernel remains outside /boot
+PASS: candidate initramfs remains outside /boot
+PASS: host continues running compatibility kernel
+PASS: BOINC remains inactive
+PASS: BOINC remains disabled at boot

@@ -1,0 +1,21 @@
+SABLELINUX PHYSICAL REBOOT READINESS
+timestamp_utc=2026-07-19T23:46:07Z
+build_id=20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1
+current_release=6.16.1-sable-compat
+target_release=6.16.1-sable-lhc-test1
+entry_title=SableLinux LHC test kernel 6.16.1-sable-lhc-test1
+entry_id=sablelinux-lhc-test1
+runtime_script=/srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/metadata/validate-candidate-physical-runtime.sh
+runtime_script_sha256=b6a4f11c2a65058726f8a0bb083a46758a271f54526d6116402fa862bb4f2599
+candidate_kernel_sha256=77c2a123bb8c3eb5c1b376c8af502052e5731715680d46ccf7c2ace0b863237c
+candidate_initramfs_sha256=b21e2e1adf6a7622fedc803e444ea065b9c049de690de06da2d60e6a1d46b5f3
+custom_cfg_sha256=3a581fc11b16aed03b7ec84e5d6ad22dbe3e82f9b888632818a9832e45a5b7b6
+grub_cfg_sha256=1827589b3bbd04f8121fd8268f31a82693cc181d62ce842e8ece7a178c5dceca
+
+PASS: candidate kernel artifacts are intact
+PASS: compatibility fallback artifacts are intact
+PASS: candidate GRUB entry is valid and non-default
+PASS: GRUB environment has no saved candidate selection
+PASS: physical runtime validator is prepared
+PASS: BOINC remains inactive and disabled
+READY_TO_REBOOT=true

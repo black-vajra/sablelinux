@@ -1,0 +1,11 @@
+dbac288c29ba568459550a2da9e7ae0ded6b1fc728ee9fad3044c44e62d6ac14  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-kernel-smoke-userns-fixed/root/bin/busybox
+b347d28923fe68e080be02fb9647aa728abe799a8e80ac435b2dfc700e1b3cca  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-kernel-smoke-userns-fixed/root/etc/group
+dcb12ece896fdf6d4ffd96dc79aeb2b4093bcb42c20a8be83228eedd587104b6  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-kernel-smoke-userns-fixed/root/etc/passwd
+1960d76c286625150918467a7c6bb3a88d7e5522cc9f90a7ca65340ed15fa22d  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-kernel-smoke-userns-fixed/root/etc/shadow
+0ff8a9cb43b9cc027a716359ddcf4733ce7509118ad33f23b174ea30b8e0ca4c  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-kernel-smoke-userns-fixed/root/init
+ababbfbba1002434b8a3095fccc853f03d44eaea31f3ee3f3433533db3a37243  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-kernel-smoke-userns-fixed/root/lib64/ld-linux-x86-64.so.2
+895db63ed79a2fa52df88eeae901b52f5649988fbdcc77c690746e4af85e8ef9  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-kernel-smoke-userns-fixed/root/lib/modules/6.16.1-sable-lhc-test1/kernel/fs/fuse/fuse.ko
+dbac288c29ba568459550a2da9e7ae0ded6b1fc728ee9fad3044c44e62d6ac14  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-kernel-smoke-userns-fixed/root/usr/bin/setpriv
+f51f05699122eb5c9d464d32308dc6762049656b8ba19d95b19693d5ecf8a937  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-kernel-smoke-userns-fixed/root/usr/bin/test-userns
+90db31d3e203258d5434d21cfd0d38e5332a7cffb3b77cdc7cdca79641dcc376  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-kernel-smoke-userns-fixed/root/usr/bin/unshare
+e253764b65b5b4a07e010132f3d615cee7018cc0f3bbbf55ccb85ebc56bd1bc1  /srv/sablelinux/builds/20260719T211841Z-eb762ba-k6.16.1-sable-lhc-test1/qemu-tier1-kernel-smoke-userns-fixed/root/usr/lib/libc.so.6
