@@ -1,0 +1,242 @@
+
+=== CVMFS RUNTIME VALIDATION ===
+PASS: canonical repository clean
+PASS: local CVMFS installation ready
+PASS: autofs disabled before validation
+
+=== START AUTOFS TEMPORARILY ===
+PASS: autofs active
+PASS: autofs remains disabled during validation
+● autofs.service - Automounts filesystems on demand
+     Loaded: loaded (/usr/lib/systemd/system/autofs.service; disabled; preset: enabled)
+     Active: active (running) since Sun 2026-07-26 16:11:45 EDT; 6ms ago
+ Invocation: 990e691fab3444c4a1a2290189ee4768
+   Main PID: 215844 (automount)
+      Tasks: 5 (limit: 37677)
+        CPU: 5ms
+     CGroup: /system.slice/autofs.service
+             └─215844 /usr/sbin/automount --systemd-service --dont-check-daemon
+
+=== VERIFY AUTOFS MAP ===
+open_fopen_r:211: failed to open file: No such file or directory
+
+autofs dump map information
+===========================
+
+global options: none configured
+
+Mount point: /cvmfs
+
+source(s):
+
+  instance type(s): program 
+  map: /etc/auto.cvmfs
+
+  no keys found in map
+
+PASS: /cvmfs autofs map loaded
+
+=== PROBE CONFIGURATION REPOSITORY ===
+Probing /cvmfs/cvmfs-config.cern.ch... OK
+PROBE_STATUS=0
+etc
+.git
+PASS: cvmfs-config.cern.ch mounted and readable
+
+=== PROBE REQUIRED ATLAS REPOSITORIES ===
+
+--- atlas.cern.ch ---
+Probing /cvmfs/atlas.cern.ch... OK
+PROBE_STATUS=0
+repo
+test1
+.cvmfsdirtab~
+.cvmfsdirtab
+PASS: atlas.cern.ch mounted and readable
+
+--- atlas-condb.cern.ch ---
+Probing /cvmfs/atlas-condb.cern.ch... OK
+PROBE_STATUS=0
+repo
+PASS: atlas-condb.cern.ch mounted and readable
+
+--- grid.cern.ch ---
+Probing /cvmfs/grid.cern.ch... OK
+PROBE_STATUS=0
+3.1.22-0
+3.1.39-0
+3.1.41-0
+etc
+3.1.45-0
+3.2.11-1
+glite
+emi-wn-2.5.0-1
+emi-wn-2.5.1-1_v1
+emi-wn-2.5.1-1_sl6v2
+emi-wn-2.6.0-1_sl6v1
+emi-wn-2.6.0-1_v1
+default
+emi-ui-2.9.0-1_sl5v1
+emi-ui-2.10.4-1_sl5v1
+emi-ui-2.10.4-1_sl6v1
+emi-ui-3.7.3-1_sl6v2
+emi-wn-3.7.3-1_sl6v2
+util
+Grid
+PASS: grid.cern.ch mounted and readable
+
+--- unpacked.cern.ch ---
+Probing /cvmfs/unpacked.cern.ch... OK
+PROBE_STATUS=0
+.layers
+.flat
+.metadata
+gitlab-registry.cern.ch
+registry.hub.docker.com
+README.md
+util
+logDir
+ghcr.io
+gitlab-p4n.aip.de:5005
+registry.cern.ch
+hub.opensciencegrid.org
+quay.io
+.multiarch
+nvcr.io
+.chains
+PASS: unpacked.cern.ch mounted and readable
+
+=== VERIFY BOINC TRAVERSAL ===
+find: Failed to restore initial working directory: /home/pepper/sablelinux: Permission denied
+PASS: boinc can traverse cvmfs-config.cern.ch
+find: Failed to restore initial working directory: /home/pepper/sablelinux: Permission denied
+PASS: boinc can traverse atlas.cern.ch
+find: Failed to restore initial working directory: /home/pepper/sablelinux: Permission denied
+PASS: boinc can traverse atlas-condb.cern.ch
+find: Failed to restore initial working directory: /home/pepper/sablelinux: Permission denied
+PASS: boinc can traverse grid.cern.ch
+find: Failed to restore initial working directory: /home/pepper/sablelinux: Permission denied
+PASS: boinc can traverse unpacked.cern.ch
+
+=== VERIFY LIVE MOUNTS ===
+/cvmfs/cvmfs-config.cern.ch cvmfs2 fuse ro,nosuid,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other
+/cvmfs/atlas.cern.ch cvmfs2 fuse ro,nosuid,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other
+/cvmfs/atlas-condb.cern.ch cvmfs2 fuse ro,nosuid,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other
+/cvmfs/grid.cern.ch cvmfs2 fuse ro,nosuid,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other
+/cvmfs/unpacked.cern.ch cvmfs2 fuse ro,nosuid,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other
+PASS: live CVMFS mounts recorded
+
+=== VERIFY CACHE ===
+28M	/var/lib/cvmfs
+755 998:996 /var/lib/cvmfs
+755 998:0 /var/lib/cvmfs/shared
+600 998:996 /var/lib/cvmfs/shared/cvmfschecksum.atlas-condb.cern.ch
+700 998:996 /var/lib/cvmfs/shared/0c
+700 998:996 /var/lib/cvmfs/shared/bd
+700 998:996 /var/lib/cvmfs/shared/63
+600 0:0 /var/lib/cvmfs/shared/cvmfs_io.atlas.cern.ch.mountcheck.lock
+700 998:996 /var/lib/cvmfs/shared/d5
+700 998:996 /var/lib/cvmfs/shared/89
+700 998:996 /var/lib/cvmfs/shared/a2
+700 998:996 /var/lib/cvmfs/shared/09
+700 998:996 /var/lib/cvmfs/shared/fc
+700 998:996 /var/lib/cvmfs/shared/7d
+700 998:996 /var/lib/cvmfs/shared/e1
+700 998:996 /var/lib/cvmfs/shared/43
+700 998:996 /var/lib/cvmfs/shared/24
+700 998:996 /var/lib/cvmfs/shared/59
+700 998:996 /var/lib/cvmfs/shared/f8
+700 998:996 /var/lib/cvmfs/shared/13
+700 998:996 /var/lib/cvmfs/shared/45
+700 998:996 /var/lib/cvmfs/shared/49
+700 998:996 /var/lib/cvmfs/shared/af
+700 998:996 /var/lib/cvmfs/shared/94
+700 998:996 /var/lib/cvmfs/shared/32
+700 998:996 /var/lib/cvmfs/shared/81
+600 998:996 /var/lib/cvmfs/shared/no_nfs_maps.atlas-condb.cern.ch
+700 998:996 /var/lib/cvmfs/shared/22
+700 998:996 /var/lib/cvmfs/shared/46
+600 998:996 /var/lib/cvmfs/shared/cachemgr.running
+700 998:996 /var/lib/cvmfs/shared/da
+700 998:996 /var/lib/cvmfs/shared/77
+660 998:996 /var/lib/cvmfs/shared/cvmfs_io.grid.cern.ch
+700 998:996 /var/lib/cvmfs/shared/01
+700 998:996 /var/lib/cvmfs/shared/f0
+700 998:996 /var/lib/cvmfs/shared/58
+700 998:996 /var/lib/cvmfs/shared/14
+700 998:996 /var/lib/cvmfs/shared/71
+700 998:996 /var/lib/cvmfs/shared/9f
+700 998:996 /var/lib/cvmfs/shared/97
+700 998:996 /var/lib/cvmfs/shared/bf
+600 998:996 /var/lib/cvmfs/shared/lock_cachemgr
+700 998:996 /var/lib/cvmfs/shared/26
+700 998:996 /var/lib/cvmfs/shared/3b
+600 998:996 /var/lib/cvmfs/shared/lock.atlas.cern.ch
+700 998:996 /var/lib/cvmfs/shared/a1
+700 998:996 /var/lib/cvmfs/shared/34
+700 998:996 /var/lib/cvmfs/shared/9e
+700 998:996 /var/lib/cvmfs/shared/1e
+700 998:996 /var/lib/cvmfs/shared/65
+700 998:996 /var/lib/cvmfs/shared/be
+700 998:996 /var/lib/cvmfs/shared/38
+600 998:996 /var/lib/cvmfs/shared/lock_cachedb
+700 998:996 /var/lib/cvmfs/shared/1a
+700 998:996 /var/lib/cvmfs/shared/ef
+700 998:996 /var/lib/cvmfs/shared/cd
+700 998:996 /var/lib/cvmfs/shared/6e
+700 998:996 /var/lib/cvmfs/shared/33
+700 998:996 /var/lib/cvmfs/shared/4c
+700 998:996 /var/lib/cvmfs/shared/98
+700 998:996 /var/lib/cvmfs/shared/68
+660 998:996 /var/lib/cvmfs/shared/cvmfs_io.cvmfs-config.cern.ch
+700 998:996 /var/lib/cvmfs/shared/35
+700 998:996 /var/lib/cvmfs/shared/txn
+700 998:996 /var/lib/cvmfs/shared/69
+700 998:996 /var/lib/cvmfs/shared/6d
+700 998:996 /var/lib/cvmfs/shared/5e
+700 998:996 /var/lib/cvmfs/shared/27
+700 998:996 /var/lib/cvmfs/shared/10
+700 998:996 /var/lib/cvmfs/shared/4d
+600 0:0 /var/lib/cvmfs/shared/cvmfs_io.unpacked.cern.ch.mountcheck.lock
+700 998:996 /var/lib/cvmfs/shared/54
+700 998:996 /var/lib/cvmfs/shared/d2
+700 998:996 /var/lib/cvmfs/shared/47
+700 998:996 /var/lib/cvmfs/shared/2b
+700 998:996 /var/lib/cvmfs/shared/67
+700 998:996 /var/lib/cvmfs/shared/88
+700 998:996 /var/lib/cvmfs/shared/4a
+600 998:996 /var/lib/cvmfs/shared/lock.unpacked.cern.ch
+700 998:996 /var/lib/cvmfs/shared/dd
+700 998:996 /var/lib/cvmfs/shared/85
+PASS: persistent cache valid
+
+=== ENABLE AUTOFS ===
+Created symlink '/etc/systemd/system/multi-user.target.wants/autofs.service' → '/usr/lib/systemd/system/autofs.service'.
+PASS: autofs enabled
+PASS: autofs active
+
+=== VERIFY CVMFS RELOAD UNIT POLICY ===
+CVMFS_RELOAD_STATE=static
+PASS: cvmfs-reload.service not independently enabled
+
+=== FINAL SETUP CHECK ===
+Warning: failed to use Geo-API with cvmfs-s1bnl.opensciencegrid.org
+Warning: failed to access http://cvmfs-s1fnal.opensciencegrid.org:8000/cvmfs/atlas.cern.ch/.cvmfspublished through proxy DIRECT
+Warning: failed to access http://cvmfs-egi.gridpp.rl.ac.uk:8000/cvmfs/atlas-condb.cern.ch/.cvmfspublished through proxy DIRECT
+Warning: failed to use Geo-API with cvmfs-egi.gridpp.rl.ac.uk
+PASS: final chksetup completed
+
+=== VERIFY CANONICAL REPOSITORY ===
+PASS: canonical repository remains clean
+
+=== CVMFS RUNTIME VALIDATION RESULT ===
+PASS: autofs runtime validated
+PASS: configuration repository validated
+PASS: all required ATLAS repositories validated
+PASS: BOINC traversal validated
+PASS: persistent cache validated
+PASS: autofs enabled only after successful validation
+PASS: cvmfs-reload.service remains static
+PASS: canonical repository clean
+
+REPORT=/srv/sablelinux/package-builds/cvmfs/2.13.3/reports/runtime-validation.txt
