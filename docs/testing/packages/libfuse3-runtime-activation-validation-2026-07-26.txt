@@ -1,0 +1,104 @@
+SableLinux libfuse3 Runtime Activation Validation
+=================================================
+
+VALIDATED_AT=2026-07-26T13:43:18-04:00
+CANONICAL_HOST=SableLinux
+VALIDATION_USER=pepper
+KERNEL_RELEASE=6.16.1-sable-lhc-test1
+REPOSITORY=/home/pepper/sablelinux
+GIT_BRANCH=development
+GIT_COMMIT=9f89698936fe20182da08e83d05825a742f80535
+
+Package
+-------
+PACKAGE=libfuse
+VERSION=3.18.2
+BUILD_ROOT=/srv/sablelinux/package-builds/libfuse/3.18.2
+STAGE=/srv/sablelinux/package-builds/libfuse/3.18.2/stage
+
+Activation Metadata
+-------------------
+PACKAGE=libfuse
+VERSION=3.18.2
+ACTIVATION_STATE=active
+ACTIVATED_AT=2026-07-26T13:43:18-04:00
+CANONICAL_HOST=SableLinux
+ACTIVATION_USER=pepper
+KERNEL_RELEASE=6.16.1-sable-lhc-test1
+SABLELINUX_REPOSITORY=/home/pepper/sablelinux
+SABLELINUX_GIT_BRANCH=development
+SABLELINUX_GIT_COMMIT=9f89698936fe20182da08e83d05825a742f80535
+STAGE_DIR=/srv/sablelinux/package-builds/libfuse/3.18.2/stage
+STAGED_FILE_HASHES=/srv/sablelinux/package-builds/libfuse/3.18.2/staged-files.sha256
+PREEXISTING_PATHS=/srv/sablelinux/package-builds/libfuse/3.18.2/activation/preexisting-paths.txt
+INSTALLED_PATHS=/srv/sablelinux/package-builds/libfuse/3.18.2/activation/installed-paths.txt
+ACTIVE_FILE_HASHES=/srv/sablelinux/package-builds/libfuse/3.18.2/activation/active-files.sha256
+FUSERMOUNT3_MODE=4755
+FUSERMOUNT3_OWNER=root:root
+LIBFUSE_RUNTIME_VERSION=3.18.2
+DEV_FUSE_MODE=666
+DEV_FUSE_OWNER=root:root
+
+Installed Files
+---------------
+/etc/fuse.conf
+/usr/bin/fusermount3
+/usr/include/fuse3/cuse_lowlevel.h
+/usr/include/fuse3/fuse.h
+/usr/include/fuse3/fuse_common.h
+/usr/include/fuse3/fuse_log.h
+/usr/include/fuse3/fuse_lowlevel.h
+/usr/include/fuse3/fuse_opt.h
+/usr/include/fuse3/libfuse_config.h
+/usr/lib/libfuse3.so
+/usr/lib/libfuse3.so.3.18.2
+/usr/lib/libfuse3.so.4
+/usr/lib/pkgconfig/fuse3.pc
+/usr/lib/udev/rules.d/99-fuse3.rules
+/usr/sbin/mount.fuse3
+/usr/share/man/man1/fusermount3.1
+/usr/share/man/man8/mount.fuse3.8
+
+Preexisting Collisions
+----------------------
+None
+
+Runtime Files
+-------------
+-rwsr-xr-x 4755 root:root 49144 /usr/bin/fusermount3
+-rwxr-xr-x 755 root:root 20440 /usr/sbin/mount.fuse3
+-rwxr-xr-x 755 root:root 410432 /usr/lib/libfuse3.so.3.18.2
+-rw-r--r-- 644 root:root 725 /etc/fuse.conf
+-rw-r--r-- 644 root:root 28 /usr/lib/udev/rules.d/99-fuse3.rules
+
+Library Links
+-------------
+lrwxrwxrwx 1 root root     13 Jul 26 13:43 /usr/lib/libfuse3.so -> libfuse3.so.4
+-rwxr-xr-x 1 root root 410432 Jul 26 13:43 /usr/lib/libfuse3.so.3.18.2
+lrwxrwxrwx 1 root root     18 Jul 26 13:43 /usr/lib/libfuse3.so.4 -> libfuse3.so.3.18.2
+
+Dynamic Linker
+--------------
+	libfuse3.so.4 (libc6,x86-64) => /usr/lib/libfuse3.so.4
+	libfuse3.so (libc6,x86-64) => /usr/lib/libfuse3.so
+
+Package Metadata
+----------------
+3.18.2
+-I/usr/include/fuse3 -lfuse3 -lpthread
+
+Kernel FUSE State
+-----------------
+character special file crw-rw-rw- 666 root:root a:e5 /dev/fuse
+fuse                  200704  1
+nodev	fuse
+
+Validation Result
+-----------------
+PASS: staged payload installed
+PASS: fusermount3 installed setuid root
+PASS: libfuse3 registered with dynamic linker
+PASS: udev rule installed and reloaded
+PASS: current user opened /dev/fuse read-write
+PASS: libfuse3.so.4 loaded successfully
+PASS: runtime validation completed
