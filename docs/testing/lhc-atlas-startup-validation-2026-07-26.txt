@@ -1,0 +1,356 @@
+SableLinux canonical LHC@home ATLAS startup validation
+Date: 2026-07-26
+Host: SableLinux
+Kernel: 6.16.1-sable-lhc-test1
+
+=== SERVICE STATE ===
+WorkingDirectory=/var/lib/boinc-client
+User=boinc
+Group=boinc
+ActiveState=active
+SubState=running
+UnitFileState=disabled
+ActiveState=active
+SubState=running
+UnitFileState=enabled
+
+=== CVMFS VERSION ===
+CernVM-FS version 2.13.3
+
+
+=== BOINC TASK STATE ===
+
+======== Tasks ========
+1) -----------
+   name: 3fb2477951fe_0
+   WU name: 3fb2477951fe
+   project URL: https://lhcathome.cern.ch/lhcathome/
+   received: Sun Jul 26 16:29:28 2026
+   report deadline: Sun Aug  2 16:29:27 2026
+   ready to report: no
+   state: downloaded
+   scheduler state: scheduled
+   active_task_state: EXECUTING
+   app version num: 301
+   resources: 7 CPUs
+   estimated CPU time remaining: 35665.891882
+   elapsed task time: 526.938370
+   slot: 0
+   PID: 228015
+   CPU time at last checkpoint: 0.770000
+   current CPU time: 0.770000
+   fraction done: 0.014559
+   swap size: 9 MB
+   working set size: 4 MB
+
+=== BOINC PROJECT STATE ===
+======== Projects ========
+1) -----------
+   name: LHC@home
+   master URL: https://lhcathome.cern.ch/lhcathome/
+   user_name: superkali
+   team_name: Florida Institute of Technology
+   resource share: 100.000000
+   user_total_credit: 1478265.441890
+   user_expavg_credit: 9420.577398
+   host_total_credit: 0.000000
+   host_expavg_credit: 0.000000
+   nrpc_failures: 0
+   master_fetch_failures: 0
+   master fetch pending: no
+   scheduler RPC pending: no
+   trickle upload pending: no
+   attached via Account Manager: no
+   ended: no
+   suspended via GUI: no
+   don't request more work: no
+   disk usage: 0.63GB
+   last RPC: Sun Jul 26 16:44:36 2026
+
+   project files downloaded: 0.000000
+GUI URL:
+   name: Message boards
+   description: Correspond with other users on the LHC@home message boards
+   URL: https://lhcathome.cern.ch/lhcathome/forum_index.php
+GUI URL:
+   name: Your account
+   description: View your account information
+   URL: https://lhcathome.cern.ch/lhcathome/home.php
+GUI URL:
+   name: Your tasks
+   description: View the last week or so of computational work
+   URL: https://lhcathome.cern.ch/lhcathome/results.php?userid=1023066
+GUI URL:
+   name: FAQ
+   description: Frequently Asked Questions on LHC@home
+   URL: http://lhcathome.web.cern.ch/faq
+GUI URL:
+   name: Your team
+   description: View information about your team: Florida Institute of Technology
+   URL: https://lhcathome.cern.ch/lhcathome/team_display.php?teamid=134
+   jobs succeeded: 0
+   jobs failed: 1
+   elapsed time: 1129.008879
+   cross-project ID: d42ef4e767c326429638df9455509c2d
+
+=== RECENT BOINC MESSAGES ===
+41: 26-Jul-2026 16:25:04 (low) [] Setting up GUI RPC socket
+42: 26-Jul-2026 16:25:04 (low) [] Checking presence of 3 project files
+43: 26-Jul-2026 16:25:04 (low) [] Currently BOINC uses legacy idle detection methods that might not work properly on all systems. Please consider installing a modern idle detection utility that works on Wayland and X11: https://github.com/jamescowens/idle_detect
+44: 26-Jul-2026 16:29:24 (low) [LHC@home] work fetch resumed by user
+45: 26-Jul-2026 16:29:24 (low) [LHC@home] update requested by user
+46: 26-Jul-2026 16:29:25 (low) [LHC@home] Sending scheduler request: Requested by user.
+47: 26-Jul-2026 16:29:25 (low) [LHC@home] Requesting new tasks for CPU and AMD/ATI GPU
+48: 26-Jul-2026 16:29:28 (low) [LHC@home] Scheduler request completed: got 1 new tasks
+49: 26-Jul-2026 16:29:28 (low) [LHC@home] Project requested delay of 6 seconds
+50: 26-Jul-2026 16:29:30 (low) [LHC@home] Started download of 3fb2477951fe_EVNT.51044637._000783.pool.root.1
+51: 26-Jul-2026 16:29:30 (low) [LHC@home] Started download of 3fb2477951fe_input.tar.gz
+52: 26-Jul-2026 16:29:36 (low) [LHC@home] Finished download of 3fb2477951fe_input.tar.gz (723692 bytes)
+53: 26-Jul-2026 16:29:36 (low) [LHC@home] Started download of boinc_job_script.jczi0z
+54: 26-Jul-2026 16:29:37 (low) [LHC@home] Finished download of boinc_job_script.jczi0z (15668 bytes)
+55: 26-Jul-2026 16:29:38 (low) [LHC@home] Sending scheduler request: To fetch work.
+56: 26-Jul-2026 16:29:38 (low) [LHC@home] Requesting new tasks for AMD/ATI GPU
+57: 26-Jul-2026 16:29:39 (low) [LHC@home] Scheduler request completed: got 0 new tasks
+58: 26-Jul-2026 16:29:39 (low) [LHC@home] Project requested delay of 6 seconds
+59: 26-Jul-2026 16:40:41 (low) [LHC@home] Finished download of 3fb2477951fe_EVNT.51044637._000783.pool.root.1 (221608500 bytes)
+60: 26-Jul-2026 16:40:42 (low) [LHC@home] Starting task 3fb2477951fe_0
+61: 26-Jul-2026 16:44:31 (low) [LHC@home] Sending scheduler request: To fetch work.
+62: 26-Jul-2026 16:44:31 (low) [LHC@home] Requesting new tasks for AMD/ATI GPU
+63: 26-Jul-2026 16:44:36 (low) [LHC@home] Scheduler request completed: got 0 new tasks
+64: 26-Jul-2026 16:44:36 (low) [LHC@home] Project requested delay of 6 seconds
+
+=== ATLAS WRAPPER LOG ===
+[2026-07-26 16:40:54] Checking apptainer works with /cvmfs/atlas.cern.ch/repo/containers/sw/apptainer/x86_64-el7/current/bin/apptainer exec -B /cvmfs /cvmfs/atlas.cern.ch/repo/containers/fs/singularity/x86_64-centos7 hostname
+[2026-07-26 16:42:13] SableLinux
+[2026-07-26 16:42:13] apptainer works
+[2026-07-26 16:42:13] Set ATHENA_PROC_NUMBER=7
+[2026-07-26 16:42:13] Set ATHENA_CORE_NUMBER=7
+[2026-07-26 16:42:13] Starting ATLAS job with PandaID=7234891001
+[2026-07-26 16:42:13] Running command: /cvmfs/atlas.cern.ch/repo/containers/sw/apptainer/x86_64-el7/current/bin/apptainer exec -B /cvmfs,/var/lib/boinc-client/slots/0 /cvmfs/atlas.cern.ch/repo/containers/fs/singularity/x86_64-centos7 sh start_atlas.sh
+[2026-07-26 16:45:50] Job failed
+[2026-07-26 16:45:50] ++ pwd
+[2026-07-26 16:45:50] + export RUNTIME_CONFIG_DIR=/var/lib/boinc-client/slots/0/
+[2026-07-26 16:45:50] + RUNTIME_CONFIG_DIR=/var/lib/boinc-client/slots/0/
+[2026-07-26 16:45:50] + mv ATLAS.root_0 EVNT.51044637._000783.pool.root.1
+[2026-07-26 16:45:50] + tar --strip-components=5 -xvf input.tar.gz
+[2026-07-26 16:45:50] + umask 077
+[2026-07-26 16:45:50] ++ date +%s
+[2026-07-26 16:45:50] + ACCOUNTING_STARTTIME=1785098537
+[2026-07-26 16:45:50] + echo 'Detecting resource accounting method available for the job.'
+[2026-07-26 16:45:50] Detecting resource accounting method available for the job.
+[2026-07-26 16:45:50] + JOB_ACCOUNTING=
+[2026-07-26 16:45:50] + command -v arc-job-cgroup
+[2026-07-26 16:45:50] + '[' -z '' ']'
+[2026-07-26 16:45:50] + GNU_TIME=/usr/bin/time
+[2026-07-26 16:45:50] + echo 'Looking for /usr/bin/time tool for accounting measurements'
+[2026-07-26 16:45:50] Looking for /usr/bin/time tool for accounting measurements
+[2026-07-26 16:45:50] + '[' '!' -z /usr/bin/time ']'
+[2026-07-26 16:45:50] + /usr/bin/time --version
+[2026-07-26 16:45:50] + echo 'GNU time found and will be used for job accounting.'
+[2026-07-26 16:45:50] GNU time found and will be used for job accounting.
+[2026-07-26 16:45:50] + JOB_ACCOUNTING=gnutime
+[2026-07-26 16:45:50] + '[' -z gnutime ']'
+[2026-07-26 16:45:50] + export PANDA_JSID=harvester-CERN_central_ACTA
+[2026-07-26 16:45:50] + PANDA_JSID=harvester-CERN_central_ACTA
+[2026-07-26 16:45:50] + export GTAG=http://aipanda404.cern.ch/data/jobs/2026-07-26/BOINC_MCORE/7234891001.out
+[2026-07-26 16:45:50] + GTAG=http://aipanda404.cern.ch/data/jobs/2026-07-26/BOINC_MCORE/7234891001.out
+[2026-07-26 16:45:50] + export PILOT_NOKILL=YES
+[2026-07-26 16:45:50] + PILOT_NOKILL=YES
+[2026-07-26 16:45:50] + export GRID_GLOBAL_JOBID=3fb2477951fe
+[2026-07-26 16:45:50] + GRID_GLOBAL_JOBID=3fb2477951fe
+[2026-07-26 16:45:50] + export GRID_GLOBAL_JOBURL=https://arc-boinc-01.cern.ch:443/arex/3fb2477951fe
+[2026-07-26 16:45:50] + GRID_GLOBAL_JOBURL=https://arc-boinc-01.cern.ch:443/arex/3fb2477951fe
+[2026-07-26 16:45:50] + export GRID_GLOBAL_JOBINTERFACE=org.nordugrid.arcrest
+[2026-07-26 16:45:50] + GRID_GLOBAL_JOBINTERFACE=org.nordugrid.arcrest
+[2026-07-26 16:45:50] + export GRID_GLOBAL_JOBHOST=arc-boinc-01.cern.ch
+[2026-07-26 16:45:50] + GRID_GLOBAL_JOBHOST=arc-boinc-01.cern.ch
+[2026-07-26 16:45:50] ++ pwd
+[2026-07-26 16:45:50] + RUNTIME_JOB_DIR=/var/lib/boinc-client/slots/0
+[2026-07-26 16:45:50] + RUNTIME_JOB_STDIN=/dev/null
+[2026-07-26 16:45:50] ++ pwd
+[2026-07-26 16:45:50] + RUNTIME_JOB_STDOUT=/var/lib/boinc-client/slots/0/log.51044639._020725.job.log.1
+[2026-07-26 16:45:50] ++ pwd
+[2026-07-26 16:45:50] + RUNTIME_JOB_STDERR=/var/lib/boinc-client/slots/0/log.51044639._020725.job.log.1
+[2026-07-26 16:45:50] ++ pwd
+[2026-07-26 16:45:50] + RUNTIME_JOB_DIAG=/var/lib/boinc-client/slots/0.diag
+[2026-07-26 16:45:50] + '[' '!' -z '' ']'
+[2026-07-26 16:45:50] + RUNTIME_LOCAL_SCRATCH_DIR=
+[2026-07-26 16:45:50] + RUNTIME_LOCAL_SCRATCH_MOVE_TOOL=mv
+[2026-07-26 16:45:50] + RUNTIME_FRONTEND_SEES_NODE=
+[2026-07-26 16:45:50] + RUNTIME_NODE_SEES_FRONTEND=yes
+[2026-07-26 16:45:50] + '[' '!' -z '' ']'
+[2026-07-26 16:45:50] + '[' -z yes ']'
+[2026-07-26 16:45:50] ++ pwd
+[2026-07-26 16:45:50] + RUNTIME_JOB_DIAG=/var/lib/boinc-client/slots/0/3fb2477951fe.diag
+[2026-07-26 16:45:50] + runtimeenvironments=
+[2026-07-26 16:45:50] + runtimeenvironments='APPS/HEP/ATLAS-SITE;'
+[2026-07-26 16:45:50] + RTE_function_0 1
+[2026-07-26 16:45:50] + export PROJECT_ROOT=/boincdata/boinc/project/lhcathome
+[2026-07-26 16:45:50] + PROJECT_ROOT=/boincdata/boinc/project/lhcathome
+[2026-07-26 16:45:50] + export BOINC_APP=ATLAS
+[2026-07-26 16:45:50] + BOINC_APP=ATLAS
+[2026-07-26 16:45:50] + export WU_TEMPLATE=templates/ATLAS_IN_DYNAMIC
+[2026-07-26 16:45:50] + WU_TEMPLATE=templates/ATLAS_IN_DYNAMIC
+[2026-07-26 16:45:50] + export RESULT_TEMPLATE=templates/ATLAS_OUT_2
+[2026-07-26 16:45:50] + RESULT_TEMPLATE=templates/ATLAS_OUT_2
+[2026-07-26 16:45:50] + '[' -z 1 ']'
+[2026-07-26 16:45:50] + '[' 1 == 1 ']'
+[2026-07-26 16:45:50] + shift
+[2026-07-26 16:45:50] + export SITE_NAME=BOINC
+[2026-07-26 16:45:50] + SITE_NAME=BOINC
+[2026-07-26 16:45:50] + export ATLAS_LOCAL_AREA=/var/lib/boinc-client/slots/0/
+[2026-07-26 16:45:50] + ATLAS_LOCAL_AREA=/var/lib/boinc-client/slots/0/
+[2026-07-26 16:45:50] + '[' -e /var/lib/boinc-client/slots/0/init_data.xml ']'
+[2026-07-26 16:45:50] + grep '<use_http_proxy/>' /var/lib/boinc-client/slots/0/init_data.xml
+[2026-07-26 16:45:50] + '[' 0 -ne 0 ']'
+[2026-07-26 16:45:50] + echo 'runtimeenvironments=APPS/HEP/ATLAS-SITE;'
+[2026-07-26 16:45:50] + '[' -f /etc/os-release ']'
+[2026-07-26 16:45:50] +++ cat /etc/os-release
+[2026-07-26 16:45:50] ++ eval 'NAME="CentOS' 'Linux"' 'VERSION="7' '(Core)"' 'ID="centos"' 'ID_LIKE="rhel' 'fedora"' 'VERSION_ID="7"' 'PRETTY_NAME="CentOS' Linux 7 '(Core)"' 'ANSI_COLOR="0;31"' 'CPE_NAME="cpe:/o:centos:centos:7"' 'HOME_URL="https://www.centos.org/"' 'BUG_REPORT_URL="https://bugs.centos.org/"' 'CENTOS_MANTISBT_PROJECT="CentOS-7"' 'CENTOS_MANTISBT_PROJECT_VERSION="7"' 'REDHAT_SUPPORT_PRODUCT="centos"' 'REDHAT_SUPPORT_PRODUCT_VERSION="7"'
+[2026-07-26 16:45:50] +++ NAME='CentOS Linux'
+[2026-07-26 16:45:50] +++ VERSION='7 (Core)'
+[2026-07-26 16:45:50] +++ ID=centos
+[2026-07-26 16:45:50] +++ ID_LIKE='rhel fedora'
+[2026-07-26 16:45:50] +++ VERSION_ID=7
+[2026-07-26 16:45:50] +++ PRETTY_NAME='CentOS Linux 7 (Core)'
+[2026-07-26 16:45:50] +++ ANSI_COLOR='0;31'
+[2026-07-26 16:45:50] +++ CPE_NAME=cpe:/o:centos:centos:7
+[2026-07-26 16:45:50] +++ HOME_URL=https://www.centos.org/
+[2026-07-26 16:45:50] +++ BUG_REPORT_URL=https://bugs.centos.org/
+[2026-07-26 16:45:50] +++ CENTOS_MANTISBT_PROJECT=CentOS-7
+[2026-07-26 16:45:50] +++ CENTOS_MANTISBT_PROJECT_VERSION=7
+[2026-07-26 16:45:50] +++ REDHAT_SUPPORT_PRODUCT=centos
+[2026-07-26 16:45:50] +++ REDHAT_SUPPORT_PRODUCT_VERSION=7
+[2026-07-26 16:45:50] ++ echo 'CentOS Linux 7 (Core)'
+[2026-07-26 16:45:50] + SYSTEM_SOFTWARE='CentOS Linux 7 (Core)'
+[2026-07-26 16:45:50] + '[' -n 'CentOS Linux 7 (Core)' ']'
+[2026-07-26 16:45:50] + echo 'systemsoftware=CentOS Linux 7 (Core)'
+[2026-07-26 16:45:50] + HOME=/var/lib/boinc-client/slots/0
+[2026-07-26 16:45:50] + export HOME
+[2026-07-26 16:45:50] + cd /var/lib/boinc-client/slots/0
+[2026-07-26 16:45:50] + '[' '!' -z '' ']'
+[2026-07-26 16:45:50] + '[' -z '' ']'
+[2026-07-26 16:45:50] ++ /bin/hostname -f
+[2026-07-26 16:45:50] + nodename=SableLinux
+[2026-07-26 16:45:50] + echo nodename=SableLinux
+[2026-07-26 16:45:50] + echo Processors=2
+[2026-07-26 16:45:50] + echo Nodecount=1
+[2026-07-26 16:45:50] + echo Benchmark=HEPSPEC:1.0
+[2026-07-26 16:45:50] + executable=./runpilot2-wrapper.sh
+[2026-07-26 16:45:50] + '[' '!' -f ./runpilot2-wrapper.sh ']'
+[2026-07-26 16:45:50] ++ dd if=./runpilot2-wrapper.sh count=1
+[2026-07-26 16:45:50] ++ head -n 1
+[2026-07-26 16:45:50] ++ tr -d '\0'
+[2026-07-26 16:45:50] + line1='#!/bin/bash'
+[2026-07-26 16:45:50] ++ echo '#!/bin/bash'
+[2026-07-26 16:45:50] ++ sed -n 's/^#! *//p'
+[2026-07-26 16:45:50] + shebang=/bin/bash
+[2026-07-26 16:45:50] ++ echo /bin/bash
+[2026-07-26 16:45:50] ++ awk '{print $1}'
+[2026-07-26 16:45:50] + interpreter=/bin/bash
+[2026-07-26 16:45:50] + '[' /bin/bash = /usr/bin/env ']'
+[2026-07-26 16:45:50] + '[' x/bin/bash = x ']'
+[2026-07-26 16:45:50] + type /bin/bash
+[2026-07-26 16:45:50] + '[' xgnutime = xgnutime ']'
+[2026-07-26 16:45:50] + /usr/bin/time -o /var/lib/boinc-client/slots/0/3fb2477951fe.diag -a -f 'WallTime=%es\nKernelTime=%Ss\nUserTime=%Us\nCPUUsage=%P\nMaxResidentMemory=%MkB\nAverageResidentMemory=%tkB\nAverageTotalMemory=%KkB\nAverageUnsharedMemory=%DkB\nAverageUnsharedStack=%pkB\nAverageSharedMemory=%XkB\nPageSize=%ZB\nMajorPageFaults=%F\nMinorPageFaults=%R\nSwaps=%W\nForcedSwitches=%c\nWaitSwitches=%w\nInputs=%I\nOutputs=%O\nSocketReceived=%r\nSocketSent=%s\nSignals=%k\n' ./runpilot2-wrapper.sh -q BOINC_MCORE -j managed --pilot-user ATLAS --harvester-submit-mode PUSH -w generic --job-type managed --resource-type MCORE --pilotversion 3.13.3.3 -z -t --piloturl local --mute --container
+[2026-07-26 16:45:50] + RESULT=64
+[2026-07-26 16:45:50] + sed -i -e /nodename=/d /var/lib/boinc-client/slots/0/3fb2477951fe.diag
+[2026-07-26 16:45:50] ++ grep domain_name init_data.xml
+[2026-07-26 16:45:50] ++ awk -F '>' '{print $2}'
+[2026-07-26 16:45:50] ++ awk -F '<' '{print $1}'
+[2026-07-26 16:45:50] ++ sed -e 's# #_#g'
+[2026-07-26 16:45:50] + hostname=SableLinux
+[2026-07-26 16:45:50] ++ grep user_name init_data.xml
+[2026-07-26 16:45:50] ++ awk -F '>' '{print $2}'
+[2026-07-26 16:45:50] ++ awk -F '<' '{print $1}'
+[2026-07-26 16:45:50] ++ sed -e 's# #_#g'
+[2026-07-26 16:45:50] + username=superkali
+[2026-07-26 16:45:50] + nodename=superkali@SableLinux
+[2026-07-26 16:45:50] + echo nodename=superkali@SableLinux
+[2026-07-26 16:45:50] + '[' -n 7 ']'
+[2026-07-26 16:45:50] + sed -i -e 's/^Processors=.*$/Processors=7/' /var/lib/boinc-client/slots/0/3fb2477951fe.diag
+[2026-07-26 16:45:50] + echo exitcode=64
+[2026-07-26 16:45:50] + runtimeenvironments=
+[2026-07-26 16:45:50] + runtimeenvironments='APPS/HEP/ATLAS-SITE;'
+[2026-07-26 16:45:50] + RTE_function_0 2
+[2026-07-26 16:45:50] + export PROJECT_ROOT=/boincdata/boinc/project/lhcathome
+[2026-07-26 16:45:50] + PROJECT_ROOT=/boincdata/boinc/project/lhcathome
+[2026-07-26 16:45:50] + export BOINC_APP=ATLAS
+[2026-07-26 16:45:50] + BOINC_APP=ATLAS
+[2026-07-26 16:45:50] + export WU_TEMPLATE=templates/ATLAS_IN_DYNAMIC
+[2026-07-26 16:45:50] + WU_TEMPLATE=templates/ATLAS_IN_DYNAMIC
+[2026-07-26 16:45:50] + export RESULT_TEMPLATE=templates/ATLAS_OUT_2
+[2026-07-26 16:45:50] + RESULT_TEMPLATE=templates/ATLAS_OUT_2
+[2026-07-26 16:45:50] + '[' -z 2 ']'
+[2026-07-26 16:45:50] + '[' 2 == 1 ']'
+[2026-07-26 16:45:50] + '[' 0 -ne 0 ']'
+[2026-07-26 16:45:50] + echo 'zip all output files'
+[2026-07-26 16:45:50] + flist='*.diag '
+[2026-07-26 16:45:50] + for f in ./heartbeat.json ./output.list ./log.51044639._020725.job.log.1 ./log.51044639._020725.job.log.1 ./gmlog/
+[2026-07-26 16:45:50] + '[' -e ./heartbeat.json ']'
+[2026-07-26 16:45:50] + for f in ./heartbeat.json ./output.list ./log.51044639._020725.job.log.1 ./log.51044639._020725.job.log.1 ./gmlog/
+[2026-07-26 16:45:50] + '[' -e ./output.list ']'
+[2026-07-26 16:45:50] + for f in ./heartbeat.json ./output.list ./log.51044639._020725.job.log.1 ./log.51044639._020725.job.log.1 ./gmlog/
+[2026-07-26 16:45:50] + '[' -e ./log.51044639._020725.job.log.1 ']'
+[2026-07-26 16:45:50] + flist='*.diag  ./log.51044639._020725.job.log.1'
+[2026-07-26 16:45:50] + for f in ./heartbeat.json ./output.list ./log.51044639._020725.job.log.1 ./log.51044639._020725.job.log.1 ./gmlog/
+[2026-07-26 16:45:50] + '[' -e ./log.51044639._020725.job.log.1 ']'
+[2026-07-26 16:45:50] + flist='*.diag  ./log.51044639._020725.job.log.1 ./log.51044639._020725.job.log.1'
+[2026-07-26 16:45:50] + for f in ./heartbeat.json ./output.list ./log.51044639._020725.job.log.1 ./log.51044639._020725.job.log.1 ./gmlog/
+[2026-07-26 16:45:50] + '[' -e ./gmlog/ ']'
+[2026-07-26 16:45:50] + '[' -f output.list ']'
+[2026-07-26 16:45:50] + tar cvf result.tar.gz 3fb2477951fe.diag ./log.51044639._020725.job.log.1 ./log.51044639._020725.job.log.1
+[2026-07-26 16:45:50] + '[' xgnutime = xcgroup ']'
+[2026-07-26 16:45:50] + '[' -n '' ']'
+[2026-07-26 16:45:50] + '[' -n '' ']'
+[2026-07-26 16:45:50] ++ date +%s
+[2026-07-26 16:45:50] + ACCOUNTING_ENDTIME=1785098750
+[2026-07-26 16:45:50] ++ date -d '1970-01-01 UTC 1785098537 seconds' +%Y%m%d%H%M%SZ
+[2026-07-26 16:45:50] + echo LRMSStartTime=20260726164217Z
+[2026-07-26 16:45:50] ++ date -d '1970-01-01 UTC 1785098750 seconds' +%Y%m%d%H%M%SZ
+[2026-07-26 16:45:50] + echo LRMSEndTime=20260726164550Z
+[2026-07-26 16:45:50] + echo walltime=213
+[2026-07-26 16:45:50] + echo exitcode=64
+[2026-07-26 16:45:50] + exit 64
+[2026-07-26 16:45:50] ./runtime_log
+[2026-07-26 16:45:50] ./log.51044639._020725.job.log.1
+[2026-07-26 16:45:50] ./runtime_log.err
+[2026-07-26 16:45:50] ./pilot3/pilot/util/loggingsupport.py
+[2026-07-26 16:45:50] ./pilot3/pilot/util/lokirealtimelogger.py
+[2026-07-26 16:45:50] ./pilot3/pilot/util/realtimelogger.py
+[2026-07-26 16:45:50] ./pilot3/pilot/util/__pycache__/loggingsupport.cpython-39.pyc
+[2026-07-26 16:45:50] ./pilotlog.txt
+
+=== ATLAS PROCESS TREE ===
+ 222713       1 boinc     10  11  0.5  0.0       24:39 /opt/boinc/current/bin/boinc --dir /var/lib/boinc-client --skip_cpu_benchmarks
+ 228015  222713 boinc     10   7  0.1  0.0       08:47 ../../projects/lhcathome.cern.ch_lhcathome/wrapper_26015_x86_64-pc-linux-gnu --nthreads 7
+ 228017  228015 boinc     19   5  0.0  0.0       08:47 /bin/bash run_atlas --nthreads 7
+ 228018  228017 boinc     19   2  0.0  0.0       08:47 awk { print strftime("[%Y-%m-%d %H:%M:%S]"), $0; fflush(); }
+ 232466  228017 boinc     19  13  0.0  0.0       03:39 sleep 600
+
+=== CVMFS MOUNTS ===
+/cvmfs/cvmfs-config.cern.ch cvmfs2 fuse ro,nosuid,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other
+/cvmfs/atlas.cern.ch cvmfs2 fuse ro,nosuid,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other
+/cvmfs/atlas-condb.cern.ch cvmfs2 fuse ro,nosuid,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other
+/cvmfs/unpacked.cern.ch cvmfs2 fuse ro,nosuid,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other
+
+=== CVMFS CACHE ===
+210M	/var/lib/cvmfs
+
+=== SLOT OUTPUT STATE ===
+2026-07-26 16:45:50.7002203410 20480 /var/lib/boinc-client/slots/0/result.tar.gz
+2026-07-26 16:45:50.7002203410 344 /var/lib/boinc-client/slots/0/runtime_log
+2026-07-26 16:45:50.7017613720 628 /var/lib/boinc-client/slots/0/3fb2477951fe.diag
+2026-07-26 16:45:50.7017613720 7771 /var/lib/boinc-client/slots/0/runtime_log.err
+2026-07-26 16:45:50.7087617110 71680 /var/lib/boinc-client/slots/0/shared/result.tar.gz
+
+=== ACCEPTANCE STATUS ===
+PASS: BOINC 8.2.11 client active
+PASS: BOINC remains disabled at boot
+PASS: CVMFS 2.13.3 active through autofs
+PASS: LHC@home scheduler issued an ATLAS native_mt task
+PASS: ATLAS and ATLAS conditions repositories probed successfully
+PASS: CVMFS-delivered Apptainer executed successfully
+PASS: ATLAS Pilot 3 launched inside the container
+PASS: one-job project concurrency policy active
+PENDING: ATLAS task completion and successful result upload
