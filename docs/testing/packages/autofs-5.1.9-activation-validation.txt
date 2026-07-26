@@ -1,0 +1,109 @@
+SableLinux autofs 5.1.9 Activation Validation
+
+Validated at: 2026-07-26T15:08:16-04:00
+Canonical host: SableLinux
+Kernel: 6.16.1-sable-lhc-test1
+Repository branch: development
+Repository state before documentation: 4c687891e2452625eb6113277194880ec5b1927c
+
+Activation outcome:
+PASS: autofs 5.1.9 installed on the canonical Z890
+PASS: validated staged payload copied to the live filesystem
+PASS: automount executable and libautofs library validated
+PASS: libtirpc runtime linkage validated
+PASS: temporary service start completed successfully
+PASS: service stopped cleanly after runtime validation
+PASS: autofs.service remains disabled
+PASS: canonical empty master-map policy installed
+PASS: repository remained clean during activation
+
+Build policy:
+Package: autofs
+Version: 5.1.9
+Prefix: /usr
+System configuration directory: /etc
+Systemd unit directory: /usr/lib/systemd/system
+Module directory: /usr/lib/autofs
+libtirpc support: enabled
+systemd support: enabled
+libmount support: enabled
+libxml2 support: enabled
+LDAP support: disabled
+SASL support: disabled
+Kerberos support: unavailable
+NIS support: disabled
+NFS userspace helper: optional and absent
+
+SableLinux configuration policy:
+Only the following active auto.master entry is installed:
+
++dir:/etc/auto.master.d
+
+The following upstream demonstration or discovery entries are not enabled:
+- /misc using /etc/auto.misc
+- /net using the hosts map
+- external NSS +auto.master lookup
+- auto.misc
+- auto.net
+- auto.smb
+
+Service policy:
+Installed: yes
+Enabled: no
+Current state: inactive
+Runtime validation: temporary successful start followed by clean stop
+
+Runtime version:
+open_fopen_r:211: failed to open file: No such file or directory
+
+Live dynamic dependencies:
+	linux-vdso.so.1 (0x00007ff6709aa000)
+	libtirpc.so.3 => /usr/lib/libtirpc.so.3 (0x00007ff670939000)
+	libsystemd.so.0 => /usr/lib/libsystemd.so.0 (0x00007ff6707ef000)
+	libautofs.so => /usr/lib/libautofs.so (0x00007ff6707c5000)
+	libc.so.6 => /usr/lib/libc.so.6 (0x00007ff6705de000)
+	libcap.so.2 => /usr/lib/libcap.so.2 (0x00007ff6705d2000)
+	libm.so.6 => /usr/lib/libm.so.6 (0x00007ff6704dd000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007ff6709ac000)
+
+Installed payload hashes:
+e1f7a3675a006e3c02406f3c7e7b17c8a2a2284bf1d4a3d921dd3933329403c1  /usr/sbin/automount
+b3c7fa7e364af55d26825bbc013f4ed201b991e1393127f60927e5f934e71ab3  /usr/lib/libautofs.so
+2468b44e1b121f31a12ffa376623d4625dcda174c0e8213bf3cace137ebb3feb  /etc/autofs.conf
+5f445b53f91c10fe1503c28ec8679687164576344cd9817daa86a9b16d09630b  /etc/auto.master
+
+Canonical script hashes:
+5f3057f6db1fdc655f701cca9af04b206bdbd1e581f57fbcda11f4938cc18be4  scripts/packages/build-autofs.sh
+2af397373484f590645fa6bcf8cc7992dc97fb286b75fd8188771a8e39159448  scripts/packages/activate-autofs.sh
+
+Staged manifest:
+Path: /srv/sablelinux/package-builds/autofs/5.1.9/manifests/staged-sha256.txt
+SHA256: 8eb668f905ce93e6fe3887beeb37159985e65c95674d006ff3fad8b81655090d
+
+Canonical build evidence:
+- /srv/sablelinux/package-builds/autofs/5.1.9/reports/build-metadata.env
+- /srv/sablelinux/package-builds/autofs/5.1.9/reports/staged-build-report.txt
+- /srv/sablelinux/package-builds/autofs/5.1.9/reports/automount-ldd.txt
+- /srv/sablelinux/package-builds/autofs/5.1.9/manifests/staged-sha256.txt
+
+Canonical activation evidence:
+- /srv/sablelinux/package-builds/autofs/5.1.9/reports/activation-report.txt
+- /srv/sablelinux/package-builds/autofs/5.1.9/reports/live-automount-ldd.txt
+- /srv/sablelinux/package-builds/autofs/5.1.9/reports/runtime-service-status.txt
+- /srv/sablelinux/package-builds/autofs/5.1.9/reports/runtime-service-journal.txt
+
+Engineering findings:
+1. Upstream make install does not install distributor policy files.
+2. SableLinux explicitly stages autofs.conf, auto.master,
+   auto.master.d, and autofs.service.
+3. The /srv/sablelinux build hierarchy propagates setgid directory bits.
+4. Staged directory permissions are normalized and special bits removed.
+5. Staged dependency validation must include the staged /usr/lib path.
+6. The upstream sample auto.master is unsuitable as the initial
+   SableLinux policy because it enables omitted and discovery-oriented maps.
+
+Final result:
+PASS: autofs 5.1.9 active and validated
+PASS: service installed but disabled
+PASS: canonical empty master-map policy installed
+PASS: reproducible build and guarded activation scripts imported
