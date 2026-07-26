@@ -1,0 +1,107 @@
+SableLinux libfuse3 Package Framework Validation
+================================================
+
+VALIDATED_AT=2026-07-26T13:37:35-04:00
+CANONICAL_HOST=SableLinux
+VALIDATION_USER=pepper
+KERNEL_RELEASE=6.16.1-sable-lhc-test1
+REPOSITORY=/home/pepper/sablelinux
+GIT_BRANCH=development
+PRE_COMMIT_HEAD=99bbbfaeeaa2b90b6e2d13ce97e426737af96b15
+
+Package
+-------
+PACKAGE=libfuse
+VERSION=3.18.2
+BUILD_ROOT=/srv/sablelinux/package-builds/libfuse/3.18.2
+STAGE=/srv/sablelinux/package-builds/libfuse/3.18.2/stage
+
+Framework Files
+---------------
+c072043cb31873ab2f445532b810dfca4b6bef4a792732b464cb499e9249cd92  /home/pepper/sablelinux/scripts/packages/common.sh
+f6e145e0113604278229cc1d1d3ce0474443f1e58211763e9ef6ceb81ab185ef  /home/pepper/sablelinux/scripts/packages/build-libfuse3.sh
+2c708a3910121b26bdaa691e02d655562dfc165c336b76db65618bb6aab8f19f  /home/pepper/sablelinux/scripts/packages/activate-libfuse3.sh
+55c423f15be6e9a274b9d09962db8a96891729c32d39d3ebe30d3186e1278277  /home/pepper/sablelinux/scripts/packages/README.md
+
+Build Metadata
+--------------
+PACKAGE=libfuse
+VERSION=3.18.2
+BUILD_STATE=staged
+BUILT_AT=2026-07-26T13:33:21-04:00
+CANONICAL_HOST=SableLinux
+BUILD_USER=pepper
+BUILD_GROUP=pepper
+KERNEL_RELEASE=6.16.1-sable-lhc-test1
+SABLELINUX_REPOSITORY=/home/pepper/sablelinux
+SABLELINUX_GIT_BRANCH=development
+SABLELINUX_GIT_COMMIT=99bbbfaeeaa2b90b6e2d13ce97e426737af96b15
+SABLELINUX_GIT_DIRTY=true
+SOURCE_ARCHIVE=/srv/sablelinux/sources/libfuse/fuse-3.18.2.tar.gz
+SOURCE_SHA256=f01de85717e20adf5f98aff324acd85dd73d61a5ca3834d573dcf0bd6e54a298
+SOURCE_SIGNATURE_VERIFIED=true
+MESON_VERSION=1.7.0
+NINJA_VERSION=1.13.1
+GCC_VERSION=15.2.0
+PREFIX=/usr
+LIBDIR=lib
+BUILD_TYPE=release
+EXAMPLES=false
+TESTS=false
+SOURCE_DIR=/srv/sablelinux/package-builds/libfuse/3.18.2/source
+BUILD_DIR=/srv/sablelinux/package-builds/libfuse/3.18.2/build
+STAGE_DIR=/srv/sablelinux/package-builds/libfuse/3.18.2/stage
+STAGED_MANIFEST=/srv/sablelinux/package-builds/libfuse/3.18.2/staged-files.manifest
+STAGED_MANIFEST_SHA256=6325895013acf4182fb0b6e4a6c1380c3389cabdb17dcf3da328d3b15dbfad3f
+STAGED_FILE_HASHES=/srv/sablelinux/package-builds/libfuse/3.18.2/staged-files.sha256
+STAGED_FILE_HASHES_SHA256=60a6c9bd6630952d465bd2a4be522e1cf26f258bba151265ae20b8a50afa66eb
+COMMON_FRAMEWORK=/home/pepper/sablelinux/scripts/packages/common.sh
+COMMON_FRAMEWORK_SHA256=c072043cb31873ab2f445532b810dfca4b6bef4a792732b464cb499e9249cd92
+BUILD_SCRIPT=/home/pepper/sablelinux/scripts/packages/build-libfuse3.sh
+BUILD_SCRIPT_SHA256=f6e145e0113604278229cc1d1d3ce0474443f1e58211763e9ef6ceb81ab185ef
+ACTIVATION_REQUIRED=true
+
+Manifest Hashes
+---------------
+6325895013acf4182fb0b6e4a6c1380c3389cabdb17dcf3da328d3b15dbfad3f  /srv/sablelinux/package-builds/libfuse/3.18.2/staged-files.manifest
+60a6c9bd6630952d465bd2a4be522e1cf26f258bba151265ae20b8a50afa66eb  /srv/sablelinux/package-builds/libfuse/3.18.2/staged-files.sha256
+
+Staged Artifact Policy
+----------------------
+PASS: /dev/fuse excluded from package payload
+PASS: /etc/init.d/fuse3 excluded from package payload
+PASS: no block devices staged
+PASS: no character devices staged
+PASS: no FIFOs staged
+PASS: no sockets staged
+PASS: all staged regular-file hashes verified
+
+Required Payload
+----------------
+PASS: /etc/fuse.conf
+PASS: /usr/bin/fusermount3
+PASS: /usr/sbin/mount.fuse3
+PASS: /usr/lib/libfuse3.so.3.18.2
+PASS: /usr/lib/libfuse3.so.4
+PASS: /usr/lib/libfuse3.so
+PASS: /usr/lib/pkgconfig/fuse3.pc
+PASS: /usr/lib/udev/rules.d/99-fuse3.rules
+PASS: /usr/include/fuse3/fuse.h
+
+Live Kernel FUSE State
+----------------------
+character special file crw-rw-rw- 666 root:root a:e5 /dev/fuse
+fuse                  200704  1
+nodev	fuse
+
+Activation State
+----------------
+NOT DONE: files not installed into the running system
+NOT DONE: fusermount3 setuid permission not applied
+NOT DONE: ldconfig not run for staged package
+
+Validation Result
+-----------------
+PASS: shared canonical package framework established
+PASS: libfuse build and staging workflow validated
+PASS: activation remains separated and disabled
