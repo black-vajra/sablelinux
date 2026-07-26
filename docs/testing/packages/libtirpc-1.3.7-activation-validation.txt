@@ -1,0 +1,84 @@
+SableLinux libtirpc 1.3.7 Activation Validation
+
+Validated at: 2026-07-26T14:15:23-04:00
+Canonical host: SableLinux
+Kernel: 6.16.1-sable-lhc-test1
+Repository branch: development
+Activation implementation commit: 97f2891
+
+Activation outcome:
+PASS: libtirpc 1.3.7 activated
+PASS: SONAME libtirpc.so.3 preserved
+PASS: loader cache refreshed
+PASS: lsof runtime consumer validated
+PASS: compiled XDR round-trip validated during activation
+PASS: configuration files installed
+PASS: rollback archive created and verified
+
+Metadata correction:
+The initial activation metadata incorrectly recorded
+PREVIOUS_VERSION=1.3.7.
+
+Cause:
+Bash function variables are global unless declared local.
+verify_live() reassigned live_version after activate() had captured
+the pre-activation version.
+
+Correction:
+verify_live() runtime variables were made local.
+activate() now preserves the old version in previous_version.
+The activation metadata was corrected to PREVIOUS_VERSION=1.3.6,
+which was independently recorded by the successful final preflight
+immediately before activation.
+
+Current runtime version:
+1.3.7
+
+Loader cache:
+	libtirpc.so.3 (libc6,x86-64) => /usr/lib/libtirpc.so.3
+	libtirpc.so (libc6,x86-64) => /usr/lib/libtirpc.so
+
+Library SONAME:
+ 0x000000000000000e (SONAME)             Library soname: [libtirpc.so.3]
+
+Library links:
+f 755 root:root 706088 /usr/lib/libtirpc.so.3.0.0 ->
+l 777 root:root 17 /usr/lib/libtirpc.so -> libtirpc.so.3.0.0
+l 777 root:root 17 /usr/lib/libtirpc.so.3 -> libtirpc.so.3.0.0
+
+Runtime consumer:
+	libtirpc.so.3 => /usr/lib/libtirpc.so.3 (0x00007fdb4d3de000)
+
+Configuration hashes:
+86ee43cde79ed4afdbcc697d74fe80cb3d9b261feab550f45beeedfba7ff9fbd  /etc/netconfig
+2c057192613771163f64d66deac0d98e97140cdf9a31fd018ee5e325a94d2bbc  /etc/bindresvport.blacklist
+
+Activation metadata:
+PACKAGE=libtirpc
+VERSION=1.3.7
+ACTIVATION_STATE=active
+ACTIVATED_AT=2026-07-26T14:13:05-04:00
+ACTIVATION_ID=20260726T181304Z
+CANONICAL_HOST=SableLinux
+ACTIVATION_USER=pepper
+ACTIVATION_UID=1000
+KERNEL_RELEASE=6.16.1-sable-lhc-test1
+PREVIOUS_VERSION=1.3.6
+ACTIVE_VERSION=1.3.7
+SONAME=libtirpc.so.3
+BACKUP_ARCHIVE=/srv/sablelinux/package-backups/libtirpc/20260726T181304Z/pre-activation.tar
+BACKUP_ARCHIVE_SHA256=617d702589e4dd282dfcc5ead238395fae07f0ae8dcf1022c94200230497a89b
+STAGED_HASH_MANIFEST=/srv/sablelinux/package-builds/libtirpc/1.3.7/staged-files.sha256
+STAGED_HASH_MANIFEST_SHA256=e217b1f80a3cf784a3db18b95c670d3fd3c74b858283a15aadd3f7977dcc8508
+RPCBIND_PRESENT=false
+GSSAPI_SUPPORT=false
+RUNTIME_LSOF_VALIDATED=true
+XDR_ROUNDTRIP_VALIDATED=true
+
+Rollback archive:
+617d702589e4dd282dfcc5ead238395fae07f0ae8dcf1022c94200230497a89b  /srv/sablelinux/package-backups/libtirpc/20260726T181304Z/pre-activation.tar
+
+Final result:
+PASS: libtirpc 1.3.7 active and validated
+PASS: activation metadata corrected
+PASS: activation implementation scope bug corrected

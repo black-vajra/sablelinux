@@ -235,6 +235,10 @@ install_stage() {
 }
 
 verify_live() {
+    local live_version
+    local test_program
+    local test_binary
+
     test -f /usr/lib/libtirpc.so.3.0.0 ||
         sable_die "live shared library missing"
 
@@ -345,6 +349,10 @@ C_EOF
 }
 
 activate() {
+    local previous_version
+    local activation_id
+    local backup_archive
+
     test "$(id -u)" -eq 0 ||
         sable_die "activation requires root"
 
@@ -354,15 +362,15 @@ activate() {
         sable_die "rpcbind is installed; coordinated review required"
     fi
 
-    live_version="$(
+    previous_version="$(
         env \
             -u PKG_CONFIG_PATH \
             PKG_CONFIG_DISABLE_UNINSTALLED=1 \
             pkg-config --modversion libtirpc
     )"
 
-    test "$live_version" = "1.3.6" ||
-        sable_die "unexpected pre-activation live version: $live_version"
+    test "$previous_version" = "1.3.6" ||
+        sable_die "unexpected pre-activation live version: $previous_version"
 
     activation_id="$(backup_existing_paths)"
 
@@ -381,7 +389,7 @@ CANONICAL_HOST=$(hostname)
 ACTIVATION_USER=${SUDO_USER:-root}
 ACTIVATION_UID=${SUDO_UID:-0}
 KERNEL_RELEASE=$(uname -r)
-PREVIOUS_VERSION=$live_version
+PREVIOUS_VERSION=$previous_version
 ACTIVE_VERSION=$VERSION
 SONAME=libtirpc.so.3
 BACKUP_ARCHIVE=$backup_archive
