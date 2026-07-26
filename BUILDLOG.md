@@ -2792,3 +2792,36 @@ Evidence policy:
 Export policy:
 - Do not publish this interim subproject to the separate LHC@home repository.
 - Export it there only after Podman and LHC workload phases are complete.
+
+## 2026-07-26 — Canonical Z890 BOINC/LHC Native ATLAS Validation
+
+Validated BOINC 8.2.11 and the LHC@home native ATLAS launch path on the canonical Z890 running kernel 6.16.1-sable-lhc-test1.
+
+Confirmed:
+
+- project attachment and scheduler communication
+- work-unit and application downloads
+- app_config.xml discovery
+- one-project-task concurrency
+- BOINC slot creation
+- native ATLAS wrapper launch
+- seven-thread task assignment
+- controlled failed-result reporting
+- scheduler acceptance
+- no-new-work control
+
+The native ATLAS launcher failed its first runtime prerequisite because CVMFS was not installed:
+
+    No cvmfs_config command found
+    /cvmfs/atlas.cern.ch/repo/sw: No such file or directory
+    CVMFS is required to run ATLAS native tasks
+
+This establishes CVMFS as the next isolated canonical platform dependency. LHC@home work fetching remains suspended until CVMFS is installed and independently validated.
+
+Detailed report:
+
+    docs/testing/boinc/z890-lhc-native-cvmfs-prerequisite-2026-07-26.md
+
+Next phase:
+
+    Add and validate CVMFS on the canonical Z890
