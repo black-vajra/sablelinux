@@ -1,38 +1,130 @@
 # SableLinux Engineering State
 
-## Current Milestone
+Audit date: October 7, 2026. Release target: December 31, 2026.
 
-Recover the reproducible live/install ISO pipeline.
+## Current milestone and authority
 
-## Current Position
+Deliver a documented, idempotent, reproducible ISO with live boot and validated
+installation. Core architecture and live boot have already been demonstrated.
+Current work concerns release quality, automation, validation and maintainability.
 
-The previous live staging directories are absent and invalid. The project is being reframed around release engineering rather than ad hoc live USB construction.
+Only the running Z890 SableLinux installation supplies authoritative release
+inputs. Repository documentation and inspected system evidence establish current
+state. BUILDLOG.md and older inventories are historical evidence. Secondary
+machines, USB installations, VMs and backups are validation or recovery material;
+their binaries must not become canonical build inputs.
 
-## Reference Systems
+## Evidence and inspection boundary
 
-1. Z890 SableLinux NVMe installation — development head and most complete package set.
-2. HP EliteBook SableLinux installation — proven successful live/install deployment baseline.
-3. BUILDLOG.md — chronological engineering record.
-4. GitHub development branch — canonical repository state.
+This status derives from operator-supplied October 7 terminal output and a Git
+archive of the canonical checkout. The reviewer did not access the host directly.
+The two supplied engineering-review tar archives were byte-identical (SHA256
+36a20024c6e0dae23301fd9e3b414106a2e4c23356ab56b59b8a3d3801d70fd8).
+Recorded build reports were read; current artifact checksums have not been rerun.
+The archive is a selected source review, not a full checkout or running inventory.
 
-## Current Policy
+## Verified current system
 
-VM-first testing.
+- Board: Gigabyte Z890 AORUS ELITE X ICE; previously inspected while booted as pots.
+- Canonical OS: Sable Linux 1.0; hostname SableLinux.
+- Running kernel: 6.16.1-sable-compat.
+- Root: /dev/nvme1n1p3, ext4; /boot: /dev/nvme1n1p2, ext4.
+- /boot/efi is not mounted. The inspected fstab names EFI UUID 3745-AF41,
+  whereas the current NVMe EFI partition reports 5F1D-6806. Investigate before
+  changing fstab or bootloader files; successful installed boot is not media validation.
+- Repo: /home/pepper/sablelinux; development; HEAD
+  c036dcfc6bb148d734170eeb62b7a56f23147460.
+- Remote configured as git@github.com:black-vajra/sablelinux.git. Remote freshness
+  is not verified by locally cached origin/development.
+- Tracked worktree changes were absent; scripts/boincctl is untracked. Preserve
+  and inspect it before deciding whether to commit, relocate or ignore it.
+- Workspace: /srv/sablelinux; current-build-id points to
+  20260717T213351Z-5318fbe-k6.16.1-sable-compat.
+- autofs.service and llama-server.service are active and enabled.
+- systemctl --failed reported zero failed units. This is not a functionality suite.
 
-No physical installs are overwritten until:
+The Ubuntu checkout on pots was at 696561f and is older than the canonical
+Sable checkout. Use the latter for current engineering work.
 
-1. Live image boots successfully in QEMU/OVMF.
-2. Installer succeeds in QEMU against a simulated EliteBook-level target.
-3. Installed VM boots independently to Sway with networking.
+## Changes since the historical checkpoint
 
-## Immediate Objective
+The July audit checkpoint was 49f1015364e800df67597648a50a87ad30a1d5d1.
+Later local canonical history includes a package staging framework, guarded
+rpcsvc-proto/libfuse/libtirpc/autofs activation, CVMFS runtime validation and
+successful ATLAS startup documentation through July 26. No later commit was
+shown in the supplied canonical HEAD/history. Files outside Git and remote
+changes have not been exhaustively audited.
 
-Create a clean build workspace and reconstruct the live ISO pipeline from documented sources.
+CVMFS 2.13.3 documentation records successful July 26 repository access. Do not
+carry forward the earlier partial activation as a present failure. October 7
+autofs activity is verified; present CVMFS content access remains unknown.
 
-## Deferred
+## Release gates
 
-- LUKS root install testing
-- Secure Boot
-- package-group manifests
-- local package repository
-- physical install testing
+| Gate | Evidence and present status |
+| --- | --- |
+| Canonical workspace | Present; paths, current pointer and build metadata inspected |
+| Current package baseline | Missing comprehensive verified inventory; existing package-build records present |
+| Frozen inputs and kernel/config provenance | Incomplete; running kernel identified, exact matching config still to establish |
+| Rootfs generation | July report records successful capture and sanitation; present integrity unverified |
+| SquashFS | July report records generation and inspection; present integrity unverified |
+| Live initramfs | July report records two byte-identical generations and archive checks; boot gate remains open |
+| ext4 test media | July report records generation, read-only fsck and payload checks; present integrity unverified |
+| Tier 1 full canonical live boot | Unpassed in available evidence; retained build state is test-media-generated |
+| Tier 2 generated ISO via OVMF/GRUB | Unpassed in available evidence |
+| Tier 3 installation and independent boot | Unpassed in available evidence; installer promotion unresolved |
+| Tier 4 hardware | Unpassed for a release candidate |
+| Same-workspace idempotence | Not established; existing stages reject completed-stage reruns |
+| Two-fresh-build payload/ISO reproducibility | Not established; embedded invocation metadata is a known source of difference |
+| Tagged release bundle | Not produced in inspected evidence |
+
+Earlier recovered EliteBook-derived payload boot and later LHC kernel smoke
+results are historical successes, not passes for this canonical live artifact set.
+
+## Source-review findings to investigate individually
+
+1. create-build.sh still writes a package-manifest-status placeholder. The
+   historical May inventory combines build notes and file listings; it cannot
+   establish current installed versions or a package ownership ledger.
+2. generate-rootfs.sh embeds build.env with BUILD_ID and CREATED_AT. Unique
+   invocation IDs/timestamps therefore change payload content between fresh
+   builds despite fixed SquashFS timestamps. Separate immutable release metadata
+   from actual run metadata before claiming byte reproducibility.
+3. Build stages require a clean worktree and matching build/HEAD revisions.
+   The untracked boincctl currently fails that clean-tree requirement. The
+   retained July build also predates current HEAD; do not bypass these guards.
+4. The minimal BusyBox builder contains no kernel modules and mounts media as
+   ext4. Verify required built-in drivers and filesystems for Tier 1; design and
+   validate ISO media discovery before Tier 2. Do not assume ext4 discovery boots ISO9660.
+5. The reviewed scripts contain hardware-detection scaffolding but do not
+   establish an authoritative installer. Inventory the remaining installer
+   candidates, including low-level helpers and historical copies, before promotion.
+6. Rootfs excludes /opt/models and disables llama-server and sshd. Retain this
+   policy. Review BOINC/autofs/CVMFS runtime paths and service behavior before the
+   next capture, especially persistent CVMFS cache under /var/lib/cvmfs. No policy
+   change or host service disablement has yet been made.
+
+## Backups
+
+While booted into Ubuntu, /mnt/two was the external4t filesystem with UUID
+35d4bbc8-bfc7-410f-8bd0-f1c1ba54e89b. Sable backup directories were observed
+beneath /mnt/two/backups/sable-system and ISO material beneath /mnt/two/backups/iso.
+/mnt/three was /dev/sda1 with UUID c1a3ad04-f50c-448c-9b39-49dbc6031692;
+/mnt/three/backups/sable-system exists. Current Sable mount locations and backup
+completeness, hashes and recoverability remain unverified. Use filesystem UUIDs
+rather than assuming device names or mount locations persist across boot.
+
+## Restart decision and next action
+
+Recommend D for the release baseline: audit packages, perform validated upgrades,
+freeze canonical inputs, then generate a fresh build. Preserve the July build as
+historical evidence and a possible diagnostic Tier 1 fixture after integrity
+verification. This does not authorize rewriting it or resetting Git history.
+
+Next action: inspect tools/sable-inventory.sh without executing it, establish a
+current package and functionality baseline, then select the first bounded package
+upgrade or release-blocker correction from the resulting evidence.
+
+No new build, package upgrade, service change, bootloader edit or runtime test was
+performed by the reviewer during this audit. Apply and commit this documentation
+on the canonical host to complete the repository checkpoint.
