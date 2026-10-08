@@ -1,0 +1,12 @@
+=== i915 ===
+/lib/modules/6.16.1-sable-gpu-test2/kernel/drivers/gpu/drm/i915/i915.ko
+6.16.1-sable-gpu-test2 SMP preempt mod_unload 
+=== amdgpu ===
+/lib/modules/6.16.1-sable-gpu-test2/kernel/drivers/gpu/drm/amd/amdgpu/amdgpu.ko
+6.16.1-sable-gpu-test2 SMP preempt mod_unload 
+=== mei_gsc ===
+/lib/modules/6.16.1-sable-gpu-test2/kernel/drivers/misc/mei/mei-gsc.ko
+6.16.1-sable-gpu-test2 SMP preempt mod_unload 
+=== mei_gsc_proxy ===
+/lib/modules/6.16.1-sable-gpu-test2/kernel/drivers/misc/mei/gsc_proxy/mei_gsc_proxy.ko
+6.16.1-sable-gpu-test2 SMP preempt mod_unload 
