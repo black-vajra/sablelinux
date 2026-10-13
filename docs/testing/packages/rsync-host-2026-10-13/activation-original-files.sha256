@@ -1,0 +1,5 @@
+63d8dae610cc36cc6db2feae26587715da91972e3ba027e120ae4a0dd9576601  ./usr/bin/rsync
+b25e002f448246d7271adb0d9e72281e33aa822b07afff4c96c476d79fe1fc80  ./usr/bin/rsync-ssl
+1eeb598a93516fb0e75145ca1a6877a3544538aee41d6f761d8351f4a85b96e7  ./usr/share/man/man1/rsync-ssl.1
+ca2ecf8ff1655ff47ddd9e66da63b07edd43aebc7aea43fd24650aa0b420a9f7  ./usr/share/man/man1/rsync.1
+632b8ac13e2b08782cf60b5d59affdbd49a05f8c48fa757c68f5e408e00574a3  ./usr/share/man/man5/rsyncd.conf.5

@@ -45,3 +45,19 @@ inventory, modification times and regular-file hashes.
 Evidence: docs/testing/packages/rsync-recipe-2026-10-13/
 TCP-specific skips remain unpassed. Exact-artifact VM validation,
 host activation and ISO reproducibility remain pending.
+
+## Canonical host activation — 2026-10-13
+
+The VM-validated candidate at /srv/sablelinux/package-builds/rsync/3.5.1/A
+was activated on the canonical Z890 installation. Installed file hashes,
+modes, ownership and version validation passed. The original five files
+and recovery records remain under that build's activation directory.
+
+An isolated replacement/rollback exercise passed before activation.
+Installed-runtime tests passed for content, foreign numeric ownership,
+modes, timestamps, hardlinks, symlinks, setuid/setgid bits, ACLs, default
+ACLs and xattrs. A repeat fixture copy reported no changes.
+
+Evidence: docs/testing/packages/rsync-host-2026-10-13/
+This completes the measured package activation and preservation checks.
+Full live-media, installer and ISO reproducibility gates remain pending.
