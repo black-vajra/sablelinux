@@ -1,0 +1,15 @@
+2026-10-13T16:42:38-04:00
+SableLinux
+6.16.1-sable-gpu-test2
+41e8ba98b356088299705c69a6512bf69c7c7d06
+ M docs/release/RECOVERY_TO_ISO_PLAN.md
+ M scripts/testing/run-package-preservation-vm.sh
+?? scripts/boincctl
+QEMU emulator version 9.2.3
+Copyright (c) 2003-2024 Fabrice Bellard and the QEMU Project developers
+bc36f8987e137cf913a135d4f4884886d1342c7148d8114787bb5cfa74f7929d  /boot/vmlinuz-6.16.1-sable-gpu-test2
+1271404d28cc2eb66f9cf2222c4b2f7406cff4a85f57c3ba4ced8d1d45d22fd5  /boot/config-6.16.1-sable-gpu-test2
+dbac288c29ba568459550a2da9e7ae0ded6b1fc728ee9fad3044c44e62d6ac14  /usr/bin/busybox
+d24f0f404202bea704db8ea931834458be37b1b2541673f0c6ee09a99c2bb1b8  /srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/staged-files.sha256
+d31a7b94cbcedd908b370091d4e41b1db5d8307f88120c25c21a8b328d0ed095  /srv/sablelinux/package-builds/rsync/3.5.1/A/staged-files.sha256
+a59c75505cb325697fdc012cea6f07c491025920091b5466e1c1f78b57d76808  scripts/testing/run-package-preservation-vm.sh

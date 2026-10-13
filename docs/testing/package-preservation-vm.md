@@ -40,3 +40,14 @@ prevent it consuming pasted shell input.
 
 Host activation remains pending. Review and promote the successful package
 build procedures into canonical recipes before activation.
+
+## Finalized recipe candidate validation
+
+The automated run passed on 2026-10-13 with:
+- ACL: /srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A
+- rsync: /srv/sablelinux/package-builds/rsync/3.5.1/A
+
+Run: /srv/sablelinux/package-builds/package-preservation-vm-ITOIYmfw
+Evidence: docs/testing/packages/package-recipes-vm-2026-10-13/
+QEMU exited successfully and the guest pass marker was verified.
+Host activation remains pending; this is not a live-ISO gate.

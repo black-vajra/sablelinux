@@ -5,8 +5,8 @@ export LC_ALL=C
 
 die() { printf 'STOP: %s\n' "$*" >&2; exit 1; }
 repo=$(git -C "$(dirname "$0")" rev-parse --show-toplevel)
-acl=/srv/sablelinux/package-builds/acl-2.4.0-f8orRpQp
-rsync_build=/srv/sablelinux/package-builds/rsync-3.5.1-YbMJUAGF
+acl=/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A
+rsync_build=/srv/sablelinux/package-builds/rsync/3.5.1/A
 kernel=/boot/vmlinuz-6.16.1-sable-gpu-test2
 config=/boot/config-6.16.1-sable-gpu-test2
 

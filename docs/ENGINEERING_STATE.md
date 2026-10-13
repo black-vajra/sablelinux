@@ -128,3 +128,14 @@ upgrade or release-blocker correction from the resulting evidence.
 No new build, package upgrade, service change, bootloader edit or runtime test was
 performed by the reviewer during this audit. Apply and commit this documentation
 on the canonical host to complete the repository checkpoint.
+
+## Package checkpoint — 2026-10-13
+
+Canonical ACL 2.4.0 and rsync 3.5.1 staged recipes are implemented.
+Completed-stage reuse comparisons passed. Two fresh builds of each package
+matched staged inventories and file hashes after debug-path normalization.
+The finalized ACL/rsync candidates passed privileged ext4 preservation
+validation in a disposable QEMU/KVM guest.
+Host activation, rollback validation and full live-ISO gates remain pending.
+The release plan records the operator-requested kernel built-in selection
+audit as a deferred task before release-kernel input freeze.

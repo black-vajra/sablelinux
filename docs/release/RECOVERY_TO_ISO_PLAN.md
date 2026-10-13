@@ -163,3 +163,17 @@ and frozen inputs. Preserve July artifacts for evidence and optional diagnostic
 validation after hash verification. Do not mix current HEAD with older build
 provenance or bypass clean-tree guards. Complete tools/sable-inventory.sh review
 and current inventory next; commit this plan and ENGINEERING_STATE.md on Z890.
+
+
+## Deferred task: review broad built-in kernel selections
+
+Recorded 2026-10-13: the operator recalls choosing Y broadly during
+interactive kernel configuration, potentially enabling excessive built-in
+features. This is an operator recollection, not a verified configuration finding.
+
+Before release-kernel input freeze, audit the actual canonical configuration
+against live-boot requirements and supported hardware. Classify justified
+built-ins, modules and exclusions. Preserve the working GPU Test 2 baseline;
+make one investigated change at a time and validate candidates in VMs first.
+Do not broadly convert Y selections or rebuild the physical installation
+speculatively. Resume after the current ACL/rsync package work.
