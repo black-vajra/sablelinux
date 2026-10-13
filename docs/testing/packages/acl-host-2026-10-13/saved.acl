@@ -1,0 +1,9 @@
+# file: /srv/sablelinux/package-builds/acl-host-smoke-Pvt79UT5/file
+# owner: 1000
+# group: 1000
+user::rw-
+user:12345:r--
+group::r--
+mask::r--
+other::r--
+

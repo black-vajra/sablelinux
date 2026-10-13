@@ -66,3 +66,12 @@ Evidence: docs/testing/packages/acl-path-normalization-2026-10-13/
 
 This validates the compared package payloads on the current canonical host.
 ISO byte reproducibility and host activation remain pending.
+
+## Canonical host activation
+
+ACL activated and verified on 2026-10-13 using the VM-validated normalized A
+payload. Installed getfacl, setfacl and pkg-config report 2.4.0.
+The unprivileged installed-tool ACL restore smoke test passed.
+Evidence: docs/testing/packages/acl-host-2026-10-13/
+Recovery records remain under path-normalized-A/activation.
+Rsync activation and exercised rollback remain pending.

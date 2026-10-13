@@ -1,0 +1,7 @@
+getfacl 2.4.0
+setfacl 2.4.0
+2.4.0
+	linux-vdso.so.1 (0x00007f0d92a1b000)
+	libacl.so.1 => /usr/lib/libacl.so.1 (0x00007f0d929f2000)
+	libc.so.6 => /usr/lib/libc.so.6 (0x00007f0d9280b000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f0d92a1d000)
