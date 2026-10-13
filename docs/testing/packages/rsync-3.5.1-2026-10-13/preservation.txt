@@ -1,0 +1,4 @@
+Fixture: /srv/sablelinux/package-builds/rsync-3.5.1-YbMJUAGF/preservation-bbUQRlxe
+PASS: contents, modes, current-user ownership, timestamps,
+hardlinks, symlinks, ACLs and xattrs preserved.
+PASS: repeat fixture copy reported no changes.

@@ -1,0 +1,12 @@
+d 755 pepper:pepper 4096 . -> 
+d 755 pepper:pepper 4096 ./usr -> 
+d 755 pepper:pepper 4096 ./usr/bin -> 
+d 755 pepper:pepper 4096 ./usr/share -> 
+d 755 pepper:pepper 4096 ./usr/share/man -> 
+d 755 pepper:pepper 4096 ./usr/share/man/man1 -> 
+d 755 pepper:pepper 4096 ./usr/share/man/man5 -> 
+f 644 pepper:pepper 249874 ./usr/share/man/man1/rsync.1 -> 
+f 644 pepper:pepper 6281 ./usr/share/man/man1/rsync-ssl.1 -> 
+f 644 pepper:pepper 72425 ./usr/share/man/man5/rsyncd.conf.5 -> 
+f 755 pepper:pepper 2280720 ./usr/bin/rsync -> 
+f 755 pepper:pepper 7051 ./usr/bin/rsync-ssl -> 

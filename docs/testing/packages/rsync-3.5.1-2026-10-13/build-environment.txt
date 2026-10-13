@@ -1,0 +1,12 @@
+2026-10-13T15:33:14-04:00
+SableLinux
+6.16.1-sable-gpu-test2
+51d5af82ca4c1a33e9777794325fb87ce00bdec0
+gcc (GCC) 15.2.0
+Copyright (C) 2025 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+c55f9c9dc10fb8bec397b399a0fdded53cc9a2d8e30891bb0d63724d25c37bef  /srv/sablelinux/sources/rsync-review-x36DgAZ9/rsync-3.5.1.tar.gz
+6a0da34db88eee205ba47f6001a26a893f4235db61ca6193be355fa350ff3181  /srv/sablelinux/package-builds/acl-2.4.0-f8orRpQp/staged-files.sha256
+ACL_STAGE=/srv/sablelinux/package-builds/acl-2.4.0-f8orRpQp/stage
