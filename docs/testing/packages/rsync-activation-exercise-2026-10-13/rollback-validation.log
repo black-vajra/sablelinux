@@ -1,0 +1,11 @@
+./usr/bin/rsync: OK
+./usr/bin/rsync-ssl: OK
+./usr/share/man/man1/rsync-ssl.1: OK
+./usr/share/man/man1/rsync.1: OK
+./usr/share/man/man5/rsyncd.conf.5: OK
+./usr/bin/rsync: OK
+./usr/bin/rsync-ssl: OK
+./usr/share/man/man1/rsync-ssl.1: OK
+./usr/share/man/man1/rsync.1: OK
+./usr/share/man/man5/rsyncd.conf.5: OK
+PASS: original rsync files and ACL metadata restored; recovery records retained

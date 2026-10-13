@@ -1,0 +1,5 @@
+755 0:0 1174992 2026-04-04 12:44:54.159307871 -0400 /srv/sablelinux/package-builds/rsync-transaction-exercise-wMJEonjo/root/usr/bin/rsync
+755 0:0 5136 2026-04-04 12:44:54.159890664 -0400 /srv/sablelinux/package-builds/rsync-transaction-exercise-wMJEonjo/root/usr/bin/rsync-ssl
+644 0:0 4910 2026-04-04 12:44:54.167402717 -0400 /srv/sablelinux/package-builds/rsync-transaction-exercise-wMJEonjo/root/usr/share/man/man1/rsync-ssl.1
+644 0:0 233878 2026-04-04 12:44:54.165683055 -0400 /srv/sablelinux/package-builds/rsync-transaction-exercise-wMJEonjo/root/usr/share/man/man1/rsync.1
+644 0:0 59730 2026-04-04 12:44:54.169386093 -0400 /srv/sablelinux/package-builds/rsync-transaction-exercise-wMJEonjo/root/usr/share/man/man5/rsyncd.conf.5

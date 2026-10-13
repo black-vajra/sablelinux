@@ -1,0 +1,5 @@
+2026-10-13T17:06:33-04:00
+1667890d5351a05175a0fb28c51204398c8d5b9c
+deb12eff50c9f3c8126835c4c1a3e2375b87f0ce72d873efbdcb8ff21bee0e2b  scripts/packages/activate-rsync.sh
+d31a7b94cbcedd908b370091d4e41b1db5d8307f88120c25c21a8b328d0ed095  /srv/sablelinux/package-builds/rsync/3.5.1/A/staged-files.sha256
+TARGET_ROOT=/srv/sablelinux/package-builds/rsync-transaction-exercise-wMJEonjo/root
