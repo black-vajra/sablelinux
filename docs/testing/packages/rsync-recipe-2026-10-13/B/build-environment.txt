@@ -1,0 +1,11 @@
+2026-10-13T16:31:24-04:00
+SableLinux
+6.16.1-sable-gpu-test2
+16de314f82120d29b0de0b32c9cdd7419422f5b7
+?? docs/packages/rsync-build-recipe.md
+?? scripts/boincctl
+?? scripts/packages/build-rsync.sh
+SOURCE_REVIEW=/srv/sablelinux/sources/rsync-review-x36DgAZ9
+ACL_BUILD=/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A
+BUILD_ROOT=/srv/sablelinux/package-builds/rsync/3.5.1/B
+INPUT_SHA256=f96aeb0c5c3373495447b561557298873a5560f4940934ba98b73ebeba38e000

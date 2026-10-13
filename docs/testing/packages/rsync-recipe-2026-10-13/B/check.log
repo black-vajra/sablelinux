@@ -1,0 +1,429 @@
+./mkgitver
+gcc -I. -I. -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -I/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/include -c tls.c -o tls.o
+gcc -I. -I. -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -I/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/include -c t_stub.c -o t_stub.o
+gcc -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -L/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/lib -o tls tls.o syscall.o util2.o t_stub.o lib/compat.o lib/snprintf.o lib/permstring.o lib/sysxattrs.o  -lacl -lpopt -llz4 -lzstd -lxxhash -lcrypto 
+gcc -I. -I. -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -I/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/include -c getgroups.c -o getgroups.o
+gcc -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -L/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/lib -o getgroups getgroups.o -lacl -lpopt -llz4 -lzstd -lxxhash -lcrypto 
+gcc -I. -I. -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -I/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/include -c getfsdev.c -o getfsdev.o
+gcc -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -L/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/lib -o getfsdev getfsdev.o -lacl -lpopt -llz4 -lzstd -lxxhash -lcrypto 
+gcc -I. -I. -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -I/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/include -c testrun.c -o testrun.o
+gcc -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -L/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/lib -o testrun testrun.o
+gcc -I. -I. -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -I/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/include -c trimslash.c -o trimslash.o
+gcc -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -L/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/lib -o trimslash trimslash.o syscall.o util2.o t_stub.o lib/compat.o lib/snprintf.o -lacl -lpopt -llz4 -lzstd -lxxhash -lcrypto 
+gcc -I. -I. -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -I/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/include -c t_unsafe.c -o t_unsafe.o
+gcc -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -L/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/lib -o t_unsafe t_unsafe.o syscall.o util1.o util2.o t_stub.o lib/compat.o lib/snprintf.o lib/wildmatch.o -lacl -lpopt -llz4 -lzstd -lxxhash -lcrypto 
+gcc -I. -I. -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -I/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/include -c t_chmod_secure.c -o t_chmod_secure.o
+gcc -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -L/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/lib -o t_chmod_secure t_chmod_secure.o syscall.o util1.o util2.o t_stub.o lib/compat.o lib/snprintf.o lib/wildmatch.o lib/permstring.o -lacl -lpopt -llz4 -lzstd -lxxhash -lcrypto 
+gcc -I. -I. -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -I/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/include -c t_rename_secure.c -o t_rename_secure.o
+gcc -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -L/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/lib -o t_rename_secure t_rename_secure.o syscall.o util1.o util2.o t_stub.o lib/compat.o lib/snprintf.o lib/wildmatch.o lib/permstring.o -lacl -lpopt -llz4 -lzstd -lxxhash -lcrypto 
+gcc -I. -I. -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -I/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/include -c t_symlink_secure.c -o t_symlink_secure.o
+gcc -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -L/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/lib -o t_symlink_secure t_symlink_secure.o syscall.o util1.o util2.o t_stub.o lib/compat.o lib/snprintf.o lib/wildmatch.o lib/permstring.o -lacl -lpopt -llz4 -lzstd -lxxhash -lcrypto 
+gcc -I. -I. -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -I/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/include -c t_secure_relpath.c -o t_secure_relpath.o
+gcc -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -L/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/lib -o t_secure_relpath t_secure_relpath.o syscall.o util1.o util2.o t_stub.o lib/compat.o lib/snprintf.o lib/wildmatch.o lib/permstring.o -lacl -lpopt -llz4 -lzstd -lxxhash -lcrypto 
+gcc -I. -I. -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -I/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/include -c t_acl.c -o t_acl.o
+gcc -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -L/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/lib -o t_acl t_acl.o lib/acl.o -lacl -lpopt -llz4 -lzstd -lxxhash -lcrypto 
+gcc -I. -I. -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -I/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/include -c t_hashtable_overflow.c -o t_hashtable_overflow.o
+gcc -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -L/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/lib -o t_hashtable_overflow t_hashtable_overflow.o hashtable.o util2.o t_stub.o lib/compat.o lib/snprintf.o lib/wildmatch.o -lacl -lpopt -llz4 -lzstd -lxxhash -lcrypto 
+gcc -I. -I. -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -I/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/include -c t_iwildmatch.c -o t_iwildmatch.o
+gcc -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -L/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/lib -o t_iwildmatch t_iwildmatch.o lib/wildmatch.o -lacl -lpopt -llz4 -lzstd -lxxhash -lcrypto 
+gcc -I. -I. -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -I/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/include -c t_clean_fname.c -o t_clean_fname.o
+gcc -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -L/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/lib -o t_clean_fname t_clean_fname.o syscall.o util1.o util2.o t_stub.o lib/compat.o lib/snprintf.o lib/wildmatch.o -lacl -lpopt -llz4 -lzstd -lxxhash -lcrypto 
+gcc -I. -I. -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -I/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/include -c t_safe_arg.c -o t_safe_arg.o
+gcc -I. -I. -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -I/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/include -Dmain=rsync_unused_main -c ./main.c -o t_safe_arg_main.o
+gcc -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -L/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/lib -o t_safe_arg t_safe_arg.o t_safe_arg_main.o flist.o rsync.o generator.o receiver.o cleanup.o sender.o exclude.o util1.o util2.o checksum.o match.o syscall.o log.o backup.o delete.o options.o io.o compat.o hlink.o token.o uidlist.o socket.o hashtable.o usage.o fileio.o batch.o clientname.o chmod.o acls.o xattrs.o progress.o pipe.o  simd-checksum-x86_64.o  params.o loadparm.o clientserver.o access.o connection.o authenticate.o lib/wildmatch.o lib/compat.o lib/snprintf.o lib/mdfour.o lib/md5.o lib/permstring.o lib/pool_alloc.o lib/sysacls.o lib/sysxattrs.o lib/acl.o  zlib/deflate.o zlib/inffast.o zlib/inflate.o zlib/inftrees.o zlib/trees.o zlib/zutil.o zlib/adler32.o zlib/compress.o zlib/crc32.o  -lacl -lpopt -llz4 -lzstd -lxxhash -lcrypto 
+gcc -I. -I. -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -I/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/include -c wildtest.c -o wildtest.o
+gcc -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -L/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/lib -o wildtest wildtest.o lib/compat.o lib/snprintf.o  -lacl -lpopt -llz4 -lzstd -lxxhash -lcrypto 
+gcc -I. -I. -I./zlib -g -O2 -fdebug-prefix-map=/srv/sablelinux/package-builds/rsync/3.5.1/B/source=/usr/src/sablelinux/rsync-3.5.1 -DHAVE_CONFIG_H -Wall -W -I/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/stage/usr/include \
+    -DRSYNC_TEST_NO_AT_FDCWD -c ./syscall.c -o syscall-no-at-fdcwd.o
+./syscall.c: In function 'secure_mkstemp':
+./syscall.c:3540:54: warning: unused parameter 'operator_path' [-Wunused-parameter]
+ 3540 | int secure_mkstemp(char *template, mode_t perms, int operator_path)
+      |                                                  ~~~~^~~~~~~~~~~~~
+./syscall.c: At top level:
+./syscall.c:1771:12: warning: 'do_fchmodat_nofollow' defined but not used [-Wunused-function]
+ 1771 | static int do_fchmodat_nofollow(int dfd, const char *name, mode_t mode)
+      |            ^~~~~~~~~~~~~~~~~~~~
+./syscall.c:325:12: warning: 'abspath_step' defined but not used [-Wunused-function]
+  325 | static int abspath_step(char *abspath, size_t cap, const char *comp, size_t comp_len)
+      |            ^~~~~~~~~~~~
+./syscall.c:294:12: warning: 'check_abspath_leaf' defined but not used [-Wunused-function]
+  294 | static int check_abspath_leaf(const char *base, const char *leaf)
+      |            ^~~~~~~~~~~~~~~~~~
+"./runtests.py" --rsync-bin="`pwd`/rsync" -j 8
+============================================================
+./runtests.py running in /srv/sablelinux/package-builds/rsync/3.5.1/B/source
+    rsync_bin=/srv/sablelinux/package-builds/rsync/3.5.1/B/source/rsync
+    srcdir=/srv/sablelinux/package-builds/rsync/3.5.1/B/source
+    TLS_ARGS=-l -L
+    testuser=pepper
+    os=Linux SableLinux 6.16.1-sable-gpu-test2 #17 SMP PREEMPT_DYNAMIC Thu Oct  8 12:42:14 EDT 2026 x86_64 GNU/Linux
+    preserve_scratch=no
+    parallel=8
+    daemon_transport=pipe (secure default)
+    scratchbase=/srv/sablelinux/package-builds/rsync/3.5.1/B/source/testtmp
+PASS    acls
+PASS    alt-dest-symlink-race
+PASS    acls-depth
+PASS    acls-unpinnable
+PASS    alt-dest-deep
+PASS    append-shortsum
+PASS    00-hello
+PASS    atimes
+PASS    authenticate-no-ocloexec-build-regression
+PASS    append
+PASS    backup-acl-xattr-cache
+SKIP    backup-dir-symlink-race (requires root to plant a backup-dir symlink owned by a non-self uid)
+PASS    backup-crossdev-copy
+PASS    backup-dir-relative
+PASS    backup-dir-repeated-separator-delete
+PASS    backup-deep
+SKIP    batch-file-symlink (requires root to plant a symlink owned by a non-self uid (the attacker simulation))
+PASS    backup-incremental
+PASS    bare-do-open-symlink-race
+PASS    batch-only-remove-source-regression
+PASS    backup
+PASS    basis-xname-traversal
+SKIP    checksum-zero-blocklen (the pure-Python receiver needs a real TCP socket; run with --use-tcp)
+PASS    acls-default
+PASS    chdir-symlink-race
+PASS    batch-mode
+PASS    chmod-symlink-race
+PASS    chmod-setid
+PASS    chmod-temp-dir
+PASS    chmod
+SKIP    chown (Can't chown (probably need root))
+SKIP    chroot-alt-dest-inner-module (chroot /./ module regression requires root)
+PASS    chown-fake
+PASS    chmod-option
+SKIP    chroot-basis-forge-inner-module (the pure-Python sender needs a real TCP daemon; run with --use-tcp)
+SKIP    chroot-copy-dest-inner-module (chroot /./ module regression requires root)
+SKIP    chroot-link-dest-inner-module (chroot /./ module regression requires root)
+SKIP    chroot-receiver-write-inner-module (chroot /./ module regression requires root)
+SKIP    chroot-special-inner-module (chroot /./ module regression requires root)
+PASS    clean-fname-collapse
+PASS    alt-dest
+PASS    clean-fname-underflow
+PASS    connect-prog-host-quoting
+PASS    connect-prog-nested-singlequote-host-injection
+PASS    compress-zlib-insert
+PASS    copy-dest-source-symlink
+SKIP    copy-dest-symlink-readleak (requires root to plant a copy-dest symlink owned by a non-self uid)
+PASS    compare
+SKIP    crtimes (Rsync is configured without crtimes support)
+PASS    compress-options
+SKIP    daemon-access-idn (hosts allow/deny hostname matching needs a real TCP peer)
+SKIP    daemon-access-ip (hosts allow/deny address matching needs a real TCP peer)
+PASS    cvs-exclude
+SKIP    daemon-argv-limit (raw malicious daemon client needs a real TCP daemon; run with --use-tcp)
+PASS    daemon-auth-digest-floor
+SKIP    daemon-auth-group (needs chown to set up the non-root-owned dest tree)
+PASS    daemon-auth-users-comma-only
+PASS    contimeout-rsh
+SKIP    daemon-chroot-acl (needs a real TCP peer address for reverse-DNS hostname ACL; run with --use-tcp)
+PASS    daemon-auth
+SKIP    daemon-chroot (use chroot = yes needs root (CAP_SYS_CHROOT))
+SKIP    daemon-chroot-munge-default (chroot regimes (B/C) need root; verified the no-chroot regime munges by default)
+SKIP    daemon-config-symlink (requires root to plant a symlink owned by a non-self uid (the attacker simulation))
+PASS    chgrp
+PASS    daemon-access
+PASS    daemon-config
+PASS    daemon-copy-links-symlink
+PASS    daemon-copylinks-intree
+SKIP    daemon-deny-dns-failopen (hosts deny DNS-failure matching needs a real TCP peer)
+SKIP    daemon-dot-file-force-wipe (the malicious daemon client needs a real TCP socket; run with --use-tcp)
+PASS    daemon-delete-stats
+PASS    daemon-early-exec-nameconv
+PASS    daemon-copylinks-parent-escape
+PASS    daemon-exclude-from-outside-module
+PASS    daemon-exclude-namebased
+PASS    daemon-exec-rsync-env-shell-escape
+PASS    daemon-copylinks-parent-target-regression
+PASS    daemon-exec-second-shell-argument-injection
+PASS    daemon-exec-singlequote-injection
+PASS    daemon-exec-metachar-documented-limit
+PASS    daemon-filter-merge-bypass
+PASS    daemon-filter
+PASS    daemon-exec-metachar-refused
+PASS    daemon-groupmap-wild
+SKIP    daemon-handshake-timeout (raw stalled clients need a real TCP daemon; run with --use-tcp)
+SKIP    daemon-http-proxy (RSYNC_PROXY uses open_socket_out(), needs a real TCP connect)
+PASS    daemon-exec
+SKIP    daemon-leaf-type-race-fchmod (leaf-type authority proof currently requires Darwin)
+PASS    daemon-gzip-upload
+PASS    daemon-gzip-download
+SKIP    daemon-module-chdir-symlink (requires root to plant a symlink owned by a non-self uid (the attacker simulation))
+SKIP    daemon-module-options (motd/socket-options need a real socket)
+SKIP    daemon-module-private-parent (requires root (a 0700 parent the served uid cannot traverse, and a daemon that drops to an unprivileged uid))
+PASS    daemon-link-dest-escape
+SKIP    daemon-namecvt-newline-token (the pure-Python sender needs a real TCP daemon; run with --use-tcp)
+PASS    daemon-namecvt-empty-response
+PASS    daemon-include-maxconn
+SKIP    daemon-proxy-protocol (PROXY-protocol header is read from a real TCP socket; run with --use-tcp)
+SKIP    daemon-refuse-compress-threads-alias (the malicious receiver needs a real TCP daemon; run with --use-tcp)
+PASS    daemon-path-root-read
+PASS    daemon-munge
+PASS    daemon-path-rsync-var
+PASS    change-shrink
+PASS    change-vanish
+PASS    daemon-scan-cwd-desync
+SKIP    daemon-secrets-file-symlink (requires root to plant a symlink owned by a non-self uid (the attacker simulation))
+SKIP    daemon-standalone-detach (standalone detaching daemon opens a real loopback listener; run with --use-tcp)
+PASS    daemon-scan-dir-escape
+PASS    daemon-refuse-compress
+PASS    daemon-stdin-local-socket
+SKIP    daemon-symlink-escape-matrix (the daemon symlink-resolution flow needs a real TCP peer)
+PASS    daemon-size-arg-overflow
+SKIP    daemon-zstd-thread-exhaustion (the malicious receiver needs a real TCP daemon; run with --use-tcp)
+PASS    daemon-unix-socket-atfd
+PASS    daemon-subdir-climb-symlink
+PASS    daemon-strict-modes-matrix
+PASS    delay-updates-deep
+PASS    deep-path
+PASS    delay-updates
+PASS    delete-missing-args-files-from
+PASS    daemon
+PASS    dest-symlinked-dir
+SKIP    devices (Rsync needs root/fakeroot for device tests)
+PASS    delete
+PASS    dir-sgid
+PASS    dirs
+SKIP    early-input-symlink (requires root to plant a symlink owned by a non-self uid (the attacker simulation))
+PASS    duplicates
+SKIP    exclude-implied-trailing-backslash (a real network rsync daemon is needed (am_server==0 per-module); run with --use-tcp)
+PASS    delete-deep
+SKIP    excludefrom-symlink (requires root to plant a symlink owned by a non-self uid (the attacker simulation))
+PASS    daemon-refuse
+PASS    executability
+PASS    fake-super-acl-xattr
+PASS    fake-super-backup-fifo-regression
+PASS    file-to-file-mkpath-dry-run
+SKIP    files-from-leak (requires root to plant a backup-dir symlink owned by a non-self uid)
+PASS    daemon-refuse-delete-alias
+PASS    files-from-path-clamp
+PASS    devices-fake
+SKIP    filter-leak (requires root to plant a backup-dir symlink owned by a non-self uid)
+PASS    files-from-depth
+PASS    filter-depth
+SKIP    filter-merge-symlink (requires root to plant a symlink owned by a non-self uid (simulates the 'root runs `rsync -a /home /backup`' case))
+PASS    filter-merge-recursion
+PASS    files-from
+PASS    fuzzy-basis
+PASS    git-set-file-times-python-compat-regression
+PASS    exclude-lsh
+PASS    hands
+PASS    filter-merge-content-echo
+PASS    hardlinks-deep
+PASS    hashtable-overflow
+PASS    hashsearch-chain
+SKIP    idn (rsync built without IDN support)
+SKIP    inband-modname-leak (the daemon @ERROR handshake needs a real TCP peer)
+PASS    highfd-hang
+SKIP    insecure-links-admin-optout (requires root to plant a foreign-owned symlink and serve as root)
+PASS    exclude
+SKIP    io-noop-flood-recursion (the pure-Python client needs a real TCP daemon; run with --use-tcp)
+PASS    install-strip
+SKIP    io-nosend-flood-recursion (the pure-Python client needs a real TCP daemon; run with --use-tcp)
+SKIP    io-readargs-argv-nullwrite (the pure-Python client needs a real TCP daemon; run with --use-tcp)
+PASS    iwildmatch-fold
+PASS    inplace
+PASS    hardlinks
+PASS    keep-dirlinks-symlinked-dest
+PASS    fuzzy
+SKIP    ki62-io-error-mask (needs --use-tcp to kill the daemon (sender) mid-transfer)
+PASS    keep-dirlinks-rule
+PASS    ki73-cvs-clear-list
+PASS    ki72-safe-links-backup
+PASS    link-dest-module-escape
+PASS    link-dest-pathroot
+PASS    ki58-log-format-percent
+PASS    log-control-chars
+PASS    links
+SKIP    log-file-symlink (requires root to plant a symlink owned by a non-root, non-self uid (the attacker simulation))
+PASS    link-dest-relative-basis
+PASS    link-dest-symlink-enotsup
+SKIP    macos-setgid-ordinary-mode-regression (macOS-specific fchmodat setgid behavior)
+SKIP    malicious-dot-dir-delete-scope (the malicious sender needs a real TCP socket; run with --use-tcp)
+SKIP    malicious-dot-file-delete-scope (the malicious sender needs a real TCP socket; run with --use-tcp)
+SKIP    malicious-server-partial-basis-symlink-overwrite (the malicious sender needs a real TCP socket; run with --use-tcp)
+SKIP    match-append-empty-nullmap (the pure-Python generator needs a real TCP daemon; run with --use-tcp)
+PASS    longdir
+SKIP    match-want-i-nolen (the pure-Python generator needs a real TCP daemon; run with --use-tcp)
+PASS    max-alloc-zero
+PASS    metadata-depth
+PASS    missing
+PASS    misc-coverage
+PASS    mkpath
+PASS    malicious-sender-delete-scope
+PASS    acl-symlink-race
+PASS    nested-socket-specials
+SKIP    nondaemon-symlink-race (requires root to plant a backup-dir symlink owned by a non-self uid)
+SKIP    nonroot-restrictive-perms (needs chown to set up a non-root-owned dest tree)
+PASS    no-implied-dirs-symlink
+PASS    itemize
+PASS    open-noatime
+PASS    omit-times
+PASS    merge
+SKIP    operator-path-backup-rmdir (requires root to plant a backup-dir symlink owned by a non-self uid)
+SKIP    operator-path-backup-symlink (requires root to plant a backup-dir symlink owned by a non-self uid)
+PASS    operator-path-backup-dir-exclude-daemon
+PASS    operator-path-backup-dir-daemon
+PASS    operator-path-dir-daemon-inmodule
+PASS    operator-path-backup-dir
+PASS    operator-path-dir-daemon-leaf
+PASS    operator-path-compare-dest
+PASS    operator-path-copy-dest
+PASS    operator-path-dir-daemon-mkdir
+SKIP    operator-path-insecure-links-daemon (requires root to plant a symlink owned by a non-self uid)
+PASS    operator-path-dir-daemon-outside
+PASS    operator-path-files-from
+PASS    operator-path-link-dest
+PASS    operator-path-inplace-backup-dir
+PASS    operator-path-partial-dir-exclude-daemon
+PASS    operator-path-insecure-links-refused
+PASS    operator-path-log-file
+PASS    operator-path-partial-dir-daemon
+PASS    operator-path-traversal-dest-dir-daemon
+PASS    operator-path-partial-dir
+PASS    growing-file
+PASS    operator-path-traversal-partial-dir-daemon
+PASS    copy-xattrs-symlink-race
+PASS    ownership-depth
+PASS    operator-path-write-batch
+PASS    operator-path-temp-dir
+PASS    partial-dir-abs-delta
+SKIP    partial-protected-regular-retry-policy (deterministic partial EACCES recovery uses dyld interposing)
+PASS    operator-path-traversal-backup-dir-daemon
+SKIP    password-file-symlink (requires root to plant a symlink owned by a non-self uid (the attacker simulation))
+SKIP    peer-legacy-implied-delete-scope (the malicious protocol-29 server needs TCP; run with --use-tcp)
+SKIP    protected-regular (Can't chown (need root or unshare with uidmap))
+PASS    partial_nowrite
+SKIP    proto-cleared-dirflist (the pure-Python sender needs a real TCP daemon; run with --use-tcp)
+SKIP    proto-cleared-ndx (the pure-Python sender needs a real TCP daemon; run with --use-tcp)
+PASS    partial-protected-regular-retry-linux
+SKIP    proto-hlink-flag-oob (the pure-Python sender needs a real TCP daemon; run with --use-tcp)
+SKIP    proto-hlink-gnum (the pure-Python sender needs a real TCP daemon; run with --use-tcp)
+SKIP    proto-msg-info-assert (the pure-Python sender needs a real TCP daemon; run with --use-tcp)
+SKIP    proto-parent-ndx-empty-dirflist (the pure-Python sender needs a real TCP daemon; run with --use-tcp)
+SKIP    proto-sender-selftest (the pure-Python sender needs a real TCP daemon; run with --use-tcp)
+SKIP    proto-subflist-freed (the pure-Python sender needs a real TCP daemon; run with --use-tcp)
+PASS    output-options
+SKIP    proxy-connect-request-too-long (fake-proxy listener needs a real TCP socket; run with --use-tcp)
+PASS    proxy-host-crlf
+SKIP    proxy-protocol-trusted-peer (PROXY protocol peer policy needs a real TCP daemon; run with --use-tcp)
+SKIP    proxy-response-line-too-long (fake-proxy listener needs a real TCP socket; run with --use-tcp)
+SKIP    proxy-response-header-too-long (fake-proxy listener needs a real TCP socket; run with --use-tcp)
+PASS    read-batch-pipe
+PASS    prune-empty-dirs
+PASS    preallocate
+SKIP    recv-generator-acl-leak (KI-23 real_sx ACL leak is only observable under AddressSanitizer/LSan)
+PASS    pseudo-paths-daemon
+PASS    pseudo-paths
+PASS    readonly-partial-abort-mode-regression
+PASS    relative-content
+PASS    relative-implied-symlink
+PASS    recv-discard-nullderef
+PASS    relative-implied
+PASS    relative-mkpath-symlink
+PASS    relative-mkpath-dir-symlink
+PASS    relative-symlinked-parent-dotdot
+PASS    relative-symlinked-parent
+PASS    rename-mixed-parent-escape-poc
+PASS    rename-mixed-parent-symlink-race
+SKIP    rename-mixed-parent-transfer (requires root to plant a backup-dir symlink owned by a non-self uid)
+PASS    remote-shell-newline-escaping
+PASS    reverse-daemon-delta
+PASS    rrsync-alt-dest-inband-pivot
+PASS    rrsync-archive-mode
+PASS    rrsync-copy-unsafe-links-denied
+PASS    relative-source-ancestor
+PASS    rrsync-files-from-stdin
+PASS    rrsync-debug-denied
+PASS    rrsync-logfile-symlink
+PASS    relative
+PASS    rrsync-merge-file-confine
+PASS    rrsync-no-overwrite-backup-collision
+PASS    rrsync-no-overwrite-delay-updates
+PASS    rrsync-backup-dir-inband-pivot
+PASS    msg-io-timeout-zero
+PASS    rrsync-no-overwrite-logfile
+PASS    rrsync-no-overwrite-partial-dir
+PASS    rrsync-pull-delivers-content
+PASS    msg-io-timeout-overflow
+PASS    rrsync-sender-parent-pin
+PASS    rrsync-userns-procfs
+PASS    rrsync-root-relative-paths
+PASS    rrsync-write-only-files-from
+PASS    rsync-ssl-hostname-validation
+PASS    rsync-ssl-openssl-hostname-check
+PASS    rsync-ssl-stunnel-ca-required
+PASS    rrsync-specials-denied
+PASS    partial
+PASS    rsync-ssl-stunnel-hostname-check
+PASS    safe-arg-leak
+PASS    rsync-ssl-type-option
+PASS    safe-links
+PASS    safe-links-absolute-intree
+PASS    scanner-argv-bounds
+PASS    safe-links-unsafe-def
+PASS    rrsync-pull-arg-shapes
+PASS    scanner-batch-flag-mismatch
+PASS    secure-relpath-validation
+PASS    scanner-delete-delay-overread
+PASS    scanner-daemon-log-checksum
+PASS    search-only-destination
+SKIP    sender-remove-source-root-anchor (needs root to place a transfer source directly under /)
+PASS    sender-remove-source-relative-anchor
+PASS    sender-flist-symlink-leak
+PASS    search-only-held-dirfd
+PASS    simd-checksum
+PASS    skiplist-spec
+PASS    size-filter
+PASS    sparse
+PASS    source-change-size-continues
+PASS    ssh-basic
+PASS    stop-time
+SKIP    symlink-dest-backupdir (requires root to plant a backup-dir symlink owned by a non-self uid)
+PASS    rrsync-symlink
+PASS    symlink-exclude-chdir-alias
+PASS    symlink-exclude-component
+PASS    symlink-exclude-deep
+PASS    symlink-exclude-leaf
+PASS    symlink-exclude-meta
+PASS    sender-readlink-atfd
+PASS    symlink-exclude-xattr
+PASS    sender-remove-source-secure
+PASS    symlink-mknod-fakesuper-symlink-race
+PASS    symlink-exclude
+SKIP    symlink-race-dest (requires root to plant a symlink owned by a non-self uid (simulates 'root runs rsync' over an unprivileged user's dir))
+PASS    symlink-ignore
+SKIP    symlink-race-relative-dest (requires root to plant a symlink owned by a non-self uid (simulates 'root runs rsync -a src/ dest/' over an unprivileged user's directory))
+SKIP    temp-dir-symlink-injection (requires root to plant a temp-dir symlink owned by a non-self uid)
+PASS    sender-scan-dir-escape
+PASS    trimslash
+SKIP    uidlist-id0-name-leak (KI-25 id-0 name leak is only observable under AddressSanitizer/LSan)
+PASS    temp-dir
+PASS    unsafe-byname
+SKIP    variety-symlink-traversal (no old peer selected (RSYNC_PEER == RSYNC); nothing to compare for symlink-traversal divergence)
+PASS    unsafe-links
+PASS    wildmatch
+PASS    write-batch-filter-injection
+PASS    update
+PASS    write-batch-quoting
+SKIP    xattr-wire-cap (the pure-Python daemon needs a real TCP socket; run with --use-tcp)
+PASS    xattrs-depth
+PASS    write-touched-blocks
+PASS    xattrs-hlink
+SKIP    xrsync (xrsync speaks the daemon protocol over a raw TCP socket; run with --use-tcp)
+PASS    xattrs
+PASS    rename-fullpath-symlink-race
+PASS    rrsync-sender-leaf-flip
+PASS    symlink-dirlink-basis
+PASS    symlink-race-source
+PASS    strict-basis
+PASS    variety
+------------------------------------------------------------
+----- overall results:
+      272 passed
+      88 skipped
+------------------------------------------------------------
+overall result is 0

@@ -33,3 +33,15 @@ setuid/setgid, links, ACLs, default ACLs, user xattrs, physical ACL
 restoration and an unchanged repeat copy on disposable ext4 media.
 Evidence: docs/testing/packages/package-preservation-vm-2026-10-13/
 This does not establish all skipped upstream tests or live-ISO gates.
+
+## Canonical recipe validation
+
+Two fresh short-path builds, rsync/3.5.1/A and B, passed with matching
+staged inventories and file hashes. The daemon-unix-socket-atfd test
+passed in both; longer build paths had caused its socket fixture to skip.
+The B summary was 272 PASS, 88 SKIP, overall result 0.
+An independent completed-stage reuse comparison for A found unchanged
+inventory, modification times and regular-file hashes.
+Evidence: docs/testing/packages/rsync-recipe-2026-10-13/
+TCP-specific skips remain unpassed. Exact-artifact VM validation,
+host activation and ISO reproducibility remain pending.

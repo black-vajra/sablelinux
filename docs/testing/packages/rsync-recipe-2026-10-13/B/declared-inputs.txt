@@ -1,0 +1,52 @@
+PACKAGE=rsync
+VERSION=3.5.1
+CONFIGURE=--prefix=/usr --disable-idn
+DEBUG_PREFIX=/usr/src/sablelinux/rsync-3.5.1
+BUILD_CFLAGS=-g -O2
+BUILD_CXXFLAGS=-g -O2
+ACL_BUILD=/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A
+c55f9c9dc10fb8bec397b399a0fdded53cc9a2d8e30891bb0d63724d25c37bef  /srv/sablelinux/sources/rsync-review-x36DgAZ9/rsync-3.5.1.tar.gz
+b7f83fce3cf1395b224db6a1ad25cf0d094d9164b6874c1654287a6a3465d291  /srv/sablelinux/sources/rsync-review-x36DgAZ9/rsync-3.5.1.tar.gz.asc
+4a76b880f79c98c12681a4ee8ed19050b08d5773dfe28e2928d12f1d545fa058  scripts/packages/build-rsync.sh
+c072043cb31873ab2f445532b810dfca4b6bef4a792732b464cb499e9249cd92  /home/pepper/sablelinux/scripts/packages/common.sh
+d24f0f404202bea704db8ea931834458be37b1b2541673f0c6ee09a99c2bb1b8  /srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/staged-files.sha256
+2df155db3f70b377cac5c766415d678fb96258a2ab341f59620a5ff7a2d55a82  /srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/staged-files.manifest
+b39bdd5158b323e824e2c9ac77706881b3ea54374b23bfafb592ad0afc40925c  /srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/completed-input.sha256
+00f3cee96fc67ecd6d7961ed62d240fac00686d67e7e44395757adfa4d21ee28  /usr/bin/gcc
+49d774130150d48b9cb18a4a1cbf3b4a2e5f13858a3a29772be576c1a99ebb01  /usr/bin/g++
+19e6d68aeb4acb75d3a160394da86fe98ad6e7617fc547d638f93c0112000821  /usr/bin/make
+0bf3ad683178fd033d25f5c4e2d6cf430e86b8add5be6aaebb1102a20639a5ae  /usr/bin/perl
+53eff518702694eb7cc799475e7f92e376449e0c0f9635f17d3233b5af8e21ef  /usr/bin/python3.13
+17fa25322b6d8c7630fed04178e2ad1bc85d29b3211a983284466115053448c7  /usr/bin/install
+e253764b65b5b4a07e010132f3d615cee7018cc0f3bbbf55ccb85ebc56bd1bc1  /usr/lib/libc.so.6
+1a988d0447dd6416fc81451bab3a53a4a947dabdba18598bf080a834aa1530d4  /usr/lib/libpopt.so.0
+3891981bf9ab46f9f14097b76acee910ccce83883c27e12768dc180c1dc77a7b  /usr/lib/liblz4.so.1
+b033ab4f05e5b7bb05c1bc5ae37df46a9b43706b008b52bf4d6e3f3d71becd63  /usr/lib/libzstd.so.1
+ac0fd1a253dfdc8e2730ae4f3fbb34f73bc83c201a2dabb05e4faf5c191a8a58  /usr/lib/libxxhash.so.0
+4027911112ec308f69005fb783fa4ab45a9d419aa4e4d37b2ff0e7dcd98c2a71  /usr/lib/libcrypto.so.3
+PKG_CONFIG_MODULE=popt
+1.19
+PKG_CONFIG_MODULE=liblz4
+1.10.0
+PKG_CONFIG_MODULE=libzstd
+1.5.7
+PKG_CONFIG_MODULE=libxxhash
+0.8.2
+PKG_CONFIG_MODULE=openssl
+3.5.2
+gcc (GCC) 15.2.0
+Copyright (C) 2025 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+install: /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/
+programs: =/usr/libexec/gcc/x86_64-pc-linux-gnu/15.2.0/:/usr/libexec/gcc/x86_64-pc-linux-gnu/15.2.0/:/usr/libexec/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/x86_64-pc-linux-gnu/15.2.0/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/
+libraries: =/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/lib/x86_64-pc-linux-gnu/15.2.0/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/lib/../lib64/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../x86_64-pc-linux-gnu/15.2.0/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../lib64/:/lib/x86_64-pc-linux-gnu/15.2.0/:/lib/../lib64/:/usr/lib/x86_64-pc-linux-gnu/15.2.0/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../:/lib/:/usr/lib/
+CPPFLAGS=
+LDFLAGS=
+LD_LIBRARY_PATH=/opt/rocm-7.2.2/lib:/opt/rocm-7.2.2/lib64
+PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
+PKG_CONFIG_LIBDIR=
+CONFIG_SITE=
+MAKEFLAGS=
+USER=1000:1000
