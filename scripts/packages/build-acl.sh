@@ -40,6 +40,8 @@ BUILD_ROOT=$(realpath -m "$BUILD_ROOT")
 [[ $SOURCE_REVIEW == /srv/sablelinux/sources/* ]] || sable_die 'source review outside canonical sources'
 [[ $BUILD_ROOT == /srv/sablelinux/package-builds/acl/* ]] || sable_die 'build directory must be below package-builds/acl/'
 [[ $BUILD_ROOT != /srv/sablelinux/package-builds/acl/ ]] || sable_die 'package parent is not a build directory'
+DEBUG_PREFIX=/usr/src/sablelinux/acl-$VERSION
+BUILD_CFLAGS=${CFLAGS:--g -O2}
 ARCHIVE=$SOURCE_REVIEW/acl-$VERSION.tar.xz
 SIGNATURE=$ARCHIVE.sig
 KEYRING=$SOURCE_REVIEW/gnupg
@@ -50,6 +52,7 @@ sable_verify_sha256 "$ARCHIVE" "$EXPECTED_SHA256"
 # in the resume identity. This is not a complete frozen-host release manifest.
 INPUTS=$(
     printf 'PACKAGE=acl\nVERSION=%s\nCONFIGURE=--prefix=/usr --libdir=/usr/lib --disable-static --docdir=/usr/share/doc/acl-%s\n' "$VERSION" "$VERSION"
+    printf 'BUILD_CFLAGS=%s\nDEBUG_PREFIX=%s\n' "$BUILD_CFLAGS" "$DEBUG_PREFIX"
     sha256sum "$ARCHIVE" "$SIGNATURE" "${BASH_SOURCE[0]}" "$SCRIPT_DIR/common.sh"
     for tool in gcc make perl cp install stat; do
         sha256sum "$(readlink -f "$(command -v "$tool")")"
@@ -111,7 +114,8 @@ tar -xJf "$ARCHIVE" --strip-components=1 -C "$BUILD_ROOT/source"
 find "$BUILD_ROOT/source" -type d -exec chmod g-s {} +
 (
     cd "$BUILD_ROOT/source"
-    ./configure --prefix=/usr --libdir=/usr/lib --disable-static \
+    CFLAGS="$BUILD_CFLAGS -fdebug-prefix-map=$BUILD_ROOT/source=$DEBUG_PREFIX" \
+        ./configure --prefix=/usr --libdir=/usr/lib --disable-static \
         --docdir=/usr/share/doc/acl-$VERSION
 ) 2>&1 | tee "$BUILD_ROOT/logs/configure.log"
 make -C "$BUILD_ROOT/source" -j"${JOBS:-$(nproc)}" 2>&1 | tee "$BUILD_ROOT/logs/build.log"

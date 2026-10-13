@@ -1,0 +1,46 @@
+make: Entering directory '/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/source'
+Making check in po
+make[1]: Entering directory '/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/source/po'
+make[1]: Nothing to be done for 'check'.
+make[1]: Leaving directory '/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/source/po'
+make[1]: Entering directory '/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/source'
+make  libtestlookup.la
+make[2]: Entering directory '/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/source'
+  CC       test/test_passwd.lo
+  CC       test/test_group.lo
+  CCLD     libtestlookup.la
+make[2]: Leaving directory '/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/source'
+make  check-TESTS
+make[2]: Entering directory '/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/source'
+make[3]: Entering directory '/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/source'
+PASS: test/cp.run
+PASS: test/getfacl-lfs.run
+PASS: test/getfacl-noacl.run
+PASS: test/getfacl-recursive.run
+PASS: test/malformed-restore.run
+PASS: test/misc.run
+PASS: test/setfacl-X.run
+SKIP: test/root/getfacl.run
+SKIP: test/root/permissions.run
+SKIP: test/root/restore.run
+SKIP: test/root/setfacl.run
+XFAIL: test/nfs/nfsacl.run
+XFAIL: test/nfs/nfs-dir.run
+PASS: test/restore.run
+PASS: test/sbits-restore.run
+PASS: test/utf8-filenames.run
+============================================================================
+Testsuite summary for acl 2.4.0
+============================================================================
+# TOTAL: 16
+# PASS:  10
+# SKIP:  4
+# XFAIL: 2
+# FAIL:  0
+# XPASS: 0
+# ERROR: 0
+============================================================================
+make[3]: Leaving directory '/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/source'
+make[2]: Leaving directory '/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/source'
+make[1]: Leaving directory '/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/source'
+make: Leaving directory '/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-A/source'

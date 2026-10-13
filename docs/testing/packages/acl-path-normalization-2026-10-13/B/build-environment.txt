@@ -1,0 +1,10 @@
+2026-10-13T16:16:39-04:00
+SableLinux
+6.16.1-sable-gpu-test2
+7f062ab9865ca527680e653ca2510279f218c302
+ M docs/packages/acl-build-recipe.md
+ M scripts/packages/build-acl.sh
+?? scripts/boincctl
+SOURCE_REVIEW=/srv/sablelinux/sources/acl-review-7kVNUmV5
+BUILD_ROOT=/srv/sablelinux/package-builds/acl/2.4.0/path-normalized-B
+INPUT_SHA256=f40c75fe68739d9c3b28e0b870574e35a980c9d4198b5b5161386596a983b8d6

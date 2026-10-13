@@ -55,3 +55,14 @@ Evidence: docs/testing/packages/acl-recipe-2026-10-13/
 
 This establishes the measured completed-stage reuse behavior only.
 Fresh-build byte reproducibility and host activation remain pending.
+
+## Debug-path normalization validation
+
+On 2026-10-13, two fresh builds in path-normalized-A and
+path-normalized-B passed upstream tests and produced matching staged
+inventories and full file hashes, retaining debug symbols and build IDs.
+The recipe maps workspace source paths to /usr/src/sablelinux/acl-2.4.0.
+Evidence: docs/testing/packages/acl-path-normalization-2026-10-13/
+
+This validates the compared package payloads on the current canonical host.
+ISO byte reproducibility and host activation remain pending.

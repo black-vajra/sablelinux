@@ -1,0 +1,37 @@
+PACKAGE=acl
+VERSION=2.4.0
+CONFIGURE=--prefix=/usr --libdir=/usr/lib --disable-static --docdir=/usr/share/doc/acl-2.4.0
+BUILD_CFLAGS=-g -O2
+DEBUG_PREFIX=/usr/src/sablelinux/acl-2.4.0
+e661131456d2708a01c614a0f400e11d7d1bfaeb6f3e74b75bb980b72f0161a3  /srv/sablelinux/sources/acl-review-7kVNUmV5/acl-2.4.0.tar.xz
+5f4f0b9b78821764fe6b88e32aef6ec519628522c211c36706bcb78d6f3f036b  /srv/sablelinux/sources/acl-review-7kVNUmV5/acl-2.4.0.tar.xz.sig
+ecbb3ca7dd2b3c6985ee8cdc28791a4fb402bbce8f9b2f44ab4f7fd22c7b6226  scripts/packages/build-acl.sh
+c072043cb31873ab2f445532b810dfca4b6bef4a792732b464cb499e9249cd92  /home/pepper/sablelinux/scripts/packages/common.sh
+00f3cee96fc67ecd6d7961ed62d240fac00686d67e7e44395757adfa4d21ee28  /usr/bin/gcc
+19e6d68aeb4acb75d3a160394da86fe98ad6e7617fc547d638f93c0112000821  /usr/bin/make
+0bf3ad683178fd033d25f5c4e2d6cf430e86b8add5be6aaebb1102a20639a5ae  /usr/bin/perl
+aa82f3978a9c0b0fc8e55c618fecf249e10022d0b3c4b14645b8f854d6b8c75e  /usr/bin/cp
+17fa25322b6d8c7630fed04178e2ad1bc85d29b3211a983284466115053448c7  /usr/bin/install
+8152ab2174f68c4b3fab8ae737d8f3ec2183cc813a2595e2b5c36a805548a3db  /usr/bin/stat
+e253764b65b5b4a07e010132f3d615cee7018cc0f3bbbf55ccb85ebc56bd1bc1  /usr/lib/libc.so.6
+77dbfc81d9493aa1c857e68543dd97933b66f373e707c6d9ef64d10acb8af72d  /usr/lib/libattr.so.1
+b5b1ae8d0ea51c85a51ab7da9d28f0e0078272f7d1d5ade1ee8400ca75c5cddc  /usr/include/attr/libattr.h
+0e698be1f3635b6edb0eeb6206255dac43280d6c173dcd94cae53e4fb6407a59  /usr/include/attr/error_context.h
+gcc (GCC) 15.2.0
+Copyright (C) 2025 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+install: /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/
+programs: =/usr/libexec/gcc/x86_64-pc-linux-gnu/15.2.0/:/usr/libexec/gcc/x86_64-pc-linux-gnu/15.2.0/:/usr/libexec/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/x86_64-pc-linux-gnu/15.2.0/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/bin/
+libraries: =/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/lib/x86_64-pc-linux-gnu/15.2.0/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/lib/../lib64/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../x86_64-pc-linux-gnu/15.2.0/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../lib64/:/lib/x86_64-pc-linux-gnu/15.2.0/:/lib/../lib64/:/usr/lib/x86_64-pc-linux-gnu/15.2.0/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../../x86_64-pc-linux-gnu/lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/../../../:/lib/:/usr/lib/
+CFLAGS=
+CXXFLAGS=
+CPPFLAGS=
+LDFLAGS=
+LD_LIBRARY_PATH=/opt/rocm-7.2.2/lib:/opt/rocm-7.2.2/lib64
+PKG_CONFIG_PATH=/usr/lib64/pkgconfig:/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig
+PKG_CONFIG_LIBDIR=
+CONFIG_SITE=
+MAKEFLAGS=
+USER=1000:1000
