@@ -185,3 +185,17 @@ built-ins, modules and exclusions. Preserve the working GPU Test 2 baseline;
 make one investigated change at a time and validate candidates in VMs first.
 Do not broadly convert Y selections or rebuild the physical installation
 speculatively. Resume after the current ACL/rsync package work.
+
+## Operator release scope — 2026-10-13
+
+BOINC is personal workstation software and is excluded from the canonical
+ISO: binaries, package libraries, configuration, service units, credentials
+and workload data. BOINC repair is outside the release critical path.
+Shared dependencies must not be removed merely because BOINC uses them.
+
+Include QEMU/KVM virtualization tools, but exclude preinstalled guest
+operating systems, guest disks, snapshots, saved memory and downloaded
+guest installation media. Preserve all host installations and VM artifacts.
+Inspect actual storage locations and validate exclusions before capture.
+
+CVMFS/autofs release inclusion remains subject to dependency and usage review.
