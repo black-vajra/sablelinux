@@ -1,0 +1,17 @@
+2026-10-13T15:19:58-04:00
+SableLinux
+6.16.1-sable-gpu-test2
+0dea21367dbe4df238d62747605697b4df52bddd
+gcc (GCC) 15.2.0
+Copyright (C) 2025 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+GNU Make 4.4.1
+Built for x86_64-pc-linux-gnu
+Copyright (C) 1988-2023 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+e661131456d2708a01c614a0f400e11d7d1bfaeb6f3e74b75bb980b72f0161a3  /srv/sablelinux/sources/acl-review-7kVNUmV5/acl-2.4.0.tar.xz
+c072043cb31873ab2f445532b810dfca4b6bef4a792732b464cb499e9249cd92  /home/pepper/sablelinux/scripts/packages/common.sh

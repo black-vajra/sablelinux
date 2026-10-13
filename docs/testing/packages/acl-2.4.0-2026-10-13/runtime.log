@@ -1,0 +1,24 @@
+Fixture: /srv/sablelinux/package-builds/acl-2.4.0-f8orRpQp/acl-runtime-ClHVzbop
+getfacl 2.4.0
+setfacl 2.4.0
+
+=== Dynamic linkage ===
+	linux-vdso.so.1 (0x00007fb85fa00000)
+	libacl.so.1 => /srv/sablelinux/package-builds/acl-2.4.0-f8orRpQp/stage/usr/lib/libacl.so.1 (0x00007fb85f9e4000)
+	libc.so.6 => /usr/lib/libc.so.6 (0x00007fb85f7f0000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007fb85fa02000)
+ 0x0000000000000001 (NEEDED)             Shared library: [libacl.so.1]
+ 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]
+	linux-vdso.so.1 (0x00007f5b1c56d000)
+	libacl.so.1 => /srv/sablelinux/package-builds/acl-2.4.0-f8orRpQp/stage/usr/lib/libacl.so.1 (0x00007f5b1c54e000)
+	libc.so.6 => /usr/lib/libc.so.6 (0x00007f5b1c35a000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f5b1c56f000)
+ 0x0000000000000001 (NEEDED)             Shared library: [libacl.so.1]
+ 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]
+
+=== ACL set, remove and restore ===
+Warning: option --restore=file is unsafe without option -P (--physical) as it traverses symbolic links in pathnames
+
+=== Default ACL inheritance ===
+
+PASS: staged ACL restore and inheritance tests.
