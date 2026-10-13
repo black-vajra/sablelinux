@@ -24,3 +24,12 @@ Evidence: docs/testing/packages/rsync-3.5.1-2026-10-13/
 Privileged ownership and skipped-test validation remain pending.
 Host activation and rollback validation remain pending.
 Build idempotence, byte reproducibility and ISO gates are not established.
+
+## Privileged VM preservation validation
+
+The canonical automated package VM passed on 2026-10-13 using staged
+rsync 3.5.1 and ACL 2.4.0. It verified foreign numeric ownership,
+setuid/setgid, links, ACLs, default ACLs, user xattrs, physical ACL
+restoration and an unchanged repeat copy on disposable ext4 media.
+Evidence: docs/testing/packages/package-preservation-vm-2026-10-13/
+This does not establish all skipped upstream tests or live-ISO gates.

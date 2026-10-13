@@ -1,0 +1,15 @@
+2026-10-13T15:59:02-04:00
+SableLinux
+6.16.1-sable-gpu-test2
+8689547df91d7013f8a2981b7637317ed32bcf48
+?? docs/testing/package-preservation-vm.md
+?? scripts/boincctl
+?? scripts/testing/
+QEMU emulator version 9.2.3
+Copyright (c) 2003-2024 Fabrice Bellard and the QEMU Project developers
+bc36f8987e137cf913a135d4f4884886d1342c7148d8114787bb5cfa74f7929d  /boot/vmlinuz-6.16.1-sable-gpu-test2
+1271404d28cc2eb66f9cf2222c4b2f7406cff4a85f57c3ba4ced8d1d45d22fd5  /boot/config-6.16.1-sable-gpu-test2
+dbac288c29ba568459550a2da9e7ae0ded6b1fc728ee9fad3044c44e62d6ac14  /usr/bin/busybox
+6a0da34db88eee205ba47f6001a26a893f4235db61ca6193be355fa350ff3181  /srv/sablelinux/package-builds/acl-2.4.0-f8orRpQp/staged-files.sha256
+44f80eedf25bbe30a2b8992f22441259a3de71d13669c7a4069e12b27edd444b  /srv/sablelinux/package-builds/rsync-3.5.1-YbMJUAGF/staged-files.sha256
+78e9407e31d94b5b7b763bbe5747491733e414cc4b6deedb05c7d7444db29cca  scripts/testing/run-package-preservation-vm.sh
