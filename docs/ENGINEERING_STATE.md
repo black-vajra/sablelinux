@@ -136,6 +136,34 @@ Completed-stage reuse comparisons passed. Two fresh builds of each package
 matched staged inventories and file hashes after debug-path normalization.
 The finalized ACL/rsync candidates passed privileged ext4 preservation
 validation in a disposable QEMU/KVM guest.
-Host activation, rollback validation and full live-ISO gates remain pending.
+ACL 2.4.0 and rsync 3.5.1 host activation and installed-runtime validation
+passed on the canonical Z890. The rsync replacement/rollback fixture passed
+before activation; original host rsync files and recovery records are retained.
+Full live-ISO gates remain pending.
 The release plan records the operator-requested kernel built-in selection
 audit as a deferred task before release-kernel input freeze.
+
+## Capture review checkpoint — 2026-10-13
+
+Canonical development was pushed through 72f99ce; the reported tracked worktree
+is clean, with scripts/boincctl still untracked and preserved. Running kernel
+6.16.1-sable-gpu-test2 has workstation validation evidence; canonical ISO
+integration remains pending. The October 7 system section above is historical
+and does not describe the current running kernel or repository HEAD.
+
+Current build pointer remains 20260717T213351Z-5318fbe-k6.16.1-sable-compat.
+Do not resume it as a current release build without coherent input provenance.
+Recommendation D remains: complete the package audit and validated upgrades,
+freeze inputs, then initialize a fresh canonical build.
+
+Reviewed generate-rootfs.sh still probes ACL/xattr option acceptance using dry
+runs and silently omits unsupported preservation options. Actual installed rsync
+fixture preservation now passes, but that result is not yet an enforced capture
+prerequisite. Investigate a fail-closed preservation gate as one bounded change.
+The generator still embeds invocation identity/timestamps, requires an empty
+initialized rootfs, and does not inject an installer. Rootfs rerun acceptance,
+frozen-input capture and complete ISO reproducibility remain unpassed.
+
+Next action: inspect capture-relevant BOINC/autofs/CVMFS state and installer
+candidate paths, then implement and test the bounded capture preservation gate.
+Keep AI model exclusion and llama-server live disablement unchanged.

@@ -1,6 +1,6 @@
 # SableLinux Release Engineering Plan
 
-Updated October 7, 2026. Target release: December 31, 2026.
+Updated October 13, 2026. Target release: December 31, 2026.
 Current audited status: ../ENGINEERING_STATE.md.
 
 ## Objective and authority
@@ -158,12 +158,20 @@ This is a future product milestone, not a dependency of the December ISO.
 
 ## Immediate checkpoint
 
-Recommend D for the release baseline after the package audit, validated upgrades
-and frozen inputs. Preserve July artifacts for evidence and optional diagnostic
-validation after hash verification. Do not mix current HEAD with older build
-provenance or bypass clean-tree guards. Complete tools/sable-inventory.sh review
-and current inventory next; commit this plan and ENGINEERING_STATE.md on Z890.
+ACL 2.4.0 and rsync 3.5.1 canonical recipes, completed-stage reuse checks,
+matching fresh staged payload comparisons, exact-artifact package VM validation,
+host activation and installed preservation checks passed. Rsync fixture rollback
+restored original hashes and metadata before host activation. Package work was
+pushed through 72f99ce. These results do not pass a full live-media or ISO gate.
 
+Recommend D after the remaining package audit, validated upgrades and frozen
+inputs. Preserve July artifacts; do not bypass provenance or clean-tree guards.
+Next inspect capture-relevant BOINC/autofs/CVMFS state and installer candidate
+paths. Then implement and validate a fail-closed ACL/xattr preservation gate in
+the rootfs pipeline as one bounded change. Separately address embedded run
+metadata and completed-stage rerun semantics before release comparisons.
+The untracked scripts/boincctl remains preserved and still blocks clean-tree
+build guards; resolve its disposition after inspecting its contents.
 
 ## Deferred task: review broad built-in kernel selections
 
