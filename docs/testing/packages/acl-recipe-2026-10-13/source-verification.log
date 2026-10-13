@@ -1,0 +1,16 @@
+[GNUPG:] NEWSIG
+gpg: Signature made Mon Jun 29 07:12:39 2026 EDT
+gpg:                using RSA key 259B3792B3D6D319212CC4DCD5BF9FEB0313653A
+[GNUPG:] KEY_CONSIDERED 259B3792B3D6D319212CC4DCD5BF9FEB0313653A 0
+[GNUPG:] SIG_ID 2B6plZWbBYC1qjfcQlKka2rPzQU 2026-06-29 1782731559
+[GNUPG:] KEY_CONSIDERED 259B3792B3D6D319212CC4DCD5BF9FEB0313653A 0
+[GNUPG:] GOODSIG D5BF9FEB0313653A Andreas Gruenbacher <agruenba@redhat.com>
+gpg: Good signature from "Andreas Gruenbacher <agruenba@redhat.com>" [unknown]
+gpg:                 aka "Andreas Gruenbacher <agruen@gnu.org>" [unknown]
+gpg:                 aka "Andreas Gruenbacher <agruen@kernel.org>" [unknown]
+gpg:                 aka "Andreas Gruenbacher <andreas.gruenbacher@gmail.com>" [unknown]
+[GNUPG:] VALIDSIG 259B3792B3D6D319212CC4DCD5BF9FEB0313653A 2026-06-29 1782731559 0 4 0 1 10 00 259B3792B3D6D319212CC4DCD5BF9FEB0313653A
+[GNUPG:] TRUST_UNDEFINED 0 pgp
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: 259B 3792 B3D6 D319 212C  C4DC D5BF 9FEB 0313 653A

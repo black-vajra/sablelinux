@@ -44,3 +44,14 @@ The restore smoke test emitted a symlink-traversal warning.
 Future automation must specify --physical with --restore.
 
 Host activation remains pending. No full ISO validation is implied.
+
+## Canonical recipe validation
+
+The new build-acl.sh recipe completed a fresh staged build with
+10 PASS, 4 SKIP, 2 XFAIL and zero failures.
+Completed-stage reuse passed; an independent comparison found unchanged
+build inventory, modification times and regular-file hashes.
+Evidence: docs/testing/packages/acl-recipe-2026-10-13/
+
+This establishes the measured completed-stage reuse behavior only.
+Fresh-build byte reproducibility and host activation remain pending.

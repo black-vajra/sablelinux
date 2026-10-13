@@ -1,0 +1,17 @@
+--- /srv/sablelinux/package-builds/acl-2.4.0-f8orRpQp/staged-files.sha256	2026-10-13 15:29:06.130906371 -0400
++++ /srv/sablelinux/package-builds/acl/2.4.0/recipe-validation-1/staged-files.sha256	2026-10-13 16:09:18.370652674 -0400
+@@ -1,10 +1,10 @@
+-6b1d72920d93038bdb980ff7dc6261ece6b844bc1629c304a46b4afde3e28e34  ./usr/bin/chacl
+-a464fdfc544f74d96ce50de4a5614e34b058efab1672421ebf6f42d2dacae738  ./usr/bin/getfacl
+-9696e1a50d76956bd63ff64f3fddf60788d67b3a15898895f6f1220765542ecd  ./usr/bin/setfacl
++c3b582fd1bf0523c75cd5900de48ebec7dc4ae1d88b1a0f081cd7dae9be5b4c8  ./usr/bin/chacl
++8063ec9e28cc377a4ceae44c62dc262e670699d43f1f6a52d0a7f2f97286e65c  ./usr/bin/getfacl
++126a2ce7e878b5b8e1aa530fdfd7c47e3ad99b462598fbcebcd369dbde3e3ea2  ./usr/bin/setfacl
+ 324dc3c9f6c6668d09b48f755aab7f00cc5d5d9e46780b18591e336875975962  ./usr/include/acl/libacl.h
+ 01efa41d8ee0061085ee590908ccdd65d57c64d3f84f96a473620658cadb581c  ./usr/include/sys/acl.h
+ 63474169317e4f734867729cc9bf91e3379b59e832ca98ec0a288d17c7dcbda2  ./usr/lib/libacl.la
+-5e5728738da42a30822abb48df9c9102f3487202865d61cebdb45acfefd8f1b4  ./usr/lib/libacl.so.1.2.2400
++7b0896686a70b05142309b5cd52b42e674b75039e1e49223ab108f5c81721048  ./usr/lib/libacl.so.1.2.2400
+ 76198c9d3a76048ebd7c9e3233bc5aa593277b21c120d18bcd651195ccfd1747  ./usr/lib/pkgconfig/libacl.pc
+ 8bfabf1ab12194279fd08d95777665fc9f8e9b05c9e6ee2f91d82b136c418cf5  ./usr/share/doc/acl-2.4.0/CHANGES
+ a45a845012742796534f7e91fe623262ccfb99460a2bd04015bd28d66fba95b8  ./usr/share/doc/acl-2.4.0/COPYING
