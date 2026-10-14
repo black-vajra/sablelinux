@@ -1,0 +1,6 @@
+Fixture retained: /tmp/sable-exclusions-bvjdcNvM
+/tmp/sable-exclusions-bvjdcNvM/destination/etc/systemd/system/multi-user.target.wants/llama-server.service
+/tmp/sable-exclusions-bvjdcNvM/destination/etc/systemd/system/multi-user.target.wants/sshd.service
+/tmp/sable-exclusions-bvjdcNvM/destination/etc/systemd/system/multi-user.target.wants/autofs.service
+PASS: generated service links removed; fixture source links unchanged
+PASS: exclusions, retained tooling/firmware, repeat copy and source preservation

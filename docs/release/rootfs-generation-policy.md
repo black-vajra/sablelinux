@@ -134,7 +134,7 @@ directory contains firmware code and a variable-store template.
 Do not exclude files globally by image extension.
 
 The inventory was bounded; review exclusions when storage changes.
-CVMFS/autofs inclusion remains unresolved. Fixture filtering tests do not
+CVMFS is excluded and autofs is disabled in the generated live root, as described below. Fixture filtering tests do not
 establish filesystem preservation, full rootfs idempotence or ISO readiness.
 
 ## Mandatory filesystem preservation prerequisite
@@ -165,3 +165,26 @@ and rsync failure. A source integration check verifies placement before capture;
 it is not an end-to-end generator execution. No historical build is used.
 Existing package-preservation VM acceptance remains separate. This prerequisite
 does not freeze live inputs or establish rootfs/ISO reproducibility.
+
+## CVMFS and autofs release decision — 2026-10-14
+
+The canonical documentation identifies BOINC/LHC ATLAS as the only documented
+CVMFS consumer. The inspected autofs master includes only auto.master.d,
+containing the CVMFS map. No additional release use was established by the
+bounded review. CVMFS is therefore outside the baseline ISO scope.
+
+Exclude the CVMFS client executables, package-specific libcvmfs libraries,
+headers/documentation, program map, repository configuration, service unit,
+mount root and persistent cache using the maintained exclusion list. Retain
+autofs tooling, FUSE, libc, libstdc++ and other shared dependencies. Disable
+autofs only in the generated live root; its generic configuration remains.
+The existing generator removes enablement links and now checks autofs too.
+
+Do not stop host services, remove host packages, access remote repositories
+or modify host cache data for this change. Earlier BOINC/CVMFS acceptance
+records remain historical evidence. Future optional CVMFS support requires
+an explicit supported workload, declared inputs and its own validation.
+
+Validation: bash scripts/live/test-rootfs-excludes.sh. Fixtures verify CVMFS
+payload exclusion, shared dependency/tool retention and the generator's actual
+service-link removal block. Full rootfs generation and ISO gates remain open.

@@ -519,6 +519,14 @@ REQUIRED_ABSENT=(
     "$ROOTFS/home/pepper"
     "$ROOTFS/home/tester"
     "$ROOTFS/opt/models"
+    "$ROOTFS/cvmfs"
+    "$ROOTFS/var/lib/cvmfs"
+    "$ROOTFS/etc/cvmfs"
+    "$ROOTFS/etc/auto.cvmfs"
+    "$ROOTFS/etc/auto.master.d/cvmfs.autofs"
+    "$ROOTFS/usr/libexec/cvmfs"
+    "$ROOTFS/usr/bin/cvmfs2"
+    "$ROOTFS/usr/sbin/mount.cvmfs"
     "$ROOTFS/opt/boinc"
     "$ROOTFS/var/lib/boinc-client"
     "$ROOTFS/etc/boinc"
@@ -660,7 +668,7 @@ done
 
 validation_log "PASS: removed host UIDs own no rootfs content"
 
-for service in llama-server.service sshd.service; do
+for service in llama-server.service sshd.service autofs.service; do
     ENABLED_LINK="$(
         find "$ROOTFS/etc/systemd/system" \
             -type l \

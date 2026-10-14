@@ -200,3 +200,28 @@ Generator integration was source checked; full capture was not executed.
 Continue package/functionality audit, CVMFS/autofs scope review and kernel
 audit before input freeze and fresh-build initialization. Preserve July
 artifacts and the untracked scripts/boincctl.
+
+## CVMFS scope and session checkpoint — 2026-10-14
+
+CVMFS is excluded from the baseline ISO following documented BOINC/ATLAS
+usage and canonical autofs-map review. Autofs tooling and shared
+dependencies remain included; autofs is disabled only in the generated
+live root. Canonical fixture validation passed; evidence:
+docs/testing/live/cvmfs-exclusions-2026-10-14/README.md.
+
+BOINC/guest exclusions and mandatory filesystem preservation are committed.
+No new canonical build or full rootfs capture has run. Preserve July
+artifacts, package/VM recovery records and untracked scripts/boincctl.
+
+Next session:
+1. Verify running Z890 identity, HEAD/status and remote checkpoint.
+2. Improve tools/sable-inventory.sh before using it: report failures,
+   continue sections, bound scans and avoid historical mounted trees.
+3. Establish package/functionality inventory and dependency-aware upgrade
+   priorities. Complete kernel audit before input freeze.
+4. Resolve preserved untracked scripts/boincctl deliberately before any
+   clean-tree build operation; never bypass provenance guards.
+5. Freeze canonical inputs, then initialize a fresh build.
+
+EFI UUID mismatch remains documented and unresolved. Release boot,
+installation, idempotence and byte-reproducibility gates remain open.

@@ -96,3 +96,23 @@
 /usr/local/bin/boincctl
 **/boinc-client.service
 **/boinc-client.service.d/***
+
+# CVMFS is a personal BOINC/ATLAS workload dependency, outside ISO scope
+/cvmfs/***
+/var/lib/cvmfs/***
+/etc/cvmfs/***
+/etc/auto.cvmfs
+/etc/auto.master.d/cvmfs.autofs
+/etc/bash_completion.d/cvmfs
+/usr/bin/cvmfs*
+/usr/sbin/mount.cvmfs
+/sbin/mount.cvmfs
+/usr/libexec/cvmfs/***
+/usr/lib/libcvmfs*
+/usr/lib64/libcvmfs*
+/lib/libcvmfs*
+/lib64/libcvmfs*
+/usr/include/libcvmfs*.h
+/usr/share/doc/cvmfs*/***
+**/cvmfs-reload.service
+**/cvmfs-reload.service.d/***

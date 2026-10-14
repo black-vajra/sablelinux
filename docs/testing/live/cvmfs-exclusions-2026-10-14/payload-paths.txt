@@ -1,0 +1,66 @@
+
+COMMAND: find /usr -xdev -maxdepth 6 \( -type d \( -iname \*models\* -o -name .git -o -name .cache -o -path /var/lib/cvmfs -o -path /var/lib/boinc-client \) -prune -print \) -o \( -iname \*cvmfs\* -printf %y\ %p\ -\>\ %l\\n \)
+d /usr/libexec/cvmfs ->
+f /usr/libexec/cvmfs/auto.cvmfs ->
+f /usr/libexec/cvmfs/cache/cvmfs_cache_ram ->
+f /usr/libexec/cvmfs/cache/cvmfs_cache_posix ->
+f /usr/libexec/cvmfs/authz/cvmfs_deny_helper ->
+f /usr/libexec/cvmfs/authz/cvmfs_allow_helper ->
+f /usr/include/libcvmfs.h ->
+f /usr/include/libcvmfs_cache.h ->
+/usr/include/clang/Analysis/FlowSensitive/Models
+f /usr/lib/libcvmfs_cache.so.2.13.3 ->
+/usr/lib/python3.13/site-packages/botocore/data/lex-models
+/usr/lib/python3.13/site-packages/botocore/data/lexv2-models
+/usr/lib/python3.13/site-packages/pip/_internal/models
+l /usr/lib/libcvmfs_util_debug.so -> libcvmfs_util_debug.so.2.13.3
+f /usr/lib/systemd/system/cvmfs-reload.service ->
+f /usr/lib/libcvmfs_util.so.2.13.3 ->
+f /usr/lib/libcvmfs_crypto.so.2.13.3 ->
+f /usr/lib/libcvmfs_fuse3_debug.so.2.13.3 ->
+l /usr/lib/libcvmfs_fuse3_debug.so -> libcvmfs_fuse3_debug.so.2.13.3
+l /usr/lib/libcvmfs_fuse3.so -> libcvmfs_fuse3.so.2.13.3
+l /usr/lib/libcvmfs_cache.so -> libcvmfs_cache.so.2.13.3
+f /usr/lib/libcvmfs_util_debug.so.2.13.3 ->
+f /usr/lib/libcvmfs_fuse3.so.2.13.3 ->
+l /usr/lib/libcvmfs_crypto.so -> libcvmfs_crypto.so.2.13.3
+l /usr/lib/libcvmfs_fuse3_stub.so -> libcvmfs_fuse3_stub.so.2.13.3
+f /usr/lib/libcvmfs_client.so.2.13.3 ->
+f /usr/lib/libcvmfs_fuse3_stub.so.2.13.3 ->
+l /usr/lib/libcvmfs_client.so -> libcvmfs_client.so.2.13.3
+f /usr/lib/libcvmfs_crypto_debug.so.2.13.3 ->
+l /usr/lib/libcvmfs_util.so -> libcvmfs_util.so.2.13.3
+l /usr/lib/libcvmfs_crypto_debug.so -> libcvmfs_crypto_debug.so.2.13.3
+/usr/src/linux-6.16.1/tools/verification/models
+f /usr/bin/cvmfs2 ->
+f /usr/bin/cvmfs_talk ->
+f /usr/bin/cvmfs_config ->
+f /usr/bin/cvmfs_fsck ->
+f /usr/sbin/mount.cvmfs ->
+d /usr/share/doc/cvmfs-2.13.3 ->
+
+COMMAND: find /etc -xdev -maxdepth 6 \( -type d \( -iname \*models\* -o -name .git -o -name .cache -o -path /var/lib/cvmfs -o -path /var/lib/boinc-client \) -prune -print \) -o \( -iname \*cvmfs\* -printf %y\ %p\ -\>\ %l\\n \)
+f /etc/auto.master.d/cvmfs.autofs ->
+l /etc/auto.cvmfs -> /usr/libexec/cvmfs/auto.cvmfs
+d /etc/cvmfs ->
+f /etc/cvmfs/config.d/cvmfs-config.cern.ch.conf ->
+f /etc/bash_completion.d/cvmfs ->
+
+COMMAND: find /opt -xdev -maxdepth 6 \( -type d \( -iname \*models\* -o -name .git -o -name .cache -o -path /var/lib/cvmfs -o -path /var/lib/boinc-client \) -prune -print \) -o \( -iname \*cvmfs\* -printf %y\ %p\ -\>\ %l\\n \)
+/opt/metasploit-framework/app/models
+/opt/metasploit-framework/spec/models
+/opt/metasploit-framework/.git
+/opt/recon-ng/.git
+/opt/models
+
+COMMAND: find /var/lib -xdev -maxdepth 6 \( -type d \( -iname \*models\* -o -name .git -o -name .cache -o -path /var/lib/cvmfs -o -path /var/lib/boinc-client \) -prune -print \) -o \( -iname \*cvmfs\* -printf %y\ %p\ -\>\ %l\\n \)
+/var/lib/boinc-client
+/var/lib/cvmfs
+
+COMMAND: ls -ld /sbin/mount.cvmfs /usr/sbin/mount.cvmfs
+-rwxr-xr-x 1 root root 3647968 Jul 26 16:09 /sbin/mount.cvmfs
+-rwxr-xr-x 1 root root 3647968 Jul 26 16:09 /usr/sbin/mount.cvmfs
+
+COMMAND: find /etc/systemd/system /usr/lib/systemd/system -maxdepth 4 \( -iname \*cvmfs\* -o -lname \*cvmfs\* -o -lname \*autofs.service \) -printf %y\ %p\ -\>\ %l\\n
+l /etc/systemd/system/multi-user.target.wants/autofs.service -> /usr/lib/systemd/system/autofs.service
+f /usr/lib/systemd/system/cvmfs-reload.service ->

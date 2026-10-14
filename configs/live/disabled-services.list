@@ -3,3 +3,4 @@
 
 llama-server.service
 sshd.service
+autofs.service
