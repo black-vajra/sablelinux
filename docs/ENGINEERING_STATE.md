@@ -167,3 +167,20 @@ frozen-input capture and complete ISO reproducibility remain unpassed.
 Next action: inspect capture-relevant BOINC/autofs/CVMFS state and installer
 candidate paths, then implement and test the bounded capture preservation gate.
 Keep AI model exclusion and llama-server live disablement unchanged.
+
+## Capture exclusion checkpoint — 2026-10-14
+
+Canonical Z890 inventory confirmed BOINC paths and guest disks under the
+already-excluded /var/lib/qemu tree. Rootfs filtering now excludes the
+identified BOINC installation, data, configuration, helper and service
+paths; generated-rootfs absence assertions cover principal BOINC paths.
+QEMU tooling, OVMF firmware and shared dependencies remain included.
+
+Disposable fixture validation passed; evidence and limitations are in
+docs/testing/live/rootfs-exclusions-2026-10-14/README.md.
+No full rootfs capture or release gate was run. July artifacts and the
+untracked scripts/boincctl remain preserved.
+
+Next: implement and validate actual fail-closed filesystem preservation
+before rootfs capture. Continue package/kernel audit and input freeze
+before initializing a fresh canonical build.

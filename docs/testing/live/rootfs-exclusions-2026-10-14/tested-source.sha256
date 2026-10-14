@@ -1,0 +1,3 @@
+7116082ef031d77dcc116d58a4add46053e7d444e1f12bb852fcb7b66994d4ad  configs/live/rootfs-excludes.rsync
+85923d2a5e29920af534611aae862d88373d8adc023e1b0468d066a019906563  scripts/live/generate-rootfs.sh
+bc720983f793bff616227de2e5e0440d27eb61fdbc2d7d8455e76f2864c4e9b5  scripts/live/test-rootfs-excludes.sh

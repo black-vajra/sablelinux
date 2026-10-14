@@ -114,3 +114,25 @@ A successful execution changes the state to:
 rootfs-generated
 
 A dry run changes no build state and copies no rootfs files.
+
+## BOINC and guest payload scope — 2026-10-14
+
+Exclude the personal /opt/boinc installation, including its package
+libraries; /var/lib/boinc-client workload data and credentials;
+/etc/boinc and /etc/boinc-client configuration; /usr/local/bin/boincctl;
+and boinc-client.service units, same-named enablement links and drop-ins.
+Preserve the host installation and shared dependencies.
+
+Exclude preinstalled guest operating systems, disks, snapshots, saved
+memory and downloaded guest installation media. The bounded Z890 inventory
+found guest disks under /var/lib/qemu, already excluded. Existing rules
+also exclude /var/lib/libvirt, /srv, /mnt, /media and host user homes.
+
+Retain QEMU executables, /usr/share/qemu firmware, QEMU dracut modules,
+GRUB images and /opt/sablelinux/qemu/firmware/ovmf. The inspected OVMF
+directory contains firmware code and a variable-store template.
+Do not exclude files globally by image extension.
+
+The inventory was bounded; review exclusions when storage changes.
+CVMFS/autofs inclusion remains unresolved. Fixture filtering tests do not
+establish filesystem preservation, full rootfs idempotence or ISO readiness.

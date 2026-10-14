@@ -1,0 +1,160 @@
+
+COMMAND: date -Is
+2026-10-14T17:32:02-04:00
+
+COMMAND: hostname
+SableLinux
+
+COMMAND: uname -r
+6.16.1-sable-gpu-test2
+
+===== BOINC installation and service paths =====
+
+COMMAND: systemctl show boinc-client.service -p FragmentPath -p ActiveState -p UnitFileState -p WorkingDirectory -p ExecStart
+ExecStart={ path=/opt/boinc/current/bin/boinc ; argv[]=/opt/boinc/current/bin/boinc --dir /var/lib/boinc-client --skip_cpu_benchmarks ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }
+WorkingDirectory=/var/lib/boinc-client
+ActiveState=inactive
+FragmentPath=/etc/systemd/system/boinc-client.service
+UnitFileState=disabled
+
+COMMAND: readlink -f /opt/boinc/current
+/opt/boinc/8.2.11
+
+COMMAND: cat /home/pepper/sablelinux/docs/packages/boinc-8.2.11.md
+# BOINC 8.2.11 engineering note
+
+## Status
+
+BOINC 8.2.11 was built and validated on the secondary SableLinux EliteBook
+host `vulfen`. This proves package feasibility but does not make EliteBook
+binaries authoritative release inputs.
+
+## Validated components
+
+- BOINC 8.2.11
+- BOINC upstream commit `5511380b8980935c25c3ea41df3980445419e59e`
+- BOINC Manager 8.2.11
+- libnotify 0.8.8
+- wxWidgets 3.2.11, GTK3 Unicode configuration
+- systemd service using a dedicated `boinc:boinc` account
+
+## Important build correction
+
+The standalone SableLinux build must retain BOINC's internal libraries.
+Packaging shortcuts such as `--enable-pkg-client` or
+`--enable-pkg-manager` disabled required libraries and caused final linker
+failures. The successful client and Manager configurations used
+`--enable-libraries`.
+
+## Runtime layout and policy
+
+- Programs: `/opt/boinc/8.2.11`
+- Current-version link: `/opt/boinc/current`
+- Runtime data: `/var/lib/boinc-client`
+- Service: `boinc-client.service`
+- Service remains disabled at boot
+- Operator starts and stops BOINC manually through `boincctl`
+- CPU allocation: 50 percent of 16 logical CPUs
+- Computation allowed while the desktop is active
+- Computation disabled while running on battery
+- Manager runtime discovery: `/etc/boinc-client/config.properties`
+- Correct Manager option for the runtime directory: `--datadir`
+
+Asteroids@home and MilkyWay@home were attached and exercised successfully.
+
+## Known executable hashes
+
+- `boinc_client`: `d6c94057aac3b82ff05068e10e55603e8ad4b24f7de73f67478012076f2bc566`
+- `boinccmd`: `78fccbb2b4f6d95d207c9cedc403a493c381d42c55167a6f6efc79d672b8971e`
+- `boincmgr`: `7cbd7fe89ae80f14993029f6a806a80813091d60412d7bddcfc51445d716f666`
+
+Additional hashes are preserved in the EliteBook evidence manifest.
+
+## Canonical next step
+
+Rebuild BOINC, libnotify, wxWidgets, and BOINC Manager independently on the
+authoritative Z890 SableLinux installation. Generate normalized scripts, logs,
+metadata, manifests, and validation reports there. Do not copy EliteBook
+binaries into the canonical installation.
+
+COMMAND: find /etc -xdev -maxdepth 6 \( -type d \( -iname \*models\* -o -name .git -o -name .cache -o -path /var/lib/cvmfs \) -prune \) -o \( -iname \*boinc\* -printf %y\ %p\ -\>\ %l\\n \)
+f /etc/systemd/system/boinc-client.service ->
+
+COMMAND: find /usr -xdev -maxdepth 6 \( -type d \( -iname \*models\* -o -name .git -o -name .cache -o -path /var/lib/cvmfs \) -prune \) -o \( -iname \*boinc\* -printf %y\ %p\ -\>\ %l\\n \)
+f /usr/local/bin/boincctl ->
+
+COMMAND: find /opt -xdev -maxdepth 6 \( -type d \( -iname \*models\* -o -name .git -o -name .cache -o -path /var/lib/cvmfs \) -prune \) -o \( -iname \*boinc\* -printf %y\ %p\ -\>\ %l\\n \)
+d /opt/boinc ->
+f /opt/boinc/8.2.11/lib/libboinc_api.a ->
+f /opt/boinc/8.2.11/lib/libboinc_opencl.so.8.2.11 ->
+f /opt/boinc/8.2.11/lib/libboinc_crypt.a ->
+l /opt/boinc/8.2.11/lib/libboinc_opencl.so -> libboinc_opencl.so.8.2.11
+f /opt/boinc/8.2.11/lib/pkgconfig/libboinc_opencl.pc ->
+f /opt/boinc/8.2.11/lib/pkgconfig/libboinc_crypt.pc ->
+f /opt/boinc/8.2.11/lib/pkgconfig/libboinc.pc ->
+f /opt/boinc/8.2.11/lib/pkgconfig/libboinc_api.pc ->
+f /opt/boinc/8.2.11/lib/libboinc.a ->
+f /opt/boinc/8.2.11/lib/libboinc_api.la ->
+l /opt/boinc/8.2.11/lib/libboinc_opencl.so.8 -> libboinc_opencl.so.8.2.11
+f /opt/boinc/8.2.11/lib/libboinc.la ->
+f /opt/boinc/8.2.11/lib/libboinc_opencl.a ->
+l /opt/boinc/8.2.11/lib/libboinc_api.so -> libboinc_api.so.8.2.11
+f /opt/boinc/8.2.11/lib/libboinc_crypt.la ->
+l /opt/boinc/8.2.11/lib/libboinc_api.so.8 -> libboinc_api.so.8.2.11
+f /opt/boinc/8.2.11/lib/libboinc_opencl.la ->
+f /opt/boinc/8.2.11/lib/libboinc_api.so.8.2.11 ->
+f /opt/boinc/8.2.11/bin/boinc ->
+f /opt/boinc/8.2.11/bin/boinccmd ->
+f /opt/boinc/8.2.11/bin/boinc_client ->
+f /opt/boinc/8.2.11/etc/sysconfig/boinc-client ->
+f /opt/boinc/8.2.11/etc/init.d/boinc-client ->
+
+COMMAND: find /var -xdev -maxdepth 6 \( -type d \( -iname \*models\* -o -name .git -o -name .cache -o -path /var/lib/cvmfs \) -prune \) -o \( -iname \*boinc\* -printf %y\ %p\ -\>\ %l\\n \)
+d /var/lib/boinc-client ->
+f /var/lib/boinc-client/projects/lhcathome.cern.ch_lhcathome/boinc_job_script.iXtU80 ->
+f /var/lib/boinc-client/slots/0/boinc_mmap_file ->
+f /var/lib/boinc-client/slots/0/boinc_lockfile ->
+f /var/lib/boinc-client/slots/0/boinc_setup_complete ->
+
+===== Guest payload locations within capture scope =====
+Bounded depth: 7. Already-excluded storage is pruned.
+
+COMMAND: find / -xdev -maxdepth 7 \( -type d \( -path /dev -o -path /proc -o -path /sys -o -path /run -o -path /tmp -o -path /boot -o -path /mnt -o -path /media -o -path /srv -o -path /sources -o -path /root -o -path /home/pepper -o -path /home/tester -o -path /cvmfs -o -path /var/lib/cvmfs -o -path /var/lib/boinc-client -o -path /opt/boinc -o -iname \*models\* -o -name .cache -o -name .git \) -prune \) -o \( \( -type f -o -type l \) \( -iname \*.qcow\* -o -iname \*.vmdk -o -iname \*.vdi -o -iname \*.vhd\* -o -iname \*.iso -o -iname \*.img -o -iname \*.raw -o -iname \*.sav -o -iname \*.vmem -o -iname \*.vmss -o -iname \*.vmx -o -iname \*.ova -o -iname \*.ovf \) -printf %y\ %s\ %p\ -\>\ %l\\n \) -o \( -type d \( -iname \*libvirt\* -o -iname \*qemu\* -o -iname \*virtualbox\* -o -iname \*vmware\* -o -iname \*snapshot\* \) -print \)
+/var/lib/qemu
+f 33122222080 /var/lib/qemu/disks/sable-install-target.qcow2 ->
+f 197888 /var/lib/qemu/disks/windows.qcow2 ->
+/usr/lib/dracut/modules.d/90qemu
+/usr/lib/dracut/modules.d/90qemu-net
+f 2832 /usr/lib/grub/i386-pc/lzma_decompress.img ->
+f 512 /usr/lib/grub/i386-pc/boot_hybrid.img ->
+f 1024 /usr/lib/grub/i386-pc/pxeboot.img ->
+f 1024 /usr/lib/grub/i386-pc/lnxboot.img ->
+f 2048 /usr/lib/grub/i386-pc/cdboot.img ->
+f 512 /usr/lib/grub/i386-pc/boot.img ->
+f 33484 /usr/lib/grub/i386-pc/kernel.img ->
+f 512 /usr/lib/grub/i386-pc/diskboot.img ->
+f 124224 /usr/lib/grub/x86_64-efi/kernel.img ->
+/usr/src/linux-6.16.1/tools/testing/kunit/qemu_configs
+/usr/share/qemu
+f 79608 /usr/share/qemu/s390-ccw.img ->
+f 763416 /usr/share/qemu/hppa-firmware64.img ->
+f 676760 /usr/share/qemu/hppa-firmware.img ->
+f 3073 /usr/share/geany/filedefs/filetypes.vhdl ->
+/opt/metasploit-framework/data/auxiliary/vmware
+/opt/metasploit-framework/data/exploits/vmware_view_planner_4_6_uploadlog_rce
+f 2528 /opt/metasploit-framework/data/exploits/cve-2016-6415/sendpacket.raw ->
+f 2502 /opt/metasploit-framework/data/exploits/R7_2015_17/stream.raw ->
+/opt/metasploit-framework/modules/auxiliary/admin/vmware
+/opt/metasploit-framework/modules/auxiliary/scanner/vmware
+/opt/metasploit-framework/documentation/modules/auxiliary/admin/vmware
+/opt/metasploit-framework/documentation/modules/auxiliary/scanner/vmware
+/opt/sablelinux/qemu
+/etc/qemu
+
+===== Virtualization storage configuration =====
+
+COMMAND: find /etc/libvirt /etc/qemu -maxdepth 4 -type f -print
+find: '/etc/libvirt': No such file or directory
+/etc/qemu/bridge.conf
+FAILED: 1; continuing
+virsh unavailable; configuration inspection remains necessary

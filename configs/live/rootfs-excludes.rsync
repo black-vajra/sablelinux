@@ -87,3 +87,12 @@
 **/*.swp
 **/*.swo
 **/.DS_Store
+
+# Personal BOINC installation, workload data, configuration and services
+/opt/boinc/***
+/var/lib/boinc-client/***
+/etc/boinc/***
+/etc/boinc-client/***
+/usr/local/bin/boincctl
+**/boinc-client.service
+**/boinc-client.service.d/***

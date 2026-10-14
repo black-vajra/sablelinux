@@ -1,0 +1,16 @@
+
+COMMAND: ls -ld /opt/sablelinux/qemu
+drwxrwxr-x 3 pepper kvm 4096 Jul  5 17:57 /opt/sablelinux/qemu
+
+COMMAND: find /opt/sablelinux/qemu -maxdepth 6 -printf %y\ %s\ %p\ -\>\ %l\\n
+d 4096 /opt/sablelinux/qemu ->
+d 4096 /opt/sablelinux/qemu/firmware ->
+d 4096 /opt/sablelinux/qemu/firmware/ovmf ->
+f 540672 /opt/sablelinux/qemu/firmware/ovmf/OVMF_VARS_4M.template.fd ->
+f 3653632 /opt/sablelinux/qemu/firmware/ovmf/OVMF_CODE_4M.fd ->
+
+COMMAND: find /etc/systemd/system /usr/lib/systemd/system /lib/systemd/system -maxdepth 4 \( -iname \*boinc\* -o -lname \*boinc\* \) -printf %y\ %p\ -\>\ %l\\n
+f /etc/systemd/system/boinc-client.service ->
+
+COMMAND: grep -RIn --include=\*.conf -i boinc /etc/ld.so.conf /etc/ld.so.conf.d
+FAILED: 1; continuing
