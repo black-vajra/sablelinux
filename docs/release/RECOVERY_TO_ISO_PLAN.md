@@ -199,3 +199,41 @@ guest installation media. Preserve all host installations and VM artifacts.
 Inspect actual storage locations and validate exclusions before capture.
 
 CVMFS/autofs release inclusion remains subject to dependency and usage review.
+
+## Hardware scope and kernel audit checkpoint — 2026-10-14
+
+The operator's release objective is installation with meaningful user control
+across modern PCs and laptops. Backward compatibility is a lower priority.
+Z890 remains the sole authority for release inputs; its hardware does not
+define the distribution's supported hardware.
+
+- Explicitly audit the actual kernel Y/M/N selections before input freeze,
+  including the operator's recollection of broadly choosing Y. Classify
+  necessary built-ins, modules and omissions against early boot, storage,
+  filesystems, graphics, networking, virtualization and supported hardware.
+  Document dependencies and justification; no blanket Y-to-M conversion.
+- Preserve the working 6.16.1-sable-gpu-test2 kernel, configuration, matching
+  modules/initramfs and boot entry while validating separate candidates.
+  "GPU Test 2" names a complete installed kernel, not a GPU test application
+  or an accepted final ISO kernel.
+- Include Intel, AMD and NVIDIA in the graphics support plan. NVIDIA support
+  is not established. Determine hardware-generation coverage, driver/firmware
+  strategy, initramfs integration and desktop behavior; do not assume that
+  Intel/AMD workstation success demonstrates NVIDIA compatibility.
+- Installer user control is required. Reconcile the existing installer code
+  and define supported choices. Disk selection, guided/manual partitioning,
+  software selection and applicable graphics-driver selection are proposed
+  choices to evaluate, not completed or validated features.
+- Working planning baseline: modern x86-64 UEFI systems. ARM, legacy BIOS and
+  Secure Boot need separate explicit scope decisions. Retain the previously
+  agreed non-LUKS installation baseline.
+- Validate supported modern storage, networking, audio and laptop devices.
+  Follow VM tiers before physical candidate validation; obtain relevant
+  Intel/AMD/NVIDIA hardware evidence before making compatibility claims.
+- Broad hardware compatibility, build idempotence and byte reproducibility
+  are distinct acceptance requirements. "Any modern PC" is the design goal,
+  not a claim of universal compatibility already achieved. Publish tested
+  coverage, unsupported configurations and known limitations.
+
+This checkpoint adds requirements and planning decisions. It does not change
+host configuration, select an NVIDIA driver, or close a release gate.
