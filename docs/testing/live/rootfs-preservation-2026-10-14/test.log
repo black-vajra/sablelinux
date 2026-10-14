@@ -1,0 +1,7 @@
+Retained tests: /srv/sablelinux/rootfs-preservation-tests-49pkhpct
+PASS: installed; exit 0
+PASS: drop-acls; exit 1
+PASS: drop-xattrs; exit 1
+PASS: copy-failure; exit 1
+PASS: generator source orders mandatory prerequisite before capture
+PASS: preservation tests; full generator not executed

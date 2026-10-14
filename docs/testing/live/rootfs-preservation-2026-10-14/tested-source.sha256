@@ -1,0 +1,3 @@
+883bf1e645005872f177a9afc2c5e8b8aaf7c23a53122ccf13a33575718360a3  scripts/live/generate-rootfs.sh
+371c542251a0267f8ece23c75795d4497a8e9a50f33be6b9cf2129c4665cae4b  scripts/live/check-rootfs-preservation.py
+8c9ef90f8194614130d4522cd764cc51e556786622a31eeb813db0f5c8d48bb2  scripts/live/test-rootfs-preservation.py

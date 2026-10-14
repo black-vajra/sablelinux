@@ -184,3 +184,19 @@ untracked scripts/boincctl remain preserved.
 Next: implement and validate actual fail-closed filesystem preservation
 before rootfs capture. Continue package/kernel audit and input freeze
 before initializing a fresh canonical build.
+
+## Capture preservation checkpoint — 2026-10-14
+
+Rootfs generation now requires actual installed-rsync preservation
+validation on the destination filesystem before dry-run or execute capture.
+ACL/xattr flags are mandatory. Failed probes retain diagnostics and stop
+before host-root copying; existing provenance guards remain unchanged.
+
+Canonical positive and deliberate ACL-loss, xattr-loss and copy-failure
+tests passed. Evidence:
+docs/testing/live/rootfs-preservation-2026-10-14/README.md.
+Generator integration was source checked; full capture was not executed.
+
+Continue package/functionality audit, CVMFS/autofs scope review and kernel
+audit before input freeze and fresh-build initialization. Preserve July
+artifacts and the untracked scripts/boincctl.

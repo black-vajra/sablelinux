@@ -140,30 +140,20 @@ RSYNC_OPTIONS=(
     --exclude-from="$EXCLUDES"
 )
 
-PROBE_ROOT="$BUILD_ROOT/tmp/rsync-capability-probe"
-PROBE_SOURCE="$PROBE_ROOT/source"
-PROBE_DESTINATION="$PROBE_ROOT/destination"
+PRESERVATION_CHECK="$REPO/scripts/live/check-rootfs-preservation.py"
+PRESERVATION_REPORT="$BUILD_ROOT/reports/rootfs-preservation-${TIMESTAMP}.txt"
+[ -f "$PRESERVATION_CHECK" ] || die "preservation prerequisite is missing"
+command -v python3 >/dev/null || die "python3 is required for preservation validation"
 
-rm -rf "$PROBE_ROOT"
-mkdir -p "$PROBE_SOURCE" "$PROBE_DESTINATION"
-touch "$PROBE_SOURCE/test-file"
-
-RSYNC_ACL_SUPPORT="no"
-RSYNC_XATTR_SUPPORT="no"
-
-if rsync -aH -A --dry-run     "$PROBE_SOURCE/" "$PROBE_DESTINATION/"     >/dev/null 2>&1
-then
-    RSYNC_OPTIONS+=(-A)
-    RSYNC_ACL_SUPPORT="yes"
-fi
-
-if rsync -aH -X --dry-run     "$PROBE_SOURCE/" "$PROBE_DESTINATION/"     >/dev/null 2>&1
-then
-    RSYNC_OPTIONS+=(-X)
-    RSYNC_XATTR_SUPPORT="yes"
-fi
-
-rm -rf "$PROBE_ROOT"
+# Run directly, outside an if/! context, before any host-root rsync. A failed
+# fixture leaves rootfs and BUILD_STATE untouched and retains its report.
+echo "Preservation prerequisite report: $PRESERVATION_REPORT"
+python3 "$PRESERVATION_CHECK" \
+    --workspace "$BUILD_ROOT/tmp" --destination-root "$ROOTFS" \
+    --rsync "$(command -v rsync)" > "$PRESERVATION_REPORT" 2>&1
+RSYNC_OPTIONS+=(-A -X)
+RSYNC_ACL_SUPPORT="verified by actual fixture"
+RSYNC_XATTR_SUPPORT="verified by actual fixture"
 
 if [ "$MODE" = "dry-run" ]; then
     RSYNC_OPTIONS+=(--dry-run)
@@ -181,6 +171,7 @@ fi
     echo "Destination: $ROOTFS"
     echo "Git commit: $CURRENT_COMMIT"
     echo "Kernel: $(uname -r)"
+    echo "Preservation prerequisite report: $PRESERVATION_REPORT"
     echo "Rsync ACL preservation: $RSYNC_ACL_SUPPORT"
     echo "Rsync xattr preservation: $RSYNC_XATTR_SUPPORT"
     echo
@@ -491,6 +482,8 @@ cp "$POLICY" \
     echo "KERNEL_RELEASE=$(uname -r)"
     echo "GENERATOR_SHA256=$(sha256sum "$REPO/scripts/live/generate-rootfs.sh" | awk '{print $1}')"
     echo "EXCLUDES_SHA256=$(sha256sum "$EXCLUDES" | awk '{print $1}')"
+    echo "PRESERVATION_CHECK_SHA256=$(sha256sum "$PRESERVATION_CHECK" | awk '{print $1}')"
+    echo "PRESERVATION_REPORT_SHA256=$(sha256sum "$PRESERVATION_REPORT" | awk '{print $1}')"
     echo "POLICY_SHA256=$(sha256sum "$POLICY" | awk '{print $1}')"
 } > "$BUILD_ROOT/metadata/rootfs-generation.env"
 

@@ -136,3 +136,32 @@ Do not exclude files globally by image extension.
 The inventory was bounded; review exclusions when storage changes.
 CVMFS/autofs inclusion remains unresolved. Fixture filtering tests do not
 establish filesystem preservation, full rootfs idempotence or ISO readiness.
+
+## Mandatory filesystem preservation prerequisite
+
+Before both dry-run and execute capture, after the existing host, empty-rootfs,
+clean-tree, build-state and Git provenance guards, the generator runs
+scripts/live/check-rootfs-preservation.py. A real copy with installed rsync
+must preserve content, foreign numeric UID/GID, file types and mode bits
+(including setuid/setgid), whole-second mtimes, symlinks, hardlink identity,
+access/default/inherited ACLs, xattrs and a FIFO. The fixture compares all
+xattrs visible to root on its non-symlink objects, including a known user
+attribute. It does not claim coverage of every security xattr namespace.
+
+Fixtures reside in fresh private directories under the build tmp directory,
+which must be on the destination rootfs filesystem. They and the prerequisite
+report remain after success or failure. No fixed probe directory is deleted.
+Missing tools, failed commands or mismatches abort before host-root rsync;
+ACL/xattr support is mandatory and never silently downgraded. A failed
+prerequisite does not modify rootfs or promote BUILD_STATE. The probe writes
+small fixtures even when the requested capture is a dry run.
+
+Validation on Z890 (authenticate separately before sudo):
+
+    sudo python3 scripts/live/test-rootfs-preservation.py --workspace /srv/sablelinux
+
+The tests exercise installed rsync, deliberate ACL loss, deliberate xattr loss,
+and rsync failure. A source integration check verifies placement before capture;
+it is not an end-to-end generator execution. No historical build is used.
+Existing package-preservation VM acceptance remains separate. This prerequisite
+does not freeze live inputs or establish rootfs/ISO reproducibility.
