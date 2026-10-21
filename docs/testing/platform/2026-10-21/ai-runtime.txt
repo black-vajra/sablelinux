@@ -1,0 +1,86 @@
+
+===== UTC time =====
+2026-10-21T18:52:15+00:00
+
+[exit status: 0]
+
+===== Initramfs checksum =====
+49e94ff834b6c06c8e535a451a1ada7e62217d9f1f489bd9e74036ee057cf972  /boot/initramfs-6.16.1-sable-gpu-test2.img
+
+[exit status: 0]
+
+===== Server version; no model invocation =====
+ggml_cuda_init: found 1 ROCm devices (Total VRAM: 16304 MiB):
+  Device 0: AMD Radeon Graphics, gfx1200 (0x1200), VMM: no, Wave Size: 32, VRAM: 16304 MiB
+version: 1 (15fa3c4)
+built with GNU 15.2.0 for Linux x86_64
+
+[exit status: 0]
+
+===== Installed inference executable hashes =====
+fe51fcb2c29ed2a409b04db6fca0062747299e3209f93bbacbdadd952084bf86  /usr/local/bin/llama-server
+949df8194ca4ad6707147be0202107deeb342162c6aa6e25c4e2219767b2934f  /usr/local/bin/llama-cli
+
+[exit status: 0]
+
+===== HIP configuration version =====
+7.2.53211-0
+[exit status: 0]
+
+===== HIP compiler version =====
+HIP version: 7.2.53211-0
+AMD clang version 22.0.0git (https://github.com/RadeonOpenCompute/llvm-project roc-7.2.2 26084 f58b06dce1f9c15707c5f808fd002e18c2accf7e)
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm-7.2.2/lib/llvm/bin
+Configuration file: /opt/rocm-7.2.2/lib/llvm/bin/clang++.cfg
+
+[exit status: 0]
+
+===== ROCm version metadata =====
+No matching version metadata.
+
+[exit status: 1]
+
+===== Compute device permissions =====
+drwxr-xr-x 3 root root     140 Oct 21 12:25 /dev/dri
+crw-rw-rw- 1 root video 244, 0 Oct 21 12:25 /dev/kfd
+
+[exit status: 0]
+
+===== DRI device entries =====
+c 660 root:video /dev/dri/card1
+c 666 root:video /dev/dri/renderD129
+d 755 root:root /dev/dri/by-path
+c 660 root:video /dev/dri/card0
+c 666 root:video /dev/dri/renderD128
+
+[exit status: 0]
+
+[MainPID query exit: 0]
+
+===== Selected server arguments and mapped AI libraries =====
+Only selected model/compute arguments are displayed:
+-m /opt/models/DeepSeek-R1-Distill-Qwen-14B-Q4_K_M.gguf
+-ngl 999
+
+Mapped AI/backend library paths (loading alone does not prove GPU execution):
+/opt/rocm-7.2.2/lib/libamd_comgr.so.3.0.0
+/opt/rocm-7.2.2/lib/libamdhip64.so.7.2.70202
+/opt/rocm-7.2.2/lib/libhipblas.so.3.2.70202
+/opt/rocm-7.2.2/lib/libhipblaslt.so.1.2.70202
+/opt/rocm-7.2.2/lib/libhsa-runtime64.so.1.18.70202
+/opt/rocm-7.2.2/lib/librocblas.so.5.2.70202
+/opt/rocm-7.2.2/lib/librocprofiler-register.so.0.6.0
+/opt/rocm-7.2.2/lib/librocroller.so.1.0.0
+/opt/rocm-7.2.2/lib/librocsolver.so.0.7.70202
+/opt/rocm-7.2.2/lib/libroctx64.so.4.1.70202
+/usr/local/bin/llama-server
+/usr/local/lib/libggml-base.so.0.10.0
+/usr/local/lib/libggml-cpu.so.0.10.0
+/usr/local/lib/libggml-hip.so.0.10.0
+/usr/local/lib/libggml.so.0.10.0
+/usr/local/lib/libllama-common.so.0.0.1
+/usr/local/lib/libllama.so.0.0.1
+
+[exit status: 0]

@@ -265,3 +265,25 @@ hashes, running GPU Test 2 and pre-commit HEAD ba2bc2c.
 Next: record the October 21 kernel/AI-platform audit, inspect kernel build-tree
 provenance and existing AI-stack/package inputs before proposing changes.
 Preserve scripts/boincctl, working kernels and historical/recovery artifacts.
+
+
+## Kernel and AI platform audit — 2026-10-21
+
+Canonical GPU Test 2 image/configuration match the retained build tree. Kernel
+source origin/rebuild provenance remains incomplete. Installed initramfs hash
+is now recorded. Active llama-server reports short revision 15fa3c4 and loads
+HIP/ROCm libraries under /opt/rocm-7.2.2; its version probe enumerates gfx1200.
+The service selects the DeepSeek 14B GGUF filename and requests GPU offload.
+Actual generation, offload, model provenance and training remain unvalidated.
+
+The developer-AI-workstation direction informs 1.0: modern NVIDIA/AMD/Intel
+planning, local inference/training workflows and optional frontier API use.
+Kernel audit identified container/resource-control gaps and SQUASHFS_XATTR=n.
+Staged preservation is not image/overlay/install metadata acceptance; POSIX
+ACL handling needs separate investigation. No kernel/package/service changes
+or ISO gates were performed in this audit. Existing capture policy remains.
+
+Evidence, limitations and next actions:
+docs/testing/platform/2026-10-21/README.md.
+Next: bounded existing-server functional test and source/build provenance;
+separate kernel candidates and disposable metadata fixtures before input freeze.

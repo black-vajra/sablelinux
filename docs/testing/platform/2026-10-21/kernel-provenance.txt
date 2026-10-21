@@ -1,0 +1,274 @@
+
+===== UTC time =====
+2026-10-21T18:48:24+00:00
+
+[exit status: 0]
+
+===== Running kernel =====
+Linux SableLinux 6.16.1-sable-gpu-test2 #17 SMP PREEMPT_DYNAMIC Thu Oct  8 12:42:14 EDT 2026 x86_64 GNU/Linux
+
+[exit status: 0]
+
+===== Repository checkpoint =====
+ce8b6f6 Bound inventory probes and record canonical validation
+
+[exit status: 0]
+
+===== Repository status =====
+## development...origin/development
+?? scripts/boincctl
+
+[exit status: 0]
+
+===== Kernel build/source links =====
+ls: cannot access '/lib/modules/6.16.1-sable-gpu-test2/source': No such file or directory
+lrwxrwxrwx 1 root root 34 Oct  8 12:45 /lib/modules/6.16.1-sable-gpu-test2/build -> /home/pepper/sable-kernel-gpu-test
+
+[exit status: 2]
+
+===== Installed kernel artifact hashes =====
+1271404d28cc2eb66f9cf2222c4b2f7406cff4a85f57c3ba4ced8d1d45d22fd5  /boot/config-6.16.1-sable-gpu-test2
+bc36f8987e137cf913a135d4f4884886d1342c7148d8114787bb5cfa74f7929d  /boot/vmlinuz-6.16.1-sable-gpu-test2
+sha256sum: /boot/initramfs-6.16.1-sable-gpu-test2.img: Permission denied
+
+[exit status: 1]
+
+===== Installed versus build-tree configuration =====
+
+[exit status: 0]
+
+===== Installed versus build-tree kernel image =====
+
+[exit status: 0]
+
+===== /home/pepper/sable-kernel-gpu-test/include/config/kernel.release =====
+6.16.1-sable-gpu-test2
+
+[exit status: 0]
+
+===== /home/pepper/sable-kernel-gpu-test/include/generated/utsrelease.h =====
+#define UTS_RELEASE "6.16.1-sable-gpu-test2"
+
+[exit status: 0]
+
+===== /home/pepper/sable-kernel-gpu-test/include/generated/compile.h =====
+#define UTS_MACHINE		"x86_64"
+#define LINUX_COMPILE_BY	"pepper"
+#define LINUX_COMPILE_HOST	"SableLinux"
+#define LINUX_COMPILER		"gcc (GCC) 15.2.0, GNU ld (GNU Binutils) 2.45"
+
+[exit status: 0]
+
+===== Kernel Makefile identification =====
+# SPDX-License-Identifier: GPL-2.0
+VERSION = 6
+PATCHLEVEL = 16
+SUBLEVEL = 1
+EXTRAVERSION =
+NAME = Baby Opossum Posse
+
+# *DOCUMENTATION*
+# To see a list of typical targets execute "make help"
+# More info can be located in ./README
+# Comments in this file are targeted only to the developer, do not
+# expect to learn how to build the kernel reading this file.
+
+ifeq ($(filter output-sync,$(.FEATURES)),)
+$(error GNU Make >= 4.0 is required. Your Make version is $(MAKE_VERSION))
+endif
+
+$(if $(filter __%, $(MAKECMDGOALS)), \
+	$(error targets prefixed with '__' are only for internal use))
+
+# That's our default target when none is given on the command line
+PHONY := __all
+__all:
+
+# We are using a recursive build, so we need to do a little thinking
+# to get the ordering right.
+#
+# Most importantly: sub-Makefiles should only ever modify files in
+# their own directory. If in some directory we have a dependency on
+# a file in another dir (which doesn't happen often, but it's often
+# unavoidable when linking the built-in.a targets which finally
+# turn into vmlinux), we will call a sub make in that other dir, and
+# after that we are sure that everything which is in that other dir
+# is now up to date.
+#
+# The only cases where we need to modify files which have global
+# effects are thus separated out and done before the recursive
+# descending is started. They are now explicitly listed as the
+# prepare rule.
+
+this-makefile := $(lastword $(MAKEFILE_LIST))
+abs_srctree := $(realpath $(dir $(this-makefile)))
+abs_output := $(CURDIR)
+
+ifneq ($(sub_make_done),1)
+
+# Do not use make's built-in rules and variables
+# (this increases performance and avoids hard-to-debug behaviour)
+MAKEFLAGS += -rR
+
+# Avoid funny character set dependencies
+unexport LC_ALL
+LC_COLLATE=C
+LC_NUMERIC=C
+export LC_COLLATE LC_NUMERIC
+
+# Avoid interference with shell env settings
+unexport GREP_OPTIONS
+
+# Beautify output
+# ---------------------------------------------------------------------------
+#
+# Most of build commands in Kbuild start with "cmd_". You can optionally define
+# "quiet_cmd_*". If defined, the short log is printed. Otherwise, no log from
+# that command is printed by default.
+#
+# e.g.)
+#    quiet_cmd_depmod = DEPMOD  $(MODLIB)
+#          cmd_depmod = $(srctree)/scripts/depmod.sh $(DEPMOD) $(KERNELRELEASE)
+#
+# A simple variant is to prefix commands with $(Q) - that's useful
+# for commands that shall be hidden in non-verbose mode.
+#
+#    $(Q)$(MAKE) $(build)=scripts/basic
+#
+# If KBUILD_VERBOSE contains 1, the whole command is echoed.
+# If KBUILD_VERBOSE contains 2, the reason for rebuilding is printed.
+#
+# To put more focus on warnings, be less verbose as default
+# Use 'make V=1' to see the full commands
+
+ifeq ("$(origin V)", "command line")
+  KBUILD_VERBOSE = $(V)
+endif
+
+quiet = quiet_
+Q = @
+
+ifneq ($(findstring 1, $(KBUILD_VERBOSE)),)
+  quiet =
+  Q =
+endif
+
+# If the user is running make -s (silent mode), suppress echoing of
+# commands
+ifneq ($(findstring s,$(firstword -$(MAKEFLAGS))),)
+quiet=silent_
+override KBUILD_VERBOSE :=
+endif
+
+
+[exit status: 0]
+
+===== Build configuration and module symbol hashes =====
+1271404d28cc2eb66f9cf2222c4b2f7406cff4a85f57c3ba4ced8d1d45d22fd5  /home/pepper/sable-kernel-gpu-test/.config
+5983f292248b6d0d98b228c6e93529bdf2ef51bcfc074557ff10ee649f2cac00  /home/pepper/sable-kernel-gpu-test/Module.symvers
+
+[exit status: 0]
+
+[No .git entry at kernel build-tree root; source provenance remains to establish.]
+
+===== AI/tool entry points =====
+
+--- llama-server ---
+/usr/local/bin/llama-server
+/usr/local/bin/llama-server
+[resolution exit: 0]
+
+--- llama-cli ---
+/usr/local/bin/llama-cli
+/usr/local/bin/llama-cli
+[resolution exit: 0]
+
+--- ollama ---
+[not found in caller PATH]
+
+--- hipcc ---
+/opt/rocm-7.2.2/bin/hipcc
+/opt/rocm-7.2.2/bin/hipcc
+[resolution exit: 0]
+
+--- hipconfig ---
+/opt/rocm-7.2.2/bin/hipconfig
+/opt/rocm-7.2.2/bin/hipconfig
+[resolution exit: 0]
+
+--- rocminfo ---
+/opt/rocm-7.2.2/bin/rocminfo
+/opt/rocm-7.2.2/bin/rocminfo
+[resolution exit: 0]
+
+--- amd-smi ---
+[not found in caller PATH]
+
+--- vulkaninfo ---
+/usr/bin/vulkaninfo
+/usr/bin/vulkaninfo
+[resolution exit: 0]
+
+--- uv ---
+/usr/bin/uv
+/usr/bin/uv
+[resolution exit: 0]
+
+--- python3.12 ---
+[not found in caller PATH]
+
+--- docker ---
+[not found in caller PATH]
+
+--- podman ---
+[not found in caller PATH]
+
+[exit status: 0]
+
+===== ROCm location =====
+ls: cannot access '/opt/rocm': No such file or directory
+
+[exit status: 2]
+
+===== ROCm resolved location =====
+
+[exit status: 1]
+
+===== ROCm version metadata =====
+cat: /opt/rocm/.info/version: No such file or directory
+
+[exit status: 1]
+
+===== Inference service state; no command-line secrets =====
+MainPID=761
+WorkingDirectory=
+ActiveState=active
+SubState=running
+FragmentPath=/etc/systemd/system/llama-server.service
+
+[exit status: 0]
+
+[MainPID query exit: 0]
+
+===== Running inference executable =====
+/usr/local/bin/llama-server
+
+[exit status: 0]
+
+===== Running inference executable hash =====
+fe51fcb2c29ed2a409b04db6fca0062747299e3209f93bbacbdadd952084bf86  /proc/761/exe
+
+[exit status: 0]
+
+===== System Python AI-package metadata; no framework imports =====
+venv available
+ensurepip available
+pip 26.0.1
+torch not recorded in isolated system-Python metadata
+transformers not recorded in isolated system-Python metadata
+peft not recorded in isolated system-Python metadata
+accelerate not recorded in isolated system-Python metadata
+vllm not recorded in isolated system-Python metadata
+huggingface-hub not recorded in isolated system-Python metadata
+
+[exit status: 0]
