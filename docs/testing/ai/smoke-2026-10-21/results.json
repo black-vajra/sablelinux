@@ -1,0 +1,29 @@
+[
+  {
+    "test": "health",
+    "endpoint": "http://127.0.0.1:8080/health",
+    "utc": "2026-10-21T19:12:32.484562+00:00",
+    "http_status": 200,
+    "content_type": "application/json; charset=utf-8",
+    "body_truncated": false,
+    "elapsed_seconds": 0.002
+  },
+  {
+    "test": "models",
+    "endpoint": "http://127.0.0.1:8080/v1/models",
+    "utc": "2026-10-21T19:12:32.489358+00:00",
+    "http_status": 200,
+    "content_type": "application/json; charset=utf-8",
+    "body_truncated": false,
+    "elapsed_seconds": 0.0
+  },
+  {
+    "test": "completion",
+    "endpoint": "http://127.0.0.1:8080/completion",
+    "utc": "2026-10-21T19:12:32.491931+00:00",
+    "http_status": 200,
+    "content_type": "application/json; charset=utf-8",
+    "body_truncated": false,
+    "elapsed_seconds": 0.281
+  }
+]

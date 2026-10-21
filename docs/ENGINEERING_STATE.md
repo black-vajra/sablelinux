@@ -287,3 +287,16 @@ Evidence, limitations and next actions:
 docs/testing/platform/2026-10-21/README.md.
 Next: bounded existing-server functional test and source/build provenance;
 separate kernel candidates and disposable metadata fixtures before input freeze.
+
+
+## Local inference smoke test — 2026-10-21
+
+Existing local llama-server passed health, model listing and one short native
+completion request without restart or configuration change. It answered 4,
+completed at EOS and retained the same PID. GPU execution placement remains
+unverified; the bounded journal query captured no matching offload diagnostics.
+This is a functional inference baseline, not a performance or ISO acceptance gate.
+
+Evidence: docs/testing/ai/smoke-2026-10-21/README.md.
+Next: preserve the working inference stack while investigating kernel-source
+provenance, justified candidate configuration and image/install metadata gates.

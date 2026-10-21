@@ -1,0 +1,10 @@
+{
+  "pid": 761,
+  "executable_sha256": "fe51fcb2c29ed2a409b04db6fca0062747299e3209f93bbacbdadd952084bf86",
+  "endpoint": "http://127.0.0.1:8080",
+  "tls_detected": false,
+  "authentication_configured": false,
+  "journal_exit": 0,
+  "offload_log_excerpt": [],
+  "log_limit": "last 2000 entries for this boot, unit and PID; at most 150 matching lines"
+}
