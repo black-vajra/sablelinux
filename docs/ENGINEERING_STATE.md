@@ -300,3 +300,15 @@ This is a functional inference baseline, not a performance or ISO acceptance gat
 Evidence: docs/testing/ai/smoke-2026-10-21/README.md.
 Next: preserve the working inference stack while investigating kernel-source
 provenance, justified candidate configuration and image/install metadata gates.
+
+
+## Live image metadata findings — 2026-10-21
+
+Disposable canonical fixtures confirm ACL loss during SquashFS creation,
+and unavailable image xattrs in the live overlay under the current kernel.
+Direct extraction preserved the tested user xattr and file capability.
+Overlay copy-up retained a newly added attribute but not the missing lower one.
+
+Evidence: docs/testing/live-metadata/2026-10-21/README.md.
+Next: inventory staged-root metadata requirements, then qualify separate
+kernel and ACL-preservation changes. No release acceptance gate passed.

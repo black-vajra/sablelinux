@@ -1,0 +1,80 @@
+2026-10-21T19:43:31+00:00
+6.16.1-sable-gpu-test2
+9dc2d17 Record successful canonical local inference smoke test
+=== BUILD ===
+Unrecognised xattr prefix system.posix_acl_access
+Unrecognised xattr prefix system.posix_acl_default
+Parallel mksquashfs: Using 2 processors
+Creating 4.0 filesystem on /home/pepper/sable-metadata-fixture-KcEh3mBn/fixture.squashfs, block size 1048576.
+
+Exportable Squashfs 4.0 filesystem, zstd compressed, data block size 1048576
+	compressed data, compressed metadata, compressed fragments,
+	compressed xattrs, compressed ids
+	duplicates are removed
+Filesystem size 0.61 Kbytes (0.00 Mbytes)
+	73.85% of uncompressed filesystem size (0.83 Kbytes)
+Inode table size 125 bytes (0.12 Kbytes)
+	42.37% of uncompressed inode table size (295 bytes)
+Directory table size 106 bytes (0.10 Kbytes)
+	89.08% of uncompressed directory table size (119 bytes)
+Xattr table size 62 bytes (0.06 Kbytes)
+	95.38% of uncompressed xattr table size (65 bytes)
+Number of duplicate files found 0
+Number of inodes 7
+Number of files 4
+Number of fragments 1
+Number of symbolic links 1
+Number of device nodes 0
+Number of fifo nodes 0
+Number of socket nodes 0
+Number of directories 2
+Number of hard-links 1
+Number of ids (unique uids + gids) 3
+Number of uids 2
+	root (0)
+	unknown (12345)
+Number of gids 2
+	root (0)
+	unknown (12346)
+=== IMAGE METADATA ===
+Found a valid SQUASHFS 4:0 superblock on /home/pepper/sable-metadata-fixture-KcEh3mBn/fixture.squashfs.
+Creation or last append time Wed Oct 21 15:43:31 2026
+Filesystem size 624 bytes (0.61 Kbytes / 0.00 Mbytes)
+Compression zstd
+Block size 1048576
+Filesystem is exportable via NFS
+Inodes are compressed
+Data is compressed
+Uids/Gids (Id table) are compressed
+Fragments are compressed
+Always-use-fragments option is not specified
+Xattrs are compressed
+Duplicates are removed
+Number of fragments 1
+Number of inodes 7
+Number of ids 3
+Number of xattr ids 2
+eebe594f05856b843245f8eed8d9a83469003dcdb73911c4a10b4971241f4520  /home/pepper/sable-metadata-fixture-KcEh3mBn/fixture.squashfs
+=== DIRECT EXTRACTION ===
+Parallel unsquashfs: Using 14 processors
+6 inodes (4 blocks) to write
+
+
+created 4 files
+created 2 directories
+created 1 symlink
+created 0 devices
+created 0 fifos
+created 0 sockets
+created 1 hardlink
+=== METADATA COMPARISON ===
+DIFFERENCE: acl
+ source: {"gid": 0, "mode": "0o640", "sha256": "07eb5ca6550894f498e066967f96e7f5dafb45018b02356a374990e969d55582", "type": 32768, "uid": 0, "xattrs": {"system.posix_acl_access": "0200000001000600ffffffff020004003930000004000000ffffffff10000400ffffffff20000000ffffffff"}}
+ result: {"gid": 0, "mode": "0o640", "sha256": "07eb5ca6550894f498e066967f96e7f5dafb45018b02356a374990e969d55582", "type": 32768, "uid": 0, "xattrs": {}}
+DIFFERENCE: default-acl
+ source: {"gid": 0, "mode": "0o700", "type": 16384, "uid": 0, "xattrs": {"system.posix_acl_default": "0200000001000700ffffffff020005003930000004000000ffffffff10000500ffffffff20000000ffffffff"}}
+ result: {"gid": 0, "mode": "0o700", "type": 16384, "uid": 0, "xattrs": {}}
+FAIL direct extraction metadata comparison
+Scope: contents, types, modes, numeric ownership, symlink target,
+hardlink identity, user xattr, access/default ACL and file capability.
+Timestamps, mounted SquashFS, overlay and full installation remain untested.

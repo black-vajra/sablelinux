@@ -1,0 +1,44 @@
++ date -u --iso-8601=seconds
+2026-10-21T19:47:23+00:00
++ uname -r
+6.16.1-sable-gpu-test2
+CONFIG_FS_POSIX_ACL=y
+CONFIG_TMPFS_POSIX_ACL=y
+CONFIG_TMPFS_XATTR=y
+# CONFIG_SQUASHFS_XATTR is not set
++ mount -t squashfs -o loop,ro,nodev,nosuid,noexec /home/pepper/sable-metadata-fixture-KcEh3mBn/fixture.squashfs /home/pepper/sable-metadata-fixture-KcEh3mBn/mounted-squashfs
++ mount -t tmpfs -o size=16M,nodev,nosuid,noexec tmpfs /home/pepper/sable-metadata-fixture-KcEh3mBn/overlay-store
++ mount -t overlay -o lowerdir=/home/pepper/sable-metadata-fixture-KcEh3mBn/mounted-squashfs,upperdir=/home/pepper/sable-metadata-fixture-KcEh3mBn/overlay-store/upper,workdir=/home/pepper/sable-metadata-fixture-KcEh3mBn/overlay-store/work overlay /home/pepper/sable-metadata-fixture-KcEh3mBn/merged
+
+=== SOURCE ===
+xattr {"user.sable_test": "707265736572766564"}
+capability {"security.capability": "0100000200040000000000000000000000000000"}
+acl {"system.posix_acl_access": "0200000001000600ffffffff020004003930000004000000ffffffff10000400ffffffff20000000ffffffff"}
+default-acl {"system.posix_acl_default": "0200000001000700ffffffff020005003930000004000000ffffffff10000500ffffffff20000000ffffffff"}
+
+=== MOUNTED SQUASHFS ===
+xattr {}
+capability {}
+acl {}
+default-acl {}
+
+=== OVERLAY BEFORE COPY-UP ===
+xattr {}
+capability {}
+acl {}
+default-acl {}
+
+=== OVERLAY AFTER COPY-UP ===
+xattr {"user.sable_copyup": "63726561746564"}
+capability {}
+acl {}
+default-acl {}
+
+=== UPPER COPIED FILE ===
+xattr {"trusted.overlay.origin": "00fb1d0001000000000000000000000000000000000600000000000000", "user.sable_copyup": "63726561746564"}
+capability ERROR: [Errno 2] No such file or directory: '/home/pepper/sable-metadata-fixture-KcEh3mBn/overlay-store/upper/capability'
+acl ERROR: [Errno 2] No such file or directory: '/home/pepper/sable-metadata-fixture-KcEh3mBn/overlay-store/upper/acl'
+default-acl ERROR: [Errno 2] No such file or directory: '/home/pepper/sable-metadata-fixture-KcEh3mBn/overlay-store/upper/default-acl'
++ umount /home/pepper/sable-metadata-fixture-KcEh3mBn/merged
++ umount /home/pepper/sable-metadata-fixture-KcEh3mBn/overlay-store
++ umount /home/pepper/sable-metadata-fixture-KcEh3mBn/mounted-squashfs
