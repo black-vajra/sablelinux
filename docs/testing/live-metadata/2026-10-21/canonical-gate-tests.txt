@@ -1,0 +1,12 @@
+PASS: plain root
+PASS: user xattr with selected kernel support
+PASS: reject user xattr with kernel support disabled
+PASS: file capability inventoried
+PASS: reject capability with kernel support disabled
+PASS: reject actual access ACL
+PASS: reject actual default ACL
+PASS: do not follow symlinks outside root
+PASS: metadata read failure propagates
+PASS: nested mount rejected
+PASS: missing selected kernel configuration fails closed
+PASS: all metadata gate tests; full canonical builder not executed

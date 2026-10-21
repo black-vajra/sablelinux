@@ -229,6 +229,19 @@ LOG="$BUILD_ROOT/logs/squashfs-build-$TIMESTAMP.log"
     echo "=== BUILD OUTPUT ==="
 } | tee "$REPORT"
 
+# Inspect the sanitized payload before producing any image. Use the kernel
+# selected by build provenance, not the reviewer's or caller's running kernel.
+KERNEL_RELEASE="$(awk -F= '$1 == "KERNEL_RELEASE" {print $2}' "$BUILD_ENV")"
+[[ "$KERNEL_RELEASE" =~ ^[A-Za-z0-9][A-Za-z0-9._+-]*$ ]] ||
+    die "invalid selected kernel release"
+METADATA_CHECK="$REPO/scripts/live/check-squashfs-metadata.py"
+METADATA_REPORT="$BUILD_ROOT/reports/squashfs-metadata-$TIMESTAMP.json"
+command -v python3 >/dev/null || die "python3 is required for metadata preflight"
+python3 "$METADATA_CHECK" \
+    --root "$ROOTFS" \
+    --kernel-config "/boot/config-$KERNEL_RELEASE" \
+    --report "$METADATA_REPORT" 2>&1 | tee -a "$REPORT"
+
 "$MKSQUASHFS" \
     "$ROOTFS" \
     "$PARTIAL" \
@@ -310,6 +323,9 @@ OUTPUT_BYTES=$OUTPUT_BYTES
 MKSQUASHFS=$MKSQUASHFS
 UNSQUASHFS=$UNSQUASHFS
 GENERATOR_SHA256=$(sha256sum "$REPO/scripts/live/build-squashfs.sh" | awk '{print $1}')
+METADATA_CHECK_SHA256=$(sha256sum "$METADATA_CHECK" | awk '{print $1}')
+METADATA_REPORT_SHA256=$(sha256sum "$METADATA_REPORT" | awk '{print $1}')
+KERNEL_CONFIG_SHA256=$(sha256sum "/boot/config-$KERNEL_RELEASE" | awk '{print $1}')
 ROOTFS_MANIFEST_SHA256=$(sha256sum "$ROOTFS_MANIFEST" | awk '{print $1}')
 SQUASHFS_SHA256=$(sha256sum "$OUTPUT" | awk '{print $1}')
 METADATA

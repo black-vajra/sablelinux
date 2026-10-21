@@ -1,0 +1,37 @@
+2026-10-21T19:49:53+00:00
+6.16.1-sable-gpu-test2
+c057fef Record SquashFS and live overlay metadata preservation gaps
+Build ID: 20260717T213351Z-5318fbe-k6.16.1-sable-compat
+Staged root: /srv/sablelinux/builds/20260717T213351Z-5318fbe-k6.16.1-sable-compat/rootfs
+
+=== BUILD_STATE ===
+test-media-generated
+
+
+=== metadata/build.env ===
+BUILD_ID=20260717T213351Z-5318fbe-k6.16.1-sable-compat
+BUILD_STATE=test-media-generated
+CREATED_AT=2026-07-17T21:33:51Z
+CANONICAL_HOST=SableLinux
+BUILD_USER=pepper
+BUILD_GROUP=pepper
+WORKSPACE_LAYOUT_VERSION=1
+REPOSITORY=/home/pepper/sablelinux
+GIT_BRANCH=development
+GIT_COMMIT=5318fbe0dbbf835995dbf44935cfde90547f0831
+GIT_DIRTY=false
+KERNEL_RELEASE=6.16.1-sable-compat
+ROOT_DEVICE=/dev/nvme1n1p3
+
+
+=== ACL/CAPABILITY ENTRIES; maximum 300 displayed ===
+{"attributes": {"security.capability": "0100000200200000000000000000000000000000"}, "path": "usr/sbin/mtr-packet"}
+{"attributes": {"security.capability": "0000000200200000000000000000000000000000"}, "path": "usr/bin/arp-scan"}
+
+=== SUMMARY ===
+Entries scanned: 271560
+Attribute counts: {"security.capability": 2}
+Entries with ACLs/capabilities: 2
+Detail output truncated: False
+Errors: 0
+Scan complete: True

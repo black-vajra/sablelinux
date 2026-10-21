@@ -312,3 +312,31 @@ Overlay copy-up retained a newly added attribute but not the missing lower one.
 Evidence: docs/testing/live-metadata/2026-10-21/README.md.
 Next: inventory staged-root metadata requirements, then qualify separate
 kernel and ACL-preservation changes. No release acceptance gate passed.
+
+
+## SquashFS metadata gate — prepared 2026-10-21
+
+Historical staged-root inventory at c057fef completed without errors over
+271,560 entries. The July 17 build (5318fbe, sable-compat kernel) contains two
+security.capability attributes: usr/sbin/mtr-packet and usr/bin/arp-scan.
+No ACLs or other xattrs were recorded. This does not inventory current host inputs.
+
+A new mandatory SquashFS preflight inventories the sanitized root, rejects
+unqualified attribute namespaces (including POSIX ACLs), and requires selected
+kernel SquashFS xattr support when the payload has any extended attributes.
+Scan errors and nested mounts fail closed. The builder retains the inventory
+and hashes its checker, report and selected kernel configuration.
+
+Reviewer tests used actual user xattrs and ACLs with mapped UID 0, and a simulated
+file capability due to review-environment capability restrictions. Canonical
+real-capability regression tests remain required before accepting this change.
+The full builder was not executed. This is a guard against known metadata loss,
+not an ACL implementation or image/overlay/install preservation acceptance gate.
+
+See docs/testing/live-metadata/2026-10-21/metadata-gate.md.
+Do not initialize a new release build before outstanding audits and input freeze.
+
+Canonical follow-up: the default SquashFS metadata-gate regression suite passed
+on Z890, including real capability fixtures. Evidence:
+docs/testing/live-metadata/2026-10-21/canonical-gate-tests.txt.
+Full image generation and release acceptance remain open.
