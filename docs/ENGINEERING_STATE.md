@@ -225,3 +225,43 @@ Next session:
 
 EFI UUID mismatch remains documented and unresolved. Release boot,
 installation, idempotence and byte-reproducibility gates remain open.
+
+
+## Inventory hardening review checkpoint — 2026-10-16
+
+Operator preflight at 19:23:07Z confirms canonical Z890, running
+6.16.1-sable-gpu-test2, development HEAD ba2bc2c and an unchanged cached
+origin/development. No remote fetch was performed. Tracked changes were
+absent; scripts/boincctl remains untracked and preserved. The July build
+pointer and unmounted EFI/fstab UUID mismatch persist.
+
+The old tools/sable-inventory.sh suppressed errors and traversed historical
+mounted trees. The proposed correction explicitly reports failures, continues
+independent probes, bounds probe time/output, removes recursive historical
+and firmware scans, and records source location and provenance observations.
+Reviewer-environment syntax and isolated CLI tests passed. Canonical execution
+and evidence review remain pending; no package or ISO gate is closed.
+See docs/testing/inventory-2026-10-16/README.md for scope and validation.
+
+Next: validate and collect the hardened inventory on Z890, review incomplete
+probes, then establish the installed-package/provenance and functionality
+baseline. Preserve July/package/VM recovery artifacts and scripts/boincctl.
+Do not initialize a fresh build before the remaining audits and input freeze.
+
+
+## Canonical inventory validation — recorded 2026-10-21
+
+The corrected isolated tests passed on Z890 on October 16. The retained actual
+inventory completed 42 probes with two incomplete observations: lsusb timed out
+(exit 124) and journalctl lacked permission (exit 1). The tool retained diagnostics,
+continued and returned incomplete. USB cause and privileged journal review remain
+open. These results validate bounded diagnostic behavior, not package provenance,
+hardware functionality or ISO acceptance. Original reports remain outside Git.
+
+Evidence: docs/testing/inventory-2026-10-16/canonical-validation.txt and
+canonical-tests.log. October 21 inspection confirms the same inventory/fixture
+hashes, running GPU Test 2 and pre-commit HEAD ba2bc2c.
+
+Next: record the October 21 kernel/AI-platform audit, inspect kernel build-tree
+provenance and existing AI-stack/package inputs before proposing changes.
+Preserve scripts/boincctl, working kernels and historical/recovery artifacts.

@@ -1,0 +1,5 @@
+PASS: bounded probes, truncation notices, expected no-process status, private report, script-relative repo
+PASS: existing report and symlink protected; output setup errors rejected
+PASS: failed probe retains diagnostics, continues and returns incomplete
+PASS: real timeout kills TERM-ignoring probe; later probes continue
+PASS: missing timeout fails setup without creating a report

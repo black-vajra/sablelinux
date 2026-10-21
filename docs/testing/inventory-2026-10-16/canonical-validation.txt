@@ -1,0 +1,41 @@
+# Canonical inventory validation — 2026-10-16
+
+Recorded in the repository on 2026-10-21 from retained, hash-verified evidence.
+Collected on Z890 at 19:36:51Z; running 6.16.1-sable-gpu-test2.
+HEAD remained ba2bc2c. Corrected fixture suite passed all five checks.
+Inventory: 42 probes, two incomplete, exit 1. Later probes continued.
+USB timeout cause remains unverified; journal access was denied to pepper.
+No retry or permission change was required to accept the diagnostic behavior.
+
+The first fixture run accidentally invoked real journalctl because its stub
+was omitted. Adding journalctl to PROBES corrected test isolation; the
+subsequent complete suite passed on Z890. No host inventory rerun was needed.
+
+Full original report remains outside Git at:
+/home/pepper/sable-inventory-validation-rh5xcjue/inventory.txt
+Only reviewed failure excerpts and fixture results are retained here.
+
+## Reviewed input SHA256 values before this documentation update
+
+a6151784aba94d776adcd58d84977b39547b5240007adea86defa2f733fe8939  tools/sable-inventory.sh
+94c160482e5bad02ccac329510a1f2f631ab4cad7bde38ea79b05a0150caa407  tools/tests/test-sable-inventory.py
+80aa0e6acf8331ac30de38d31e4d68b27e3e4675ba36c3e5ba1c24c0c4440201  docs/ENGINEERING_STATE.md
+b8102b2f900ca61cd893c511a62a72183c12a0092211f7b94715758b2efe7bca  docs/testing/inventory-2026-10-16/README.md
+2c64ef65a9f275e88ef25595ac51f8d1c38fb928c67a74774e900d4ab1cd509b  /home/pepper/sable-inventory-validation-rh5xcjue/inventory.txt
+f6cce4f3a20a67e2ecaa3cc8cce90d0d8173778ba89bd210eb53254fa975632f  /home/pepper/sable-inventory-validation-rh5xcjue/tests.log
+
+## Incomplete probe excerpts
+
+=== USB devices ===
+Command: lsusb
+[command exit: 124; output filter exit: 0]
+[INCOMPLETE: timeout/termination; inspect diagnostics]
+
+=== Recent boot warnings (journal query bounded to 250 entries) ===
+Command: journalctl -b -p warning..alert -n 250 --no-pager
+Hint: You are currently not seeing messages from other users and the system.
+      Users in the 'systemd-journal' group can see all messages. Pass -q to
+      turn off this notice.
+No journal files were opened due to insufficient permissions.
+[command exit: 1; output filter exit: 0]
+[INCOMPLETE: probe failed; remaining probes continue]
