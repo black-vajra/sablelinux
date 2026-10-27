@@ -199,10 +199,13 @@ sha256sum \
     "$SYSTEM_MAP" \
     > "$BUILD_ROOT/metadata/boot-inputs.sha256"
 
-if [ -f "$REPO/build/kernel-config-6.16.1" ]; then
-    sha256sum "$REPO/build/kernel-config-6.16.1" \
-        > "$BUILD_ROOT/metadata/kernel-config.sha256"
-fi
+KERNEL_CONFIG="/boot/config-$KERNEL_RELEASE"
+
+[ -f "$KERNEL_CONFIG" ] ||
+    die "canonical kernel configuration is missing: $KERNEL_CONFIG"
+
+sha256sum "$KERNEL_CONFIG" \
+    > "$BUILD_ROOT/metadata/kernel-config.sha256"
 
 find "$MODULE_ROOT" -type f -print0 |
     sort -z |
