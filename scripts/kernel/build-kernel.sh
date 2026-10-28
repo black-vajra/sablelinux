@@ -49,7 +49,7 @@ check() {
         die "unsupported workspace layout"
 
     for tool in gcc make ld objcopy flex bison bc openssl perl python3 \
-        sha256sum tar xz git; do
+        sha256sum tar xz git realpath; do
         command -v "$tool" >/dev/null 2>&1 ||
             die "missing build tool: $tool"
     done
@@ -70,12 +70,164 @@ check() {
     printf '%s\n' "PREFLIGHT PASS"
 }
 
+prepare() {
+    check
+
+    [[ -z "$(git -C "$REPO" status --porcelain --untracked-files=no)" ]] ||
+        die "tracked repository changes must be committed before preparation"
+
+    # Authoritative preparation must execute the repository script.
+    local expected_script="$REPO/scripts/kernel/build-kernel.sh"
+    local actual_script
+
+    actual_script="$(realpath -- "${BASH_SOURCE[0]}")"
+
+    [[ "$actual_script" == "$expected_script" ]] ||
+        die "prepare must run the canonical repository script"
+
+    # Require the executable to match its committed Git revision.
+    git -C "$REPO" diff --quiet HEAD -- scripts/kernel/build-kernel.sh ||
+        die "kernel-build script differs from committed version"
+
+    local root="$WORKSPACE/kernel-builds"
+    local timestamp commit candidate stage
+    local source_dir config_file
+
+    [[ -d "$root" && ! -L "$root" ]] ||
+        die "kernel-build workspace missing or invalid: $root"
+
+    [[ -w "$root" ]] ||
+        die "kernel-build workspace is not writable"
+
+    timestamp="$(date -u +%Y%m%dT%H%M%SZ)"
+    commit="$(git -C "$REPO" rev-parse --short=7 HEAD)"
+    candidate="${timestamp}-${commit}-linux-6.16.1-xattr-test1"
+    stage="$root/$candidate"
+
+    [[ ! -e "$stage" && ! -L "$stage" ]] ||
+        die "candidate already exists: $stage"
+
+    mkdir "$stage" ||
+        die "failed to create candidate directory"
+
+    # Preserve failed candidates for diagnosis.
+    # Never modify an existing candidate directory.
+    trap 'rc=$?; if (( rc != 0 )); then
+        printf "failed\\n" > "$stage/BUILD_STATE"
+    fi' EXIT
+
+    trap 'exit 130' INT
+    trap 'exit 143' TERM
+    trap 'exit 129' HUP
+
+    mkdir -p \
+        "$stage/source" \
+        "$stage/obj" \
+        "$stage/modules" \
+        "$stage/artifacts" \
+        "$stage/metadata" \
+        "$stage/logs"
+
+    printf 'preparing\n' > "$stage/BUILD_STATE"
+
+    printf 'Extracting authenticated source...\n'
+
+    if ! tar -xJf "$SOURCE_ARCHIVE" \
+        -C "$stage/source" \
+        --strip-components=1; then
+        printf 'failed\n' > "$stage/BUILD_STATE"
+        die "source extraction failed; candidate retained: $stage"
+    fi
+
+    source_dir="$stage/source"
+    config_file="$stage/obj/.config"
+
+    [[ -f "$source_dir/Makefile" ]] ||
+        die "extracted kernel Makefile is missing"
+
+    cp "$CONFIG" "$config_file"
+
+    python3 - "$config_file" <<'CONFIG_PY'
+from pathlib import Path
+import sys
+
+path = Path(sys.argv[1])
+text = path.read_text()
+
+changes = (
+    (
+        'CONFIG_LOCALVERSION="-sable-gpu-test2"',
+        'CONFIG_LOCALVERSION="-sable-xattr-test1"',
+    ),
+    (
+        '# CONFIG_SQUASHFS_XATTR is not set',
+        'CONFIG_SQUASHFS_XATTR=y',
+    ),
+)
+
+for old, new in changes:
+    if text.count(old) != 1:
+        raise SystemExit(
+            f"STOP: Expected configuration setting not unique: {old}"
+        )
+    text = text.replace(old, new, 1)
+
+path.write_text(text)
+CONFIG_PY
+
+    # Resolve the candidate configuration against upstream Kconfig.
+    # All generated files remain inside the isolated obj directory.
+    make -C "$source_dir" O="$stage/obj" olddefconfig \
+        > "$stage/logs/olddefconfig.log" 2>&1 ||
+        die "candidate Kconfig validation failed; see $stage/logs/olddefconfig.log"
+
+    grep -qx 'CONFIG_LOCALVERSION="-sable-xattr-test1"' "$config_file" ||
+        die "candidate local version was not retained"
+
+    grep -qx 'CONFIG_SQUASHFS=y' "$config_file" ||
+        die "SquashFS support was not retained"
+
+    grep -qx 'CONFIG_SQUASHFS_XATTR=y' "$config_file" ||
+        die "SquashFS XATTR support was not retained"
+
+    grep -qx '# CONFIG_LOCALVERSION_AUTO is not set' "$config_file" ||
+        die "automatic local-version generation was unexpectedly enabled"
+
+    sha256sum "$SOURCE_ARCHIVE" "$CONFIG" \
+        > "$stage/metadata/verified-inputs.sha256"
+
+    sha256sum "$config_file" \
+        > "$stage/metadata/candidate-config.sha256"
+
+    cat > "$stage/metadata/build.env" <<METADATA
+CANDIDATE_ID=$candidate
+CREATED_AT=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+CANONICAL_HOST=$(hostname)
+GIT_COMMIT=$(git -C "$REPO" rev-parse HEAD)
+UPSTREAM_KERNEL=6.16.1
+KERNEL_LOCALVERSION=-sable-xattr-test1
+SOURCE_ARCHIVE=$SOURCE_ARCHIVE
+BASELINE_CONFIG=$CONFIG
+CANDIDATE_CONFIG=$config_file
+METADATA
+
+    printf 'prepared\n' > "$stage/BUILD_STATE"
+
+    printf '\nPREPARE PASS\n'
+    printf 'Candidate: %s\n' "$candidate"
+    printf 'Location:  %s\n' "$stage"
+    printf 'State:     prepared\n'
+}
+
 case "$COMMAND" in
     check)
         check
         ;;
+    prepare)
+        prepare
+        ;;
     *)
-        printf 'Usage: %s check\n' "$0" >&2
+        printf 'Usage: %s {check|prepare}\n' "$0" >&2
         exit 2
         ;;
 esac
