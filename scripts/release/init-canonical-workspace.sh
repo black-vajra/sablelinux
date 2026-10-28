@@ -43,6 +43,7 @@ fi
 DIRECTORIES=(
     "$ROOT"
     "$ROOT/builds"
+    "$ROOT/kernel-builds"
     "$ROOT/cache"
     "$ROOT/cache/downloads"
     "$ROOT/cache/packages"
@@ -103,6 +104,14 @@ Maintained repository:
 Generated builds:
 
   /srv/sablelinux/builds/<build-id>
+
+Isolated kernel-build candidates:
+
+  /srv/sablelinux/kernel-builds/<candidate-id>
+
+Kernel-build directories are separate from release builds.
+Candidate kernels and modules must not be installed on the
+canonical host during build and validation.
 
 Do not manually maintain live-root trees here.
 Do not use secondary-system artifacts as canonical build inputs.
