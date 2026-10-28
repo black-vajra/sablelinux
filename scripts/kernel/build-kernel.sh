@@ -219,6 +219,272 @@ METADATA
     printf 'State:     prepared\n'
 }
 
+build() {
+    check
+
+    [[ $# -eq 1 ]] ||
+        die "usage: build <candidate-id>"
+
+    local candidate_id="$1"
+    local root="$WORKSPACE/kernel-builds"
+    local stage="$root/$candidate_id"
+    local path expected_release recorded_commit
+
+    [[ "$candidate_id" =~ ^[0-9]{8}T[0-9]{6}Z-[0-9a-f]{7}-linux-6[.]16[.]1-xattr-test1$ ]] ||
+        die "invalid candidate identifier"
+
+    [[ -d "$root" && ! -L "$root" ]] ||
+        die "invalid kernel-build workspace"
+
+    [[ -d "$stage" && ! -L "$stage" ]] ||
+        die "candidate directory missing or invalid"
+
+    [[ "$(realpath -- "$stage")" == "$stage" ]] ||
+        die "candidate path resolves unexpectedly"
+
+    for path in source obj modules artifacts metadata logs; do
+        [[ -d "$stage/$path" && ! -L "$stage/$path" ]] ||
+            die "candidate subdirectory missing or invalid: $path"
+
+        [[ "$(realpath -- "$stage/$path")" == "$stage/$path" ]] ||
+            die "candidate subdirectory escapes workspace: $path"
+    done
+
+    [[ -f "$stage/BUILD_STATE" ]] ||
+        die "candidate state file missing"
+
+    [[ "$(cat "$stage/BUILD_STATE")" == "prepared" ]] ||
+        die "candidate is not in prepared state"
+
+    [[ -f "$stage/metadata/build.env" ]] ||
+        die "candidate provenance metadata missing"
+
+    [[ -f "$stage/metadata/candidate-config.sha256" ]] ||
+        die "candidate configuration checksum missing"
+
+    (
+        cd "$stage"
+        sha256sum -c metadata/candidate-config.sha256
+    ) >/dev/null ||
+        die "candidate configuration checksum mismatch"
+
+    recorded_commit="$(
+        sed -n 's/^GIT_COMMIT=//p' "$stage/metadata/build.env"
+    )"
+
+    [[ "$recorded_commit" =~ ^[0-9a-f]{40}$ ]] ||
+        die "invalid preparation Git revision"
+
+    git -C "$REPO" cat-file -e "${recorded_commit}^{commit}" ||
+        die "preparation Git revision is unavailable"
+
+    expected_release="6.16.1-sable-xattr-test1"
+
+    [[ -f "$stage/obj/.config" ]] ||
+        die "candidate configuration missing"
+
+    grep -qx 'CONFIG_LOCALVERSION="-sable-xattr-test1"' \
+        "$stage/obj/.config" ||
+        die "candidate local version mismatch"
+
+    grep -qx 'CONFIG_SQUASHFS_XATTR=y' "$stage/obj/.config" ||
+        die "candidate SquashFS XATTR setting missing"
+
+    # Verify every extracted source entry against the authenticated archive.
+    # This gate runs before any compilation or artifact staging.
+    python3 "$REPO/scripts/kernel/verify-source.py" \
+        "$SOURCE_ARCHIVE" "$stage/source" ||
+        die "candidate source integrity verification failed"
+
+    printf '\nBUILD INPUT VALIDATION PASS\n'
+    printf 'Candidate: %s\n' "$candidate_id"
+    printf 'Kernel:    %s\n' "$expected_release"
+    printf 'Prepared:  %s\n' "$recorded_commit"
+    printf 'Build HEAD: %s\n' "$(git -C "$REPO" rev-parse HEAD)"
+    printf 'Jobs:      8 (planned)\n'
+    printf 'Status:    validation only; compilation not started\n'
+}
+
+compile_kernel() {
+    [[ $# -eq 1 ]] ||
+        die "usage: compile <candidate-id>"
+
+    local candidate_id="$1"
+    local stage="$WORKSPACE/kernel-builds/$candidate_id"
+    local source="$stage/source"
+    local obj="$stage/obj"
+    local modules="$stage/modules"
+    local artifacts="$stage/artifacts"
+    local metadata="$stage/metadata"
+    local logs="$stage/logs"
+    local release build_commit
+    local -a module_files
+
+    # Perform all read-only candidate checks before changing build state.
+    build "$candidate_id"
+
+    [[ -z "$(git -C "$REPO" status --porcelain --untracked-files=no)" ]] ||
+        die "tracked repository changes must be committed before compilation"
+
+    [[ "$(realpath -- "${BASH_SOURCE[0]}")" == \
+        "$REPO/scripts/kernel/build-kernel.sh" ]] ||
+        die "compilation must execute the canonical repository script"
+
+    [[ -z "$(git -C "$REPO" diff HEAD -- scripts/kernel/build-kernel.sh)" ]] ||
+        die "compilation script differs from committed revision"
+
+    for tool in flock depmod install cp; do
+        command -v "$tool" >/dev/null 2>&1 ||
+            die "missing compilation tool: $tool"
+    done
+
+    [[ -f "$source/Makefile" ]] ||
+        die "kernel source Makefile missing"
+
+    [[ -f "$metadata/verified-inputs.sha256" ]] ||
+        die "verified source-input manifest missing"
+
+    sha256sum -c "$metadata/verified-inputs.sha256" >/dev/null ||
+        die "prepared input manifest does not verify"
+
+    # Reject symlink redirection anywhere in the staging ancestry.
+    # All paths are expected to be absolute and already exist.
+    local expected_path
+    for expected_path in \
+        "$WORKSPACE" \
+        "$WORKSPACE/kernel-builds" \
+        "$stage" \
+        "$source" "$obj" "$modules" "$artifacts" "$metadata" "$logs"
+    do
+        [[ -d "$expected_path" && ! -L "$expected_path" ]] ||
+            die "invalid candidate directory: $expected_path"
+        [[ "$(realpath -e -- "$expected_path")" == "$expected_path" ]] ||
+            die "candidate path resolves outside expected location: $expected_path"
+    done
+
+    [[ -z "$(find "$modules" "$artifacts" -mindepth 1 -print -quit)" ]] ||
+        die "candidate staging directories must be empty"
+
+    # Lock the existing candidate directory itself. No lock file
+    # is created, and the open descriptor holds the lock until exit.
+    exec {lock_fd}< "$stage"
+    flock -n "$lock_fd" ||
+        die "candidate compilation is already locked"
+
+    [[ "$(cat "$stage/BUILD_STATE")" == "prepared" ]] ||
+        die "candidate state changed before compilation"
+
+    release="$(make -s -C "$source" O="$obj" kernelrelease)"
+    [[ "$release" == "6.16.1-sable-xattr-test1" ]] ||
+        die "unexpected kernel release: $release"
+
+    build_commit="$(git -C "$REPO" rev-parse HEAD)"
+
+    # Preserve distinct terminal states for failures and interruptions.
+    trap 'exit 130' INT
+    trap 'exit 143' TERM
+    trap 'exit 129' HUP
+    trap 'rc=$?; if (( rc != 0 )); then
+        case "$rc" in
+            129|130|143)
+                printf "build-interrupted\n" > "$stage/BUILD_STATE"
+                ;;
+            *)
+                printf "build-failed\n" > "$stage/BUILD_STATE"
+                ;;
+        esac
+    fi' EXIT
+
+    printf 'building\n' > "$stage/BUILD_STATE"
+
+    printf 'Compiling kernel %s with 8 jobs...\n' "$release"
+    printf 'Build log: %s\n' "$logs/compile.log"
+
+    make -C "$source" O="$obj" -j8 bzImage modules \
+        > "$logs/compile.log" 2>&1 ||
+        die "kernel compilation failed; see $logs/compile.log"
+
+    [[ -s "$obj/arch/x86/boot/bzImage" ]] ||
+        die "compiled kernel image missing"
+
+    [[ -s "$obj/System.map" ]] ||
+        die "compiled System.map missing"
+
+    # Explicit staging prefix: never install modules into the host.
+    make -C "$source" O="$obj" \
+        INSTALL_MOD_PATH="$modules" \
+        modules_install \
+        > "$logs/modules-install.log" 2>&1 ||
+        die "module staging failed; see $logs/modules-install.log"
+
+    [[ -d "$modules/lib/modules/$release" ]] ||
+        die "staged module directory missing"
+
+    # A modular kernel must contain actual loadable modules.
+    [[ -n "$(find "$modules/lib/modules/$release/kernel" \
+        -type f -name '*.ko' -print -quit)" ]] ||
+        die "no staged kernel modules found"
+
+    # Dependency indexes must be generated inside the staging root.
+    [[ -f "$modules/lib/modules/$release/modules.dep" ]] ||
+        die "missing staged dependency index: modules.dep"
+
+    [[ -s "$modules/lib/modules/$release/modules.dep.bin" ]] ||
+        die "missing or empty staged dependency index: modules.dep.bin"
+
+    cp -- "$obj/arch/x86/boot/bzImage" \
+        "$artifacts/vmlinuz-$release"
+
+    cp -- "$obj/System.map" \
+        "$artifacts/System.map-$release"
+
+    cp -- "$obj/.config" \
+        "$artifacts/config-$release"
+
+    (
+        cd "$artifacts"
+        sha256sum -- * > "$metadata/kernel-artifacts.sha256"
+    )
+
+    (
+        cd "$modules"
+        find lib/modules -type f -print0 |
+            sort -z |
+            xargs -0 -r sha256sum \
+            > "$metadata/kernel-modules.sha256"
+    )
+
+    [[ -s "$metadata/kernel-modules.sha256" ]] ||
+        die "kernel module checksum manifest is empty"
+
+    (
+        cd "$modules"
+        sha256sum -c "$metadata/kernel-modules.sha256" >/dev/null
+    ) || die "staged module checksum verification failed"
+
+    (
+        cd "$artifacts"
+        sha256sum -c "$metadata/kernel-artifacts.sha256" >/dev/null
+    ) || die "kernel artifact checksum verification failed"
+
+    cat > "$metadata/compilation.env" <<METADATA
+KERNEL_RELEASE=$release
+BUILD_GIT_COMMIT=$build_commit
+BUILD_JOBS=8
+COMPILER=$(gcc --version | head -n 1)
+LINKER=$(ld --version | head -n 1)
+BUILD_COMPLETED_AT=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+METADATA
+
+    printf 'built\n' > "$stage/BUILD_STATE"
+    trap - EXIT INT TERM HUP
+
+    printf '\nKERNEL BUILD PASS\n'
+    printf 'Candidate: %s\n' "$candidate_id"
+    printf 'Kernel:    %s\n' "$release"
+    printf 'State:     built\n'
+}
+
 case "$COMMAND" in
     check)
         check
@@ -226,8 +492,14 @@ case "$COMMAND" in
     prepare)
         prepare
         ;;
+    build)
+        build "${@:2}"
+        ;;
+    compile)
+        compile_kernel "${@:2}"
+        ;;
     *)
-        printf 'Usage: %s {check|prepare}\n' "$0" >&2
+        printf 'Usage: %s {check|prepare|build <candidate-id>|compile <candidate-id>}\n' "$0" >&2
         exit 2
         ;;
 esac
