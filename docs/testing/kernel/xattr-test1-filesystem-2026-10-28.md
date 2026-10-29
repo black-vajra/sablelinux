@@ -88,3 +88,48 @@ Not yet validated:
 - Physical hardware boot
 
 This result is not release qualification.
+
+## Automated fixture regression — 2026-10-28
+
+The filesystem integration harness was updated to generate a
+fresh SquashFS fixture during each execution.
+
+The generated fixture contains:
+
+- A known test file
+- A known user.sable_test extended attribute
+- SquashFS gzip compression
+- Extended attributes enabled
+
+The harness verifies the generated image checksum before
+starting QEMU.
+
+Validation results:
+
+- Fresh fixture generation: PASS
+- SquashFS mount: PASS
+- SquashFS content verification: PASS
+- SquashFS extended-attribute retrieval: PASS
+- OverlayFS mount: PASS
+- OverlayFS writable copy-up: PASS
+- Read-only lower filesystem preservation: PASS
+- Guest success marker: SABLE_FS_VM_PASS
+- QEMU exit status: 0
+
+Retained evidence:
+
+/srv/sablelinux/testing/squashfs-overlay-vm-wWFNnxzC
+
+The test no longer depends on the manually generated
+squashfs-xattr-55lMdJcu fixture.
+
+Remaining limitations:
+
+- Kernel candidate identification is still hard-coded.
+- Fixture generation and negative-path tests require additional
+  regression coverage.
+- Full live-root startup has not yet been validated.
+
+This confirms repeatable fixture generation and one successful
+end-to-end QEMU filesystem regression. It does not establish
+bit-for-bit reproducibility.

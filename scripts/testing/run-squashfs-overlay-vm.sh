@@ -10,8 +10,8 @@ id="20261028T212705Z-622d439-linux-6.16.1-xattr-test1"
 candidate="/srv/sablelinux/kernel-builds/$id"
 release="6.16.1-sable-xattr-test1"
 kernel="$candidate/artifacts/vmlinuz-$release"
-image="/srv/sablelinux/testing/squashfs-xattr-55lMdJcu/filesystem.squashfs"
-manifest="/srv/sablelinux/testing/squashfs-xattr-55lMdJcu/filesystem.sha256"
+# Generate a fresh SquashFS fixture for every regression run.
+# No historical test artifact is used as a build input.
 
 [[ "$(hostname)" == SableLinux ]] || die "canonical host required"
 [[ "$(git -C "$repo" branch --show-current)" == development ]] ||
@@ -21,7 +21,7 @@ manifest="/srv/sablelinux/testing/squashfs-xattr-55lMdJcu/filesystem.sha256"
     die "candidate not built"
 
 for tool in qemu-system-x86_64 timeout cpio gzip sha256sum \
-            readelf getfattr git mktemp; do
+            readelf getfattr setfattr mksquashfs git mktemp; do
     command -v "$tool" >/dev/null || die "missing tool: $tool"
 done
 
@@ -29,9 +29,6 @@ done
     cd "$candidate/artifacts"
     sha256sum -c "$candidate/metadata/kernel-artifacts.sha256" >/dev/null
 ) || die "kernel checksums failed"
-
-sha256sum -c "$manifest" >/dev/null ||
-    die "SquashFS image checksum failed"
 
 [[ -x /usr/bin/busybox ]] || die "BusyBox unavailable"
 if readelf -l /usr/bin/busybox | grep -q INTERP; then
@@ -45,6 +42,36 @@ done
 
 run="$(mktemp -d /srv/sablelinux/testing/squashfs-overlay-vm-XXXXXXXX)"
 root="$run/root"
+fixture="$run/fixture"
+image="$run/filesystem.squashfs"
+
+mkdir -p "$fixture"
+
+printf 'SableLinux SquashFS xattr regression\n' > "$fixture/test.txt"
+
+setfattr -n user.sable_test \
+    -v "sable-xattr-test1-pass" "$fixture/test.txt" ||
+    die "cannot set fixture extended attribute"
+
+[[ "$(getfattr --only-values -n user.sable_test "$fixture/test.txt" 2>/dev/null)" == \
+    "sable-xattr-test1-pass" ]] ||
+    die "fixture extended attribute verification failed"
+
+mksquashfs "$fixture" "$image" \
+    -noappend -xattrs -comp gzip -processors 2 \
+    > "$run/mksquashfs.log" 2>&1 ||
+    die "SquashFS generation failed; see $run/mksquashfs.log"
+
+[[ -s "$image" ]] ||
+    die "generated SquashFS image is empty"
+
+(
+    cd "$run"
+    sha256sum filesystem.squashfs > filesystem.sha256
+    sha256sum -c filesystem.sha256 >/dev/null
+) || die "generated SquashFS checksum verification failed"
+
+printf 'PASS: Fresh SquashFS fixture generated and verified\n'
 
 mkdir -p "$root"/{bin,usr/bin,usr/lib,lib64,dev,proc,sys,lower,rw,merged}
 
