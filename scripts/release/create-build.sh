@@ -10,9 +10,57 @@ die() {
     exit 1
 }
 
+# Kernel candidate integration preflight.
+# Release artifact staging is not yet implemented.
+KERNEL_CANDIDATE=""
+VERIFY_CANDIDATE_ONLY=false
+
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+        --kernel-candidate)
+            [ "$#" -ge 2 ] ||
+                die "--kernel-candidate requires an ID"
+            [ -n "$2" ] ||
+                die "--kernel-candidate requires a nonempty ID"
+            [ -z "$KERNEL_CANDIDATE" ] ||
+                die "--kernel-candidate specified more than once"
+            KERNEL_CANDIDATE="$2"
+            shift 2
+            ;;
+        --verify-candidate-only)
+            VERIFY_CANDIDATE_ONLY=true
+            shift
+            ;;
+        *)
+            die "unknown argument: $1"
+            ;;
+    esac
+done
+
 if [ "$EUID" -ne 0 ]; then
     die "run this script through sudo"
 fi
+
+if [ "$VERIFY_CANDIDATE_ONLY" = true ]; then
+    [ -n "$KERNEL_CANDIDATE" ] ||
+        die "--verify-candidate-only requires --kernel-candidate"
+
+    [ "$(hostname)" = "SableLinux" ] ||
+        die "candidate verification requires canonical Z890"
+
+    BUILD_USER="${SUDO_USER:-pepper}"
+    REPO="/home/$BUILD_USER/sablelinux"
+
+    python3 -B "$REPO/scripts/release/verify-kernel-candidate.py" \
+        --candidate-id "$KERNEL_CANDIDATE" ||
+        die "kernel candidate verification failed"
+
+    echo "PASS: Candidate preflight verified; no release build created"
+    exit 0
+fi
+
+[ -z "$KERNEL_CANDIDATE" ] ||
+    die "candidate release staging is not yet implemented"
 
 BUILD_USER="${SUDO_USER:-pepper}"
 BUILD_GROUP="$(id -gn "$BUILD_USER")"

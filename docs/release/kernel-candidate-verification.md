@@ -79,3 +79,38 @@ Future work includes:
 
 The current implementation does not install kernels, change
 host modules, modify GRUB, or produce release artifacts.
+
+## Release-build preflight integration
+
+The canonical release initializer supports:
+
+    --kernel-candidate CANDIDATE_ID
+    --verify-candidate-only
+
+Verification-only mode invokes the kernel-candidate verifier
+without creating a release-build directory.
+
+A valid candidate must pass SHA256 verification of its kernel
+artifacts and module manifest before preflight succeeds.
+
+The following cases have been tested on Z890:
+
+- Valid kernel candidate: PASS
+- Invalid kernel candidate: rejected
+- Candidate release creation before staging support: blocked
+- Argument handling: five regression tests PASS
+
+The release initializer continues to use the running host kernel
+for its existing build-creation path.
+
+Candidate-based release creation remains deliberately disabled
+until kernel-artifact staging is implemented.
+
+The verification-only interface does not replace the complete
+canonical release-build safeguards.
+
+Regression tests:
+
+    tests/release/test_create_build_preflight.py
+
+The running Z890 kernel and GRUB are unaffected.
