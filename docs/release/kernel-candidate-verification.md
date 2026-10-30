@@ -114,3 +114,32 @@ Regression tests:
     tests/release/test_create_build_preflight.py
 
 The running Z890 kernel and GRUB are unaffected.
+
+## Candidate selection in release initialization
+
+The release initializer now distinguishes:
+
+- HOST_KERNEL_RELEASE: kernel currently running on Z890
+- KERNEL_RELEASE: kernel selected for release generation
+
+When a kernel candidate is supplied, the initializer verifies
+the candidate and reads its release identifier from the
+candidate's compilation metadata.
+
+Kernel preparation and compilation commits are also retrieved
+for future release provenance.
+
+Candidate-based release creation remains explicitly blocked
+until artifact staging is integrated.
+
+The repository cleanliness gate is enforced before candidate
+selection. This prevents testing uncommitted release code
+through the production initialization path.
+
+Validation:
+
+- Release regression tests: 24 PASS
+- Bash syntax: PASS
+- Repository cleanliness rejection: PASS
+
+No release build was created during this validation.

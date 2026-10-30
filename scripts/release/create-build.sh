@@ -59,8 +59,9 @@ if [ "$VERIFY_CANDIDATE_ONLY" = true ]; then
     exit 0
 fi
 
-[ -z "$KERNEL_CANDIDATE" ] ||
-    die "candidate release staging is not yet implemented"
+# Candidate-based build creation remains disabled until
+# artifact staging and metadata integration are complete.
+# Candidate selection is validated separately below.
 
 BUILD_USER="${SUDO_USER:-pepper}"
 BUILD_GROUP="$(id -gn "$BUILD_USER")"
@@ -148,7 +149,43 @@ trap cleanup EXIT
 
 CREATED_AT="$(date --utc +%Y-%m-%dT%H:%M:%SZ)"
 TIMESTAMP="$(date --utc +%Y%m%dT%H%M%SZ)"
-KERNEL_RELEASE="$(uname -r)"
+HOST_KERNEL_RELEASE="$(uname -r)"
+KERNEL_RELEASE="$HOST_KERNEL_RELEASE"
+KERNEL_PREPARATION_COMMIT=""
+KERNEL_BUILD_COMMIT=""
+
+if [ -n "$KERNEL_CANDIDATE" ]; then
+    CANDIDATE_ROOT="$WORKSPACE/kernel-builds/$KERNEL_CANDIDATE"
+    VERIFIER="$REPO/scripts/release/verify-kernel-candidate.py"
+
+    python3 -B "$VERIFIER"         --candidate-id "$KERNEL_CANDIDATE" ||
+        die "kernel candidate verification failed"
+
+    COMPILATION_ENV="$CANDIDATE_ROOT/metadata/compilation.env"
+    CANDIDATE_ENV="$CANDIDATE_ROOT/metadata/build.env"
+
+    KERNEL_RELEASE="$(
+        awk -F= '$1 == "KERNEL_RELEASE" {print $2}'             "$COMPILATION_ENV"
+    )"
+
+    KERNEL_PREPARATION_COMMIT="$(
+        awk -F= '$1 == "GIT_COMMIT" {print $2}'             "$CANDIDATE_ENV"
+    )"
+
+    KERNEL_BUILD_COMMIT="$(
+        awk -F= '$1 == "BUILD_GIT_COMMIT" {print $2}'             "$COMPILATION_ENV"
+    )"
+
+    [ -n "$KERNEL_RELEASE" ] ||
+        die "candidate kernel release is missing"
+
+    echo "PASS: Selected release kernel: $KERNEL_RELEASE"
+    echo "PASS: Running host kernel: $HOST_KERNEL_RELEASE"
+
+    # Do not create a release build until artifact staging is integrated.
+    die "candidate release creation awaits staging integration"
+fi
+
 SAFE_KERNEL="${KERNEL_RELEASE//[^A-Za-z0-9._-]/_}"
 
 BUILD_ID="${TIMESTAMP}-${SHORT_COMMIT}-k${SAFE_KERNEL}"
