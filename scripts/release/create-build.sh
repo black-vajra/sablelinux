@@ -217,12 +217,12 @@ for directory in "${DIRECTORIES[@]}"; do
 done
 
 cat > "$BUILD_ROOT/BUILD_STATE" <<STATE
-initialized
+initializing
 STATE
 
 cat > "$BUILD_ROOT/metadata/build.env" <<METADATA
 BUILD_ID=$BUILD_ID
-BUILD_STATE=initialized
+BUILD_STATE=initializing
 CREATED_AT=$CREATED_AT
 CANONICAL_HOST=$HOSTNAME_VALUE
 BUILD_USER=$BUILD_USER
@@ -334,6 +334,12 @@ chown -R root:"$BUILD_GROUP" "$BUILD_ROOT"
 
 find "$BUILD_ROOT" -type d -exec chmod 2775 {} +
 find "$BUILD_ROOT" -type f -exec chmod 0664 {} +
+
+sed -i \
+    's/^BUILD_STATE=initializing$/BUILD_STATE=initialized/' \
+    "$BUILD_ROOT/metadata/build.env"
+
+printf '%s\n' "initialized" > "$BUILD_ROOT/BUILD_STATE"
 
 printf '%s\n' "$BUILD_ID" \
     > "$WORKSPACE/state/current-build-id"

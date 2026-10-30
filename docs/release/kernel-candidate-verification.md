@@ -143,3 +143,32 @@ Validation:
 - Repository cleanliness rejection: PASS
 
 No release build was created during this validation.
+
+## Release initialization state publication
+
+Release initialization uses two states:
+
+- initializing: build directory creation and input verification are underway.
+- initialized: required initialization work has completed.
+
+The BUILD_STATE file is the authoritative completion marker.
+
+During initialization, BUILD_STATE and metadata/build.env initially record
+the initializing state.
+
+After kernel input verification, metadata generation, and permission handling
+complete, metadata/build.env is updated first. BUILD_STATE is then updated
+to initialized, followed by publication of state/current-build-id.
+
+A failed initialization must not be treated as a completed build merely
+because its directory exists.
+
+The current implementation does not yet provide fully atomic publication
+or automated recovery from interruption. These remain release-engineering
+requirements.
+
+Regression coverage verifies source ordering and preservation of the
+candidate release-creation safety gate. It does not yet simulate
+initialization failures.
+
+Validation: 29 release regression tests passed.
