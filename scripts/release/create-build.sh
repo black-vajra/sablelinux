@@ -90,10 +90,19 @@ git_repo() {
 BRANCH="$(git_repo branch --show-current)"
 COMMIT="$(git_repo rev-parse HEAD)"
 SHORT_COMMIT="$(git_repo rev-parse --short=7 HEAD)"
-REPO_STATUS="$(git_repo status --porcelain)"
+# An existing local utility is not a canonical release input.
+# Permit only this exact untracked path; reject all other changes.
+REPO_STATUS="$(git_repo status --porcelain --untracked-files=all)" ||
+    die "cannot determine repository cleanliness"
+
+# Preserve the known local utility without allowing other changes.
+REPO_STATUS="$(
+    printf '%s\n' "$REPO_STATUS" |
+        awk '$0 != "?? scripts/boincctl" && NF { print }'
+)"
 
 [ -z "$REPO_STATUS" ] ||
-    die "repository contains uncommitted changes"
+    die "repository contains uncommitted or unexpected untracked changes"
 
 [ "$BRANCH" = "development" ] ||
     die "canonical builds must currently originate from development"
