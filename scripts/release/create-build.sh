@@ -209,6 +209,10 @@ DIRECTORIES=(
 )
 
 for directory in "${DIRECTORIES[@]}"; do
+    if [ -n "$KERNEL_CANDIDATE" ] &&
+       [ "$directory" = "$BUILD_ROOT/boot" ]; then
+        continue
+    fi
     install -d \
         -o root \
         -g "$BUILD_GROUP" \
@@ -233,6 +237,11 @@ GIT_BRANCH=$BRANCH
 GIT_COMMIT=$COMMIT
 GIT_DIRTY=false
 KERNEL_RELEASE=$KERNEL_RELEASE
+HOST_KERNEL_RELEASE=$HOST_KERNEL_RELEASE
+KERNEL_CANDIDATE_ID=$KERNEL_CANDIDATE
+KERNEL_PREPARATION_COMMIT=$KERNEL_PREPARATION_COMMIT
+KERNEL_BUILD_COMMIT=$KERNEL_BUILD_COMMIT
+KERNEL_MODULES_STAGED=false
 ROOT_DEVICE=$ROOT_DEVICE
 METADATA
 
@@ -275,6 +284,39 @@ $(grub-install --version)
 $(xorriso -version 2>&1 | head -n 1)
 TOOLS
 
+if [ -n "$KERNEL_CANDIDATE" ]; then
+    STAGER="$REPO/scripts/release/stage-kernel-artifacts.py"
+
+    python3 -B "$STAGER" \
+        --workspace "$WORKSPACE/kernel-builds" \
+        --candidate-id "$KERNEL_CANDIDATE" \
+        --destination "$BUILD_ROOT/boot" ||
+        die "candidate kernel artifact staging failed"
+
+    KERNEL_IMAGE="$BUILD_ROOT/boot/vmlinuz-$KERNEL_RELEASE"
+    SYSTEM_MAP="$BUILD_ROOT/boot/System.map-$KERNEL_RELEASE"
+    KERNEL_CONFIG="$BUILD_ROOT/boot/config-$KERNEL_RELEASE"
+
+    (
+        cd "$BUILD_ROOT/boot"
+        sha256sum -c kernel-artifacts.sha256
+    ) || die "staged boot artifacts failed verification"
+
+    cp "$BUILD_ROOT/boot/kernel-artifacts.sha256" \
+        "$BUILD_ROOT/metadata/kernel-artifacts.sha256"
+
+    # This records candidate module provenance only.
+    # The modules are NOT yet staged into rootfs.
+    cp "$CANDIDATE_ROOT/metadata/kernel-modules.sha256" \
+        "$BUILD_ROOT/metadata/candidate-kernel-modules.sha256"
+
+    sha256sum "$KERNEL_IMAGE" "$SYSTEM_MAP" \
+        > "$BUILD_ROOT/metadata/boot-inputs.sha256"
+
+    sha256sum "$KERNEL_CONFIG" \
+        > "$BUILD_ROOT/metadata/kernel-config.sha256"
+
+else
 KERNEL_IMAGE="/boot/vmlinuz-$KERNEL_RELEASE"
 SYSTEM_MAP="/boot/System.map-$KERNEL_RELEASE"
 MODULE_ROOT="/lib/modules/$KERNEL_RELEASE"
@@ -305,6 +347,8 @@ find "$MODULE_ROOT" -type f -print0 |
     sort -z |
     xargs -0 sha256sum \
     > "$BUILD_ROOT/metadata/kernel-modules.sha256"
+
+fi
 
 cat > "$BUILD_ROOT/metadata/package-manifest-status.txt" <<PACKAGES
 A current canonical package-manifest generator has not yet been established.
