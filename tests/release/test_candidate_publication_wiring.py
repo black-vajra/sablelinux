@@ -44,15 +44,25 @@ class CandidatePublicationWiringTests(unittest.TestCase):
         )
         self.assertEqual(result.returncode, 0, result.stderr)
 
-    def test_safety_gate_remains_before_publication(self):
-        self.assertEqual(self.source.count(self.gate), 1)
+    def test_candidate_publication_requires_verified_staging(self):
+        self.assertNotIn(self.gate, self.source)
         self.assertEqual(
             self.source.count(self.publisher_assignment), 1
         )
-        self.assertLess(
-            self.source.index(self.gate),
-            self.source.index(self.publisher_assignment),
+
+        verification = self.source.index(
+            'python3 -B "$VERIFIER"'
         )
+        staging = self.source.index(
+            'python3 -B "$STAGER"'
+        )
+        publication = self.source.index(
+            'python3 -B "$PUBLISHER"'
+        )
+
+        self.assertLess(verification, staging)
+        self.assertLess(staging, publication)
+
 
     def test_candidate_publisher_receives_required_inputs(self):
         tail = self.publication_tail

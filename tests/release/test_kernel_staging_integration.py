@@ -79,11 +79,20 @@ class KernelStagingIntegrationTests(unittest.TestCase):
         self.assertLess(staging, completion)
         self.assertLess(completion, publication)
 
-    def test_candidate_creation_remains_blocked(self):
-        self.assertIn(
+    def test_candidate_staging_enabled_with_failure_guard(self):
+        self.assertNotIn(
             'die "candidate release creation awaits staging integration"',
             self.source,
         )
+        self.assertIn(
+            'python3 -B "$STAGER"',
+            self.source,
+        )
+        self.assertIn(
+            'die "candidate kernel artifact staging failed"',
+            self.source,
+        )
+
 
 
 if __name__ == "__main__":

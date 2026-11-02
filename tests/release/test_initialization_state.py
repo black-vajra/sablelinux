@@ -66,11 +66,20 @@ class InitializationStateTests(unittest.TestCase):
 
         self.assertLess(completion, publication)
 
-    def test_candidate_release_creation_remains_blocked(self):
-        self.assertIn(
+    def test_candidate_creation_is_enabled_after_verification(self):
+        self.assertNotIn(
             'die "candidate release creation awaits staging integration"',
             self.source,
         )
+        self.assertIn(
+            'die "kernel candidate verification failed"',
+            self.source,
+        )
+        self.assertIn(
+            'die "candidate kernel artifact staging failed"',
+            self.source,
+        )
+
 
 
 if __name__ == "__main__":

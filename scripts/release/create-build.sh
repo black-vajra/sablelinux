@@ -10,8 +10,7 @@ die() {
     exit 1
 }
 
-# Kernel candidate integration preflight.
-# Release artifact staging is not yet implemented.
+# Kernel candidate verification and build initialization.
 KERNEL_CANDIDATE=""
 VERIFY_CANDIDATE_ONLY=false
 
@@ -59,9 +58,8 @@ if [ "$VERIFY_CANDIDATE_ONLY" = true ]; then
     exit 0
 fi
 
-# Candidate-based build creation remains disabled until
-# artifact staging and metadata integration are complete.
-# Candidate selection is validated separately below.
+# Candidate builds require verified provenance and staged
+# kernel artifacts before publication.
 
 BUILD_USER="${SUDO_USER:-pepper}"
 BUILD_GROUP="$(id -gn "$BUILD_USER")"
@@ -182,8 +180,7 @@ if [ -n "$KERNEL_CANDIDATE" ]; then
     echo "PASS: Selected release kernel: $KERNEL_RELEASE"
     echo "PASS: Running host kernel: $HOST_KERNEL_RELEASE"
 
-    # Do not create a release build until artifact staging is integrated.
-    die "candidate release creation awaits staging integration"
+    # Candidate verified; proceed with release build initialization.
 fi
 
 SAFE_KERNEL="${KERNEL_RELEASE//[^A-Za-z0-9._-]/_}"
