@@ -115,6 +115,14 @@ mkdir -p \
     "$TEST_ROOT/workspace/state/locks" \
     "$TEST_ROOT/workspace/kernel-builds/$CID"
 
+# Match the canonical Z890 state-directory ownership and setgid policy.
+sudo chown root:pepper "$TEST_ROOT/workspace/state"
+sudo chmod 2775 "$TEST_ROOT/workspace/state"
+
+[ "$(stat -c '%U:%G:%a' "$TEST_ROOT/workspace/state")" = \
+    "root:pepper:2775" ] ||
+    die "disposable state directory permissions are incorrect"
+
 printf '1\n' > "$TEST_ROOT/workspace/state/layout-version"
 printf 'previous-test-build\n' \
     > "$TEST_ROOT/workspace/state/current-build-id"

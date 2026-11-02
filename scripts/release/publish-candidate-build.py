@@ -3,6 +3,7 @@
 
 import argparse
 import fcntl
+import grp
 import hashlib
 import os
 import re
@@ -35,7 +36,7 @@ def digest(path):
     return h.hexdigest()
 
 
-def atomic_write(path, content):
+def atomic_write(path, content, group=None):
     temporary = None
     try:
         with tempfile.NamedTemporaryFile(
@@ -50,6 +51,8 @@ def atomic_write(path, content):
             stream.flush()
             os.fsync(stream.fileno())
 
+        if group is not None and os.geteuid() == 0:
+            os.chown(temporary, 0, group)
         os.chmod(temporary, 0o664)
         os.replace(temporary, path)
         temporary = None
@@ -218,7 +221,7 @@ def publish(root, state_dir, build_id, workspace):
     # Publish the current-build pointer only after both succeed.
     atomic_write(env_path, "\n".join(updated) + "\n")
     atomic_write(marker, "initialized\n")
-    atomic_write(pointer, build_id + "\n")
+    atomic_write(pointer, build_id + "\n", group=grp.getgrnam("pepper").gr_gid)
 
 
 def main():
