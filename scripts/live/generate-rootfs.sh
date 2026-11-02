@@ -88,6 +88,15 @@ BUILD_ENV="$BUILD_ROOT/metadata/build.env"
 [ -f "$BUILD_ENV" ] ||
     die "build metadata is missing: $BUILD_ENV"
 
+# Release kernel identity is selected at build initialization.
+# The running Z890 kernel is not necessarily the release kernel.
+KERNEL_RELEASE="$(
+    awk -F= '$1 == "KERNEL_RELEASE" {print $2}' "$BUILD_ENV"
+)"
+
+[ -n "$KERNEL_RELEASE" ] ||
+    die "selected release kernel is missing from build metadata"
+
 BUILD_STATE="$(cat "$BUILD_ROOT/BUILD_STATE")"
 
 [ "$BUILD_STATE" = "initialized" ] ||
@@ -102,11 +111,24 @@ BUILD_COMMIT="$(
     awk -F= '$1 == "GIT_COMMIT" {print $2}' "$BUILD_ENV"
 )"
 
-[ "$CURRENT_COMMIT" = "$BUILD_COMMIT" ] ||
-    die "repository commit does not match build provenance"
+# Stage-specific provenance:
+# Preserve the original initialization commit while allowing
+# subsequent release stages to use later committed revisions.
+git_repo merge-base --is-ancestor "$BUILD_COMMIT" "$CURRENT_COMMIT" ||
+    die "build initialization commit is not an ancestor of HEAD"
 
-[ -z "$(git_repo status --porcelain)" ] ||
-    die "repository contains uncommitted changes"
+# Only the unrelated, untracked boincctl utility is exempt.
+# Never allow it to become a tracked release input.
+if git_repo ls-files --error-unmatch scripts/boincctl >/dev/null 2>&1; then
+    die "scripts/boincctl must not be tracked as a release input"
+fi
+
+DIRTY="$(
+    git_repo status --porcelain --untracked-files=all -- .         ':(exclude)scripts/boincctl'
+)"
+
+[ -z "$DIRTY" ] ||
+    die "repository contains uncommitted release-source changes"
 
 [ "$(hostname)" = "SableLinux" ] ||
     die "this is not the canonical Z890 host"
@@ -463,13 +485,51 @@ find "$ROOTFS/var/cache" \
     -delete 2>/dev/null ||
     true
 
+# M1.11: Deploy the selected, verified release-kernel modules.
+# The running Z890 kernel's module trees are excluded by policy.
+echo
+echo "=== STAGE VERIFIED RELEASE KERNEL MODULES ===" |
+    tee -a "$REPORT"
+
+if [ -L "$ROOTFS/lib" ]; then
+    [ "$(readlink "$ROOTFS/lib")" = "usr/lib" ] ||
+        die "unsupported rootfs /lib symlink"
+    MODULE_PARENT="$ROOTFS/usr/lib/modules"
+elif [ -d "$ROOTFS/lib" ]; then
+    MODULE_PARENT="$ROOTFS/lib/modules"
+else
+    die "generated rootfs has no supported /lib layout"
+fi
+
+install -d -m 0755 "$MODULE_PARENT"
+
+# Nothing from the host kernel may survive the capture.
+[ -z "$(find "$MODULE_PARENT" -mindepth 1 -maxdepth 1 -print -quit)" ] ||
+    die "host kernel modules remain in release rootfs"
+
+MODULE_STAGER="$REPO/scripts/release/stage-kernel-modules.py"
+
+python3 -B "$MODULE_STAGER" \
+    --build-root "$BUILD_ROOT" \
+    --workspace "$WORKSPACE/kernel-builds" \
+    || die "release kernel module staging failed"
+
+# Verify all 57 candidate files against the authoritative manifest.
+(
+    cd "$ROOTFS"
+    sha256sum -c \
+        "$BUILD_ROOT/metadata/candidate-kernel-modules.sha256" \
+        > "$BUILD_ROOT/reports/rootfs-kernel-modules.sha256.log"
+) || die "deployed kernel module checksums failed"
+
+echo "PASS: verified release kernel modules staged" |
+    tee -a "$REPORT"
+
 install -d -m 0755 \
     "$ROOTFS/etc/sablelinux"
 
-sed \
-    's/^BUILD_STATE=.*/BUILD_STATE=rootfs-generated/' \
-    "$BUILD_ENV" \
-    > "$ROOTFS/etc/sablelinux/build.env"
+# Keep build metadata provisional until final validation.
+cp "$BUILD_ENV" "$ROOTFS/etc/sablelinux/build.env"
 
 cp "$POLICY" \
     "$ROOTFS/etc/sablelinux/rootfs-generation-policy.md"
@@ -479,7 +539,7 @@ cp "$POLICY" \
     echo "GENERATED_AT=$(date --utc +%Y-%m-%dT%H:%M:%SZ)"
     echo "SOURCE_HOST=$(hostname)"
     echo "SOURCE_GIT_COMMIT=$CURRENT_COMMIT"
-    echo "KERNEL_RELEASE=$(uname -r)"
+    echo "KERNEL_RELEASE=$KERNEL_RELEASE"
     echo "GENERATOR_SHA256=$(sha256sum "$REPO/scripts/live/generate-rootfs.sh" | awk '{print $1}')"
     echo "EXCLUDES_SHA256=$(sha256sum "$EXCLUDES" | awk '{print $1}')"
     echo "PRESERVATION_CHECK_SHA256=$(sha256sum "$PRESERVATION_CHECK" | awk '{print $1}')"
@@ -629,7 +689,7 @@ test -x "$ROOTFS/usr/lib/systemd/systemd" ||
 
 validation_log "PASS: executable init is present"
 
-test -d "$ROOTFS/lib/modules/$(uname -r)" ||
+test -d "$ROOTFS/lib/modules/$KERNEL_RELEASE" ||
     die "matching kernel module tree is absent"
 
 validation_log "PASS: matching kernel module tree is present"
@@ -685,13 +745,6 @@ validation_log "PASS: prohibited live services are not enabled"
 
 validation_log "PASS: generated rootfs validation completed"
 
-printf '%s\n' "rootfs-generated" \
-    > "$BUILD_ROOT/BUILD_STATE"
-
-sed -i \
-    's/^BUILD_STATE=.*/BUILD_STATE=rootfs-generated/' \
-    "$BUILD_ENV"
-
 CONTROL_DIRECTORIES=(
     "$BUILD_ROOT"
     "$BUILD_ROOT/rootfs"
@@ -735,6 +788,58 @@ chown root:"$BUILD_GROUP" \
 chmod 0664 \
     "$BUILD_ROOT/BUILD_STATE" \
     "$BUILD_ROOT/README.txt"
+
+# M1.11: Finalize release metadata only after validation.
+FINAL_ENV="$BUILD_ROOT/tmp/rootfs-build.env.final"
+
+sed \
+    -e 's/^BUILD_STATE=.*/BUILD_STATE=rootfs-generated/' \
+    -e 's/^KERNEL_MODULES_STAGED=.*/KERNEL_MODULES_STAGED=true/' \
+    "$BUILD_ENV" > "$FINAL_ENV"
+
+grep -qx 'BUILD_STATE=rootfs-generated' "$FINAL_ENV" ||
+    die "final build-state metadata missing"
+
+grep -qx 'KERNEL_MODULES_STAGED=true' "$FINAL_ENV" ||
+    die "final module-staging metadata missing"
+
+# Publish metadata into the staged root.
+install -m 0644 "$FINAL_ENV" \
+    "$ROOTFS/etc/sablelinux/.build.env.final"
+
+mv -f \
+    "$ROOTFS/etc/sablelinux/.build.env.final" \
+    "$ROOTFS/etc/sablelinux/build.env"
+
+# Inventory the completed staged filesystem.
+find "$ROOTFS" -xdev \
+    -printf '%P\t%y\t%m\t%U\t%G\t%s\t%T@\t%l\n' |
+    sort > "$BUILD_ROOT/metadata/rootfs-files.tsv"
+
+# Reverify the authoritative candidate manifest.
+(
+    cd "$ROOTFS"
+    sha256sum --status -c \
+        "$BUILD_ROOT/metadata/candidate-kernel-modules.sha256"
+) || die "final kernel-module verification failed"
+
+# Prepare authoritative metadata before state promotion.
+install -m 0664 -o root -g "$BUILD_GROUP" \
+    "$FINAL_ENV" "$BUILD_ROOT/metadata/.build.env.final"
+
+mv -f \
+    "$BUILD_ROOT/metadata/.build.env.final" \
+    "$BUILD_ENV"
+
+# The authoritative state marker is published last.
+printf '%s\n' "rootfs-generated" \
+    > "$BUILD_ROOT/.BUILD_STATE.final"
+
+chown root:"$BUILD_GROUP" "$BUILD_ROOT/.BUILD_STATE.final"
+chmod 0664 "$BUILD_ROOT/.BUILD_STATE.final"
+
+mv -f "$BUILD_ROOT/.BUILD_STATE.final" \
+    "$BUILD_ROOT/BUILD_STATE"
 
 {
     echo

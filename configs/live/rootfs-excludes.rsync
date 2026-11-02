@@ -116,3 +116,8 @@
 /usr/share/doc/cvmfs*/***
 **/cvmfs-reload.service
 **/cvmfs-reload.service.d/***
+
+# Kernel modules are deployed from the verified release candidate.
+# Do not capture the Z890 running-kernel module trees.
+/usr/lib/modules/***
+/lib/modules/***
