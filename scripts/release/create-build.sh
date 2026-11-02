@@ -389,11 +389,8 @@ if [ -n "$KERNEL_CANDIDATE" ]; then
         --workspace "$WORKSPACE/kernel-builds" ||
         die "candidate build publication failed"
 
-    chown root:"$BUILD_GROUP" \
-        "$WORKSPACE/state/current-build-id"
-
-    chmod 0664 \
-        "$WORKSPACE/state/current-build-id"
+    # Pointer ownership and mode are established by the publisher
+    # and the canonical setgid state directory.
 else
     sed -i \
         's/^BUILD_STATE=initializing$/BUILD_STATE=initialized/' \
