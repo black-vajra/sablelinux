@@ -358,5 +358,52 @@ class CandidateBuildPublicationTests(unittest.TestCase):
         )
 
 
+
+    def test_metadata_write_failure_preserves_old_build(self):
+        original_replace = publication.os.replace
+
+        def fail_metadata(source, destination):
+            if Path(destination) == self.env:
+                raise OSError("simulated metadata failure")
+            return original_replace(source, destination)
+
+        with patch.object(
+            publication.os,
+            "replace",
+            side_effect=fail_metadata,
+        ):
+            with self.assertRaises(OSError):
+                self.publish()
+
+        self.assertIn(
+            "BUILD_STATE=initializing",
+            self.env.read_text(),
+        )
+        self.assertEqual(self.marker.read_text(), "initializing\n")
+        self.assertEqual(self.pointer.read_text(), "previous-build\n")
+
+    def test_marker_write_failure_preserves_old_pointer(self):
+        original_replace = publication.os.replace
+
+        def fail_marker(source, destination):
+            if Path(destination) == self.marker:
+                raise OSError("simulated marker failure")
+            return original_replace(source, destination)
+
+        with patch.object(
+            publication.os,
+            "replace",
+            side_effect=fail_marker,
+        ):
+            with self.assertRaises(OSError):
+                self.publish()
+
+        self.assertIn(
+            "BUILD_STATE=initialized",
+            self.env.read_text(),
+        )
+        self.assertEqual(self.marker.read_text(), "initializing\n")
+        self.assertEqual(self.pointer.read_text(), "previous-build\n")
+
 if __name__ == "__main__":
     unittest.main()
