@@ -39,3 +39,7 @@ usb-backups/
 *.tar.xz
 *.tar.zst
 *.zst
+
+# Generated Python bytecode
+__pycache__/
+*.py[cod]
