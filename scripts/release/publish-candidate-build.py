@@ -2,6 +2,7 @@
 """Verify and publish a staged SableLinux kernel-candidate build."""
 
 import argparse
+import fcntl
 import hashlib
 import os
 import re
@@ -93,6 +94,35 @@ def verify_artifacts(root, release):
                 f"checksum mismatch: {name}")
 
 
+
+def serialized_publication(function):
+    """Hold the state-directory lock during publication."""
+
+    def execute(root, state_dir, build_id):
+        if not state_dir.is_dir() or state_dir.is_symlink():
+            raise ValueError("invalid state directory")
+
+        fd = os.open(
+            state_dir,
+            os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW,
+        )
+
+        try:
+            try:
+                fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            except BlockingIOError as error:
+                raise ValueError(
+                    "another build publication is active"
+                ) from error
+
+            return function(root, state_dir, build_id)
+        finally:
+            os.close(fd)
+
+    return execute
+
+
+@serialized_publication
 def publish(root, state_dir, build_id):
     require(re.fullmatch(r"[A-Za-z0-9._-]+", build_id) is not None,
             "invalid build ID")

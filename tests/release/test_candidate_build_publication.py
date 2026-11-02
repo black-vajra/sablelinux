@@ -1,6 +1,8 @@
 """Functional tests for SableLinux candidate build publication."""
 
+import fcntl
 import hashlib
+import os
 import importlib.util
 import tempfile
 import unittest
@@ -165,6 +167,50 @@ class CandidateBuildPublicationTests(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             self.publish()
+
+
+
+    def test_concurrent_publication_rejected(self):
+        fd = os.open(
+            self.state_dir,
+            os.O_RDONLY | os.O_DIRECTORY,
+        )
+
+        try:
+            fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+
+            with self.assertRaisesRegex(
+                ValueError,
+                "another build publication is active",
+            ):
+                self.publish()
+
+            self.assert_not_published()
+        finally:
+            fcntl.flock(fd, fcntl.LOCK_UN)
+            os.close(fd)
+
+    def test_publication_after_lock_release(self):
+        fd = os.open(
+            self.state_dir,
+            os.O_RDONLY | os.O_DIRECTORY,
+        )
+
+        fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        fcntl.flock(fd, fcntl.LOCK_UN)
+        os.close(fd)
+
+        self.publish()
+
+        self.assertEqual(
+            self.marker.read_text(),
+            "initialized" + chr(10),
+        )
+
+        self.assertEqual(
+            self.pointer.read_text(),
+            self.build_id + chr(10),
+        )
 
 
 if __name__ == "__main__":
