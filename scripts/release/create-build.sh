@@ -379,20 +379,37 @@ chown -R root:"$BUILD_GROUP" "$BUILD_ROOT"
 find "$BUILD_ROOT" -type d -exec chmod 2775 {} +
 find "$BUILD_ROOT" -type f -exec chmod 0664 {} +
 
-sed -i \
-    's/^BUILD_STATE=initializing$/BUILD_STATE=initialized/' \
-    "$BUILD_ROOT/metadata/build.env"
+if [ -n "$KERNEL_CANDIDATE" ]; then
+    PUBLISHER="$REPO/scripts/release/publish-candidate-build.py"
 
-printf '%s\n' "initialized" > "$BUILD_ROOT/BUILD_STATE"
+    python3 -B "$PUBLISHER" \
+        --build-root "$BUILD_ROOT" \
+        --state-dir "$WORKSPACE/state" \
+        --build-id "$BUILD_ID" \
+        --workspace "$WORKSPACE/kernel-builds" ||
+        die "candidate build publication failed"
 
-printf '%s\n' "$BUILD_ID" \
-    > "$WORKSPACE/state/current-build-id"
+    chown root:"$BUILD_GROUP" \
+        "$WORKSPACE/state/current-build-id"
 
-chown root:"$BUILD_GROUP" \
-    "$WORKSPACE/state/current-build-id"
+    chmod 0664 \
+        "$WORKSPACE/state/current-build-id"
+else
+    sed -i \
+        's/^BUILD_STATE=initializing$/BUILD_STATE=initialized/' \
+        "$BUILD_ROOT/metadata/build.env"
 
-chmod 0664 \
-    "$WORKSPACE/state/current-build-id"
+    printf '%s\n' "initialized" > "$BUILD_ROOT/BUILD_STATE"
+
+    printf '%s\n' "$BUILD_ID" \
+        > "$WORKSPACE/state/current-build-id"
+
+    chown root:"$BUILD_GROUP" \
+        "$WORKSPACE/state/current-build-id"
+
+    chmod 0664 \
+        "$WORKSPACE/state/current-build-id"
+fi
 
 echo "=== CANONICAL BUILD INITIALIZED ==="
 echo "Build ID: $BUILD_ID"
