@@ -3,6 +3,7 @@
 import fcntl
 import hashlib
 import os
+import shutil
 import importlib.util
 import tempfile
 import unittest
@@ -47,8 +48,8 @@ class CandidateBuildPublicationTests(unittest.TestCase):
             "BUILD_STATE=initializing\n"
             "KERNEL_RELEASE=test-kernel\n"
             "KERNEL_CANDIDATE_ID=test-candidate\n"
-            "KERNEL_PREPARATION_COMMIT=abc123\n"
-            "KERNEL_BUILD_COMMIT=def456\n"
+            f"KERNEL_PREPARATION_COMMIT={'a' * 40}\n"
+            f"KERNEL_BUILD_COMMIT={'b' * 40}\n"
             "KERNEL_MODULES_STAGED=false\n"
         )
 
@@ -73,11 +74,87 @@ class CandidateBuildPublicationTests(unittest.TestCase):
             "\n".join(records) + "\n"
         )
 
+
+        # A complete candidate fixture for the real candidate verifier.
+        self.workspace = base / "kernel-builds"
+        self.candidate = self.workspace / "test-candidate"
+        candidate_meta = self.candidate / "metadata"
+        candidate_artifacts = self.candidate / "artifacts"
+        candidate_modules = (
+            self.candidate / "modules/lib/modules/test-kernel"
+        )
+
+        candidate_meta.mkdir(parents=True)
+        candidate_artifacts.mkdir()
+        candidate_modules.mkdir(parents=True)
+
+        (self.candidate / "BUILD_STATE").write_text("built\n")
+        (self.candidate / "obj").mkdir()
+
+        (candidate_meta / "build.env").write_text(
+            "CANDIDATE_ID=test-candidate\n"
+            "CANONICAL_HOST=SableLinux\n"
+            f"GIT_COMMIT={'a' * 40}\n"
+        )
+
+        (candidate_meta / "compilation.env").write_text(
+            "KERNEL_RELEASE=test-kernel\n"
+            f"BUILD_GIT_COMMIT={'b' * 40}\n"
+        )
+
+        for name in (
+            "vmlinuz-test-kernel",
+            "System.map-test-kernel",
+            "config-test-kernel",
+        ):
+            shutil.copyfile(
+                self.boot / name,
+                candidate_artifacts / name,
+            )
+
+        shutil.copyfile(
+            self.boot / "kernel-artifacts.sha256",
+            candidate_meta / "kernel-artifacts.sha256",
+        )
+
+        module_files = {
+            "modules.dep": b"test.ko:\n",
+            "modules.alias": b"# aliases\n",
+            "kernel/test.ko": b"test-module",
+        }
+
+        module_records = []
+
+        for name, content in module_files.items():
+            target = candidate_modules / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(content)
+
+            checksum = hashlib.sha256(content).hexdigest()
+            module_records.append(
+                f"{checksum}  lib/modules/test-kernel/{name}"
+            )
+
+        manifest_content = "\n".join(module_records) + "\n"
+
+        (candidate_meta / "kernel-modules.sha256").write_text(
+            manifest_content
+        )
+
+        (
+            self.metadata / "candidate-kernel-modules.sha256"
+        ).write_text(manifest_content)
+
+        (candidate_modules / "build").symlink_to(
+            self.candidate / "obj"
+        )
+
     def publish(self):
         publication.publish(
             self.root,
             self.state_dir,
             self.build_id,
+            self.workspace,
         )
 
     def assert_not_published(self):
@@ -210,6 +287,74 @@ class CandidateBuildPublicationTests(unittest.TestCase):
         self.assertEqual(
             self.pointer.read_text(),
             self.build_id + chr(10),
+        )
+
+
+
+    def test_candidate_compilation_mismatch_rejected(self):
+        path = self.candidate / "metadata/compilation.env"
+        path.write_text(
+            path.read_text().replace("b" * 40, "c" * 40)
+        )
+
+        with self.assertRaisesRegex(
+            ValueError, "provenance verification failed"
+        ):
+            self.publish()
+
+        self.assert_not_published()
+        self.assertIn(
+            "BUILD_STATE=initializing",
+            self.env.read_text(),
+        )
+
+    def test_candidate_source_module_corruption_rejected(self):
+        path = (
+            self.candidate
+            / "modules/lib/modules/test-kernel/kernel/test.ko"
+        )
+        path.write_bytes(b"corrupted-module")
+
+        with self.assertRaisesRegex(
+            ValueError, "provenance verification failed"
+        ):
+            self.publish()
+
+        self.assert_not_published()
+        self.assertIn(
+            "BUILD_STATE=initializing",
+            self.env.read_text(),
+        )
+
+    def test_candidate_manifest_mismatch_rejected(self):
+        path = (
+            self.metadata / "candidate-kernel-modules.sha256"
+        )
+        path.write_text("incorrect manifest\n")
+
+        with self.assertRaisesRegex(
+            ValueError, "provenance verification failed"
+        ):
+            self.publish()
+
+        self.assert_not_published()
+        self.assertIn(
+            "BUILD_STATE=initializing",
+            self.env.read_text(),
+        )
+
+    def test_missing_candidate_rejected(self):
+        shutil.rmtree(self.candidate)
+
+        with self.assertRaisesRegex(
+            ValueError, "provenance verification failed"
+        ):
+            self.publish()
+
+        self.assert_not_published()
+        self.assertIn(
+            "BUILD_STATE=initializing",
+            self.env.read_text(),
         )
 
 

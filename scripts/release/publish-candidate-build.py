@@ -7,6 +7,7 @@ import hashlib
 import os
 import re
 import sys
+import subprocess
 import tempfile
 from pathlib import Path
 
@@ -95,10 +96,50 @@ def verify_artifacts(root, release):
 
 
 
+
+DEFAULT_CANDIDATE_WORKSPACE = Path("/srv/sablelinux/kernel-builds")
+
+
+def verify_candidate_provenance(root, workspace):
+    """Require successful independent candidate provenance validation."""
+    checker = (
+        Path(__file__).resolve().parent
+        / "verify-release-kernel-provenance.py"
+    )
+
+    require(
+        checker.is_file() and not checker.is_symlink(),
+        "provenance checker unavailable",
+    )
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            "-B",
+            str(checker),
+            "--build-root",
+            str(root),
+            "--workspace",
+            str(workspace),
+        ],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    require(
+        result.returncode == 0
+        and "SABLE_RELEASE_KERNEL_PROVENANCE_PASS"
+        in result.stdout.splitlines(),
+        "kernel provenance verification failed: "
+        + (result.stderr.strip() or result.stdout.strip()),
+    )
+
+
 def serialized_publication(function):
     """Hold the state-directory lock during publication."""
 
-    def execute(root, state_dir, build_id):
+    def execute(root, state_dir, build_id, workspace=DEFAULT_CANDIDATE_WORKSPACE):
         if not state_dir.is_dir() or state_dir.is_symlink():
             raise ValueError("invalid state directory")
 
@@ -115,7 +156,7 @@ def serialized_publication(function):
                     "another build publication is active"
                 ) from error
 
-            return function(root, state_dir, build_id)
+            return function(root, state_dir, build_id, workspace)
         finally:
             os.close(fd)
 
@@ -123,7 +164,7 @@ def serialized_publication(function):
 
 
 @serialized_publication
-def publish(root, state_dir, build_id):
+def publish(root, state_dir, build_id, workspace):
     require(re.fullmatch(r"[A-Za-z0-9._-]+", build_id) is not None,
             "invalid build ID")
     require(root.is_dir() and not root.is_symlink(),
@@ -164,6 +205,7 @@ def publish(root, state_dir, build_id):
     require(modules.stat().st_size > 0, "empty candidate module manifest")
 
     verify_artifacts(root, env["KERNEL_RELEASE"])
+    verify_candidate_provenance(root, workspace)
 
     lines = env_path.read_text().splitlines()
     updated = [
@@ -184,9 +226,14 @@ def main():
     parser.add_argument("--build-root", type=Path, required=True)
     parser.add_argument("--state-dir", type=Path, required=True)
     parser.add_argument("--build-id", required=True)
+    parser.add_argument(
+        "--workspace",
+        type=Path,
+        default=DEFAULT_CANDIDATE_WORKSPACE,
+    )
     args = parser.parse_args()
 
-    publish(args.build_root, args.state_dir, args.build_id)
+    publish(args.build_root, args.state_dir, args.build_id, args.workspace)
     print("SABLE_CANDIDATE_BUILD_PUBLISHED")
 
 
