@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
+TEST_MODE="${1:-success}"
+
+case "$TEST_MODE" in
+    success|invalid-candidate|staging-failure|provenance-failure|publication-failure)
+        ;;
+    *)
+        printf 'FAIL: Unknown test mode: %s\n' "$TEST_MODE" >&2
+        exit 2
+        ;;
+esac
+
 REPO="/home/pepper/sablelinux"
 WORKSPACE="/srv/sablelinux"
 CID="20261028T212705Z-622d439-linux-6.16.1-xattr-test1"
@@ -35,8 +46,8 @@ cd "$REPO"
 [ "$(git branch --show-current)" = "development" ] ||
     die "wrong Git branch"
 
-git diff --quiet || die "tracked source modifications present"
-git diff --cached --quiet || die "staged changes present"
+git diff --quiet -- . ':(exclude)tests/release/run-candidate-initializer-e2e.sh' || die "tracked source modifications present"
+git diff --cached --quiet -- . ':(exclude)tests/release/run-candidate-initializer-e2e.sh' || die "staged changes present"
 
 BEFORE_POINTER="$(sha256sum "$POINTER" | awk '{print $1}')"
 BEFORE_BUILDS="$(
@@ -109,11 +120,12 @@ printf 'previous-test-build\n' \
     > "$TEST_ROOT/workspace/state/current-build-id"
 
 # Create a temporary initializer with exactly two test-only changes.
-python3 -B - "$TEST_ROOT" <<'PY'
+python3 -B - "$TEST_ROOT" "$TEST_MODE" <<'PY'
 import sys
 from pathlib import Path
 
 root = Path(sys.argv[1])
+mode = sys.argv[2]
 source = (
     root / "repo/scripts/release/create-build.sh"
 ).read_text()
@@ -134,6 +146,56 @@ for old, new in changes:
         raise SystemExit(f"STOP: Unexpected initializer source: {old}")
     source = source.replace(old, new, 1)
 
+
+# Modify only the disposable initializer, never the Git clone.
+if mode == "staging-failure":
+    old = 'STAGER="$REPO/scripts/release/stage-kernel-artifacts.py"'
+    new = 'STAGER="/nonexistent/sable-test/stager.py"'
+    if source.count(old) != 1:
+        raise SystemExit("STOP: Stager anchor changed")
+    source = source.replace(old, new, 1)
+
+elif mode == "provenance-failure":
+    needle = '    sha256sum "$KERNEL_IMAGE" "$SYSTEM_MAP" \\'
+    fault = (
+        '    printf "%s\\n" "INJECTED_PROVENANCE_FAILURE" >> '
+        '"$BUILD_ROOT/metadata/candidate-kernel-modules.sha256"\n'
+    )
+    if source.count(needle) != 1:
+        raise SystemExit("STOP: Provenance anchor changed")
+    source = source.replace(needle, fault + needle, 1)
+
+elif mode == "publication-failure":
+    shim = root / "publish-fault.py"
+    shim.write_text(
+        "#!/usr/bin/env python3\n"
+        "import os\n"
+        "import runpy\n"
+        "from pathlib import Path\n"
+        "original = os.replace\n"
+        "def fail_pointer(src, dst):\n"
+        "    if Path(dst) == "
+        "Path('/srv/sablelinux/state/current-build-id'):\n"
+        "        raise OSError('INJECTED_POINTER_WRITE_FAILURE')\n"
+        "    return original(src, dst)\n"
+        "os.replace = fail_pointer\n"
+        "runpy.run_path(\n"
+        "    '/home/pepper/sablelinux/scripts/release/"
+        "publish-candidate-build.py',\n"
+        "    run_name='__main__',\n"
+        ")\n"
+    )
+
+    old = (
+        'PUBLISHER="$REPO/scripts/release/'
+        'publish-candidate-build.py"'
+    )
+    if source.count(old) != 1:
+        raise SystemExit("STOP: Publisher anchor changed")
+    source = source.replace(
+        old, f'PUBLISHER="{shim}"', 1
+    )
+
 destination = root / "create-build-test.sh"
 destination.write_text(source)
 destination.chmod(0o755)
@@ -142,11 +204,12 @@ PY
 bash -n "$TEST_ROOT/create-build-test.sh"
 
 sudo unshare --mount --propagation private \
-    /bin/bash -s -- "$TEST_ROOT" "$CID" <<'INNER'
+    /bin/bash -s -- "$TEST_ROOT" "$CID" "$TEST_MODE" <<'INNER'
 set -Eeuo pipefail
 
 ROOT="$1"
 CID="$2"
+MODE="$3"
 SANDBOX="$ROOT/workspace"
 SOURCE="/srv/sablelinux/kernel-builds/$CID"
 TARGET="$SANDBOX/kernel-builds/$CID"
@@ -168,15 +231,106 @@ esac
 [ "$(cat /srv/sablelinux/state/current-build-id)" = \
     "previous-test-build" ]
 
-SUDO_USER=pepper \
+RUN_CID="$CID"
+if [ "$MODE" = "invalid-candidate" ]; then
+    RUN_CID="missing-integration-test-candidate"
+fi
+
+if SUDO_USER=pepper \
     bash "$ROOT/create-build-test.sh" \
-    --kernel-candidate "$CID" \
-    > "$ROOT/initializer.log" 2>&1 || {
-        cat "$ROOT/initializer.log"
+    --kernel-candidate "$RUN_CID" \
+    > "$ROOT/initializer.log" 2>&1
+then
+    INIT_STATUS=0
+else
+    INIT_STATUS=$?
+fi
+
+cat "$ROOT/initializer.log"
+
+if [ "$MODE" = "success" ]; then
+    [ "$INIT_STATUS" -eq 0 ] || {
+        echo "FAIL: Successful initialization was rejected"
+        exit 1
+    }
+else
+    [ "$INIT_STATUS" -ne 0 ] || {
+        echo "FAIL: Fault scenario unexpectedly succeeded"
         exit 1
     }
 
-cat "$ROOT/initializer.log"
+    test "$(cat /srv/sablelinux/state/current-build-id)" = \
+        "previous-test-build"
+
+    case "$MODE" in
+        invalid-candidate)
+            grep -q "candidate directory unavailable" \
+                "$ROOT/initializer.log"
+            EXPECTED_COUNT=0
+            ;;
+        staging-failure)
+            grep -q "candidate kernel artifact staging failed" \
+                "$ROOT/initializer.log"
+            EXPECTED_COUNT=1
+            ;;
+        provenance-failure)
+            grep -q "kernel provenance verification failed" \
+                "$ROOT/initializer.log"
+            EXPECTED_COUNT=1
+            ;;
+        publication-failure)
+            grep -q "INJECTED_POINTER_WRITE_FAILURE" \
+                "$ROOT/initializer.log"
+            EXPECTED_COUNT=1
+            ;;
+        *)
+            echo "FAIL: Unsupported test scenario"
+            exit 1
+            ;;
+    esac
+
+    mapfile -t BUILDS < <(
+        find /srv/sablelinux/builds -mindepth 1 \
+            -maxdepth 1 -type d -print
+    )
+
+    [ "${#BUILDS[@]}" -eq "$EXPECTED_COUNT" ] || {
+        echo "FAIL: Unexpected number of test builds"
+        exit 1
+    }
+
+    if [ "$EXPECTED_COUNT" -eq 1 ]; then
+        FAILED_BUILD="${BUILDS[0]}"
+        ENV="$FAILED_BUILD/metadata/build.env"
+        MARKER="$FAILED_BUILD/BUILD_STATE"
+
+        if [ "$MODE" = "publication-failure" ]; then
+            grep -Fxq "BUILD_STATE=initialized" "$ENV"
+            test "$(cat "$MARKER")" = "initialized"
+        else
+            grep -Fxq "BUILD_STATE=initializing" "$ENV"
+            test "$(cat "$MARKER")" = "initializing"
+        fi
+
+        if [ "$MODE" = "staging-failure" ]; then
+            test ! -e \
+                "$FAILED_BUILD/boot/kernel-artifacts.sha256"
+        fi
+
+        if [ "$MODE" = "provenance-failure" ]; then
+            grep -q "INJECTED_PROVENANCE_FAILURE" \
+                "$FAILED_BUILD/metadata/candidate-kernel-modules.sha256"
+        fi
+    fi
+
+    printf 'MODE=%s\nRESULT=EXPECTED_FAILURE\n' \
+        "$MODE" > "$ROOT/failure-result.txt"
+
+    echo "PASS: Expected failure boundary reached"
+    echo "PASS: Previous test pointer preserved"
+    echo "PASS: Failed build state validated"
+    exit 0
+fi
 
 BUILD_ID="$(cat /srv/sablelinux/state/current-build-id)"
 BUILD_ROOT="/srv/sablelinux/builds/$BUILD_ID"
@@ -228,14 +382,23 @@ printf '%s\n' "$BUILD_ID" > "$ROOT/generated-build-id"
 echo "PASS: Complete isolated candidate initialization"
 INNER
 
+if [ "$TEST_MODE" = "success" ]; then
+    EVIDENCE=(
+        initializer.log
+        inspection.json
+        generated-build-id
+    )
+else
+    EVIDENCE=(
+        initializer.log
+        failure-result.txt
+    )
+fi
+
 (
     cd "$TEST_ROOT"
-    sha256sum \
-        initializer.log \
-        inspection.json \
-        generated-build-id \
-        > SHA256SUMS
+    sha256sum "${EVIDENCE[@]}" > SHA256SUMS
     sha256sum -c SHA256SUMS
 )
 
-echo "PASS: M1.6F repeatable positive-path integration test"
+echo "PASS: Isolated initializer scenario: $TEST_MODE"
