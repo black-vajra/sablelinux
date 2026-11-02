@@ -149,7 +149,21 @@ changes = (
     ),
 )
 
+gate = '    die "candidate release creation awaits staging integration"'
+
+gate_count = source.count(gate)
+
+if gate_count > 1:
+    raise SystemExit("STOP: Multiple candidate safety gates found")
+
+if gate_count == 0:
+    print("PASS: Candidate initializer already activated")
+else:
+    print("PASS: Candidate safety gate will be bypassed in test copy")
+
 for old, new in changes:
+    if old == gate and gate_count == 0:
+        continue
     if source.count(old) != 1:
         raise SystemExit(f"STOP: Unexpected initializer source: {old}")
     source = source.replace(old, new, 1)
