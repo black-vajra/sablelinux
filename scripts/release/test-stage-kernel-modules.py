@@ -80,6 +80,53 @@ class ModuleStagingTests(unittest.TestCase):
             (self.build / "metadata/staged-kernel-module-indexes.sha256").exists()
         )
 
+    def test_abrupt_exit_after_manifest_publication(self):
+        """Simulate process death between manifest and tree publication."""
+        original = self.script.read_text()
+        marker = "os.link(prepared, metadata_manifest)"
+        self.assertEqual(original.count(marker), 1)
+
+        injected = original.replace(
+            marker,
+            marker + "\\n                os._exit(73)",
+            1,
+        )
+
+        # Convert the escaped newline into actual Python source.
+        injected = injected.replace(
+            marker + "\\n                os._exit(73)",
+            marker + "\n                os._exit(73)",
+            1,
+        )
+
+        self.script.write_text(injected)
+
+        result = self.run_stage()
+
+        self.assertEqual(result.returncode, 73, result.stderr)
+
+        tree = self.build / "rootfs/lib/modules/6.16.1-test"
+        manifest = (
+            self.build
+            / "metadata/staged-kernel-module-indexes.sha256"
+        )
+
+        self.assertFalse(tree.exists())
+        self.assertTrue(manifest.is_file())
+
+        metadata = (self.build / "metadata/build.env").read_text()
+        self.assertIn("BUILD_STATE=initialized", metadata)
+        self.assertIn("KERNEL_MODULES_STAGED=false", metadata)
+
+        # Restore the unmodified helper before checking recovery behavior.
+        self.script.write_text(original)
+
+        retry = self.run_stage()
+        self.assertNotEqual(retry.returncode, 0)
+
+        self.assertFalse(tree.exists())
+        self.assertTrue(manifest.is_file())
+
     def test_published_directory_permissions(self):
         result = self.run_stage()
         self.assertEqual(result.returncode, 0, result.stderr)
