@@ -1,17 +1,34 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-ROOT="/var/tmp/sable-m111-e2e-aEQr2Dee"
-FIXTURE="/var/tmp/sable-m111-fixture-AQDyvQau"
+# Required inputs: disposable workspace, synthetic fixture, candidate ID.
+[ "$#" -eq 3 ] || {
+    echo "Usage: $0 TEST_ROOT FIXTURE KERNEL_CANDIDATE_ID" >&2
+    exit 2
+}
+
+ROOT="$1"
+FIXTURE="$2"
+CID="$3"
 REAL="/srv/sablelinux"
 REPO="/home/pepper/sablelinux"
+
+# Never accept the canonical workspace as a writable test root.
+[[ "$ROOT" == /var/tmp/sable-m112-e2e-* ]] || {
+    echo "STOP: test root must be under /var/tmp/sable-m112-e2e-*" >&2
+    exit 2
+}
+
+[ -d "$ROOT" ] && [ ! -L "$ROOT" ] || exit 2
+[ "$FIXTURE" = "$ROOT/fixture" ] || exit 2
+[[ "$CID" =~ ^[A-Za-z0-9._-]+$ ]] || exit 2
 
 [ -d "$ROOT/repo/.git" ] || exit 1
 [ -f "$FIXTURE/etc/passwd" ] || exit 1
 [ -f "$FIXTURE/usr/lib/modules/host-test/kernel/host.ko" ] || exit 1
 
 BUILD_ID="$(cat "$REAL/state/current-build-id")"
-CID="20261028T212705Z-622d439-linux-6.16.1-xattr-test1"
+
 
 BUILD="$ROOT/workspace/builds/$BUILD_ID"
 CANDIDATE="$REAL/kernel-builds/$CID"
@@ -150,12 +167,21 @@ grep -qx 'KERNEL_MODULES_STAGED=true' "$BUILD/metadata/build.env"
 
 (
     cd "$BUILD/rootfs"
-    sha256sum -q -c \
+    sha256sum --status -c \
         "$BUILD/metadata/candidate-kernel-modules.sha256"
 )
 
 test ! -e "$BUILD/rootfs/usr/lib/modules/host-test"
 test ! -e "$BUILD/rootfs/home/pepper"
+
+MODULE_DIR="$BUILD/rootfs/usr/lib/modules/$RELEASE"
+
+[ "$(stat -c %a "$MODULE_DIR")" = 755 ] || {
+    echo "FAIL: kernel module directory permissions"
+    exit 1
+}
+
+echo "PASS: kernel module directory permissions 0755"
 
 echo "PASS: final build state and staged modules verified"
 echo "PASS: host module and private home excluded"
