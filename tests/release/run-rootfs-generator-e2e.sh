@@ -146,6 +146,41 @@ esac
 
 echo "PASS: disposable repository and workspace mounted"
 
+# Verify refusal before any build writes while another process holds the lock.
+BUILD="/srv/sablelinux/builds/$BUILD_ID"
+
+snapshot_build() {
+    (
+        cd "$BUILD"
+        find . -xdev -printf '%P\t%y\t%m\t%U\t%G\t%s\t%T@\t%l\n' | sort
+        find . -xdev -type f -print0 | sort -z |
+            xargs -0 -r sha256sum
+    )
+}
+
+snapshot_build > "$ROOT/lock-before.txt"
+
+(
+    exec {TEST_LOCK_FD}<"$BUILD"
+    flock --exclusive --nonblock "$TEST_LOCK_FD"
+
+    if SUDO_USER=pepper bash "$ROOT/generate-rootfs-test.sh" \
+        --build-id "$BUILD_ID" --execute \
+        > "$ROOT/lock-contention.log" 2>&1
+    then
+        echo "FAIL: generator accepted a locked build"
+        exit 1
+    fi
+
+    grep -qx 'ERROR: another operation holds the build lock' \
+        "$ROOT/lock-contention.log"
+)
+
+snapshot_build > "$ROOT/lock-after.txt"
+cmp "$ROOT/lock-before.txt" "$ROOT/lock-after.txt"
+echo "PASS: build lock contention refused without build changes"
+
+
 if SUDO_USER=pepper \
     bash "$ROOT/generate-rootfs-test.sh" \
     --build-id "$BUILD_ID" --execute \

@@ -102,3 +102,33 @@ build.env, and BUILD_STATE separately. This change detects disagreement
 between the two authoritative state records at inspection time; it
 does not make publication atomic, synchronize concurrent finalization,
 or validate staged-root metadata. Recovery remains unimplemented.
+
+## Rootfs build locking — 2026-11-06
+
+Rootfs generation now acquires a nonblocking exclusive flock on the
+existing build directory before reading build metadata. The descriptor
+remains open through capture, validation and finalization. Symlinked
+build-directory targets are rejected; no lock file is created.
+
+The self-contained harness imports the modified generator into its
+disposable Git revision. Inside the isolated mount namespace, a
+contention test holds the disposable build lock and requires the
+generator's specific lock-refusal message. Before/after inventories
+and file hashes confirm no build-content changes during refusal.
+Normal generation then succeeds after the test lock is released.
+
+Validation:
+- Shell syntax and git diff --check passed.
+- Build lock contention refused without build changes.
+- Complete isolated rootfs generation passed.
+- Candidate mounted read-only; final state and module checks passed.
+- Canonical pointer, state, metadata and empty rootfs unchanged.
+- SABLE_M112_SELFCONTAINED_E2E_PASS.
+
+Retained evidence:
+/var/tmp/sable-m112-e2e-7X91YNq8
+
+The lock coordinates cooperating operations only. Existing standalone
+module staging and inspection do not yet acquire this build lock.
+Future recovery must acquire the build lock before the module-parent
+lock. Recovery and crash-safe finalization remain pending.

@@ -77,6 +77,11 @@ git clone --quiet --no-hardlinks \
     "$REPO" "$TEST_ROOT/repo"
 
 # Import only the test changes, not unrelated files.
+cp -p scripts/live/generate-rootfs.sh \
+    "$TEST_ROOT/repo/scripts/live/"
+
+git -C "$TEST_ROOT/repo" add -- scripts/live/generate-rootfs.sh
+
 cp -p tests/release/run-rootfs-generator-e2e.sh \
     "$TEST_ROOT/repo/tests/release/"
 

@@ -82,6 +82,18 @@ BUILD_ENV="$BUILD_ROOT/metadata/build.env"
 [ -d "$BUILD_ROOT" ] ||
     die "build directory is missing: $BUILD_ROOT"
 
+# Lock the existing build directory without creating a lock file.
+# Retain this descriptor through capture, validation and finalization.
+[ ! -L "$BUILD_ROOT" ] ||
+    die "build directory must not be a symlink"
+
+command -v flock >/dev/null ||
+    die "flock is required for build locking"
+
+exec {BUILD_LOCK_FD}<"$BUILD_ROOT"
+flock --exclusive --nonblock "$BUILD_LOCK_FD" ||
+    die "another operation holds the build lock"
+
 [ -d "$ROOTFS" ] ||
     die "rootfs directory is missing: $ROOTFS"
 
