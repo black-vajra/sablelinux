@@ -61,6 +61,28 @@ class InspectorTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "invalid build state marker"):
             module.inspect(self.root)
 
+    def test_duplicate_metadata_key_rejected(self):
+        with self.env.open("a") as stream:
+            stream.write(
+                "BUILD_STATE=rootfs-generated\n"
+                "BUILD_STATE=initialized\n"
+            )
+        with self.assertRaisesRegex(ValueError, "duplicate metadata key"):
+            module.inspect(self.root)
+
+    def test_malformed_metadata_rejected(self):
+        original = self.env.read_text()
+        for extra in ("invalid-line\n", "=value\n"):
+            with self.subTest(extra=extra):
+                self.env.write_text(original + extra)
+                with self.assertRaisesRegex(ValueError, "malformed metadata"):
+                    module.inspect(self.root)
+
+    def test_blank_metadata_lines_allowed(self):
+        with self.env.open("a") as stream:
+            stream.write("\n   \n")
+        self.assertEqual(module.inspect(self.root), "CLEAN: nothing published")
+
     def test_orphan_manifest(self):
         self.manifest.write_text("fixture\n")
         self.assertEqual(

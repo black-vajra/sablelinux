@@ -132,3 +132,22 @@ The lock coordinates cooperating operations only. Existing standalone
 module staging and inspection do not yet acquire this build lock.
 Future recovery must acquire the build lock before the module-parent
 lock. Recovery and crash-safe finalization remain pending.
+
+## Strict inspector metadata parsing — 2026-11-06
+
+The inspector rejects duplicate metadata keys, nonblank lines without
+an equals sign, and empty or whitespace-only keys. Blank lines remain
+supported. Metadata is read explicitly as UTF-8.
+
+A regression demonstrated that conflicting duplicate BUILD_STATE
+entries previously allowed the final value to override earlier values.
+The parser now raises ValueError instead.
+
+Validation:
+- Inspector regression suite: 23 tests passing.
+- Module-staging regression suite: 13 tests passing.
+- git diff --check: passed.
+
+Tests used disposable fixtures. This change does not resolve metadata
+parent-directory symlinks or concurrent modification. The inspector
+remains read-only; recovery remains unimplemented.

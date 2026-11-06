@@ -9,10 +9,17 @@ import sys
 
 def read_env(path):
     values = {}
-    for line in path.read_text().splitlines():
-        if "=" in line:
-            key, value = line.split("=", 1)
-            values[key] = value
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        if "=" not in line:
+            raise ValueError("malformed metadata")
+        key, value = line.split("=", 1)
+        if not key.strip():
+            raise ValueError("malformed metadata")
+        if key in values:
+            raise ValueError(f"duplicate metadata key: {key}")
+        values[key] = value
     return values
 
 
