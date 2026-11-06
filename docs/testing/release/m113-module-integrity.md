@@ -151,3 +151,21 @@ Validation:
 Tests used disposable fixtures. This change does not resolve metadata
 parent-directory symlinks or concurrent modification. The inspector
 remains read-only; recovery remains unimplemented.
+
+## Controlled orphan-manifest recovery — 2026-11-06
+
+Implemented a separate explicitly invoked recovery helper.
+See docs/release/module-staging-recovery.md for its contract,
+validation and limitations.
+
+The helper acquires build then module-parent exclusive locks, rejects
+unsafe paths and state, and preserves manifest bytes plus a JSON record
+in unique evidence directories. It syncs evidence before removing the
+source manifest name. Published module trees are never recovered.
+
+Validation: 14 recovery tests, 23 inspector tests and 13 staging tests
+passed. Disposable interrupted-staging recovery and staging retry passed.
+No recovery was invoked against the canonical build.
+
+Power-loss behavior, uncooperative-writer races and interrupted rootfs
+finalization remain outside the verified recovery scope.
