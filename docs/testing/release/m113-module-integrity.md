@@ -59,3 +59,23 @@ Retained evidence:
 3. Test interrupted rootfs metadata publication.
 4. Revalidate complete isolated rootfs generation.
 5. Advance toward canonical rootfs production.
+
+## Traversal-error hardening — 2026-11-06
+
+The inspector now propagates os.walk traversal errors rather than
+silently skipping inaccessible directories. The command-line handler
+reports ERROR and returns status 1 when such an OSError occurs.
+
+A deterministic regression injects PermissionError for an unexpected
+directory containing an unlisted module while all manifest-listed
+files remain readable. Before the fix, the expected exception was
+not raised. After the fix, the regression passes.
+
+Validation:
+- Inspector regression suite: 17 tests passing.
+- Module-staging regression suite: 13 tests passing.
+- git diff --check: passed.
+
+This change does not resolve filesystem races or establish crash-safe
+publication. Recovery remains unimplemented. Tests used disposable
+fixtures; canonical build state was not reverified in this checkpoint.

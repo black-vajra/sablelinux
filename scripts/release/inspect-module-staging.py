@@ -91,8 +91,13 @@ def verify_publication(build_root, tree, release, index_manifest):
     }
     actual_files = set()
 
+    def refuse_traversal_error(error):
+        # An incomplete inventory cannot establish publication integrity.
+        raise error
+
     for directory, subdirs, files in os.walk(
-        tree, topdown=True, followlinks=False
+        tree, topdown=True, followlinks=False,
+        onerror=refuse_traversal_error,
     ):
         base = Path(directory)
 

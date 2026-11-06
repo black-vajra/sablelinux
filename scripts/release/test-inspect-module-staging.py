@@ -149,6 +149,26 @@ class InspectorTests(unittest.TestCase):
             "PUBLISHED_VERIFIED"
         )
 
+    def test_directory_traversal_error_rejected(self):
+        from unittest.mock import patch
+
+        self.prepare_verified_publication()
+        blocked = self.tree / "unreadable"
+        blocked.mkdir()
+        (blocked / "unlisted.ko").write_bytes(b"unexpected module")
+        original_scandir = module.os.scandir
+
+        def guarded_scandir(path):
+            if Path(path) == blocked:
+                raise PermissionError("injected traversal failure")
+            return original_scandir(path)
+
+        with patch.object(module.os, "scandir", side_effect=guarded_scandir):
+            with self.assertRaisesRegex(
+                OSError, "injected traversal failure"
+            ):
+                module.inspect(self.root)
+
     def test_corrupted_published_module(self):
         module_file = self.prepare_verified_publication()
         module_file.write_bytes(b"corrupted module")
