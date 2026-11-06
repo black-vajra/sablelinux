@@ -22,6 +22,8 @@ class InspectorTests(unittest.TestCase):
         (self.root / "metadata").mkdir()
         (self.root / "rootfs/lib/modules").mkdir(parents=True)
 
+        (self.root / "BUILD_STATE").write_text("initialized\n")
+
         self.env = self.root / "metadata/build.env"
         self.env.write_text(
             "BUILD_STATE=initialized\n"
@@ -40,6 +42,24 @@ class InspectorTests(unittest.TestCase):
             module.inspect(self.root),
             "CLEAN: nothing published"
         )
+
+    def test_state_marker_disagreement_rejected(self):
+        (self.root / "BUILD_STATE").write_text("rootfs-generated\n")
+        with self.assertRaisesRegex(ValueError, "build state mismatch"):
+            module.inspect(self.root)
+
+    def test_missing_state_marker_rejected(self):
+        (self.root / "BUILD_STATE").unlink()
+        with self.assertRaisesRegex(ValueError, "invalid build state marker"):
+            module.inspect(self.root)
+
+    def test_symlinked_state_marker_rejected(self):
+        state = self.root / "BUILD_STATE"
+        target = self.root / "saved-state"
+        state.rename(target)
+        state.symlink_to(target)
+        with self.assertRaisesRegex(ValueError, "invalid build state marker"):
+            module.inspect(self.root)
 
     def test_orphan_manifest(self):
         self.manifest.write_text("fixture\n")
@@ -258,6 +278,7 @@ class InspectorTests(unittest.TestCase):
         )
 
     def test_noninitialized_build(self):
+        (self.root / "BUILD_STATE").write_text("rootfs-generated\n")
         self.env.write_text(
             "BUILD_STATE=rootfs-generated\n"
             "KERNEL_MODULES_STAGED=true\n"

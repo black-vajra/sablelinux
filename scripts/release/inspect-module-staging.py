@@ -161,6 +161,12 @@ def inspect(build_root):
 
     env = read_env(env_path)
 
+    state_path = build_root / "BUILD_STATE"
+    if state_path.is_symlink() or not state_path.is_file():
+        raise ValueError("invalid build state marker")
+    if state_path.read_text(encoding="utf-8").strip() != env.get("BUILD_STATE"):
+        raise ValueError("build state mismatch")
+
     if env.get("BUILD_STATE") != "initialized":
         return "REFUSE: build is not initialized"
 

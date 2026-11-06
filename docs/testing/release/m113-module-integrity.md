@@ -79,3 +79,26 @@ Validation:
 This change does not resolve filesystem races or establish crash-safe
 publication. Recovery remains unimplemented. Tests used disposable
 fixtures; canonical build state was not reverified in this checkpoint.
+
+## Build-state consistency — 2026-11-06
+
+The inspector now requires BUILD_STATE to be a regular, nonsymlinked
+file whose text agrees with BUILD_STATE in metadata/build.env.
+Missing, symlinked, and conflicting state markers are rejected.
+
+A regression first demonstrated that a conflicting marker was ignored.
+The noninitialized-build fixture now sets both state records to
+rootfs-generated, preserving its original refusal check.
+
+Validation:
+- Inspector regression suite: 20 tests passing.
+- Module-staging regression suite: 13 tests passing.
+- git diff --check: passed.
+- Canonical BUILD_STATE and metadata/build.env were read directly;
+  both reported initialized, with KERNEL_MODULES_STAGED=false.
+
+Rootfs finalization publishes staged-root metadata, authoritative
+build.env, and BUILD_STATE separately. This change detects disagreement
+between the two authoritative state records at inspection time; it
+does not make publication atomic, synchronize concurrent finalization,
+or validate staged-root metadata. Recovery remains unimplemented.
