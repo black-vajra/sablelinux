@@ -81,6 +81,9 @@ git clone --quiet --no-hardlinks \
     "$REPO" "$TEST_ROOT/repo"
 
 # Import only the test changes, not unrelated files.
+cp -p tests/release/create-rootfs-fixture.sh "$TEST_ROOT/repo/tests/release/"
+git -C "$TEST_ROOT/repo" add -- tests/release/create-rootfs-fixture.sh
+
 cp -p scripts/live/generate-rootfs.sh \
     "$TEST_ROOT/repo/scripts/live/"
 
@@ -102,10 +105,12 @@ git -C "$TEST_ROOT/repo" add -- \
     tests/release/run-rootfs-generator-e2e.sh \
     tests/release/run-rootfs-selfcontained.sh
 
-git -C "$TEST_ROOT/repo" \
-    -c user.name="SableLinux Integration Test" \
-    -c user.email="integration-test@localhost" \
-    commit -qm "TEST ONLY: M1.12 integration harness"
+if ! git -C "$TEST_ROOT/repo" diff --cached --quiet; then
+    git -C "$TEST_ROOT/repo" \
+        -c user.name="SableLinux Integration Test" \
+        -c user.email="integration-test@localhost" \
+        commit -qm "TEST ONLY: M1.12 integration harness"
+fi
 
 [ -z "$(git -C "$TEST_ROOT/repo" status --porcelain)" ] ||
     die "disposable checkout is dirty"

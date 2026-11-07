@@ -30,7 +30,10 @@ mkdir -p \
 
 ln -s usr/lib "$ROOT/lib"
 ln -s usr/bin "$ROOT/bin"
-ln -s usr/lib/systemd/systemd "$ROOT/sbin"
+mkdir -p "$ROOT/usr/sbin"
+ln -s usr/sbin "$ROOT/sbin"
+ln -s ../lib/systemd/systemd "$ROOT/usr/sbin/init"
+install -m 0755 /usr/bin/busybox "$ROOT/usr/bin/busybox"
 
 cat > "$ROOT/etc/passwd" <<'PASSWD'
 root:x:0:0:root:/root:/bin/bash
@@ -63,8 +66,22 @@ GSHADOW
 chmod 0600 "$ROOT/etc/shadow" "$ROOT/etc/gshadow"
 
 cat > "$ROOT/usr/lib/systemd/systemd" <<'INIT'
-#!/bin/sh
-exit 0
+#!/bin/busybox sh
+exec >/dev/console 2>&1
+
+if /bin/busybox awk '
+    $2 == "/" && $3 == "overlay" { found = 1 }
+    END { exit !found }
+' /proc/mounts &&
+   printf 'overlay write probe\n' > /.sable-tier1-write-probe &&
+   /bin/busybox rm /.sable-tier1-write-probe
+then
+    echo "SABLE_TIER1_USERSPACE_PASS"
+else
+    echo "SABLE_TIER1_USERSPACE_FAIL"
+fi
+
+exec /bin/busybox poweroff -f
 INIT
 
 chmod 0755 "$ROOT/usr/lib/systemd/systemd"
