@@ -198,3 +198,19 @@ Retained evidence:
 
 This test covers refusal after process death at one publication boundary.
 Resuming finalization and testing power-loss behavior remain open.
+
+## SquashFS preflight after interrupted rootfs finalization
+
+SquashFS generation requires the BUILD_STATE marker and exactly one
+BUILD_STATE entry in metadata/build.env to report rootfs-generated.
+
+The disposable interruption test invokes the normal SquashFS entry
+point against both mismatch directions. Both invocations exited 1 at
+the state gate. The lock path was absent after each refusal, and the
+before-and-after build snapshots matched. The harness restored the
+original interruption evidence and verified canonical build protection.
+
+Retained evidence: /var/tmp/sable-m112-e2e-7fYdXRBM
+
+This run validates preflight refusal. Positive SquashFS generation
+remains to be exercised.

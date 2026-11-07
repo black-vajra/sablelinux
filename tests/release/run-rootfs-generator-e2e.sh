@@ -231,8 +231,41 @@ if [ "$FINALIZATION_TEST" = "interrupt-after-build-env" ]; then
         test "$status" -eq 1
         grep -qx 'ERROR: build state mismatch' "$ROOT/$helper.interrupted.log"
     done
+    status=0
+    SUDO_USER=pepper bash /home/pepper/sablelinux/scripts/live/build-squashfs.sh \
+        --build-id "$BUILD_ID" \
+        > "$ROOT/squashfs-interrupted.log" 2>&1 || status=$?
+    test "$status" -eq 1
+    grep -qx 'ERROR: build must be rootfs-generated' \
+        "$ROOT/squashfs-interrupted.log"
+    test ! -e "/srv/sablelinux/state/locks/squashfs-$BUILD_ID.lock"
+    echo "PASS: SquashFS refused interrupted rootfs state"
+
     snapshot_build > "$ROOT/interrupted-after.txt"
     cmp "$ROOT/interrupted-before.txt" "$ROOT/interrupted-after.txt"
+    cp -p "$BUILD/BUILD_STATE" "$ROOT/interrupted-state.saved"
+    cp -p "$BUILD/metadata/build.env" "$ROOT/interrupted-env.saved"
+    printf '%s\n' rootfs-generated > "$BUILD/BUILD_STATE"
+    sed 's/^BUILD_STATE=.*/BUILD_STATE=initialized/' \
+        "$ROOT/interrupted-env.saved" > "$BUILD/metadata/build.env"
+
+    snapshot_build > "$ROOT/reverse-mismatch-before.txt"
+    status=0
+    SUDO_USER=pepper bash /home/pepper/sablelinux/scripts/live/build-squashfs.sh \
+        --build-id "$BUILD_ID" \
+        > "$ROOT/squashfs-reverse-mismatch.log" 2>&1 || status=$?
+    test "$status" -eq 1
+    grep -qx 'ERROR: build metadata must contain exactly one rootfs-generated state' \
+        "$ROOT/squashfs-reverse-mismatch.log"
+    test ! -e "/srv/sablelinux/state/locks/squashfs-$BUILD_ID.lock"
+    snapshot_build > "$ROOT/reverse-mismatch-after.txt"
+    cmp "$ROOT/reverse-mismatch-before.txt" "$ROOT/reverse-mismatch-after.txt"
+
+    cp -p "$ROOT/interrupted-state.saved" "$BUILD/BUILD_STATE"
+    cp -p "$ROOT/interrupted-env.saved" "$BUILD/metadata/build.env"
+    snapshot_build > "$ROOT/interrupted-restored.txt"
+    cmp "$ROOT/interrupted-before.txt" "$ROOT/interrupted-restored.txt"
+    echo "PASS: SquashFS refused reverse state mismatch"
     echo "PASS: interrupted finalization preserved modules and refused recovery"
     exit 0
 fi

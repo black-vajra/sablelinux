@@ -76,6 +76,16 @@ LOCK="$WORKSPACE/state/locks/squashfs-$BUILD_ID.lock"
 [ "$(cat "$BUILD_ROOT/BUILD_STATE")" = "rootfs-generated" ] ||
     die "build must be rootfs-generated"
 
+awk -F= '
+    $1 == "BUILD_STATE" {
+        count++
+        if ($0 == "BUILD_STATE=rootfs-generated")
+            valid++
+    }
+    END { exit !(count == 1 && valid == 1) }
+' "$BUILD_ENV" ||
+    die "build metadata must contain exactly one rootfs-generated state"
+
 [ ! -e "$OUTPUT" ] ||
     die "SquashFS output already exists: $OUTPUT"
 
