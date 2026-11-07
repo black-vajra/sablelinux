@@ -431,6 +431,46 @@ SQUASHFS_PY
         sha256sum --status -c "$BUILD/metadata/squashfs.sha256"
         echo "PASS: initramfs accepted valid SquashFS provenance and refused corrupt or split state"
     )
+
+    stage="$repo/scripts/live/build-live-initramfs-stage.sh"
+    kernel="$BUILD/boot/vmlinuz-$RELEASE"
+    cp -p "$kernel" "$ROOT/initramfs-staged-kernel.saved"
+    printf 'injected corruption\n' >> "$kernel"
+
+    status=0
+    SUDO_USER=pepper bash "$stage" --build-id "$BUILD_ID" \
+        > "$ROOT/initramfs-kernel-corruption.log" 2>&1 || status=$?
+    cp -p "$ROOT/initramfs-staged-kernel.saved" "$kernel"
+
+    if [ "$status" -ne 1 ] ||
+       ! grep -Fxq 'ERROR: staged kernel image checksum mismatch' \
+            "$ROOT/initramfs-kernel-corruption.log"
+    then
+        echo "FAIL: unexpected staged kernel preflight result (exit $status)" >&2
+        cat "$ROOT/initramfs-kernel-corruption.log" >&2
+        exit 1
+    fi
+    test ! -e "/srv/sablelinux/state/locks/initramfs-$BUILD_ID.lock"
+    test ! -e "$BUILD/initramfs/initramfs-live.img"
+    echo "PASS: initramfs refused a corrupted staged kernel"
+
+    if SUDO_USER=pepper bash "$stage" --build-id "$BUILD_ID" \
+        > "$ROOT/initramfs-image.log" 2>&1
+    then
+        echo "PASS: disposable live initramfs generation completed"
+    else
+        status=$?
+        tail -60 "$ROOT/initramfs-image.log"
+        exit "$status"
+    fi
+
+    grep -Fxq 'PASS: repeated initramfs builds are byte-identical' \
+        "$ROOT/initramfs-image.log"
+    test "$(cat "$BUILD/BUILD_STATE")" = initramfs-generated
+    grep -Fxq 'BUILD_STATE=initramfs-generated' "$BUILD/metadata/build.env"
+    cmp "$ROOT/initramfs-staged-kernel.saved" "$kernel"
+    sha256sum --status -c "$BUILD/metadata/live-boot-inputs.sha256"
+    echo "PASS: initramfs reproducibility, state and live boot inputs verified"
 fi
 INNER
 

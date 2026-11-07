@@ -165,6 +165,7 @@ RELEASE="$(sed -n 's/^KERNEL_RELEASE=//p' "$ENV")"
 cp -p "$BUILD/boot/config-$RELEASE" "$BUILD/boot/kernel-artifacts.sha256" \
     "$DEST/boot/"
 cp -p "$BUILD/metadata/kernel-artifacts.sha256" "$DEST/metadata/"
+cp -p "$BUILD/boot/vmlinuz-$RELEASE" "$DEST/boot/"
 
 echo "PASS: complete disposable build initialized"
 echo "PASS: README and metadata preserved"

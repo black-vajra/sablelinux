@@ -132,20 +132,45 @@ ACTUAL_SQUASHFS_HASH="$(sha256sum < "$SQUASHFS")"
 [ "$(hostname)" = "SableLinux" ] ||
     die "this is not the canonical Z890 host"
 
-KERNEL_RELEASE="$(
-    awk -F= '$1 == "KERNEL_RELEASE" {print $2}' "$BUILD_ENV"
-)"
+KERNEL_RELEASE="$(read_field KERNEL_RELEASE "$BUILD_ENV")" ||
+    die "invalid selected kernel release"
+[[ "$KERNEL_RELEASE" =~ ^[A-Za-z0-9][A-Za-z0-9._+-]*$ ]] ||
+    die "invalid selected kernel release"
 
-KERNEL_SOURCE="/boot/vmlinuz-$KERNEL_RELEASE"
-MODULE_ROOT="/lib/modules/$KERNEL_RELEASE"
+KERNEL_NAME="vmlinuz-$KERNEL_RELEASE"
+KERNEL_SOURCE="$BOOT_DIR/$KERNEL_NAME"
+BOOT_MANIFEST="$BOOT_DIR/kernel-artifacts.sha256"
+RECORDED_MANIFEST="$BUILD_ROOT/metadata/kernel-artifacts.sha256"
 BUSYBOX="${BUSYBOX:-/usr/bin/busybox}"
 BUILDER="$REPO/scripts/live/build-live-initramfs-busybox.sh"
 
-[ -f "$KERNEL_SOURCE" ] ||
-    die "kernel image is missing: $KERNEL_SOURCE"
+for input in "$KERNEL_SOURCE" "$BOOT_MANIFEST" "$RECORDED_MANIFEST"; do
+    [ -f "$input" ] && [ ! -L "$input" ] ||
+        die "missing or unsafe staged kernel input: $input"
+done
 
-[ -d "$MODULE_ROOT" ] ||
-    die "module tree is missing: $MODULE_ROOT"
+cmp -s "$BOOT_MANIFEST" "$RECORDED_MANIFEST" ||
+    die "staged kernel artifact manifests disagree"
+
+EXPECTED_KERNEL_HASH="$(awk -v name="$KERNEL_NAME" '
+    $2 == name {
+        count++
+        digest = $1
+        if ($0 != digest "  " name)
+            invalid = 1
+    }
+    END {
+        if (count != 1 || invalid)
+            exit 1
+        print digest
+    }
+' "$BOOT_MANIFEST")" || die "invalid staged kernel manifest entry"
+[[ "$EXPECTED_KERNEL_HASH" =~ ^[0-9a-f]{64}$ ]] ||
+    die "invalid staged kernel hash"
+
+ACTUAL_KERNEL_HASH="$(sha256sum < "$KERNEL_SOURCE")"
+[ "${ACTUAL_KERNEL_HASH%% *}" = "$EXPECTED_KERNEL_HASH" ] ||
+    die "staged kernel image checksum mismatch"
 
 [ -x "$BUSYBOX" ] ||
     die "BusyBox is missing: $BUSYBOX"
@@ -176,8 +201,7 @@ install -d \
     -o root \
     -g "$BUILD_GROUP" \
     -m 2775 \
-    "$OUTPUT_DIR" \
-    "$BOOT_DIR"
+    "$OUTPUT_DIR"
 
 SOURCE_DATE_EPOCH="$(
     git_repo show -s --format=%ct "$CURRENT_COMMIT"
@@ -253,19 +277,10 @@ echo "PASS: repeated initramfs builds are byte-identical" |
 mv "$FIRST_OUTPUT" "$OUTPUT"
 rm -f "$SECOND_OUTPUT"
 
-KERNEL_OUTPUT="$BOOT_DIR/vmlinuz-$KERNEL_RELEASE"
+KERNEL_OUTPUT="$KERNEL_SOURCE"
 
-install -m 0644 \
-    "$KERNEL_SOURCE" \
-    "$KERNEL_OUTPUT"
-
-chown root:"$BUILD_GROUP" \
-    "$OUTPUT" \
-    "$KERNEL_OUTPUT"
-
-chmod 0644 \
-    "$OUTPUT" \
-    "$KERNEL_OUTPUT"
+chown root:"$BUILD_GROUP" "$OUTPUT"
+chmod 0644 "$OUTPUT"
 
 echo |
     tee -a "$REPORT"

@@ -278,3 +278,25 @@ Retained evidence: /var/tmp/sable-m112-e2e-2CVGJpMM
 
 Initramfs generation remains to be exercised. Its kernel and module
 inputs currently come from host paths.
+
+## Live initramfs from the verified staged kernel
+
+The live initramfs stage uses the build's staged vmlinuz and checks it
+against the matching boot and metadata artifact manifests before taking
+the stage lock. The BusyBox archive relies on built-in early boot
+support. The stage no longer requires a host module tree or copies a
+host kernel into the build.
+
+The disposable integration run refused a corrupted staged kernel before
+lock or output creation. After restoring it, the stage produced two
+byte-identical initramfs archives, validated archive contents, and
+promoted both state records to initramfs-generated. The staged kernel
+matched its saved copy, and the live boot input manifest verified the
+kernel, initramfs and SquashFS together. Canonical protection checks passed.
+
+    SABLE_TEST_FINALIZATION=normal-with-squashfs \
+        bash tests/release/run-rootfs-selfcontained.sh
+
+Retained evidence: /var/tmp/sable-m112-e2e-eDG5j24h
+
+Direct kernel boot under QEMU remains to be validated.
