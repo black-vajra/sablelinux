@@ -342,22 +342,31 @@ echo "PASS: host module and private home excluded"
 
 if [ "$FINALIZATION_TEST" = "normal-with-squashfs" ]; then
     repo=/home/pepper/sablelinux
-    config="/srv/sablelinux/kernel-builds/$CID/artifacts/config-$RELEASE"
-    test -r "$config"
+    config="$BUILD/boot/config-$RELEASE"
+    cp -p "$config" "$ROOT/staged-config.saved"
+    printf '\n# injected config corruption\n' >> "$config"
+    status=0
+    SUDO_USER=pepper bash "$repo/scripts/live/build-squashfs.sh" \
+        --build-id "$BUILD_ID" \
+        > "$ROOT/squashfs-config-corruption.log" 2>&1 || status=$?
+    cp -p "$ROOT/staged-config.saved" "$config"
+    test "$status" -eq 1
+    grep -qx 'ERROR: staged kernel config checksum mismatch' \
+        "$ROOT/squashfs-config-corruption.log"
+    test ! -e "/srv/sablelinux/state/locks/squashfs-$BUILD_ID.lock"
+    test ! -e "$BUILD/squashfs/filesystem.squashfs"
+    echo "PASS: SquashFS refused a corrupted staged kernel config"
 
-    python3 -B - "$repo" "$config" "$ROOT/build-squashfs-test.sh" <<'SQUASHFS_PY'
+    python3 -B - "$repo" "$ROOT/build-squashfs-test.sh" <<'SQUASHFS_PY'
 import sys
 from pathlib import Path
 
-repo, config, target = sys.argv[1:]
+repo, target = sys.argv[1:]
 source = (Path(repo) / "scripts/live/build-squashfs.sh").read_text()
-config_anchor = '"/boot/config-$KERNEL_RELEASE"'
 size_anchor = '[ "$OUTPUT_BYTES" -gt 1073741824 ]'
-if source.count(config_anchor) != 2 or source.count(size_anchor) != 1:
-    raise SystemExit("STOP: unexpected SquashFS test substitution anchors")
-source = source.replace(config_anchor, f'"{config}"')
-source = source.replace(size_anchor, '[ "$OUTPUT_BYTES" -gt 0 ]', 1)
-Path(target).write_text(source)
+if source.count(size_anchor) != 1:
+    raise SystemExit("STOP: unexpected SquashFS size test anchor")
+Path(target).write_text(source.replace(size_anchor, '[ "$OUTPUT_BYTES" -gt 0 ]', 1))
 SQUASHFS_PY
 
     bash -n "$ROOT/build-squashfs-test.sh"

@@ -157,6 +157,13 @@ grep -qx 'KERNEL_MODULES_STAGED=false' "$DEST/metadata/build.env" ||
 [ "$(wc -l < "$DEST/metadata/candidate-kernel-modules.sha256")" -eq 57 ] ||
     die "unexpected module manifest entry count"
 
+RELEASE="$(sed -n 's/^KERNEL_RELEASE=//p' "$ENV")"
+[[ "$RELEASE" =~ ^[A-Za-z0-9][A-Za-z0-9._+-]*$ ]] ||
+    die "invalid fixture kernel release"
+cp -p "$BUILD/boot/config-$RELEASE" "$BUILD/boot/kernel-artifacts.sha256" \
+    "$DEST/boot/"
+cp -p "$BUILD/metadata/kernel-artifacts.sha256" "$DEST/metadata/"
+
 echo "PASS: complete disposable build initialized"
 echo "PASS: README and metadata preserved"
 echo "PASS: 57-entry candidate module manifest"

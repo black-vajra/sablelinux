@@ -238,3 +238,25 @@ uses the selected candidate's read-only kernel config and a reduced
 image size floor. The production config lookup still requires the
 selected release config under /boot, where it was unavailable during
 this validation.
+
+## Staged kernel config for SquashFS
+
+SquashFS uses boot/config-KERNEL_RELEASE from the selected build. Before
+acquiring its lock, the builder requires the boot and metadata kernel
+artifact manifests to match, checks for one config entry, and verifies
+the config checksum. The metadata gate reads that staged config, and
+squashfs.env records its verified hash.
+
+The disposable harness uses the production config lookup. It verified
+that a corrupted config is refused before lock or image creation.
+After restoring the config, the harness generated a real zstd image
+and verified the checksum, embedded provenance and final build state.
+The canonical protection checks passed.
+
+    SABLE_TEST_FINALIZATION=normal-with-squashfs \
+        bash tests/release/run-rootfs-selfcontained.sh
+
+Retained evidence: /var/tmp/sable-m112-e2e-nqh8WYZy
+
+The disposable SquashFS builder lowers the production image size floor
+to accommodate the synthetic rootfs.
