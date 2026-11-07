@@ -51,6 +51,7 @@ fi
 
 BUILD_ROOT="$WORKSPACE/builds/$BUILD_ID"
 BUILD_ENV="$BUILD_ROOT/metadata/build.env"
+SQUASHFS_ENV="$BUILD_ROOT/metadata/squashfs.env"
 SQUASHFS="$BUILD_ROOT/squashfs/filesystem.squashfs"
 OUTPUT_DIR="$BUILD_ROOT/initramfs"
 BOOT_DIR="$BUILD_ROOT/boot"
@@ -81,13 +82,49 @@ git_repo() {
     git -c safe.directory="$REPO" -C "$REPO" "$@"
 }
 
-CURRENT_COMMIT="$(git_repo rev-parse HEAD)"
-BUILD_COMMIT="$(
-    awk -F= '$1 == "GIT_COMMIT" {print $2}' "$BUILD_ENV"
-)"
+read_field() {
+    local key="$1" metadata="$2"
+    awk -F= -v key="$key" '
+        $1 == key {
+            count++
+            value = substr($0, length(key) + 2)
+        }
+        END {
+            if (count != 1 || value == "")
+                exit 1
+            print value
+        }
+    ' "$metadata"
+}
 
-[ "$CURRENT_COMMIT" = "$BUILD_COMMIT" ] ||
-    die "repository commit does not match build provenance"
+[ "$(read_field BUILD_STATE "$BUILD_ENV")" = squashfs-generated ] ||
+    die "build metadata must contain exactly one squashfs-generated state"
+
+[ -f "$SQUASHFS_ENV" ] && [ ! -L "$SQUASHFS_ENV" ] ||
+    die "missing or unsafe SquashFS metadata"
+[ "$(read_field BUILD_ID "$SQUASHFS_ENV")" = "$BUILD_ID" ] ||
+    die "SquashFS metadata build ID does not match"
+
+CURRENT_COMMIT="$(git_repo rev-parse HEAD)"
+SQUASHFS_COMMIT="$(read_field GIT_COMMIT "$SQUASHFS_ENV")" ||
+    die "invalid SquashFS generation commit"
+[ "$CURRENT_COMMIT" = "$SQUASHFS_COMMIT" ] ||
+    die "repository commit does not match SquashFS provenance"
+
+BUILD_COMMIT="$(read_field GIT_COMMIT "$BUILD_ENV")" ||
+    die "invalid build initialization commit"
+[[ "$BUILD_COMMIT" =~ ^[0-9a-f]{40}$ ]] ||
+    die "invalid build initialization commit"
+git_repo merge-base --is-ancestor "$BUILD_COMMIT" "$SQUASHFS_COMMIT" ||
+    die "build initialization commit is not an ancestor of SquashFS generation commit"
+
+EXPECTED_SQUASHFS_HASH="$(read_field SQUASHFS_SHA256 "$SQUASHFS_ENV")" ||
+    die "invalid SquashFS checksum metadata"
+[[ "$EXPECTED_SQUASHFS_HASH" =~ ^[0-9a-f]{64}$ ]] ||
+    die "invalid SquashFS checksum metadata"
+ACTUAL_SQUASHFS_HASH="$(sha256sum < "$SQUASHFS")"
+[ "${ACTUAL_SQUASHFS_HASH%% *}" = "$EXPECTED_SQUASHFS_HASH" ] ||
+    die "SquashFS input checksum mismatch"
 
 [ -z "$(git_repo status --porcelain)" ] ||
     die "repository contains uncommitted changes"

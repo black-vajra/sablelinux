@@ -260,3 +260,21 @@ Retained evidence: /var/tmp/sable-m112-e2e-nqh8WYZy
 
 The disposable SquashFS builder lowers the production image size floor
 to accommodate the synthetic rootfs.
+
+## SquashFS handoff to live initramfs
+
+Live initramfs preflight requires both build-state records to report
+squashfs-generated. It checks the build ID and generation commit in
+squashfs.env, verifies initialization commit ancestry, and compares
+the image SHA256 with the recorded value before taking the stage lock.
+
+The disposable integration run generated a real SquashFS image.
+Valid input reached the clean-checkout gate. A corrupted image and a
+split build state each failed at the expected check before lock or
+initramfs output creation. The harness restored the inputs, verified
+the image checksum, and passed canonical protection checks.
+
+Retained evidence: /var/tmp/sable-m112-e2e-2CVGJpMM
+
+Initramfs generation remains to be exercised. Its kernel and module
+inputs currently come from host paths.

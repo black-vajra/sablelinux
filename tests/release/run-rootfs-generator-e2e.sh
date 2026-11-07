@@ -391,6 +391,46 @@ SQUASHFS_PY
     grep -Fxq "GIT_COMMIT=$init_commit" "$ROOT/squashfs-embedded-build.env"
     grep -Fxq "GIT_COMMIT=$generation_commit" "$BUILD/metadata/squashfs.env"
     echo "PASS: SquashFS checksum and distinct provenance records verified"
+
+    (
+        # Stop valid input at the clean-checkout gate, before build writes.
+        probe="$(mktemp "$repo/.initramfs-preflight-XXXXXXXX")"
+        trap 'rm -f -- "$probe"' EXIT
+        stage="$repo/scripts/live/build-live-initramfs-stage.sh"
+        image="$BUILD/squashfs/filesystem.squashfs"
+        env_file="$BUILD/metadata/build.env"
+
+        expect_initramfs_refusal() {
+            local label="$1" message="$2" status=0
+            local log="$ROOT/initramfs-preflight-$label.log"
+            SUDO_USER=pepper bash "$stage" --build-id "$BUILD_ID" \
+                > "$log" 2>&1 || status=$?
+            if [ "$status" -ne 1 ] || ! grep -Fxq "ERROR: $message" "$log"; then
+                echo "FAIL: unexpected initramfs preflight result ($label, exit $status)" >&2
+                cat "$log" >&2
+                return 1
+            fi
+            test ! -e "/srv/sablelinux/state/locks/initramfs-$BUILD_ID.lock"
+            test ! -e "$BUILD/initramfs/initramfs-live.img"
+        }
+
+        expect_initramfs_refusal valid 'repository contains uncommitted changes'
+
+        cp -p "$image" "$ROOT/initramfs-preflight-image.saved"
+        printf 'injected corruption\n' >> "$image"
+        expect_initramfs_refusal checksum 'SquashFS input checksum mismatch'
+        cp -p "$ROOT/initramfs-preflight-image.saved" "$image"
+
+        cp -p "$env_file" "$ROOT/initramfs-preflight-env.saved"
+        sed 's/^BUILD_STATE=.*/BUILD_STATE=rootfs-generated/' \
+            "$ROOT/initramfs-preflight-env.saved" > "$env_file"
+        expect_initramfs_refusal state \
+            'build metadata must contain exactly one squashfs-generated state'
+        cp -p "$ROOT/initramfs-preflight-env.saved" "$env_file"
+
+        sha256sum --status -c "$BUILD/metadata/squashfs.sha256"
+        echo "PASS: initramfs accepted valid SquashFS provenance and refused corrupt or split state"
+    )
 fi
 INNER
 

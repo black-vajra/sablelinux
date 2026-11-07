@@ -85,10 +85,12 @@ cp -p scripts/live/generate-rootfs.sh \
     "$TEST_ROOT/repo/scripts/live/"
 
 cp -p scripts/live/build-squashfs.sh \
+    scripts/live/build-live-initramfs-stage.sh \
     "$TEST_ROOT/repo/scripts/live/"
 
 git -C "$TEST_ROOT/repo" add -- \
-    scripts/live/generate-rootfs.sh scripts/live/build-squashfs.sh
+    scripts/live/generate-rootfs.sh scripts/live/build-squashfs.sh \
+    scripts/live/build-live-initramfs-stage.sh
 
 cp -p tests/release/run-rootfs-generator-e2e.sh \
     "$TEST_ROOT/repo/tests/release/"
