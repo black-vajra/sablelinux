@@ -169,3 +169,32 @@ No recovery was invoked against the canonical build.
 
 Power-loss behavior, uncooperative-writer races and interrupted rootfs
 finalization remain outside the verified recovery scope.
+
+## Interrupted rootfs finalization
+
+Run from the Z890 checkout:
+
+    SABLE_TEST_FINALIZATION=interrupt-after-build-env \
+        bash tests/release/run-rootfs-selfcontained.sh
+
+The harness injects SIGKILL into the disposable generator immediately
+after publication of metadata/build.env and before preparation of the
+final BUILD_STATE marker. It checks for exit status 137 and confirms
+that the injection point was reached.
+
+The marker still reads initialized. Both build.env copies match and
+report rootfs-generated with KERNEL_MODULES_STAGED=true. The published
+modules pass candidate-manifest checksum verification. Inspection and
+explicit orphan recovery both exit 1 with a build state mismatch.
+Before-and-after build snapshots match.
+
+The default harness run also passed, including final state promotion
+and staged module validation. Both runs passed canonical protection
+checks.
+
+Retained evidence:
+- Interrupted run: /var/tmp/sable-m112-e2e-bLX314NM
+- Default run: /var/tmp/sable-m112-e2e-9UeYrkqT
+
+This test covers refusal after process death at one publication boundary.
+Resuming finalization and testing power-loss behavior remain open.

@@ -10,6 +10,11 @@ set -Eeuo pipefail
 ROOT="$1"
 FIXTURE="$2"
 CID="$3"
+FINALIZATION_TEST="${SABLE_TEST_FINALIZATION:-normal}"
+case "$FINALIZATION_TEST" in
+    normal|interrupt-after-build-env) ;;
+    *) echo "STOP: invalid finalization test mode" >&2; exit 2 ;;
+esac
 REAL="/srv/sablelinux"
 REPO="/home/pepper/sablelinux"
 
@@ -78,7 +83,7 @@ trap finish EXIT
 
 # Prepare a test-only generator.
 # Abort if the production source differs from our verified anchors.
-python3 -B - "$ROOT" "$FIXTURE" <<'PY'
+python3 -B - "$ROOT" "$FIXTURE" "$FINALIZATION_TEST" <<'PY'
 import sys
 from pathlib import Path
 
@@ -96,6 +101,14 @@ changes = [
         f'rsync "${{RSYNC_OPTIONS[@]}}" "{fixture}/" "$ROOTFS/" 2>&1 |',
     ),
 ]
+
+if sys.argv[3] == "interrupt-after-build-env":
+    anchor = "# The authoritative state marker is published last."
+    changes.append((
+        anchor,
+        'echo "TEST: interrupt after build.env publication" >&2\n'
+        'kill -KILL "$BASHPID"\n\n' + anchor,
+    ))
 
 for old, new in changes:
     if source.count(old) != 1:
@@ -116,12 +129,13 @@ bash -n "$ROOT/generate-rootfs-test.sh"
 echo "=== ISOLATED GENERATOR EXECUTION ==="
 
 sudo unshare --mount --propagation private \
-    /bin/bash -s -- "$ROOT" "$CID" "$BUILD_ID" <<'INNER'
+    /bin/bash -s -- "$ROOT" "$CID" "$BUILD_ID" "$FINALIZATION_TEST" <<'INNER'
 set -Eeuo pipefail
 
 ROOT="$1"
 CID="$2"
 BUILD_ID="$3"
+FINALIZATION_TEST="$4"
 
 SOURCE="/srv/sablelinux/kernel-builds/$CID"
 TARGET="$ROOT/workspace/kernel-builds/$CID"
@@ -180,6 +194,48 @@ snapshot_build > "$ROOT/lock-after.txt"
 cmp "$ROOT/lock-before.txt" "$ROOT/lock-after.txt"
 echo "PASS: build lock contention refused without build changes"
 
+
+if [ "$FINALIZATION_TEST" = "interrupt-after-build-env" ]; then
+    status=0
+    SUDO_USER=pepper bash "$ROOT/generate-rootfs-test.sh" \
+        --build-id "$BUILD_ID" --execute \
+        > "$ROOT/generator-interrupted.log" 2>&1 || status=$?
+    if [ "$status" -ne 137 ]; then
+        echo "FAIL: expected SIGKILL exit 137, got $status" >&2
+        tail -25 "$ROOT/generator-interrupted.log"
+        exit 1
+    fi
+    grep -qx 'TEST: interrupt after build.env publication' \
+        "$ROOT/generator-interrupted.log"
+    test "$(cat "$BUILD/BUILD_STATE")" = initialized
+    test ! -e "$BUILD/.BUILD_STATE.final"
+    grep -qx 'BUILD_STATE=rootfs-generated' "$BUILD/metadata/build.env"
+    grep -qx 'KERNEL_MODULES_STAGED=true' "$BUILD/metadata/build.env"
+    cmp "$BUILD/metadata/build.env" "$BUILD/rootfs/etc/sablelinux/build.env"
+    (
+        cd "$BUILD/rootfs"
+        sha256sum --status -c \
+            "$BUILD/metadata/candidate-kernel-modules.sha256"
+    )
+
+    snapshot_build > "$ROOT/interrupted-before.txt"
+    for helper in inspect-module-staging.py recover-module-staging.py; do
+        action=()
+        if [ "$helper" = recover-module-staging.py ]; then
+            action=(--quarantine-orphan-manifest)
+        fi
+        status=0
+        python3 -B "/home/pepper/sablelinux/scripts/release/$helper" \
+            --build-root "$BUILD" "${action[@]}" \
+            > "$ROOT/$helper.interrupted.log" 2>&1 || status=$?
+        test "$status" -eq 1
+        grep -qx 'ERROR: build state mismatch' "$ROOT/$helper.interrupted.log"
+    done
+    snapshot_build > "$ROOT/interrupted-after.txt"
+    cmp "$ROOT/interrupted-before.txt" "$ROOT/interrupted-after.txt"
+    echo "PASS: interrupted finalization preserved modules and refused recovery"
+    exit 0
+fi
 
 if SUDO_USER=pepper \
     bash "$ROOT/generate-rootfs-test.sh" \
