@@ -12,7 +12,7 @@ FIXTURE="$2"
 CID="$3"
 FINALIZATION_TEST="${SABLE_TEST_FINALIZATION:-normal}"
 case "$FINALIZATION_TEST" in
-    normal|interrupt-after-build-env) ;;
+    normal|normal-with-squashfs|interrupt-after-build-env) ;;
     *) echo "STOP: invalid finalization test mode" >&2; exit 2 ;;
 esac
 REAL="/srv/sablelinux"
@@ -308,7 +308,81 @@ MODULE_DIR="$BUILD/rootfs/usr/lib/modules/$RELEASE"
 echo "PASS: kernel module directory permissions 0755"
 
 echo "PASS: final build state and staged modules verified"
+
+# Probe the real SquashFS preflight in the disposable namespace.
+generation_env="$BUILD/metadata/rootfs-generation.env"
+cp -p "$generation_env" "$ROOT/rootfs-generation.env.saved"
+
+status=0
+sed 's/^SOURCE_GIT_COMMIT=.*/SOURCE_GIT_COMMIT=0000000000000000000000000000000000000000/' \
+    "$ROOT/rootfs-generation.env.saved" > "$generation_env"
+SUDO_USER=pepper bash /home/pepper/sablelinux/scripts/live/build-squashfs.sh \
+    --build-id "$BUILD_ID" \
+    > "$ROOT/squashfs-provenance-mismatch.log" 2>&1 || status=$?
+cp -p "$ROOT/rootfs-generation.env.saved" "$generation_env"
+test "$status" -eq 1
+grep -qx 'ERROR: repository commit does not match rootfs generation provenance' \
+    "$ROOT/squashfs-provenance-mismatch.log"
+
+(
+    probe="$(mktemp /home/pepper/sablelinux/.squashfs-preflight-XXXXXXXX)"
+    trap 'rm -f -- "$probe"' EXIT
+    status=0
+    SUDO_USER=pepper bash /home/pepper/sablelinux/scripts/live/build-squashfs.sh \
+        --build-id "$BUILD_ID" \
+        > "$ROOT/squashfs-provenance-valid.log" 2>&1 || status=$?
+    test "$status" -eq 1
+    grep -qx 'ERROR: repository contains uncommitted changes' \
+        "$ROOT/squashfs-provenance-valid.log"
+)
+test ! -e "/srv/sablelinux/state/locks/squashfs-$BUILD_ID.lock"
+echo "PASS: SquashFS accepted valid rootfs provenance and rejected mismatch"
+
 echo "PASS: host module and private home excluded"
+
+if [ "$FINALIZATION_TEST" = "normal-with-squashfs" ]; then
+    repo=/home/pepper/sablelinux
+    config="/srv/sablelinux/kernel-builds/$CID/artifacts/config-$RELEASE"
+    test -r "$config"
+
+    python3 -B - "$repo" "$config" "$ROOT/build-squashfs-test.sh" <<'SQUASHFS_PY'
+import sys
+from pathlib import Path
+
+repo, config, target = sys.argv[1:]
+source = (Path(repo) / "scripts/live/build-squashfs.sh").read_text()
+config_anchor = '"/boot/config-$KERNEL_RELEASE"'
+size_anchor = '[ "$OUTPUT_BYTES" -gt 1073741824 ]'
+if source.count(config_anchor) != 2 or source.count(size_anchor) != 1:
+    raise SystemExit("STOP: unexpected SquashFS test substitution anchors")
+source = source.replace(config_anchor, f'"{config}"')
+source = source.replace(size_anchor, '[ "$OUTPUT_BYTES" -gt 0 ]', 1)
+Path(target).write_text(source)
+SQUASHFS_PY
+
+    bash -n "$ROOT/build-squashfs-test.sh"
+    if SUDO_USER=pepper bash "$ROOT/build-squashfs-test.sh" \
+        --build-id "$BUILD_ID" > "$ROOT/squashfs-image.log" 2>&1
+    then
+        echo "PASS: disposable SquashFS generation completed"
+    else
+        status=$?
+        tail -50 "$ROOT/squashfs-image.log"
+        exit "$status"
+    fi
+
+    test "$(cat "$BUILD/BUILD_STATE")" = squashfs-generated
+    grep -qx 'BUILD_STATE=squashfs-generated' "$BUILD/metadata/build.env"
+    sha256sum --status -c "$BUILD/metadata/squashfs.sha256"
+    init_commit="$(sed -n 's/^GIT_COMMIT=//p' "$BUILD/metadata/build.env")"
+    generation_commit="$(git -c safe.directory="$repo" -C "$repo" rev-parse HEAD)"
+    test "$init_commit" != "$generation_commit"
+    unsquashfs -cat "$BUILD/squashfs/filesystem.squashfs" \
+        etc/sablelinux/build.env > "$ROOT/squashfs-embedded-build.env"
+    grep -Fxq "GIT_COMMIT=$init_commit" "$ROOT/squashfs-embedded-build.env"
+    grep -Fxq "GIT_COMMIT=$generation_commit" "$BUILD/metadata/squashfs.env"
+    echo "PASS: SquashFS checksum and distinct provenance records verified"
+fi
 INNER
 
 echo "SABLE_M111_GENERATOR_E2E_PASS"

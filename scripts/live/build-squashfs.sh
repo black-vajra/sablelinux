@@ -58,6 +58,7 @@ OUTPUT_DIR="$BUILD_ROOT/squashfs"
 OUTPUT="$OUTPUT_DIR/filesystem.squashfs"
 PARTIAL="$OUTPUT_DIR/filesystem.squashfs.partial"
 BUILD_ENV="$BUILD_ROOT/metadata/build.env"
+ROOTFS_GENERATION_ENV="$BUILD_ROOT/metadata/rootfs-generation.env"
 ROOTFS_MANIFEST="$BUILD_ROOT/metadata/rootfs-files.tsv"
 LOCK="$WORKSPACE/state/locks/squashfs-$BUILD_ID.lock"
 
@@ -93,13 +94,37 @@ git_repo() {
     git -c safe.directory="$REPO" -C "$REPO" "$@"
 }
 
-CURRENT_COMMIT="$(git_repo rev-parse HEAD)"
-BUILD_COMMIT="$(
-    awk -F= '$1 == "GIT_COMMIT" {print $2}' "$BUILD_ENV"
-)"
+read_commit_field() {
+    local key="$1" metadata="$2" value
+    value="$(awk -F= -v key="$key" '
+        $1 == key {
+            count++
+            value = substr($0, length(key) + 2)
+        }
+        END {
+            if (count != 1)
+                exit 1
+            print value
+        }
+    ' "$metadata")" || return 1
+    [[ "$value" =~ ^[0-9a-f]{40}$ ]] || return 1
+    printf '%s\n' "$value"
+}
 
-[ "$CURRENT_COMMIT" = "$BUILD_COMMIT" ] ||
-    die "repository commit does not match build provenance"
+CURRENT_COMMIT="$(git_repo rev-parse HEAD)"
+BUILD_COMMIT="$(read_commit_field GIT_COMMIT "$BUILD_ENV")" ||
+    die "invalid build initialization commit"
+
+[ -f "$ROOTFS_GENERATION_ENV" ] ||
+    die "rootfs generation metadata is missing"
+ROOTFS_COMMIT="$(read_commit_field SOURCE_GIT_COMMIT "$ROOTFS_GENERATION_ENV")" ||
+    die "invalid rootfs generation commit"
+
+[ "$CURRENT_COMMIT" = "$ROOTFS_COMMIT" ] ||
+    die "repository commit does not match rootfs generation provenance"
+
+git_repo merge-base --is-ancestor "$BUILD_COMMIT" "$ROOTFS_COMMIT" ||
+    die "build initialization commit is not an ancestor of rootfs generation commit"
 
 [ -z "$(git_repo status --porcelain)" ] ||
     die "repository contains uncommitted changes"
@@ -305,8 +330,10 @@ grep -q '^ID=sablelinux$' "$EMBEDDED_OS_RELEASE" ||
 grep -q "^BUILD_ID=$BUILD_ID$" "$EMBEDDED_BUILD_ENV" ||
     die "embedded build ID does not match"
 
-grep -q "^GIT_COMMIT=$CURRENT_COMMIT$" "$EMBEDDED_BUILD_ENV" ||
-    die "embedded Git commit does not match"
+EMBEDDED_COMMIT="$(read_commit_field GIT_COMMIT "$EMBEDDED_BUILD_ENV")" ||
+    die "invalid embedded build initialization commit"
+[ "$EMBEDDED_COMMIT" = "$BUILD_COMMIT" ] ||
+    die "embedded build initialization commit does not match"
 
 OUTPUT_BYTES="$(stat -c '%s' "$OUTPUT")"
 

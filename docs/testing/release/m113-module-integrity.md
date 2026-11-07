@@ -214,3 +214,27 @@ Retained evidence: /var/tmp/sable-m112-e2e-7fYdXRBM
 
 This run validates preflight refusal. Positive SquashFS generation
 remains to be exercised.
+
+## SquashFS provenance handoff
+
+SquashFS preflight requires HEAD to match SOURCE_GIT_COMMIT in the
+rootfs generation record. The initialization commit in build.env must
+be an ancestor of that revision. The image's embedded build.env retains
+the initialization commit, and squashfs.env records the generation commit.
+
+The disposable preflight accepted distinct initialization and generation
+commits and rejected a mismatched generation commit. The end-to-end
+image test passed metadata validation, zstd compression, embedded
+provenance extraction, checksum verification, and state promotion.
+Canonical protection checks passed.
+
+    SABLE_TEST_FINALIZATION=normal-with-squashfs \
+        bash tests/release/run-rootfs-selfcontained.sh
+
+Retained evidence: /var/tmp/sable-m112-e2e-A6hTjse7
+
+The fixture supplies the SableLinux os-release file. The test copy
+uses the selected candidate's read-only kernel config and a reduced
+image size floor. The production config lookup still requires the
+selected release config under /boot, where it was unavailable during
+this validation.

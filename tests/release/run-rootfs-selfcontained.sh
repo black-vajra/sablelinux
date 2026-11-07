@@ -67,6 +67,10 @@ bash tests/release/create-rootfs-fixture.sh \
 [ -f "$TEST_ROOT/fixture/usr/lib/modules/host-test/kernel/host.ko" ] ||
     die "synthetic host module missing"
 
+# Supply the distribution identity checked in the generated image.
+printf '%s\n' 'NAME="SableLinux"' 'ID=sablelinux' \
+    > "$TEST_ROOT/fixture/etc/os-release"
+
 echo "PASS: synthetic fixture generated"
 
 echo
