@@ -14,7 +14,7 @@ exec_always export WLR_DRM_DEVICES=/dev/dri/card1
 xwayland enable
 
 ### Output
-output * bg /home/pepper/.config/sway/wallpapers/sable-wallpaper.png fill
+output * bg /usr/share/backgrounds/sablelinux/sable-code.png fill
 
 ### Autostart
 exec mako

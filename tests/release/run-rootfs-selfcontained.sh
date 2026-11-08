@@ -166,6 +166,10 @@ echo "$TEST_ROOT"
 echo
 echo "=== INITIALIZE DISPOSABLE BUILD ==="
 
+# Make the verified package input visible in the isolated workspace.
+install -D -m 0644 "/srv/sablelinux/package-builds/libffi/live-runtime-3.5.2/libffi.so.8.2.0" \
+    "$TEST_ROOT/workspace/package-builds/libffi/live-runtime-3.5.2/libffi.so.8.2.0"
+
 DEST="$TEST_ROOT/workspace/builds/$BUILD_ID"
 
 mkdir -p \

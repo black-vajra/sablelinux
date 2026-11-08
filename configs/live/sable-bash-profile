@@ -1,0 +1,6 @@
+# SableLinux live login profile.
+if [[ -z ${WAYLAND_DISPLAY:-} && $(tty) == /dev/tty1 ]]; then
+    unset WLR_DRM_DEVICES
+    XDG_SESSION_TYPE=wayland XDG_SESSION_DESKTOP=sway sway ||
+        printf 'Sway could not start. The live console is available.\n' >&2
+fi

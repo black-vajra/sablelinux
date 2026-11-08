@@ -189,6 +189,15 @@ RSYNC_OPTIONS+=(-A -X)
 RSYNC_ACL_SUPPORT="verified by actual fixture"
 RSYNC_XATTR_SUPPORT="verified by actual fixture"
 
+# Verify the exact baseline library qualified in the no-AVX guest.
+LIVE_LIBFFI_SOURCE="/srv/sablelinux/package-builds/libffi/live-runtime-3.5.2/libffi.so.8.2.0"
+LIVE_LIBFFI_SHA256="abffb16cc21a1cf23bfb9c2c925e483d84f4040e936ebc449f134f4ffe0ffca7"
+[ -f "$LIVE_LIBFFI_SOURCE" ] && [ ! -L "$LIVE_LIBFFI_SOURCE" ] ||
+    die "verified live libffi input is missing or symlinked"
+printf '%s  %s\n' "$LIVE_LIBFFI_SHA256" "$LIVE_LIBFFI_SOURCE" |
+    sha256sum --status -c - ||
+    die "live libffi input checksum mismatch"
+
 if [ "$MODE" = "dry-run" ]; then
     RSYNC_OPTIONS+=(--dry-run)
 fi
@@ -452,6 +461,49 @@ while IFS= read -r service; do
         -delete
 done < "$DISABLED_SERVICES"
 
+# Replace only the runtime library in the captured filesystem.
+for live_dir in "$ROOTFS/usr" "$ROOTFS/usr/lib"; do
+    [ -d "$live_dir" ] && [ ! -L "$live_dir" ] ||
+        die "live library path must be a directory: $live_dir"
+done
+LIVE_LIBFFI_DEST="$ROOTFS/usr/lib/libffi.so.8.2.0"
+LIVE_LIBFFI_LINK="$ROOTFS/usr/lib/libffi.so.8"
+if [ -e "$LIVE_LIBFFI_LINK" ] || [ -L "$LIVE_LIBFFI_LINK" ]; then
+    [ -L "$LIVE_LIBFFI_LINK" ] &&
+        [ "$(readlink "$LIVE_LIBFFI_LINK")" = libffi.so.8.2.0 ] ||
+        die "unexpected live libffi SONAME path"
+fi
+[ ! -L "$LIVE_LIBFFI_DEST" ] &&
+    { [ ! -e "$LIVE_LIBFFI_DEST" ] || [ -f "$LIVE_LIBFFI_DEST" ]; } ||
+    die "unexpected live libffi destination"
+
+# Use a new inode so replacement cannot modify a captured hard link.
+LIVE_LIBFFI_TEMP="$(mktemp "$ROOTFS/usr/lib/.libffi.XXXXXXXX")"
+install -m 0755 "$LIVE_LIBFFI_SOURCE" "$LIVE_LIBFFI_TEMP"
+printf '%s  %s\n' "$LIVE_LIBFFI_SHA256" "$LIVE_LIBFFI_TEMP" |
+    sha256sum --status -c - ||
+    die "copied live libffi checksum mismatch"
+mv -T -- "$LIVE_LIBFFI_TEMP" "$LIVE_LIBFFI_DEST"
+if [ ! -L "$LIVE_LIBFFI_LINK" ]; then
+    ln -s libffi.so.8.2.0 "$LIVE_LIBFFI_LINK"
+fi
+echo "PASS: installed verified baseline libffi in staged rootfs"
+
+# Supply a release-owned login profile instead of inheriting the host's.
+for live_dir in "$ROOTFS/home" "$ROOTFS/home/sable"; do
+    [ -d "$live_dir" ] && [ ! -L "$live_dir" ] ||
+        die "live home path must be a directory: $live_dir"
+done
+
+rm -f -- "$ROOTFS/home/sable/.bash_profile"
+install -m 0644 \
+    "$REPO/configs/live/sable-bash-profile" \
+    "$ROOTFS/home/sable/.bash_profile"
+
+install -D -m 0644 \
+    "$REPO/configs/desktop/sway/sable-code.png" \
+    "$ROOTFS/usr/share/backgrounds/sablelinux/sable-code.png"
+
 install -D -m 0644 \
     "$REPO/configs/desktop/sway/config" \
     "$ROOTFS/home/sable/.config/sway/config"
@@ -554,6 +606,9 @@ cp "$POLICY" \
     echo "SOURCE_HOST=$(hostname)"
     echo "SOURCE_GIT_COMMIT=$CURRENT_COMMIT"
     echo "KERNEL_RELEASE=$KERNEL_RELEASE"
+    echo "LIVE_LIBFFI_SOURCE=$LIVE_LIBFFI_SOURCE"
+    echo "LIVE_LIBFFI_EXPECTED_SHA256=$LIVE_LIBFFI_SHA256"
+    echo "LIVE_LIBFFI_STAGED_SHA256=$(sha256sum "$LIVE_LIBFFI_DEST" | awk '{print $1}')"
     echo "GENERATOR_SHA256=$(sha256sum "$REPO/scripts/live/generate-rootfs.sh" | awk '{print $1}')"
     echo "EXCLUDES_SHA256=$(sha256sum "$EXCLUDES" | awk '{print $1}')"
     echo "PRESERVATION_CHECK_SHA256=$(sha256sum "$PRESERVATION_CHECK" | awk '{print $1}')"
@@ -728,6 +783,16 @@ cmp -s \
     "$REPO/configs/desktop/waybar/style.css" \
     "$ROOTFS/home/sable/.config/waybar/style.css" ||
     die "injected Waybar stylesheet does not match repository"
+
+cmp -s \
+    "$REPO/configs/live/sable-bash-profile" \
+    "$ROOTFS/home/sable/.bash_profile" ||
+    die "injected live login profile does not match repository"
+
+cmp -s \
+    "$REPO/configs/desktop/sway/sable-code.png" \
+    "$ROOTFS/usr/share/backgrounds/sablelinux/sable-code.png" ||
+    die "injected Sway wallpaper does not match repository"
 
 validation_log "PASS: repository desktop profile was injected exactly"
 
