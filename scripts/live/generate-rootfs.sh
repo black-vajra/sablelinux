@@ -370,8 +370,10 @@ for raw in group_path.read_text().splitlines():
 
 group_path.write_text("\n".join(group_lines) + "\n")
 
+# tty1 autologin still runs PAM account checks. Keep password login
+# locked and leave aging unset for the live account.
 shadow_lines = [
-    f"{user}:!:0:0:99999:7:::"
+    f"{user}:!:::::::" if user == "sable" else f"{user}:!:0:0:99999:7:::"
     for user in users
 ]
 
@@ -649,6 +651,12 @@ grep -q '^sable:' "$ROOTFS/etc/passwd" ||
     die "sable account is missing"
 
 validation_log "PASS: sable live account exists"
+
+[ "$(grep -c '^sable:' "$ROOTFS/etc/shadow")" -eq 1 ] &&
+    grep -Fxq 'sable:!:::::::' "$ROOTFS/etc/shadow" ||
+    die "sable live account must have a locked password and no password aging"
+
+validation_log "PASS: sable live password is locked and password aging is unset"
 
 [ "$(stat -c '%a' "$ROOTFS/etc/shadow")" = "600" ] ||
     die "incorrect mode on generated shadow file"
