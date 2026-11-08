@@ -20,3 +20,17 @@ Evidence: /var/tmp/sable-m112-e2e-FTJenTUh/guest-install-NltxiNDq
 Scope: synthetic file-level installation using a prepared EFI loader.
 Release userspace, guest-side bootloader generation and explicit metadata
 preservation checks remain separate validation gates.
+
+## Repeatable fixture runner
+
+Run from the repository root as an unprivileged user with KVM access:
+
+    bash tests/release/run-guest-install.sh /var/tmp/sable-m112-e2e-FTJenTUh
+
+The runner verifies the fixture kernel and SquashFS hashes and creates
+a fresh root PARTUUID, GRUB loader, deployment initramfs and blank qcow2.
+It requires a successful guest installation and two disk-only EFI boots
+that verify a fresh write and its persistence.
+
+Validated runner evidence:
+`/var/tmp/sable-m112-e2e-FTJenTUh/guest-install-RFkXc8dH`
