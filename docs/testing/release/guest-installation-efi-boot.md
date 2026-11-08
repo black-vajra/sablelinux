@@ -53,3 +53,17 @@ Validated on canonical Z890:
 `/var/tmp/sable-m112-e2e-Rka4G4LY/guest-install-3Nc4A94p`
 
 POSIX ACLs and file capabilities remain outside this fixture's coverage.
+
+## File capability preservation
+
+The metadata fixture now includes an executable with `cap_net_raw=ep`.
+The checker verifies the exact `security.capability` bytes on the
+mounted SquashFS, on freshly extracted ext4, and on both disk-only EFI
+boots. The executable is used as a metadata fixture and is never run.
+
+Validated on canonical Z890:
+`/var/tmp/sable-m112-e2e-PUYmS652/guest-install-5baLyIzz`
+
+Use a freshly generated fixture when enabling `SABLE_INSTALL_METADATA=1`
+so the SquashFS includes the capability probe. POSIX ACL preservation
+remains a separate gate.

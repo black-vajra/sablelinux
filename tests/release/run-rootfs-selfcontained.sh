@@ -67,6 +67,8 @@ bash tests/release/create-rootfs-fixture.sh \
 # Seed the install metadata probe outside paths subject to user sanitation.
 sudo python3 - "$TEST_ROOT/fixture" <<'METADATA_FIXTURE'
 import os
+import shutil
+import subprocess
 import sys
 from pathlib import Path
 
@@ -85,7 +87,15 @@ assert (info.st_uid, info.st_gid, info.st_mode & 0o7777) == (12345, 23456, 0o640
 assert (directory / "metadata.link").stat().st_ino == info.st_ino
 assert info.st_nlink == 2
 assert os.getxattr(probe, "user.sable_install_test") == b"preserved"
-print("PASS: source install metadata fixture verified")
+capability = directory / "capability-probe"
+shutil.copyfile("/usr/bin/true", capability)
+os.chmod(capability, 0o755)
+subprocess.run(["setcap", "cap_net_raw=ep", str(capability)], check=True)
+subprocess.run(["setcap", "-v", "cap_net_raw=ep", str(capability)], check=True)
+expected_cap = bytes.fromhex("0100000200200000000000000000000000000000")
+if os.getxattr(capability, "security.capability") != expected_cap:
+    raise SystemExit("STOP: unexpected source capability encoding")
+print("PASS: source install metadata and capability fixture verified")
 METADATA_FIXTURE
 
 [ -f "$TEST_ROOT/fixture/usr/lib/modules/host-test/kernel/host.ko" ] ||
