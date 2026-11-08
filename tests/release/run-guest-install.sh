@@ -66,6 +66,13 @@ install -m644 /etc/mke2fs.conf "$stage/etc/mke2fs.conf"
 install -m755 "$scripts/deploy-init.sh" "$stage/init"
 install -m755 "$scripts/installed-init.sh" "$payload/installed-init"
 
+if [ "${SABLE_INSTALL_METADATA:-0}" = 1 ]; then
+    command -v cc >/dev/null || die "metadata check requires cc"
+    cc -std=c11 -Wall -Wextra -Werror -O2 -static \
+        "$scripts/check-metadata.c" -o "$stage/bin/check-install-metadata" ||
+        die "could not build static metadata checker"
+fi
+
 root_guid="$(python3 -c 'import uuid; print(uuid.uuid4())')"
 printf '%s\n' "$root_guid" > "$stage/root-partuuid"
 
@@ -154,6 +161,17 @@ for phase in write verify; do
     grep -Fxq "$marker" "$run/$phase.serial.txt" ||
         die "$phase expected marker missing"
 done
+
+if [ "${SABLE_INSTALL_METADATA:-0}" = 1 ]; then
+    for checkpoint in squashfs extracted; do
+        grep -Fxq "SABLE_INSTALL_METADATA_PASS $checkpoint" "$run/install.serial.txt" ||
+            die "$checkpoint metadata marker missing"
+    done
+    for phase in write verify; do
+        grep -Fxq 'SABLE_INSTALL_METADATA_PASS installed-boot' "$run/$phase.serial.txt" ||
+            die "$phase installed metadata marker missing"
+    done
+fi
 
 qemu-img check -f qcow2 "$run/target.qcow2" | tee "$run/qcow2-check.log"
 sha256sum "$run/target.qcow2" > "$run/installed-target.sha256"

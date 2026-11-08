@@ -64,6 +64,30 @@ mkdir -p "$TEST_ROOT/fixture"
 bash tests/release/create-rootfs-fixture.sh \
     "$TEST_ROOT/fixture"
 
+# Seed the install metadata probe outside paths subject to user sanitation.
+sudo python3 - "$TEST_ROOT/fixture" <<'METADATA_FIXTURE'
+import os
+import sys
+from pathlib import Path
+
+directory = Path(sys.argv[1]) / "usr/share/sable-install-test"
+directory.mkdir(parents=True)
+probe = directory / "metadata"
+with probe.open("xb") as stream:
+    stream.write(b"SableLinux install metadata fixture\n")
+os.chown(probe, 12345, 23456)
+os.chmod(probe, 0o640)
+os.setxattr(probe, "user.sable_install_test", b"preserved")
+os.link(probe, directory / "metadata.link")
+
+info = probe.stat()
+assert (info.st_uid, info.st_gid, info.st_mode & 0o7777) == (12345, 23456, 0o640)
+assert (directory / "metadata.link").stat().st_ino == info.st_ino
+assert info.st_nlink == 2
+assert os.getxattr(probe, "user.sable_install_test") == b"preserved"
+print("PASS: source install metadata fixture verified")
+METADATA_FIXTURE
+
 [ -f "$TEST_ROOT/fixture/usr/lib/modules/host-test/kernel/host.ko" ] ||
     die "synthetic host module missing"
 

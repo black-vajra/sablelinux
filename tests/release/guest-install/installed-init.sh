@@ -32,6 +32,11 @@ exec >/dev/console 2>&1
     END { exit !found }
 ' /proc/mounts || fail
 
+checker=/usr/lib/systemd/sable-check-install-metadata
+if [ -e "$checker" ]; then
+    "$checker" "" installed-boot || fail
+fi
+
 if [ -e /.sable-fresh-install-probe ]; then
     phase=verify
 else

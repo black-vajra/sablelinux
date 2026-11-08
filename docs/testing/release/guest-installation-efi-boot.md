@@ -34,3 +34,22 @@ that verify a fresh write and its persistence.
 
 Validated runner evidence:
 `/var/tmp/sable-m112-e2e-FTJenTUh/guest-install-RFkXc8dH`
+
+## Installed metadata fixture
+
+Generate a fresh integration fixture with
+`SABLE_TEST_FINALIZATION=normal-with-squashfs bash tests/release/run-rootfs-selfcontained.sh`.
+Use its printed test-root path with
+`SABLE_INSTALL_METADATA=1 bash tests/release/run-guest-install.sh TEST_ROOT`.
+The optional checker requires a C compiler with static libc support.
+
+The checker requires a regular file with numeric UID 12345, GID 23456,
+mode 0640, a second name for the same inode with link count 2, and
+`user.sable_install_test=preserved`. The runner requires a pass on the
+mounted SquashFS, on freshly extracted ext4, and on both disk-only
+EFI boots. Persistence and qcow2 checks also passed.
+
+Validated on canonical Z890:
+`/var/tmp/sable-m112-e2e-Rka4G4LY/guest-install-3Nc4A94p`
+
+POSIX ACLs and file capabilities remain outside this fixture's coverage.

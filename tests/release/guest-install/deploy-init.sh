@@ -46,7 +46,22 @@ mkfs.ext4 -L SABLETESTROOT /dev/vdb2
 mount -t ext4 /dev/vdb2 /target
 mount -t vfat /dev/vdb1 /esp
 
+if [ -x /bin/check-install-metadata ]; then
+    mkdir /squashfs-check
+    mount -t squashfs -o loop,ro /source/filesystem.squashfs /squashfs-check
+    /bin/check-install-metadata /squashfs-check squashfs
+    umount /squashfs-check
+fi
+
 unsquashfs -processors 2 -f -d /target /source/filesystem.squashfs
+
+if [ -x /bin/check-install-metadata ]; then
+    /bin/check-install-metadata /target extracted
+    checker=/target/usr/lib/systemd/sable-check-install-metadata
+    [ ! -e "$checker" ] && [ ! -L "$checker" ]
+    cp /bin/check-install-metadata "$checker"
+    chmod 0755 "$checker"
+fi
 [ "$(readlink /target/sbin)" = usr/sbin ]
 [ "$(readlink /target/usr/sbin/init)" = ../lib/systemd/systemd ]
 [ -f /target/usr/lib/systemd/systemd ]
