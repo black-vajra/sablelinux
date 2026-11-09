@@ -110,10 +110,14 @@ fi
 
 echo "Found live media: $ROOTDEV"
 
-mount -t ext4 -o ro "$ROOTDEV" /mnt/scan || {
-    echo "ERROR: failed to mount $ROOTDEV as ext4"
+if mount -t ext4 -o ro "$ROOTDEV" /mnt/scan; then
+    echo "Mounted live media as ext4"
+elif mount -t iso9660 -o ro "$ROOTDEV" /mnt/scan; then
+    echo "Mounted live media as ISO9660"
+else
+    echo "ERROR: failed to mount $ROOTDEV as ext4 or ISO9660"
     exec sh
-}
+fi
 
 [ -f "/mnt/scan$SQUASH" ] || {
     echo "ERROR: missing squashfs: /mnt/scan$SQUASH"
