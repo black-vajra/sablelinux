@@ -489,6 +489,19 @@ if [ ! -L "$LIVE_LIBFFI_LINK" ]; then
 fi
 echo "PASS: installed verified baseline libffi in staged rootfs"
 
+# Enable the desktop audio stack in the staged system.
+LIVE_AUDIO_UNITS=(pipewire.socket pipewire-pulse.socket wireplumber.service)
+for unit in "${LIVE_AUDIO_UNITS[@]}"; do
+    [ -f "$ROOTFS/usr/lib/systemd/user/$unit" ] ||
+        die "live audio unit is missing: $unit"
+done
+systemctl --root="$ROOTFS" --global enable "${LIVE_AUDIO_UNITS[@]}" ||
+    die "could not enable live audio user units"
+for unit in "${LIVE_AUDIO_UNITS[@]}"; do
+    systemctl --root="$ROOTFS" --global is-enabled --quiet "$unit" ||
+        die "live audio unit is not enabled: $unit"
+done
+
 # Supply a release-owned login profile instead of inheriting the host's.
 for live_dir in "$ROOTFS/home" "$ROOTFS/home/sable"; do
     [ -d "$live_dir" ] && [ ! -L "$live_dir" ] ||
@@ -507,6 +520,18 @@ install -D -m 0644 \
 install -D -m 0644 \
     "$REPO/configs/desktop/sway/config" \
     "$ROOTFS/home/sable/.config/sway/config"
+
+install -D -m 0755 \
+    "$REPO/configs/desktop/waybar/sable-power-menu" \
+    "$ROOTFS/home/sable/.local/bin/sable-power-menu"
+
+install -D -m 0644 \
+    "$REPO/configs/desktop/fuzzel/fuzzel.ini" \
+    "$ROOTFS/home/sable/.config/fuzzel/fuzzel.ini"
+
+install -D -m 0755 \
+    "$REPO/configs/desktop/waybar/sable-sensors" \
+    "$ROOTFS/home/sable/.local/bin/sable-sensors"
 
 install -D -m 0644 \
     "$REPO/configs/desktop/waybar/config" \
@@ -793,6 +818,11 @@ cmp -s \
     "$REPO/configs/desktop/sway/sable-code.png" \
     "$ROOTFS/usr/share/backgrounds/sablelinux/sable-code.png" ||
     die "injected Sway wallpaper does not match repository"
+
+cmp -s \
+    "$REPO/configs/desktop/fuzzel/fuzzel.ini" \
+    "$ROOTFS/home/sable/.config/fuzzel/fuzzel.ini" ||
+    die "injected Fuzzel theme does not match repository"
 
 validation_log "PASS: repository desktop profile was injected exactly"
 

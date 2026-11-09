@@ -53,7 +53,7 @@ window#waybar {
 #pulseaudio,
 #cpu,
 #memory,
-#temperature,
+#custom-temperature,
 #keyboard-state,
 #mode,
 #window {
@@ -93,11 +93,11 @@ window#waybar {
     color: #60a5fa;
 }
 
-#temperature {
+#custom-temperature {
     color: #22d3ee;
 }
 
-#temperature.critical {
+#custom-temperature.critical {
     color: #f87171;
     background: #3f1111;
     border-color: #991b1b;

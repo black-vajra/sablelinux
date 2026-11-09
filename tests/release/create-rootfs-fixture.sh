@@ -103,4 +103,13 @@ printf 'fixture-host\n' > "$ROOT/etc/hostname"
 printf 'UUID=fixture-host-uuid / ext4 defaults 0 1\n' \
     > "$ROOT/etc/fstab"
 
+mkdir -p "$ROOT/usr/lib/systemd/user"
+for unit in pipewire.socket pipewire-pulse.socket; do
+    printf '%s\n' '[Install]' 'WantedBy=sockets.target' \
+        > "$ROOT/usr/lib/systemd/user/$unit"
+done
+printf '%s\n' '[Install]' 'WantedBy=pipewire.service' \
+    'Alias=pipewire-session-manager.service' \
+    > "$ROOT/usr/lib/systemd/user/wireplumber.service"
+
 printf 'PASS: synthetic rootfs fixture created\n'

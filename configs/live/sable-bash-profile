@@ -1,4 +1,5 @@
 # SableLinux live login profile.
+export LANG=en_US.utf8
 if [[ -z ${WAYLAND_DISPLAY:-} && $(tty) == /dev/tty1 ]]; then
     unset WLR_DRM_DEVICES
     XDG_SESSION_TYPE=wayland XDG_SESSION_DESKTOP=sway sway ||

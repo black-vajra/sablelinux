@@ -6,7 +6,21 @@
 
     "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
     "modules-center": ["clock"],
-    "modules-right": ["network", "pulseaudio", "cpu", "memory", "temperature", "keyboard-state"],
+    "custom/power": {
+        "format": "⏻",
+        "tooltip": true,
+        "tooltip-format": "Power and session",
+        "on-click": "$HOME/.local/bin/sable-power-menu"
+    },
+        "custom/temperature": {
+        "format": " {}",
+        "exec": "$HOME/.local/bin/sable-sensors",
+        "return-type": "json",
+        "interval": 2,
+        "tooltip": true,
+        "on-click": "$HOME/.local/bin/sable-sensors --menu"
+    },
+"modules-right": ["network", "pulseaudio", "cpu", "memory", "custom/temperature", "keyboard-state", "custom/power"],
 
     "sway/workspaces": {
         "disable-scroll": true,
@@ -45,7 +59,6 @@
     },
 
     "network": {
-        "interface": "wg0",
         "format-ethernet": "  {ipaddr}",
         "format-disconnected": "  down",
         "interval": 5

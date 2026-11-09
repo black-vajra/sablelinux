@@ -1,0 +1,19 @@
+#!/bin/sh
+
+choice=$(
+    printf '%s\n' 'Screen lock' 'Log off' 'Reboot' 'Shut down' |
+        fuzzel --dmenu --prompt='Power: '
+) || exit 0
+
+case "$choice" in
+    'Screen lock') exec swaylock -f -c 000000 ;;
+    'Log off')
+        if [ -z "${XDG_SESSION_ID:-}" ]; then
+            printf '%s\n' 'No login session ID is available.' >&2
+            exit 1
+        fi
+        exec loginctl terminate-session "$XDG_SESSION_ID"
+        ;;
+    'Reboot') exec systemctl reboot ;;
+    'Shut down') exec systemctl poweroff ;;
+esac
