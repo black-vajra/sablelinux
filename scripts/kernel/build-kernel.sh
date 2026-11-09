@@ -71,6 +71,14 @@ check() {
 }
 
 prepare() {
+    [[ $# -le 1 ]] || die "usage: prepare [xattr-test1|asus-test1]"
+    local profile="${1:-xattr-test1}"
+    case "$profile" in
+        xattr-test1|asus-test1) ;;
+        *) die "unknown kernel profile: $profile" ;;
+    esac
+    local localversion="-sable-$profile"
+
     check
 
     [[ -z "$(git -C "$REPO" status --porcelain --untracked-files=no)" ]] ||
@@ -101,7 +109,7 @@ prepare() {
 
     timestamp="$(date -u +%Y%m%dT%H%M%SZ)"
     commit="$(git -C "$REPO" rev-parse --short=7 HEAD)"
-    candidate="${timestamp}-${commit}-linux-6.16.1-xattr-test1"
+    candidate="${timestamp}-${commit}-linux-6.16.1-${profile}"
     stage="$root/$candidate"
 
     [[ ! -e "$stage" && ! -L "$stage" ]] ||
@@ -147,7 +155,7 @@ prepare() {
 
     cp "$CONFIG" "$config_file"
 
-    python3 - "$config_file" <<'CONFIG_PY'
+    python3 - "$config_file" "$localversion" <<'CONFIG_PY'
 from pathlib import Path
 import sys
 
@@ -157,7 +165,7 @@ text = path.read_text()
 changes = (
     (
         'CONFIG_LOCALVERSION="-sable-gpu-test2"',
-        'CONFIG_LOCALVERSION="-sable-xattr-test1"',
+        f'CONFIG_LOCALVERSION="{sys.argv[2]}"',
     ),
     (
         '# CONFIG_SQUASHFS_XATTR is not set',
@@ -175,14 +183,24 @@ for old, new in changes:
 path.write_text(text)
 CONFIG_PY
 
+    if [[ "$profile" == asus-test1 ]]; then
+        "$source_dir/scripts/config" --file "$config_file" --module IWLMVM ||
+            die "could not enable IWLMVM"
+    fi
+
     # Resolve the candidate configuration against upstream Kconfig.
     # All generated files remain inside the isolated obj directory.
     make -C "$source_dir" O="$stage/obj" olddefconfig \
         > "$stage/logs/olddefconfig.log" 2>&1 ||
         die "candidate Kconfig validation failed; see $stage/logs/olddefconfig.log"
 
-    grep -qx 'CONFIG_LOCALVERSION="-sable-xattr-test1"' "$config_file" ||
+    grep -Fqx "CONFIG_LOCALVERSION=\"$localversion\"" "$config_file" ||
         die "candidate local version was not retained"
+
+    if [[ "$profile" == asus-test1 ]]; then
+        grep -qx 'CONFIG_IWLMVM=m' "$config_file" ||
+            die "IWLMVM was not retained as a module"
+    fi
 
     grep -qx 'CONFIG_SQUASHFS=y' "$config_file" ||
         die "SquashFS support was not retained"
@@ -205,7 +223,7 @@ CREATED_AT=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 CANONICAL_HOST=$(hostname)
 GIT_COMMIT=$(git -C "$REPO" rev-parse HEAD)
 UPSTREAM_KERNEL=6.16.1
-KERNEL_LOCALVERSION=-sable-xattr-test1
+KERNEL_LOCALVERSION=$localversion
 SOURCE_ARCHIVE=$SOURCE_ARCHIVE
 BASELINE_CONFIG=$CONFIG
 CANDIDATE_CONFIG=$config_file
@@ -230,7 +248,7 @@ build() {
     local stage="$root/$candidate_id"
     local path expected_release recorded_commit
 
-    [[ "$candidate_id" =~ ^[0-9]{8}T[0-9]{6}Z-[0-9a-f]{7}-linux-6[.]16[.]1-xattr-test1$ ]] ||
+    [[ "$candidate_id" =~ ^[0-9]{8}T[0-9]{6}Z-[0-9a-f]{7}-linux-6[.]16[.]1-(xattr-test1|asus-test1)$ ]] ||
         die "invalid candidate identifier"
 
     [[ -d "$root" && ! -L "$root" ]] ||
@@ -278,17 +296,22 @@ build() {
     git -C "$REPO" cat-file -e "${recorded_commit}^{commit}" ||
         die "preparation Git revision is unavailable"
 
-    expected_release="6.16.1-sable-xattr-test1"
+    expected_release="6.16.1-sable-${candidate_id#*-linux-6.16.1-}"
 
     [[ -f "$stage/obj/.config" ]] ||
         die "candidate configuration missing"
 
-    grep -qx 'CONFIG_LOCALVERSION="-sable-xattr-test1"' \
+    grep -Fqx "CONFIG_LOCALVERSION=\"${expected_release#6.16.1}\"" \
         "$stage/obj/.config" ||
         die "candidate local version mismatch"
 
     grep -qx 'CONFIG_SQUASHFS_XATTR=y' "$stage/obj/.config" ||
         die "candidate SquashFS XATTR setting missing"
+
+    if [[ "$expected_release" == 6.16.1-sable-asus-test1 ]]; then
+        grep -qx 'CONFIG_IWLMVM=m' "$stage/obj/.config" ||
+            die "candidate IWLMVM module setting missing"
+    fi
 
     # Verify every extracted source entry against the authenticated archive.
     # This gate runs before any compilation or artifact staging.
@@ -375,7 +398,7 @@ compile_kernel() {
         die "candidate state changed before compilation"
 
     release="$(make -s -C "$source" O="$obj" kernelrelease)"
-    [[ "$release" == "6.16.1-sable-xattr-test1" ]] ||
+    [[ "$release" == "6.16.1-sable-${candidate_id#*-linux-6.16.1-}" ]] ||
         die "unexpected kernel release: $release"
 
     build_commit="$(git -C "$REPO" rev-parse HEAD)"
@@ -490,7 +513,7 @@ case "$COMMAND" in
         check
         ;;
     prepare)
-        prepare
+        prepare "${@:2}"
         ;;
     build)
         build "${@:2}"
@@ -499,7 +522,7 @@ case "$COMMAND" in
         compile_kernel "${@:2}"
         ;;
     *)
-        printf 'Usage: %s {check|prepare|build <candidate-id>|compile <candidate-id>}\n' "$0" >&2
+        printf 'Usage: %s {check|prepare [xattr-test1|asus-test1]|build <candidate-id>|compile <candidate-id>}\n' "$0" >&2
         exit 2
         ;;
 esac
