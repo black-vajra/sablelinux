@@ -605,6 +605,33 @@ python3 -B "$MODULE_STAGER" \
     --workspace "$WORKSPACE/kernel-builds" \
     || die "release kernel module staging failed"
 
+# Linux 6.16.1 requests this firmware by basename.
+if [ "$KERNEL_RELEASE" = "6.16.1-sable-asus-test1" ]; then
+    ASUS_FW_REL="intel/iwlwifi/iwlwifi-7265D-29.ucode"
+    ASUS_FW_DIR="$(realpath -e -- "$ROOTFS/usr/lib/firmware")" ||
+        die "Asus firmware directory is missing"
+    case "$ASUS_FW_DIR" in
+        "$(realpath -e -- "$ROOTFS")"/*) ;;
+        *) die "Asus firmware directory resolves outside the staged root" ;;
+    esac
+
+    ASUS_FW_SOURCE="$ASUS_FW_DIR/$ASUS_FW_REL"
+    ASUS_FW_LINK="$ASUS_FW_DIR/iwlwifi-7265D-29.ucode"
+    [ -f "$ASUS_FW_SOURCE" ] &&
+        [ "$(realpath -e -- "$ASUS_FW_SOURCE")" = "$ASUS_FW_SOURCE" ] ||
+        die "Asus Wi-Fi firmware is missing or redirected: $ASUS_FW_REL"
+
+    if [ ! -e "$ASUS_FW_LINK" ] && [ ! -L "$ASUS_FW_LINK" ]; then
+        ln -sT -- "$ASUS_FW_REL" "$ASUS_FW_LINK" ||
+            die "could not create Asus Wi-Fi firmware link"
+    fi
+
+    [ -L "$ASUS_FW_LINK" ] &&
+        [ "$(readlink -- "$ASUS_FW_LINK")" = "$ASUS_FW_REL" ] &&
+        [ "$(realpath -e -- "$ASUS_FW_LINK")" = "$ASUS_FW_SOURCE" ] ||
+        die "invalid Asus Wi-Fi firmware link"
+fi
+
 # Verify all 57 candidate files against the authoritative manifest.
 (
     cd "$ROOTFS"
