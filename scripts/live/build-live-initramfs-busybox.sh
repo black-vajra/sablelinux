@@ -41,7 +41,7 @@ if ! "$BUSYBOX" --list >/dev/null 2>&1; then
     die "BusyBox applet listing failed: $BUSYBOX"
 fi
 
-for app in sh mount umount sleep mdev findfs losetup mkdir echo cat ls switch_root; do
+for app in sh mount umount sleep mdev findfs readlink losetup mkdir echo cat ls switch_root; do
     "$BUSYBOX" --list | grep -qx "$app" || die "BusyBox missing required applet: $app"
 done
 
@@ -115,8 +115,24 @@ if mount -t ext4 -o ro "$ROOTDEV" /mnt/scan; then
 elif mount -t iso9660 -o ro "$ROOTDEV" /mnt/scan; then
     echo "Mounted live media as ISO9660"
 else
-    echo "ERROR: failed to mount $ROOTDEV as ext4 or ISO9660"
-    exec sh
+    # A hybrid ISO can expose the same label on a partition, while the
+    # ISO9660 filesystem itself starts on the whole disk.
+    PART="/sys/class/block/${ROOTDEV##*/}"
+    if [ -f "$PART/partition" ] &&
+       PART_PATH="$(readlink -f "$PART")"; then
+        PARENT_PATH="${PART_PATH%/*}"
+        PARENT_DEV="/dev/${PARENT_PATH##*/}"
+        if [ -b "$PARENT_DEV" ] &&
+           mount -t iso9660 -o ro "$PARENT_DEV" /mnt/scan; then
+            echo "Mounted live media as ISO9660 on parent disk $PARENT_DEV"
+        else
+            echo "ERROR: failed to mount $ROOTDEV or its parent disk $PARENT_DEV"
+            exec sh
+        fi
+    else
+        echo "ERROR: failed to mount $ROOTDEV as ext4 or ISO9660"
+        exec sh
+    fi
 fi
 
 [ -f "/mnt/scan$SQUASH" ] || {
