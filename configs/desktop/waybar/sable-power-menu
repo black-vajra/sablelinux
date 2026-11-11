@@ -14,6 +14,18 @@ case "$choice" in
         fi
         exec loginctl terminate-session "$XDG_SESSION_ID"
         ;;
-    'Reboot') exec systemctl reboot ;;
-    'Shut down') exec systemctl poweroff ;;
+    'Reboot') action=reboot ;;
+    'Shut down') action=poweroff ;;
+    *) exit 0 ;;
 esac
+
+if [ "${SABLE_LIVE_SESSION:-}" = 1 ]; then
+    set -- sudo -n systemctl "$action"
+else
+    set -- systemctl "$action"
+fi
+
+if ! error=$("$@" 2>&1); then
+    printf '%s failed: %s\n' "$choice" "$error" >&2
+    exec swaynag -t error -m "$choice failed: $error"
+fi

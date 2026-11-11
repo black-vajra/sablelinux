@@ -379,10 +379,21 @@ for raw in group_path.read_text().splitlines():
 
 group_path.write_text("\n".join(group_lines) + "\n")
 
-# tty1 autologin still runs PAM account checks. Keep password login
-# locked and leave aging unset for the live account.
+# Public default credentials for the development live image.
+from subprocess import check_output
+
+live_passwords = {"root": ("ssap", "SableLiveRoot"), "sable": ("pass", "SableLiveUser")}
+live_hashes = {
+    user: check_output(
+        ["openssl", "passwd", "-6", "-salt", salt, "-stdin"],
+        input=password + "\n",
+        text=True,
+    ).strip()
+    for user, (password, salt) in live_passwords.items()
+}
 shadow_lines = [
-    f"{user}:!:::::::" if user == "sable" else f"{user}:!:0:0:99999:7:::"
+    f"{user}:{live_hashes[user]}:::::::" if user in live_hashes
+    else f"{user}:!:0:0:99999:7:::"
     for user in users
 ]
 
@@ -443,7 +454,7 @@ cat > \
     "$ROOTFS/etc/systemd/system/getty@tty1.service.d/autologin.conf" <<AUTOLOGIN
 [Service]
 ExecStart=
-ExecStart=-$AGETTY_PATH --autologin sable --noclear %I \$TERM
+ExecStart=-$AGETTY_PATH --autologin root --noclear %I \$TERM
 Type=idle
 AUTOLOGIN
 
@@ -507,6 +518,24 @@ for live_dir in "$ROOTFS/home" "$ROOTFS/home/sable"; do
     [ -d "$live_dir" ] && [ ! -L "$live_dir" ] ||
         die "live home path must be a directory: $live_dir"
 done
+
+[ -d "$ROOTFS/root" ] && [ ! -L "$ROOTFS/root" ] ||
+    die "live root home must be a directory"
+[ -z "$(find "$ROOTFS/root" -mindepth 1 -print -quit)" ] ||
+    die "root home contains copied host data"
+
+for live_home in "$ROOTFS/root" "$ROOTFS/home/sable"; do
+    rm -f -- "$live_home/.bashrc"
+    cat > "$live_home/.bashrc" <<'LIVE_BASHRC'
+PS1='[\u@\h \w]\$ '
+LIVE_BASHRC
+    chmod 0644 "$live_home/.bashrc"
+done
+
+cat > "$ROOTFS/root/.bash_profile" <<'ROOT_PROFILE'
+. "$HOME/.bashrc"
+ROOT_PROFILE
+chmod 0644 "$ROOTFS/root/.bash_profile"
 
 rm -f -- "$ROOTFS/home/sable/.bash_profile"
 install -m 0644 \
@@ -759,11 +788,19 @@ grep -q '^sable:' "$ROOTFS/etc/passwd" ||
 
 validation_log "PASS: sable live account exists"
 
-[ "$(grep -c '^sable:' "$ROOTFS/etc/shadow")" -eq 1 ] &&
-    grep -Fxq 'sable:!:::::::' "$ROOTFS/etc/shadow" ||
-    die "sable live account must have a locked password and no password aging"
-
-validation_log "PASS: sable live password is locked and password aging is unset"
+for live_user in root sable; do
+    awk -F: -v user="$live_user" '
+        $1 == user {
+            count++
+            valid = (NF == 9 && $2 ~ /^\$6\$/ && $3 == "" &&
+                     $4 == "" && $5 == "" && $6 == "" &&
+                     $7 == "" && $8 == "" && $9 == "")
+        }
+        END { exit !(count == 1 && valid) }
+    ' "$ROOTFS/etc/shadow" ||
+        die "invalid live password entry for $live_user"
+done
+validation_log "PASS: root and sable have live password hashes and no aging fields"
 
 [ "$(stat -c '%a' "$ROOTFS/etc/shadow")" = "600" ] ||
     die "incorrect mode on generated shadow file"
@@ -788,16 +825,14 @@ SSH_HOST_KEY="$(
 validation_log "PASS: SSH host keys are absent"
 
 ROOT_CONTENT="$(
-    find "$ROOTFS/root" \
-        -mindepth 1 \
-        -print -quit 2>/dev/null ||
-        true
+    find "$ROOTFS/root" -mindepth 1 \
+        ! -path "$ROOTFS/root/.bashrc" \
+        ! -path "$ROOTFS/root/.bash_profile" \
+        -print -quit
 )"
-
 [ -z "$ROOT_CONTENT" ] ||
-    die "root home contains copied host data"
-
-validation_log "PASS: root home is empty"
+    die "root home contains unexpected files"
+validation_log "PASS: root home contains only generated Bash startup files"
 
 test -d "$ROOTFS/var/log" ||
     die "generated /var/log is missing"
