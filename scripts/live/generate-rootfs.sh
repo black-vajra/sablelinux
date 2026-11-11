@@ -382,7 +382,7 @@ group_path.write_text("\n".join(group_lines) + "\n")
 # Public default credentials for the development live image.
 from subprocess import check_output
 
-live_passwords = {"root": ("ssap", "SableLiveRoot"), "sable": ("pass", "SableLiveUser")}
+live_passwords = {"root": ("toor", "SableLiveRoot"), "sable": ("elbas", "SableLiveUser")}
 live_hashes = {
     user: check_output(
         ["openssl", "passwd", "-6", "-salt", salt, "-stdin"],
@@ -439,24 +439,7 @@ SUDOERS
 
 chmod 0440 "$ROOTFS/etc/sudoers.d/90-sable-live"
 
-if [ -x "$ROOTFS/usr/bin/agetty" ]; then
-    AGETTY_PATH="/usr/bin/agetty"
-elif [ -x "$ROOTFS/usr/sbin/agetty" ]; then
-    AGETTY_PATH="/usr/sbin/agetty"
-else
-    die "agetty is missing from generated rootfs"
-fi
-
-install -d -m 0755 \
-    "$ROOTFS/etc/systemd/system/getty@tty1.service.d"
-
-cat > \
-    "$ROOTFS/etc/systemd/system/getty@tty1.service.d/autologin.conf" <<AUTOLOGIN
-[Service]
-ExecStart=
-ExecStart=-$AGETTY_PATH --autologin root --noclear %I \$TERM
-Type=idle
-AUTOLOGIN
+rm -f -- "$ROOTFS/etc/systemd/system/getty@tty1.service.d/autologin.conf"
 
 while IFS= read -r service; do
     case "$service" in

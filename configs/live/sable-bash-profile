@@ -1,7 +1,7 @@
 # SableLinux live login profile.
 export LANG=en_US.utf8
 . "$HOME/.bashrc"
-if [[ -z ${WAYLAND_DISPLAY:-} && $(tty) == /dev/tty2 ]]; then
+if [[ -z ${WAYLAND_DISPLAY:-} && $(tty) == /dev/tty1 ]]; then
     unset WLR_DRM_DEVICES
     SABLE_LIVE_SESSION=1 XDG_SESSION_TYPE=wayland XDG_SESSION_DESKTOP=sway sway ||
         printf 'Sway could not start. The live console is available.\n' >&2

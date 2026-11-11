@@ -2,7 +2,7 @@
 
 choice=$(
     printf '%s\n' 'Screen lock' 'Log off' 'Reboot' 'Shut down' |
-        fuzzel --dmenu --prompt='Power: '
+        fuzzel --dmenu --no-exit-on-keyboard-focus-loss --prompt='Power: '
 ) || exit 0
 
 case "$choice" in
