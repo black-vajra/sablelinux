@@ -618,7 +618,8 @@ python3 -B "$MODULE_STAGER" \
     || die "release kernel module staging failed"
 
 # Linux 6.16.1 requests this firmware by basename.
-if [ "$KERNEL_RELEASE" = "6.16.1-sable-asus-test1" ]; then
+if [ "$KERNEL_RELEASE" = "6.16.1-sable-asus-test1" ] ||
+   [ "$KERNEL_RELEASE" = "6.16.1-sable-portable-test1" ]; then
     ASUS_FW_REL="intel/iwlwifi/iwlwifi-7265D-29.ucode"
     ASUS_FW_DIR="$(realpath -e -- "$ROOTFS/usr/lib/firmware")" ||
         die "Asus firmware directory is missing"

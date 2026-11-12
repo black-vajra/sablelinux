@@ -70,11 +70,19 @@ check() {
     printf '%s\n' "PREFLIGHT PASS"
 }
 
+validate_touchpad_config() {
+    local option
+    for option in I2C_DESIGNWARE_CORE I2C_DESIGNWARE_PLATFORM I2C_HID_ACPI HID_MULTITOUCH; do
+        grep -Fqx "CONFIG_$option=y" "$1" ||
+            die "portable candidate requires CONFIG_$option=y"
+    done
+}
+
 prepare() {
-    [[ $# -le 1 ]] || die "usage: prepare [xattr-test1|asus-test1]"
+    [[ $# -le 1 ]] || die "usage: prepare [xattr-test1|asus-test1|portable-test1]"
     local profile="${1:-xattr-test1}"
     case "$profile" in
-        xattr-test1|asus-test1) ;;
+        xattr-test1|asus-test1|portable-test1) ;;
         *) die "unknown kernel profile: $profile" ;;
     esac
     local localversion="-sable-$profile"
@@ -183,9 +191,16 @@ for old, new in changes:
 path.write_text(text)
 CONFIG_PY
 
-    if [[ "$profile" == asus-test1 ]]; then
+    if [[ "$profile" == asus-test1 || "$profile" == portable-test1 ]]; then
         "$source_dir/scripts/config" --file "$config_file" --module IWLMVM ||
             die "could not enable IWLMVM"
+    fi
+
+    if [[ "$profile" == portable-test1 ]]; then
+        "$source_dir/scripts/config" --file "$config_file" \
+            --enable I2C_DESIGNWARE_CORE --enable I2C_DESIGNWARE_PLATFORM \
+            --enable I2C_HID_ACPI --enable HID_MULTITOUCH ||
+            die "could not enable portable touchpad drivers"
     fi
 
     # Resolve the candidate configuration against upstream Kconfig.
@@ -197,9 +212,13 @@ CONFIG_PY
     grep -Fqx "CONFIG_LOCALVERSION=\"$localversion\"" "$config_file" ||
         die "candidate local version was not retained"
 
-    if [[ "$profile" == asus-test1 ]]; then
+    if [[ "$profile" == asus-test1 || "$profile" == portable-test1 ]]; then
         grep -qx 'CONFIG_IWLMVM=m' "$config_file" ||
             die "IWLMVM was not retained as a module"
+    fi
+
+    if [[ "$profile" == portable-test1 ]]; then
+        validate_touchpad_config "$config_file"
     fi
 
     grep -qx 'CONFIG_SQUASHFS=y' "$config_file" ||
@@ -248,7 +267,7 @@ build() {
     local stage="$root/$candidate_id"
     local path expected_release recorded_commit
 
-    [[ "$candidate_id" =~ ^[0-9]{8}T[0-9]{6}Z-[0-9a-f]{7}-linux-6[.]16[.]1-(xattr-test1|asus-test1)$ ]] ||
+    [[ "$candidate_id" =~ ^[0-9]{8}T[0-9]{6}Z-[0-9a-f]{7}-linux-6[.]16[.]1-(xattr-test1|asus-test1|portable-test1)$ ]] ||
         die "invalid candidate identifier"
 
     [[ -d "$root" && ! -L "$root" ]] ||
@@ -308,9 +327,14 @@ build() {
     grep -qx 'CONFIG_SQUASHFS_XATTR=y' "$stage/obj/.config" ||
         die "candidate SquashFS XATTR setting missing"
 
-    if [[ "$expected_release" == 6.16.1-sable-asus-test1 ]]; then
+    if [[ "$expected_release" == 6.16.1-sable-asus-test1 ||
+          "$expected_release" == 6.16.1-sable-portable-test1 ]]; then
         grep -qx 'CONFIG_IWLMVM=m' "$stage/obj/.config" ||
             die "candidate IWLMVM module setting missing"
+    fi
+
+    if [[ "$expected_release" == 6.16.1-sable-portable-test1 ]]; then
+        validate_touchpad_config "$stage/obj/.config"
     fi
 
     # Verify every extracted source entry against the authenticated archive.
@@ -522,7 +546,7 @@ case "$COMMAND" in
         compile_kernel "${@:2}"
         ;;
     *)
-        printf 'Usage: %s {check|prepare [xattr-test1|asus-test1]|build <candidate-id>|compile <candidate-id>}\n' "$0" >&2
+        printf 'Usage: %s {check|prepare [xattr-test1|asus-test1|portable-test1]|build <candidate-id>|compile <candidate-id>}\n' "$0" >&2
         exit 2
         ;;
 esac
