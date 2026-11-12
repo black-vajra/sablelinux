@@ -198,7 +198,7 @@ CONFIG_PY
 
     if [[ "$profile" == portable-test1 ]]; then
         "$source_dir/scripts/config" --file "$config_file" \
-            --enable I2C_DESIGNWARE_CORE --enable I2C_DESIGNWARE_PLATFORM \
+            --enable COMMON_CLK --enable I2C_DESIGNWARE_CORE --enable I2C_DESIGNWARE_PLATFORM \
             --enable I2C_HID_ACPI --enable HID_MULTITOUCH ||
             die "could not enable portable touchpad drivers"
     fi
