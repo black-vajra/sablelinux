@@ -1,0 +1,148 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+umask 077
+export LC_ALL=C
+
+die() { printf 'ERROR: %s\n' "$*" >&2; exit 1; }
+
+[[ $# == 4 ]] ||
+    die "Usage: ${0##*/} ISO_MOUNT ROOT_PARTUUID BOOT_PARTUUID EFI_PARTUUID"
+(( EUID == 0 )) || die "Run as root in the live guest."
+[[ -t 0 ]] || die "An interactive console is required."
+
+media=$(realpath -e -- "$1")
+root_id=${2,,}
+boot_id=${3,,}
+efi_id=${4,,}
+planner="$(dirname -- "$(realpath -e -- "$0")")/sable-install-plan"
+
+for tool in findmnt blkid grub-script-check grub-mkstandalone mkfs.ext4 \
+    unsquashfs chroot sha256sum efibootmgr lsblk od; do
+    command -v "$tool" >/dev/null || die "Missing installer tool: $tool"
+done
+
+[[ "$(findmnt -nro FSTYPE --mountpoint "$media")" == iso9660 ]] ||
+    die "Select the mounted installer ISO."
+secure_boot=$(od -An -j4 -N1 -tu1 \
+    /sys/firmware/efi/efivars/SecureBoot-8be4df61-93ca-11d2-aa0d-00e098032b8c)
+[[ ${secure_boot//[[:space:]]/} == 0 ]] ||
+    die "This EFI loader requires Secure Boot to be disabled."
+
+(
+    cd "$media"
+    manifest=install/payload.sha256
+    [[ $(wc -l < "$manifest") == 2 ]] ||
+        die "Expected two payload hashes."
+    grep -Eq '^[0-9a-f]{64}  boot/vmlinuz$' "$manifest"
+    grep -Eq '^[0-9a-f]{64}  live/filesystem\.squashfs$' "$manifest"
+    sha256sum --check --strict "$manifest"
+)
+
+"$planner" "$root_id" "$boot_id" "$efi_id"
+root=$(readlink -e -- "/dev/disk/by-partuuid/$root_id")
+boot=$(readlink -e -- "/dev/disk/by-partuuid/$boot_id")
+esp=$(readlink -e -- "/dev/disk/by-partuuid/$efi_id")
+boot_uuid=$(blkid -p -s UUID -o value "$boot")
+esp_uuid=$(blkid -p -s UUID -o value "$esp")
+[[ "$boot_uuid" =~ ^[[:xdigit:]-]+$ && "$esp_uuid" =~ ^[[:xdigit:]-]+$ ]] ||
+    die "Unexpected filesystem UUID."
+
+esp_disk="/dev/$(lsblk -dnro PKNAME -- "$esp")"
+esp_number=$(lsblk -dnro PARTN -- "$esp")
+[[ -b "$esp_disk" && "$esp_number" =~ ^[1-9][0-9]*$ ]] ||
+    die "Could not identify the EFI disk and partition number."
+
+work=$(mktemp -d)
+mkdir "$work"/{root,boot,esp}
+cleanup() {
+    local rc=$?
+    trap - EXIT
+    for dir in root esp boot; do
+        if mountpoint -q "$work/$dir"; then
+            umount -- "$work/$dir" || rc=1
+        fi
+    done
+    rm -f -- "$work/grub.cfg" "$work/grubx64.efi"
+    rmdir -- "$work"/{root,boot,esp} "$work" || rc=1
+    exit "$rc"
+}
+trap cleanup EXIT
+
+cat > "$work/grub.cfg" <<GRUB
+set default=0
+set timeout=8
+
+menuentry 'SableLinux Test' {
+    if search --no-floppy --fs-uuid --set=root $boot_uuid; then
+        linux /sablelinux-test/vmlinuz root=PARTUUID=$root_id rootfstype=ext4 rootwait ro
+    fi
+}
+
+menuentry 'Kubuntu' {
+    if search --no-floppy --fs-uuid --set=root $esp_uuid; then
+        chainloader /EFI/ubuntu/shimx64.efi
+    fi
+}
+GRUB
+grub-script-check "$work/grub.cfg"
+grub-mkstandalone -O x86_64-efi \
+    --modules="part_gpt ext2 fat search search_fs_uuid linux chain" \
+    -o "$work/grubx64.efi" "boot/grub/grub.cfg=$work/grub.cfg"
+
+printf '\nAll contents of %s will be erased.\n' "$root"
+printf 'Type ERASE %s to proceed: ' "$root_id"
+IFS= read -r answer
+[[ "$answer" == "ERASE $root_id" ]] || die "Installation cancelled."
+
+"$planner" "$root_id" "$boot_id" "$efi_id"
+for dev in "$root" "$boot" "$esp"; do
+    case "$dev" in
+        "$root") expected=$root_id ;;
+        "$boot") expected=$boot_id ;;
+        "$esp") expected=$efi_id ;;
+    esac
+    [[ "$(blkid -p -s PART_ENTRY_UUID -o value "$dev")" == "$expected" ]] ||
+        die "Partition identity changed: $dev"
+done
+
+mount -t ext4 -- "$boot" "$work/boot"
+mount -t vfat -- "$esp" "$work/esp"
+[[ -d "$work/esp/EFI" && -f "$work/esp/EFI/ubuntu/shimx64.efi" ]] ||
+    die "Kubuntu's EFI loader is missing."
+for path in "$work/boot/sablelinux-test" "$work/esp/EFI/SableLinux-Test"; do
+    [[ ! -e "$path" && ! -L "$path" ]] || die "Install path already exists: $path"
+done
+
+# Format only the selected SableLinux root partition.
+mkfs.ext4 -L SABLE_ROOT "$root"
+mount -t ext4 -- "$root" "$work/root"
+target="$work/root"
+unsquashfs -f -d "$target" "$media/live/filesystem.squashfs"
+
+mkdir -p -- "$target/boot/efi"
+cat > "$target/etc/fstab" <<FSTAB
+PARTUUID=$root_id / ext4 defaults 0 1
+PARTUUID=$boot_id /boot ext4 defaults 0 2
+PARTUUID=$efi_id /boot/efi vfat umask=0077 0 2
+FSTAB
+
+rm -f -- "$target/etc/sudoers.d/90-sable-live" \
+    "$target/etc/systemd/system/getty@tty1.service.d/autologin.conf"
+printf '%s\n' 'sable ALL=(ALL) ALL' > "$target/etc/sudoers.d/90-sable-installed"
+chmod 0440 "$target/etc/sudoers.d/90-sable-installed"
+chroot "$target" /bin/sh -c 'visudo -c && usermod -p "!" root'
+printf '\nChoose the installed password for sable.\n'
+chroot "$target" /bin/sh -c 'passwd sable'
+
+install -D -m 0644 -- "$media/boot/vmlinuz" "$work/boot/sablelinux-test/vmlinuz"
+mkdir -- "$work/esp/EFI/SableLinux-Test"
+cp -- "$work/grubx64.efi" "$work/esp/EFI/SableLinux-Test/grubx64.efi"
+cmp -- "$media/boot/vmlinuz" "$work/boot/sablelinux-test/vmlinuz"
+cmp -- "$work/grubx64.efi" "$work/esp/EFI/SableLinux-Test/grubx64.efi"
+sync
+umount -- "$work/root" "$work/boot" "$work/esp"
+
+# Create the entry without inserting it into the existing BootOrder.
+efibootmgr -C -d "$esp_disk" -p "$esp_number" \
+    -L 'SableLinux Test' -l '\EFI\SableLinux-Test\grubx64.efi'
+printf '\nInstallation finished. Detach the ISO and select SableLinux Test in the firmware menu.\n'

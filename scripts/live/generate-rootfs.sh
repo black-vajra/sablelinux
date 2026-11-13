@@ -537,6 +537,10 @@ install -D -m 0755 \
     "$REPO/configs/desktop/waybar/sable-power-menu" \
     "$ROOTFS/home/sable/.local/bin/sable-power-menu"
 
+install -D -m 0755 \
+    "$REPO/configs/desktop/waybar/sable-workspace-label" \
+    "$ROOTFS/home/sable/.local/bin/sable-workspace-label"
+
 install -D -m 0644 \
     "$REPO/configs/desktop/fuzzel/fuzzel.ini" \
     "$ROOTFS/home/sable/.config/fuzzel/fuzzel.ini"
@@ -869,6 +873,11 @@ cmp -s \
     "$REPO/configs/desktop/fuzzel/fuzzel.ini" \
     "$ROOTFS/home/sable/.config/fuzzel/fuzzel.ini" ||
     die "injected Fuzzel theme does not match repository"
+
+cmp -s \
+    "$REPO/configs/desktop/waybar/sable-workspace-label" \
+    "$ROOTFS/home/sable/.local/bin/sable-workspace-label" ||
+    die "injected workspace label helper does not match repository"
 
 validation_log "PASS: repository desktop profile was injected exactly"
 

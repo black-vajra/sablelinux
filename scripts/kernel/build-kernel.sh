@@ -72,7 +72,7 @@ check() {
 
 validate_touchpad_config() {
     local option
-    for option in I2C_DESIGNWARE_CORE I2C_DESIGNWARE_PLATFORM I2C_HID_ACPI HID_MULTITOUCH; do
+    for option in I2C_DESIGNWARE_CORE I2C_DESIGNWARE_PLATFORM I2C_HID_ACPI HID_MULTITOUCH PINCTRL PINCTRL_AMD GPIOLIB GPIOLIB_IRQCHIP GPIO_ACPI; do
         grep -Fqx "CONFIG_$option=y" "$1" ||
             die "portable candidate requires CONFIG_$option=y"
     done
@@ -198,7 +198,7 @@ CONFIG_PY
 
     if [[ "$profile" == portable-test1 ]]; then
         "$source_dir/scripts/config" --file "$config_file" \
-            --enable COMMON_CLK --enable I2C_DESIGNWARE_CORE --enable I2C_DESIGNWARE_PLATFORM \
+            --enable PINCTRL --enable GPIOLIB --enable PINCTRL_AMD --enable COMMON_CLK --enable I2C_DESIGNWARE_CORE --enable I2C_DESIGNWARE_PLATFORM \
             --enable I2C_HID_ACPI --enable HID_MULTITOUCH ||
             die "could not enable portable touchpad drivers"
     fi

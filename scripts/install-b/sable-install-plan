@@ -1,0 +1,111 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+die() {
+    printf 'ERROR: %s\n' "$*" >&2
+    exit 1
+}
+
+usage() {
+    printf 'Usage: %s ROOT_PARTUUID BOOT_PARTUUID EFI_PARTUUID\n' "${0##*/}"
+}
+
+if [[ "${1:-}" == --help ]]; then
+    usage
+    exit 0
+fi
+[[ $# == 3 ]] || { usage >&2; exit 2; }
+(( EUID == 0 )) || die "Run with sudo from the live environment."
+[[ -d /sys/firmware/efi ]] || die "Boot the live media in UEFI mode."
+
+resolve_partition() {
+    local uuid="${1,,}" dev actual
+    [[ "$uuid" =~ ^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$ ]] ||
+        die "Expected a GPT PARTUUID: $1"
+    dev=$(readlink -e -- "/dev/disk/by-partuuid/$uuid") ||
+        die "Partition not found: $uuid"
+    [[ -b "$dev" && "$(lsblk -dnro TYPE -- "$dev")" == part ]] ||
+        die "Expected a partition: $dev"
+    actual=$(blkid -p -s PART_ENTRY_UUID -o value "$dev") ||
+        die "Cannot read partition identity: $dev"
+    [[ "${actual,,}" == "$uuid" ]] || die "Partition identity changed: $dev"
+    printf '%s\n' "$dev"
+}
+
+root_dev=$(resolve_partition "$1")
+boot_dev=$(resolve_partition "$2")
+efi_dev=$(resolve_partition "$3")
+[[ "$root_dev" != "$boot_dev" && "$root_dev" != "$efi_dev" &&
+   "$boot_dev" != "$efi_dev" ]] || die "Select three distinct partitions."
+
+for dev in "$root_dev" "$boot_dev" "$efi_dev"; do
+    mounts=$(lsblk -nr -o MOUNTPOINTS -- "$dev")
+    [[ ! "$mounts" =~ [^[:space:]] ]] || die "Partition is in use: $dev"
+done
+
+for dev in "$root_dev" "$boot_dev"; do
+    [[ "$(blkid -p -s TYPE -o value "$dev")" == ext4 ]] ||
+        die "Expected ext4: $dev"
+done
+[[ "$(blkid -p -s TYPE -o value "$efi_dev")" == vfat ]] ||
+    die "Expected a FAT EFI partition: $efi_dev"
+[[ "$(lsblk -dnro PARTTYPE -- "$efi_dev")" == c12a7328-f81f-11d2-ba4b-00a0c93ec93b ]] ||
+    die "Selected EFI partition lacks the GPT EFI system type."
+
+work=$(mktemp -d)
+cleanup() {
+    local result=$?
+    trap - EXIT
+    for dir in efi boot root; do
+        if mountpoint -q "$work/$dir"; then
+            umount -- "$work/$dir" || result=1
+        fi
+    done
+    rmdir -- "$work"/{efi,boot,root} "$work" || result=1
+    exit "$result"
+}
+trap cleanup EXIT
+mkdir -- "$work"/{root,boot,efi}
+
+mount -t ext4 -o ro,noload -- "$root_dev" "$work/root"
+mount -t ext4 -o ro,noload -- "$boot_dev" "$work/boot"
+mount -t vfat -o ro -- "$efi_dev" "$work/efi"
+
+# Read the identity as data. Do not source files from the selected root.
+identity="$work/root/usr/lib/os-release"
+if [[ ! -f "$identity" || -L "$identity" ]]; then
+    identity="$work/root/etc/os-release"
+fi
+[[ -f "$identity" && ! -L "$identity" ]] ||
+    die "Cannot read the selected root's OS identity."
+grep -Eq '^ID=(sablelinux|"sablelinux")$' "$identity" ||
+    die "Selected root does not declare ID=sablelinux."
+
+fstab="$work/root/etc/fstab"
+[[ -f "$fstab" && ! -L "$fstab" ]] || die "Cannot read the selected root's fstab."
+
+check_mount() {
+    local target="$1" expected="$2" recorded
+    recorded=$(findmnt --fstab --tab-file "$fstab" --evaluate \
+        --mountpoint "$target" --noheadings --output SOURCE) ||
+        die "No fstab entry for $target."
+    [[ -b "$recorded" && "$(readlink -e -- "$recorded")" == "$expected" ]] ||
+        die "The installed fstab does not map $target to $expected."
+}
+
+check_mount / "$root_dev"
+check_mount /boot "$boot_dev"
+check_mount /boot/efi "$efi_dev"
+[[ -f "$work/efi/EFI/ubuntu/shimx64.efi" ]] ||
+    die "Kubuntu's EFI shim was not found on the selected ESP."
+
+printf '\nSelected partitions\n'
+lsblk -dn -o PATH,SIZE,FSTYPE,LABEL,UUID,PARTUUID \
+    -- "$root_dev" "$boot_dev" "$efi_dev"
+printf '\nProposed actions\n'
+printf '  Format and replace SableLinux root on %s\n' "$root_dev"
+printf '  Reuse %s for SableLinux boot files\n' "$boot_dev"
+printf '  Reuse %s and add EFI/SableLinux-Test/grubx64.efi\n' "$efi_dev"
+printf '  Chainload existing EFI/ubuntu/shimx64.efi for Kubuntu\n'
+printf '  Preserve existing firmware boot order\n'
+printf '\nPlan only. No filesystems were changed.\n'

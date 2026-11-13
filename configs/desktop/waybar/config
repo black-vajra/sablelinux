@@ -4,7 +4,7 @@
     "height": 32,
     "spacing": 6,
 
-    "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
+    "modules-left": ["sway/workspaces", "custom/workspace-label", "sway/mode", "sway/window"],
     "modules-center": ["clock"],
     "custom/power": {
         "format": "⏻",
@@ -22,6 +22,11 @@
     },
 "modules-right": ["network", "pulseaudio", "cpu", "memory", "custom/temperature", "keyboard-state", "custom/power"],
 
+    "custom/workspace-label": {
+        "format": "▾",
+        "tooltip-format": "Label the focused workspace",
+        "on-click": "$HOME/.local/bin/sable-workspace-label"
+    },
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,

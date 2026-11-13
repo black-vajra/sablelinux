@@ -1,0 +1,73 @@
+#!/usr/bin/env python3
+import json
+import re
+import subprocess
+import sys
+
+
+def sway(*args):
+    output = subprocess.check_output(["swaymsg", "-r", *args], text=True)
+    return json.loads(output)
+
+
+def pick(prompt, entries=()):
+    result = subprocess.run(
+        ["fuzzel", "--dmenu", f"--prompt={prompt}"],
+        input="".join(f"{entry}\n" for entry in entries),
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode:
+        if result.stderr:
+            print(result.stderr.rstrip(), file=sys.stderr)
+        return None
+    return result.stdout.rstrip("\n")
+
+
+def main():
+    workspace = next((ws for ws in sway("-t", "get_workspaces") if ws["focused"]), None)
+    if workspace is None or workspace["num"] < 1:
+        return
+
+    number = str(workspace["num"])
+    old_name = workspace["name"]
+    presets = ("Term", "Web", "Recon", "Code", "Docs", "Comms", "Media", "VM")
+    choice = pick(f"Workspace {number}: ", (*presets, "Custom label", "Clear label"))
+    if choice is None:
+        return
+
+    if choice == "Clear label":
+        new_name = number
+    else:
+        label = pick("Custom label: ") if choice == "Custom label" else choice
+        if label is None:
+            return
+        label = label.strip()
+        if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9 _.-]{0,31}", label):
+            subprocess.run([
+                "swaynag", "-t", "error", "-m",
+                "Use 1–32 letters, digits, spaces, underscores, periods, or hyphens. "
+                "Start with a letter or digit.",
+            ], check=False)
+            return
+        new_name = f"{number}:{label}"
+
+    if new_name == old_name:
+        return
+    if not re.fullmatch(r"[0-9]+(?::[A-Za-z0-9 _.-]+)?", old_name):
+        raise ValueError(f"Unexpected workspace name: {old_name!r}")
+    if not any(
+        ws["id"] == workspace["id"] and ws["name"] == old_name
+        for ws in sway("-t", "get_workspaces")
+    ):
+        return
+    reply = sway(f'rename workspace "{old_name}" to "{new_name}"')
+    if len(reply) != 1 or not reply[0].get("success"):
+        raise RuntimeError(f"Sway rejected the rename: {reply}")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except (OSError, ValueError, RuntimeError, subprocess.CalledProcessError) as error:
+        sys.exit(f"Workspace label: {error}")
