@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+set -euo pipefail
+export LC_ALL=C
+
+die() { printf 'ERROR: %s\n' "$*" >&2; exit 1; }
+
+if [[ "${1:-}" == --help ]]; then
+    printf 'Usage: %s [ISO_LABEL]\n' "${0##*/}"
+    exit 0
+fi
+
+[[ $# -le 1 ]] || die "Expected at most one ISO label."
+(( EUID == 0 )) || die "Run from the live installer console as root."
+[[ -t 0 && -t 1 ]] || die "An interactive console is required."
+[[ -d /sys/firmware/efi ]] || die "Boot the installer USB in UEFI mode."
+
+label=${1:-SABLEASUS}
+inventory=$(lsblk -lnp -o PATH,FSTYPE,LABEL)
+mapfile -t candidates < <(awk -v label="$label" \
+    '$2 == "iso9660" && $3 == label { print $1 }' <<< "$inventory")
+(( ${#candidates[@]} == 1 )) ||
+    die "Expected one ISO9660 device labeled $label, found ${#candidates[@]}."
+
+media=$(mktemp -d /run/sable-install-media.XXXXXXXX)
+cleanup() {
+    if mountpoint -q "$media"; then
+        umount -- "$media" || return 1
+    fi
+    rmdir -- "$media"
+}
+trap cleanup EXIT
+
+mount -t iso9660 -o ro,nosuid,nodev -- "${candidates[0]}" "$media"
+for file in sable-install-plan sable-install-replace payload.sha256; do
+    [[ -f "$media/install/$file" ]] || die "Installer media is missing install/$file."
+done
+
+printf '\nSableLinux installer\n\n'
+printf '  1. Replace SableLinux only\n'
+printf '  2. Replace SableLinux and keep Kubuntu in the boot menu\n'
+printf '  q. Quit\n\n'
+read -r -p 'Choose an option: ' choice
+options=()
+case "$choice" in
+    1) options+=(--single-os) ;;
+    2) ;;
+    q|Q) exit 0 ;;
+    *) die "Unknown option." ;;
+esac
+
+printf '\nAvailable disks and partitions\n'
+lsblk -e 7 -o PATH,TYPE,SIZE,FSTYPE,LABEL,MOUNTPOINTS
+printf '\nEnter the three partitions from the existing SableLinux installation.\n'
+printf 'The root partition will be erased if you confirm the installer plan.\n'
+printf 'The boot and EFI partitions will be reused.\n\n'
+
+partition_id() {
+    local role=$1 device id
+    read -r -p "$role device (/dev/…): " device
+    [[ "$device" == /dev/* && -b "$device" ]] ||
+        die "Expected a block device for $role."
+    [[ "$(lsblk -dnro TYPE -- "$device")" == part ]] ||
+        die "Expected a partition for $role."
+    id=$(blkid -p -s PART_ENTRY_UUID -o value "$device") ||
+        die "Could not read the PARTUUID for $device."
+    printf '%s\n' "$id"
+}
+
+root_id=$(partition_id 'SableLinux root')
+boot_id=$(partition_id 'SableLinux /boot')
+efi_id=$(partition_id 'EFI System Partition')
+
+bash "$media/install/sable-install-replace" "${options[@]}" \
+    "$media" "$root_id" "$boot_id" "$efi_id"

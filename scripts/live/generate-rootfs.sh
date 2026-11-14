@@ -496,6 +496,19 @@ for unit in "${LIVE_AUDIO_UNITS[@]}"; do
         die "live audio unit is not enabled: $unit"
 done
 
+# Supply desktop defaults for live and installed users.
+install -D -m 0644 \
+    "$REPO/configs/live/mimeapps.list" \
+    "$ROOTFS/etc/xdg/mimeapps.list"
+
+# Stage the installer entry point for the live boot menu.
+install -D -m 0755 \
+    "$REPO/scripts/install-b/sable-install-launch" \
+    "$ROOTFS/usr/local/sbin/sable-install-launch"
+install -D -m 0644 \
+    "$REPO/scripts/install-b/sable-live-installer.service" \
+    "$ROOTFS/etc/systemd/system/sable-live-installer.service"
+
 # Supply a release-owned login profile instead of inheriting the host's.
 for live_dir in "$ROOTFS/home" "$ROOTFS/home/sable"; do
     [ -d "$live_dir" ] && [ ! -L "$live_dir" ] ||
@@ -878,6 +891,16 @@ cmp -s \
     "$REPO/configs/desktop/waybar/sable-workspace-label" \
     "$ROOTFS/home/sable/.local/bin/sable-workspace-label" ||
     die "injected workspace label helper does not match repository"
+
+cmp -s \
+    "$REPO/configs/live/mimeapps.list" \
+    "$ROOTFS/etc/xdg/mimeapps.list" ||
+    die "staged desktop defaults differ from the repository"
+
+for tool in xdg-open xdg-mime zip unzip; do
+    [ -x "$ROOTFS/usr/bin/$tool" ] ||
+        die "staged desktop tool is missing: $tool"
+done
 
 validation_log "PASS: repository desktop profile was injected exactly"
 

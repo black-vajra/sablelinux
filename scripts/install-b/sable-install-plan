@@ -7,12 +7,17 @@ die() {
 }
 
 usage() {
-    printf 'Usage: %s ROOT_PARTUUID BOOT_PARTUUID EFI_PARTUUID\n' "${0##*/}"
+    printf 'Usage: %s [--single-os] ROOT_PARTUUID BOOT_PARTUUID EFI_PARTUUID\n' "${0##*/}"
 }
 
 if [[ "${1:-}" == --help ]]; then
     usage
     exit 0
+fi
+mode=dual-boot
+if [[ "${1:-}" == --single-os ]]; then
+    mode=single-os
+    shift
 fi
 [[ $# == 3 ]] || { usage >&2; exit 2; }
 (( EUID == 0 )) || die "Run with sudo from the live environment."
@@ -96,8 +101,10 @@ check_mount() {
 check_mount / "$root_dev"
 check_mount /boot "$boot_dev"
 check_mount /boot/efi "$efi_dev"
-[[ -f "$work/efi/EFI/ubuntu/shimx64.efi" ]] ||
-    die "Kubuntu's EFI shim was not found on the selected ESP."
+if [[ "$mode" == dual-boot ]]; then
+    [[ -f "$work/efi/EFI/ubuntu/shimx64.efi" ]] ||
+        die "Kubuntu's EFI shim was not found on the selected ESP."
+fi
 
 printf '\nSelected partitions\n'
 lsblk -dn -o PATH,SIZE,FSTYPE,LABEL,UUID,PARTUUID \
@@ -106,6 +113,8 @@ printf '\nProposed actions\n'
 printf '  Format and replace SableLinux root on %s\n' "$root_dev"
 printf '  Reuse %s for SableLinux boot files\n' "$boot_dev"
 printf '  Reuse %s and add EFI/SableLinux-Test/grubx64.efi\n' "$efi_dev"
-printf '  Chainload existing EFI/ubuntu/shimx64.efi for Kubuntu\n'
-printf '  Preserve existing firmware boot order\n'
+if [[ "$mode" == dual-boot ]]; then
+    printf '  Chainload existing EFI/ubuntu/shimx64.efi for Kubuntu\n'
+fi
+printf '  Put SableLinux Test first in firmware boot order; keep existing entries\n'
 printf '\nPlan only. No filesystems were changed.\n'
