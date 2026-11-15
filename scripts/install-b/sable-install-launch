@@ -35,18 +35,28 @@ for file in sable-install-plan sable-install-replace payload.sha256; do
     [[ -f "$media/install/$file" ]] || die "Installer media is missing install/$file."
 done
 
-printf '\nSableLinux installer\n\n'
+if [[ -t 1 ]]; then
+    printf '\033[H\033[2J'
+fi
+
+printf 'SableLinux installer\n\n'
 printf '  1. Replace SableLinux only\n'
 printf '  2. Replace SableLinux and keep Kubuntu in the boot menu\n'
-printf '  q. Quit\n\n'
-read -r -p 'Choose an option: ' choice
+printf '  3. Quit (q)\n\n'
+
 options=()
-case "$choice" in
-    1) options+=(--single-os) ;;
-    2) ;;
-    q|Q) exit 0 ;;
-    *) die "Unknown option." ;;
-esac
+while read -r -p 'Choose an option: ' choice; do
+    case "$choice" in
+        1) options+=(--single-os); break ;;
+        2) break ;;
+        3|q|Q)
+            printf '\nInstaller closed. Restart to return to the boot menu.\n'
+            exit 0
+            ;;
+        *) printf 'Enter 1, 2, or 3 (q to quit).\n' ;;
+    esac
+done
+[[ "$choice" == 1 || "$choice" == 2 ]] || exit 0
 
 printf '\nAvailable disks and partitions\n'
 lsblk -e 7 -o PATH,TYPE,SIZE,FSTYPE,LABEL,MOUNTPOINTS
@@ -56,14 +66,24 @@ printf 'The boot and EFI partitions will be reused.\n\n'
 
 partition_id() {
     local role=$1 device id
-    read -r -p "$role device (/dev/…): " device
-    [[ "$device" == /dev/* && -b "$device" ]] ||
-        die "Expected a block device for $role."
-    [[ "$(lsblk -dnro TYPE -- "$device")" == part ]] ||
-        die "Expected a partition for $role."
-    id=$(blkid -p -s PART_ENTRY_UUID -o value "$device") ||
-        die "Could not read the PARTUUID for $device."
-    printf '%s\n' "$id"
+
+    while read -r -p "$role device (/dev/…): " device; do
+        if [[ "$device" != /dev/* || ! -b "$device" ]]; then
+            printf 'Expected a block device for %s. Try again.\n' "$role" >&2
+            continue
+        fi
+        if [[ "$(lsblk -dnro TYPE -- "$device")" != part ]]; then
+            printf 'Expected a partition for %s. Try again.\n' "$role" >&2
+            continue
+        fi
+        if id=$(blkid -p -s PART_ENTRY_UUID -o value "$device") && [[ -n "$id" ]]; then
+            printf '%s\n' "$id"
+            return 0
+        fi
+        printf 'Could not read the PARTUUID for %s. Try again.\n' "$device" >&2
+    done
+
+    return 1
 }
 
 root_id=$(partition_id 'SableLinux root')
