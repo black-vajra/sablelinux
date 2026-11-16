@@ -22,6 +22,10 @@ cp -a "$REPO_ROOT/configs/desktop/sway/config" "$USER_HOME/.config/sway/config"
 cp -a "$REPO_ROOT/configs/desktop/waybar/config" "$USER_HOME/.config/waybar/config"
 cp -a "$REPO_ROOT/configs/desktop/waybar/style.css" "$USER_HOME/.config/waybar/style.css"
 
+install -D -m 0755 -o "$USER_NAME" -g "$USER_NAME" \
+    "$REPO_ROOT/configs/desktop/waybar/sable-network-status" \
+    "$USER_HOME/.local/bin/sable-network-status"
+
 chown -R "$USER_NAME:$USER_NAME" "$USER_HOME/.config/sway" "$USER_HOME/.config/waybar"
 
 echo "Sable desktop profile installed."

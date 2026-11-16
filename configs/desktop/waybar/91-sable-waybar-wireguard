@@ -1,0 +1,1 @@
+sable ALL=(root) NOPASSWD: /usr/bin/wg show client1 latest-handshakes

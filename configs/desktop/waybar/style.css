@@ -115,3 +115,7 @@ window#waybar {
 #window {
     color: #9ca3af;
 }
+
+#custom-vpn.up { color: #42d392; }
+#custom-vpn.down { color: #ff646a; font-weight: bold; }
+#custom-lan { color: #84caff; }

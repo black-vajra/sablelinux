@@ -438,6 +438,9 @@ sable ALL=(ALL) NOPASSWD: ALL
 SUDOERS
 
 chmod 0440 "$ROOTFS/etc/sudoers.d/90-sable-live"
+install -m 0440 \
+    "$REPO/configs/desktop/waybar/91-sable-waybar-wireguard" \
+    "$ROOTFS/etc/sudoers.d/91-sable-waybar-wireguard"
 
 rm -f -- "$ROOTFS/etc/systemd/system/getty@tty1.service.d/autologin.conf"
 
@@ -561,6 +564,10 @@ install -D -m 0644 \
 install -D -m 0755 \
     "$REPO/configs/desktop/waybar/sable-sensors" \
     "$ROOTFS/home/sable/.local/bin/sable-sensors"
+
+install -D -m 0755 \
+    "$REPO/configs/desktop/waybar/sable-network-status" \
+    "$ROOTFS/home/sable/.local/bin/sable-network-status"
 
 install -D -m 0644 \
     "$REPO/configs/desktop/waybar/config" \
@@ -891,6 +898,16 @@ cmp -s \
     "$REPO/configs/desktop/waybar/sable-workspace-label" \
     "$ROOTFS/home/sable/.local/bin/sable-workspace-label" ||
     die "injected workspace label helper does not match repository"
+
+cmp -s \
+    "$REPO/configs/desktop/waybar/sable-network-status" \
+    "$ROOTFS/home/sable/.local/bin/sable-network-status" ||
+    die "injected network status helper does not match repository"
+
+cmp -s \
+    "$REPO/configs/desktop/waybar/91-sable-waybar-wireguard" \
+    "$ROOTFS/etc/sudoers.d/91-sable-waybar-wireguard" ||
+    die "staged Waybar WireGuard sudo rule differs from the repository"
 
 cmp -s \
     "$REPO/configs/live/mimeapps.list" \

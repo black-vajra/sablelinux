@@ -20,7 +20,7 @@
         "tooltip": true,
         "on-click": "$HOME/.local/bin/sable-sensors --menu"
     },
-"modules-right": ["network", "pulseaudio", "cpu", "memory", "custom/temperature", "keyboard-state", "custom/power"],
+    "modules-right": ["custom/vpn", "custom/lan", "pulseaudio", "cpu", "memory", "custom/temperature", "keyboard-state", "battery", "custom/power"],
 
     "custom/workspace-label": {
         "format": "▾",
@@ -63,10 +63,31 @@
         "format": "  {temperatureC}°C"
     },
 
-    "network": {
-        "format-ethernet": "  {ipaddr}",
-        "format-disconnected": "  down",
-        "interval": 5
+    "custom/vpn": {
+        "exec": "$HOME/.local/bin/sable-network-status vpn",
+        "interval": 10,
+        "return-type": "json",
+        "format": " {}",
+        "tooltip": true
+    },
+
+    "custom/lan": {
+        "exec": "$HOME/.local/bin/sable-network-status lan",
+        "interval": 10,
+        "return-type": "json",
+        "format": "{}",
+        "tooltip": true
+    },
+
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+        "full-at-plugged": true,
+        "tooltip": true,
+        "tooltip-format": "Battery charge: {capacity}%",
+        "tooltip-format-charging": "Battery charge: {capacity}% · Plugged in (charging)",
+        "tooltip-format-plugged": "Battery charge: {capacity}% · Plugged in",
+        "tooltip-format-discharging": "Battery charge: {capacity}% · Unplugged"
     },
 
     "pulseaudio": {
