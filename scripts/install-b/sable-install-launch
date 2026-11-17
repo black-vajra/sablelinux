@@ -42,6 +42,7 @@ fi
 printf 'SableLinux installer\n\n'
 printf '  1. Replace SableLinux only\n'
 printf '  2. Replace SableLinux and keep Kubuntu in the boot menu\n'
+printf '  4. Fresh install on prepared partitions\n'
 printf '  3. Quit (q)\n\n'
 
 options=()
@@ -49,18 +50,23 @@ while read -r -p 'Choose an option: ' choice; do
     case "$choice" in
         1) options+=(--single-os); break ;;
         2) break ;;
+        4) options+=(--fresh); break ;;
         3|q|Q)
             printf '\nInstaller closed. Restart to return to the boot menu.\n'
             exit 0
             ;;
-        *) printf 'Enter 1, 2, or 3 (q to quit).\n' ;;
+        *) printf 'Enter 1, 2, 3, or 4 (q to quit).\n' ;;
     esac
 done
-[[ "$choice" == 1 || "$choice" == 2 ]] || exit 0
+[[ "$choice" == 1 || "$choice" == 2 || "$choice" == 4 ]] || exit 0
 
 printf '\nAvailable disks and partitions\n'
 lsblk -e 7 -o PATH,TYPE,SIZE,FSTYPE,LABEL,MOUNTPOINTS
-printf '\nEnter the three partitions from the existing SableLinux installation.\n'
+if [[ "$choice" == 4 ]]; then
+    printf '\nSelect empty root, boot, and EFI partitions on the same disk.\n'
+else
+    printf '\nEnter the three partitions from the existing SableLinux installation.\n'
+fi
 printf 'The root partition will be erased if you confirm the installer plan.\n'
 printf 'The boot and EFI partitions will be reused.\n\n'
 

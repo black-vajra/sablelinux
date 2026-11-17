@@ -6,12 +6,12 @@ export LC_ALL=C
 die() { printf 'ERROR: %s\n' "$*" >&2; exit 1; }
 
 mode=dual-boot
-if [[ "${1:-}" == --single-os ]]; then
-    mode=single-os
-    shift
-fi
+case "${1:-}" in
+    --single-os) mode=single-os; shift ;;
+    --fresh) mode=fresh; shift ;;
+esac
 [[ $# == 4 ]] ||
-    die "Usage: ${0##*/} [--single-os] ISO_MOUNT ROOT_PARTUUID BOOT_PARTUUID EFI_PARTUUID"
+    die "Usage: ${0##*/} [--single-os|--fresh] ISO_MOUNT ROOT_PARTUUID BOOT_PARTUUID EFI_PARTUUID"
 (( EUID == 0 )) || die "Run as root in the live guest."
 [[ -t 0 ]] || die "An interactive console is required."
 
@@ -22,9 +22,10 @@ efi_id=${4,,}
 planner="$(dirname -- "$(realpath -e -- "$0")")/sable-install-plan"
 
 planner_options=()
-if [[ "$mode" == single-os ]]; then
-    planner_options+=(--single-os)
-fi
+case "$mode" in
+    single-os) planner_options+=(--single-os) ;;
+    fresh) planner_options+=(--fresh) ;;
+esac
 
 for tool in findmnt blkid grub-script-check grub-mkstandalone mkfs.ext4 \
     unsquashfs chroot sha256sum efibootmgr lsblk od; do
@@ -123,7 +124,11 @@ done
 
 mount -t ext4 -- "$boot" "$work/boot"
 mount -t vfat -- "$esp" "$work/esp"
-[[ -d "$work/esp/EFI" ]] || die "The selected ESP has no EFI directory."
+if [[ "$mode" == fresh ]]; then
+    mkdir -p -- "$work/esp/EFI"
+else
+    [[ -d "$work/esp/EFI" ]] || die "The selected ESP has no EFI directory."
+fi
 if [[ "$mode" == dual-boot ]]; then
     [[ -f "$work/esp/EFI/ubuntu/shimx64.efi" ]] ||
         die "Kubuntu's EFI loader is missing."
@@ -133,7 +138,11 @@ for path in "$work/boot/sablelinux-test" "$work/esp/EFI/SableLinux-Test"; do
 done
 
 # Format only the selected SableLinux root partition.
-mkfs.ext4 -L SABLE_ROOT "$root"
+if [[ "$mode" == fresh ]]; then
+    mkfs.ext4 -F -L SABLE_ROOT "$root"
+else
+    mkfs.ext4 -L SABLE_ROOT "$root"
+fi
 mount -t ext4 -- "$root" "$work/root"
 target="$work/root"
 unsquashfs -f -d "$target" "$media/live/filesystem.squashfs"
