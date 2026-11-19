@@ -129,14 +129,9 @@ BUILD_COMMIT="$(
 git_repo merge-base --is-ancestor "$BUILD_COMMIT" "$CURRENT_COMMIT" ||
     die "build initialization commit is not an ancestor of HEAD"
 
-# Only the unrelated, untracked boincctl utility is exempt.
-# Never allow it to become a tracked release input.
-if git_repo ls-files --error-unmatch scripts/boincctl >/dev/null 2>&1; then
-    die "scripts/boincctl must not be tracked as a release input"
-fi
-
+# Every tracked or untracked repository change blocks release capture.
 DIRTY="$(
-    git_repo status --porcelain --untracked-files=all -- .         ':(exclude)scripts/boincctl'
+    git_repo status --porcelain --untracked-files=all
 )"
 
 [ -z "$DIRTY" ] ||
@@ -511,6 +506,42 @@ install -D -m 0755 \
 install -D -m 0644 \
     "$REPO/scripts/install-b/sable-live-installer.service" \
     "$ROOTFS/etc/systemd/system/sable-live-installer.service"
+
+# Supply a release-owned home; host user homes are never captured.
+# Reject unsafe paths before creating release-owned content.
+[ -d "$ROOTFS/home" ] && [ ! -L "$ROOTFS/home" ] ||
+    die "release /home is missing or redirected"
+
+[ "$(stat -c '%u:%g:%a' "$ROOTFS/home")" = "0:0:755" ] ||
+    die "release /home has unexpected ownership or permissions"
+
+if ! python3 - "$ROOTFS/home" <<'CHECK_RELEASE_HOME'
+import os
+import sys
+
+try:
+    with os.scandir(sys.argv[1]) as entries:
+        unexpected = [entry.name for entry in entries]
+except OSError as exc:
+    print(f"ERROR: cannot inspect release /home: {exc}", file=sys.stderr)
+    sys.exit(1)
+
+if unexpected:
+    print(
+        f"ERROR: unexpected release /home entries: {sorted(unexpected)}",
+        file=sys.stderr,
+    )
+    sys.exit(1)
+CHECK_RELEASE_HOME
+then
+    die "release /home is not empty or could not be inspected"
+fi
+
+install -d -m 0755 "$ROOTFS/home/sable"
+
+[ -d "$ROOTFS/home/sable" ] &&
+    [ ! -L "$ROOTFS/home/sable" ] ||
+    die "release-user home creation failed"
 
 # Supply a release-owned login profile instead of inheriting the host's.
 for live_dir in "$ROOTFS/home" "$ROOTFS/home/sable"; do
@@ -952,6 +983,18 @@ for service in llama-server.service sshd.service autofs.service; do
 done
 
 validation_log "PASS: prohibited live services are not enabled"
+
+# Mandatory security boundary: only release-approved home content
+# may appear in the generated root filesystem.
+validation_log "=== VALIDATE RELEASE HOME SECURITY ==="
+
+python3 -B "$REPO/scripts/live/validate-release-home.py" \
+    --rootfs "$ROOTFS" \
+    --repo "$REPO" \
+    >> "$VALIDATION_REPORT" 2>&1 ||
+    die "release-home security validation failed; rootfs not published"
+
+validation_log "PASS: release-home security validation completed"
 
 validation_log "PASS: generated rootfs validation completed"
 

@@ -17,8 +17,8 @@
 /lost+found/***
 
 # Personal and non-release user data
-/home/pepper/***
-/home/tester/***
+# Never capture host user homes; release homes are generated.
+/home/***
 /root/***
 
 # Shell and interactive history

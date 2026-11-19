@@ -43,6 +43,9 @@ absent=(
   var/lib/libvirt/images/guest.qcow2
   srv/example/guest.iso
   home/pepper/guest.vmdk
+  home/sable/Documents/private-test.txt
+  home/sable/.config/private-app/token
+  home/another-user/private-test.txt
 )
 keep=(
   usr/sbin/automount
