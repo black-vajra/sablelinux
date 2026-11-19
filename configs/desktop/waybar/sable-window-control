@@ -1,0 +1,117 @@
+#!/usr/bin/env python3
+"""Experimental SableLinux taskbar window controls."""
+
+import json
+import subprocess
+import sys
+
+APPS = {
+    "firefox": {
+        "icon": "\uf269",
+        "label": "Firefox",
+    },
+    "foot": {
+        "icon": "\uf120",
+        "label": "Foot",
+    },
+}
+
+
+def sway(*args):
+    return subprocess.check_output(
+        ["swaymsg", "-r", *args],
+        text=True,
+    )
+
+
+def windows_for(app):
+    tree = json.loads(sway("-t", "get_tree"))
+    matches = []
+
+    def walk(node):
+        if node.get("app_id") == app:
+            matches.append(node)
+
+        for child in (
+            node.get("nodes", [])
+            + node.get("floating_nodes", [])
+        ):
+            walk(child)
+
+    walk(tree)
+    return matches
+
+
+def main():
+    if len(sys.argv) != 3:
+        sys.exit("Usage: window-control.py APP ACTION")
+
+    app, action = sys.argv[1:]
+
+    if app not in APPS:
+        sys.exit("Unsupported application")
+
+    windows = windows_for(app)
+    info = APPS[app]
+
+    if action == "status":
+        if not windows:
+            state = "closed"
+        elif len(windows) > 1:
+            state = "multiple"
+        elif windows[0].get("scratchpad_state") != "none":
+            state = "hidden"
+        else:
+            state = "visible"
+
+        text = info["label"]
+
+        if state == "hidden":
+            text += " [hidden]"
+        elif state == "multiple":
+            text += " [multiple]"
+        elif state == "closed":
+            text += " [closed]"
+
+        print(json.dumps({
+            "text": text,
+            "class": state,
+            "tooltip": f"{info['label']}: {state}",
+        }))
+        return
+
+    if len(windows) != 1:
+        sys.exit(
+            f"{app}: expected exactly one window, "
+            f"found {len(windows)}"
+        )
+
+    window = windows[0]
+    criteria = f"[con_id={window['id']}]"
+    hidden = window.get("scratchpad_state") != "none"
+
+    if action == "toggle":
+        command = (
+            "scratchpad show, floating disable"
+            if hidden else
+            "move scratchpad"
+        )
+    elif action == "focus":
+        command = (
+            "scratchpad show, floating disable"
+            if hidden else
+            "focus"
+        )
+    else:
+        sys.exit("Unknown action")
+
+    result = json.loads(sway(f"{criteria} {command}"))
+
+    if not result or not all(
+        item.get("success") for item in result
+    ):
+        sys.exit(f"Sway command failed: {result}")
+
+
+if __name__ == "__main__":
+    main()

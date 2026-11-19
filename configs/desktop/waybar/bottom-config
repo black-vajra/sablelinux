@@ -1,0 +1,31 @@
+{
+    "id": "sable-bottom",
+    "layer": "top",
+    "position": "bottom",
+    "height": 38,
+    "spacing": 8,
+    "modules-left": [
+        "custom/foot",
+        "custom/firefox"
+    ],
+    "custom/firefox": {
+        "exec": "/home/sable/.local/bin/sable-window-control firefox status",
+        "interval": 1,
+        "return-type": "json",
+        "format": "{}",
+        "tooltip": true,
+        "on-click": "/home/sable/.local/bin/sable-window-control firefox toggle",
+        "on-click-right": "/home/sable/.local/bin/sable-window-control firefox focus"
+    },
+    "custom/foot": {
+        "exec": "/home/sable/.local/bin/sable-window-control foot status",
+        "interval": 1,
+        "return-type": "json",
+        "format": "{}",
+        "tooltip": true,
+        "on-click": "/home/sable/.local/bin/sable-window-control foot toggle",
+        "on-click-right": "/home/sable/.local/bin/sable-window-control foot focus"
+    },
+    "mode": "dock",
+    "exclusive": true
+}

@@ -16,6 +16,9 @@ FILES = {
     ".config/sway/config": "configs/desktop/sway/config",
     ".config/waybar/config": "configs/desktop/waybar/config",
     ".config/waybar/style.css": "configs/desktop/waybar/style.css",
+    ".config/waybar/bottom-config": "configs/desktop/waybar/bottom-config",
+    ".config/waybar/bottom-style.css": "configs/desktop/waybar/bottom-style.css",
+    ".local/bin/sable-window-control": "configs/desktop/waybar/sable-window-control",
     ".config/fuzzel/fuzzel.ini": "configs/desktop/fuzzel/fuzzel.ini",
     ".local/bin/sable-power-menu": "configs/desktop/waybar/sable-power-menu",
     ".local/bin/sable-workspace-label":

@@ -4,7 +4,7 @@
     "height": 32,
     "spacing": 6,
 
-    "modules-left": ["sway/workspaces", "custom/workspace-label", "sway/mode", "sway/window"],
+    "modules-left": ["sway/workspaces", "custom/workspace-label", "sway/mode"],
     "modules-center": ["clock"],
     "custom/power": {
         "format": "⏻",

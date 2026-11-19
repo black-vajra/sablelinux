@@ -168,4 +168,9 @@ bar {
     swaybar_command waybar
 }
 
+# Persistent SableLinux application taskbar.
+bar {
+    swaybar_command waybar -c /home/sable/.config/waybar/bottom-config -s /home/sable/.config/waybar/bottom-style.css
+}
+
 include /etc/sway/config.d/*

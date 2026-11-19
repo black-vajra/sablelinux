@@ -1,0 +1,106 @@
+* {
+    font-family: "DejaVu Sans Mono", "Font Awesome 6 Free";
+    font-size: 12px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #101018;
+    color: #e5e7eb;
+    border-top: 2px solid #7c3aed;
+}
+
+#taskbar button {
+    padding: 2px 12px;
+    margin: 3px;
+    border-radius: 6px;
+    color: #c4b5fd;
+    background: #242034;
+}
+
+#taskbar button.active {
+    background: #4c1d95;
+    color: white;
+}
+
+#taskbar button:hover {
+    background: #37305a;
+}
+
+#custom-firefox {
+    padding: 2px 12px;
+    margin: 3px;
+    border-radius: 6px;
+    background: #242034;
+    color: #c4b5fd;
+}
+
+#custom-firefox:hover {
+    background: #37305a;
+}
+
+#custom-firefox.hidden {
+    color: #9ca3af;
+    background: #171720;
+}
+
+#custom-foot,
+#custom-firefox {
+    font-family: "Font Awesome 6 Brands",
+                 "Font Awesome 6 Free",
+                 "DejaVu Sans Mono";
+    font-size: 13px;
+    padding: 2px 14px;
+    margin: 3px;
+    border-radius: 6px;
+    background: #242034;
+    color: #c4b5fd;
+}
+
+#custom-foot:hover,
+#custom-firefox:hover {
+    background: #37305a;
+}
+
+#custom-foot.hidden,
+#custom-firefox.hidden {
+    color: #9ca3af;
+    background: #171720;
+}
+
+
+/* SABLE UI-22 BUTTON STYLE */
+
+#custom-foot,
+#custom-firefox {
+    font-family: "DejaVu Sans Mono", sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    color: #ffffff;
+    background-color: #000000;
+    border: 1px solid #555555;
+    border-radius: 6px;
+    margin: 3px 4px;
+    padding: 3px 12px;
+    min-width: 86px;
+}
+
+#custom-firefox {
+    background-image: url("file:///opt/firefox/browser/chrome/icons/default/default128.png");
+    background-repeat: no-repeat;
+    background-position: 8px center;
+    background-size: 20px 20px;
+    padding-left: 36px;
+}
+
+#custom-foot:hover,
+#custom-firefox:hover {
+    background-color: #222222;
+    color: #ffffff;
+}
+
+#custom-foot.hidden,
+#custom-firefox.hidden {
+    color: #aaaaaa;
+    border-color: #444444;
+}

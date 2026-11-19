@@ -608,6 +608,18 @@ install -D -m 0644 \
     "$REPO/configs/desktop/waybar/style.css" \
     "$ROOTFS/home/sable/.config/waybar/style.css"
 
+
+install -D -m 0644 \
+    "$REPO/configs/desktop/waybar/bottom-config" \
+    "$ROOTFS/home/sable/.config/waybar/bottom-config"
+
+install -D -m 0644 \
+    "$REPO/configs/desktop/waybar/bottom-style.css" \
+    "$ROOTFS/home/sable/.config/waybar/bottom-style.css"
+
+install -D -m 0755 \
+    "$REPO/configs/desktop/waybar/sable-window-control" \
+    "$ROOTFS/home/sable/.local/bin/sable-window-control"
 SABLE_UID="$(
     awk -F: '$1 == "sable" {print $3}' "$ROOTFS/etc/passwd"
 )"
