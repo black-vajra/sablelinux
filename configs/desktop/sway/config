@@ -146,8 +146,8 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 ### Key Bindings — Screenshots
-bindsym Print      exec grim /home/pepper/screenshots/$(date +%Y%m%d_%H%M%S).png
-bindsym $mod+Print exec grim -g "$(slurp)" /home/pepper/screenshots/$(date +%Y%m%d_%H%M%S).png
+bindsym Print      exec grim /home/sable/screenshots/$(date +%Y%m%d_%H%M%S).png
+bindsym $mod+Print exec grim -g "$(slurp)" /home/sable/screenshots/$(date +%Y%m%d_%H%M%S).png
 bindsym $mod+Shift+Print exec grim -g "$(slurp)" - | wl-copy
 
 bindsym $mod+Shift+x exec swaylock -f -c 000000
@@ -169,8 +169,7 @@ bar {
 }
 
 # Persistent SableLinux application taskbar.
-bar {
-    swaybar_command waybar -c /home/sable/.config/waybar/bottom-config -s /home/sable/.config/waybar/bottom-style.css
-}
+# Launch once at session startup, independently of Sway's main bar.
+exec waybar -c /home/sable/.config/waybar/bottom-config -s /home/sable/.config/waybar/bottom-style.css
 
 include /etc/sway/config.d/*
