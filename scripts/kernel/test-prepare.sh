@@ -71,7 +71,7 @@ text = script.read_text()
 replacements = {
     'WORKSPACE="/srv/sablelinux"':
         f'WORKSPACE="{workspace}"',
-    'SOURCE_ARCHIVE="/sources/linux-6.16.1.tar.xz"':
+    'SOURCE_ARCHIVE="/srv/sablelinux/cache/downloads/linux-6.16.1.tar.xz"':
         f'SOURCE_ARCHIVE="{archive}"',
 }
 
