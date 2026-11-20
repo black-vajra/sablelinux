@@ -79,10 +79,10 @@ validate_touchpad_config() {
 }
 
 prepare() {
-    [[ $# -le 1 ]] || die "usage: prepare [xattr-test1|asus-test1|portable-test1]"
+    [[ $# -le 1 ]] || die "usage: prepare [xattr-test1|asus-test1|portable-test1|wifi-recovery1]"
     local profile="${1:-xattr-test1}"
     case "$profile" in
-        xattr-test1|asus-test1|portable-test1) ;;
+        xattr-test1|asus-test1|portable-test1|wifi-recovery1) ;;
         *) die "unknown kernel profile: $profile" ;;
     esac
     local localversion="-sable-$profile"
@@ -191,16 +191,22 @@ for old, new in changes:
 path.write_text(text)
 CONFIG_PY
 
-    if [[ "$profile" == asus-test1 || "$profile" == portable-test1 ]]; then
+    if [[ "$profile" == asus-test1 || "$profile" == portable-test1 || "$profile" == wifi-recovery1 ]]; then
         "$source_dir/scripts/config" --file "$config_file" --module IWLMVM ||
             die "could not enable IWLMVM"
     fi
 
-    if [[ "$profile" == portable-test1 ]]; then
+    if [[ "$profile" == portable-test1 || "$profile" == wifi-recovery1 ]]; then
         "$source_dir/scripts/config" --file "$config_file" \
             --enable PINCTRL --enable GPIOLIB --enable PINCTRL_AMD --enable COMMON_CLK --enable I2C_DESIGNWARE_CORE --enable I2C_DESIGNWARE_PLATFORM \
             --enable I2C_HID_ACPI --enable HID_MULTITOUCH ||
             die "could not enable portable touchpad drivers"
+    fi
+
+    if [[ "$profile" == wifi-recovery1 ]]; then
+        "$source_dir/scripts/config" --file "$config_file" \
+            --module ATH11K --module ATH11K_PCI ||
+            die "could not enable Qualcomm wireless support"
     fi
 
     # Resolve the candidate configuration against upstream Kconfig.
@@ -212,13 +218,24 @@ CONFIG_PY
     grep -Fqx "CONFIG_LOCALVERSION=\"$localversion\"" "$config_file" ||
         die "candidate local version was not retained"
 
-    if [[ "$profile" == asus-test1 || "$profile" == portable-test1 ]]; then
+    if [[ "$profile" == asus-test1 || "$profile" == portable-test1 || "$profile" == wifi-recovery1 ]]; then
         grep -qx 'CONFIG_IWLMVM=m' "$config_file" ||
             die "IWLMVM was not retained as a module"
     fi
 
-    if [[ "$profile" == portable-test1 ]]; then
+    if [[ "$profile" == portable-test1 || "$profile" == wifi-recovery1 ]]; then
         validate_touchpad_config "$config_file"
+    fi
+
+    if [[ "$profile" == wifi-recovery1 ]]; then
+        for option in ATH11K ATH11K_PCI; do
+            grep -Fqx "CONFIG_$option=m" "$config_file" ||
+                die "recovery candidate requires CONFIG_$option=m"
+        done
+        for option in MHI_BUS QRTR QRTR_MHI QCOM_QMI_HELPERS; do
+            grep -Eq "^CONFIG_$option=[my]$" "$config_file" ||
+                die "Qualcomm dependency unavailable: CONFIG_$option"
+        done
     fi
 
     grep -qx 'CONFIG_SQUASHFS=y' "$config_file" ||
@@ -267,7 +284,7 @@ build() {
     local stage="$root/$candidate_id"
     local path expected_release recorded_commit
 
-    [[ "$candidate_id" =~ ^[0-9]{8}T[0-9]{6}Z-[0-9a-f]{7}-linux-6[.]16[.]1-(xattr-test1|asus-test1|portable-test1)$ ]] ||
+    [[ "$candidate_id" =~ ^[0-9]{8}T[0-9]{6}Z-[0-9a-f]{7}-linux-6[.]16[.]1-(xattr-test1|asus-test1|portable-test1|wifi-recovery1)$ ]] ||
         die "invalid candidate identifier"
 
     [[ -d "$root" && ! -L "$root" ]] ||
@@ -328,13 +345,26 @@ build() {
         die "candidate SquashFS XATTR setting missing"
 
     if [[ "$expected_release" == 6.16.1-sable-asus-test1 ||
-          "$expected_release" == 6.16.1-sable-portable-test1 ]]; then
+          "$expected_release" == 6.16.1-sable-portable-test1 ||
+          "$expected_release" == 6.16.1-sable-wifi-recovery1 ]]; then
         grep -qx 'CONFIG_IWLMVM=m' "$stage/obj/.config" ||
             die "candidate IWLMVM module setting missing"
     fi
 
-    if [[ "$expected_release" == 6.16.1-sable-portable-test1 ]]; then
+    if [[ "$expected_release" == 6.16.1-sable-portable-test1 ||
+          "$expected_release" == 6.16.1-sable-wifi-recovery1 ]]; then
         validate_touchpad_config "$stage/obj/.config"
+    fi
+
+    if [[ "$expected_release" == 6.16.1-sable-wifi-recovery1 ]]; then
+        for option in ATH11K ATH11K_PCI; do
+            grep -Fqx "CONFIG_$option=m" "$stage/obj/.config" ||
+                die "candidate Qualcomm driver setting missing: CONFIG_$option"
+        done
+        for option in MHI_BUS QRTR QRTR_MHI QCOM_QMI_HELPERS; do
+            grep -Eq "^CONFIG_$option=[my]$" "$stage/obj/.config" ||
+                die "candidate Qualcomm dependency missing: CONFIG_$option"
+        done
     fi
 
     # Verify every extracted source entry against the authenticated archive.
@@ -546,7 +576,7 @@ case "$COMMAND" in
         compile_kernel "${@:2}"
         ;;
     *)
-        printf 'Usage: %s {check|prepare [xattr-test1|asus-test1|portable-test1]|build <candidate-id>|compile <candidate-id>}\n' "$0" >&2
+        printf 'Usage: %s {check|prepare [xattr-test1|asus-test1|portable-test1|wifi-recovery1]|build <candidate-id>|compile <candidate-id>}\n' "$0" >&2
         exit 2
         ;;
 esac
