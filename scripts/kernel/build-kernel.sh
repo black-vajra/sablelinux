@@ -5,7 +5,7 @@ COMMAND="${1:-}"
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 WORKSPACE="/srv/sablelinux"
-SOURCE_ARCHIVE="/sources/linux-6.16.1.tar.xz"
+SOURCE_ARCHIVE="/srv/sablelinux/cache/downloads/linux-6.16.1.tar.xz"
 CONFIG="$REPO/docs/release-validation/gpu-test2-2026-10-08/kernel.config"
 
 EXPECTED_SOURCE_SHA256="ea43491bc7ace1e414b3b2d957f8cf96e7049155123f0acce798accf8da1acba"

@@ -35,7 +35,7 @@ SCRIPT="$TMP/repo/scripts/kernel/build-kernel.sh"
 # reach the specific input validation being exercised.
 reset_test_script() {
     cp "$SOURCE_SCRIPT" "$SCRIPT"
-    sed -i 's|^REPO=.*|REPO="/home/pepper/sablelinux"|' "$SCRIPT"
+    sed -i 's|^REPO=.*|REPO="/home/sable/sablelinux"|' "$SCRIPT"
 }
 
 reset_test_script
@@ -67,7 +67,7 @@ run_expect "Missing command" failure "$SOURCE_SCRIPT"
 
 # A nonexistent source archive must be rejected.
 sed -i \
-    's|SOURCE_ARCHIVE="/sources/linux-6.16.1.tar.xz"|SOURCE_ARCHIVE="/nonexistent/sable-kernel-test.tar.xz"|' \
+    's|SOURCE_ARCHIVE="/srv/sablelinux/cache/downloads/linux-6.16.1.tar.xz"|SOURCE_ARCHIVE="/nonexistent/sable-kernel-test.tar.xz"|' \
     "$SCRIPT"
 
 run_expect "Missing source archive" failure "$SCRIPT" check
