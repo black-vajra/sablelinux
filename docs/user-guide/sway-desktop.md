@@ -78,3 +78,13 @@ Validate icon provenance and availability in generated rootfs.
 
 Reboot persistence and physical hardware behavior must be
 verified before the desktop receives release approval.
+
+## Foot terminal scrollback shortcuts
+
+The following shortcuts have been verified on SableLinux:
+
+- **Shift+PageUp:** Scroll backward one page.
+- **Ctrl+Shift+Home:** Jump to the beginning of scrollback.
+
+Other scrollback shortcuts should be documented only
+after verification on the running desktop.
