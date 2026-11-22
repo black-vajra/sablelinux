@@ -147,7 +147,10 @@ class QuarantinePreflightTests(unittest.TestCase):
         original_mkdir = recovery.os.mkdir
 
         def fail_replacement(path, *args, **kwargs):
-            if path == "rootfs" and "dir_fd" in kwargs:
+            if (
+                str(path).startswith(".rootfs-quarantine-")
+                and "dir_fd" in kwargs
+            ):
                 raise OSError("INJECTED_REPLACEMENT_FAILURE")
             return original_mkdir(path, *args, **kwargs)
 
@@ -184,7 +187,10 @@ class QuarantinePreflightTests(unittest.TestCase):
         original_mkdir = recovery.os.mkdir
 
         def interrupt_replacement(path, *args, **kwargs):
-            if path == "rootfs" and "dir_fd" in kwargs:
+            if (
+                str(path).startswith(".rootfs-quarantine-")
+                and "dir_fd" in kwargs
+            ):
                 raise KeyboardInterrupt(
                     "INJECTED_POST_RENAME_INTERRUPTION"
                 )
@@ -223,7 +229,10 @@ class QuarantinePreflightTests(unittest.TestCase):
         original_mkdir = recovery.os.mkdir
 
         def interrupt_replacement(path, *args, **kwargs):
-            if path == "rootfs" and "dir_fd" in kwargs:
+            if (
+                str(path).startswith(".rootfs-quarantine-")
+                and "dir_fd" in kwargs
+            ):
                 raise KeyboardInterrupt("INJECTED_INTERRUPTION")
             return original_mkdir(path, *args, **kwargs)
 
@@ -271,7 +280,10 @@ class QuarantinePreflightTests(unittest.TestCase):
         original_mkdir = recovery.os.mkdir
 
         def interrupt(path, *args, **kwargs):
-            if path == "rootfs" and "dir_fd" in kwargs:
+            if (
+                str(path).startswith(".rootfs-quarantine-")
+                and "dir_fd" in kwargs
+            ):
                 raise KeyboardInterrupt("INJECTED_INTERRUPTION")
             return original_mkdir(path, *args, **kwargs)
 
@@ -456,6 +468,120 @@ class QuarantinePreflightTests(unittest.TestCase):
         self.assertEqual(
             (self.build / "BUILD_STATE").read_text().strip(),
             "initialized",
+        )
+
+
+    def test_recovery_rejects_abandoned_staging_directory(self):
+        saved = self.prepare_interrupted_quarantine()
+
+        orphan = self.build / ".rootfs-recovery-interrupted"
+        orphan.mkdir()
+        (orphan / "unexpected-data").write_text("preserve")
+
+        with self.assertRaisesRegex(
+            ValueError, "abandoned recovery staging"
+        ):
+            recovery.recover_interrupted(self.build_id)
+
+        self.assertFalse(self.rootfs.exists())
+        self.assertEqual(
+            (orphan / "unexpected-data").read_text(),
+            "preserve",
+        )
+        self.assertEqual(
+            (saved / "rootfs" / "failed-capture").read_text(),
+            "evidence",
+        )
+
+
+    def test_cli_inspection_is_default(self):
+        import io
+        from contextlib import redirect_stdout
+
+        argv = [
+            "quarantine-failed-rootfs.py",
+            "--build-id", self.build_id,
+        ]
+        output = io.StringIO()
+
+        with patch("sys.argv", argv), redirect_stdout(output):
+            with patch.object(
+                recovery, "inspect",
+                return_value={"action": "inspection-only"},
+            ) as inspected:
+                self.assertEqual(recovery.main(), 0)
+
+        inspected.assert_called_once_with(self.build_id)
+        self.assertIn(
+            "SABLE_ROOTFS_QUARANTINE_PREFLIGHT_PASS",
+            output.getvalue(),
+        )
+
+    def test_cli_rejects_unprivileged_quarantine(self):
+        argv = [
+            "quarantine-failed-rootfs.py",
+            "--build-id", self.build_id,
+            "--execute-quarantine",
+            "--confirm-build-id", self.build_id,
+        ]
+        with patch("sys.argv", argv):
+            with patch.object(recovery.os, "geteuid", return_value=1000):
+                with patch.object(recovery, "quarantine") as operation:
+                    self.assertEqual(recovery.main(), 1)
+                    operation.assert_not_called()
+
+    def test_cli_rejects_wrong_confirmation(self):
+        argv = [
+            "quarantine-failed-rootfs.py",
+            "--build-id", self.build_id,
+            "--execute-quarantine",
+            "--confirm-build-id", "wrong-build",
+        ]
+        with patch("sys.argv", argv):
+            with patch.object(recovery.os, "geteuid", return_value=0):
+                with patch.object(recovery, "quarantine") as operation:
+                    self.assertEqual(recovery.main(), 1)
+                    operation.assert_not_called()
+
+    def test_cli_rejects_unprivileged_recovery(self):
+        argv = [
+            "quarantine-failed-rootfs.py",
+            "--build-id", self.build_id,
+            "--recover-interrupted",
+            "--confirm-build-id", self.build_id,
+        ]
+        with patch("sys.argv", argv):
+            with patch.object(recovery.os, "geteuid", return_value=1000):
+                with patch.object(
+                    recovery, "recover_interrupted"
+                ) as operation:
+                    self.assertEqual(recovery.main(), 1)
+                    operation.assert_not_called()
+
+    def test_cli_authorized_quarantine_dispatch(self):
+        import io
+        from contextlib import redirect_stdout
+
+        argv = [
+            "quarantine-failed-rootfs.py",
+            "--build-id", self.build_id,
+            "--execute-quarantine",
+            "--confirm-build-id", self.build_id,
+        ]
+        output = io.StringIO()
+
+        with patch("sys.argv", argv), redirect_stdout(output):
+            with patch.object(recovery.os, "geteuid", return_value=0):
+                with patch.object(
+                    recovery, "quarantine",
+                    return_value={"action": "quarantined"},
+                ) as operation:
+                    self.assertEqual(recovery.main(), 0)
+                    operation.assert_called_once_with(self.build_id)
+
+        self.assertIn(
+            "SABLE_ROOTFS_QUARANTINE_OPERATION_PASS",
+            output.getvalue(),
         )
 
     def test_empty_rootfs_rejected(self):

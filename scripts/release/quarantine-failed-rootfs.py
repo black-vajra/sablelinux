@@ -145,6 +145,17 @@ def inspect(build_id, operation=None):
         mounts = nested_mounts(rootfs_path)
         require(not mounts, f"rootfs contains mounts: {mounts}")
 
+        abandoned = sorted(
+            name for name in os.listdir(build)
+            if name.startswith(
+                (".rootfs-quarantine-", ".rootfs-recovery-")
+            )
+        )
+        require(
+            not abandoned,
+            "abandoned rootfs staging requires inspection",
+        )
+
         entries = os.listdir(rootfs)
         require(bool(entries), "rootfs is already empty")
 
@@ -201,6 +212,9 @@ def quarantine(build_id):
                     quarantine_info.st_dev == build_info.st_dev,
                     "quarantine is on another filesystem",
                 )
+                if created_quarantine:
+                    os.fsync(quarantine_fd)
+                    os.fsync(workspace_fd)
 
                 current = os.stat(
                     "rootfs", dir_fd=build_fd,
@@ -246,29 +260,72 @@ def quarantine(build_id):
                         os.fsync(output.fileno())
 
                     os.fsync(destination_fd)
+                    os.fsync(quarantine_fd)
 
                     rename_noreplace(
                         build_fd, "rootfs",
                         destination_fd, "rootfs",
                     )
 
+                    # Make the moved capture durable before preparing
+                    # the new active staging directory.
+                    os.fsync(destination_fd)
+                    os.fsync(build_fd)
+
+                    import uuid
+
+                    temporary = (
+                        ".rootfs-quarantine-" + uuid.uuid4().hex
+                    )
+
                     try:
                         os.mkdir(
-                            "rootfs", 0o2775, dir_fd=build_fd
+                            temporary, 0o700, dir_fd=build_fd
                         )
-                        os.chown(
-                            "rootfs", 0, build_info.st_gid,
-                            dir_fd=build_fd,
-                            follow_symlinks=False,
+                        staging_fd = os.open(
+                            temporary, DIR_FLAGS, dir_fd=build_fd
                         )
-                        os.chmod(
-                            "rootfs", 0o2775,
-                            dir_fd=build_fd,
-                            follow_symlinks=False,
+                        try:
+                            os.fchown(
+                                staging_fd, 0, build_info.st_gid
+                            )
+                            os.fchmod(staging_fd, 0o2775)
+
+                            prepared = os.fstat(staging_fd)
+                            require(
+                                prepared.st_uid == 0
+                                and prepared.st_gid == build_info.st_gid
+                                and stat.S_IMODE(prepared.st_mode)
+                                == 0o2775,
+                                "replacement metadata invalid",
+                            )
+                            require(
+                                not os.listdir(staging_fd),
+                                "replacement staging is not empty",
+                            )
+                            os.fsync(staging_fd)
+                        finally:
+                            os.close(staging_fd)
+
+                        rename_noreplace(
+                            build_fd, temporary,
+                            build_fd, "rootfs",
                         )
+
                     except OSError:
-                        # Best-effort rollback, provided no replacement
-                        # directory was successfully created.
+                        # Remove only our own empty, unpublished staging
+                        # directory. Never remove unexpected contents.
+                        try:
+                            os.rmdir(
+                                temporary, dir_fd=build_fd
+                            )
+                        except FileNotFoundError:
+                            pass
+                        except OSError:
+                            # Preserve unexplained state for inspection.
+                            pass
+
+                        # Roll back only when the active name is absent.
                         try:
                             os.stat(
                                 "rootfs", dir_fd=build_fd,
@@ -279,6 +336,8 @@ def quarantine(build_id):
                                 destination_fd, "rootfs",
                                 build_fd, "rootfs",
                             )
+                            os.fsync(destination_fd)
+                            os.fsync(build_fd)
                         raise
 
                     os.fsync(destination_fd)
@@ -345,6 +404,19 @@ def recover_interrupted(build_id):
                 "build is not root-owned")
         require(build_info.st_gid == state_info.st_gid,
                 "build and state groups differ")
+
+        # Never silently discard state left by an interrupted recovery.
+        # An operator must inspect and resolve it separately.
+        abandoned = sorted(
+            name for name in os.listdir(build)
+            if name.startswith(
+                (".rootfs-recovery-", ".rootfs-quarantine-")
+            )
+        )
+        require(
+            not abandoned,
+            "abandoned recovery staging directory requires inspection",
+        )
 
         # Recovery is valid only when the active staging directory
         # is completely absent. Never overwrite any existing object.
@@ -452,6 +524,7 @@ def recover_interrupted(build_id):
             )
             require(not os.listdir(staging),
                     "temporary rootfs is not empty")
+            os.fsync(staging)
 
             # Refuse to replace any existing active rootfs.
             try:
@@ -491,20 +564,78 @@ def recover_interrupted(build_id):
         }
 
 
+
 def main():
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(
+        description=(
+            "Inspect or explicitly quarantine a failed "
+            "canonical SableLinux rootfs"
+        )
+    )
     parser.add_argument("--build-id", required=True)
+
+    action = parser.add_mutually_exclusive_group()
+    action.add_argument(
+        "--execute-quarantine",
+        action="store_true",
+        help="Move failed rootfs into private quarantine",
+    )
+    action.add_argument(
+        "--recover-interrupted",
+        action="store_true",
+        help="Recreate missing staging after an interrupted move",
+    )
+
+    parser.add_argument(
+        "--confirm-build-id",
+        help="Required for either mutating operation",
+    )
+
     args = parser.parse_args()
 
     try:
-        result = inspect(args.build_id)
-    except (OSError, ValueError) as error:
-        print(f"FAIL: {error}", file=sys.stderr)
-        return 1
+        modifying = (
+            args.execute_quarantine
+            or args.recover_interrupted
+        )
 
-    print(json.dumps(result, indent=2, sort_keys=True))
-    print("SABLE_ROOTFS_QUARANTINE_PREFLIGHT_PASS")
-    return 0
+        if modifying:
+            require(
+                os.geteuid() == 0,
+                "mutating operations require root",
+            )
+            require(
+                args.confirm_build_id == args.build_id,
+                "explicit matching --confirm-build-id required",
+            )
+        else:
+            require(
+                args.confirm_build_id is None,
+                "confirmation is only valid for mutating operations",
+            )
+
+        if args.execute_quarantine:
+            result = quarantine(args.build_id)
+        elif args.recover_interrupted:
+            result = recover_interrupted(args.build_id)
+        else:
+            result = inspect(args.build_id)
+
+        print(json.dumps(result, indent=2, sort_keys=True))
+
+        if modifying:
+            print("SABLE_ROOTFS_QUARANTINE_OPERATION_PASS")
+        else:
+            print("SABLE_ROOTFS_QUARANTINE_PREFLIGHT_PASS")
+
+        return 0
+
+    except (OSError, ValueError) as error:
+        print(
+            f"SABLE_ROOTFS_QUARANTINE_FAIL: {error}",
+            file=sys.stderr,
+        )
+        return 1
 
 
 if __name__ == "__main__":
