@@ -508,6 +508,38 @@ install -D -m 0644 \
     "$ROOTFS/etc/systemd/system/sable-live-installer.service"
 
 # Supply a release-owned home; host user homes are never captured.
+# Excluded directory placeholders may inherit the build workspace's
+# setgid group and mode. Validate contents before normalizing metadata.
+for release_home in "$ROOTFS/home" "$ROOTFS/root"; do
+    [ -d "$release_home" ] && [ ! -L "$release_home" ] ||
+        die "release home placeholder is missing or redirected: $release_home"
+
+    [ -z "$(find "$release_home" -mindepth 1 -print -quit)" ] ||
+        die "release home placeholder contains unexpected files: $release_home"
+
+    if ! python3 - "$release_home" <<'CHECK_HOME_ATTRIBUTES'
+import os
+import sys
+
+attributes = os.listxattr(sys.argv[1], follow_symlinks=False)
+if attributes:
+    print(
+        f"ERROR: unexpected directory attributes: {sorted(attributes)}",
+        file=sys.stderr,
+    )
+    sys.exit(1)
+CHECK_HOME_ATTRIBUTES
+    then
+        die "release home placeholder contains unexpected metadata"
+    fi
+done
+
+# Four-digit modes explicitly clear inherited setgid bits.
+# Three-digit chmod modes may preserve setgid on directories.
+chown 0:0 "$ROOTFS/home" "$ROOTFS/root"
+chmod 00755 "$ROOTFS/home"
+chmod 00700 "$ROOTFS/root"
+
 # Reject unsafe paths before creating release-owned content.
 [ -d "$ROOTFS/home" ] && [ ! -L "$ROOTFS/home" ] ||
     die "release /home is missing or redirected"
