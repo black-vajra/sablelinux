@@ -239,6 +239,88 @@ class CandidateBuildPublicationTests(unittest.TestCase):
             "initialized\n",
         )
 
+
+    def test_interrupted_publication_recovery(self):
+        self.pointer.unlink()
+        self.marker.write_text("initialized\n")
+        self.env.write_text(
+            self.env.read_text().replace(
+                "BUILD_STATE=initializing",
+                "BUILD_STATE=initialized",
+            )
+        )
+
+        self.publish()
+
+        self.assertEqual(
+            self.pointer.read_text(),
+            self.build_id + "\n",
+        )
+        self.assertEqual(
+            self.pointer.stat().st_gid,
+            self.state_dir.stat().st_gid,
+        )
+
+    def test_recovery_refuses_existing_other_pointer(self):
+        self.marker.write_text("initialized\n")
+        self.env.write_text(
+            self.env.read_text().replace(
+                "BUILD_STATE=initializing",
+                "BUILD_STATE=initialized",
+            )
+        )
+
+        with self.assertRaises(ValueError):
+            self.publish()
+
+        self.assertEqual(
+            self.pointer.read_text(),
+            "previous-build\n",
+        )
+
+    def test_recovery_refuses_corrupt_kernel(self):
+        self.pointer.unlink()
+        self.marker.write_text("initialized\n")
+        self.env.write_text(
+            self.env.read_text().replace(
+                "BUILD_STATE=initializing",
+                "BUILD_STATE=initialized",
+            )
+        )
+        (self.boot / "vmlinuz-test-kernel").write_bytes(b"corrupt")
+
+        with self.assertRaises(ValueError):
+            self.publish()
+
+        self.assertFalse(self.pointer.exists())
+
+
+    def test_mismatched_build_group_rejected(self):
+        original_stat = publication.Path.stat
+        build_root = self.root
+        wrong_gid = self.state_dir.stat().st_gid + 1
+
+        def altered_stat(path, *args, **kwargs):
+            result = original_stat(path, *args, **kwargs)
+            if path == build_root:
+                values = list(result)
+                values[5] = wrong_gid
+                return os.stat_result(values)
+            return result
+
+        with patch.object(
+            publication.Path,
+            "stat",
+            altered_stat,
+        ):
+            with self.assertRaisesRegex(
+                ValueError,
+                "build and state directory groups differ",
+            ):
+                self.publish()
+
+        self.assert_not_published()
+
     def test_second_publication_rejected(self):
         self.publish()
 

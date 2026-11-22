@@ -3,7 +3,6 @@
 
 import argparse
 import fcntl
-import grp
 import hashlib
 import os
 import re
@@ -186,14 +185,29 @@ def publish(root, state_dir, build_id, workspace):
                 f"missing or invalid input: {path.name}")
 
     require(not pointer.is_symlink(), "current-build pointer is a symlink")
-    require(marker.read_text().strip() == "initializing",
-            "build is not initializing")
-
+    marker_state = marker.read_text().strip()
     env = metadata_from(env_path)
 
     require(env.get("BUILD_ID") == build_id, "metadata build ID mismatch")
-    require(env.get("BUILD_STATE") == "initializing",
-            "metadata state mismatch")
+
+    initializing = (
+        marker_state == "initializing"
+        and env.get("BUILD_STATE") == "initializing"
+    )
+    recovering = (
+        marker_state == "initialized"
+        and env.get("BUILD_STATE") == "initialized"
+        and not pointer.exists()
+    )
+
+    require(initializing or recovering,
+            "build is neither initializing nor recoverable")
+
+    # Derive the authorized group from the canonical state directory.
+    # Require the build directory to belong to that same group.
+    state_gid = state_dir.stat().st_gid
+    require(root.stat().st_gid == state_gid,
+            "build and state directory groups differ")
 
     for field in (
         "KERNEL_RELEASE",
@@ -217,11 +231,13 @@ def publish(root, state_dir, build_id, workspace):
         for line in lines
     ]
 
-    # Commit metadata, then the authoritative completion marker.
-    # Publish the current-build pointer only after both succeed.
-    atomic_write(env_path, "\n".join(updated) + "\n")
-    atomic_write(marker, "initialized\n")
-    atomic_write(pointer, build_id + "\n", group=grp.getgrnam("pepper").gr_gid)
+    # Verify group ownership before modifying publication state.
+    # Recovery is permitted only for an initialized, unselected build.
+    if initializing:
+        atomic_write(env_path, "\n".join(updated) + "\n")
+        atomic_write(marker, "initialized\n")
+
+    atomic_write(pointer, build_id + "\n", group=state_gid)
 
 
 def main():

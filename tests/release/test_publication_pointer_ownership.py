@@ -7,7 +7,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 
-REPO = Path("/home/pepper/sablelinux")
+REPO = Path(__file__).resolve().parents[2]
 PUBLISHER = REPO / "scripts/release/publish-candidate-build.py"
 
 spec = importlib.util.spec_from_file_location(
