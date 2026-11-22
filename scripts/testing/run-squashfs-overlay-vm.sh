@@ -6,9 +6,15 @@ export LC_ALL=C
 die() { printf 'ERROR: %s\n' "$*" >&2; exit 1; }
 
 repo="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-id="20261028T212705Z-622d439-linux-6.16.1-xattr-test1"
+[[ $# -eq 1 ]] || die "usage: $0 <candidate-id>"
+
+id="$1"
+
+[[ "$id" =~ ^[0-9]{8}T[0-9]{6}Z-[0-9a-f]{7}-linux-6[.]16[.]1-(xattr-test1|asus-test1|portable-test1|wifi-recovery1|beta1-test1)$ ]] ||
+    die "invalid candidate identifier"
 candidate="/srv/sablelinux/kernel-builds/$id"
-release="6.16.1-sable-xattr-test1"
+profile="${id##*-linux-6.16.1-}"
+release="6.16.1-sable-$profile"
 kernel="$candidate/artifacts/vmlinuz-$release"
 # Generate a fresh SquashFS fixture for every regression run.
 # No historical test artifact is used as a build input.
@@ -16,6 +22,17 @@ kernel="$candidate/artifacts/vmlinuz-$release"
 [[ "$(hostname)" == SableLinux ]] || die "canonical host required"
 [[ "$(git -C "$repo" branch --show-current)" == development ]] ||
     die "development branch required"
+
+# Verify candidate identity, artifacts, modules and metadata.
+python3 "$repo/scripts/release/verify-kernel-candidate.py"     --candidate-id "$id" ||
+    die "candidate verification failed"
+
+recorded_release="$(
+    sed -n 's/^KERNEL_RELEASE=//p'         "$candidate/metadata/compilation.env"
+)"
+
+[[ "$recorded_release" == "$release" ]] ||
+    die "candidate kernel release mismatch"
 [[ -r /dev/kvm && -w /dev/kvm ]] || die "KVM access unavailable"
 [[ "$(cat "$candidate/BUILD_STATE")" == built ]] ||
     die "candidate not built"
@@ -106,7 +123,7 @@ fail() {
 
 echo "SABLE_FS_VM_BEGIN"
 
-[ "$(uname -r)" = "6.16.1-sable-xattr-test1" ] ||
+[ "$(uname -r)" = "__EXPECTED_KERNEL_RELEASE__" ] ||
     fail "unexpected guest kernel"
 
 # Wait briefly for the VirtIO disk to appear.
@@ -166,6 +183,7 @@ sync
 poweroff -f
 GUEST
 
+sed -i "s/__EXPECTED_KERNEL_RELEASE__/$release/" "$root/init"
 chmod 0755 "$root/init"
 
 (
