@@ -93,12 +93,46 @@ git_repo() {
 }
 
 CURRENT_COMMIT="$(git_repo rev-parse HEAD)"
-BUILD_COMMIT="$(
-    awk -F= '$1 == "GIT_COMMIT" {print $2}' "$BUILD_ENV"
-)"
 
-[ "$CURRENT_COMMIT" = "$BUILD_COMMIT" ] ||
-    die "repository commit does not match build provenance"
+read_commit() {
+    local path="$1"
+    local value
+
+    [ -f "$path" ] && [ ! -L "$path" ] ||
+        die "missing or unsafe provenance metadata: $path"
+
+    value="$(awk -F= '
+        $1 == "GIT_COMMIT" {
+            count++
+            value = substr($0, length($1) + 2)
+        }
+        END {
+            if (count != 1 || value == "") exit 1
+            print value
+        }
+    ' "$path")" ||
+        die "invalid generation commit in $path"
+
+    [[ "$value" =~ ^[0-9a-f]{40}$ ]] ||
+        die "malformed generation commit in $path"
+
+    printf '%s\n' "$value"
+}
+
+BUILD_COMMIT="$(read_commit "$BUILD_ENV")"
+SQUASHFS_COMMIT="$(read_commit "$BUILD_ROOT/metadata/squashfs.env")"
+INITRAMFS_COMMIT="$(read_commit "$BUILD_ROOT/metadata/initramfs.env")"
+
+[ "$SQUASHFS_COMMIT" = "$INITRAMFS_COMMIT" ] ||
+    die "SquashFS and initramfs generation commits disagree"
+
+git_repo merge-base --is-ancestor \
+    "$BUILD_COMMIT" "$SQUASHFS_COMMIT" ||
+    die "build initialization is not an ancestor of artifact generation"
+
+git_repo merge-base --is-ancestor \
+    "$SQUASHFS_COMMIT" "$CURRENT_COMMIT" ||
+    die "artifact generation commit is not an ancestor of current HEAD"
 
 [ -z "$(git_repo status --porcelain)" ] ||
     die "repository contains uncommitted changes"
