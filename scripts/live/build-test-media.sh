@@ -366,9 +366,9 @@ grep -q "^BUILD_ID=$BUILD_ID$" \
     "$MOUNT_DIR/live/build.env" ||
     die "embedded build ID does not match"
 
-grep -q "^GIT_COMMIT=$CURRENT_COMMIT$" \
+grep -q "^GIT_COMMIT=$BUILD_COMMIT$" \
     "$MOUNT_DIR/live/build.env" ||
-    die "embedded Git commit does not match"
+    die "embedded build initialization commit does not match"
 
 umount "$MOUNT_DIR"
 MOUNTED="no"
