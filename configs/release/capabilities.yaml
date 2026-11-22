@@ -1,0 +1,212 @@
+# SableLinux capability contract
+# Initial baseline: 2026-11-22
+#
+# This file declares requirements, not verified system state.
+# Implementation and verification evidence must be recorded separately.
+#
+# Profiles:
+#   core          - required in the standard installed system
+#   desktop       - required in the standard graphical installation
+#   hardware      - required when supported hardware is detected
+#   optional      - independently provisioned functionality
+#   canonical     - required on the authoritative Z890 build host
+#
+# Never embed host credentials, keys, personal files, or AI models here.
+
+schema_version: 1
+distribution: SableLinux
+release_target: "1.0-beta1"
+canonical_build_host: Z890
+
+policy:
+  release_inputs: canonical_only
+  credentials_in_release: prohibited
+  host_specific_secrets: post_install_only
+  undocumented_manual_provisioning: prohibited
+  fresh_install_validation: required
+  hardware_validation: required
+  evidence_required: true
+
+capabilities:
+
+  security:
+    profile: core
+    requirements:
+      - release_rootfs_sanitization
+      - credential_and_private_key_exclusion
+      - secure_file_permissions
+      - supported_cryptographic_libraries
+      - firewall_policy
+      - security_update_tracking
+      - package_provenance_and_hashes
+      - system_and_service_isolation
+    acceptance:
+      - rootfs_security_audit
+      - release_home_validation
+      - fresh_install_security_audit
+
+  networking:
+    profile: core
+    requirements:
+      - systemd_networkd
+      - dns_resolution
+      - network_diagnostics
+      - wireguard_support
+    acceptance:
+      - fresh_install_network_test
+      - wireguard_capability_test
+
+  wireless:
+    profile: hardware
+    requirements:
+      - supported_wifi_drivers
+      - required_wifi_firmware
+      - bluetooth_kernel_support
+      - bluetooth_firmware
+      - bluez_userspace
+      - bluetooth_service_integration
+    acceptance:
+      - hardware_wifi_test
+      - bluetooth_controller_test
+      - bluetooth_pairing_test
+
+  audio:
+    profile: desktop
+    requirements:
+      - alsa
+      - pipewire
+      - wireplumber
+      - playback_and_capture
+      - volume_and_device_control
+      - bluetooth_audio_when_supported
+    acceptance:
+      - audio_playback_test
+      - audio_capture_test
+      - audio_service_test
+
+  multimedia:
+    profile: desktop
+    requirements:
+      - mesa_graphics
+      - vulkan_when_supported
+      - supported_video_codecs
+      - browser_media_playback
+      - hardware_video_acceleration_when_supported
+    acceptance:
+      - graphics_stack_test
+      - browser_media_test
+      - video_acceleration_test
+
+  desktop:
+    profile: desktop
+    requirements:
+      - sway
+      - waybar_release_configuration
+      - terminal_and_application_launchers
+      - file_manager
+      - notifications
+      - screenshots
+      - session_and_power_management
+    acceptance:
+      - fresh_install_desktop_test
+
+  local_ai:
+    profile: optional
+    requirements:
+      - supported_inference_runtime
+      - cpu_inference_fallback
+      - model_manifest_and_integrity
+      - explicit_model_provisioning
+      - controlled_service_configuration
+      - no_embedded_credentials
+    acceptance:
+      - inference_runtime_test
+      - model_integrity_test
+      - inference_smoke_test
+
+  gpu_compute:
+    profile: hardware
+    requirements:
+      - supported_gpu_driver
+      - validated_compute_backend
+      - vulkan_compute_when_supported
+      - rocm_when_supported
+    acceptance:
+      - gpu_backend_detection
+      - gpu_compute_test
+
+  ai_automation:
+    profile: optional
+    requirements:
+      - explicit_operator_authorization
+      - auditable_actions
+      - reproducible_task_configuration
+      - controlled_package_management
+    acceptance:
+      - automation_policy_test
+      - action_logging_test
+
+  scientific_computing:
+    profile: optional
+    requirements:
+      - boinc_client
+      - boinc_service_management
+      - workload_resource_policy
+    acceptance:
+      - boinc_service_test
+      - workload_policy_test
+
+  hardware:
+    profile: hardware
+    requirements:
+      - storage_and_filesystem_support
+      - usb_and_input_devices
+      - touchpad_when_present
+      - cpu_and_gpu_support
+      - hardware_error_reporting_when_supported
+    acceptance:
+      - hardware_inventory_test
+      - device_functionality_test
+
+  development:
+    profile: canonical
+    requirements:
+      - compiler_and_linker_toolchain
+      - build_utilities
+      - python_and_rust_toolchains
+      - authenticated_source_archives
+      - canonical_build_workspace
+    acceptance:
+      - build_toolchain_audit
+      - kernel_build_preflight
+
+  virtualization:
+    profile: canonical
+    requirements:
+      - kvm_kernel_support
+      - kvm_device_access
+      - authorized_build_user
+      - qemu_kvm
+      - ovmf
+    acceptance:
+      - kvm_acceleration_test
+      - kernel_smoke_test
+      - ovmf_boot_test
+
+  release_engineering:
+    profile: canonical
+    requirements:
+      - kernel_generation
+      - rootfs_generation
+      - squashfs_generation
+      - initramfs_generation
+      - iso_generation
+      - artifact_hash_manifests
+      - git_provenance
+      - qemu_regression_testing
+      - installer_validation
+      - hardware_release_validation
+    acceptance:
+      - canonical_release_pipeline_test
+      - artifact_integrity_test
+      - fresh_install_test

@@ -12,13 +12,15 @@ die() {
 
 candidate_id="$1"
 
-[[ "$candidate_id" =~ ^[0-9]{8}T[0-9]{6}Z-[0-9a-f]{7}-linux-6[.]16[.]1-xattr-test1$ ]] ||
+[[ "$candidate_id" =~ ^[0-9]{8}T[0-9]{6}Z-[0-9a-f]{7}-linux-6[.]16[.]1-(xattr-test1|asus-test1|portable-test1|wifi-recovery1|beta1-test1)$ ]] ||
     die "invalid candidate identifier"
 
 repo="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 candidate="/srv/sablelinux/kernel-builds/$candidate_id"
-release="6.16.1-sable-xattr-test1"
+profile="${candidate_id##*-linux-6.16.1-}"
+release="6.16.1-sable-$profile"
 kernel="$candidate/artifacts/vmlinuz-$release"
+
 busybox="/usr/bin/busybox"
 
 [[ "$(hostname)" == "SableLinux" ]] ||
@@ -26,6 +28,21 @@ busybox="/usr/bin/busybox"
 
 [[ "$(git -C "$repo" branch --show-current)" == development ]] ||
     die "development branch required"
+
+# Validate the compiled kernel and module manifests before QEMU.
+verifier="$repo/scripts/release/verify-kernel-candidate.py"
+[[ -f "$verifier" ]] || die "candidate verifier missing"
+
+python3 "$verifier" --candidate-id "$candidate_id" ||
+    die "kernel candidate verification failed"
+
+recorded_release="$(
+    sed -n 's/^KERNEL_RELEASE=//p'         "$candidate/metadata/compilation.env"
+)"
+
+[[ "$recorded_release" == "$release" ]] ||
+    die "candidate kernel release mismatch"
+
 
 [[ -r /dev/kvm && -w /dev/kvm ]] ||
     die "KVM access unavailable"
@@ -80,7 +97,7 @@ exec >/dev/console 2>&1
 echo "SABLE_KERNEL_VM_BEGIN"
 echo "Guest kernel: $(uname -r)"
 
-if [ "$(uname -r)" != "6.16.1-sable-xattr-test1" ]; then
+if [ "$(uname -r)" != "__EXPECTED_KERNEL_RELEASE__" ]; then
     echo "SABLE_KERNEL_VM_FAIL"
     poweroff -f
 fi
@@ -90,6 +107,7 @@ sync
 poweroff -f
 GUEST
 
+sed -i "s/__EXPECTED_KERNEL_RELEASE__/$release/" "$root/init"
 chmod 0755 "$root/init"
 ln -s busybox "$root/bin/mount"
 ln -s busybox "$root/bin/poweroff"
