@@ -4,3 +4,6 @@
 llama-server.service
 sshd.service
 autofs.service
+
+# No preconfigured or auto-started WireGuard instances
+wg-quick@*.service

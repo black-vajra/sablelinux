@@ -439,19 +439,8 @@ install -m 0440 \
 
 rm -f -- "$ROOTFS/etc/systemd/system/getty@tty1.service.d/autologin.conf"
 
-while IFS= read -r service; do
-    case "$service" in
-        ''|\#*)
-            continue
-            ;;
-    esac
-
-    find "$ROOTFS/etc/systemd/system" \
-        -type l \
-        -lname "*$service" \
-        -print \
-        -delete
-done < "$DISABLED_SERVICES"
+python3 -B "$REPO/scripts/live/disabled-service-policy.py" \
+    sanitize "$ROOTFS" "$DISABLED_SERVICES"
 
 # Replace only the runtime library in the captured filesystem.
 for live_dir in "$ROOTFS/usr" "$ROOTFS/usr/lib"; do
@@ -1013,18 +1002,8 @@ done
 
 validation_log "PASS: removed host UIDs own no rootfs content"
 
-for service in llama-server.service sshd.service autofs.service; do
-    ENABLED_LINK="$(
-        find "$ROOTFS/etc/systemd/system" \
-            -type l \
-            -lname "*$service" \
-            -print -quit 2>/dev/null ||
-            true
-    )"
-
-    [ -z "$ENABLED_LINK" ] ||
-        die "disabled service remains enabled: $ENABLED_LINK"
-done
+python3 -B "$REPO/scripts/live/disabled-service-policy.py" \
+    validate "$ROOTFS" "$DISABLED_SERVICES"
 
 validation_log "PASS: prohibited live services are not enabled"
 
