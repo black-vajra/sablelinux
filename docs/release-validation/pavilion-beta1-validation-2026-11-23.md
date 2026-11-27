@@ -179,3 +179,50 @@ guarantee smaller ISO media.
 
 All corrective changes must be implemented and validated on the
 canonical Z890 SableLinux build pipeline.
+
+## 9. Supplementary installed-system validation — 2026-11-26
+
+The Pavilion is operating an installed SableLinux 1.0 system with
+kernel 6.16.1-sable-beta1-test1.
+
+The earlier outstanding first-boot observation is superseded by
+verified installed-system operation and subsequent successful reboot.
+
+This does not independently establish that every installer phase or
+the previously observed replacement-workflow defect has been resolved.
+
+Verified:
+
+- Persistent machine identity.
+- Unique SSH host and user authentication keys.
+- Public-key SSH authentication over LAN.
+- Recovery after DHCP address change.
+- Machine-specific WireGuard credentials.
+- Successful WireGuard administrative split tunnel.
+- Restricted relay peer forwarding.
+- Authenticated SSH over WireGuard.
+- SSH and WireGuard automatic startup after physical reboot.
+
+Confirmed networking defects:
+
+- Missing SSH host-key generation service dependency.
+- Private deployment configuration and historical backup inherited
+  by the release.
+- Unavailable IPv6 policy routing.
+- Missing xt_comment and xt_connmark support.
+- Full-tunnel WireGuard activation failure.
+- Running kernel configuration unavailable for inspection.
+
+Temporary split-tunnel administration is accepted for continued
+device provisioning. Full-tunnel networking remains unqualified.
+
+IPv6 leak prevention and endpoint firewall hardening remain open.
+
+The earlier Wi-Fi discovery, installer boot-path collision, tty1
+presentation and other release findings remain open unless separately
+resolved and validated.
+
+Detailed evidence and canonical follow-up:
+
+- docs/journal/2026-11-26.md
+- docs/testing/release/networking-validation.md

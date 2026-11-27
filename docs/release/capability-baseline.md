@@ -98,3 +98,38 @@ Every declared capability must eventually map to:
 
 BUILDLOG.md and prior successful installations are historical
 evidence, not proof of current functionality.
+
+## Networking capability clarification — 2026-11-26
+
+Installed networking tools must be distinguished from demonstrated
+networking functionality.
+
+For declared SSH and WireGuard capabilities, validation must cover:
+
+- Release-neutral service configuration.
+- Host-specific credential isolation.
+- Complete service-unit dependencies.
+- Explicit service enablement policy.
+- Unique post-install identity generation.
+- Actual authentication and traffic exchange.
+- Required IPv4 and IPv6 policy-routing functionality.
+- Required Netfilter extensions and tables.
+- Tunnel activation, teardown and failure cleanup.
+- Installed-system reboot persistence.
+
+Administrative split-tunnel operation is not evidence of full-tunnel
+VPN functionality or internet leak prevention.
+
+Private fleet configuration is not an authorized distribution default.
+
+The networking regression specification is maintained at:
+
+    docs/testing/release/networking-validation.md
+
+The authoritative capability manifest remains:
+
+    configs/release/capabilities.yaml
+
+Review and integrate executable networking test mappings during the
+canonical engineering session. No manifest change or acceptance gate
+is claimed by this documentation update.

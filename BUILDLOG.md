@@ -2825,3 +2825,40 @@ Detailed report:
 Next phase:
 
     Add and validate CVMFS on the canonical Z890
+
+## 2026-11-26 — Beta 1 Pavilion networking validation
+
+Validated installed-system SSH and WireGuard administrative
+split-tunnel access on HP Pavilion using kernel
+6.16.1-sable-beta1-test1.
+
+Authenticated remote administration survived a physical reboot,
+with both SSH and WireGuard services starting automatically.
+
+Discovered:
+
+- Missing SSH host-key generation service dependency.
+- Private SSH configuration and historical backup contamination.
+- Unavailable IPv6 policy routing.
+- Missing Netfilter comment and connection-mark extensions.
+- IPv4 full-tunnel WireGuard activation failure.
+- Unavailable running kernel configuration diagnostics.
+- Inconsistent IPv6 disablement after reboot.
+
+Decision: separate public distribution configuration from private
+fleet provisioning.
+
+Full-tunnel VPN and canonical kernel corrections remain outstanding.
+
+Detailed engineering journal:
+
+    docs/journal/2026-11-26.md
+
+Networking regression specification:
+
+    docs/testing/release/networking-validation.md
+
+Next fleet target: ASUS.
+
+No canonical kernel or release artifact was modified during this
+documentation and physical validation session.

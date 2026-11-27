@@ -340,3 +340,57 @@ Canonical follow-up: the default SquashFS metadata-gate regression suite passed
 on Z890, including real capability fixtures. Evidence:
 docs/testing/live-metadata/2026-10-21/canonical-gate-tests.txt.
 Full image generation and release acceptance remain open.
+
+## Beta 1 networking checkpoint — 2026-11-26
+
+Physical HP Pavilion validation of kernel 6.16.1-sable-beta1-test1
+established operational SSH and WireGuard administrative split-tunnel
+connectivity, including successful authenticated access after reboot.
+
+Confirmed release defects:
+
+- Missing sshdgenkeys.service referenced by sshd.service.
+- Developer-specific SSH configuration included in the release.
+- Historical SSH configuration backup included in the release.
+- IPv6 policy-routing functionality unavailable.
+- xt_comment and xt_connmark unavailable in the installed kernel
+  and module tree.
+- IPv4 full-tunnel WireGuard activation fails during Netfilter setup.
+- Running kernel configuration unavailable through the tested paths.
+
+The exact canonical kernel configuration and module-staging causes
+remain unverified.
+
+Public release SSH configuration must not impose private usernames,
+ports or administrative identities. Preserve explicitly approved
+release security requirements and disabled-by-default network service
+policy.
+
+Temporary Pavilion split-tunnel operation permits remote administration
+but does not provide full-tunnel internet protection.
+
+IPv6 disablement was inconsistent after reboot. Complete leak
+prevention and restrictive endpoint firewall policy remain unvalidated.
+
+Next canonical networking work:
+
+1. Establish exact Beta 1 kernel configuration provenance.
+2. Audit required networking kernel and module capabilities.
+3. Correct SSH packaging and release configuration composition.
+4. Implement executable networking regression tests.
+5. Validate a corrected kernel and module set under QEMU.
+6. Regenerate and validate the applicable release artifacts.
+7. Repeat installed-system and physical networking validation.
+
+Evidence:
+
+- docs/journal/2026-11-26.md
+- docs/release-validation/pavilion-beta1-validation-2026-11-23.md
+- docs/testing/release/networking-validation.md
+
+Next fleet activity: ASUS provisioning audit, followed by EliteBook
+verification.
+
+This checkpoint supplements earlier dated engineering observations.
+It does not constitute a fresh canonical Z890 system audit or close
+the remaining ISO release gates.
